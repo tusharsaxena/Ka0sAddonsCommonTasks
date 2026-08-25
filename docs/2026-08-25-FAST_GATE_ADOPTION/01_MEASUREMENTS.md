@@ -123,3 +123,48 @@ is Multi Meters at 6.34s and the median is 3.6s. Every repo is comfortably under
 This is the rule being followed, not a corner being cut. Consumable Master is the case that shows
 why the order matters: sharded eight ways, its 25.59s would have come down to something respectable
 while the 28,768 redundant file opens sat there untouched, and the repo would have looked fixed.
+
+## Correction: the "before" column flatters this, and the repos' own records say so
+
+The table above compares against the adoption prompt's figures. Those were taken on a state none of
+these repos can evidence from the inside, and taking them at face value tells a nicer story than the
+evidence supports. Each repo's **own** last recorded run, from its `docs/automated-tests/`
+manifests, gives a second comparison — and for most of the collection it points the other way.
+
+`tests`-suite duration and vendored-payload size, previous recorded run against today's:
+
+| Addon | Previous run | Then | Payload | Now | Payload |
+|---|---|---|---|---|---|
+| Ka0s Consumable Master | `20260807-114612` | 72.78s / 675 | 54 files | **3.87s** / 698 | 182 files |
+| Ka0s KickCD | `20260807-114618` | 45.20s / 756 | 68 | **5.66s** / 780 | 196 |
+| Ka0s Multi Meters | `20260825-021705` | 8.25s / 1,246 | 194 | **6.50s** / 1,257 | 197 |
+| Ka0s Bank Ledger | `20260807-115101` | 2.45s / 727 | 52 | 3.49s / 791 | 180 |
+| Ka0s Panel Master | `20260807-160022` | 2.80s / 717 | 66 | 3.66s / 731 | 194 |
+| Ka0s Loot History | `20260807-114650` | 2.07s / 594 | 52 | 3.23s / 644 | 180 |
+| Ka0s WhatGroup | `20260807-121935` | 1.45s / 462 | 49 | 3.11s / 485 | 177 |
+| Ka0s Pretty Chat | `20260807-114404` | 1.36s / 260 | 43 | 3.21s / 271 | 171 |
+| Ka0s Absorb Tracker | — | no comparable prior run | | 4.21s / 508 | 199 |
+
+**Five of the nine are slower than they were in August**, and the reason is in the last column: the
+vendored payload grew from roughly 50 files to roughly 180 as `LibKa0s-Media-1.0` and its icon set
+were adopted across the collection. Pretty Chat vendored **zero** icons at `836beb5` and vendors
+**114** now. The payload gate verifies every file in the payload against the tag, so the work it
+does grew with it.
+
+So the batch did not make every gate faster than it has ever been. What it did was **make the
+payload gate affordable at the size the payload has now reached**. The two readings are both true
+and they answer different questions:
+
+- Against the same tree with unbatched reads — the prompt's column — today is much faster, and
+  WhatGroup measures that directly: `popen` 147 to 9 across a 177-file payload.
+- Against each repo's own August record, the five small suites gave back some of that to payload
+  growth, and the two that had drifted to 45s and 73s came down by an order of magnitude.
+
+None of this changes a decision made here. Every gate is still well under the ten-second line, so
+`--jobs` stays off either way, and Consumable Master's `resolve()` finding stands on measurements
+taken minutes apart on one tree. It changes what may honestly be claimed: **the fast gate stopped
+the payload growth from being felt, rather than making every suite faster than it used to be.**
+
+The figure worth watching is that ~3.1s floor the five small suites have converged on. It is not
+their cases — WhatGroup burns 0.27s of CPU to produce it. It is the payload gate, and it will grow
+again the next time the payload does.
