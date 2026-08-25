@@ -457,4 +457,9 @@ Each addon's adoption is an independent commit, and an addon that has not adopte
 - No message-bus module (`01_ANALYSIS.md` §5).
 - No merged item resolver.
 - No conversion of `DebugLog`'s copy window.
-- No `testkit/` change, and therefore no `Kit.VERSION` bump and no `tests/_kit/` re-vendor.
+- No `testkit/` change in the **library**, and therefore no `Kit.VERSION` bump. This does **not**
+  mean no `tests/_kit/` re-vendor in the consumers: eight of the nine are still on kit revision 11,
+  a debt they took on when they skipped v1.14.0 (*"testkit revision 12"*), and the vendor-sync gate
+  reads **one** provenance line out of `CLAUDE.md` and compares **both** `libs/LibKa0s/` and
+  `tests/_kit/` against that tag (`tests/_kit/vendor_sync.lua`'s `DEFAULT_PAIRS`). Rolling the line
+  to v1.15.0 therefore obliges the kit to move with it. See `04_PLAN_B` Task 8 Step 1b.

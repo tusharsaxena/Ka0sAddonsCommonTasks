@@ -1688,6 +1688,7 @@ cd LibKa0s && git add docs/releasing.md && git commit -m "docs(releasing): re-sw
 - Modify: `<consumer>/libs/LibKa0s/` (the whole payload)
 - Modify: `<consumer>/tests/run.lua` (the hand-listed LibKa0s load list)
 - Modify: `<consumer>/CLAUDE.md` (the provenance line)
+- Modify, in the eight consumers still on kit revision 11: `<consumer>/tests/_kit/` (see Step 1b)
 - Modify, in the four consumers that name the old cap: `ConsumableMaster/tests/test_debuglog.lua`,
   `PrettyChat/tests/test_debuglog.lua`, `AbsorbTracker/docs/{ARCHITECTURE,module-map}.md`,
   `WhatGroup/docs/debug.md`
@@ -1718,6 +1719,39 @@ diff -r LibKa0s/LibKa0s <consumer>/libs/LibKa0s && echo "byte-identical"
 
 Expected: no output from `diff`, then `byte-identical`. An empty `diff -r` is `library-stack-§7`'s
 vendor-sync MUST and each consumer's `tests/test_vendor_sync.lua` asserts it.
+
+
+- [ ] **Step 1b: Take the test kit too, wherever the consumer is behind**
+
+**The provenance line governs both payloads, so they move together.** `tests/_kit/vendor_sync.lua`'s
+`DEFAULT_PAIRS` registers two cases — one for `libs/LibKa0s`, one for `tests/_kit` — and both are
+compared against the single tag `bundledVersion()` greps out of `CLAUDE.md`. There is no green end
+state in which the line says v1.15.0 and the kit is still the one that shipped at v1.10.2.
+
+This is **not** a change this release makes. LibKa0s' `testkit/` is untouched by B–F; the kit went to
+revision 12 at **v1.14.0** (*"testkit revision 12: the green gate stops waiting on the disk"*), and
+eight of the nine consumers never took it. They are paying a debt, not absorbing new scope.
+
+```sh
+cd <consumer> && grep -n "Kit.VERSION =" tests/_kit/framework.lua
+grep -n "Kit.VERSION =" /path/to/GIT/LibKa0s/testkit/framework.lua
+```
+
+Equal → nothing to do (MultiMeters is already on 12). Behind → copy the kit whole, from the same
+tree the library payload came from:
+
+```sh
+cp -r LibKa0s/testkit/. <consumer>/tests/_kit/
+diff -r LibKa0s/testkit <consumer>/tests/_kit && echo "byte-identical"
+```
+
+Four of the six files differ between 11 and 12 — `README.md`, `framework.lua`, `loader.lua`,
+`vendor_sync.lua`. Revision 12 is backward compatible (a compiled-chunk cache in the loader, and an
+opt-in `--jobs`/`--shard` that defaults to 1), so no consumer's `tests/run.lua` needs a change for
+it. **Line endings survive a plain `cp`**: both trees already hold CRLF for the text files and LF
+for `run-automated-tests.sh`, which is what each repo's `.gitattributes` `*.sh text eol=lf` carve-out
+demands. Verify rather than assume, and regenerate `docs/test-cases.md` if any kit-owned case name
+moved.
 
 - [ ] **Step 2: Add the three new files to the consumer's test load list**
 
