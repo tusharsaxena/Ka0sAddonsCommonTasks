@@ -66,3 +66,4 @@ makes them normative, gives the library the surface to make them cheap, and adop
 - `02_ADOPTION.md` — what each of the nine addons actually changed.
 - `03_VERIFICATION.md` — the test batteries, and what the independent verifiers found.
 - `04_OPEN.md` — anything deliberately left, and why.
+- `05_DOC_SYNC.md` — the documentation sync, and the comment citations it turned up.
