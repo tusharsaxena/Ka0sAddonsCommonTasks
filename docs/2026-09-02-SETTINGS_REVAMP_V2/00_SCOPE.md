@@ -62,7 +62,7 @@ makes them normative, gives the library the surface to make them cheap, and adop
 
 ## Record
 
-- `01_UPSTREAM_SPEC.md` — the library and standard changes, as designed and as built.
+- `01_UPSTREAM.md` — the library and standard changes, as designed and as built.
 - `02_ADOPTION.md` — what each of the nine addons actually changed.
 - `03_VERIFICATION.md` — the test batteries, and what the independent verifiers found.
 - `04_OPEN.md` — anything deliberately left, and why.
