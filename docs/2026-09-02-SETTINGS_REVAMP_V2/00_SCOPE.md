@@ -53,6 +53,12 @@ makes them normative, gives the library the surface to make them cheap, and adop
 3. **What Master controls must hold.** The tab is mandatory and its name is exact; its contents are the
    applicable subset. A frameless addon omits the frame rows rather than growing a frame to fill them.
 4. **Pushing.** Incremental, to `origin`, as each repo's work lands. No PRs.
+5. **Tagging LibKa0s.** Taken mid-pass, because the nine addons' vendor-sync tests compare their
+   vendored copy against `git show v1.24.0:` in the library checkout, and an untagged library fails
+   two tests in every addon. `v1.24.0` is tagged and pushed. This is the one place decision 2 gives
+   way: the library is released so that the addons consuming it can be tested at all. Confirmed
+   correct by the payload matching the tag byte-for-byte — Multi Meters went to 1458/1458 the moment
+   the tag existed, with no other change.
 
 ## Record
 
