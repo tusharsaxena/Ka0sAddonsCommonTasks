@@ -133,6 +133,7 @@ completed agents replay from cache, so a resume re-runs only what was in flight.
 | M | Run id | Script |
 |---|---|---|
 | M1 | `wf_14ba5d9d-4ee` | `ka0s-m1-upstream-wf_14ba5d9d-4ee.js` |
+| M2 | `wf_2b86e5d7-1f3` | `ka0s-m2-reachable-defects-wf_2b86e5d7-1f3.js` |
 
 Scripts live under
 `~/.claude/projects/-mnt-d-Profile-Users-Tushar-Documents-GIT-Ka0sAddonsCommonTasks/cc7de98b-2023-425e-a118-ad5b0ca212ee/workflows/scripts/`,
