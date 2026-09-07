@@ -117,8 +117,8 @@ Legend: ☐ not started · ◐ in flight · ☑ complete · ⚠ complete with it
 
 | M | What | Items | State | Notes |
 |---|---|---|---|---|
-| **M1** | Upstream — LibKa0s, WowAddonStandards, wow-addon | 38 | ◐ in flight | Three repo lanes in parallel, each serial internally |
-| **M2** | The defects that need no upstream anything | 27 | ☐ | Nine addon lanes, then the cross-repo items, then `M2-23` |
+| **M1** | Upstream — LibKa0s, WowAddonStandards, wow-addon | 38 | ⚠ complete | 38/38 landed, both tags cut. Four caveats below |
+| **M2** | The defects that need no upstream anything | 27 | ◐ in flight | Nine addon lanes, then the cross-repo items, then `M2-23` |
 | **M3** | Adoption of v1.26.0 | 5 | ☐ | KickCD first — that one re-vendor repairs every consumer in a live session |
 | **M4** | Adoption of v1.27.0, and the compliance the rulings unblock | 26 | ☐ | `M4-04` … `M4-08` land one repo at a time, five attribution points |
 | **M5** | The record and documentation tail | 10 | ☐ | Last, because everything above rewrites what it records |
@@ -145,4 +145,54 @@ because an item that already has a commit is visible and can be skipped.
 
 ## Item outcomes
 
-Appended per milestone as it completes. Nothing here yet.
+### M1 — complete, 38/38, with four caveats
+
+39 agents, no failures. 16 commits in LibKa0s, 16 in WowAddonStandards, 7 in wow-addon (Group C picked
+up `M1-STD-03`'s plugin ripple as a seventh). `M1-LK-00` is the one item with no commit, by design.
+
+**Measured after the fact, by a pass that re-ran everything rather than trusting the item reports:**
+
+| | |
+|---|---|
+| LibKa0s `luacheck .` | 0 warnings / 0 errors, **49 files** — was 18 of 49 before `M1-LK-12` |
+| LibKa0s `lua tests/run.lua` | **791** passed / 0 failed — was 764 |
+| LibKa0s complexity | 0 warnings, max CCN 14, 14376 NLOC |
+| `git ls-files --eol` stragglers | exactly the two `attr eol=lf` shell scripts, as intended |
+| Tags | `v1.26.0` → b2079450, `v1.27.0` → b635fd46, both annotated, **neither pushed** |
+| The standard | v2.39.0, all fifteen amendments verified present in their section files |
+
+**The Critical fix was proved, not asserted.** The verifier replayed commit `e05237c` in a scratch
+tree: 762 passed / 6 failed, with the four composer cases failing on *"expected table, got function"*.
+At `6defec2` the same cases pass and `grep -c 'function() return O.LSMValues'` goes 3 → 0 with
+`COMPOSE_MINOR` 2 → 3. Gate-before-fix happened rather than being claimed.
+
+**Caveat 1 — the exit criteria contain a clause M1 cannot satisfy.** Clause 1's second half asks that
+`diff -r LibKa0s <Addon>/libs/LibKa0s` be byte-empty for the first consumer re-vendored. No consumer is
+re-vendored until `M3-01`; all nine still stamp v1.25.0. This is a defect in the criterion's placement,
+not in the work — it belongs to M3's exit, and it is why the exit pass returned `false`.
+
+**Caveat 2 — v1.26.0's release bundle was measured on a dirty tree.** Bundle
+`docs/automated-tests/20260907-201015/` names `"release": "1.26.0"` and sits inside the tagged tree, so
+the criterion's letter holds, but its manifest records `git.sha b903483` (the tag's *parent*),
+`git.dirty true` and `addonVersion 1.25.0`. v1.27.0's bundle is clean by contrast. **Not fixed here:**
+the bundle commit precedes the tag, so correcting it means rewriting a branch that already carries two
+tags, and the payload itself is correct. If review re-cuts v1.26.0 for any reason, fix it then —
+`M1-LK-14` rewrote `docs/releasing.md` to make a dirty release tree refuse, so this cannot recur.
+
+**Caveat 3 — one commit deliberately leaves LibKa0s red.** `e05237c` (`M1-LK-01`) is the four composer
+cases without their fix, which is what `04_EXECUTION_PLAN.md` orders and what `05_TRACEABILITY.md` § 7c
+sanctions. `02_UPSTREAM_CHANGES.md` and `03_SPEC.md` invariant 1 both say the gate and its fix land in
+one commit. The conflict is now in the shipped history rather than only in the documents. **The remedy,
+if you want one, is to squash `e05237c` into `6defec2`** — the content is right either way. Left alone
+because a bisector reading "red for exactly one commit, and here is why" is better served than one
+reading a squashed commit that hides the ordering the whole item exists to demonstrate.
+
+**Caveat 4 — five reported figures did not reproduce.** None changes a conclusion; all are recorded so
+they are not later read as drift. `M1-WA-03` claimed `grep -ci 'blocker'` → 8, actual 6 at its own
+commit and at HEAD. `M1-STD-16` claimed three plugin files still describe three tables; all three
+already carried the four-table register, swept by `M1-STD-03`'s ripple. `M1-STD-01`'s 308/329 file
+census measures 310/331 today — LibKa0s's own later M1 work added the difference, so the figure was
+right when taken and is stale now. `M1-WA-01`'s grep reads 12 at HEAD against 11 at its commit, for the
+same reason. `M1-LK-00`'s byte-empty vendored diff is no longer reproducible because five later items
+changed the library — **so the collection's "check that has never passed" still has not been
+demonstrated passing anywhere, and will not be until `M3-01`.**
