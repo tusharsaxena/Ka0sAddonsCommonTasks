@@ -1,0 +1,1 @@
+M1-LK-00	Working-tree repair against an already-correct index, so no commit exists by design. Check: git -C ../../../LibKa0s ls-files --eol | grep -E "w/(lf|mixed)" lists only the two .sh files under attr eol=lf.
