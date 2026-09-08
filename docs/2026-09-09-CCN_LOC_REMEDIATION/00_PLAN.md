@@ -144,7 +144,8 @@ is the authority on what is left.
 |---|---|---|---|
 | CP-0 | Branch cut, plan written, baseline measured | done | `b7b7f0c` (plan repo) |
 | CP-1a | 194 characterization tests, run against unrefactored code — 1728 green | done | `77d0723` |
-| CP-1 | Phase 1 CCN refactors landed, lizard 0 warnings | pending | — |
+| CP-1b | 23 lizard warnings to **0**; suite 1728 green, lint 0/0 | done | `7d86d8e` |
+| CP-1c | Repair of the 6 files the adversarial review flagged | pending | — |
 | CP-2 | Phase 2 source peels landed (L-01, L-04, L-05, L-07, L-08, L-09, L-10) | pending | — |
 | CP-3 | Phase 2 test peels landed (L-02, L-03, L-06, L-11…L-15) | pending | — |
 | CP-4 | Phase 3 registers, gates and docs | pending | — |
@@ -170,6 +171,7 @@ says.
 |---|---|---|
 | Phase 1a — characterization | `wf_68cf9ad3-cd4` | `multimeters-characterization-wf_68cf9ad3-cd4.js` |
 | Phase 1b — CCN refactor + adversarial verify | `wf_5ea3abae-aa4` | `multimeters-ccn-refactor-wf_5ea3abae-aa4.js` |
+| Phase 1c — regression repair + re-verify | `wf_3d2f3a00-aca` | `multimeters-ccn-repair-wf_3d2f3a00-aca.js` |
 
 Scripts live under the session's `workflows/scripts/` directory; resume with
 `Workflow({scriptPath, resumeFromRunId})`.
