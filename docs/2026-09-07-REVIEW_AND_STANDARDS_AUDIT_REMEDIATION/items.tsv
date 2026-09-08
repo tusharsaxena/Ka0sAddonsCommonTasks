@@ -1,0 +1,107 @@
+M1-LK-00	M1	LibKa0s	`rm` plus `git checkout --` on **all seven** working-tree LF files under `attr text=auto eol=crlf`: `LibKa0s/D
+M1-LK-01	M1	LibKa0s	Write four cases in `tests/test_options_compose.lua`: `type(rows[n].values()) == "table"` and non-empty for `F
+M1-LK-02	M1	LibKa0s	`LibKa0s/OptionsCompose.lua:231`, `:275`, `:304`: `values = O.LSMValues("font"\|"border"\|"statusbar")`, dropp
+M1-LK-03	M1	LibKa0s	`TabStrip` (`OptionsWidgets.lua:1050-1072`) acquires buttons and the content panel from per-`ctx` `LibKa0s-Poo
+M1-LK-04	M1	LibKa0s	**Cut v1.26.0.** `docs/releasing.md` steps 1–7 verbatim. M3 cannot start without it.
+M1-LK-05	M1	LibKa0s	New `lib.__PatchLSM30Border()` on `LibKa0s-Options-1.0`: lib-level, idempotent behind `lib.__lsmBorderPatched`
+M1-LK-06	M1	LibKa0s	Add `lib.STRINGS.DEAD_BUTTON`; `makeBtn` (`OptionsWidgets.lua:1313-1319`) reports once at build time for a han
+M1-LK-07	M1	LibKa0s	`testkit/run-automated-tests.sh`: widen the pass regex at `:195` to span `, N skipped`; add `suites.tests.skip
+M1-LK-08	M1	LibKa0s	`testkit/mock_base.lua`: add `SetAtlas(name, useAtlasSize)` writing a height from a kit-published atlas table,
+M1-LK-09	M1	LibKa0s	`testkit/framework.lua`: add `Kit.assertSurfaceParity(stub, majorName)` reporting all divergences in one messa
+M1-LK-10	M1	LibKa0s	Move `tests/test_eol.lua` into `testkit/` and widen `trackedFiles()` from `:29`'s `BUNDLES = "docs/automated-t
+M1-LK-11	M1	LibKa0s	`tests/test_prose.lua:113`: replace the six-substring `BRITISH` list with the canonical list `M1-STD-12` publi
+M1-LK-12	M1	LibKa0s	`.luacheckrc:4`: narrow `exclude_files` from `{ "tests/", "docs/" }` to `tests/_kit/`, and add a `files["tests
+M1-LK-13	M1	LibKa0s	Four library-local items: store the shell's constructed sink as `O.__print` so `OptionsWidgets.lua:696`'s `loc
+M1-LK-14	M1	LibKa0s	`CLAUDE.md:3` and `README.md:3`: standards pointer v2.28.0 → whatever version `M1-STD-16` lands as. `docs/rele
+M1-LK-15	M1	LibKa0s	**Cut v1.27.0.** `docs/releasing.md` steps 1–7. Serialise the preceding items inside the library first: `Optio
+M1-STD-01	M1	WowAddonStandards	`lint.md:11`'s template narrows `exclude_files` to `tests/_kit/` and gains a `files["tests/"]` stanza; `lint.m
+M1-STD-02	M1	WowAddonStandards	`toc-file.md`: state that `§5:144`'s MUST binds only load-bearing positions and that `:147`'s conventional ann
+M1-STD-03	M1	WowAddonStandards	`documentation.md` `§3`: name a fourth `Verification and record` table and say whether `ARCHITECTURE.md` regis
+M1-STD-04	M1	WowAddonStandards	`standalone-windows.md`: resolve `:30`'s "every close control MUST be built through that wrapper" against `:34
+M1-STD-05	M1	WowAddonStandards	`library-stack.md`: mark AceEvent-3.0 and AceTimer-3.0 in `§1`'s mandatory table (`:13-14`) as mandatory-when-
+M1-STD-06	M1	WowAddonStandards	`line-endings.md` `§5` (`:133-135`) sanctions a clearly delimited appendix block below the canonical `.gitattr
+M1-STD-07	M1	WowAddonStandards	Settle `automated-tests.md:222-241` against `documentation.md:68`. One MUSTs per-entry dispositions and a stan
+M1-STD-08	M1	WowAddonStandards	`layout.md`: state whether `§1`'s 1500-line cap (`:55`) binds `tests/` — the skeleton block lists `tests/` at 
+M1-STD-09	M1	WowAddonStandards	`packaging.md`'s minimum template (`:9-24`) gains `.pkgmeta`, so it stops failing `:28`'s own strong-form MUST
+M1-STD-10	M1	WowAddonStandards	New rule: a widget-type re-registration against AceGUI's process-global registry is a LibKa0s concern, never a
+M1-STD-11	M1	WowAddonStandards	`options-ui`: rule on shipping composers without the Options major — `KICKCD-A-10`'s provisional register row 
+M1-STD-12	M1	WowAddonStandards	`localization.md` `§5` publishes the canonical substring list its Use/Never table implies, and requires a mech
+M1-STD-13	M1	WowAddonStandards	`line-endings.md` `§7` (`:362-370`) cites the vendored EOL gate rather than only supplying a command. Ten of t
+M1-STD-14	M1	WowAddonStandards	`documentation.md:237` gives `compat-layer.md`'s trigger a number, as `slash-dispatch.md` got "eight or more c
+M1-STD-15	M1	WowAddonStandards	Two register rules and one inventory correction. `audit-review-history.md:32-39` gains a third MUST: a row's r
+M1-STD-16	M1	WowAddonStandards	Version rollup: `STANDARDS.md:1` version and date, changelog entry naming every section touched by `M1-STD-01`
+M1-WA-01	M1	wow-addon	`agents/review.md`: add a cross-addon, same-session pass. The whole checklist is per-addon today and its only 
+M1-WA-02	M1	wow-addon	`agents/review.md` and `agents/standards-audit.md`: every census command counts the whole tracked set and stat
+M1-WA-03	M1	wow-addon	`commands/revendor-libka0s.md`: check for a **contract** change, not only a version change. `M1-LK-02` moves `
+M1-WA-04	M1	wow-addon	`commands/sync-docs.md`: add a comment-citation check over the addon's own source (excluding `libs/`, `tests/_
+M1-WA-05	M1	wow-addon	`commands/new-addon.md`: scaffold a non-English-client step into `docs/smoke-tests.md`. Six of nine addons hav
+M1-WA-06	M1	wow-addon	Put WowAddonStandards and `wow-addon` into the audit rotation. Neither has ever had a review or an audit; `age
+M2-01	M2	PrettyChat	Move `conversionSequence` into `modules/Override.lua` as `NS.ConversionSequence`; `Schema.Set` (`settings/Sche
+M2-02	M2	PrettyChat	Replace `settings/Panel.lua:646-721`'s hand-copied landing renderer with `H.BuildLandingPage(ctx, spec)`, and 
+M2-03	M2	PrettyChat	`core/PrettyChat.lua:20-25` builds a fresh merged table instead of mutating `NS.ProfileDefaults` in place; `mo
+M2-04	M2	BankLedger	`tests/wow_mock.lua:582-589` models AceDB's default fallback — metatable or logout strip — so that setting a k
+M2-05	M2	BankLedger	Drop `schemaVersion` from `defaults/Global.lua:14`; `RunMigrations` (`core/Database.lua:15-21`) seeds it, usin
+M2-06	M2	ConsumableMaster	`tests/test_database.lua:56-63` is renamed to what it asserts and gains the missing multi-profile case; its se
+M2-07	M2	ConsumableMaster	`core/Database.lua:65-90`: gate profile-writing steps on `db.profile.schemaVersion`, keep account-wide steps o
+M2-08	M2	ConsumableMaster	`settings/Panel.lua:866-867`: defer `Settings.RegisterAddOnCategory` on `InCombatLockdown` and retry from the 
+M2-09	M2	MultiMeters	Publish a plain boolean (`Diagnostics.feignArmed`) and read it before building anything: hoist the read above 
+M2-10	M2	MultiMeters	Stop `judge` evicting the cast lines the ring exists to show: admit it only for GUIDs a cast line named, with 
+M2-11	M2	MultiMeters	Trace the eviction branch at `modules/Feign.lua:247-249` with its own verdict — today `if unit == nil then fei
+M2-12	M2	MultiMeters	Re-derive `tests/perf.lua:564`'s `PROBE_OFF_BYTES_CEILING` from three runs after `M2-09`, recording the measur
+M2-13	M2	LootHistory	`core/Database.lua:748-754`: sum the seven string fields inline instead of walking a literal array with `ipair
+M2-14	M2	LootHistory	`settings/Panel.lua:155-162`: wrap the `RecordAdded` handler in `NS.Coalesce(onChange, NS.Constants.RECORD_ADD
+M2-15	M2	LootHistory	Add an integration case calling `modules/Attribution.lua:327-361`'s `Enable()` against the mock, asserting the
+M2-16	M2	AbsorbTracker	Move `settings/Appearance.lua:320`, `General.lua:283` and `Profiles.lua:57` onto `Helpers.SetRenderer`, drop t
+M2-17	M2	KickCD	Same, for the Profiles and Spells pages.
+M2-18	M2	MultiMeters	Same, for the Profiles page.
+M2-19	M2	AbsorbTracker	The `.pkgmeta` omissions that need no template change. **Two kinds, and only the first is player bytes.** (a) 
+M2-20	M2	WhatGroup	Delete `settings/Schema.lua:577`'s `StaticPopupDialogs = StaticPopupDialogs or {}`, keeping the indexed write 
+M2-21	M2	WhatGroup	`modules/Frame.lua:148-151`: register `PLAYER_REGEN_DISABLED`/`ENABLED` and route both to `ApplyFrameVisibilit
+M2-22	M2	BankLedger	Three unrelated event gaps. WhatGroup `core/WhatGroup.lua:678`: key captures by `searchResultID` through the e
+M2-23	M2	LibKa0s	**Reconcile the live issue store against this bundle, before M2 closes.** `gh issue list` returns **91 open is
+M2-24	M2	LootHistory	`settings/Slash.lua:178-181`: add `config` to the set subtracted from the help list on a library-less load, an
+M2-25	M2	WhatGroup	Two one-line edits in `settings/Panel.lua`, one commit. `:285` keys off `Helpers.MASTER_GROUP` instead of the 
+M2-26	M2	BankLedger	Add `addon:OnDisable` to `core/BankLedger.lua:44-59`, clearing `_enabled` on Ledger, Browser, SessionWindow an
+M2-27	M2	BankLedger	`settings/Schema.lua:438-442`: distinguish unavailable from off. With `NS.LedgerTable` absent, `on` is nil and
+M2-28	M2	WhatGroup	The popup cannot be hidden in combat (secure child); found in-client by the owner, not by the plan
+M3-01	M3	KickCD	Re-vendor `libs/LibKa0s/` and `tests/_kit/` whole from v1.26.0, rolling the `CLAUDE.md` provenance line in the
+M3-02	M3	MultiMeters	Re-vendor **and** revert `settings/Schema.lua:670` to `C.LSMValues = lsmValues` **in the same commit**. Non-op
+M3-03	M3	AbsorbTracker	Re-vendor, then delete `LSM_KIND` and `fixMediaValues` (`settings/Appearance.lua:114-137`) and its three call 
+M3-04	M3	ConsumableMaster	Re-vendor, then delete `lsmValues` (`settings/MacroBar.lua:121-123`) and the three row overrides at `:269`, `:
+M3-05	M3	BankLedger	Re-vendor only. These five consume `MasterControls` and `ColorPair` and no media composer, so nothing moves. *
+M4-01	M4	AbsorbTracker	Re-vendor `libs/LibKa0s/` and `tests/_kit/` whole from v1.27.0, rolling each `CLAUDE.md` provenance line in th
+M4-02	M4	AbsorbTracker	Call `lib.__PatchLSM30Border()` from the live arm of `settings/OptionsSetup.lua`. **Leave all five `core/LSMPa
+M4-03	M4	AbsorbTracker	**Smoke, session 5.** Load KickCD, PanelMaster, AbsorbTracker, ConsumableMaster and MultiMeters together and o
+M4-04	M4	AbsorbTracker	Delete `core/LSMPatch.lua`, **one repository per commit, in that order**, re-running the session-5 smoke **aft
+M4-05	M4	AbsorbTracker	Delete `core/LSMPatch.lua`, **one repository per commit, in that order**, re-running the session-5 smoke **aft
+M4-06	M4	AbsorbTracker	Delete `core/LSMPatch.lua`, **one repository per commit, in that order**, re-running the session-5 smoke **aft
+M4-07	M4	AbsorbTracker	Delete `core/LSMPatch.lua`, **one repository per commit, in that order**, re-running the session-5 smoke **aft
+M4-08	M4	AbsorbTracker	Delete `core/LSMPatch.lua`, **one repository per commit, in that order**, re-running the session-5 smoke **aft
+M4-09	M4	AbsorbTracker	Add `tests/test_surface_parity.lua` calling `Kit.assertSurfaceParity(stub, majorName)` where one is missing — 
+M4-10	M4	AbsorbTracker	The line-ending working-tree sweep, now that the gate exists and is vendored. **`git add --renormalize .` is t
+M4-11	M4	AbsorbTracker	Narrow `.luacheckrc`'s `exclude_files` to `tests/_kit/` and add the `files["tests/"]` stanza, following the sh
+M4-12	M4	KickCD	The eight load-bearing TOC annotations `M1-STD-02`'s denominator leaves standing: `KickCD.toc:55`, `:73`; `Pre
+M4-13	M4	ConsumableMaster	The spelling sweeps, against the list `M1-STD-12` publishes. ConsumableMaster 25 live sites (the audit's 28 fo
+M4-14	M4	ConsumableMaster	Disposition every file still over the 1500-line cap after `M1-STD-08`'s ruling: an open issue naming the seam,
+M4-15	M4	PanelMaster	Move the five Panels-page acts — Copy `:607`, Enabled `:633`, Unlock `:648`, Reset `:667`, Delete `:673`, all 
+M4-16	M4	AbsorbTracker	Delete the perf-panel `decorate` field — `core/PerfSetup.lua:149-159` in AbsorbTracker, `:217-226` in KickCD, 
+M4-17	M4	AbsorbTracker	Naming and config hygiene. Delete `AbsorbTracker/libs/LibStub/tests/` and `LibStub.toc`, leaving exactly what 
+M4-18	M4	AbsorbTracker	Validate stored values at the boundary. Add `NS.GetThrottleWindow` beside AbsorbTracker's three clamped getter
+M4-19	M4	KickCD	Make the nine sleeping cases able to fail. Restore KickCD's shared instance in a guaranteed-run wrapper or tak
+M4-20	M4	AbsorbTracker	Dead code out, deliberate seams recorded. Delete `AbsorbTracker/settings/Schema.lua:101-111`'s `NS.PartitionUn
+M4-21	M4	ConsumableMaster	Route the remaining user-facing text through the `L` seam, and fix the coverage case that cannot see the gap. 
+M4-22	M4	AbsorbTracker	Re-baseline the ceilings that bound nothing and take only the measured allocations. `AbsorbTracker/tests/perf.
+M4-23	M4	LootHistory	The two icon-catalog sites where the glyph exists: `LootHistory/settings/Panel.lua:459-461`'s READY, NOTREADY 
+M4-24	M4	BankLedger	Make each `performance-§12` exemption page reproduce its own evidence. LootHistory: regenerate both tables (el
+M4-25	M4	KickCD	**Clear the collection's one open complexity warning.** `tests/test_schema.lua:595-631` is a 29-NLOC anonymous
+M4-26	M4	MultiMeters	**Disposition all 23 complexity warnings, one line each.** Measured today, every one is in shipped source — `c
+M5-01	M5	AbsorbTracker	Regenerate the automated-test record in each repo through `tests/_kit/run-automated-tests.sh`, which after `M1
+M5-02	M5	AbsorbTracker	Sweep the deviation registers. Every cited audit ID resolves in `docs/audits/` — AbsorbTracker's `docs/ARCHITE
+M5-03	M5	KickCD	The README and ARCHITECTURE structure. KickCD gains `## Overview` and `## Module map` — the only sibling witho
+M5-04	M5	AbsorbTracker	Write the missing Tier 2 topic docs where the trigger has fired. `docs/compat-layer.md` for MultiMeters (761 l
+M5-05	M5	AbsorbTracker	The comment sweep, roughly forty sites. Cite the **symbol** wherever the name is unambiguous, re-derive the ge
+M5-06	M5	AbsorbTracker	Run `/wow-addon:standards-audit` fresh in each repository against the amended standard, and record what this p
+M5-07	M5	LibKa0s	**File what this plan decided not to do, so the decisions outlive the bundle.** One `state:untriaged` GitHub i
+M5-08	M5	AbsorbTracker	**Write the non-English-client section into the six `docs/smoke-tests.md` files that have none**, in the shape
+M5-09	M5	PanelMaster	**The ruling `PANELMASTER-A-03` needs, and then the rows.** `03_SPEC.md` § `C30` asks that each remaining hand
+M5-10	M5	WhatGroup	**`WHATGROUP-R-06`, after session 6 has answered it.** `core/Compat.lua:62-67` calls the bare `IsSpellKnown` g
