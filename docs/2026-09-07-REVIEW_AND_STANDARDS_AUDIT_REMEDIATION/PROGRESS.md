@@ -118,9 +118,9 @@ Legend: ☐ not started · ◐ in flight · ☑ complete · ⚠ complete with it
 | M | What | Items | State | Notes |
 |---|---|---|---|---|
 | **M1** | Upstream — LibKa0s, WowAddonStandards, wow-addon | 38 | ⚠ complete | 38/38 landed, both tags cut. Four caveats below |
-| **M2** | The defects that need no upstream anything | 27 | ◐ in flight | Nine addon lanes, then the cross-repo items, then `M2-23` |
-| **M3** | Adoption of v1.26.0 | 5 | ☐ | KickCD first — that one re-vendor repairs every consumer in a live session |
-| **M4** | Adoption of v1.27.0, and the compliance the rulings unblock | 26 | ☐ | `M4-04` … `M4-08` land one repo at a time, five attribution points |
+| **M2** | The defects that need no upstream anything | 28 | ☑ complete | 27 planned + `M2-28`, a taint bug the owner found in-client |
+| **M3** | Adoption of v1.26.0 | 5 (+3 carry) | ⚠ complete | Byte-empty vendored diff **passes for the first time**. `M3-C2` blocked, resolved by squash |
+| **M4** | Adoption of v1.27.0, and the compliance the rulings unblock | 26 | ◐ in flight | `M4-04` … `M4-08` land one repo at a time, five attribution points |
 | **M5** | The record and documentation tail | 10 | ☐ | Last, because everything above rewrites what it records |
 
 **106 work items total.** Per-item outcomes are appended below as each milestone completes.
@@ -134,6 +134,7 @@ completed agents replay from cache, so a resume re-runs only what was in flight.
 |---|---|---|
 | M1 | `wf_14ba5d9d-4ee` | `ka0s-m1-upstream-wf_14ba5d9d-4ee.js` |
 | M2 | `wf_2b86e5d7-1f3` | `ka0s-m2-reachable-defects-wf_2b86e5d7-1f3.js` |
+| M3 | `wf_e73d7c8d-e2f` | `ka0s-m3-adoption-and-carryover-wf_e73d7c8d-e2f.js` |
 
 Scripts live under
 `~/.claude/projects/-mnt-d-Profile-Users-Tushar-Documents-GIT-Ka0sAddonsCommonTasks/cc7de98b-2023-425e-a118-ad5b0ca212ee/workflows/scripts/`,
@@ -197,3 +198,85 @@ right when taken and is stale now. `M1-WA-01`'s grep reads 12 at HEAD against 11
 same reason. `M1-LK-00`'s byte-empty vendored diff is no longer reproducible because five later items
 changed the library — **so the collection's "check that has never passed" still has not been
 demonstrated passing anywhere, and will not be until `M3-01`.**
+
+### M2 — complete, 28/28
+
+27 planned items plus `M2-28`. All nine addons lint 0/0 and green; `libs/` and `tests/_kit/` untouched;
+**no addon version moved anywhere**, which is decision 5 holding. The verifier mutation-tested the
+three highest-value claims and reproduced the reds itself, so PrettyChat's pooled-logo `OnRelease`,
+BankLedger's migration seam and ConsumableMaster's profile gate are real rather than cosmetic.
+
+**`M2-28` is not from the plan.** The owner hit `ADDON_ACTION_BLOCKED` on `WhatGroupFrame:Hide()` in
+combat. Root cause: the popup parents a `SecureActionButtonTemplate` button, so the client refuses
+`Hide` on it and on every ancestor of it during a lockdown — `f:Hide()` was protected from every call
+site. `modules/Frame.lua` asserted the opposite in its own comment, and `M2-21` had just built on that
+false premise, turning a user-triggered block into an automatic one on every pull. 541 cases stayed
+green because `tests/wow_mock.lua` modelled combat but not protection. The mock now tracks the parent
+chain and records refused calls; four cases pin it, all seen red first.
+
+**`M2-23` has no commit and is done anyway** — its artefacts are GitHub comments. Verified directly:
+LibKa0s #15 carries the disposition comment and moved to `state:triaged`. It is in `exceptions.tsv`
+with the command to re-check it. The M2 exit pass called it unverifiable because it could not reach
+GitHub; that was its blind spot, not a fabrication.
+
+### M3 — complete, 5 items + 3 carry-overs
+
+**The headline check passes, for the first time in this collection's history.** Plain `diff -r` between
+a clean `v1.26.0` checkout and the vendored payload is byte-empty in **all nine** addons, for both
+`libs/LibKa0s/` and `tests/_kit/`. Not vacuous: CRLF is real on both sides (`OptionsCompose.lua`
+CR=427/LF=427 in both). This is what `M1-LK-00` existed to make possible and what M1 Caveat 4 recorded
+as never yet demonstrated.
+
+The wave took **v1.26.0, not v1.27.0**, confirmed four ways — byte diff against both tags, `Kit.VERSION`
+14 vs 15, `COMPOSE_MINOR`, and the provenance lines.
+
+**`M3-C1` found a data-loss bug the verifier had mis-described.** The ConsumableMaster v3 migration step
+was reported inert; it was worse — `MigrateLabelFlagsV3` converted only when `labelFlags == nil`, which
+AceDB's `copyDefaults` makes impossible, then **deleted `labelOutline` regardless**. An un-outlined
+pre-v3 profile silently lost its choice to the default. The guard now tests the key only an unmigrated
+profile carries. `git tag --contains` confirms v3 never shipped, so no v4 is needed.
+
+The lesson generalises and is worth taking to the standard: **a guard of the form "convert when the NEW
+key is absent" is dead on arrival wherever that key is a shipped AceDB default**, because `copyDefaults`
+rawsets it before `RunMigrations` runs. The only reliable marker is the old key, or the profile's own
+`schemaVersion`.
+
+### The two committed reds, and the squash
+
+`M3-C2` came back **blocked, and was right to.** It was told the red commit was sanctioned by
+`05_TRACEABILITY.md` § 7c and refused to write that justification, because `03_SPEC.md` invariant 1 says
+the opposite in as many words: *"Splitting a gate and its fix into two work items is fine … splitting
+them into two commits is what this invariant forbids."* The instruction was wrong; the refusal was
+correct. Its supporting claim was not — it reported LibKa0s `6defec2` still red at 766/2; replayed from
+a clean clone it is **768/0 green**.
+
+Exactly two commits violated the invariant: LibKa0s `e05237c` (764/4) and BankLedger `e6fdb9f` (831/1).
+**Both squashed into the commit that greened them**, before anything was pushed.
+
+| | |
+|---|---|
+| BankLedger | `e6fdb9f` + `d4534d0` → `284f000`. No tags, nothing downstream |
+| LibKa0s | `e05237c` + `6defec2` → `3453b4a`. Both tags re-cut |
+| Tagged trees | **identical** before and after — `v1.26.0` `d3c685d`, `v1.27.0` `61927d0` |
+| Every commit green | 15/15 in LibKa0s, 6/6 in BankLedger, replayed from clean clones |
+| Byte-empty diff | **still passes in all nine** after the rewrite |
+
+The tags were re-cut at the rewritten commits with their original annotation messages. Because the
+tagged trees are identical, no vendored payload moved and no re-vendor had to be redone.
+
+### Carried into M4
+
+- **HIGH — MultiMeters is red on a correct checkout** (1506/1). Its working tree is mis-normalised to
+  LF; `modules/Provider.lua` is `w/lf` under `* text=auto eol=crlf` and `tests/test_provider.lua:1196`
+  reads it. It passes locally only because the working tree is wrong. `M4-10` is the sweep.
+- **HIGH — the `M1-LK-00` defect class was fixed in LibKa0s and never swept in the addons.** Eight of
+  nine carry `w/lf` or `w/mixed` files under `eol=crlf`, including shipped source. `M4-10`.
+- **MEDIUM — ConsumableMaster `DEPENDENCIES.md:25` still claims LibKa0s v1.25.0** while `CLAUDE.md` and
+  the bytes are v1.26.0. A provenance line naming a version the payload is not.
+- **MEDIUM — the plan's `M3-01` row is now contradicted by shipped history.** It says "No KickCD code
+  change"; `e3274f6` changes `settings/Panel.lua` by 43 lines. Verify whether the change was right and
+  the row wrong, or the reverse.
+- **MEDIUM — all nine ship a staleness gate that is non-empty by design until M4.** `docs/testing.md`
+  prescribes a diff against `../LibKa0s` that cannot be empty while the library sits on v1.27.0 and the
+  addons on v1.26.0, with no note saying so.
+- **LOW — `M3-04` left a dead-export comment that now lies** at ConsumableMaster `settings/Panel.lua:462`.

@@ -63,6 +63,7 @@ M2-24	M2	LootHistory	`settings/Slash.lua:178-181`: add `config` to the set subtr
 M2-25	M2	WhatGroup	Two one-line edits in `settings/Panel.lua`, one commit. `:285` keys off `Helpers.MASTER_GROUP` instead of the 
 M2-26	M2	BankLedger	Add `addon:OnDisable` to `core/BankLedger.lua:44-59`, clearing `_enabled` on Ledger, Browser, SessionWindow an
 M2-27	M2	BankLedger	`settings/Schema.lua:438-442`: distinguish unavailable from off. With `NS.LedgerTable` absent, `on` is nil and
+M2-28	M2	WhatGroup	The popup cannot be hidden in combat (secure child); found in-client by the owner, not by the plan
 M3-01	M3	KickCD	Re-vendor `libs/LibKa0s/` and `tests/_kit/` whole from v1.26.0, rolling the `CLAUDE.md` provenance line in the
 M3-02	M3	MultiMeters	Re-vendor **and** revert `settings/Schema.lua:670` to `C.LSMValues = lsmValues` **in the same commit**. Non-op
 M3-03	M3	AbsorbTracker	Re-vendor, then delete `LSM_KIND` and `fixMediaValues` (`settings/Appearance.lua:114-137`) and its three call 

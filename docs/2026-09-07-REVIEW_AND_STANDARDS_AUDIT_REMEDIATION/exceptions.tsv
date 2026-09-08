@@ -1,1 +1,2 @@
 M1-LK-00	Working-tree repair against an already-correct index, so no commit exists by design. Check: git -C ../../../LibKa0s ls-files --eol | grep -E "w/(lf|mixed)" lists only the two .sh files under attr eol=lf.
+M2-23	Issue-store reconciliation; its artefacts are GitHub comments, not commits. Check: gh issue view 15 --repo tusharsaxena/LibKa0s shows the M2-23 disposition comment and state:triaged.
