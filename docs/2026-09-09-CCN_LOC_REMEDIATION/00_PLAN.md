@@ -142,7 +142,8 @@ is the authority on what is left.
 
 | # | Checkpoint | State | Commit |
 |---|---|---|---|
-| CP-0 | Branch cut, plan written, baseline measured | done | — |
+| CP-0 | Branch cut, plan written, baseline measured | done | `b7b7f0c` (plan repo) |
+| CP-1a | 194 characterization tests, run against unrefactored code — 1728 green | done | `77d0723` |
 | CP-1 | Phase 1 CCN refactors landed, lizard 0 warnings | pending | — |
 | CP-2 | Phase 2 source peels landed (L-01, L-04, L-05, L-07, L-08, L-09, L-10) | pending | — |
 | CP-3 | Phase 2 test peels landed (L-02, L-03, L-06, L-11…L-15) | pending | — |
@@ -162,3 +163,13 @@ lua tests/run.lua | tail -3 && luacheck . | tail -2               # is the tree 
 
 Anything the two measurements still report is unfinished, regardless of what the checkpoint table
 says.
+
+## Workflow run log (for `resumeFromRunId`)
+
+| Wave | Run ID | Script |
+|---|---|---|
+| Phase 1a — characterization | `wf_68cf9ad3-cd4` | `multimeters-characterization-wf_68cf9ad3-cd4.js` |
+| Phase 1b — CCN refactor + adversarial verify | `wf_5ea3abae-aa4` | `multimeters-ccn-refactor-wf_5ea3abae-aa4.js` |
+
+Scripts live under the session's `workflows/scripts/` directory; resume with
+`Workflow({scriptPath, resumeFromRunId})`.
