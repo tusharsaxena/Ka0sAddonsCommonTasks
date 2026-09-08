@@ -298,11 +298,31 @@ two opens. Steps 2–5 are still required: a session carrying only stale copies 
 
 | ID | Repo | What changes | Verified by | Depends on | Effort |
 |---|---|---|---|---|---|
-| **M3-01** ⚠ | KickCD | Re-vendor `libs/LibKa0s/` and `tests/_kit/` whole from v1.26.0, rolling the `CLAUDE.md` provenance line in the same commit. **No KickCD code change.** Eight composed rows start working: `settings/Castbar.lua:346`, `:481`, `:503`, `:514`, `:536`, `settings/Icons.lua:207`, `:258`, `settings/Label.lua:184`. | `diff -r --strip-trailing-cr ../LibKa0s libs/LibKa0s` empty **and** `diff -r ../LibKa0s libs/LibKa0s` byte-empty. `lua tests/run.lua` green. **Smoke, session 4:** `/kcd config` → Icons, Label and Castbar dropdowns list real faces, borders and textures; `/dump LibStub("LibKa0s-Options-1.0").MODULES.OptionsCompose` reports 3. **This is the proof the fix landed.** | M1-LK-04 | S |
+| **M3-01** ⚠ | KickCD | Re-vendor `libs/LibKa0s/` and `tests/_kit/` whole from v1.26.0, rolling the `CLAUDE.md` provenance line in the same commit — **and, in that same commit, rewrite `Helpers.LSMValues` (`settings/Panel.lua:346`) to return the deferred closure instead of the hash.** Non-optional, for the same reason `M3-02` gives for MultiMeters: `NS.Settings.Helpers` **is** the library instance, decorated in place, so `function Helpers.LSMValues` **is** a shadow of `O.LSMValues` — written as a decoration, not as an `O.LSMValues =` assignment, which is why the survey that caught MultiMeters missed it. The eight composed sites (`settings/Castbar.lua:346`, `:481`, `:503`, `:514`, `:536`, `settings/Icons.lua:207`, `:258`, `settings/Label.lua:184`) sit inside per-unit loops over `NS.Units.LIST = { "target", "focus" }` and emit **16** media rows. They **keep** working — they were never broken; see the note below. | `diff -r --strip-trailing-cr ../LibKa0s libs/LibKa0s` empty **and** `diff -r ../LibKa0s libs/LibKa0s` byte-empty. `lua tests/run.lua` green **at 841**, unchanged either side. The three cases that go red on the re-vendor alone are the gate: `test_color_shape`'s "an LSM-backed row resolves its values at call time" and "every static dropdown declares its order", and `test_schema`'s default-in-values check. **Smoke, session 4:** `/kcd config` → Icons, Label and Castbar dropdowns list real faces, borders and textures; `/dump LibStub("LibKa0s-Options-1.0").MODULES.OptionsCompose` reports 3. **This is the proof the re-vendor did not silently freeze the lists** — for KickCD it is a regression check, not proof of a repair. | M1-LK-04 | S |
 | **M3-02** ⚠ | MultiMeters | Re-vendor **and** revert `settings/Schema.lua:670` to `C.LSMValues = lsmValues` **in the same commit**. Non-optional: `M1-LK-02` moves `__AttachCompose` from calling a host's `LSMValues` at render time to calling it once at row-declaration time, so MultiMeters' table-returner would hand the composer a table frozen at file load — no crash, no warning, and exactly the failure `Options.lua:759-763` says the deferral prevents. | `grep -n 'C.LSMValues' settings/Schema.lua` returns exactly `C.LSMValues = lsmValues`. **Smoke, session 4:** open a MultiMeters media dropdown after a media addon has registered a face, confirm the face is listed. | M3-01 | S |
 | **M3-03** | AbsorbTracker | Re-vendor, then delete `LSM_KIND` and `fixMediaValues` (`settings/Appearance.lua:114-137`) and its three call sites at `:181`, `:237`, `:257`. The comment at `:121-129` says "delete this the re-vendor after the fix lands". | `grep -rn 'fixMediaValues\|LSM_KIND' settings/` returns nothing; `lua tests/run.lua` green with `tests/test_schema.lua`'s pin updated in the same commit. | M3-01 | S |
 | **M3-04** | ConsumableMaster | Re-vendor, then delete `lsmValues` (`settings/MacroBar.lua:121-123`) and the three row overrides at `:269`, `:337`, `:454`. Close LibKa0s issue #15, which the comment at `:118` names. | `grep -n 'lsmValues' settings/MacroBar.lua` returns nothing; `gh issue view 15 -R <LibKa0s>` shows closed. | M3-01 | S |
 | **M3-05** | BankLedger, LootHistory, PanelMaster, PrettyChat, WhatGroup | Re-vendor only. These five consume `MasterControls` and `ColorPair` and no media composer, so nothing moves. **Safely parallel across all five.** | Both diffs empty in each; `lua tests/run.lua` green in each; pass counts unchanged. | M1-LK-04 | S |
+
+> **Correction (`M4-C2`), against shipped `e3274f6`.** This row read "**No KickCD code change.** Eight
+> composed rows start working". Both halves were wrong, and in opposite directions.
+>
+> KickCD never had `LIBKA0S-A-01`. Its shadow returned the **hash**, so against the old double wrap the
+> composer's own `function() return O.LSMValues(m) end` deferred the read and the dropdowns filled.
+> Measured at `e3274f6^` (v1.25.0): **841 passed, 0 failed**, and all **16** media rows carry
+> `values = function`. Nothing was waiting to start working.
+>
+> What the re-vendor does to KickCD is the reverse. `COMPOSE_MINOR` 3 drops the wrapper and assigns
+> `values = O.LSMValues("font")` **once, at row-declaration time**, so the shadow's hash is read while
+> `settings/Icons.lua` is still being parsed. Measured, v1.26.0 against the unchanged
+> `settings/Panel.lua`: all 16 rows become `values = table`, frozen before any media addon has run, and
+> **3 cases go red**. In game that is silent — no error, no empty control, a list that never grows.
+>
+> So the 43 lines in `settings/Panel.lua` are the fix that keeps the re-vendor green, not scope the item
+> took on. The plan's mistake was a survey shape: it grepped for hosts assigning `O.LSMValues` and found
+> MultiMeters' `settings/Schema.lua:670`, but KickCD writes its shadow as `function Helpers.LSMValues`
+> on the instance it decorates in place, so the grep never saw it. `M3-02`'s "non-optional" applies to
+> KickCD word for word; the plan applied it to one addon and should have applied it to two.
 
 ---
 

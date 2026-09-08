@@ -169,6 +169,21 @@ reader." Today the composer calls that member **inside a closure**, at dropdown-
 supplying a *table-returner* works by accident. After this change the composer calls it **once, at
 row-declaration time**, so a host's `LSMValues` must return a *function*.
 
+**KickCD supplies one too, and this section missed it.** Corrected against shipped `e3274f6` by `M4-C2`.
+`settings/Panel.lua`'s `function Helpers.LSMValues(mediaType)` returns the **hash**, and
+`NS.Settings.Helpers` **is** the Options instance — decorated in place, never a fresh table — so that
+function shadows `O.LSMValues` just as surely as an assignment would. The survey below looked for
+`LSMValues =` and found MultiMeters; a shadow written as a decoration is invisible to that grep. The
+consequence is identical and the requirement is identical: **KickCD MUST rewrite its shadow to return
+the closure in the same commit as its re-vendor.**
+
+The second-order error is worth keeping. Because KickCD shadowed with a table-returner, the composer's
+extra closure deferred the read and **KickCD never had `LIBKA0S-A-01` at all** — measured at v1.25.0,
+841 passed / 0 failed with all 16 media rows deferred. The adoption table said its rows "start working";
+they were already working, and without the shadow rewrite the re-vendor is what would have **stopped**
+them — 16 rows frozen at file load, 3 cases red, and in game no error at all. A host that works around a
+defect is not a host that has it, and this section read the workaround as a symptom.
+
 **MultiMeters supplies a table-returner.** `settings/Schema.lua:670` reads
 `C.LSMValues = function(mediaType) return lsmValues(mediaType)() end` — it calls the closure and hands
 back the table. Post-fix its composed rows receive a literal table, frozen at file load: no crash, no
@@ -184,7 +199,7 @@ after the composer returns and are unaffected.
 
 | Addon | Cost |
 |---|---|
-| KickCD | **Re-vendor only.** Eight composed rows start working with no KickCD code change: `settings/Castbar.lua:346`, `:481`, `:503`, `:514`, `:536`, `settings/Icons.lua:207`, `:258`, `settings/Label.lua:184`. |
+| KickCD | Re-vendor **and** rewrite `Helpers.LSMValues` (`settings/Panel.lua`) to return the deferred closure, in the same commit. **Non-optional, exactly as for MultiMeters** — see the correction below. The eight composed sites (`settings/Castbar.lua:346`, `:481`, `:503`, `:514`, `:536`, `settings/Icons.lua:207`, `:258`, `settings/Label.lua:184`) emit 16 media rows across two units, and they **keep** working rather than start. |
 | MultiMeters | Re-vendor **and** revert `settings/Schema.lua:670` in the same commit. Non-optional, per the contract change above. |
 | AbsorbTracker | Re-vendor, then delete `LSM_KIND` and `fixMediaValues` (`settings/Appearance.lua:114-137`) and its three call sites at `:181`, `:237`, `:257`. The comment at `:121-129` says "delete this the re-vendor after the fix lands". |
 | ConsumableMaster | Re-vendor, then delete `lsmValues` (`settings/MacroBar.lua:121-123`) and the three row overrides at `:269`, `:337`, `:454`. Close LibKa0s issue #15, which the comment at `:118` names. |
