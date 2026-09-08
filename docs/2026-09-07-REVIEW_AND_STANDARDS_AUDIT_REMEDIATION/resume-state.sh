@@ -36,10 +36,20 @@ done
 typeset -A landed
 for r in $(cut -f3 $MANIFEST | sort -u); do
   [[ -d $BASE/$r/.git ]] || continue
-  # master..BR is the branch's own work; fall back to the whole branch if master
-  # is absent or the branch was created from something else.
-  ids=$(git -C $BASE/$r log --format='%s' master..$BR 2>/dev/null \
-        || git -C $BASE/$r log --format='%s' $BR 2>/dev/null)
+  # Read the union of the remediation branch and the repo's default branch.
+  # The original query was master..$BR. That silently empties the moment the
+  # branch is merged into master -- the range is then empty and git still exits
+  # 0, so the `||` fallback never fires -- and it cannot see late work committed
+  # straight to master, which is where M5-06's ten audit bundles landed. Both
+  # failures read as "not started" rather than as an error. Naming every ref
+  # that exists is what the definition at the top actually means: a commit with
+  # this subject exists in the repo that owns the item.
+  refs=()
+  for ref in $BR master main; do
+    git -C $BASE/$r rev-parse --verify -q $ref >/dev/null 2>&1 && refs+=$ref
+  done
+  (( ${#refs} )) || continue
+  ids=$(git -C $BASE/$r log --format='%s' $refs 2>/dev/null)
   for s in ${(f)ids}; do
     # Everything before the first colon is the id list. Usually one id, but a
     # commit that squashes a gate into its fix carries both -- "M1-LK-01 +

@@ -399,3 +399,192 @@ cut, and the Critical they come from was fixed on 2026-09-07. `M4-25` and `M4-26
 obstacle — the `suites.complexity.warnings == 0` tag gate is satisfiable in every repository except
 MultiMeters, whose 23 are dispositioned and filed — so the answer can be yes without a prerequisite block
 in front of it. It should be taken after the smoke sessions, not before.
+
+---
+
+## `M5-06` ran. The cycle closes at 107 of 107
+
+Written 2026-09-08, after the ten fresh audits landed. This section supersedes *"`M5-06` did not run"*
+above and discharges step 2 of *What to do next*. Step 1 also happened in the meantime: the remediation
+branch is **merged to `master` in all twelve repositories**, which is what unblocked the audit round —
+`WowAddonStandards`'s `master` now serves v2.39.0 at line 1 of `standards/STANDARDS.md`.
+
+**The audits were verified against the amended text, not taken on trust.** An audit that silently read a
+cached v2.38.0 copy would report a clean result for the wrong reason, so three of the ten bundles were
+spot-checked against the standard's own history — `AbsorbTracker`, `LibKa0s`, `WhatGroup`. All three
+name **v2.39.0 (2026-09-07)** in `01_CURRENT_STATE.md`, and the rules they file against are demonstrably
+new. `git diff d6235c0 HEAD -- standards/` shows **exactly fifteen section files changed**, matching the
+fifteen `M1-STD-*` amendments. Four cited rules were checked entry by entry against `v2.38.0`:
+`localization-§5`'s `BRITISH`/`ALLOWED` lists (0 occurrences at v2.38.0, 11 now); `library-stack-§7`'s
+*three applicability lists* (the phrase does not exist at v2.38.0); `audit-review-history`'s third MUST
+(15 MUSTs then, 18 now, the new one being *evaluate every row's re-check trigger*); and `options-ui`'s
+hollow-composer ruling (absent at v2.38.0). Two bundles — `WhatGroup` and `LootHistory` — record
+detecting and discarding a stale pre-amendment copy before measuring, which is the failure mode working
+as designed rather than going unnoticed.
+
+### Deviation count per repository, roots only
+
+Counted as each bundle counts itself: root deviations, `derived from` dependents excluded. Totals with
+dependents are in parentheses where the two differ.
+
+| Repository | 2026-09-07 | 2026-09-08 | Δ |
+|---|---|---|---|
+| AbsorbTracker | 10 | 7 (8) | −3 |
+| BankLedger | 7 | 5 | −2 |
+| ConsumableMaster | 9 (11) | 6 (7) | −3 |
+| KickCD | 11 | 8 | −3 |
+| LootHistory | 9 (10) | 6 (7) | −3 |
+| MultiMeters | 12 (13) | 9 (10) | −3 |
+| PanelMaster | 8 (9) | 4 (5) | −4 |
+| PrettyChat | 11 | 7 | −4 |
+| WhatGroup | 14 (15) | 7 (8) | −7 |
+| LibKa0s | 13 (17) | 7 (8) | −6 |
+| **Total** | **104** | **66** | **−38** |
+
+**Every repository improved, and the grade profile improved more than the count does.** Across all ten
+bundles: **High 0, Medium 0**. LibKa0s alone closed the cycle's only High and all three Mediums. Nothing
+in the 66 is reachable by a player, their SavedVariables or their session, with two cosmetic exceptions
+noted at the end. The −38 is understated, because 29 of the 66 are findings the amended text created the
+ability to see; measured against v2.38.0's rules the collection would read closer to **37**, and the
+real like-for-like improvement is nearer −67 than −38.
+
+### What this cycle owed and did not deliver
+
+Nine items. Each names the deviation, the work item that was supposed to close it, and what actually
+happened. These are next cycle's input and **none was fixed here.**
+
+- **`CM-77`** (ConsumableMaster, `automated-tests-§5`) — **`M5-01`**. The `C08` ruling had two halves,
+  *fix forward* and *note the gap once*. The next run did write its `ANALYSIS.md`; the note was never
+  written, and the ruling still lives only in this bundle's `01_CONSOLIDATED_FINDINGS.md` — a thirteenth
+  repository — where `documentation-§3` makes `docs/ARCHITECTURE.md` the single home of a ratified
+  decision. Graduated to a root now that its parent `CM-72` is closed.
+- **`LH-52`** (LootHistory, `automated-tests-§4` / anti-pattern #53) — **`M5-01` → `M5-07`**. The
+  `modules/Analytics.lua` watch-list disposition has read *"Peel next"* across six recorded runs and
+  still names no owner. `M5-01` regenerated `RESULTS.md` and repointed the cell at `M5-07`; `M5-07`
+  filed 25 issues across nine repositories and neither of the two that landed here (#28, #29) is the
+  Analytics peel. A clean handoff that dropped its payload.
+- **`KICKCD-A-08`** (`events-frames-taint-§8`) — **`M4-20`**. Closed the single site the 2026-09-07
+  audit cited and never swept for the class. Three `or _G.print` fallback arms survive at
+  `core/KickCD.lua:108`, `core/Compat.lua:452`, `modules/Cooldowns.lua:538`. The audit under-scoped and
+  the fix followed the audit — the general lesson of the cycle, restated.
+- **`MULTIMETERS-A-07`** (catalog adoption) — **`M4-23`**. Closed by ratification rather than by the
+  action the item named. The finding offered *"move both sites in MultiMeters and ConsumableMaster
+  together, or file the register row in both"*; only MultiMeters' half was filed. ConsumableMaster's
+  three ReadyCheck sites still stand, so from inside MultiMeters this is a compliant terminal state —
+  but the cross-repo adoption did not happen, and no repo's audit is positioned to notice.
+- **`WG-58`** (WhatGroup, packaging) — **`M2`/triage**. `.pkgmeta` still does not ignore `.superpowers`.
+  The half that closed did so by rule change. The `.superpowers` half was rejected in triage as
+  `WHATGROUP-A-13` on the ground that the directory does not exist — but the weak-form list is
+  unconditional by design, and **no register row records the decline**, so the decision is invisible.
+- **`LK-19`** (LibKa0s, `automated-tests-§5`) — **`M1-LK-14`**, whose body was the standards pointer and
+  the tag preconditions and never named the file. `grep -ci analysis docs/releasing.md` = 0, both tags
+  cut this cycle carry no write-up, and 19 of 30 release bundles have none.
+- **`LK-30`** (LibKa0s, `automated-tests-§4`) — **`M5-01`**. The warned-functions watch list is the prose
+  `None.` where §4 MUSTs a table with a header row. Named explicitly in `LK-17`'s fix direction; `M5-01`
+  regenerated the record and left the emitter at `testkit/run-automated-tests.sh:557` and `:574`.
+  **Cross-cutting: the kit is vendored into ten repos.**
+- **`LK-17d`** (LibKa0s, `automated-tests-§4`) — **no work item at all**. Filed 2026-09-07 as
+  `LIBKA0S-A-02d` and never scheduled; `RESULTS.md:110` still reads *"owed a tracked ID"* after 25
+  release runs against a cap of 3. `M5-01` regenerated the file around it. The only item here that was
+  never assigned rather than assigned and missed.
+- **`WG-51`** (WhatGroup, `automated-tests-§2`) — **`M1-LK-07`**, which closed its sibling
+  (`WHATGROUP-A-05`) and not this half. The consumer-side gate still does not assert
+  `run-automated-tests.sh` is recorded `100755`. Not fixable in WhatGroup — `testing-§1` forbids editing
+  the kit — and LibKa0s HEAD's `testkit/` has no assertion either, so no re-vendor picks it up.
+
+**Two deviations this cycle wrote itself**, which is worse than leaving one open and is recorded plainly:
+
+- **`WG-54`** (WhatGroup, `localization-§5`) — **reopened by `M4c-04`**. `M4-13` did close the three
+  sites the 2026-09-07 run named, then `5f7272b` wrote *"travelled"* at `core/WhatGroup.lua:60` and
+  *"behaviour"* at `:779` **the same day**, hours after the sweep. No repo-local British-spelling gate
+  exists, which is why the sweep did not hold.
+- **`WG-62`** (WhatGroup, `documentation-§6`) — **written by `M4-11` and `M4c-04`**. Eight sites cite
+  `lint-§1` against a section the standard names as carrying zero numbered subsections, so it is citable
+  only by bare filename. All eight were written on 2026-09-08 by the two commits that adopted the lint
+  amendment — the adoption introduced the miscitation it was adopting.
+
+**Deferred by design, and correctly so** — not counted above. `AT-60`, `PC-69` and `PM-030` are the same
+`options-ui-§13` selection-invariance case, mapped to **`M1-LK-08`** with disposition *deferred* and
+booked as such. Worth flagging for next cycle: **kit 15 has since unblocked `PM-030`**, and PrettyChat
+records `tests/_kit/mock_base.lua:132` now answering real heights, so two of the three are no longer
+blocked even though AbsorbTracker's remains so. `KICKCD-A-02`, `CM-75`, `PC-60` and `MULTIMETERS-A-06`
+are SHOULD halves left open where the MUST half closed and the SHOULD sat outside the item's stated
+scope; `KICKCD-A-02`'s commit message shows it was a deliberate omission, so it is open rather than
+overlooked.
+
+### Deviations visible only because the rules changed
+
+**29 of the 66 roots are new findings against amended text — the amendments working, not a
+regression.** Thirty-five entries including the six `derived from` dependents. No
+repository's code got worse; the rules got sharper and now catch what prose could not. By amendment:
+
+- **`M1-STD-12` — `localization-§5` publishes the `BRITISH` (91) and `ALLOWED` (30) lists.** The single
+  largest source, hitting **nine of ten repos**: `AT-66`, `BL-35`, `CM-79`/`CM-80`/`CM-81`,
+  `KICKCD-B-02`, `LH-55`, `MM-A-18`, `PM-032`/`PM-032a`, `PC-75`, `WG-54`, `LK-28`/`LK-28d`. Every
+  private gate in the collection was a subset of the canonical pair, so the section had been a prose
+  table three prior audits read and filed nothing against. Run whole for the first time it matches 830
+  lines in MultiMeters, 216 in LibKa0s, 62 each in BankLedger and LootHistory, 49 in PrettyChat. The
+  turn from *a judgment nobody exercised* into *a measurement* is the clearest evidence the amendment
+  round worked.
+- **`toc-file-§5` restated against its true denominator** — load-bearing positions read out of the seam
+  files, not TOC line count: `AT-64`, `AT-65`, `BL-36`, `CM-83`, `LH-56`/`LH-57`/`LH-58`.
+- **`M1-STD-11` — `options-ui-§1`'s hollow-composer ruling**: `AT-62`, `AT-63`, `BL-37`. AbsorbTracker's
+  stub carries a host copy of all five composed blocks, and its suite pins schema *equality* across the
+  two arms where the amendment now wants the loaded count, the library-absent count and the difference
+  as a named figure. `tests/test_optionssetup.lua:102` is even commented *"red under: a stub composer
+  returning `{}`"* — written to fail on the shape the standard now mandates.
+- **`documentation-§3`'s ratified fourth table** (`### Verification and record`, six named rows):
+  `KICKCD-B-01`, `MM-A-13`. The table had no specification at all before this cycle.
+- **`M1-STD-15` — `audit-review-history`'s third MUST** (evaluate every row's trigger, resolve every
+  evidence id): `WG-61`/`WG-63`, `KICKCD-B-03`, `PC-73`. `WG-61` found two register rows citing evidence
+  that resolves to nothing, one of them **circular** — the only occurrence of the id is a frozen bundle
+  quoting the row that cites it. `PC-73` surfaced a ratified deviation recorded against a rule that
+  permits the thing outright, unreported for more than one cycle.
+- **`M1-STD-08` — `library-stack-§7`'s third applicability list** (`LK-31`) and **`layout-§1`'s cap given
+  a scope and three terminal states** (`CM-82`). `compat` sat in neither list at v2.38.0, which was
+  2026-09-07's own `LK-27`.
+- **`M1-STD-14` — the `compat-layer` trigger becomes a published count** (≥3 shims): `PM-031`.
+  `core/Compat.lua` publishes 8 while `docs/ARCHITECTURE.md:145` asserts *"Not applicable"*.
+- **`M1-STD-04` — `standalone-windows`' four-condition close-button decline**: `BL-38`.
+- **`M1-STD-01` — the narrowed `.luacheckrc` template**: `LK-29`, which is amendment-**caused** rather
+  than amendment-revealed and is labelled as such in its own bundle — `CLAUDE.md` and `DEPENDENCIES.md`
+  still describe the old exclusions.
+
+### Bookkeeping
+
+**`exceptions.tsv` is unchanged, and that is the correct outcome.** It records only items that land with
+no commit by design. `M5-06` produced **ten commits**, one per repository, each with an `M5-06: ` subject
+and each matching the hash its bundle reports — `db3ad3b`, `141fce6`, `8e56ab0`, `2095532`, `f423637`,
+`c8c747d`, `daa4981`, `60cb507`, `f56dcd3`, `afe8986`. It needs no exception.
+
+**`resume-state.sh` was measuring the wrong thing and has been corrected.** Before the fix it printed
+`TOTAL 4/107` and listed 103 items as outstanding — and those four were exactly the four `exceptions.tsv`
+rows, meaning it was finding **zero commits anywhere**. Two causes, both introduced by step 1 succeeding:
+its query was `master..$BR`, which empties the moment the branch is merged (the range is then empty and
+git still exits `0`, so the `||` fallback never fired), and `M5-06`'s ten bundles were committed straight
+to `master`, which the query never looked at. Both failures read as *"not started"* rather than as an
+error, which is the dangerous shape for a file whose whole purpose is to be checkable without trusting
+any notes. The fix reads the union of every ref that exists — the remediation branch and the default
+branch — which is what the definition at the top of the script always meant. No item's status was
+edited; only the query. It now prints:
+
+```
+M1   38/38   COMPLETE
+M2   28/28   COMPLETE
+M3    5/5    COMPLETE
+M4   26/26   COMPLETE
+M5   10/10   COMPLETE
+
+TOTAL 107/107 items landed
+RESUME: nothing outstanding
+```
+
+**The cycle is 107 of 107.** All five milestones read COMPLETE, and `M5-06` was the last item.
+
+**Nothing found is urgent, and nothing was fixed.** Zero High and zero Medium across all ten bundles; no
+finding is reachable by a player's session or SavedVariables. The two that touch anything a player can
+read are cosmetic British spellings in shipped strings — `BankLedger settings/Panel.lua:678` (a tooltip)
+and two `locales/enUS.lua` values in MultiMeters — both Low, neither a correctness defect. The one item
+worth carrying forward with weight is **`LK-30`**, not for its severity but for its reach: the emitter
+lives in the kit, and the kit is vendored into ten repositories, so it is one upstream fix or ten
+downstream ones. All 66 deviations are next cycle's input.
