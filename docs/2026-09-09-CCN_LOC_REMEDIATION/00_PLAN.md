@@ -158,8 +158,8 @@ is the authority on what is left.
 | CP-1a | 194 characterization tests, run against unrefactored code — 1728 green | done | `77d0723` |
 | CP-1b | 23 lizard warnings to **0**; suite 1728 green, lint 0/0 | done | `7d86d8e` |
 | CP-1c | Repair of the 6 files the adversarial review flagged | done | `d881ca6` |
-| CP-2 | Phase 2 source peels landed (L-01, L-04, L-05, L-07, L-08, L-09, L-10) | pending | — |
-| CP-3 | Phase 2 test peels landed (L-02, L-03, L-06, L-11…L-15) | pending | — |
+| CP-2a | Seven source files peeled; 15 over cap down to 8, all suites | done | `7b8efb0` |
+| CP-2b | Eight test files peeled; 0 files over cap | pending | — |
 | CP-4 | Phase 3 registers, gates and docs | pending | — |
 | CP-5 | Phase 4 finalize | pending | — |
 
@@ -185,6 +185,7 @@ says.
 | Phase 1b — CCN refactor + adversarial verify | `wf_5ea3abae-aa4` | `multimeters-ccn-refactor-wf_5ea3abae-aa4.js` |
 | Phase 1c — regression repair + re-verify | `wf_3d2f3a00-aca` | `multimeters-ccn-repair-wf_3d2f3a00-aca.js` |
 | Phase 2a — source peels + verify | `wf_4aaba58e-7ff` | `multimeters-source-peels-wf_4aaba58e-7ff.js` |
+| Phase 2b — test peels + verify | `wf_2c8e2278-6d1` | `multimeters-test-peels-wf_2c8e2278-6d1.js` |
 
 Scripts live under the session's `workflows/scripts/` directory; resume with
 `Workflow({scriptPath, resumeFromRunId})`.
