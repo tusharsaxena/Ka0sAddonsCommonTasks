@@ -41,8 +41,13 @@ for r in $(cut -f3 $MANIFEST | sort -u); do
   ids=$(git -C $BASE/$r log --format='%s' master..$BR 2>/dev/null \
         || git -C $BASE/$r log --format='%s' $BR 2>/dev/null)
   for s in ${(f)ids}; do
-    id=${s%%:*}
-    [[ $id == M[1-5]-* ]] && landed[$id]=$r
+    # Everything before the first colon is the id list. Usually one id, but a
+    # commit that squashes a gate into its fix carries both -- "M1-LK-01 +
+    # M1-LK-02: ..." -- and reading that as a single id marks BOTH outstanding
+    # forever. Split on " + " and credit each.
+    for id in ${(s: + :)${s%%:*}}; do
+      [[ $id == M[1-5]-* ]] && landed[$id]=$r
+    done
   done
 done
 
