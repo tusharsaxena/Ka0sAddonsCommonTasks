@@ -106,11 +106,23 @@ adversarial behaviour-preservation review per changed file → repair loop until
 | L-14 | `tests/test_schema.lua` | 1573 | — | mirrors L-01 |
 | L-15 | `tests/test_export.lua` | 1509 | — | mirrors L-09 |
 
-Serialized surfaces the orchestrator owns, never an agent:
+Shared surfaces, and how the contention is handled:
 
-- `MultiMeters.toc` — one new line per source peel, in the right load position.
-- `tests/run.lua` — the suite list, one new entry per test peel.
-- `docs/ARCHITECTURE.md` — the cap census and the complexity register.
+- `MultiMeters.toc` and `tests/run.lua` are edited by the agents themselves, but only through
+  `scratchpad/tools/locked_insert.py` — an `flock`-guarded read-modify-write that preserves the
+  file's CRLF and is idempotent on retry. A plain concurrent edit here loses a write silently: the
+  file stays valid, it just stops naming somebody's file, and `test_loadorder` is the only thing
+  that would ever say so.
+- `docs/ARCHITECTURE.md` stays the orchestrator's alone — both registers are rewritten once, in
+  Phase 3, against the final measurement rather than incrementally against a moving one.
+
+**Re-measured after Phase 1** (the refactors moved every count): still 15 files over, all larger.
+`tests/test_window.lua` 3159, `settings/Schema.lua` 3080, `tests/test_tooltip.lua` 3054,
+`modules/Tooltip.lua` 2774, `modules/Window.lua` 2746, `tests/wow_mock.lua` 2270,
+`modules/Aggregator.lua` 2122, `tests/test_row.lua` 1960, `tests/test_export.lua` 1887,
+`core/Diagnostics.lua` 1867, `tests/test_aggregator.lua` 1840, `tests/test_diagnostics.lua` 1838,
+`modules/Row.lua` 1829, `modules/Export.lua` 1790, `tests/test_schema.lua` 1573. Several now need
+three files rather than two.
 
 ## Phase 3 — the bookkeeping the two gates force
 
@@ -145,7 +157,7 @@ is the authority on what is left.
 | CP-0 | Branch cut, plan written, baseline measured | done | `b7b7f0c` (plan repo) |
 | CP-1a | 194 characterization tests, run against unrefactored code — 1728 green | done | `77d0723` |
 | CP-1b | 23 lizard warnings to **0**; suite 1728 green, lint 0/0 | done | `7d86d8e` |
-| CP-1c | Repair of the 6 files the adversarial review flagged | pending | — |
+| CP-1c | Repair of the 6 files the adversarial review flagged | done | `d881ca6` |
 | CP-2 | Phase 2 source peels landed (L-01, L-04, L-05, L-07, L-08, L-09, L-10) | pending | — |
 | CP-3 | Phase 2 test peels landed (L-02, L-03, L-06, L-11…L-15) | pending | — |
 | CP-4 | Phase 3 registers, gates and docs | pending | — |
@@ -172,6 +184,7 @@ says.
 | Phase 1a — characterization | `wf_68cf9ad3-cd4` | `multimeters-characterization-wf_68cf9ad3-cd4.js` |
 | Phase 1b — CCN refactor + adversarial verify | `wf_5ea3abae-aa4` | `multimeters-ccn-refactor-wf_5ea3abae-aa4.js` |
 | Phase 1c — regression repair + re-verify | `wf_3d2f3a00-aca` | `multimeters-ccn-repair-wf_3d2f3a00-aca.js` |
+| Phase 2a — source peels + verify | `wf_4aaba58e-7ff` | `multimeters-source-peels-wf_4aaba58e-7ff.js` |
 
 Scripts live under the session's `workflows/scripts/` directory; resume with
 `Workflow({scriptPath, resumeFromRunId})`.
