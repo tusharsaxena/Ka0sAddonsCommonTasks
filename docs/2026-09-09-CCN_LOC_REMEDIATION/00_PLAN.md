@@ -159,8 +159,11 @@ is the authority on what is left.
 | CP-1b | 23 lizard warnings to **0**; suite 1728 green, lint 0/0 | done | `7d86d8e` |
 | CP-1c | Repair of the 6 files the adversarial review flagged | done | `d881ca6` |
 | CP-2a | Seven source files peeled; 15 over cap down to 8, all suites | done | `7b8efb0` |
-| CP-2b | Eight test files peeled; 0 files over cap | pending | — |
-| CP-4 | Phase 3 registers, gates and docs | pending | — |
+| CP-2b | Seven suites peeled cleanly, 1728 cases held | done | `27f9ddd` |
+| CP-2c | `test_tooltip` retried mechanically; **0 files over cap** | done | `104b331` |
+| CP-3a | Both registers retired, gates taught the empty state, `docs/complexity.md` created | done | `9864c37` |
+| CP-3b | Doc sync across the 25 new files | pending | — |
+| CP-3c | Automated-test bundle, RESULTS.md, issues closed | pending | — |
 | CP-5 | Phase 4 finalize | pending | — |
 
 ## Resume procedure
@@ -186,6 +189,7 @@ says.
 | Phase 1c — regression repair + re-verify | `wf_3d2f3a00-aca` | `multimeters-ccn-repair-wf_3d2f3a00-aca.js` |
 | Phase 2a — source peels + verify | `wf_4aaba58e-7ff` | `multimeters-source-peels-wf_4aaba58e-7ff.js` |
 | Phase 2b — test peels + verify | `wf_2c8e2278-6d1` | `multimeters-test-peels-wf_2c8e2278-6d1.js` |
+| Phase 3a — doc sync + completeness audit | `wf_5fa88440-b4c` | `multimeters-doc-sync-wf_5fa88440-b4c.js` |
 
 Scripts live under the session's `workflows/scripts/` directory; resume with
 `Workflow({scriptPath, resumeFromRunId})`.
