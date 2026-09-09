@@ -162,8 +162,9 @@ is the authority on what is left.
 | CP-2b | Seven suites peeled cleanly, 1728 cases held | done | `27f9ddd` |
 | CP-2c | `test_tooltip` retried mechanically; **0 files over cap** | done | `104b331` |
 | CP-3a | Both registers retired, gates taught the empty state, `docs/complexity.md` created | done | `9864c37` |
-| CP-3b | Doc sync across the 25 new files | pending | — |
-| CP-3c | Automated-test bundle, RESULTS.md, issues closed | pending | — |
+| CP-3b | Doc sync + drift repair across the 25 new files; one deviation retired | done | `cc89785` |
+| CP-3c | Automated-test bundle `20260909-120608`, green on all four | done | `b3f8ff1` |
+| CP-3d | Issues #27–#45 closed as `state:done` | in progress | — |
 | CP-5 | Phase 4 finalize | pending | — |
 
 ## Resume procedure
@@ -190,6 +191,7 @@ says.
 | Phase 2a — source peels + verify | `wf_4aaba58e-7ff` | `multimeters-source-peels-wf_4aaba58e-7ff.js` |
 | Phase 2b — test peels + verify | `wf_2c8e2278-6d1` | `multimeters-test-peels-wf_2c8e2278-6d1.js` |
 | Phase 3a — doc sync + completeness audit | `wf_5fa88440-b4c` | `multimeters-doc-sync-wf_5fa88440-b4c.js` |
+| Phase 3b — doc drift repair | `wf_d35e794b-ece` | `multimeters-doc-repair-wf_d35e794b-ece.js` |
 
 Scripts live under the session's `workflows/scripts/` directory; resume with
 `Workflow({scriptPath, resumeFromRunId})`.
