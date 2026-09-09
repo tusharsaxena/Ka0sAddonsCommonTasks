@@ -164,8 +164,8 @@ is the authority on what is left.
 | CP-3a | Both registers retired, gates taught the empty state, `docs/complexity.md` created | done | `9864c37` |
 | CP-3b | Doc sync + drift repair across the 25 new files; one deviation retired | done | `cc89785` |
 | CP-3c | Automated-test bundle `20260909-120608`, green on all four | done | `b3f8ff1` |
-| CP-3d | Issues #27–#45 closed as `state:done` | in progress | — |
-| CP-5 | Phase 4 finalize | pending | — |
+| CP-3d | Issues #27–#45 closed as `state:done` | done | — |
+| CP-4 | Merged to `master` and pushed (`e4e282a`) | done | `e4e282a` |
 
 ## Resume procedure
 
@@ -195,3 +195,52 @@ says.
 
 Scripts live under the session's `workflows/scripts/` directory; resume with
 `Workflow({scriptPath, resumeFromRunId})`.
+
+
+---
+
+## Outcome, measured 2026-09-09
+
+Both targets met, on `master` at `e4e282a`:
+
+| | Before | After |
+|---|---|---|
+| Functions above CCN 15 | **23** | **0** |
+| Max CCN | 34 | 15 |
+| Authored `.lua` over 1500 lines | **15** | **0** |
+| Avg CCN | 2.6 | 2.4 |
+| Avg NLOC / function | 8.2 | 8.1 |
+| Test cases | 1530 | 1728 |
+| luacheck | 0/0 over 93 files | 0/0 over 122 files |
+
+`automated-tests-§3`'s release gate — all four suites at `pass` plus zero functions above CCN 15 —
+is satisfied for the first time in the addon's history. The run record is
+`docs/automated-tests/20260909-120608/`.
+
+### What is worth carrying to the next cycle
+
+- **An accept is not a release gate.** Twelve of the 23 warned functions held a ratified *Accepted*
+  disposition with a re-check trigger, which is a compliant watch-list state and still blocks a tag.
+  Reading them as settled is what let the count sit at 23.
+- **A trigger that fires and is not acted on is the failure the register exists to catch.** Two
+  functions were recorded at exactly CCN 15 in the v0.1.0 watch list, with "zero headroom left" in
+  the repository's own hand; they were found at 30 and 24. Ten functions now sit at exactly 15.
+- **For a pure move, verify the mapping rather than the output.** The first `tests/test_tooltip.lua`
+  peel returned 137 cases as none. The retry assigned every line of the 3054 to exactly one
+  destination and asserted that mapping before writing a byte.
+- **Both size gates were written for a repository that had never reached the state they drove
+  toward**, and each failed in both directions at once when it did. That is worth checking for in
+  any gate that guards a register.
+- **A measurement stated in two documents will disagree with itself.** The 1000–1500 band was being
+  restated in `ARCHITECTURE.md` and `complexity.md` and had already drifted three lines apart.
+
+### Left for a later cycle, deliberately
+
+- `modules/Row.lua` (1442) and `tests/test_row.lua` (1456) are the tightest pair left, mirror each
+  other, and will cross together. The seam is the value cell.
+- `tests/wow_mock.lua` (1466) is the tightest file in the repository and the one all 60 suites load.
+- Ten functions sit at exactly CCN 15 — passing, no headroom.
+
+All three are recorded as dispositions in `docs/automated-tests/RESULTS.md` rather than as new
+issues, because the band row is the record the standard asks for and a duplicate issue would be a
+second place for the same fact to go stale.
