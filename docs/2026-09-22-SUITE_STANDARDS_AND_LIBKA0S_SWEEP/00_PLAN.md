@@ -5,10 +5,10 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 2 in flight, third and final repair pass.** Phases 0-1 and CP-1 are committed. The standard is
-> at **v2.63.0**, ~23 modified files, still **NOT COMMITTED**. Pass 1 promoted the 16 proposals; pass 2
-> cleared all seven distinct blockers but introduced six count errors of its own, now fixed; pass 3 is
-> closing the last judgement-level defects and running a three-lens commit gate. Phase 3 has not started.
+> **Phase 2 is DONE. Phase 3 is next and has not started.** The standard shipped as **v2.63.0** in
+> `WowAddonStandards@957b3c5` (23 files, +751/-145) and that repo is **clean**. Every repo in the sweep is
+> committed; nothing is uncommitted anywhere. Phase 3 builds LibKa0s v1.55.0 / kit revision 25 - the
+> seven deliverables under *Contracts Phase 3 owes*, which the standard already cites by name.
 
 ## How to resume
 
@@ -30,17 +30,11 @@ working tree that does not match it is a session that died mid-phase.
 
 | Repo | Expected state | What it is |
 |---|---|---|
-| `WowAddonStandards` | **~20 modified files, uncommitted** | The v2.63.0 promotion **plus** its repair pass. `standards/STANDARDS.md` line 1 reads `v2.63.0`. Not committed because an adversarial audit found **13 blockers and 24 majors** in it. |
-| every other repo | **clean** | Nothing else has been touched yet. |
+| **every repo** | **clean** | Phase 2 is committed. Nothing is in flight. |
 
-**If the tree is dirty and you cannot tell whether the repair finished:** the tell is the seven blockers
-in *Phase 2 defect record* below. Open each cited site and check it. Do **not** commit the standard
-until all seven are closed - several would publish rules no repo can satisfy, and Phase 4 carries this
-document into thirteen repos.
-
-**Recovering is cheap.** `git -C WowAddonStandards checkout -- .` discards the promotion and the repair
-with it; the harvest bundle at `harvests/2026-09-22/` is committed (`8609f86`) and is the evidence
-needed to redo it. Losing the promotion costs a re-run, not the analysis.
+If a repo is dirty, a phase died mid-run. Read that phase's row in the ledger, then the phase's own
+artifacts, before deciding whether to keep the work or discard it. Nothing in this run is expensive to
+redo: each phase's evidence is committed before the phase that consumes it.
 
 ## Contracts Phase 3 owes - pinned, not negotiable
 
@@ -102,6 +96,25 @@ this release is *about*. Each was re-measured against the tree before correction
 **The lesson, now a standing rule for this run:** a number in an agent's report is a claim to verify, not
 a fact to copy. Three passes have each shipped a count written from prose rather than from the tree.
 
+## The commit gate's seven, fixed before CP-2 (pass 4)
+
+Two were serious enough to have done real damage:
+
+- **`events-frames-taint-§1`'s carve-out blessed only a frame that cannot work.** It permitted a private
+  frame "whose only job is `RegisterUnitEvent`" and separately forbade it a script - but a frame that
+  registers and never dispatches receives nothing. The permission now names the single `OnEvent` inside
+  it, so the exclusions bite on a *second* job rather than on the first.
+- **`AUDIT.md`'s EOL check was blind to the very MUST O3 is about.** It grepped `*.sh` only, while
+  `line-endings-§3` has MUSTed `*.py` beside it since v2.61.0 and this release measured 12 of 14 repos
+  failing exactly that pin. Until kit revision 25 lands, that playbook is the only check any repo has.
+
+The rest: `layout.md:85` contradicted `:69` about the census heading's level; `AUDIT.md:190` kept the old
+81/82 body-intact figure after `line-endings` moved to 84/85; the new gate's repo-kind discriminator
+(`a .toc or a client-bound libs/`) **misfiles a Ka0s-owned library repo**, which has neither; the
+call-site count said two where the tree has ten across four addons; and `documentation-§9` claimed
+"nothing already on disk becomes non-compliant" while settling placement the way the collection's
+majority does *not* write it - existing headers are now grandfathered where they sit.
+
 ## Workflow runs - for resuming a phase rather than redoing it
 
 A completed workflow can be re-entered with `Workflow({scriptPath, resumeFromRunId})`; agents whose
@@ -112,7 +125,8 @@ prompt is unchanged replay from cache instead of re-running.
 | 1 - harvest sweep | `wf_8f5827b0-12c` | complete; the bundle was written on a second pass after a payload-handoff defect was patched in the script |
 | 2 - promote | `wf_8014b00e-a1f` | complete; produced v2.63.0 **and** the 13 blockers |
 | 2r - repair (pass 2) | `wf_9b3c85ff-8c5` | complete; all seven blockers verified dead at their sites, but it introduced six count errors |
-| 2f - final (pass 3) | `wf_ecb77e37-5ee` | closes the judgement-level defects, reconciles the changelog, runs the commit gate |
+| 2f - final (pass 3) | `wf_ecb77e37-5ee` | complete; closed the judgement defects and ran the three-lens commit gate, which found 7 more |
+| 2g - gate fixes (pass 4) | *(orchestrator, no workflow)* | the gate's 7 blockers fixed directly against measurements, then `CP-2` |
 
 Scripts live under `~/.claude/projects/-mnt-d-*-AuraMaster/c09a6172-*/workflows/scripts/`.
 
@@ -172,7 +186,7 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 0 | Setup — branches + plan | all 15 | **done** | this commit |
 | 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
 | CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
-| 2 | Promote into the standard | WowAddonStandards | **in-flight - pass 3 of 3** | v2.63.0 (~23 files, **uncommitted**). Pass 1: 16 proposals. Pass 2: 7 blockers cleared, 6 new count errors introduced. Pass 3: judgement defects + commit gate. `CP-2` lands only on a clean gate. |
+| 2 | Promote into the standard | WowAddonStandards | **done** | `CP-2` = `WowAddonStandards@957b3c5`, v2.63.0, 23 files. Four passes: promote -> 13 blockers cleared -> 6 self-inflicted counts fixed -> commit gate found 7 more, all closed. Record in `harvests/2026-09-22/06_OUTCOME.md`. |
 | 3 | New LibKa0s majors + tag | LibKa0s | pending | **7 deliverables** - see *Contracts Phase 3 owes*. Must ship as **v1.55.0 / kit revision 25**, which the standard already cites by name. |
 | CP-3 | Major-set interview | — | pending | — |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | pending | — |
