@@ -5,10 +5,10 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 2 in flight, in its repair pass.** Phases 0-1 and CP-1 are committed. The standard has been
-> promoted to **v2.63.0** but is **NOT COMMITTED** - about 20 modified files sit in the
-> `WowAddonStandards` working tree while six agents clear the 13 blockers an adversarial audit found in
-> it. Phase 3 (new LibKa0s majors) is next and has not started.
+> **Phase 2 in flight, third and final repair pass.** Phases 0-1 and CP-1 are committed. The standard is
+> at **v2.63.0**, ~23 modified files, still **NOT COMMITTED**. Pass 1 promoted the 16 proposals; pass 2
+> cleared all seven distinct blockers but introduced six count errors of its own, now fixed; pass 3 is
+> closing the last judgement-level defects and running a three-lens commit gate. Phase 3 has not started.
 
 ## How to resume
 
@@ -85,6 +85,23 @@ blocker reports collapsed to seven distinct defects; the duplication was four le
 | 6 | `AUDIT.md` | The re-vendor check grepped **commit subjects** for a tag and compared **bare folder names**, while the same release grandfathers bare-dated bundles - 28 of 68 on disk. It would have filed false High findings against ten repos for records that exist. |
 | 7 | `README.md` | The Status line still advertised **v2.62.1**. The repo's own amendment procedure names that line as a required bump target, and Phase 4 reads this repo to learn the current version - it would have carried v2.62.1 into eleven addons. |
 
+## Pass 2's own defects, corrected by measurement (2026-09-23)
+
+Pass 2 cleared every blocker it was given and then shipped six new wrong numbers - the same failure mode
+this release is *about*. Each was re-measured against the tree before correction:
+
+| Site | Was | Measured |
+|---|---|---|
+| `layout.md` | "Eight addons wrote none at all" | **Seven** - 4 of 11 addons carry the gate; the fifth copy is the library's |
+| `documentation.md` | "three nest it exactly there" | **Two** - ConsumableMaster nests under `## Layout`, LibKa0s keeps it a sibling `##` |
+| `packaging.md` | "**Five** of them argue", "two states" | **Four**, and **three** states - one repo is simply silent, which the strong form permits |
+| `library-stack.md` | "exactly two second edges" | **Three** - `OptionsWidgets.lua:33` and `OptionsTabs.lua:38` both floor on `LibKa0s-Pool-1.0` |
+| `AUDIT.md` | "sixty-eight unregistered `.md` files" | **25-36 per repo**; 68 was the collection-wide *bundle* count |
+| `line-endings.md` | "never **travelled**" | **traveled** - a British spelling, introduced by the pass promoting the prose gate, in a release whose anti-pattern #46 forbids exactly this |
+
+**The lesson, now a standing rule for this run:** a number in an agent's report is a claim to verify, not
+a fact to copy. Three passes have each shipped a count written from prose rather than from the tree.
+
 ## Workflow runs - for resuming a phase rather than redoing it
 
 A completed workflow can be re-entered with `Workflow({scriptPath, resumeFromRunId})`; agents whose
@@ -94,7 +111,8 @@ prompt is unchanged replay from cache instead of re-running.
 |---|---|---|
 | 1 - harvest sweep | `wf_8f5827b0-12c` | complete; the bundle was written on a second pass after a payload-handoff defect was patched in the script |
 | 2 - promote | `wf_8014b00e-a1f` | complete; produced v2.63.0 **and** the 13 blockers |
-| 2r - repair | `wf_9b3c85ff-8c5` | the pass running at the time of writing |
+| 2r - repair (pass 2) | `wf_9b3c85ff-8c5` | complete; all seven blockers verified dead at their sites, but it introduced six count errors |
+| 2f - final (pass 3) | `wf_ecb77e37-5ee` | closes the judgement-level defects, reconciles the changelog, runs the commit gate |
 
 Scripts live under `~/.claude/projects/-mnt-d-*-AuraMaster/c09a6172-*/workflows/scripts/`.
 
@@ -154,7 +172,7 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 0 | Setup — branches + plan | all 15 | **done** | this commit |
 | 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
 | CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
-| 2 | Promote into the standard | WowAddonStandards | **in-flight - repair pass** | v2.63.0 written (~20 files, **uncommitted**). Audit found 13 blockers / 24 majors; 6 fix agents + reconcile + 3 re-audit lenses running. Commits as `CP-2` only when all seven blockers are closed. |
+| 2 | Promote into the standard | WowAddonStandards | **in-flight - pass 3 of 3** | v2.63.0 (~23 files, **uncommitted**). Pass 1: 16 proposals. Pass 2: 7 blockers cleared, 6 new count errors introduced. Pass 3: judgement defects + commit gate. `CP-2` lands only on a clean gate. |
 | 3 | New LibKa0s majors + tag | LibKa0s | pending | **7 deliverables** - see *Contracts Phase 3 owes*. Must ship as **v1.55.0 / kit revision 25**, which the standard already cites by name. |
 | CP-3 | Major-set interview | — | pending | — |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | pending | — |
