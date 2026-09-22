@@ -5,10 +5,11 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 3a in flight.** Phase 2 is done - the standard shipped as **v2.63.0** in
-> `WowAddonStandards@957b3c5`, repo clean. Phase 3 was **split in two**: **3a** builds the four kit gates
-> the standard cites by name (running now, uncommitted in `LibKa0s`), **3b** builds the three
-> extraction majors. CP-3 sits between 3b and the tag.
+> **Phase 3a in flight, in its fix pass.** Phase 2 is done (standard at **v2.63.0**,
+> `WowAddonStandards@957b3c5`, clean). Test-kit **revision 25** is built and LibKa0s is **green but
+> uncommitted** - 1307 passed / 0 failed / 1 skipped, luacheck 0/0. An adversarial verify then found a
+> blocker by driving the kit against *consumer* trees; that fix is running now. **3b** (the three
+> extraction majors) has not started. CP-3 sits between 3b and the tag.
 
 ## How to resume
 
@@ -80,6 +81,45 @@ passes with the tag after both.
 A verify lens in 3a produces the **per-repo consumer impact list** - which of the twelve repos goes red
 on which new gate when it re-vendors. That list is Phase 5's and Phase 6's work, and nobody recovers it
 as cheaply later.
+
+## Phase 5/6 rollout debt, measured from the trees (2026-09-23)
+
+Produced by driving revision 25 against every consumer tree rather than reasoning about it. **This list
+is Phase 5's and Phase 6's work**, and it is far cheaper to hold now than to rediscover eleven times.
+
+| Gate | Who goes red on first re-vendor | What they owe |
+|---|---|---|
+| **Cap gate** (`layout-§1`) | **9 of 11** | Census absent in 7; reparented in ConsumableMaster; renamed *and* reparented in PanelMaster. **AuraMaster additionally owes four terminal-state rows** for four measured breaches. |
+| **EOL body** (`line-endings-§7`) | **10 of 11** | The missing `*.py text eol=lf` line. |
+| **Prose gate** (`localization-§5`) | **3** | WhatGroup 5 hits, LootHistory 2, PrettyChat 34 - once their shadowing local copy retires. |
+| **Suite inventory** (`testing-§9`) | all, mechanically | Local shadow retired, kit entry wired with its `dir`. No consumer carries a decline row; only LibKa0s does. |
+| **`RESULTS.md`** (`automated-tests-§4`) | none - verified | 189 preserved rows across twelve repos carry forward as `unknown/unknown`; the manifest gains its `git` object. |
+
+### Three ordering hazards that bite if the sequence is wrong
+
+1. **Tag before any consumer rolls its provenance line.** `vendor_sync` **fails rather than skips** on a
+   missing tag, so a consumer whose `CLAUDE.md` names v1.55.0 before the tag exists is red with no act
+   of its own able to clear it. Commit and tag LibKa0s v1.55.0 **first**, then re-vendor each consumer
+   and roll its provenance line in the same commit.
+2. **PanelMaster and PrettyChat: both halves in one commit.** Adding `*.py text eol=lf` to the body
+   redeclares files that are CRLF on disk, so the body fix turns the previously-green working-tree case
+   **red** until the per-file re-checkout lands with it. Five files across the two repos carry
+   `#!/usr/bin/env python3\r`. (The standard's prose says *one repository, four generators*; measured it
+   is **two repositories and five files** - PrettyChat's sits outside `tools/`. Correct that wording at
+   the next opportunity.)
+3. **PrettyChat is the only repo needing a `Kit.layoutCap` opt**, for its 23,842-line generated dump -
+   and it needs the prose gate's new exempt set for the same file, which is why that carve-out is being
+   added rather than left to per-word waivers over a file the next regeneration rewrites.
+
+### The lesson from 3a, worth carrying
+
+**The kit was green in its own repo and wrong at the same time.** `collectKitHoles` compared raw `dir`
+strings, so `"./tests/_kit/"` and `"tests/_kit/"` read as a collision - against two repos declaring the
+kit suite in *exactly the literal form the standard prescribes*. Their whole suite aborted, `--list`
+with it, and the remedy the gate printed was to delete a vendored file that `testing-§11` forbids
+touching. Nothing in LibKa0s's own 1307-case suite could see it, because LibKa0s spells its own path the
+other way. **A gate has to be driven against the trees it will govern, not only against the tree that
+wrote it.**
 
 ## Phase 2 defect record - the seven blockers, so the repair is verifiable rather than trusted
 
@@ -204,7 +244,7 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
 | CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
 | 2 | Promote into the standard | WowAddonStandards | **done** | `CP-2` = `WowAddonStandards@957b3c5`, v2.63.0, 23 files. Four passes: promote -> 13 blockers cleared -> 6 self-inflicted counts fixed -> commit gate found 7 more, all closed. Record in `harvests/2026-09-22/06_OUTCOME.md`. |
-| 3a | Kit revision 25 - the four gates | LibKa0s | **in-flight** | Deliverables 4-7. 4 build agents + integrator + 3 verify lenses (citations / gates / consumer impact). |
+| 3a | Kit revision 25 - the four gates | LibKa0s | **in-flight - fix pass** | Built and green (1307/0/1, luacheck 0/0), uncommitted. Verify found 1 blocker + 3 majors by driving the kit against consumer trees. Fix pass running. |
 | 3b | The three extraction majors | LibKa0s | pending | Deliverables 1-3: Compat, Bus, Schema (portable half). |
 | 3t | Cut v1.55.0 | LibKa0s | pending | After CP-3 only. |
 | CP-3 | Major-set interview | — | pending | Before the tag is cut. |
