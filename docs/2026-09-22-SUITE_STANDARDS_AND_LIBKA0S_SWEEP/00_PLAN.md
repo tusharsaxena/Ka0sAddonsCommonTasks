@@ -5,7 +5,8 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 0 complete — branches cut, plan committed. Phase 1 (harvest sweep) not yet started.**
+> **Phase 2 in flight.** Phase 1 (harvest) and CP-1 (the owner interview) are done. The standard is
+> being edited now; Phase 3 (new LibKa0s majors) is next and is not started.
 
 ## How to resume
 
@@ -71,9 +72,9 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | # | Phase | Repos touched | State | Evidence |
 |---|---|---|---|---|
 | 0 | Setup — branches + plan | all 15 | **done** | this commit |
-| 1 | Harvest sweep | WowAddonStandards (write); all others read-only | pending | — |
-| CP-1 | Harvest interview | — | pending | — |
-| 2 | Promote into the standard | WowAddonStandards | pending | — |
+| 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
+| CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
+| 2 | Promote into the standard | WowAddonStandards | **in-flight** | 16 proposals, 8 section agents + ripple + 4 adversarial audit lenses |
 | 3 | New LibKa0s majors + tag | LibKa0s | pending | — |
 | CP-3 | Major-set interview | — | pending | — |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | pending | — |
@@ -81,6 +82,22 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 6 | Adoption | 11 addons | pending | — |
 | CP-6 | Adoption interview | — | pending | — |
 | 7 | Verify and report | all | pending | — |
+
+## Owner rulings taken at CP-1 (2026-09-22)
+
+These are decisions, not recommendations. They are not re-litigated by a later phase.
+
+| Ruling | Decision | Consequence |
+|---|---|---|
+| **O1** — `events-frames-taint-§1` forbids private event frames, but `slash-commands-§7` and `testing-§1` both presuppose they exist | **Reading B** — carve out, by name, a private `CreateFrame` whose only job is `RegisterUnitEvent` for a named unit, with the three conditions three repos independently arrived at. The boss-mod-scale hand-rolling the MUST NOT was aimed at stays forbidden. | Retires 3 `Documented deviations` rows rather than adding 2 more. The wrapper was **not** taken as a LibKa0s extraction. |
+| **O2** — `packaging`'s `.pkgmeta` ignore template is unconditional while its own strong form binds only what is present | **Reading A** — the strong form governs. `.claude`/`.superpowers` get the treatment `tools/` already has; the list is a template whose entries bind only when the entry exists. | 2 repos owe a one-line removal. `AUDIT.md:210-212` must gate all three the same way. |
+| **O3** — nothing gates the `.gitattributes` body; 12 of 14 repos miss a MUST line | **Reading 1** — the collection is non-compliant. Gate it in the kit, then fix the twelve. | A kit gate (second case in `test_eol.lua`) plus twelve one-line commits. |
+| **Batch** — the twelve non-ruling proposals | **All four groups accepted**: the 5 kit gates, the 3 client-behaviour rules, the 2 bus-naming rules, and the self-naming file header as a SHOULD. | Rollout debt lands in Phases 4–6. |
+
+**Deferred, not rejected:** C8-F03's second half — whether an unlock/move anchor earns a SHOULD that it
+must be the library's drag handle rather than a hand-built one. Its factual half (naming the shipped file
+in `library-stack`) is applied; the SHOULD is recorded in `open-evolutions.md` with its evidence so the
+next harvest finds a strengthened case rather than starting over.
 
 ## Rules the run holds itself to
 
