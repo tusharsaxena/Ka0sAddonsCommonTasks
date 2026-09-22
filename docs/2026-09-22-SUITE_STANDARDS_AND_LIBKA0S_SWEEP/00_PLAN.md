@@ -5,18 +5,98 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 2 in flight.** Phase 1 (harvest) and CP-1 (the owner interview) are done. The standard is
-> being edited now; Phase 3 (new LibKa0s majors) is next and is not started.
+> **Phase 2 in flight, in its repair pass.** Phases 0-1 and CP-1 are committed. The standard has been
+> promoted to **v2.63.0** but is **NOT COMMITTED** - about 20 modified files sit in the
+> `WowAddonStandards` working tree while six agents clear the 13 blockers an adversarial audit found in
+> it. Phase 3 (new LibKa0s majors) is next and has not started.
 
 ## How to resume
 
-1. `cd /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks && git log --oneline -5` — the
+1. `cd /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks && git log --oneline -5` - the
    last `CP-n` commit names the last checkpoint that landed.
-2. Read **Current position** above and the **Status ledger** below.
+2. Read **Current position** above, then **Uncommitted work in flight**, then the **Status ledger**.
 3. Every repo in the sweep sits on branch `suite/2026-09-22-standards-sweep`. Nothing is merged and
-   nothing is pushed — that is deliberate (see *Owner decisions*).
+   nothing is pushed - that is deliberate (see *Owner decisions*).
 4. Resume at the first ledger row that is not `done`. Each phase's own artifacts (the harvest bundle,
    the per-addon revendor bundles) are the detailed state; this file is the index to them.
+5. **Before starting any phase, read *Contracts Phase 3 owes* below.** Text already written into the
+   standard cites a LibKa0s tag and kit revision that do not exist yet. A phase that ignores that
+   leaves eleven repos measured against rules nothing can satisfy.
+
+## Uncommitted work in flight
+
+**Check this before anything else.** Run `git status` in each repo and reconcile against this table. A
+working tree that does not match it is a session that died mid-phase.
+
+| Repo | Expected state | What it is |
+|---|---|---|
+| `WowAddonStandards` | **~20 modified files, uncommitted** | The v2.63.0 promotion **plus** its repair pass. `standards/STANDARDS.md` line 1 reads `v2.63.0`. Not committed because an adversarial audit found **13 blockers and 24 majors** in it. |
+| every other repo | **clean** | Nothing else has been touched yet. |
+
+**If the tree is dirty and you cannot tell whether the repair finished:** the tell is the seven blockers
+in *Phase 2 defect record* below. Open each cited site and check it. Do **not** commit the standard
+until all seven are closed - several would publish rules no repo can satisfy, and Phase 4 carries this
+document into thirteen repos.
+
+**Recovering is cheap.** `git -C WowAddonStandards checkout -- .` discards the promotion and the repair
+with it; the harvest bundle at `harvests/2026-09-22/` is committed (`8609f86`) and is the evidence
+needed to redo it. Losing the promotion costs a re-run, not the analysis.
+
+## Contracts Phase 3 owes - pinned, not negotiable
+
+Phase 2 wrote commencement clauses into the standard that **name a library release which does not exist
+yet**. That was the fix for a whole blocker class: a MUST no repo can satisfy by any act of its own. The
+numbers below are therefore a contract - Phase 3 delivers exactly them, or the standard is wrong.
+
+- **LibKa0s `v1.55.0`**, carrying **test-kit revision 25** (`testkit/framework.lua` -> `Kit.VERSION = 25`;
+  it is at 24 today).
+- The phrase the standard uses, verbatim, is **"from LibKa0s test-kit revision 25 (LibKa0s v1.55.0)"**.
+  Grep for it before cutting the tag and make every citation true.
+
+**Phase 3 therefore has seven deliverables, not three** - the three approved extractions, plus the kit
+gates Phase 2's new rules now cite by name:
+
+| # | Deliverable | Cited by |
+|---|---|---|
+| 1 | `LibKa0s-Compat-1.0` - the ~400 genuinely duplicated lines out of 2820 across 9 copies; the addon-specific remainder stays in each `core/Compat.lua` | `open-evolutions`, `compat` |
+| 2 | `LibKa0s-Bus-1.0` - the union design, which is the per-receiver register whose `StandDown`/`StandUp` replay from a live record | `architecture-§4` |
+| 3 | Schema runtime - **portable half only**, behind `resolveRoot` and `announce` callbacks | `open-evolutions` |
+| 4 | `test_layout_cap.lua` - the 1500-line cap gate | `layout-§1` |
+| 5 | `test_eol.lua` second case - the `.gitattributes` body gate (owner ruling O3) | `line-endings-§7` |
+| 6 | `framework.lua` - declaration keyed by **(basename, directory)**; collision and unreferenced-kit-suite reporting | `testing-§9` |
+| 7 | The automated-test runner - emit the commit SHA and clean flag into `RESULTS.md` and `manifest.json` | `automated-tests-§4` |
+
+The doc-shape gate and the lint-config gate were accepted in the batch and are candidates for the same
+revision; confirm against `harvests/2026-09-22/06_OUTCOME.md`'s rollout-debt table, which marks every
+item that cannot be discharged until v1.55.0 ships.
+
+## Phase 2 defect record - the seven blockers, so the repair is verifiable rather than trusted
+
+Found by a four-lens adversarial audit of the v2.63.0 release **before** it was committed. Thirteen
+blocker reports collapsed to seven distinct defects; the duplication was four lenses agreeing.
+
+| # | Site | Defect |
+|---|---|---|
+| 1 | `layout-§1` | The cap gate's scope said "this section's two carve-outs (`libs/`, `tests/_kit/`)". Those are two *instances* of one carve-out; the real second is **generated non-shipping data**. As written the gate fails a repo on its 23,842-line generated file - the exact case the carve-out exists for, cited in that same section. |
+| 2 | `layout-§1`, `automated-tests-§4` | Mandated a kit suite file and `RESULTS.md` commit columns, neither of which ships in any kit revision. Every repo non-compliant on release day with **no act available to become compliant**. Fixed by the v1.55.0 / revision 25 commencement. |
+| 3 | `testing-§1` | "Every gate ... MUST read the whole `git ls-files` set" - false for the two payload gates `testing-§11` mandates and the parity gate `testing-§8` mandates. The quantifier had to move to the rule's own denominator. |
+| 4 | `testing-§9` vs `localization-§5` | §9 made an unreferenced kit suite a MUST-level failure; §5 explicitly permits declining a kit gate and wiring your own. Both MUSTs could not be satisfied. |
+| 5 | `audit-review-history` | Claimed `versioning-git` "requires the re-vendor commit **to stand alone**". Checked against the file: the commit is a **MUST**, standing alone is a **SHOULD** (`versioning-git.md:9`). One audit lens claimed the rule was absent entirely - that lens was wrong; do not act on it. |
+| 6 | `AUDIT.md` | The re-vendor check grepped **commit subjects** for a tag and compared **bare folder names**, while the same release grandfathers bare-dated bundles - 28 of 68 on disk. It would have filed false High findings against ten repos for records that exist. |
+| 7 | `README.md` | The Status line still advertised **v2.62.1**. The repo's own amendment procedure names that line as a required bump target, and Phase 4 reads this repo to learn the current version - it would have carried v2.62.1 into eleven addons. |
+
+## Workflow runs - for resuming a phase rather than redoing it
+
+A completed workflow can be re-entered with `Workflow({scriptPath, resumeFromRunId})`; agents whose
+prompt is unchanged replay from cache instead of re-running.
+
+| Phase | Run ID | Result |
+|---|---|---|
+| 1 - harvest sweep | `wf_8f5827b0-12c` | complete; the bundle was written on a second pass after a payload-handoff defect was patched in the script |
+| 2 - promote | `wf_8014b00e-a1f` | complete; produced v2.63.0 **and** the 13 blockers |
+| 2r - repair | `wf_9b3c85ff-8c5` | the pass running at the time of writing |
+
+Scripts live under `~/.claude/projects/-mnt-d-*-AuraMaster/c09a6172-*/workflows/scripts/`.
 
 ## Scope
 
@@ -74,8 +154,8 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 0 | Setup — branches + plan | all 15 | **done** | this commit |
 | 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
 | CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
-| 2 | Promote into the standard | WowAddonStandards | **in-flight** | 16 proposals, 8 section agents + ripple + 4 adversarial audit lenses |
-| 3 | New LibKa0s majors + tag | LibKa0s | pending | — |
+| 2 | Promote into the standard | WowAddonStandards | **in-flight - repair pass** | v2.63.0 written (~20 files, **uncommitted**). Audit found 13 blockers / 24 majors; 6 fix agents + reconcile + 3 re-audit lenses running. Commits as `CP-2` only when all seven blockers are closed. |
+| 3 | New LibKa0s majors + tag | LibKa0s | pending | **7 deliverables** - see *Contracts Phase 3 owes*. Must ship as **v1.55.0 / kit revision 25**, which the standard already cites by name. |
 | CP-3 | Major-set interview | — | pending | — |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | pending | — |
 | 5 | Re-vendor LibKa0s | 11 addons | pending | — |
