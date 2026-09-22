@@ -5,10 +5,10 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 2 is DONE. Phase 3 is next and has not started.** The standard shipped as **v2.63.0** in
-> `WowAddonStandards@957b3c5` (23 files, +751/-145) and that repo is **clean**. Every repo in the sweep is
-> committed; nothing is uncommitted anywhere. Phase 3 builds LibKa0s v1.55.0 / kit revision 25 - the
-> seven deliverables under *Contracts Phase 3 owes*, which the standard already cites by name.
+> **Phase 3a in flight.** Phase 2 is done - the standard shipped as **v2.63.0** in
+> `WowAddonStandards@957b3c5`, repo clean. Phase 3 was **split in two**: **3a** builds the four kit gates
+> the standard cites by name (running now, uncommitted in `LibKa0s`), **3b** builds the three
+> extraction majors. CP-3 sits between 3b and the tag.
 
 ## How to resume
 
@@ -30,7 +30,8 @@ working tree that does not match it is a session that died mid-phase.
 
 | Repo | Expected state | What it is |
 |---|---|---|
-| **every repo** | **clean** | Phase 2 is committed. Nothing is in flight. |
+| `LibKa0s` | **modified, uncommitted** | Phase 3a: test-kit revision 25. Commits only on a green gate and a clean verify. |
+| every other repo | **clean** | Phases 0-2 are committed. |
 
 If a repo is dirty, a phase died mid-run. Read that phase's row in the ledger, then the phase's own
 artifacts, before deciding whether to keep the work or discard it. Nothing in this run is expensive to
@@ -63,6 +64,22 @@ gates Phase 2's new rules now cite by name:
 The doc-shape gate and the lint-config gate were accepted in the batch and are candidates for the same
 revision; confirm against `harvests/2026-09-22/06_OUTCOME.md`'s rollout-debt table, which marks every
 item that cannot be discharged until v1.55.0 ships.
+
+## Why Phase 3 was split (2026-09-23)
+
+The seven deliverables are two different kinds of work and carry different risk, so they ship as two
+passes with the tag after both.
+
+- **3a - the kit (deliverables 4-7).** These are what **five committed rules in standard v2.63.0 cite
+  by name**. Until they exist, those rules describe a release that never shipped, so this half is not
+  optional and not negotiable in shape: it is built *to the rule text*, and a mismatch is reported
+  rather than quietly built differently.
+- **3b - the extractions (deliverables 1-3).** Compat, Bus and the Schema runtime's portable half.
+  Additive, larger design surface, and their real test is Phase 6 adoption rather than the standard.
+
+A verify lens in 3a produces the **per-repo consumer impact list** - which of the twelve repos goes red
+on which new gate when it re-vendors. That list is Phase 5's and Phase 6's work, and nobody recovers it
+as cheaply later.
 
 ## Phase 2 defect record - the seven blockers, so the repair is verifiable rather than trusted
 
@@ -187,8 +204,10 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
 | CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
 | 2 | Promote into the standard | WowAddonStandards | **done** | `CP-2` = `WowAddonStandards@957b3c5`, v2.63.0, 23 files. Four passes: promote -> 13 blockers cleared -> 6 self-inflicted counts fixed -> commit gate found 7 more, all closed. Record in `harvests/2026-09-22/06_OUTCOME.md`. |
-| 3 | New LibKa0s majors + tag | LibKa0s | pending | **7 deliverables** - see *Contracts Phase 3 owes*. Must ship as **v1.55.0 / kit revision 25**, which the standard already cites by name. |
-| CP-3 | Major-set interview | — | pending | — |
+| 3a | Kit revision 25 - the four gates | LibKa0s | **in-flight** | Deliverables 4-7. 4 build agents + integrator + 3 verify lenses (citations / gates / consumer impact). |
+| 3b | The three extraction majors | LibKa0s | pending | Deliverables 1-3: Compat, Bus, Schema (portable half). |
+| 3t | Cut v1.55.0 | LibKa0s | pending | After CP-3 only. |
+| CP-3 | Major-set interview | — | pending | Before the tag is cut. |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | pending | — |
 | 5 | Re-vendor LibKa0s | 11 addons | pending | — |
 | 6 | Adoption | 11 addons | pending | — |
