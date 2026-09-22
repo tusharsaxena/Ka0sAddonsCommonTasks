@@ -82,44 +82,61 @@ A verify lens in 3a produces the **per-repo consumer impact list** - which of th
 on which new gate when it re-vendors. That list is Phase 5's and Phase 6's work, and nobody recovers it
 as cheaply later.
 
-## Phase 5/6 rollout debt, measured from the trees (2026-09-23)
+## Phase 5 checklist, measured by running every tree (2026-09-23)
 
-Produced by driving revision 25 against every consumer tree rather than reasoning about it. **This list
-is Phase 5's and Phase 6's work**, and it is far cheaper to hold now than to rediscover eleven times.
+Not estimated. All twelve repos were copied **with `.git`** (the eol and cap gates shell out to
+`git ls-files` and `git check-attr`), baselined green, then had revision 25 vendored in and re-run; then
+the whole release was simulated in seven of them - a tagged throwaway LibKa0s, the provenance line
+bumped, the census written, `.gitattributes` replaced with the canonical body.
 
-| Gate | Who goes red on first re-vendor | What they owe |
-|---|---|---|
-| **Cap gate** (`layout-§1`) | **9 of 11** | Census absent in 7; reparented in ConsumableMaster; renamed *and* reparented in PanelMaster. **AuraMaster additionally owes four terminal-state rows** for four measured breaches. |
-| **EOL body** (`line-endings-§7`) | **10 of 11** | The missing `*.py text eol=lf` line. |
-| **Prose gate** (`localization-§5`) | **3** | WhatGroup 5 hits, LootHistory 2, PrettyChat 34 - once their shadowing local copy retires. |
-| **Suite inventory** (`testing-§9`) | all, mechanically | Local shadow retired, kit entry wired with its `dir`. No consumer carries a decline row; only LibKa0s does. |
-| **`RESULTS.md`** (`automated-tests-§4`) | none - verified | 189 preserved rows across twelve repos carry forward as `unknown/unknown`; the manifest gains its `git` object. |
+**Every repo aborts on first vendor** with one or two inventory problems, and that is the gate working:
+`tests/_kit/test_layout_cap.lua` arrives undeclared, and in six repos a bare `"test_prose"` or
+`"test_layout_cap"` now reads as a shadow. Wiring is the first step everywhere.
 
-### Three ordering hazards that bite if the sequence is wrong
+| Repo | Baseline | On full rollout | What it owes beyond wiring |
+|---|---|---|---|
+| **AbsorbTracker** | 647 | **668 / 0** | nothing - fully green |
+| **MultiMeters** | 1908 | **1926 / 0** | nothing - fully green; census already correct |
+| AuraMaster | 1255 | 1270 / 6 | census heading; **its own `tests/test_docs.lua`** - `DEPENDENCIES.md` cites three kit line numbers revision 25 moved. Only repo whose `.gitattributes` was already canonical. |
+| KickCD | 1006 | 1022 / 5 | census heading. Calls `assertSuiteInventory` a **second** time from `tests/test_coresetup.lua`; a decline registers exactly once across both - verified. |
+| PartyFrameEnhanced | 241 | 257 / 5 | census heading. Nothing else. |
+| ConsumableMaster | 958 | 971 / 5 | census exists but sits **outside** the register (line 28 vs the register at 480). A move, not new work. |
+| PanelMaster | 848 | 860 / 6 | census headed `Files by the layout-§1 band` - owes a **rename and a move**. Plus the `.py` terminator breakage on four `tools/artwork` + `tools/sunn` generators: add the line, then `rm <path> && git checkout -- <path>` per file, **in the same commit**. |
+| PrettyChat | 401 | green with opts | the **only** repo needing both carve-outs: `Kit.prose = { exempt = { "GlobalStrings/" } }` and `Kit.layoutCap = { exempt = { "GlobalStrings/" } }`. With them the three disclosure cases pass and report *"suppressed 28 of 95 tracked authored files"*. Without them: 34 prose failures. |
+| LootHistory | 801 | 816 / 6 | census heading + **2 real British spellings** its own 262-line copy never caught (`core/LifecycleSetup.lua:66,:79`). |
+| WhatGroup | 686 | 701 / 6 | census heading + **5 real British spellings** (`core/WhatGroup.lua:317,:940`, `docs/data-flow.md:56`, two test files). |
+| **BankLedger** | 959 | 973 / 7 | census heading **and a trap**: its own `tests/test_harness.lua` parses the suites list and understands only bare strings, so following the kit's remedy literally crashes it with *"attempt to concatenate local 'suite' (a table value)"*. **Teach that file the pair form first**, before wiring anything else in this repo. |
 
-1. **Tag before any consumer rolls its provenance line.** `vendor_sync` **fails rather than skips** on a
-   missing tag, so a consumer whose `CLAUDE.md` names v1.55.0 before the tag exists is red with no act
-   of its own able to clear it. Commit and tag LibKa0s v1.55.0 **first**, then re-vendor each consumer
-   and roll its provenance line in the same commit.
-2. **PanelMaster and PrettyChat: both halves in one commit.** Adding `*.py text eol=lf` to the body
-   redeclares files that are CRLF on disk, so the body fix turns the previously-green working-tree case
-   **red** until the per-file re-checkout lands with it. Five files across the two repos carry
-   `#!/usr/bin/env python3\r`. (The standard's prose says *one repository, four generators*; measured it
-   is **two repositories and five files** - PrettyChat's sits outside `tools/`. Correct that wording at
-   the next opportunity.)
-3. **PrettyChat is the only repo needing a `Kit.layoutCap` opt**, for its 23,842-line generated dump -
-   and it needs the prose gate's new exempt set for the same file, which is why that carve-out is being
-   added rather than left to per-word waivers over a file the next regeneration rewrites.
+**`.gitattributes`:** ten of eleven owe the `*.py text eol=lf` line; AuraMaster is the only one already
+canonical. In PanelMaster that fix must land with the per-file re-checkout or the repo is red between
+steps.
 
-### The lesson from 3a, worth carrying
+**Census:** nine owe one - seven absent, ConsumableMaster's misparented, PanelMaster's misnamed *and*
+misparented.
 
-**The kit was green in its own repo and wrong at the same time.** `collectKitHoles` compared raw `dir`
-strings, so `"./tests/_kit/"` and `"tests/_kit/"` read as a collision - against two repos declaring the
-kit suite in *exactly the literal form the standard prescribes*. Their whole suite aborted, `--list`
-with it, and the remedy the gate printed was to delete a vendored file that `testing-§11` forbids
-touching. Nothing in LibKa0s's own 1307-case suite could see it, because LibKa0s spells its own path the
-other way. **A gate has to be driven against the trees it will govern, not only against the tree that
-wrote it.**
+### Ordering, which is not negotiable
+
+1. **Commit and tag LibKa0s v1.55.0 first.** `vendor_sync` **fails rather than skips** on a missing tag,
+   so a consumer that rolls its provenance line before the tag exists is red with no act of its own able
+   to clear it.
+2. Then per repo: vendor both payloads, roll the provenance line **in the same commit**, wire the suites,
+   then discharge that repo's row above.
+
+### The lesson 3a earned, three times over
+
+Every defect in revision 25 was **work enforced in one place and unenforced in the place right beside
+it**, and every one was invisible from inside LibKa0s:
+
+- a raw string comparison of two spellings of one path - green here, **aborted the entire suite** in the
+  two repos that declare the kit suite exactly as the standard prescribes;
+- a self-test reading **live consumer state** instead of a fixture - permanently green here (this repo
+  declines that gate), permanently red in the one repo the feature exists for;
+- a carve-out gated on `Kit.prose.exempt` while the waiver file beside it stayed ungated, with the
+  failure text **advertising the unpoliced door**.
+
+**LibKa0s is an unrepresentative consumer of its own kit** - it declines the prose gate, spells its
+paths one way, has no `.toc` and no `libs/`. A green run here proves very little. **Drive a gate against
+the trees it will govern, not only the tree that wrote it.**
 
 ## Phase 2 defect record - the seven blockers, so the repair is verifiable rather than trusted
 
