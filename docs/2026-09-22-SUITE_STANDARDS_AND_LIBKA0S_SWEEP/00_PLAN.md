@@ -5,11 +5,13 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Pre-tag pass in flight.** 3b is done: three majors committed as `LibKa0s@06b4051` (1456/0/1,
-> luacheck 0/0), each adopted green in three consumer copies. Phase 4 is done in 12 of 13 repos. Running
-> now (`wf_239a4a93-a76`): standard **v2.64.0** (the majors' ripple) and LibKa0s's own Phase 4 pass.
-> Next: tag `v1.55.0` locally, then Phase 5. The three design specs, which hold Phase 6's per-addon
-> adoption deltas, are in `3b-specs/`.
+> **Tag blocked on complexity; refactor in flight.** Standard **v2.64.0** is committed
+> (`WowAddonStandards@aeceac4`), and LibKa0s Phase 4 too (`c051bef`). `Release v1.55.0` is committed
+> (`LibKa0s@18ca82a`), but the release-mode run found **4 functions over CCN 15**, all new in this
+> release (Schema `S.Set` 24 and `S.Validate` 33, kit `collectKitHoles` 16 and `repoKind` 17). v1.54.0's
+> bundle had 0, so the tag is not cut; the failed bundle was discarded uncommitted. Refactor workflow:
+> `wf_6cd22933-31d`. Then re-run `--release 1.55.0`, commit the bundle, cut an annotated tag, and start
+> Phase 5.
 
 ## How to resume
 
@@ -31,7 +33,7 @@ working tree that does not match it is a session that died mid-phase.
 
 | Repo | Expected state | What it is |
 |---|---|---|
-| `LibKa0s`, `WowAddonStandards` | **may be dirty while `wf_239a4a93-a76` runs** | LibKa0s Phase 4 (the agent commits); standard v2.64.0 (the orchestrator commits after a clean audit). |
+| `LibKa0s` | **may be dirty while `wf_6cd22933-31d` runs** | CCN refactor; the agents commit per track. |
 | every other repo | **clean** | Phases 0-2 are committed. |
 
 If a repo is dirty, a phase died mid-run. Read that phase's row in the ledger, then the phase's own
@@ -289,10 +291,10 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 2 | Promote into the standard | WowAddonStandards | **done** | `CP-2` = `WowAddonStandards@957b3c5`, v2.63.0, 23 files. Four passes: promote -> 13 blockers cleared -> 6 self-inflicted counts fixed -> commit gate found 7 more, all closed. Record in `harvests/2026-09-22/06_OUTCOME.md`. |
 | 3a | Kit revision 25 - the four gates | LibKa0s | **done** | `LibKa0s@2a5e06f`. 1318/0/1, luacheck 0/0. Six fix rounds; the sixth (late narrowing refused by the gate itself) applied and proven in a consumer copy by the orchestrator. |
 | 3b | The three extraction majors | LibKa0s | **done** | `LibKa0s@06b4051` via `wf_1b472691-c6f`. Compat (9 members), Bus (6), Schema (23). Verify: Compat 2 rounds, Bus 1, Schema 2; nothing serious left open. Specs in `3b-specs/`. |
-| 2b | Standard v2.64.0 - ripple of the majors | WowAddonStandards | **in-flight** | `wf_239a4a93-a76` |
-| 3t | Cut v1.55.0 | LibKa0s | pending | Local tag, after 2b and LibKa0s Phase 4. |
+| 2b | Standard v2.64.0 - ripple of the majors | WowAddonStandards | **done** | `aeceac4`. `wf_239a4a93-a76` ran 3 audit rounds without converging (a fix agent widened the no-copy bound, which would have filed all 11 Slash stubs); the orchestrator fixed the 6 unresolved findings by hand, and a final audit came back clean. |
+| 3t | Cut v1.55.0 | LibKa0s | **blocked -> in-flight** | Release commit `18ca82a`; tag held for CCN 15 (`wf_6cd22933-31d`). |
 | CP-3 | Major-set interview | — | **done (delegated)** | Rulings: all three majors in v1.55.0 (one re-vendor cycle); Schema ships as built (O-4 lenient reading, matching C2-F03's ratified scope); Perf inline spec read becomes a documented deviation; upstream items go to standard v2.64.0, and the three open questions (seam name, panel live-refresh, Core floor) go to open-evolutions unruled. |
-| 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | **12 of 13 done** | `wf_9df0ebc9-264`: one commit per repo in all 11 addons + wow-addon (MultiMeters and wow-addon each carry a follow-up fix commit from the verify pass); every gate identical to baseline. LibKa0s after 3b. |
+| 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | **done** | `wf_9df0ebc9-264`: one commit per repo in all 11 addons + wow-addon (MultiMeters and wow-addon each carry a follow-up fix commit from the verify pass); every gate identical to baseline. LibKa0s `c051bef` (with its pre-tag housekeeping). |
 | 5 | Re-vendor LibKa0s | 11 addons | pending | — |
 | 6 | Adoption | 11 addons | pending | — |
 | CP-6 | Adoption interview | — | **delegated** | Owner (2026-09-23): use best judgement. |
