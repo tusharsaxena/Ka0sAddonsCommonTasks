@@ -303,7 +303,7 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | Addon | Compat | Bus | Schema |
 |---|---|---|---|
 | AbsorbTracker | never #31 | adopted | adopted (full) |
-| AuraMaster | adopted | never #20 | not now #21 (partial adopter) |
+| AuraMaster | adopted | `Catalog` adopted; record never #20 (its own per-module stand-downs; spec recommends against) | not now #21 (partial adopter) |
 | BankLedger | never #20 | adopted | adopted |
 | ConsumableMaster | adopted | adopted | not now #39 |
 | KickCD | adopted | adopted | not now #22 |
