@@ -5,13 +5,12 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Tag blocked on complexity; refactor in flight.** Standard **v2.64.0** is committed
-> (`WowAddonStandards@aeceac4`), and LibKa0s Phase 4 too (`c051bef`). `Release v1.55.0` is committed
-> (`LibKa0s@18ca82a`), but the release-mode run found **4 functions over CCN 15**, all new in this
-> release (Schema `S.Set` 24 and `S.Validate` 33, kit `collectKitHoles` 16 and `repoKind` 17). v1.54.0's
-> bundle had 0, so the tag is not cut; the failed bundle was discarded uncommitted. Refactor workflow:
-> `wf_6cd22933-31d`. Then re-run `--release 1.55.0`, commit the bundle, cut an annotated tag, and start
-> Phase 5.
+> **Phases 5+6 in flight.** `LibKa0s v1.55.0` is **tagged** (annotated, local) at `6f9c5e0`: release
+> run `20260923-144526`, clean at `ae48f3f`, lint/tests/complexity pass, 0 functions above CCN 15. The
+> four over-cap functions were split behavior-preserving (`be91249`, `244c752`; differential fuzz found
+> no mismatch). Phases 5+6 run as one per-addon pipeline, all 11 in parallel (`wf_2ec8bfbe-4d1`):
+> re-vendor -> verify -> fix -> adopt -> verify -> fix, then the Consumers-table re-sweep. Next:
+> Phase 7.
 
 ## How to resume
 
@@ -33,7 +32,7 @@ working tree that does not match it is a session that died mid-phase.
 
 | Repo | Expected state | What it is |
 |---|---|---|
-| `LibKa0s` | **may be dirty while `wf_6cd22933-31d` runs** | CCN refactor; the agents commit per track. |
+| all 11 addons (+ LibKa0s at the end) | **may be dirty while `wf_2ec8bfbe-4d1` runs** | Phase 5/6 agents commit incrementally per repo. |
 | every other repo | **clean** | Phases 0-2 are committed. |
 
 If a repo is dirty, a phase died mid-run. Read that phase's row in the ledger, then the phase's own
@@ -292,11 +291,11 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 3a | Kit revision 25 - the four gates | LibKa0s | **done** | `LibKa0s@2a5e06f`. 1318/0/1, luacheck 0/0. Six fix rounds; the sixth (late narrowing refused by the gate itself) applied and proven in a consumer copy by the orchestrator. |
 | 3b | The three extraction majors | LibKa0s | **done** | `LibKa0s@06b4051` via `wf_1b472691-c6f`. Compat (9 members), Bus (6), Schema (23). Verify: Compat 2 rounds, Bus 1, Schema 2; nothing serious left open. Specs in `3b-specs/`. |
 | 2b | Standard v2.64.0 - ripple of the majors | WowAddonStandards | **done** | `aeceac4`. `wf_239a4a93-a76` ran 3 audit rounds without converging (a fix agent widened the no-copy bound, which would have filed all 11 Slash stubs); the orchestrator fixed the 6 unresolved findings by hand, and a final audit came back clean. |
-| 3t | Cut v1.55.0 | LibKa0s | **blocked -> in-flight** | Release commit `18ca82a`; tag held for CCN 15 (`wf_6cd22933-31d`). |
+| 3t | Cut v1.55.0 | LibKa0s | **done** | Annotated tag `v1.55.0` at `6f9c5e0` (local only). The CCN split ran first (`wf_6cd22933-31d`). |
 | CP-3 | Major-set interview | — | **done (delegated)** | Rulings: all three majors in v1.55.0 (one re-vendor cycle); Schema ships as built (O-4 lenient reading, matching C2-F03's ratified scope); Perf inline spec read becomes a documented deviation; upstream items go to standard v2.64.0, and the three open questions (seam name, panel live-refresh, Core floor) go to open-evolutions unruled. |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | **done** | `wf_9df0ebc9-264`: one commit per repo in all 11 addons + wow-addon (MultiMeters and wow-addon each carry a follow-up fix commit from the verify pass); every gate identical to baseline. LibKa0s `c051bef` (with its pre-tag housekeeping). |
-| 5 | Re-vendor LibKa0s | 11 addons | pending | — |
-| 6 | Adoption | 11 addons | pending | — |
+| 5 | Re-vendor LibKa0s | 11 addons | **in-flight** | `wf_2ec8bfbe-4d1` |
+| 6 | Adoption | 11 addons | **in-flight** | `wf_2ec8bfbe-4d1`, same pipeline; declines filed as GitHub issues |
 | CP-6 | Adoption interview | — | **delegated** | Owner (2026-09-23): use best judgement. |
 | 7 | Verify and report | all | pending | — |
 
