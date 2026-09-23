@@ -5,11 +5,10 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 3a in flight, final verify.** Phase 2 is done (standard at **v2.63.0**,
-> `WowAddonStandards@957b3c5`, clean). Test-kit **revision 25** is built and LibKa0s is **green but
-> uncommitted** - 1318 passed / 0 failed / 1 skipped, luacheck 0/0. Five fix rounds have run (see
-> *3a fix rounds* below); round 5's fix landed (`test_prose.lua` md5 `3ed3436e`, 1496 lines) and its
-> adversarial verify is running. Commit LibKa0s only on a clean verify. **3b** has not started.
+> **Phase 3b in flight.** 3a is done: test-kit revision 25 committed as `LibKa0s@2a5e06f` (1318/0/1,
+> luacheck 0/0) after a sixth fix closed the verifier's late-narrowing major. 3b (Compat, Bus, Schema
+> portable half) runs as workflow `wf_1b472691-c6f`: design -> build -> integrate -> consumer-driven
+> verify -> fix loop. The owner delegated CP-3 and CP-6 (see *Owner decisions*, 2026-09-23 rows).
 
 ## How to resume
 
@@ -31,7 +30,7 @@ working tree that does not match it is a session that died mid-phase.
 
 | Repo | Expected state | What it is |
 |---|---|---|
-| `LibKa0s` | **modified, uncommitted** | Phase 3a: test-kit revision 25. Commits only on a green gate and a clean verify. |
+| `LibKa0s` | **modified, uncommitted while 3b runs** | Phase 3b: the three new majors. Commits after its verify loop. |
 | every other repo | **clean** | Phases 0-2 are committed. |
 
 If a repo is dirty, a phase died mid-run. Read that phase's row in the ledger, then the phase's own
@@ -241,6 +240,14 @@ tag; all 11 addons vendoring v1.54.2; every repo clean on `master` before the br
 | Adoption depth | **Also build new LibKa0s majors.** Beyond adopting shipped v1.54.2 surfaces, extract the still-duplicated candidates named in `open-evolutions.md` (Compat shim, message bus, Schema runtime) into new majors, cut a tag, and re-vendor it across all 11 addons. |
 | Branch policy | **Branch per repo, left unmerged and unpushed.** Branch `suite/2026-09-22-standards-sweep` in all 15 repos. Incremental commits, green gate before each. Merging and pushing is the owner's, via `/wow-addon:finalize`. |
 
+### Added 2026-09-23
+
+| Question | Decision |
+|---|---|
+| CP-3 / CP-6 interviews | **Delegated** - "use your best judgement to take whatever decisions you need". Every call is recorded with its evidence in the phase's output. |
+| Orchestration | **Ultracode** - each phase runs as a workflow with adversarial, consumer-driven verify; commit incrementally. |
+| Tag vs push | Tag `v1.55.0` **locally** after 3b, before Phases 4-5 (`vendor_sync` reads tags from the sibling checkout, never the remote). Push stays with finalize. |
+
 ## Phases
 
 Each phase is a workflow run, ends at a checkpoint commit here, and is independently resumable.
@@ -276,14 +283,14 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
 | CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
 | 2 | Promote into the standard | WowAddonStandards | **done** | `CP-2` = `WowAddonStandards@957b3c5`, v2.63.0, 23 files. Four passes: promote -> 13 blockers cleared -> 6 self-inflicted counts fixed -> commit gate found 7 more, all closed. Record in `harvests/2026-09-22/06_OUTCOME.md`. |
-| 3a | Kit revision 25 - the four gates | LibKa0s | **in-flight - final verify** | Green (1318/0/1, luacheck 0/0), uncommitted. Five fix rounds, each closing one instance of the same pattern; round 5 verify running (re-launched 2026-09-23 after the session died mid-verify). |
-| 3b | The three extraction majors | LibKa0s | pending | Deliverables 1-3: Compat, Bus, Schema (portable half). |
+| 3a | Kit revision 25 - the four gates | LibKa0s | **done** | `LibKa0s@2a5e06f`. 1318/0/1, luacheck 0/0. Six fix rounds; the sixth (late narrowing refused by the gate itself) applied and proven in a consumer copy by the orchestrator. |
+| 3b | The three extraction majors | LibKa0s | **in-flight** | `wf_1b472691-c6f`. Deliverables 1-3: Compat, Bus, Schema (portable half). |
 | 3t | Cut v1.55.0 | LibKa0s | pending | After CP-3 only. |
-| CP-3 | Major-set interview | — | pending | Before the tag is cut. |
+| CP-3 | Major-set interview | — | **delegated** | Owner (2026-09-23): use best judgement. Design agents record each call; orchestrator reviews them before the tag. |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | pending | — |
 | 5 | Re-vendor LibKa0s | 11 addons | pending | — |
 | 6 | Adoption | 11 addons | pending | — |
-| CP-6 | Adoption interview | — | pending | — |
+| CP-6 | Adoption interview | — | **delegated** | Owner (2026-09-23): use best judgement. |
 | 7 | Verify and report | all | pending | — |
 
 ## Owner rulings taken at CP-1 (2026-09-22)
