@@ -217,7 +217,7 @@ prompt is unchanged replay from cache instead of re-running.
 | 2g - gate fixes (pass 4) | *(orchestrator, no workflow)* | the gate's 7 blockers fixed directly against measurements, then `CP-2` |
 | 3a r1-r5 | `wf_19b2a06b-9a9`, `wf_45b23e7b-72e`, `wf_cfae017e-fb8`, `wf_1fca1599-61d`, `wf_006f57e4-eb5` | see *3a fix rounds* |
 | 3b - extractions | `wf_1b472691-c6f` (session `7fcdd95e`) | running |
-| 4 - re-vendor standard (11 addons + wow-addon) | `wf_9df0ebc9-264` (session `7fcdd95e`) | running, in parallel with 3b (disjoint repos); reads v2.63.0 from the local branch because GitHub master is still v2.62.1. LibKa0s's own Phase 4 pass runs after 3b commits. |
+| 4 - re-vendor standard (11 addons + wow-addon) | `wf_9df0ebc9-264` (session `7fcdd95e`) | complete, 26 agents, 0 errors; in parallel with 3b (disjoint repos); reads v2.63.0 from the local branch because GitHub master is still v2.62.1. LibKa0s's own Phase 4 pass runs after 3b commits. |
 
 Scripts live under `~/.claude/projects/-mnt-d-*-AuraMaster/<session>/workflows/scripts/` - `c09a6172-*` for Phases 1-3a, `7fcdd95e-*` from 3b on. Resume works same-session only; across sessions, re-run the unfinished agent from the script's prompt.
 
@@ -290,11 +290,18 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 3b | The three extraction majors | LibKa0s | **in-flight** | `wf_1b472691-c6f`. Deliverables 1-3: Compat, Bus, Schema (portable half). |
 | 3t | Cut v1.55.0 | LibKa0s | pending | After CP-3 only. |
 | CP-3 | Major-set interview | — | **delegated** | Owner (2026-09-23): use best judgement. Design agents record each call; orchestrator reviews them before the tag. |
-| 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | **in-flight** | `wf_9df0ebc9-264` for 11 addons + wow-addon; LibKa0s after 3b. One commit per repo. |
+| 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | **12 of 13 done** | `wf_9df0ebc9-264`: one commit per repo in all 11 addons + wow-addon (MultiMeters and wow-addon each carry a follow-up fix commit from the verify pass); every gate identical to baseline. LibKa0s after 3b. |
 | 5 | Re-vendor LibKa0s | 11 addons | pending | — |
 | 6 | Adoption | 11 addons | pending | — |
 | CP-6 | Adoption interview | — | **delegated** | Owner (2026-09-23): use best judgement. |
 | 7 | Verify and report | all | pending | — |
+
+## Residuals carried to Phase 7 (from Phase 4's verify)
+
+- ConsumableMaster `defaults/Categories.lua:37` - retired `standard section 7.4` in a comment (comment-only fix, resolve the target).
+- wow-addon `README.md:24` - the automated-tests row's gate claim names no checkpoint (3f).
+- PartyFrameEnhanced `docs/testing.md:49`, `DEPENDENCIES.md:33` - still name the retired `tests/test_spelling.lua` (sync-docs drift).
+- Bare `§N` shorthand in comments (AbsorbTracker, MultiMeters and others) - not a form the playbook rewrites; left as is.
 
 ## Owner rulings taken at CP-1 (2026-09-22)
 
