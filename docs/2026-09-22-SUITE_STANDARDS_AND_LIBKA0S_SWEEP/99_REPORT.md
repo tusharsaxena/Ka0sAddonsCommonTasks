@@ -1,9 +1,14 @@
 # Suite sweep 2026-09-22/23: the report
 
-Everything in the plan of record (`00_PLAN.md`) is done. All 15 repos sit on branch
-`suite/2026-09-22-standards-sweep` with clean trees, and **nothing is merged or pushed**. Merging and
-pushing is the owner's, via `/wow-addon:finalize`, and that includes the local `v1.55.0` tag in
-LibKa0s.
+Everything in the plan of record (`00_PLAN.md`) is done and **shipped**. `/wow-addon:finalize` merged
+the sweep branch in all 15 repos on 2026-09-23 and pushed it, with LibKa0s `v1.55.0` on origin. The
+owner's 20 in-game smoke checks all passed.
+
+**Added after the sweep, at the owner's request:** AbsorbTracker's unlocked bars now carry the
+`LibKa0s-Widgets-1.0` `DragHandle` strip (`6416d11`, `7c43ab4`). The survey found every other
+unlock mode already on the strip (ConsumableMaster, KickCD, AuraMaster) or on a shape that does not
+need it (MultiMeters' title bars, PanelMaster's outline). PartyFrameEnhanced was surveyed and left
+as it is, by the owner's choice.
 
 ## What shipped
 
@@ -59,11 +64,9 @@ frame names or bus message names.
 
 ## Owed by the owner
 
-1. **Merge and push** all 15 branches plus the `v1.55.0` tag (`/wow-addon:finalize`, dependency
-   order: WowAddonStandards and LibKa0s first, then the addons).
-2. **In-game smoke tests** of the adopted majors. Each addon's
-   `docs/revendor/2026-09-23-v1.55.0/05_SUMMARY.md` lists its checks. The unmeasured one flagged at
-   design time is Compat's legacy `GetSpellCooldown` `isEnabled` on a 12.x client.
+1. ~~Merge and push~~: done 2026-09-23.
+2. ~~In-game smoke tests~~: all 20 passed 2026-09-23. AbsorbTracker's drag-handle strip still owes
+   its own check (`docs/smoke-tests.md` item 68).
 3. **Before AuraMaster's next release:** its two pre-existing CCN > 15 functions block
    `/wow-addon:bump-version`.
 

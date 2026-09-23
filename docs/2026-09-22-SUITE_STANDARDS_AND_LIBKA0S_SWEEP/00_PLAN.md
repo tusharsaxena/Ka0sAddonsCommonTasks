@@ -5,10 +5,11 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **COMPLETE (2026-09-23).** Every phase is done; the report is `99_REPORT.md`. All 15 repos are
-> clean on `suite/2026-09-22-standards-sweep`, **unmerged and unpushed**, and LibKa0s `v1.55.0` is tagged
-> locally at `6f9c5e0`. What remains is the owner's: `/wow-addon:finalize` (merge, push, and push the
-> tag) and the in-game smoke tests.
+> **COMPLETE AND SHIPPED (2026-09-23).** Every phase is done, and the report is `99_REPORT.md`.
+> `/wow-addon:finalize` merged `suite/2026-09-22-standards-sweep` into master (`main` here) and pushed
+> it in all 15 repos, in dependency order: WowAddonStandards, then LibKa0s (with tag `v1.55.0`) and
+> wow-addon, then the 11 addons, then this repo. The branch is deleted everywhere. Only the owner's
+> in-game smoke tests remain; all 20 passed on 2026-09-23.
 
 ## How to resume
 
