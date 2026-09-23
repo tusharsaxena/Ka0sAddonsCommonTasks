@@ -1,0 +1,53 @@
+{
+ "done": [
+  "WS-09",
+  "LK-34"
+ ],
+ "failed": [],
+ "results": [
+  {
+   "id": "WS-09",
+   "status": "done",
+   "result": {
+    "id": "WS-09",
+    "status": "done",
+    "commits": [
+     "1906aee"
+    ],
+    "summary": "I committed 1906aee, which makes the standard permit the library's combat park for the category registration. options-ui-\u00a75's \"register eagerly\" rule now says: when CreateOptionsPanel is called under InCombatLockdown(), the library MAY park the registration. If it does, it MUST replay it exactly once at PLAYER_REGEN_ENABLED, parking again if combat is still on, whatever the host's stand-down state. The host still calls CreateOptionsPanel once at PLAYER_LOGIN and MUST NOT add its own park. options-ui-\u00a79's \"never taints\" and \"must happen eagerly\" passages now point to the park, and so does options-ui-\u00a72's registration note. The same sentence went into the other places that restate the rule, all inside the unreleased v2.65.0: a new point (9) in the STANDARDS.md v2.65.0 changelog naming Options minor 24 / LK-25 and the follow-ups LK-34, CM-05 and WG-02, the index's options-ui blurb, and four spots in standards/NEW_ADDON_CONTEXT.md (the OnInitialize starter comment, rule 8, the anti-pattern list and the pattern table). No version bump. I checked LibKa0s/Options.lua (parkIfLocked and lib.__parkRegistration) and confirmed a replay parks again if combat is still on. Files changed: /mnt/d/Profile/Users/Tushar/Documents/GIT/WowAddonStandards/standards/standards/options-ui.md, /mnt/d/Profile/Users/Tushar/Documents/GIT/WowAddonStandards/standards/STANDARDS.md, /mnt/d/Profile/Users/Tushar/Documents/GIT/WowAddonStandards/standards/NEW_ADDON_CONTEXT.md.",
+    "reviewed": false,
+    "deviations": "None of substance. EXECUTIVE_SUMMARY.md does not restate the eager-registration rule, and no anti-pattern names a host-side park, so I left both files unchanged. I also added cross-references beyond the item text: options-ui-\u00a72's registration note and the options-ui blurb in the STANDARDS.md index.",
+    "suite": "This is a docs-only repo with no luacheck, tests or lizard to run. Verify greps pass: 'PLAYER_REGEN_ENABLED' has 7 hits in options-ui.md and 'MAY park' has 2 (lines 109 and 240). All three touched files have 0 CR bytes, as the repo's LF rule requires. A scan of the added lines found no British spellings. git status --porcelain is empty after the commit."
+   },
+   "review": {
+    "ok": true,
+    "issues": []
+   },
+   "fix": null,
+   "err": null,
+   "residual": ""
+  },
+  {
+   "id": "LK-34",
+   "status": "done",
+   "result": {
+    "id": "LK-34",
+    "status": "done",
+    "commits": [
+     "514fc0a"
+    ],
+    "summary": "LK-34 is done in commit 514fc0a, and the local v1.56.0 tag now points at that commit. I checked first that WS-09 had landed in WowAddonStandards (1906aee): options-ui-\u00a75 and \u00a79 (v2.65.0) now allow the combat park. Four docs changed:\n- /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s/CLAUDE.md: the provisional options-ui-\u00a79 row is gone from ## Documented deviations. The row-count note now says five rows and no longer has the provisional sentence.\n- /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s/CHANGELOG.md (v1.56.0, Options minor 24) and /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s/docs/api/Options/version-24.31.4.7.4-docs.md: the 'ahead of the standard' wording now cites options-ui-\u00a75/\u00a79 v2.65.0 instead. The changelog also says the row is retired.\n- /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s/docs/releasing.md 'Where v1.56.0 stands': the ruling is made (the park stays and the standard was amended), and the local tag was re-cut on the LK-34 commit instead of 446b7c1.\n\nFrozen docs/automated-tests bundles were not edited. The tag was re-cut locally with `git tag -d v1.56.0 && git tag -a v1.56.0 -m \"LibKa0s v1.56.0\" HEAD`. The old tag object was 24f9a13, pointing at 446b7c1. `git rev-parse v1.56.0^{commit}` returns 514fc0a, which is HEAD. Nothing was pushed. The working tree is clean.",
+    "reviewed": false,
+    "deviations": "The item names docs/api/Options/version-24.30.3.7.4-docs.md, but that file does not exist. Later minors in this release renamed it to docs/api/Options/version-24.31.4.7.4-docs.md, so the edit went there. This is recorded in the commit body.",
+    "suite": "luacheck: 0 warnings / 0 errors in 92 files. tests/run.lua: 1647 passed, 0 failed, 1 skipped (1648 total). lizard: no thresholds exceeded, so no function is above CCN 15. No .lua files changed, so the 1500-line cap is untouched. Item checks: CLAUDE.md has no options-ui-\u00a79 register row (count 0), and v1.56.0^{commit} is HEAD (514fc0a)."
+   },
+   "review": {
+    "ok": true,
+    "issues": []
+   },
+   "fix": null,
+   "err": null,
+   "residual": ""
+  }
+ ]
+}
