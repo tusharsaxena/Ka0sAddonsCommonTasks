@@ -84,6 +84,17 @@ else
   echo "RESUME: nothing outstanding"
 fi
 
+# Landed but never closed by a review (no refs/notes/ka0s-review note). A resumed executor
+# re-reviews these; the list is informational here.
+for m in M1 M2 M3 M4; do
+  [[ -n $only && $only != $m ]] && continue
+  ur=$(python3 $HERE/plan-data/tools/next_args.py $m --unreviewed 2>/dev/null | tr -d '[]"' | tr ',' ' ')
+  [[ -n ${ur// } ]] && echo "-- $m landed, review not recorded:${ur}"
+done
+
+# Last recorded checkpoint.
+[[ -r $HERE/checkpoints.tsv ]] && echo "-- last checkpoint: $(tail -n 1 $HERE/checkpoints.tsv | tr '\t' ' ')"
+
 echo
 echo "-- LibKa0s tag v1.56.0: $(git -C $BASE/LibKa0s tag -l v1.56.0 | grep -q . && echo 'present (local)' || echo absent)"
 dirty=""; offbranch=""
