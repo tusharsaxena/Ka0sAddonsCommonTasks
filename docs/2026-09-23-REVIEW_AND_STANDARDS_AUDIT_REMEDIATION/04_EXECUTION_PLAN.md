@@ -173,7 +173,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 ## M1 — Upstream — WowAddonStandards, LibKa0s (tag v1.56.0 locally), wow-addon plugin
 
-### WowAddonStandards (8 items)
+### WowAddonStandards (9 items)
 
 #### WS-01 — Open v2.65.0; AUDIT.md re-vendor check grades by step 5, counts same-day commits and reads a consolidated span bundle
 
@@ -239,7 +239,15 @@ session may still re-check it opportunistically while the operator is in game.
 - **Test first** none — docs only.
 - **Verify** cd /mnt/d/Profile/Users/Tushar/Documents/GIT/WowAddonStandards; grep -n 'schemaVersion = 0' standards/NEW_ADDON_CONTEXT.md; grep -n 'minimap.shown' standards/NEW_ADDON_CONTEXT.md; grep -rn 'v2.64.0' README.md standards/EXECUTIVE_SUMMARY.md (only historical mentions remain); grep -rnE '§[0-9]+\.[0-9]+' standards AUDIT.md NEW_ADDON.md (expect nothing); git ls-files -z \| xargs -0 grep -lI $'\r' (expect nothing)
 
-### LibKa0s (33 items)
+#### WS-09 — options-ui-§9: the library MAY park a combat-time category registration and MUST replay it once
+
+- **Effort** S · **Depends on** WS-08
+- **Findings** —
+- **Change** Follow-up to WS-08. This carries out the approved plan's first option for LK-25, which WS-08 closed without. In standards/standards/options-ui.md: §5's 'MUST register the parent category eagerly at addon load' bullet and §9's 'is the thing that must happen eagerly' / 'itself never taints' passage gain one sentence: when CreateOptionsPanel is called under InCombatLockdown(), the library MAY park the registration and MUST replay it exactly once at PLAYER_REGEN_ENABLED, parking again if still locked. The host still calls it once at PLAYER_LOGIN and MUST NOT add its own park on top. Ripple inside the still-open v2.65.0: a new numbered point in the STANDARDS.md v2.65.0 changelog paragraph, naming LibKa0s Options minor 24 / LK-25; any NEW_ADDON_CONTEXT.md / EXECUTIVE_SUMMARY restatement of the eager-registration MUST; and anti-patterns if one names the host-side park. No version bump (v2.65.0 is unreleased).
+- **Test first** none (standards text); verify by grep
+- **Verify** grep -n 'PLAYER_REGEN_ENABLED' standards/standards/options-ui.md; grep -n 'MAY park' standards/standards/options-ui.md; git status --porcelain empty
+
+### LibKa0s (34 items)
 
 #### LK-01 — Kit revision 26 groundwork: peel framework.lua's assertion and parity families into asserts.lua, and test_prose's lists into prose_lists.lua
 
@@ -521,6 +529,14 @@ session may still re-check it opportunistically while the operator is in game.
 - **Verify** cd /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s; S=$(ls -d docs/automated-tests/2*/ \| tail -1)manifest.json; jq -r '.release' $S (1.56.0); jq -r '.git.dirty' $S (false); jq -r '.suites \| to_entries[] \| "\(.key) \(.value.status)"' $S; jq -r '.suites.complexity.warnings' $S (0); test -f $(dirname $S)/ANALYSIS.md; grep -l '"release": "1.56.0"' docs/automated-tests/*/manifest.json; git tag -l v1.56.0; git ls-remote --tags origin v1.56.0 (expect empty until owner approval); head -1 ../WowAddonStandards/standards/STANDARDS.md; grep -n 'v2.65.0' README.md
 - **Smoke** Before the owner approves the merge, install the payload into one consumer in-client (e.g. AuraMaster via its re-vendor branch) and run S-001..S-008 from the review's 03_SMOKE_TESTS.md.
 
+#### LK-34 — Retire the provisional options-ui-§9 row and re-cut the local v1.56.0 tag on the final commit
+
+- **Effort** S · **Depends on** WS-09, LK-33
+- **Findings** —
+- **Change** After WS-09 lands in the sibling WowAddonStandards (read it there): (1) delete the provisional `options-ui-§9` row from CLAUDE.md ## Documented deviations and fix the row-count note; (2) in CHANGELOG.md v1.56.0 and docs/api/Options/version-24.30.3.7.4-docs.md, replace the 'the park is ahead of the standard' wording with a citation of options-ui-§9 (v2.65.0), which now permits it; (3) docs/releasing.md 'Where v1.56.0 stands' and any forward-correction note: the ruling is made (park kept, standard amended) and the tag is re-cut on this commit. Frozen docs/automated-tests bundles are not edited. Commit, then RE-CUT THE LOCAL TAG: `git tag -d v1.56.0 && git tag -a v1.56.0 -m "LibKa0s v1.56.0" HEAD`. The tag was never pushed; do NOT push it. Confirm `git rev-parse v1.56.0^{commit}` equals HEAD.
+- **Test first** none (docs); the full suite must stay green
+- **Verify** /home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua; no provisional options-ui-§9 row in CLAUDE.md; git rev-parse v1.56.0^{commit} == HEAD
+
 ### wow-addon (3 items)
 
 #### WA-01 — revendor-libka0s: take the delta base from the addon's provenance line, name bundles by tag, and write consolidated span bundles
@@ -555,7 +571,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-AT — Re-vendor the whole LibKa0s v1.56.0 payload into AbsorbTracker
 
-- **Effort** S · **Depends on** LK-33, AT-01, WA-01
+- **Effort** S · **Depends on** LK-33, AT-01, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by AT-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -573,7 +589,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-AM — Re-vendor the whole LibKa0s v1.56.0 payload into AuraMaster
 
-- **Effort** S · **Depends on** LK-33, AM-01, AM-02, WA-01
+- **Effort** S · **Depends on** LK-33, AM-01, AM-02, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by AM-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -599,7 +615,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-BL — Re-vendor the whole LibKa0s v1.56.0 payload into BankLedger
 
-- **Effort** S · **Depends on** LK-33, BL-01, BL-02, WA-01
+- **Effort** S · **Depends on** LK-33, BL-01, BL-02, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by BL-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -626,7 +642,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-CM — Re-vendor the whole LibKa0s v1.56.0 payload into ConsumableMaster
 
-- **Effort** S · **Depends on** LK-33, CM-01, WA-01
+- **Effort** S · **Depends on** LK-33, CM-01, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by CM-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -644,7 +660,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-KC — Re-vendor the whole LibKa0s v1.56.0 payload into KickCD
 
-- **Effort** S · **Depends on** LK-33, KC-01, WA-01
+- **Effort** S · **Depends on** LK-33, KC-01, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by KC-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -662,7 +678,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-LH — Re-vendor the whole LibKa0s v1.56.0 payload into LootHistory
 
-- **Effort** S · **Depends on** LK-33, WA-01
+- **Effort** S · **Depends on** LK-33, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by LH-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -672,7 +688,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-MM — Re-vendor the whole LibKa0s v1.56.0 payload into MultiMeters
 
-- **Effort** S · **Depends on** LK-33, WA-01
+- **Effort** S · **Depends on** LK-33, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by MM-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -682,7 +698,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-PM — Re-vendor the whole LibKa0s v1.56.0 payload into PanelMaster
 
-- **Effort** S · **Depends on** LK-33, WA-01
+- **Effort** S · **Depends on** LK-33, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by PM-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -692,7 +708,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-PF — Re-vendor the whole LibKa0s v1.56.0 payload into PartyFrameEnhanced
 
-- **Effort** S · **Depends on** LK-33, WA-01
+- **Effort** S · **Depends on** LK-33, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by PF-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -702,7 +718,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-PC — Re-vendor the whole LibKa0s v1.56.0 payload into PrettyChat
 
-- **Effort** S · **Depends on** LK-33, WA-01
+- **Effort** S · **Depends on** LK-33, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by PC-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification
@@ -712,7 +728,7 @@ session may still re-check it opportunistically while the operator is in game.
 
 #### RV-WG — Re-vendor the whole LibKa0s v1.56.0 payload into WhatGroup
 
-- **Effort** S · **Depends on** LK-33, WG-01, WA-01
+- **Effort** S · **Depends on** LK-33, WG-01, WA-01, LK-34
 - **Findings** —
 - **Change** Copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the local tag v1.56.0 (git -C ../LibKa0s archive or worktree at the tag; rm -rf then copy; keep the runner executable), and roll the CLAUDE.md provenance line to v1.56.0 in the same commit. No other edits. If the suite goes red because the new kit/library is stricter, record the failures in the commit body; this addon's M3 items clear them, and the addon is green again at the latest by WG-DOCS. docs/test-cases.md and the README test badge are regenerated by a later item, never by this commit.  The same commit writes the re-vendor bundle docs/revendor/2026-09-23-v1.56.0/ by hand, following the procedure in the LOCAL ../wow-addon/commands/revendor-libka0s.md as amended by WA-01 (the installed plugin comes from GitHub and does not have WA-01 until the owner merges wow-addon): 01_DELTA.md whose line 1 is exactly "Delta: LibKa0s v1.55.0 -> v1.56.0", per-file LibStub minors, both payload diffs, the kit-revision pairing (25 -> 26), which majors this addon consumes, and contract changes; plus 05_SUMMARY.md. Adoption decisions are NOT taken here: they are this addon's M3 items.
 - **Test first** none - payload copy; the suite run is the verification

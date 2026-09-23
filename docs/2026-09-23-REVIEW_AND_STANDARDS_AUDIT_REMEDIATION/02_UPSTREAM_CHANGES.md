@@ -403,7 +403,7 @@ spelling). Clusters C02, C12, C17, C24, C47.
    `/wow-addon:bump-interface`.
 5. `layout.md §4` (:125): the editable `.png` is committed but excluded by a `.pkgmeta` ignore.
 6. `localization.md §5` `BRITISH`: add `synchronis` (91 → 92). No US word contains it. Published
-   counts become 92/30.
+   counts become 92/33.
 7. `line-endings.md §7` (:505-510): from kit 26, `test_eol` counts lone CRs in every scanned path. Delete
    "No file in the collection has one" (AuraMaster has one).
 
@@ -1383,7 +1383,7 @@ decision gate and a decline-issue fallback).
 
 **Resolves:** `LibKa0s-A-07` (Low: 210 hits in 33 live authored files). Cluster C12.
 
-**Change.** Re-run the counter at HEAD with the published lists (92/30) over `tests/` (excluding
+**Change.** Re-run the counter at HEAD with the published lists (92/33) over `tests/` (excluding
 `tests/_kit`), the **highest-version** `docs/api` documents only, `docs/releasing.md`, `README.md`,
 `DEPENDENCIES.md`, `CLAUDE.md` and `tools/artwork/*.py`, and fix prose, comments and test names. Two
 exclusions: `.cancelled`/`IsCancelled` member accesses that model AceTimer/C_Timer handles

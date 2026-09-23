@@ -7,6 +7,7 @@ WS-05	M1	WowAddonStandards	Give compat an applicability condition: core/Compat.l
 WS-06	M1	WowAddonStandards	Clarify reserved verbs in sub-trees, the value-hold verb, who pins a library strip, and the minimap row's CLI path polarity	WS-01	S		KICKCD-A-27,AbsorbTracker-A-14,PRETTYCHAT-A-26,WHATGROUP-R-15	
 WS-07	M1	WowAddonStandards	Text corrections: debug buffer 1500, bootstrap underscore, the settings-panel table, the TOC literal, '.png ships', 'synchronis', and the lone-CR note	WS-01	S		AbsorbTracker-A-21,PRETTYCHAT-A-28,WHATGROUP-A-22,WHATGROUP-A-23,ConsumableMaster-A-06	
 WS-08	M1	WowAddonStandards	v2.65.0 ripple: executive summary, context pack, playbooks, README; close the changelog entry	WS-02,WS-03,WS-04,WS-05,WS-06,WS-07	M			
+WS-09	M1	WowAddonStandards	options-ui-§9: the library MAY park a combat-time category registration and MUST replay it once	WS-08	S			
 LK-01	M1	LibKa0s	Kit revision 26 groundwork: peel framework.lua's assertion and parity families into asserts.lua, and test_prose's lists into prose_lists.lua		M		LibKa0s-A-04	
 LK-02	M1	LibKa0s	Kit.assertErrorMatches, and the 23 statement-position assertError calls assert on the raised text	LK-01	M		LibKa0s-R-07	
 LK-03	M1	LibKa0s	AceDB fake fidelity: CopyProfile and DeleteProfile raise as AceDB-3.0 does, and SetProfile strips defaults	LK-02	S		AbsorbTracker-R-06,PartyFrameEnhanced-R-09	
@@ -40,20 +41,21 @@ LK-30	M1	LibKa0s	Root CLAUDE.md: figures pointed at their generated sources, a r
 LK-31	M1	LibKa0s	docs/releasing.md step 7: a manifest precondition, an ANALYSIS.md sub-step, and a release-notes perf-skip line	LK-30	S		LibKa0s-A-01,LibKa0s-A-05,LibKa0s-A-06	
 LK-32	M1	LibKa0s	Watch-list terminal states: file the owed issues and re-rule the band files	LK-31	S		LibKa0s-A-03	
 LK-33	M1	LibKa0s	Cut v1.56.0: version block, release run with ANALYSIS.md and dispositions, and a LOCAL tag (pushed only on the owner's merge approval)	LK-32,WS-08,LK-05,LK-06,LK-08,LK-09,LK-11,LK-12,LK-13,LK-14,LK-15,LK-16,LK-18,LK-19,LK-20,LK-21,LK-23,LK-03	M	yes	LibKa0s-R-15,LibKa0s-A-02,LibKa0s-A-11	
+LK-34	M1	LibKa0s	Retire the provisional options-ui-§9 row and re-cut the local v1.56.0 tag on the final commit	WS-09,LK-33	S			
 WA-01	M1	wow-addon	revendor-libka0s: take the delta base from the addon's provenance line, name bundles by tag, and write consolidated span bundles	WS-01	S		AuraMaster-A-21	
 WA-02	M1	wow-addon	Ship bin/ka0s-bounded so the bare name resolves on the plugin's PATH entry		S	yes	MultiMeters-R-20,ConsumableMaster-R-19	
 WA-03	M1	wow-addon	Review agent's cross-addon baseline re-measured at v1.56.0 and derived rather than trusted; plugin 2.4.0	LK-33,WA-02	S		LootHistory-R-19,MultiMeters-R-19	
-RV-AT	M2	AbsorbTracker	Re-vendor the whole LibKa0s v1.56.0 payload into AbsorbTracker	LK-33,AT-01,WA-01	S			
-RV-AM	M2	AuraMaster	Re-vendor the whole LibKa0s v1.56.0 payload into AuraMaster	LK-33,AM-01,AM-02,WA-01	S			
-RV-BL	M2	BankLedger	Re-vendor the whole LibKa0s v1.56.0 payload into BankLedger	LK-33,BL-01,BL-02,WA-01	S			
-RV-CM	M2	ConsumableMaster	Re-vendor the whole LibKa0s v1.56.0 payload into ConsumableMaster	LK-33,CM-01,WA-01	S			
-RV-KC	M2	KickCD	Re-vendor the whole LibKa0s v1.56.0 payload into KickCD	LK-33,KC-01,WA-01	S			
-RV-LH	M2	LootHistory	Re-vendor the whole LibKa0s v1.56.0 payload into LootHistory	LK-33,WA-01	S			
-RV-MM	M2	MultiMeters	Re-vendor the whole LibKa0s v1.56.0 payload into MultiMeters	LK-33,WA-01	S			
-RV-PM	M2	PanelMaster	Re-vendor the whole LibKa0s v1.56.0 payload into PanelMaster	LK-33,WA-01	S			
-RV-PF	M2	PartyFrameEnhanced	Re-vendor the whole LibKa0s v1.56.0 payload into PartyFrameEnhanced	LK-33,WA-01	S			
-RV-PC	M2	PrettyChat	Re-vendor the whole LibKa0s v1.56.0 payload into PrettyChat	LK-33,WA-01	S			
-RV-WG	M2	WhatGroup	Re-vendor the whole LibKa0s v1.56.0 payload into WhatGroup	LK-33,WG-01,WA-01	S			
+RV-AT	M2	AbsorbTracker	Re-vendor the whole LibKa0s v1.56.0 payload into AbsorbTracker	LK-33,AT-01,WA-01,LK-34	S			
+RV-AM	M2	AuraMaster	Re-vendor the whole LibKa0s v1.56.0 payload into AuraMaster	LK-33,AM-01,AM-02,WA-01,LK-34	S			
+RV-BL	M2	BankLedger	Re-vendor the whole LibKa0s v1.56.0 payload into BankLedger	LK-33,BL-01,BL-02,WA-01,LK-34	S			
+RV-CM	M2	ConsumableMaster	Re-vendor the whole LibKa0s v1.56.0 payload into ConsumableMaster	LK-33,CM-01,WA-01,LK-34	S			
+RV-KC	M2	KickCD	Re-vendor the whole LibKa0s v1.56.0 payload into KickCD	LK-33,KC-01,WA-01,LK-34	S			
+RV-LH	M2	LootHistory	Re-vendor the whole LibKa0s v1.56.0 payload into LootHistory	LK-33,WA-01,LK-34	S			
+RV-MM	M2	MultiMeters	Re-vendor the whole LibKa0s v1.56.0 payload into MultiMeters	LK-33,WA-01,LK-34	S			
+RV-PM	M2	PanelMaster	Re-vendor the whole LibKa0s v1.56.0 payload into PanelMaster	LK-33,WA-01,LK-34	S			
+RV-PF	M2	PartyFrameEnhanced	Re-vendor the whole LibKa0s v1.56.0 payload into PartyFrameEnhanced	LK-33,WA-01,LK-34	S			
+RV-PC	M2	PrettyChat	Re-vendor the whole LibKa0s v1.56.0 payload into PrettyChat	LK-33,WA-01,LK-34	S			
+RV-WG	M2	WhatGroup	Re-vendor the whole LibKa0s v1.56.0 payload into WhatGroup	LK-33,WG-01,WA-01,LK-34	S			
 BL-01	M2	BankLedger	Retention prune rides AceTimer and latches only when it runs; wow_mock stops no-opping C_Timer.After (PRE-RV: lands before RV-BL)	LK-33	S	yes	BankLedger-A-03,BankLedger-R-05	
 BL-02	M2	BankLedger	Schema degradation stub gains SetMany (all-or-nothing batch), ahead of the LibKa0s-Schema-1.0 minor 2 parity check (PRE-RV: lands before RV-BL)	LK-22,LK-33	S			
 AT-01	M2	AbsorbTracker	Schema degradation stub catches up to LibKa0s-Schema-1.0 minor 2: SetMany, normalize, instanceId forwarding and the writeThrough store	LK-22,LK-23,LK-33	M			

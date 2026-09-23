@@ -168,6 +168,22 @@
    "milestone": "M1"
   },
   {
+   "id": "WS-09",
+   "repo": "WowAddonStandards",
+   "milestone": "M1",
+   "title": "options-ui-\u00a79: the library MAY park a combat-time category registration and MUST replay it once",
+   "change": "Follow-up to WS-08. This carries out the approved plan's first option for LK-25, which WS-08 closed without. In standards/standards/options-ui.md: \u00a75's 'MUST register the parent category eagerly at addon load' bullet and \u00a79's 'is the thing that must happen eagerly' / 'itself never taints' passage gain one sentence: when CreateOptionsPanel is called under InCombatLockdown(), the library MAY park the registration and MUST replay it exactly once at PLAYER_REGEN_ENABLED, parking again if still locked. The host still calls it once at PLAYER_LOGIN and MUST NOT add its own park on top. Ripple inside the still-open v2.65.0: a new numbered point in the STANDARDS.md v2.65.0 changelog paragraph, naming LibKa0s Options minor 24 / LK-25; any NEW_ADDON_CONTEXT.md / EXECUTIVE_SUMMARY restatement of the eager-registration MUST; and anti-patterns if one names the host-side park. No version bump (v2.65.0 is unreleased).",
+   "tests": "none (standards text); verify by grep",
+   "verify": "grep -n 'PLAYER_REGEN_ENABLED' standards/standards/options-ui.md; grep -n 'MAY park' standards/standards/options-ui.md; git status --porcelain empty",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "WS-08"
+   ],
+   "effort": "S"
+  },
+  {
    "id": "LK-01",
    "repo": "LibKa0s",
    "title": "Kit revision 26 groundwork: peel framework.lua's assertion and parity families into asserts.lua, and test_prose's lists into prose_lists.lua",
@@ -812,6 +828,23 @@
    "milestone": "M1"
   },
   {
+   "id": "LK-34",
+   "repo": "LibKa0s",
+   "milestone": "M1",
+   "title": "Retire the provisional options-ui-\u00a79 row and re-cut the local v1.56.0 tag on the final commit",
+   "change": "After WS-09 lands in the sibling WowAddonStandards (read it there): (1) delete the provisional `options-ui-\u00a79` row from CLAUDE.md ## Documented deviations and fix the row-count note; (2) in CHANGELOG.md v1.56.0 and docs/api/Options/version-24.30.3.7.4-docs.md, replace the 'the park is ahead of the standard' wording with a citation of options-ui-\u00a79 (v2.65.0), which now permits it; (3) docs/releasing.md 'Where v1.56.0 stands' and any forward-correction note: the ruling is made (park kept, standard amended) and the tag is re-cut on this commit. Frozen docs/automated-tests bundles are not edited. Commit, then RE-CUT THE LOCAL TAG: `git tag -d v1.56.0 && git tag -a v1.56.0 -m \"LibKa0s v1.56.0\" HEAD`. The tag was never pushed; do NOT push it. Confirm `git rev-parse v1.56.0^{commit}` equals HEAD.",
+   "tests": "none (docs); the full suite must stay green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua; no provisional options-ui-\u00a79 row in CLAUDE.md; git rev-parse v1.56.0^{commit} == HEAD",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "WS-09",
+    "LK-33"
+   ],
+   "effort": "S"
+  },
+  {
    "id": "WA-01",
    "repo": "wow-addon",
    "title": "revendor-libka0s: take the delta base from the addon's provenance line, name bundles by tag, and write consolidated span bundles",
@@ -880,7 +913,8 @@
    "depends_on": [
     "LK-33",
     "AT-01",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -899,7 +933,8 @@
     "LK-33",
     "AM-01",
     "AM-02",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -918,7 +953,8 @@
     "LK-33",
     "BL-01",
     "BL-02",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -936,7 +972,8 @@
    "depends_on": [
     "LK-33",
     "CM-01",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -954,7 +991,8 @@
    "depends_on": [
     "LK-33",
     "KC-01",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -971,7 +1009,8 @@
    "issue_refs": [],
    "depends_on": [
     "LK-33",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -988,7 +1027,8 @@
    "issue_refs": [],
    "depends_on": [
     "LK-33",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -1005,7 +1045,8 @@
    "issue_refs": [],
    "depends_on": [
     "LK-33",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -1022,7 +1063,8 @@
    "issue_refs": [],
    "depends_on": [
     "LK-33",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -1039,7 +1081,8 @@
    "issue_refs": [],
    "depends_on": [
     "LK-33",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -1057,7 +1100,8 @@
    "depends_on": [
     "LK-33",
     "WG-01",
-    "WA-01"
+    "WA-01",
+    "LK-34"
    ],
    "effort": "S"
   },
@@ -8358,6 +8402,7 @@
   "AM-DOCS decoupled from gated AM-35",
   "KC-DOCS decoupled from gated KC-27",
   "gated to M4: ['BL-25', 'PF-25', 'MM-32', 'LH-36', 'AT-26', 'PM-16', 'PC-26', 'WG-30', 'CM-31', 'AM-35', 'KC-27']",
-  "M1 items not ancestors of RV-AT: ['WA-02', 'WA-03']"
+  "M1 items not ancestors of RV-AT: ['WA-02', 'WA-03']",
+  "M1 follow-up: WS-09 + LK-34 added (options-ui-\u00a79 park ruling per the approved plan; the tag is re-cut on the final commit); every RV depends on LK-34"
  ]
 }

@@ -124,7 +124,7 @@ rulings are as follows.
   row's path reads `<root>.minimap.shown` while storage stays `minimap.hide`.
 - WS-07 text corrections: the debug buffer is 1500 lines, the bootstrap names an unread vararg `_`, the
   settings-panel table is `Page | Covers`, the TOC literal is gone, the editable `.png` is excluded by
-  `.pkgmeta`, `synchronis` is on the list (92/30), and the lone-CR note is corrected.
+  `.pkgmeta`, `synchronis` is on the list (92/33), and the lone-CR note is corrected.
 
 **Acceptance.**
 - Every WS-01..WS-08 `verify` command in `plan-data/items.json` passes.
@@ -587,7 +587,7 @@ steps beyond making them idempotent.
 
 **Target.** The kit-26 prose gate scans the store-root files (`docs/automated-tests/README.md`,
 `RESULTS.md`, `docs/perf-analysis/README.md`, named file by file), skips `docs/superpowers/` and
-`docs/investigations/`, and publishes `synchronis` (92/30). LibKa0s's own authored prose, including tests
+`docs/investigations/`, and publishes `synchronis` (92/33). LibKa0s's own authored prose, including tests
 and the live API documents, is US English (LK-29), with two ratified exclusions: the AceTimer/C_Timer
 `.cancelled`/`IsCancelled` identifiers and the gate's own fixtures. The addons fix every hit:
 - CM-01: `analysed`, `neighbours`, `synchronisation`.
