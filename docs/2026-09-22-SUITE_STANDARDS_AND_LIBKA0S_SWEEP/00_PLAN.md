@@ -5,11 +5,10 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 7 in flight** (`wf_2f3cdd7d-47f`). The whole battery runs in 12 repos, the three
-> Phase 6 fixes nobody re-verified get re-verified, the two residuals get fixed, and a cross-collection
-> pass runs. Phases 5+6 are done (`wf_2ec8bfbe-4d1`, 54 agents): all 11 addons carry v1.55.0, with 20
-> adoptions and 15 filed declines (see *Adoption matrix*). The LibKa0s Consumers table is re-swept
-> (`51cc901`).
+> **COMPLETE (2026-09-23).** Every phase is done; the report is `99_REPORT.md`. All 15 repos are
+> clean on `suite/2026-09-22-standards-sweep`, **unmerged and unpushed**, and LibKa0s `v1.55.0` is tagged
+> locally at `6f9c5e0`. What remains is the owner's: `/wow-addon:finalize` (merge, push, and push the
+> tag) and the in-game smoke tests.
 
 ## How to resume
 
@@ -31,7 +30,7 @@ working tree that does not match it is a session that died mid-phase.
 
 | Repo | Expected state | What it is |
 |---|---|---|
-| ConsumableMaster, wow-addon, and any repo Phase 7's fix touches | **may be dirty while `wf_2f3cdd7d-47f` runs** | Phase 7 commits per repo. |
+| every repo | **clean** | The run is complete. |
 | every other repo | **clean** | Phases 0-2 are committed. |
 
 If a repo is dirty, a phase died mid-run. Read that phase's row in the ledger, then the phase's own
@@ -296,7 +295,7 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 5 | Re-vendor LibKa0s | 11 addons | **done** | `wf_2ec8bfbe-4d1`. All 11 on v1.55.0 with the checklist row discharged and verified; 5 needed a fix round. |
 | 6 | Adoption | 11 addons | **done** | 20 adoptions, 15 declines filed (see *Adoption matrix*). The two open will-not-do issues (AT#31, AM#20) were closed by the orchestrator. |
 | CP-6 | Adoption interview | — | **done (delegated)** | Rules: adopt each spec-prescribed delta; defer where the spec says MAY, or where adoption cannot land green without a behavior change; never only for a structural misfit. |
-| 7 | Verify and report | all | **in-flight** | `wf_2f3cdd7d-47f` |
+| 7 | Verify and report | all | **done** | `wf_2f3cdd7d-47f` + `wf_d7ad1a5d-97e`. Every suite passes in 12 repos; payloads match the tag; no collisions; 10 bundles renamed to `2026-09-23-v1.55.0` (a MUST the brief had missed). Report: `99_REPORT.md`. |
 
 ## Adoption matrix (measured 2026-09-23 by `LibStub("LibKa0s-<Major>-1.0", true)` outside libs/ and tests/)
 
