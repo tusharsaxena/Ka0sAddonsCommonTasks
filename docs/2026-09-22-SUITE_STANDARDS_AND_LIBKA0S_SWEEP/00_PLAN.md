@@ -5,11 +5,11 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phase 3a in flight, in its fix pass.** Phase 2 is done (standard at **v2.63.0**,
+> **Phase 3a in flight, final verify.** Phase 2 is done (standard at **v2.63.0**,
 > `WowAddonStandards@957b3c5`, clean). Test-kit **revision 25** is built and LibKa0s is **green but
-> uncommitted** - 1307 passed / 0 failed / 1 skipped, luacheck 0/0. An adversarial verify then found a
-> blocker by driving the kit against *consumer* trees; that fix is running now. **3b** (the three
-> extraction majors) has not started. CP-3 sits between 3b and the tag.
+> uncommitted** - 1318 passed / 0 failed / 1 skipped, luacheck 0/0. Five fix rounds have run (see
+> *3a fix rounds* below); round 5's fix landed (`test_prose.lua` md5 `3ed3436e`, 1496 lines) and its
+> adversarial verify is running. Commit LibKa0s only on a clean verify. **3b** has not started.
 
 ## How to resume
 
@@ -81,6 +81,21 @@ passes with the tag after both.
 A verify lens in 3a produces the **per-repo consumer impact list** - which of the twelve repos goes red
 on which new gate when it re-vendors. That list is Phase 5's and Phase 6's work, and nobody recovers it
 as cheaply later.
+
+## 3a fix rounds (2026-09-22/23)
+
+| Round | Workflow | Closed | Verify found |
+|---|---|---|---|
+| 1 | `wf_19b2a06b-9a9` | built rev 25 | path-spelling blocker (`./tests/_kit/` vs `tests/_kit/`) aborts MultiMeters + KickCD |
+| 2 | `wf_45b23e7b-72e` | `normDir`; prose generated-data carve-out | self-test reads live `Kit.prose`; carve-out is a silent whole-file waiver |
+| 3 | `wf_cfae017e-fb8` | fixture-driven self-test; TOC + `.pkgmeta` refusals; disclosure | `prose_waivers.lua` skipDirs/skipFiles ungated beside the gated `Kit.prose.exempt` |
+| 4 | `wf_1fca1599-61d` | waiver file routed through the refusals | refusals disagree: `.pkgmeta` checked on the entry, TOC on coverage - `skipDirs = {"tools"}` hides root `tools-notes.md` |
+| 5 | `wf_006f57e4-eb5` | one resolved coverage set feeds both refusals + disclosure; paths listed (bounded); `waived` validated; covers-nothing message | verify died with the session; re-run as a plain agent 2026-09-23 |
+
+Round-5 open judgement calls from the fixer: `test_prose.lua` sits 4 lines under the 1500 cap
+(CLAUDE.md's watch-list figure for it is stale); a covers-nothing entry `.pkgmeta` does ignore stays
+green (stale-not-failing doctrine); the TOC refusal no longer fires on TOC paths outside the scan
+universe; disclosure thresholds 12 / 3.
 
 ## Phase 5 checklist, measured by running every tree (2026-09-23)
 
@@ -261,7 +276,7 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 1 | Harvest sweep | WowAddonStandards (write); all others read-only | **done** | `WowAddonStandards@8609f86` — `harvests/2026-09-22/` (5 files, 3634 lines). 91 findings → 64 live → 18 verified. |
 | CP-1 | Harvest interview | — | **done** | 4 rulings taken; see *Owner rulings* below |
 | 2 | Promote into the standard | WowAddonStandards | **done** | `CP-2` = `WowAddonStandards@957b3c5`, v2.63.0, 23 files. Four passes: promote -> 13 blockers cleared -> 6 self-inflicted counts fixed -> commit gate found 7 more, all closed. Record in `harvests/2026-09-22/06_OUTCOME.md`. |
-| 3a | Kit revision 25 - the four gates | LibKa0s | **in-flight - fix pass** | Built and green (1307/0/1, luacheck 0/0), uncommitted. Verify found 1 blocker + 3 majors by driving the kit against consumer trees. Fix pass running. |
+| 3a | Kit revision 25 - the four gates | LibKa0s | **in-flight - final verify** | Green (1318/0/1, luacheck 0/0), uncommitted. Five fix rounds, each closing one instance of the same pattern; round 5 verify running (re-launched 2026-09-23 after the session died mid-verify). |
 | 3b | The three extraction majors | LibKa0s | pending | Deliverables 1-3: Compat, Bus, Schema (portable half). |
 | 3t | Cut v1.55.0 | LibKa0s | pending | After CP-3 only. |
 | CP-3 | Major-set interview | — | pending | Before the tag is cut. |
