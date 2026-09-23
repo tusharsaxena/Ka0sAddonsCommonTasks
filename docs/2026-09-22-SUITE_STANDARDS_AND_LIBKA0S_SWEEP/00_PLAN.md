@@ -5,12 +5,11 @@ a committed checkpoint, so the run can stop anywhere and pick up from the ledger
 
 ## Current position
 
-> **Phases 5+6 in flight.** `LibKa0s v1.55.0` is **tagged** (annotated, local) at `6f9c5e0`: release
-> run `20260923-144526`, clean at `ae48f3f`, lint/tests/complexity pass, 0 functions above CCN 15. The
-> four over-cap functions were split behavior-preserving (`be91249`, `244c752`; differential fuzz found
-> no mismatch). Phases 5+6 run as one per-addon pipeline, all 11 in parallel (`wf_2ec8bfbe-4d1`):
-> re-vendor -> verify -> fix -> adopt -> verify -> fix, then the Consumers-table re-sweep. Next:
-> Phase 7.
+> **Phase 7 in flight** (`wf_2f3cdd7d-47f`). The whole battery runs in 12 repos, the three
+> Phase 6 fixes nobody re-verified get re-verified, the two residuals get fixed, and a cross-collection
+> pass runs. Phases 5+6 are done (`wf_2ec8bfbe-4d1`, 54 agents): all 11 addons carry v1.55.0, with 20
+> adoptions and 15 filed declines (see *Adoption matrix*). The LibKa0s Consumers table is re-swept
+> (`51cc901`).
 
 ## How to resume
 
@@ -32,7 +31,7 @@ working tree that does not match it is a session that died mid-phase.
 
 | Repo | Expected state | What it is |
 |---|---|---|
-| all 11 addons (+ LibKa0s at the end) | **may be dirty while `wf_2ec8bfbe-4d1` runs** | Phase 5/6 agents commit incrementally per repo. |
+| ConsumableMaster, wow-addon, and any repo Phase 7's fix touches | **may be dirty while `wf_2f3cdd7d-47f` runs** | Phase 7 commits per repo. |
 | every other repo | **clean** | Phases 0-2 are committed. |
 
 If a repo is dirty, a phase died mid-run. Read that phase's row in the ledger, then the phase's own
@@ -294,10 +293,29 @@ Legend: `pending` · `in-flight` · `done` · `blocked` · `skipped`
 | 3t | Cut v1.55.0 | LibKa0s | **done** | Annotated tag `v1.55.0` at `6f9c5e0` (local only). The CCN split ran first (`wf_6cd22933-31d`). |
 | CP-3 | Major-set interview | — | **done (delegated)** | Rulings: all three majors in v1.55.0 (one re-vendor cycle); Schema ships as built (O-4 lenient reading, matching C2-F03's ratified scope); Perf inline spec read becomes a documented deviation; upstream items go to standard v2.64.0, and the three open questions (seam name, panel live-refresh, Core floor) go to open-evolutions unruled. |
 | 4 | Re-vendor the standard | 11 addons + LibKa0s + wow-addon | **done** | `wf_9df0ebc9-264`: one commit per repo in all 11 addons + wow-addon (MultiMeters and wow-addon each carry a follow-up fix commit from the verify pass); every gate identical to baseline. LibKa0s `c051bef` (with its pre-tag housekeeping). |
-| 5 | Re-vendor LibKa0s | 11 addons | **in-flight** | `wf_2ec8bfbe-4d1` |
-| 6 | Adoption | 11 addons | **in-flight** | `wf_2ec8bfbe-4d1`, same pipeline; declines filed as GitHub issues |
-| CP-6 | Adoption interview | — | **delegated** | Owner (2026-09-23): use best judgement. |
-| 7 | Verify and report | all | pending | — |
+| 5 | Re-vendor LibKa0s | 11 addons | **done** | `wf_2ec8bfbe-4d1`. All 11 on v1.55.0 with the checklist row discharged and verified; 5 needed a fix round. |
+| 6 | Adoption | 11 addons | **done** | 20 adoptions, 15 declines filed (see *Adoption matrix*). The two open will-not-do issues (AT#31, AM#20) were closed by the orchestrator. |
+| CP-6 | Adoption interview | — | **done (delegated)** | Rules: adopt each spec-prescribed delta; defer where the spec says MAY, or where adoption cannot land green without a behavior change; never only for a structural misfit. |
+| 7 | Verify and report | all | **in-flight** | `wf_2f3cdd7d-47f` |
+
+## Adoption matrix (measured 2026-09-23 by `LibStub("LibKa0s-<Major>-1.0", true)` outside libs/ and tests/)
+
+| Addon | Compat | Bus | Schema |
+|---|---|---|---|
+| AbsorbTracker | never #31 | adopted | adopted (full) |
+| AuraMaster | adopted | never #20 | not now #21 (partial adopter) |
+| BankLedger | never #20 | adopted | adopted |
+| ConsumableMaster | adopted | adopted | not now #39 |
+| KickCD | adopted | adopted | not now #22 |
+| LootHistory | adopted | adopted | adopted |
+| MultiMeters | adopted | adopted | not now #52 |
+| PanelMaster | never #53 | not now #52 (Catalog) | adopted |
+| PartyFrameEnhanced | adopted | adopted | not now #14 |
+| PrettyChat | never #16 | never #17 | adopted (#18 open for ResetRows) |
+| WhatGroup | adopted | never #21 | not now #22 |
+
+AuraMaster also carries four `state:untriaged` issues (#16-#19) naming the peel seam for each of its
+four over-cap files, which is the layout-§1 census's terminal state.
 
 ## Residuals carried to Phase 7 (from Phase 4's verify)
 
