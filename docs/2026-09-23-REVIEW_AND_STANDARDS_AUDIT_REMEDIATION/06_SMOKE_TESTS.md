@@ -1561,6 +1561,11 @@ Q.12), then a raid or LFR wing (Q.5, Q.7). About 90 minutes, one or two logins.
 - **Pass:** the console shows `encounter end` **before** `LOOT_OPENED`, and the dump carries `encounterID`.
 - **Fail:** `sourceDetail` has no `encounterID`. **Not reproduced:** if `LOOT_OPENED` arrives first, the
   finding does not reproduce. Revert LH-02's code half and keep only its doc correction.
+- **Recorded 2026-09-24: PASS (the finding reproduces, the code half stays).** Follower dungeon, Murder Row,
+  first boss (encounter 3101, difficulty 205). Debug: `22:44:33 [Attr] encounter end id=3101 kill: context kept
+  60s for the corpse`, then `22:44:36 [Open] LOOT_OPENED 1 slots -> KILL [npc=234648 enc=3101 diff=205]` and
+  `[Attr] stamp KILL via LOOT_OPENED [npc=234648 enc=3101 diff=205]`. The loot was gold only, so no history
+  record was written and the `/dump` step had nothing to show; the stamp line carries the same `encounterID`.
 
 ### Q.3 · LH-03 (S-003) — the currency-category cache
 
@@ -1692,6 +1697,9 @@ chat line and no Lua error.
 - **Pass:** each prints `Invalid value for <path>` with the host's reason on an indented line, there is
   **no** `<path> = <old>` echo, and each get prints the unchanged value.
 - **Fail:** any addon that still echoes the old value as a success.
+- **Recorded 2026-09-24:** `/bl set settings.visibility bogus` refused with the allowed values (pass). `/mm set
+  window.frame.width -5` stored `160 px`: a numeric row CLAMPS to its range by design (the stored value is echoed so
+  the clamp is visible), so this step's example was wrong for a ranged number, not a failure.
 
 ### X1.4 · Launcher refusal in the library (LK-16, S-006), across the collection
 
@@ -1701,6 +1709,9 @@ chat line and no Lua error.
   /<slash> enable` line and opens nothing. PrettyChat (rung c) opens its settings panel instead.
   Right-click opens settings everywhere.
 - **Fail:** any addon that opens its window, toggles a lock or prints a second wording while disabled.
+- **Recorded 2026-09-24:** owner asked for an always-on status tooltip (Enabled / Locked / Test mode, shown even
+  while disabled), keeping the three left-click rungs and right-click to settings. Implemented as M5
+  (`M5_LAUNCHER_TOOLTIP.md`); re-check this step after M5.
 - *(Optional, needs a test install with LibDBIcon removed: `/reload` twice. The NO_ICON notice prints
   once per session with no `[LibKa0s]` tag.)*
 
