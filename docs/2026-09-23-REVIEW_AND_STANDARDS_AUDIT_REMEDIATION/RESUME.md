@@ -69,3 +69,7 @@ Runs so far are recorded in `plan-data/runs/` (the results JSON of each finished
 - Merge WowAddonStandards, which unblocks M4.
 - Run the in-client sessions in `06_SMOKE_TESTS.md`.
 - Bump addon versions and cut releases. Neither is in this plan.
+
+## 6. M5 (added 2026-09-24)
+
+The launcher status tooltip, added after the smoke pass and before the merge. Its ids (WS-10, LK-36, M5-<AB>) are not in items.json; resume from `M5_LAUNCHER_TOOLTIP.md` and `git log`.
