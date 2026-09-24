@@ -87,7 +87,7 @@ BL-21	M3	BankLedger	Write docs/debug.md for /bl debug scan and /bl debug panel; 
 BL-22	M3	BankLedger	README discloses the 30-day retention default	RV-BL,BL-00	S		BankLedger-R-04	
 BL-23	M3	BankLedger	Consolidated re-vendor span bundle docs/revendor/<date>-v1.18.0-v1.53.0/ for the unrecorded tags	RV-BL,WA-01,BL-00	M		BankLedger-A-01	
 BL-24	M3	BankLedger	Issue-store and register bookkeeping: close #3 (row landed), and record the 2026-09-23 re-check of the untriggered rows	RV-BL,BL-20,BL-00	S		BankLedger-A-10,BankLedger-A-19,BankLedger-A-17,BankLedger-A-21	BankLedger#3
-BL-DOCS	M3	BankLedger	Sync docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (perf skip reason 2; watch-list dispositions)	RV-BL,LK-12,BL-00	M	yes	BankLedger-R-07,BankLedger-A-04,BankLedger-A-22	
+BL-DOCS	M3	BankLedger	Sync docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (perf skip reason 2; watch-list dispositions)	RV-BL,LK-12,BL-00,BL-03,BL-04,BL-05,BL-06,BL-07,BL-08,BL-09,BL-10,BL-11,BL-12,BL-13,BL-14,BL-15,BL-16,BL-17,BL-18,BL-19,BL-20,BL-21,BL-22,BL-23,BL-24	M	yes	BankLedger-R-07,BankLedger-A-04,BankLedger-A-22	
 PF-00	M3	PartyFrameEnhanced	Clear the 9 re-vendor red(s) RV-PF recorded, so every later M3 commit starts green	RV-PF	M			
 PF-01	M3	PartyFrameEnhanced	Profile sub-verbs refuse bad names: `new` never wipes an existing profile, `use`/`copy`/`delete` refuse a missing one, `copy` refuses the current one	RV-PF,LK-03,PF-00	S	yes	PartyFrameEnhanced-R-02,PartyFrameEnhanced-R-05	
 PF-02	M3	PartyFrameEnhanced	Anchor reads the live profile section, so a profile switch, copy or reset places elements by the NEW profile whatever the bus dispatch order	RV-PF,PF-01,PF-00	M	yes	PartyFrameEnhanced-R-01,PartyFrameEnhanced-R-08	
@@ -146,7 +146,7 @@ MM-28	M3	MultiMeters	Slim the hub under 560 lines: the texture census moves to d
 MM-29	M3	MultiMeters	Doc figures: the hub's inventory line, and a dated statement beside the historical feign figure	RV-MM,MM-28,MM-19,MM-00	S		MultiMeters-A-24,MultiMeters-R-15	
 MM-30	M3	MultiMeters	Consolidated re-vendor span bundle for the unrecorded LibKa0s tags (v1.18.0 ... v1.54.2)	RV-MM,WA-01,MM-00	M		MultiMeters-A-19	
 MM-31	M3	MultiMeters	Release-record hygiene: README records the 1.0.1 re-publish; closed issues #4/#21/#24 get terminal labels	RV-MM,MM-13,MM-00	S		MultiMeters-A-21,MultiMeters-A-16	MultiMeters#4,MultiMeters#21,MultiMeters#24
-MM-DOCS	M3	MultiMeters	Sync docs, regenerate docs/test-cases.md and the badge, and record a fresh automated-test bundle	RV-MM,MM-00	M		MultiMeters-A-26	
+MM-DOCS	M3	MultiMeters	Sync docs, regenerate docs/test-cases.md and the badge, and record a fresh automated-test bundle	RV-MM,MM-00,MM-01,MM-02,MM-03,MM-04,MM-05,MM-06,MM-07,MM-08,MM-09,MM-10,MM-11,MM-12,MM-13,MM-14,MM-15,MM-16,MM-17,MM-18,MM-19,MM-20,MM-21,MM-22,MM-23,MM-24,MM-25,MM-26,MM-27,MM-28,MM-29,MM-30,MM-31	M		MultiMeters-A-26	
 LH-00	M3	LootHistory	Clear the 2 re-vendor red(s) RV-LH recorded, so every later M3 commit starts green	RV-LH	M			
 LH-01	M3	LootHistory	Clear the Mythic+ keystone context when the player leaves the party instance or the key resets	RV-LH,LH-00	M	yes	LootHistory-R-01	
 LH-02	M3	LootHistory	Keep the encounter context for a grace window after a successful ENCOUNTER_END, so boss-corpse loot carries encounterID	RV-LH,LH-01,LH-00	S	yes	LootHistory-R-02	
@@ -183,7 +183,7 @@ LH-32	M3	LootHistory	README Usage closes on a one-sentence configuration signpos
 LH-33	M3	LootHistory	Root CLAUDE.md: the green gate before the provenance line, as documentation-§2 orders	RV-LH,LH-00	S		LootHistory-A-15	
 LH-34	M3	LootHistory	One consolidated re-vendor span bundle for the 25 unrecorded LibKa0s tags	RV-LH,WA-01,LH-00	S		LootHistory-A-01	
 LH-35	M3	LootHistory	Track the Analytics.lua peel as a GitHub issue	RV-LH,LH-00	S		LootHistory-A-20	
-LH-DOCS	M3	LootHistory	Sync docs, regenerate the case inventory and badge, and record a fresh automated-test bundle (perf skip reason 2)	RV-LH,LH-35,LH-00	M	yes	LootHistory-A-12,LootHistory-R-20	
+LH-DOCS	M3	LootHistory	Sync docs, regenerate the case inventory and badge, and record a fresh automated-test bundle (perf skip reason 2)	RV-LH,LH-35,LH-00,LH-01,LH-02,LH-03,LH-04,LH-05,LH-06,LH-07,LH-08,LH-09,LH-10,LH-11,LH-12,LH-13,LH-14,LH-15,LH-16,LH-17,LH-18,LH-19,LH-20,LH-21,LH-22,LH-23,LH-24,LH-25,LH-26,LH-27,LH-28,LH-29,LH-30,LH-31,LH-32,LH-33,LH-34	M	yes	LootHistory-A-12,LootHistory-R-20	
 AT-02	M3	AbsorbTracker	Slash and profile tests stop asserting nil==nil and stop leaking per-unit writes	RV-AT	S		AbsorbTracker-R-04	
 AT-03	M3	AbsorbTracker	/at profile new refuses an existing name; copy and delete check the name before AceDB sees it	RV-AT,AT-02,LK-03	S	yes	AbsorbTracker-R-01,AbsorbTracker-R-02	
 AT-04	M3	AbsorbTracker	/at lock, /at unlock and /at enable\|disable echo the STORED value in the set shape and refresh the panel; the enable comment tells the truth	RV-AT,AT-03	S	yes	AbsorbTracker-R-03,AbsorbTracker-R-05	
@@ -290,7 +290,7 @@ WG-26	M3	WhatGroup	Re-check settings-panel.md and .pkgmeta against the v2.65.0 w
 WG-27	M3	WhatGroup	DEPENDENCIES.md names Python 3 + Pillow for the logo recipe and labels lizard as required at release	RV-WG,WG-00	S		WHATGROUP-A-18	
 WG-28	M3	WhatGroup	Bring docs/ARCHITECTURE.md under ~400 lines: spill The stand-down and the per-file load order	RV-WG,WG-01,WG-05,WG-12,WG-22,WG-23,WG-24,WG-25,WG-00	M		WHATGROUP-A-15	
 WG-29	M3	WhatGroup	Write the consolidated re-vendor span bundle for the 25 unrecorded LibKa0s tags (audit-review-history, WS-01 shape)	RV-WG,WA-01,WG-00	S		WHATGROUP-A-10	
-WG-DOCS	M3	WhatGroup	Sync the docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-WG,WG-00	M	yes	WHATGROUP-R-14,WHATGROUP-A-13	
+WG-DOCS	M3	WhatGroup	Sync the docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-WG,WG-00,WG-02,WG-03,WG-04,WG-05,WG-06,WG-07,WG-08,WG-09,WG-10,WG-11,WG-12,WG-13,WG-14,WG-15,WG-16,WG-17,WG-18,WG-19,WG-20,WG-21,WG-22,WG-23,WG-24,WG-25,WG-26,WG-27,WG-28,WG-29	M	yes	WHATGROUP-R-14,WHATGROUP-A-13	
 CM-02	M3	ConsumableMaster	The local AceDB fake strips defaults on a profile switch and raises on bad Copy/Delete, as AceDB-3.0 and kit 26 do	RV-CM,LK-03	S		ConsumableMaster-R-06	
 CM-03	M3	ConsumableMaster	The color validator stores a copy, so /cm reset <color> can no longer alias and empty the shipped default	RV-CM,CM-02	S	yes	ConsumableMaster-R-02	
 CM-04	M3	ConsumableMaster	FlushPending replays the queued body through commitMacro, so a combat-deferred weapon-enchant macro keeps /use 16 and /use 17	RV-CM	S	yes	ConsumableMaster-R-01	
@@ -320,7 +320,7 @@ CM-27	M3	ConsumableMaster	Expand bare §N citations to filename-§N, and respell
 CM-28	M3	ConsumableMaster	Consolidated span bundle for the 27 unrecorded LibKa0s tags (v1.18.0-v1.53.0)	WS-01,WA-01,RV-CM	M		ConsumableMaster-A-02	
 CM-29	M3	ConsumableMaster	Record the v1.56.0 in-client checks in docs/smoke-tests.md: ReorderList drags on the library ghost frame, and the Options park/replay	RV-CM,LK-21,CM-05	S	yes		
 CM-30	M3	ConsumableMaster	Watch-list terminal states for settings/Panel.lua and settings/Category.lua: file the peel issues automated-tests-§4 requires	RV-CM,CM-17,CM-20	S		ConsumableMaster-R-18	
-CM-DOCS	M3	ConsumableMaster	Sync docs, regenerate docs/test-cases.md, record a fresh automated-test bundle (no version bump, no tag)	RV-CM,CM-30	M		ConsumableMaster-A-17	
+CM-DOCS	M3	ConsumableMaster	Sync docs, regenerate docs/test-cases.md, record a fresh automated-test bundle (no version bump, no tag)	RV-CM,CM-30,CM-02,CM-03,CM-04,CM-05,CM-06,CM-07,CM-08,CM-09,CM-10,CM-11,CM-12,CM-13,CM-14,CM-15,CM-16,CM-17,CM-18,CM-19,CM-20,CM-21,CM-22,CM-23,CM-24,CM-25,CM-26,CM-27,CM-28,CM-29	M		ConsumableMaster-A-17	
 AM-03	M3	AuraMaster	A container id that comes back out of combat revives its destroyed instance instead of building a second AuraMasterAnchor<id> frame set	RV-AM,AM-01	M	yes	AuraMaster-R-02	
 AM-04	M3	AuraMaster	A stood-down addon builds no container frames: CM.Init and CM.Announce honor the latch, and standUp syncs before its visibility pass	RV-AM,AM-03	S	yes	AuraMaster-R-08	
 AM-05	M3	AuraMaster	Degraded latch is edge-triggered like the library: SyncEnabled stands down or up only on a change	RV-AM,AM-04	S		AuraMaster-R-09	
@@ -353,7 +353,7 @@ AM-31	M3	AuraMaster	Register docs/spell-research/ as a Tier 3 store and spell th
 AM-32	M3	AuraMaster	Screenshots register row re-stated for a published addon; Known Limitations and README stop saying unpublished; the options-ui-§17 row is re-checked	RV-AM,AM-31	S	yes	AuraMaster-A-02,AuraMaster-A-17	AuraMaster#3
 AM-33	M3	AuraMaster	docs/ARCHITECTURE.md hub: spill every mandated section over ~60 lines into its topic doc, moving content and deleting nothing	RV-AM,AM-32	M		AuraMaster-A-06	
 AM-34	M3	AuraMaster	Citation sweep over docs/ and the root docs, the README 0.1.0 row corrected, and the docs gate refuses a citation that lands on a comment or blank line	RV-AM,AM-33	M		AuraMaster-A-04,AuraMaster-A-05,AuraMaster-R-12	
-AM-DOCS	M3	AuraMaster	Sync docs to the tree, regenerate the case inventory, and record a fresh automated-test bundle (no version bump, no tag)	RV-AM	M			
+AM-DOCS	M3	AuraMaster	Sync docs to the tree, regenerate the case inventory, and record a fresh automated-test bundle (no version bump, no tag)	RV-AM,AM-03,AM-04,AM-05,AM-06,AM-07,AM-08,AM-09,AM-10,AM-11,AM-12,AM-13,AM-14,AM-15,AM-16,AM-17,AM-18,AM-19,AM-20,AM-21,AM-22,AM-23,AM-24,AM-25,AM-26,AM-27,AM-28,AM-29,AM-30,AM-31,AM-32,AM-33,AM-34	M			
 KC-02	M3	KickCD	tests/run.lua stops swallowing an OnInitialize raise	RV-KC	S		KICKCD-R-11	
 KC-03	M3	KickCD	Migrations: schemaVersion 0 in defaults, the stamp advances only past a clean step, and the color and font-flag steps run for every profile	RV-KC,KC-02	M	yes	KICKCD-R-01,KICKCD-A-08	
 KC-04	M3	KickCD	Adopt Core.SafeRegisterEvent: every event block survives one bad name, with a rejected list, a debug verb and an [Init] note	RV-KC,KC-02	M	yes	KICKCD-A-03	
@@ -380,7 +380,7 @@ KC-24	M3	KickCD	One consolidated re-vendor span bundle for the 25 unrecorded tag
 KC-25	M3	KickCD	Topic docs: a Tier 2 docs/debug.md, compat-layer.md stops restating LibKa0s contracts, and the spells enable/disable ruling is recorded	RV-KC,KC-04,KC-19	S		KICKCD-A-09,KICKCD-A-10,KICKCD-A-27	
 KC-26	M3	KickCD	docs/ARCHITECTURE.md: re-derived inventories, symbol citations, the RESULTS.md wording, and back under about 400 lines	RV-KC,KC-25	M		KICKCD-A-11,KICKCD-A-22,KICKCD-A-25	
 KC-28	M3	KickCD	Issue-store hygiene: close #15, retitle #9, annotate #12, and file a peel issue per band file	RV-KC,KC-13	S		KICKCD-A-12,KICKCD-A-13,KICKCD-A-24,KICKCD-A-26	KickCD#15,KickCD#9,KickCD#12
-KC-DOCS	M3	KickCD	Sync the docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-KC,KC-28	M		KICKCD-A-23,KICKCD-A-12,KICKCD-R-10	
+KC-DOCS	M3	KickCD	Sync the docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-KC,KC-28,KC-02,KC-03,KC-04,KC-05,KC-06,KC-07,KC-08,KC-09,KC-10,KC-11,KC-12,KC-13,KC-14,KC-15,KC-16,KC-17,KC-18,KC-19,KC-20,KC-21,KC-22,KC-23,KC-24,KC-25,KC-26	M		KICKCD-A-23,KICKCD-A-12,KICKCD-R-10	
 BL-25	M4	BankLedger	Revendor the standards reference to v2.65.0 (/wow-addon:revendor-standards)	RV-BL,BL-24,WS-08,BL-DOCS,BL-00	S			
 PF-25	M4	PartyFrameEnhanced	/wow-addon:revendor-standards to v2.65.0	RV-PF,PF-23,WS-08,PF-DOCS,PF-00	S			
 MM-32	M4	MultiMeters	Re-vendor the standard reference to v2.65.0	RV-MM,MM-31,WS-08,MM-DOCS,MM-00	S			
