@@ -11,7 +11,7 @@ const BASE = '/mnt/d/Profile/Users/Tushar/Documents/GIT'
 const BUNDLE = `${BASE}/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION`
 const BR = 'feat/2026-09-23-review-audit-remediation'
 const KB = '/home/tushar/.claude/wow-addon/bin/ka0s-bounded'
-const TRAILER = `Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01Ldej1stXpdhQLvEJxKqube`
+const TRAILER = `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01HTuhyvd3dgxDekBFUvKcoZ`
 
 // Input: args.items = [{id, repo, deps}] (hard deps: a failed dep skips the item), or
 //        args.order = {repo: [ids in execution order]} (soft chain: the next item waits for the previous
