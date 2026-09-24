@@ -55,7 +55,7 @@ Runs so far are recorded in `plan-data/runs/` (the results JSON of each finished
    `/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .`, `… lua5.1 tests/run.lua`, `… lizard` (CCN ≤ 15),
    and the 1500-line cap. The one sanctioned exception: reds listed in an RV commit body may carry from M2
    into M3.
-3. M1 only: `git -C ../../../LibKa0s tag -l v1.56.0` exists **locally**, on LK-33's commit.
+3. M1 only: `git -C ../../../LibKa0s tag -l v1.56.0` exists **locally**, on LK-34's commit (the final LibKa0s commit).
 4. Push each touched repo's `feat/2026-09-23-review-audit-remediation` to origin, together with
    `refs/notes/ka0s-review` (`git push origin refs/notes/ka0s-review`). **Never** merge, and **never** push
    the `v1.56.0` tag, without the owner's go-ahead.
