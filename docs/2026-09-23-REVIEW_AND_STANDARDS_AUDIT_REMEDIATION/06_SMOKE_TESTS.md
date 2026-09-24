@@ -160,8 +160,13 @@ only `hide` (plus `minimapPos` if the button was ever dragged), never a `shown` 
 ### P.6 · MM-21 (SM-06) — does the roster survive a real logout?
 
 - **Do:** log back in (this is the session's second login) and open the MultiMeters window.
-- **Pass (record):** write down whether the meter still has the pre-logout fight's data. Yes means
-  branch A, no means branch B. That picks MM-21's branch.
+- **Pass (record):** write down whether the meter still has the pre-logout fight's data. **No** (the
+  meter is empty after a fresh login) means branch A, Forget on login; **yes** (the data survives)
+  means branch B, cap the remembered roster. That picks MM-21's branch, and matches the item text and
+  finding MultiMeters-R-08. (Corrected 2026-09-24: this line had the mapping reversed.)
+- **Recorded 2026-09-24:** **yes.** Owner's screenshots before and after a full logout show the same
+  two Cleave Training Dummy segments (1:09 with 128.8K damage, and 1:13) in window #1. MM-21 takes
+  **branch B**.
 
 LH-02's event-order question is answered in Session Q, before the LootHistory branch merges.
 
