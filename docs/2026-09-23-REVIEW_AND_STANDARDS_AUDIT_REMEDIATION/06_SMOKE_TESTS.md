@@ -1712,6 +1712,8 @@ chat line and no Lua error.
 - **Recorded 2026-09-24:** owner asked for an always-on status tooltip (Enabled / Locked / Test mode, shown even
   while disabled), keeping the three left-click rungs and right-click to settings. Implemented as M5
   (`M5_LAUNCHER_TOOLTIP.md`); re-check this step after M5.
+- **Recorded 2026-09-25: PASS (after M6).** The owner re-ran the minimap checks on the M6 builds (left-click
+  opens settings, right-click opens the options menu, the M5 status tooltip): working as expected in every addon.
 - *(Optional, needs a test install with LibDBIcon removed: `/reload` twice. The NO_ICON notice prints
   once per session with no `[LibKa0s]` tag.)*
 
