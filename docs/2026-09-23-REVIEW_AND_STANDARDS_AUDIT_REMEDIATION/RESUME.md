@@ -73,3 +73,5 @@ Runs so far are recorded in `plan-data/runs/` (the results JSON of each finished
 ## 6. M5 (added 2026-09-24)
 
 The launcher status tooltip, added after the smoke pass and before the merge. Its ids (WS-10, LK-36, M5-<AB>) are not in items.json; resume from `M5_LAUNCHER_TOOLTIP.md` and `git log`.
+
+M6 (the launcher context menu, supersedes M5's clicks): resume from `M6_LAUNCHER_MENU.md`; ids WS-11, LK-37, M6-<AB>.
