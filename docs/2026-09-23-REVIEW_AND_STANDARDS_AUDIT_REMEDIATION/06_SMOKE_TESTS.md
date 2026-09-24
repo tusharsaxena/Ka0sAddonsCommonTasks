@@ -721,6 +721,12 @@ Run here only if P.4 used a dummy fight. Otherwise this step is Q.4.
 - **Pass:** the after bundle's render ms/call is lower than the before bundle's. Rows do not flicker or
   misorder.
 - **Fail:** render ms/call equal or higher (the item is not accepted), or rows swapping visibly out of order.
+- **Recorded 2026-09-24: PASS.** Before `docs/perf-analysis/20260924-133043/` (MultiMeters 9e65194),
+  after `20260924-141756/` (e686e89 on `mm20-candidate`); same scenario (solo, Cleave Training Dummy,
+  Silvermoon City - Falconwing Square, window #1, 8 columns, 1 row). render ms/call 0.21696 -> 0.16682
+  (-23%); renderRow ms/row flat (0.1338 -> 0.1397); render outside the row loop 0.0841 -> 0.0271 ms.
+  Owner saw no flicker or misordering. Caveats in the after bundle: run unlabelled, loaded build not
+  provable from the log.
 
 ### MM.13 · MM-21 (SM-06) — the bounded roster
 
@@ -729,6 +735,9 @@ Run here only if P.4 used a dummy fight. Otherwise this step is Q.4.
 - **Pass:** the roster survives the `/reload`. The stored roster is bounded as the chosen branch
   says, and after the fresh login the meter behaves as P.6 recorded for that branch.
 - **Fail:** the roster is lost on `/reload`, or the stored roster is unbounded.
+- **Recorded 2026-09-24 (partial):** the `/reload` half passes. The owner's screenshots before and after
+  `/reload` on the MM-21 build show the same row (Sacrilege 130.6K) and the same three segments. The
+  bound (more than 160 remembered members) is not reachable solo and rests on MM-21's headless case (b).
 
 ### MM.14 · the standing pass
 
