@@ -11,9 +11,16 @@ const BASE = '/mnt/d/Profile/Users/Tushar/Documents/GIT'
 const BUNDLE = `${BASE}/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION`
 const BR = 'feat/2026-09-23-review-audit-remediation'
 const KB = '/home/tushar/.claude/wow-addon/bin/ka0s-bounded'
-const ITEMS = args.items
-const ALL = new Set(ITEMS.map(i => i.id))
 const TRAILER = `Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01Ldej1stXpdhQLvEJxKqube`
+
+// Input: args.items = [{id, repo, deps}] (hard deps: a failed dep skips the item), or
+//        args.order = {repo: [ids in execution order]} (soft chain: the next item waits for the previous
+//        one to FINISH, done or not; each implementer checks its real depends_on have landed in git).
+let ITEMS = []
+if (args.order) {
+  for (const [repo, ids] of Object.entries(args.order)) ids.forEach((id, k) => ITEMS.push({ id, repo, deps: [], soft: k ? [ids[k - 1]] : [] }))
+} else ITEMS = args.items.map(i => ({ ...i, soft: [] }))
+const ALL = new Set(ITEMS.map(i => i.id))
 
 const RESULT = { type: 'object', properties: {
   id: { type: 'string' }, status: { type: 'string', enum: ['done', 'already-landed', 'blocked'] },
@@ -27,7 +34,7 @@ const itemCmd = (id) => `python3 -c "import json;print(json.dumps([i for i in js
 const findCmd = `python3 -c "import json,glob,sys;ids=set(sys.argv[1:]);[print(json.dumps(f,indent=1)) for p in glob.glob('${BUNDLE}/inputs/findings/[A-Z]*.json') for f in json.load(open(p))['findings'] if f['id'] in ids]" <finding ids...>`
 
 const COMMON = (it) => `You are executing one work item of the Ka0s 2026-09-23 remediation plan. Item ${it.id}, repo ${it.repo} at ${BASE}/${it.repo} (cd there; your shell starts elsewhere).
-- Read the item spec: \`${itemCmd(it.id)}\`. Read the findings it resolves: \`${findCmd}\`. For context: ${BUNDLE}/03_SPEC.md (the end state), ${BUNDLE}/02_UPSTREAM_CHANGES.md, ${BUNDLE}/plan-data/PLAN_REVIEW_RESOLUTIONS.md, ${BUNDLE}/inputs/OWNER_SCOPE.md (binding owner rulings). Read ${BASE}/${it.repo}/CLAUDE.md and follow that repo's conventions (for LibKa0s also docs/releasing.md and docs/api/ conventions; for WowAddonStandards its changelog/version ripple rules).
+- Read the item spec: \`${itemCmd(it.id)}\`. Read the findings it resolves: \`${findCmd}\`. For context: ${BUNDLE}/03_SPEC.md (the end state), ${BUNDLE}/02_UPSTREAM_CHANGES.md, ${BUNDLE}/plan-data/PLAN_REVIEW_RESOLUTIONS.md, ${BUNDLE}/inputs/OWNER_SCOPE.md (binding owner rulings). Read ${BASE}/${it.repo}/CLAUDE.md and follow that repo's conventions (for LibKa0s also docs/releasing.md and docs/api/ conventions; for WowAddonStandards its changelog/version ripple rules). The owner has explicitly instructed per-item commits on the remediation branch for this plan; that overrides any repo CLAUDE.md rule that forbids committing without a slash command.
 - The repo must be on branch ${BR}; if it is not, stop and return blocked. Only touch ${it.repo} (other sibling repos are read-only). Never push, never merge, never amend or rebase existing commits, never edit an addon's libs/ or tests/_kit/ (the ONLY exception is an RV-* re-vendor item, which replaces them whole from the LibKa0s tag).
 - LibKa0s v1.56.0 exists only as a LOCAL tag in ${BASE}/LibKa0s (read it with \`git -C ${BASE}/LibKa0s archive v1.56.0 ...\` or \`git -C ${BASE}/LibKa0s show v1.56.0:<path>\`; never check it out in that repo, never push it). WowAddonStandards v2.65.0 is on that sibling's branch ${BR}, readable locally.
 - Scratch space: other agents run in parallel. Put ANY temporary files, dry-run copies or throwaway git repos under a directory YOU create with \`mktemp -d /tmp/claude-1000/ka0s-${it.id}.XXXXXX\`, never a shared fixed path. Never run git init, add or commit anywhere except ${BASE}/${it.repo} or your own mktemp dir.
@@ -36,9 +43,10 @@ const COMMON = (it) => `You are executing one work item of the Ka0s 2026-09-23 r
 const implement = (it) => agent(`${COMMON(it)}
 TASK: implement ${it.id}.
 0. If \`git log --format=%s ${BR}\` already has a subject starting "${it.id}: " (or "${it.id} + " / " + ${it.id}:"), the item is landed: return status already-landed with those commits, and set reviewed=true only if one of them carries a refs/notes/ka0s-review note (\`git log --notes=ka0s-review --format='%h %s | %N' ${BR}\`). Otherwise set reviewed=false and do nothing else.
+0b. DEPENDENCIES: for every id in the item's depends_on that belongs to THIS repo (same prefix), confirm a commit whose subject starts "<id>: " exists on ${BR}. If one is missing, the earlier item failed or was blocked: return status blocked naming it, and change nothing. (Upstream ids LK-/WS-/WA-/RV- have all landed.)
 DIRTY TREE: if \`git status --porcelain\` is not empty when you start, it is leftover from an interrupted run of an item in this repo (items run one at a time per repo). Inspect the diff. If it is partial work for ${it.id}, continue from it. If it belongs to another item or you cannot tell, run \`git stash push -u -m "interrupted: <what it looks like>"\`, name the stash in deviations, and proceed from a clean tree. Never discard work with checkout/reset.
 1. Where behaviour changes, write the failing (red) test first and confirm it fails for the right reason; then implement until green. Docs-only items: make the edit and run whatever gates the repo has.
-2. Implement the item's change completely, including every ripple the repo's conventions demand (version/minor bumps, generated inventories such as docs/test-cases.md, API docs, changelog entries) exactly where the item or the repo's rules say so.
+2. Implement the item's change completely, including every ripple the repo's conventions demand (version/minor bumps, generated inventories such as docs/test-cases.md, API docs, changelog entries) exactly where the item or the repo's rules say so. If an earlier item (e.g. an <AB>-00 green-first item) already did part of this item, verify it, say so, and do the rest.
 3. If the item text is wrong against the actual code (a wrong line cite, a name that does not exist), do what the item INTENDS and the spec requires, and record the departure in the commit body and in deviations. Return blocked only if it truly cannot be done (explain precisely).
 4. Commit with \`git add\` of the specific files (never \`git add -A\` blindly; confirm \`git status\` shows nothing unrelated). Subject: "${it.id}: <imperative summary, <= 72 chars>". Body: what changed and why, the finding ids, deviations. End the message with exactly these two trailer lines:\n${TRAILER}\nIf git warned that LF will be replaced by CRLF, re-checkout the touched files (rm them, then \`git checkout -- <files>\`) so the working tree matches .gitattributes, and confirm \`git status --porcelain\` is empty.
 Return the result object.`, { label: `impl:${it.id}`, phase: 'Implement', schema: RESULT })
@@ -61,26 +69,27 @@ const runItem = async (it) => {
   return { it, res, rev, fix: fx }
 }
 
-const done = new Set(), failed = new Set(), busy = new Set(), running = new Map(), out = []
+const done = new Set(), failed = new Set(), finished = new Set(), busy = new Set(), running = new Map(), out = []
 const pending = [...ITEMS]
 while (pending.length || running.size) {
   for (const it of [...pending]) {
     if (it.deps.some(d => failed.has(d))) {
-      failed.add(it.id); pending.splice(pending.indexOf(it), 1)
+      failed.add(it.id); finished.add(it.id); pending.splice(pending.indexOf(it), 1)
       log(`${it.id} skipped: a dependency failed`); out.push({ id: it.id, status: 'skipped' }); continue
     }
     if (busy.has(it.repo)) continue
     if (!it.deps.every(d => done.has(d) || !ALL.has(d))) continue
+    if (!it.soft.every(d => finished.has(d))) continue
     busy.add(it.repo); pending.splice(pending.indexOf(it), 1)
     running.set(it.id, runItem(it).catch(e => ({ it, res: null, err: String(e) })))
   }
   if (!running.size) { log(`deadlock: ${pending.map(p => p.id).join(' ')}`); break }
   const r = await Promise.race(running.values())
-  running.delete(r.it.id); busy.delete(r.it.repo)
+  running.delete(r.it.id); busy.delete(r.it.repo); finished.add(r.it.id)
   const ok = r.res && (r.res.status === 'done' || r.res.status === 'already-landed')
   if (ok) done.add(r.it.id); else failed.add(r.it.id)
   const residual = r.fix ? (r.fix.deviations || '') : ''
-  log(`${r.it.id} ${ok ? 'DONE' : 'FAILED'}${r.rev && !r.rev.ok ? ` (review: ${r.rev.issues.length} issue(s), fix round run)` : ''} — ${done.size}/${ITEMS.length}`)
+  log(`${r.it.id} ${ok ? 'DONE' : (r.res && r.res.status === 'blocked' ? 'BLOCKED' : 'FAILED')}${r.rev && !r.rev.ok ? ` (review: ${r.rev.issues.length} issue(s), fix round run)` : ''} — ${done.size}/${ITEMS.length}`)
   out.push({ id: r.it.id, status: ok ? 'done' : 'failed', result: r.res, review: r.rev, fix: r.fix || null, err: r.err || null, residual })
 }
 return { done: [...done], failed: [...failed], results: out }

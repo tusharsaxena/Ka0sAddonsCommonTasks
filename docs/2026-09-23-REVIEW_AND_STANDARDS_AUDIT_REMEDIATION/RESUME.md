@@ -36,7 +36,9 @@ have not read.
 2. Build the arguments. They hold only the items that have not landed, and dependencies that have already
    landed are dropped:
 
-       python3 plan-data/tools/next_args.py M3 > /tmp/args.json      # optionally --repo X --repo Y
+       python3 plan-data/tools/next_args.py M3 --order > /tmp/args.json   # M3: compact per-repo order
+       python3 plan-data/tools/next_args.py M1 > /tmp/args.json           # other milestones: explicit deps
+                                                                          # optionally --repo X --repo Y
 
 3. Run the Workflow tool with the script body of `plan-data/tools/execute_milestone.js`, passed inline, and
    `args` = the JSON above (as an object, not a string). The script is idempotent: an item that has already

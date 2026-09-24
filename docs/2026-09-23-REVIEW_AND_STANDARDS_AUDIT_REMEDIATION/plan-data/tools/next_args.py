@@ -2,6 +2,7 @@
 
     python3 plan-data/tools/next_args.py M2            # {"items": [...]} for the whole milestone's remainder
     python3 plan-data/tools/next_args.py M3 --repo KickCD --repo PrettyChat   # restrict to some repos
+    python3 plan-data/tools/next_args.py M3 --order            # {"order": {repo: [ids]}}: compact, serial per repo (use for M3)
     python3 plan-data/tools/next_args.py M1 --unreviewed   # landed items with no refs/notes/ka0s-review note
 
 "Landed" uses the same rule as resume-state.sh: a commit whose subject starts "<ID>: " (or "<ID> + ") on the
@@ -17,6 +18,7 @@ args = sys.argv[1:]
 ms = args[0]
 repos = [args[i + 1] for i, a in enumerate(args) if a == '--repo']
 unreviewed = '--unreviewed' in args
+order = '--order' in args
 
 items = json.load(open(f'{BUNDLE}/plan-data/items.json'))['items']
 landed, reviewed = {}, set()
@@ -44,6 +46,13 @@ if unreviewed:
     sys.exit(0)
 land_ids = {iid for (_, iid) in landed}
 todo = [i for i in sel if (i['repo'], i['id']) not in landed]
+if order:
+    seq = {}
+    for i in todo:
+        seq.setdefault(i['repo'], []).append(i['id'])
+    print(json.dumps({'order': seq}, separators=(',', ':')))
+    print(f'# {len(todo)} of {len(sel)} {ms} items remaining (per-repo order)', file=sys.stderr)
+    sys.exit(0)
 print(json.dumps({'items': [{'id': i['id'], 'repo': i['repo'], 'deps': [d for d in i['depends_on'] if d not in land_ids]}
                             for i in todo]}))
 print(f'# {len(todo)} of {len(sel)} {ms} items remaining', file=sys.stderr)
