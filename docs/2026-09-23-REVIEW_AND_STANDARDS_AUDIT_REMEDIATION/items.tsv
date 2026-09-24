@@ -64,122 +64,126 @@ CM-01	M2	ConsumableMaster	Pre-re-vendor fixes: the three British spellings the k
 AM-01	M2	AuraMaster	Pre-re-vendor: remove the lone CR in tests/page_helpers.lua and clear every red the v1.56.0 kit dry-run raises	LK-06,LK-33	S		AuraMaster-A-11	
 AM-02	M2	AuraMaster	Record the unrecorded v1.35.0..v1.54.2 re-vendors in one consolidated span bundle	AM-01,WS-01,WA-01,LK-33	S		AuraMaster-A-01	
 KC-01	M2	KickCD	Pre-re-vendor: clear KickCD's v1.56.0 dry-run reds (perf-analysis README spellings, LSM fake locale bits)	LK-33	S		KICKCD-A-07	
-BL-03	M3	BankLedger	Stand-down drops the capture context (L:DropContext): openContext, lastSnapshot, _settleSince and the session end with the latch	RV-BL,BL-01	S	yes	BankLedger-R-01	
-BL-04	M3	BankLedger	Reset all settings re-runs the enable latch and announces LedgerChanged	RV-BL,BL-03	S	yes	BankLedger-R-02,BankLedger-R-03	
-BL-05	M3	BankLedger	One global reset (options-ui-§12, Option A): Reset all settings, the page/footer Defaults and /bl resetall all raise the one confirm popup, which also closes the debug console; the expired register row goes	RV-BL,BL-04	M	yes	BankLedger-A-02,BankLedger-A-05	
-BL-06	M3	BankLedger	Adopt LibKa0s-Core SafeRegisterEvent: one NS.RegisterEventSafely (IsEventValid-gated, pcalled) for all eight registration sites, one event record	RV-BL,BL-03,LK-11	M	yes	BankLedger-A-13	
-BL-07	M3	BankLedger	Drop the dead GUILDBANKFRAME_OPENED/_CLOSED registrations (adopt PLAYER_INTERACTION_MANAGER only if /etrace proves it fires)	RV-BL,BL-06	S	yes	BankLedger-R-08	
-BL-08	M3	BankLedger	Launcher minor 2: hand isEnabled/disabledLine to the descriptor and delete the host's left-click gate	RV-BL	S	yes		
-BL-09	M3	BankLedger	Slash minor 15: /bl set prints the seam's refusal; re-pin the echo cases	RV-BL	S	yes		
-BL-10	M3	BankLedger	Library-absent /bl enable\|disable write settings.enabled through the Schema seam's writeThrough (WS-02 route a); the stub DisabledLine format is pinned to the library's bytes	RV-BL,BL-02	M	yes		
-BL-11	M3	BankLedger	Migration stamp per standard v2.65.0: defaults declare schemaVersion = 0; the runner walks steps and stamps after each success	RV-BL,BL-05,WS-03	S	yes		
-BL-12	M3	BankLedger	Minimap row's CLI path reads in its own sense: minimap.hide -> minimap.shown (storage stays LibDBIcon's minimap.hide)	RV-BL,BL-10,WS-06	S	yes		
-BL-13	M3	BankLedger	ApplyVisibility and ApplyMasterChrome iterate module-level name lists (no table per combat edge)	RV-BL	S	yes	BankLedger-R-09	
-BL-14	M3	BankLedger	Pin the live and library-absent schema row counts and the composed delta	RV-BL,BL-10,BL-12	S		BankLedger-A-08	
-BL-15	M3	BankLedger	Tests use NS.MSG constants at every bus call site; test_bus.lua stays the one wire-name oracle	RV-BL,BL-04	S		BankLedger-A-14	
-BL-16	M3	BankLedger	Annotate the two load-bearing TOC positions (Insights after InsightsWidgets, Slash after Schema) and pin them	RV-BL	S	yes	BankLedger-A-06,BankLedger-A-07	
-BL-17	M3	BankLedger	Printer call sites pass argument lists instead of pre-formatted strings (events-frames-taint-§8)	RV-BL,BL-05	S	yes	BankLedger-A-16	
-BL-18	M3	BankLedger	The brand name is spelled once: NS.BRAND_NAME in the launcher tooltip and the options parent title	RV-BL,BL-08	S	yes	BankLedger-R-10	
-BL-19	M3	BankLedger	Spill ARCHITECTURE.md ## Settings Schema into schema.md and settings-panel.md (hub under ~400 lines)	RV-BL,BL-05,BL-06,BL-12	M		BankLedger-A-11	
-BL-20	M3	BankLedger	Citation sweep: rotted file:line references cite symbols; 'four title bars' becomes three; .pkgmeta cites packaging bare; the register rows' Why/evidence are corrected	RV-BL,BL-19,BL-13	M	yes	BankLedger-R-06,BankLedger-A-09,BankLedger-A-15,BankLedger-A-18,BankLedger-A-20	
-BL-21	M3	BankLedger	Write docs/debug.md for /bl debug scan and /bl debug panel; flip the Documentation map row to Present	RV-BL,BL-06,BL-19	S	yes	BankLedger-A-12	
-BL-22	M3	BankLedger	README discloses the 30-day retention default	RV-BL	S		BankLedger-R-04	
-BL-23	M3	BankLedger	Consolidated re-vendor span bundle docs/revendor/<date>-v1.18.0-v1.53.0/ for the unrecorded tags	RV-BL,WA-01	M		BankLedger-A-01	
-BL-24	M3	BankLedger	Issue-store and register bookkeeping: close #3 (row landed), and record the 2026-09-23 re-check of the untriggered rows	RV-BL,BL-20	S		BankLedger-A-10,BankLedger-A-19,BankLedger-A-17,BankLedger-A-21	BankLedger#3
-BL-DOCS	M3	BankLedger	Sync docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (perf skip reason 2; watch-list dispositions)	RV-BL,LK-12	M	yes	BankLedger-R-07,BankLedger-A-04,BankLedger-A-22	
-PF-01	M3	PartyFrameEnhanced	Profile sub-verbs refuse bad names: `new` never wipes an existing profile, `use`/`copy`/`delete` refuse a missing one, `copy` refuses the current one	RV-PF,LK-03	S	yes	PartyFrameEnhanced-R-02,PartyFrameEnhanced-R-05	
-PF-02	M3	PartyFrameEnhanced	Anchor reads the live profile section, so a profile switch, copy or reset places elements by the NEW profile whatever the bus dispatch order	RV-PF,PF-01	M	yes	PartyFrameEnhanced-R-01,PartyFrameEnhanced-R-08	
-PF-03	M3	PartyFrameEnhanced	Secure-write memos compare against the REQUESTED value, so a setting toggled back in combat is not lost	RV-PF	S	yes	PartyFrameEnhanced-R-04	
-PF-04	M3	PartyFrameEnhanced	The stand-down UNREGISTERS the ten target/pet state drivers instead of replacing them with 'hide'	RV-PF,PF-03	M	yes	PartyFrameEnhanced-R-06	
-PF-05	M3	PartyFrameEnhanced	The stand-down unregisters the EditMode.Exit callback and burst() arms nothing while suspended; the stand-down suite reads callback registrations	RV-PF,LK-04	S	yes	PartyFrameEnhanced-R-03,PartyFrameEnhanced-R-10,PartyFrameEnhanced-A-11	
-PF-06	M3	PartyFrameEnhanced	Stand-down hides the five fade frames and three free-placement holders; stand-up shows them before VISIBILITY	RV-PF,PF-04,LK-05	M	yes	PartyFrameEnhanced-A-01	
-PF-07	M3	PartyFrameEnhanced	The Lock-frame row's disabled refusal prints the collection's one DisabledLine, not a second wording	RV-PF	S	yes	PartyFrameEnhanced-A-08	
-PF-08	M3	PartyFrameEnhanced	Migration runner per WS-03: schemaVersion 0 in defaults, NS.SCHEMA_VERSION is the target, profile steps run over every stored profile, stamp only after success	RV-PF	M	yes	PartyFrameEnhanced-R-15	
-PF-09	M3	PartyFrameEnhanced	Session-long registrations move into each owner's syncEvents/listen, and debug arguments are built only with debug on	RV-PF,PF-05	M	yes	PartyFrameEnhanced-R-17	
-PF-10	M3	PartyFrameEnhanced	Every event registration goes through LibKa0s-Core's SafeRegisterEvent family with a host-owned rejected list reachable from /pfe status	RV-PF,PF-09	M		PartyFrameEnhanced-A-03	
-PF-11	M3	PartyFrameEnhanced	Adopt LibKa0s-Schema-1.0 (minor 2) with writeThrough {'enabled','locked'}, so the library-less build still writes its composed rows	RV-PF,PF-07,PF-02,LK-23	L	yes		PartyFrameEnhanced#14
-PF-12	M3	PartyFrameEnhanced	Library-absent Slash stub takes the LK-18 shape: no FormatRow copy, DisabledLine pinned to the library bytes, the WS-02 library-absent line	RV-PF,PF-11,PF-07	S		PartyFrameEnhanced-R-11	
-PF-13	M3	PartyFrameEnhanced	Minimap row's CLI path reads in its own shown sense: global.minimap.shown, inverting onto the stored minimap.hide	RV-PF,PF-11,WS-06	S	yes		
-PF-14	M3	PartyFrameEnhanced	.luacheckrc drops the eleven unused read_globals, including UnitExists	RV-PF,PF-04,PF-10	S		PartyFrameEnhanced-R-13	
-PF-15	M3	PartyFrameEnhanced	Locale hygiene: dead keys out, near-duplicate pairs collapsed, provider labels and the DebugLog stub strings routed through NS.L	RV-PF,PF-07,PF-12	S		PartyFrameEnhanced-R-14,PartyFrameEnhanced-A-09	
-PF-16	M3	PartyFrameEnhanced	Holders and the stand-in opt out of the client's layout cache	RV-PF,PF-06	S	yes	PartyFrameEnhanced-R-16	
-PF-17	M3	PartyFrameEnhanced	.pkgmeta: ship no screenshots, drop the two phantom ignores; fix the screenshot filenames	RV-PF	S		PartyFrameEnhanced-R-18,PartyFrameEnhanced-A-15	
-PF-18	M3	PartyFrameEnhanced	Zero-overhead perf scenario pins capture-off against instrumentation absent (call counters), not against capture-on	RV-PF,PF-10	S		PartyFrameEnhanced-R-07	
-PF-19	M3	PartyFrameEnhanced	docs/performance.md and the perf.lua comments carry today's measured figures, with the settingsDrag growth attributed	RV-PF,PF-18,PF-11,PF-10,PF-09	S		PartyFrameEnhanced-R-12	
-PF-20	M3	PartyFrameEnhanced	TOC annotates LifecycleSetup's load-bearing position and a load-order case pins it	RV-PF	S		PartyFrameEnhanced-A-07	
-PF-21	M3	PartyFrameEnhanced	Bootstrap on line 1 and the self-naming header beneath it in every file; LOGO_PATH derived from addonName	RV-PF,PF-15	S		PartyFrameEnhanced-A-13,PartyFrameEnhanced-A-14,PartyFrameEnhanced-A-16	
-PF-22	M3	PartyFrameEnhanced	Deviation register: retire the stale events-frames-taint-§1 row, record the EllesmereUIDB read as a library-stack-§6 deviation, and correct scope.md	RV-PF,PF-10	S		PartyFrameEnhanced-A-04,PartyFrameEnhanced-A-05,PartyFrameEnhanced-A-06	
-PF-23	M3	PartyFrameEnhanced	Doc drift: Preview in the bus consumer cells, and the six sites the doc set lags the code	RV-PF,PF-09,PF-10,PF-22	S		PartyFrameEnhanced-A-10,PartyFrameEnhanced-A-12	
-PF-24	M3	PartyFrameEnhanced	Consolidated span bundle for the re-vendors the amended AUDIT.md check reports unrecorded	RV-PF,WA-01	S			
-PF-DOCS	M3	PartyFrameEnhanced	Sync docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-PF,PF-01,PF-02,PF-03,PF-04,PF-05,PF-06,PF-07,PF-08,PF-09,PF-10,PF-11,PF-12,PF-13,PF-14,PF-15,PF-16,PF-17,PF-18,PF-19,PF-20,PF-21,PF-22,PF-23,PF-24	M	yes	PartyFrameEnhanced-A-17,PartyFrameEnhanced-A-18	
-MM-01	M3	MultiMeters	The stand-down latch holds on every show path: WindowProto:Show, test-mode exit, /mm toggle and a window created while stood down	RV-MM	M	yes	MultiMeters-R-02,MultiMeters-R-04,MultiMeters-R-05	
-MM-02	M3	MultiMeters	Launcher left-click gates through Launcher minor 2's isEnabled/disabledLine, and the Slash stub carries a pinned DisabledLine	RV-MM,MM-01,LK-16	M	yes	MultiMeters-R-04,MultiMeters-R-06	
-MM-03	M3	MultiMeters	'Always show yourself' pins the player into the rows the window actually draws, scroll-aware	RV-MM	M	yes	MultiMeters-R-01	
-MM-04	M3	MultiMeters	Chat export sends through Compat.ChatSender (C_ChatInfo first) and names a missing sender instead of silently self-printing	RV-MM	S	yes	MultiMeters-R-03	
-MM-05	M3	MultiMeters	Renaming a window no longer closes its drill-down	RV-MM	S	yes	MultiMeters-R-16	
-MM-06	M3	MultiMeters	Window commands answer with the right error: unknown name, empty rename	RV-MM,MM-01	S		MultiMeters-R-10	
-MM-07	M3	MultiMeters	Every event registration goes through Core.SafeRegisterEvent with a rejected list reachable from /mm debug diag	RV-MM	M	yes	MultiMeters-A-20	
-MM-08	M3	MultiMeters	Visibility:Evaluate runs only under debug and feeds /mm debug diag; LifecycleSetup's stand-down comment corrected	RV-MM	S		MultiMeters-R-09	
-MM-09	M3	MultiMeters	Slash descriptor returns the write seam's refusal so CliSet/CliReset print it (Slash minor 15 contract)	RV-MM	S	yes		
-MM-10	M3	MultiMeters	The test mock reads the addon version from MultiMeters.toc instead of hard-coding 0.1.0	RV-MM	S		MultiMeters-R-13	
-MM-11	M3	MultiMeters	Drop the removed global GetSpellInfo from .luacheckrc read_globals	RV-MM	S		MultiMeters-R-14	
-MM-12	M3	MultiMeters	Migration stamp per savedvariables-§1 v2.65.0: defaults declare schemaVersion 0, the runner owns the stamp	RV-MM,WS-03	M	yes		
-MM-13	M3	MultiMeters	US spelling 'minimize' everywhere authored, with the v15->v16 migration of the two stored keys; waiver cut to the one library icon key	RV-MM,MM-12	L	yes	MultiMeters-A-18,MultiMeters-A-18a	
-MM-14	M3	MultiMeters	Adopt LibKa0s-Schema-1.0 minor 2 for the settings runtime: Set with window instanceId, SetMany with one announce, the registry and the bracket; delete the host copies (MultiMeters#52)	RV-MM,MM-09,MM-13,LK-22	L	yes		MultiMeters#52
-MM-15	M3	MultiMeters	Library-absent /mm enable and /mm disable write through the Schema seam's writeThrough list (options-ui-§1 v2.65.0 route (a))	RV-MM,MM-14	M			
-MM-16	M3	MultiMeters	Minimap row's CLI path reads in its own shown sense: global.minimap.shown, storage unchanged at minimap.hide	RV-MM,MM-14,WS-06,MM-12	M	yes		
-MM-17	M3	MultiMeters	scheduleTimer: document that Options ignores its return (OptionsWidgets minor 31) and pin the descriptor	RV-MM	S	yes		
-MM-18	M3	MultiMeters	Columns page adopts RenderTabbedSchema opts.tabs for its bespoke block-editor tab (or files the decline); ReorderList drag smoke	RV-MM,LK-21	M	yes		
-MM-19	M3	MultiMeters	Measure UNIT_SPELLCAST_SUCCEEDED and CHAT_MSG_SYSTEM: two perf buckets and their brackets	RV-MM	S	yes	MultiMeters-R-17	
-MM-20	M3	MultiMeters	Render keeps rows bound across passes and Row:Update walks only live cells, gated on before/after in-client captures	RV-MM,MM-03	L	yes	MultiMeters-R-07	
-MM-21	M3	MultiMeters	Bound the remembered roster (db.global.roster), with the branch chosen by the SM-06 login observation	RV-MM	M	yes	MultiMeters-R-08	
-MM-22	M3	MultiMeters	Route every user-facing line in settings/Slash.lua through the locale, with whole-sentence keys and a real plural	RV-MM,MM-15,MM-09	M	yes	MultiMeters-R-11	
-MM-23	M3	MultiMeters	Peel tests/test_provider.lua (1500, at the cap) by concern	RV-MM	S		MultiMeters-R-18	
-MM-24	M3	MultiMeters	TOC: at-line LOAD-BEARING comments for CoreSetup, PerfSetup and OptionsSetup, and a 'conventional' note per group	RV-MM	S		MultiMeters-A-22	
-MM-25	M3	MultiMeters	Correct the stale and misplaced comments: ShouldShow doc, spell/system handler docs, ladder step numbers, load order, launcher	RV-MM,MM-02	S		MultiMeters-R-12	
-MM-26	M3	MultiMeters	Citation sweep to filename-§N: space forms, §-less forms, and literal \194\167 in comments	RV-MM,MM-25	M		MultiMeters-A-23	
-MM-27	M3	MultiMeters	Ship the three owed Tier 2 docs: slash-dispatch.md, message-bus.md, profiles.md	RV-MM,MM-15,MM-12,MM-26	M		MultiMeters-A-03	
-MM-28	M3	MultiMeters	Slim the hub under 560 lines: the texture census moves to docs/texture-paths.md, and the two catalog declines get register rows	RV-MM,MM-27	M		MultiMeters-A-06,MultiMeters-A-25	
-MM-29	M3	MultiMeters	Doc figures: the hub's inventory line, and a dated statement beside the historical feign figure	RV-MM,MM-28,MM-19	S		MultiMeters-A-24,MultiMeters-R-15	
-MM-30	M3	MultiMeters	Consolidated re-vendor span bundle for the unrecorded LibKa0s tags (v1.18.0 ... v1.54.2)	RV-MM,WA-01	M		MultiMeters-A-19	
-MM-31	M3	MultiMeters	Release-record hygiene: README records the 1.0.1 re-publish; closed issues #4/#21/#24 get terminal labels	RV-MM,MM-13	S		MultiMeters-A-21,MultiMeters-A-16	MultiMeters#4,MultiMeters#21,MultiMeters#24
-MM-DOCS	M3	MultiMeters	Sync docs, regenerate docs/test-cases.md and the badge, and record a fresh automated-test bundle	RV-MM	M		MultiMeters-A-26	
-LH-01	M3	LootHistory	Clear the Mythic+ keystone context when the player leaves the party instance or the key resets	RV-LH	M	yes	LootHistory-R-01	
-LH-02	M3	LootHistory	Keep the encounter context for a grace window after a successful ENCOUNTER_END, so boss-corpse loot carries encounterID	RV-LH,LH-01	S	yes	LootHistory-R-02	
-LH-03	M3	LootHistory	Rebuild the currency-category cache once per missed id instead of freezing the first session snapshot	RV-LH	S	yes	LootHistory-R-03	
-LH-04	M3	LootHistory	Confirm before a shorter 'Keep history for' deletes records; declining restores the previous retention	RV-LH	M	yes	LootHistory-R-04	
-LH-05	M3	LootHistory	General visibility and the test-mode refusal decide from the combat edge, not InCombatLockdown()	RV-LH	S	yes	LootHistory-A-02	
-LH-06	M3	LootHistory	The warbound repair warms the item cache from the link when a row has no itemID	RV-LH	S		LootHistory-R-15	
-LH-07	M3	LootHistory	Database:Export deep-copies auctionPrice and sourceDetail, as its contract says	RV-LH	S		LootHistory-R-17	
-LH-08	M3	LootHistory	PruneOld fires HistoryChanged only when it removed rows	RV-LH,LH-04	S		LootHistory-R-18	
-LH-09	M3	LootHistory	One bind-state vocabulary across both CSV exports; comment the two sentinels	RV-LH	S	yes	LootHistory-R-12	
-LH-10	M3	LootHistory	The resize grip honors Lock frame; keep the collection's Blizzard grabber under a library-stack-§8 register row	RV-LH	S	yes	LootHistory-R-09,LootHistory-A-19	
-LH-11	M3	LootHistory	Launcher: adopt Launcher minor 2's isEnabled/disabledLine gate; the tooltip uses NS.BRAND and shows the disabled line when off	RV-LH	S	yes	LootHistory-R-13	
-LH-12	M3	LootHistory	defaults declare schemaVersion 0; the runner owns the stamp (savedvariables-§1, v2.65.0)	RV-LH,WS-03	S	yes	LootHistory-A-18	
-LH-13	M3	LootHistory	The minimap row's CLI path reads in its own shown sense: minimap.hide -> minimap.shown (launcher-§3, v2.65.0)	RV-LH,LH-12,WS-06	M	yes		
-LH-14	M3	LootHistory	Adopt the v1.56.0 write-seam refusal contract (Slash minor 15) and restate the scheduleTimer contract (OptionsWidgets minor 31)	RV-LH	S			
-LH-15	M3	LootHistory	Schema seam: declare writeThrough {settings.enabled}; the host stub gains writeThrough storage and the full SetMany (Schema minor 2 parity)	RV-LH,LH-13,LK-22	M			
-LH-16	M3	LootHistory	Degraded Slash stub: the refusal line from the verbatim DISABLED_LINE_FORMAT, enable/disable write through (WS-02 route a), and a counted resetall line	RV-LH,LH-15	M	yes	LootHistory-R-05,LootHistory-R-14	
-LH-17	M3	LootHistory	Route every event registration through Core.SafeRegisterEvent with an addon-owned rejected list; mirror LK-10 in the degraded NS.Format	RV-LH,LH-01,LH-02,LH-05,LK-11	M	yes	LootHistory-A-03	
-LH-18	M3	LootHistory	The loot hot path reuses one gate-config table instead of allocating one per CHAT_MSG_LOOT	RV-LH,LH-17	S		LootHistory-R-16	
-LH-19	M3	LootHistory	Measure, then memoize the AH priority-tag parse and bucket accumulateTime's date() calls	RV-LH	S		LootHistory-R-06	
-LH-20	M3	LootHistory	Stop re-testing the library's DebugLog formatters; the degraded stub's formatters carry no library format string	RV-LH	S		LootHistory-R-07,LootHistory-R-08	
-LH-21	M3	LootHistory	Item seam tests use the 11.1.5+ \|cnIQ4: link shape, keeping one legacy \|cff case	RV-LH	S	yes		
-LH-22	M3	LootHistory	Surface-parity cases for the Env, Item, Media, Pool and Lifecycle seams	RV-LH,LH-15,LH-17	M		LootHistory-A-11	
-LH-23	M3	LootHistory	Tests send and subscribe bus messages by NS.MSG constant, never by literal	RV-LH	S		LootHistory-A-09	
-LH-24	M3	LootHistory	Resolvable citations: disabled-§7 test names become slash-commands-§7 step N, and .pkgmeta cites packaging	RV-LH	S		LootHistory-A-10	
-LH-25	M3	LootHistory	Chat lines hand their values to the shared printer's Format instead of pre-formatting	RV-LH,LH-16	S		LootHistory-A-21	
-LH-26	M3	LootHistory	Delete the dead global GetAddOnMetadata rung in the Env seam (compat applicability, v2.65.0)	RV-LH,WS-05	S			
-LH-27	M3	LootHistory	Annotate every load-bearing TOC position and mark the conventional groups; restate the load-bearing set in ARCHITECTURE.md and module-map.md	RV-LH	S		LootHistory-A-04,LootHistory-A-05,LootHistory-A-06,LootHistory-A-07,LootHistory-A-16	
-LH-28	M3	LootHistory	Correct the stale comments and doc citations	RV-LH,LH-01,LH-03,LH-16,LH-27	S		LootHistory-R-10,LootHistory-R-11,LootHistory-A-16	
-LH-29	M3	LootHistory	Ratify the deconstruct name-matching with a localization-§4 register row	RV-LH,LH-10	S		LootHistory-A-17	
-LH-30	M3	LootHistory	Spill ARCHITECTURE.md under the hub budget: the Settings schema detail to schema.md, the disabled state to disabled-state.md	RV-LH,LH-01,LH-17,LH-28,LH-29	M		LootHistory-A-08	
-LH-31	M3	LootHistory	performance.md shrinks to the one-screen exempt shape; the sweep moves to combat-path-sweep.md	RV-LH,LH-01,LH-17,LH-30	S		LootHistory-A-13	
-LH-32	M3	LootHistory	README Usage closes on a one-sentence configuration signpost	RV-LH,LH-16	S		LootHistory-A-14	
-LH-33	M3	LootHistory	Root CLAUDE.md: the green gate before the provenance line, as documentation-§2 orders	RV-LH	S		LootHistory-A-15	
-LH-34	M3	LootHistory	One consolidated re-vendor span bundle for the 25 unrecorded LibKa0s tags	RV-LH,WA-01	S		LootHistory-A-01	
-LH-35	M3	LootHistory	Track the Analytics.lua peel as a GitHub issue	RV-LH	S		LootHistory-A-20	
-LH-DOCS	M3	LootHistory	Sync docs, regenerate the case inventory and badge, and record a fresh automated-test bundle (perf skip reason 2)	RV-LH,LH-35	M	yes	LootHistory-A-12,LootHistory-R-20	
+BL-00	M3	BankLedger	Clear the 1 re-vendor red(s) RV-BL recorded, so every later M3 commit starts green	RV-BL	M			
+BL-03	M3	BankLedger	Stand-down drops the capture context (L:DropContext): openContext, lastSnapshot, _settleSince and the session end with the latch	RV-BL,BL-01,BL-00	S	yes	BankLedger-R-01	
+BL-04	M3	BankLedger	Reset all settings re-runs the enable latch and announces LedgerChanged	RV-BL,BL-03,BL-00	S	yes	BankLedger-R-02,BankLedger-R-03	
+BL-05	M3	BankLedger	One global reset (options-ui-§12, Option A): Reset all settings, the page/footer Defaults and /bl resetall all raise the one confirm popup, which also closes the debug console; the expired register row goes	RV-BL,BL-04,BL-00	M	yes	BankLedger-A-02,BankLedger-A-05	
+BL-06	M3	BankLedger	Adopt LibKa0s-Core SafeRegisterEvent: one NS.RegisterEventSafely (IsEventValid-gated, pcalled) for all eight registration sites, one event record	RV-BL,BL-03,LK-11,BL-00	M	yes	BankLedger-A-13	
+BL-07	M3	BankLedger	Drop the dead GUILDBANKFRAME_OPENED/_CLOSED registrations (adopt PLAYER_INTERACTION_MANAGER only if /etrace proves it fires)	RV-BL,BL-06,BL-00	S	yes	BankLedger-R-08	
+BL-08	M3	BankLedger	Launcher minor 2: hand isEnabled/disabledLine to the descriptor and delete the host's left-click gate	RV-BL,BL-00	S	yes		
+BL-09	M3	BankLedger	Slash minor 15: /bl set prints the seam's refusal; re-pin the echo cases	RV-BL,BL-00	S	yes		
+BL-10	M3	BankLedger	Library-absent /bl enable\|disable write settings.enabled through the Schema seam's writeThrough (WS-02 route a); the stub DisabledLine format is pinned to the library's bytes	RV-BL,BL-02,BL-00	M	yes		
+BL-11	M3	BankLedger	Migration stamp per standard v2.65.0: defaults declare schemaVersion = 0; the runner walks steps and stamps after each success	RV-BL,BL-05,WS-03,BL-00	S	yes		
+BL-12	M3	BankLedger	Minimap row's CLI path reads in its own sense: minimap.hide -> minimap.shown (storage stays LibDBIcon's minimap.hide)	RV-BL,BL-10,WS-06,BL-00	S	yes		
+BL-13	M3	BankLedger	ApplyVisibility and ApplyMasterChrome iterate module-level name lists (no table per combat edge)	RV-BL,BL-00	S	yes	BankLedger-R-09	
+BL-14	M3	BankLedger	Pin the live and library-absent schema row counts and the composed delta	RV-BL,BL-10,BL-12,BL-00	S		BankLedger-A-08	
+BL-15	M3	BankLedger	Tests use NS.MSG constants at every bus call site; test_bus.lua stays the one wire-name oracle	RV-BL,BL-04,BL-00	S		BankLedger-A-14	
+BL-16	M3	BankLedger	Annotate the two load-bearing TOC positions (Insights after InsightsWidgets, Slash after Schema) and pin them	RV-BL,BL-00	S	yes	BankLedger-A-06,BankLedger-A-07	
+BL-17	M3	BankLedger	Printer call sites pass argument lists instead of pre-formatted strings (events-frames-taint-§8)	RV-BL,BL-05,BL-00	S	yes	BankLedger-A-16	
+BL-18	M3	BankLedger	The brand name is spelled once: NS.BRAND_NAME in the launcher tooltip and the options parent title	RV-BL,BL-08,BL-00	S	yes	BankLedger-R-10	
+BL-19	M3	BankLedger	Spill ARCHITECTURE.md ## Settings Schema into schema.md and settings-panel.md (hub under ~400 lines)	RV-BL,BL-05,BL-06,BL-12,BL-00	M		BankLedger-A-11	
+BL-20	M3	BankLedger	Citation sweep: rotted file:line references cite symbols; 'four title bars' becomes three; .pkgmeta cites packaging bare; the register rows' Why/evidence are corrected	RV-BL,BL-19,BL-13,BL-00	M	yes	BankLedger-R-06,BankLedger-A-09,BankLedger-A-15,BankLedger-A-18,BankLedger-A-20	
+BL-21	M3	BankLedger	Write docs/debug.md for /bl debug scan and /bl debug panel; flip the Documentation map row to Present	RV-BL,BL-06,BL-19,BL-00	S	yes	BankLedger-A-12	
+BL-22	M3	BankLedger	README discloses the 30-day retention default	RV-BL,BL-00	S		BankLedger-R-04	
+BL-23	M3	BankLedger	Consolidated re-vendor span bundle docs/revendor/<date>-v1.18.0-v1.53.0/ for the unrecorded tags	RV-BL,WA-01,BL-00	M		BankLedger-A-01	
+BL-24	M3	BankLedger	Issue-store and register bookkeeping: close #3 (row landed), and record the 2026-09-23 re-check of the untriggered rows	RV-BL,BL-20,BL-00	S		BankLedger-A-10,BankLedger-A-19,BankLedger-A-17,BankLedger-A-21	BankLedger#3
+BL-DOCS	M3	BankLedger	Sync docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (perf skip reason 2; watch-list dispositions)	RV-BL,LK-12,BL-00	M	yes	BankLedger-R-07,BankLedger-A-04,BankLedger-A-22	
+PF-00	M3	PartyFrameEnhanced	Clear the 9 re-vendor red(s) RV-PF recorded, so every later M3 commit starts green	RV-PF	M			
+PF-01	M3	PartyFrameEnhanced	Profile sub-verbs refuse bad names: `new` never wipes an existing profile, `use`/`copy`/`delete` refuse a missing one, `copy` refuses the current one	RV-PF,LK-03,PF-00	S	yes	PartyFrameEnhanced-R-02,PartyFrameEnhanced-R-05	
+PF-02	M3	PartyFrameEnhanced	Anchor reads the live profile section, so a profile switch, copy or reset places elements by the NEW profile whatever the bus dispatch order	RV-PF,PF-01,PF-00	M	yes	PartyFrameEnhanced-R-01,PartyFrameEnhanced-R-08	
+PF-03	M3	PartyFrameEnhanced	Secure-write memos compare against the REQUESTED value, so a setting toggled back in combat is not lost	RV-PF,PF-00	S	yes	PartyFrameEnhanced-R-04	
+PF-04	M3	PartyFrameEnhanced	The stand-down UNREGISTERS the ten target/pet state drivers instead of replacing them with 'hide'	RV-PF,PF-03,PF-00	M	yes	PartyFrameEnhanced-R-06	
+PF-05	M3	PartyFrameEnhanced	The stand-down unregisters the EditMode.Exit callback and burst() arms nothing while suspended; the stand-down suite reads callback registrations	RV-PF,LK-04,PF-00	S	yes	PartyFrameEnhanced-R-03,PartyFrameEnhanced-R-10,PartyFrameEnhanced-A-11	
+PF-06	M3	PartyFrameEnhanced	Stand-down hides the five fade frames and three free-placement holders; stand-up shows them before VISIBILITY	RV-PF,PF-04,LK-05,PF-00	M	yes	PartyFrameEnhanced-A-01	
+PF-07	M3	PartyFrameEnhanced	The Lock-frame row's disabled refusal prints the collection's one DisabledLine, not a second wording	RV-PF,PF-00	S	yes	PartyFrameEnhanced-A-08	
+PF-08	M3	PartyFrameEnhanced	Migration runner per WS-03: schemaVersion 0 in defaults, NS.SCHEMA_VERSION is the target, profile steps run over every stored profile, stamp only after success	RV-PF,PF-00	M	yes	PartyFrameEnhanced-R-15	
+PF-09	M3	PartyFrameEnhanced	Session-long registrations move into each owner's syncEvents/listen, and debug arguments are built only with debug on	RV-PF,PF-05,PF-00	M	yes	PartyFrameEnhanced-R-17	
+PF-10	M3	PartyFrameEnhanced	Every event registration goes through LibKa0s-Core's SafeRegisterEvent family with a host-owned rejected list reachable from /pfe status	RV-PF,PF-09,PF-00	M		PartyFrameEnhanced-A-03	
+PF-11	M3	PartyFrameEnhanced	Adopt LibKa0s-Schema-1.0 (minor 2) with writeThrough {'enabled','locked'}, so the library-less build still writes its composed rows	RV-PF,PF-07,PF-02,LK-23,PF-00	L	yes		PartyFrameEnhanced#14
+PF-12	M3	PartyFrameEnhanced	Library-absent Slash stub takes the LK-18 shape: no FormatRow copy, DisabledLine pinned to the library bytes, the WS-02 library-absent line	RV-PF,PF-11,PF-07,PF-00	S		PartyFrameEnhanced-R-11	
+PF-13	M3	PartyFrameEnhanced	Minimap row's CLI path reads in its own shown sense: global.minimap.shown, inverting onto the stored minimap.hide	RV-PF,PF-11,WS-06,PF-00	S	yes		
+PF-14	M3	PartyFrameEnhanced	.luacheckrc drops the eleven unused read_globals, including UnitExists	RV-PF,PF-04,PF-10,PF-00	S		PartyFrameEnhanced-R-13	
+PF-15	M3	PartyFrameEnhanced	Locale hygiene: dead keys out, near-duplicate pairs collapsed, provider labels and the DebugLog stub strings routed through NS.L	RV-PF,PF-07,PF-12,PF-00	S		PartyFrameEnhanced-R-14,PartyFrameEnhanced-A-09	
+PF-16	M3	PartyFrameEnhanced	Holders and the stand-in opt out of the client's layout cache	RV-PF,PF-06,PF-00	S	yes	PartyFrameEnhanced-R-16	
+PF-17	M3	PartyFrameEnhanced	.pkgmeta: ship no screenshots, drop the two phantom ignores; fix the screenshot filenames	RV-PF,PF-00	S		PartyFrameEnhanced-R-18,PartyFrameEnhanced-A-15	
+PF-18	M3	PartyFrameEnhanced	Zero-overhead perf scenario pins capture-off against instrumentation absent (call counters), not against capture-on	RV-PF,PF-10,PF-00	S		PartyFrameEnhanced-R-07	
+PF-19	M3	PartyFrameEnhanced	docs/performance.md and the perf.lua comments carry today's measured figures, with the settingsDrag growth attributed	RV-PF,PF-18,PF-11,PF-10,PF-09,PF-00	S		PartyFrameEnhanced-R-12	
+PF-20	M3	PartyFrameEnhanced	TOC annotates LifecycleSetup's load-bearing position and a load-order case pins it	RV-PF,PF-00	S		PartyFrameEnhanced-A-07	
+PF-21	M3	PartyFrameEnhanced	Bootstrap on line 1 and the self-naming header beneath it in every file; LOGO_PATH derived from addonName	RV-PF,PF-15,PF-00	S		PartyFrameEnhanced-A-13,PartyFrameEnhanced-A-14,PartyFrameEnhanced-A-16	
+PF-22	M3	PartyFrameEnhanced	Deviation register: retire the stale events-frames-taint-§1 row, record the EllesmereUIDB read as a library-stack-§6 deviation, and correct scope.md	RV-PF,PF-10,PF-00	S		PartyFrameEnhanced-A-04,PartyFrameEnhanced-A-05,PartyFrameEnhanced-A-06	
+PF-23	M3	PartyFrameEnhanced	Doc drift: Preview in the bus consumer cells, and the six sites the doc set lags the code	RV-PF,PF-09,PF-10,PF-22,PF-00	S		PartyFrameEnhanced-A-10,PartyFrameEnhanced-A-12	
+PF-24	M3	PartyFrameEnhanced	Consolidated span bundle for the re-vendors the amended AUDIT.md check reports unrecorded	RV-PF,WA-01,PF-00	S			
+PF-DOCS	M3	PartyFrameEnhanced	Sync docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-PF,PF-01,PF-02,PF-03,PF-04,PF-05,PF-06,PF-07,PF-08,PF-09,PF-10,PF-11,PF-12,PF-13,PF-14,PF-15,PF-16,PF-17,PF-18,PF-19,PF-20,PF-21,PF-22,PF-23,PF-24,PF-00	M	yes	PartyFrameEnhanced-A-17,PartyFrameEnhanced-A-18	
+MM-00	M3	MultiMeters	Clear the 7 re-vendor red(s) RV-MM recorded, so every later M3 commit starts green	RV-MM	M			
+MM-01	M3	MultiMeters	The stand-down latch holds on every show path: WindowProto:Show, test-mode exit, /mm toggle and a window created while stood down	RV-MM,MM-00	M	yes	MultiMeters-R-02,MultiMeters-R-04,MultiMeters-R-05	
+MM-02	M3	MultiMeters	Launcher left-click gates through Launcher minor 2's isEnabled/disabledLine, and the Slash stub carries a pinned DisabledLine	RV-MM,MM-01,LK-16,MM-00	M	yes	MultiMeters-R-04,MultiMeters-R-06	
+MM-03	M3	MultiMeters	'Always show yourself' pins the player into the rows the window actually draws, scroll-aware	RV-MM,MM-00	M	yes	MultiMeters-R-01	
+MM-04	M3	MultiMeters	Chat export sends through Compat.ChatSender (C_ChatInfo first) and names a missing sender instead of silently self-printing	RV-MM,MM-00	S	yes	MultiMeters-R-03	
+MM-05	M3	MultiMeters	Renaming a window no longer closes its drill-down	RV-MM,MM-00	S	yes	MultiMeters-R-16	
+MM-06	M3	MultiMeters	Window commands answer with the right error: unknown name, empty rename	RV-MM,MM-01,MM-00	S		MultiMeters-R-10	
+MM-07	M3	MultiMeters	Every event registration goes through Core.SafeRegisterEvent with a rejected list reachable from /mm debug diag	RV-MM,MM-00	M	yes	MultiMeters-A-20	
+MM-08	M3	MultiMeters	Visibility:Evaluate runs only under debug and feeds /mm debug diag; LifecycleSetup's stand-down comment corrected	RV-MM,MM-00	S		MultiMeters-R-09	
+MM-09	M3	MultiMeters	Slash descriptor returns the write seam's refusal so CliSet/CliReset print it (Slash minor 15 contract)	RV-MM,MM-00	S	yes		
+MM-10	M3	MultiMeters	The test mock reads the addon version from MultiMeters.toc instead of hard-coding 0.1.0	RV-MM,MM-00	S		MultiMeters-R-13	
+MM-11	M3	MultiMeters	Drop the removed global GetSpellInfo from .luacheckrc read_globals	RV-MM,MM-00	S		MultiMeters-R-14	
+MM-12	M3	MultiMeters	Migration stamp per savedvariables-§1 v2.65.0: defaults declare schemaVersion 0, the runner owns the stamp	RV-MM,WS-03,MM-00	M	yes		
+MM-13	M3	MultiMeters	US spelling 'minimize' everywhere authored, with the v15->v16 migration of the two stored keys; waiver cut to the one library icon key	RV-MM,MM-12,MM-00	L	yes	MultiMeters-A-18,MultiMeters-A-18a	
+MM-14	M3	MultiMeters	Adopt LibKa0s-Schema-1.0 minor 2 for the settings runtime: Set with window instanceId, SetMany with one announce, the registry and the bracket; delete the host copies (MultiMeters#52)	RV-MM,MM-09,MM-13,LK-22,MM-00	L	yes		MultiMeters#52
+MM-15	M3	MultiMeters	Library-absent /mm enable and /mm disable write through the Schema seam's writeThrough list (options-ui-§1 v2.65.0 route (a))	RV-MM,MM-14,MM-00	M			
+MM-16	M3	MultiMeters	Minimap row's CLI path reads in its own shown sense: global.minimap.shown, storage unchanged at minimap.hide	RV-MM,MM-14,WS-06,MM-12,MM-00	M	yes		
+MM-17	M3	MultiMeters	scheduleTimer: document that Options ignores its return (OptionsWidgets minor 31) and pin the descriptor	RV-MM,MM-00	S	yes		
+MM-18	M3	MultiMeters	Columns page adopts RenderTabbedSchema opts.tabs for its bespoke block-editor tab (or files the decline); ReorderList drag smoke	RV-MM,LK-21,MM-00	M	yes		
+MM-19	M3	MultiMeters	Measure UNIT_SPELLCAST_SUCCEEDED and CHAT_MSG_SYSTEM: two perf buckets and their brackets	RV-MM,MM-00	S	yes	MultiMeters-R-17	
+MM-20	M3	MultiMeters	Render keeps rows bound across passes and Row:Update walks only live cells, gated on before/after in-client captures	RV-MM,MM-03,MM-00	L	yes	MultiMeters-R-07	
+MM-21	M3	MultiMeters	Bound the remembered roster (db.global.roster), with the branch chosen by the SM-06 login observation	RV-MM,MM-00	M	yes	MultiMeters-R-08	
+MM-22	M3	MultiMeters	Route every user-facing line in settings/Slash.lua through the locale, with whole-sentence keys and a real plural	RV-MM,MM-15,MM-09,MM-00	M	yes	MultiMeters-R-11	
+MM-23	M3	MultiMeters	Peel tests/test_provider.lua (1500, at the cap) by concern	RV-MM,MM-00	S		MultiMeters-R-18	
+MM-24	M3	MultiMeters	TOC: at-line LOAD-BEARING comments for CoreSetup, PerfSetup and OptionsSetup, and a 'conventional' note per group	RV-MM,MM-00	S		MultiMeters-A-22	
+MM-25	M3	MultiMeters	Correct the stale and misplaced comments: ShouldShow doc, spell/system handler docs, ladder step numbers, load order, launcher	RV-MM,MM-02,MM-00	S		MultiMeters-R-12	
+MM-26	M3	MultiMeters	Citation sweep to filename-§N: space forms, §-less forms, and literal \194\167 in comments	RV-MM,MM-25,MM-00	M		MultiMeters-A-23	
+MM-27	M3	MultiMeters	Ship the three owed Tier 2 docs: slash-dispatch.md, message-bus.md, profiles.md	RV-MM,MM-15,MM-12,MM-26,MM-00	M		MultiMeters-A-03	
+MM-28	M3	MultiMeters	Slim the hub under 560 lines: the texture census moves to docs/texture-paths.md, and the two catalog declines get register rows	RV-MM,MM-27,MM-00	M		MultiMeters-A-06,MultiMeters-A-25	
+MM-29	M3	MultiMeters	Doc figures: the hub's inventory line, and a dated statement beside the historical feign figure	RV-MM,MM-28,MM-19,MM-00	S		MultiMeters-A-24,MultiMeters-R-15	
+MM-30	M3	MultiMeters	Consolidated re-vendor span bundle for the unrecorded LibKa0s tags (v1.18.0 ... v1.54.2)	RV-MM,WA-01,MM-00	M		MultiMeters-A-19	
+MM-31	M3	MultiMeters	Release-record hygiene: README records the 1.0.1 re-publish; closed issues #4/#21/#24 get terminal labels	RV-MM,MM-13,MM-00	S		MultiMeters-A-21,MultiMeters-A-16	MultiMeters#4,MultiMeters#21,MultiMeters#24
+MM-DOCS	M3	MultiMeters	Sync docs, regenerate docs/test-cases.md and the badge, and record a fresh automated-test bundle	RV-MM,MM-00	M		MultiMeters-A-26	
+LH-00	M3	LootHistory	Clear the 2 re-vendor red(s) RV-LH recorded, so every later M3 commit starts green	RV-LH	M			
+LH-01	M3	LootHistory	Clear the Mythic+ keystone context when the player leaves the party instance or the key resets	RV-LH,LH-00	M	yes	LootHistory-R-01	
+LH-02	M3	LootHistory	Keep the encounter context for a grace window after a successful ENCOUNTER_END, so boss-corpse loot carries encounterID	RV-LH,LH-01,LH-00	S	yes	LootHistory-R-02	
+LH-03	M3	LootHistory	Rebuild the currency-category cache once per missed id instead of freezing the first session snapshot	RV-LH,LH-00	S	yes	LootHistory-R-03	
+LH-04	M3	LootHistory	Confirm before a shorter 'Keep history for' deletes records; declining restores the previous retention	RV-LH,LH-00	M	yes	LootHistory-R-04	
+LH-05	M3	LootHistory	General visibility and the test-mode refusal decide from the combat edge, not InCombatLockdown()	RV-LH,LH-00	S	yes	LootHistory-A-02	
+LH-06	M3	LootHistory	The warbound repair warms the item cache from the link when a row has no itemID	RV-LH,LH-00	S		LootHistory-R-15	
+LH-07	M3	LootHistory	Database:Export deep-copies auctionPrice and sourceDetail, as its contract says	RV-LH,LH-00	S		LootHistory-R-17	
+LH-08	M3	LootHistory	PruneOld fires HistoryChanged only when it removed rows	RV-LH,LH-04,LH-00	S		LootHistory-R-18	
+LH-09	M3	LootHistory	One bind-state vocabulary across both CSV exports; comment the two sentinels	RV-LH,LH-00	S	yes	LootHistory-R-12	
+LH-10	M3	LootHistory	The resize grip honors Lock frame; keep the collection's Blizzard grabber under a library-stack-§8 register row	RV-LH,LH-00	S	yes	LootHistory-R-09,LootHistory-A-19	
+LH-11	M3	LootHistory	Launcher: adopt Launcher minor 2's isEnabled/disabledLine gate; the tooltip uses NS.BRAND and shows the disabled line when off	RV-LH,LH-00	S	yes	LootHistory-R-13	
+LH-12	M3	LootHistory	defaults declare schemaVersion 0; the runner owns the stamp (savedvariables-§1, v2.65.0)	RV-LH,WS-03,LH-00	S	yes	LootHistory-A-18	
+LH-13	M3	LootHistory	The minimap row's CLI path reads in its own shown sense: minimap.hide -> minimap.shown (launcher-§3, v2.65.0)	RV-LH,LH-12,WS-06,LH-00	M	yes		
+LH-14	M3	LootHistory	Adopt the v1.56.0 write-seam refusal contract (Slash minor 15) and restate the scheduleTimer contract (OptionsWidgets minor 31)	RV-LH,LH-00	S			
+LH-15	M3	LootHistory	Schema seam: declare writeThrough {settings.enabled}; the host stub gains writeThrough storage and the full SetMany (Schema minor 2 parity)	RV-LH,LH-13,LK-22,LH-00	M			
+LH-16	M3	LootHistory	Degraded Slash stub: the refusal line from the verbatim DISABLED_LINE_FORMAT, enable/disable write through (WS-02 route a), and a counted resetall line	RV-LH,LH-15,LH-00	M	yes	LootHistory-R-05,LootHistory-R-14	
+LH-17	M3	LootHistory	Route every event registration through Core.SafeRegisterEvent with an addon-owned rejected list; mirror LK-10 in the degraded NS.Format	RV-LH,LH-01,LH-02,LH-05,LK-11,LH-00	M	yes	LootHistory-A-03	
+LH-18	M3	LootHistory	The loot hot path reuses one gate-config table instead of allocating one per CHAT_MSG_LOOT	RV-LH,LH-17,LH-00	S		LootHistory-R-16	
+LH-19	M3	LootHistory	Measure, then memoize the AH priority-tag parse and bucket accumulateTime's date() calls	RV-LH,LH-00	S		LootHistory-R-06	
+LH-20	M3	LootHistory	Stop re-testing the library's DebugLog formatters; the degraded stub's formatters carry no library format string	RV-LH,LH-00	S		LootHistory-R-07,LootHistory-R-08	
+LH-21	M3	LootHistory	Item seam tests use the 11.1.5+ \|cnIQ4: link shape, keeping one legacy \|cff case	RV-LH,LH-00	S	yes		
+LH-22	M3	LootHistory	Surface-parity cases for the Env, Item, Media, Pool and Lifecycle seams	RV-LH,LH-15,LH-17,LH-00	M		LootHistory-A-11	
+LH-23	M3	LootHistory	Tests send and subscribe bus messages by NS.MSG constant, never by literal	RV-LH,LH-00	S		LootHistory-A-09	
+LH-24	M3	LootHistory	Resolvable citations: disabled-§7 test names become slash-commands-§7 step N, and .pkgmeta cites packaging	RV-LH,LH-00	S		LootHistory-A-10	
+LH-25	M3	LootHistory	Chat lines hand their values to the shared printer's Format instead of pre-formatting	RV-LH,LH-16,LH-00	S		LootHistory-A-21	
+LH-26	M3	LootHistory	Delete the dead global GetAddOnMetadata rung in the Env seam (compat applicability, v2.65.0)	RV-LH,WS-05,LH-00	S			
+LH-27	M3	LootHistory	Annotate every load-bearing TOC position and mark the conventional groups; restate the load-bearing set in ARCHITECTURE.md and module-map.md	RV-LH,LH-00	S		LootHistory-A-04,LootHistory-A-05,LootHistory-A-06,LootHistory-A-07,LootHistory-A-16	
+LH-28	M3	LootHistory	Correct the stale comments and doc citations	RV-LH,LH-01,LH-03,LH-16,LH-27,LH-00	S		LootHistory-R-10,LootHistory-R-11,LootHistory-A-16	
+LH-29	M3	LootHistory	Ratify the deconstruct name-matching with a localization-§4 register row	RV-LH,LH-10,LH-00	S		LootHistory-A-17	
+LH-30	M3	LootHistory	Spill ARCHITECTURE.md under the hub budget: the Settings schema detail to schema.md, the disabled state to disabled-state.md	RV-LH,LH-01,LH-17,LH-28,LH-29,LH-00	M		LootHistory-A-08	
+LH-31	M3	LootHistory	performance.md shrinks to the one-screen exempt shape; the sweep moves to combat-path-sweep.md	RV-LH,LH-01,LH-17,LH-30,LH-00	S		LootHistory-A-13	
+LH-32	M3	LootHistory	README Usage closes on a one-sentence configuration signpost	RV-LH,LH-16,LH-00	S		LootHistory-A-14	
+LH-33	M3	LootHistory	Root CLAUDE.md: the green gate before the provenance line, as documentation-§2 orders	RV-LH,LH-00	S		LootHistory-A-15	
+LH-34	M3	LootHistory	One consolidated re-vendor span bundle for the 25 unrecorded LibKa0s tags	RV-LH,WA-01,LH-00	S		LootHistory-A-01	
+LH-35	M3	LootHistory	Track the Analytics.lua peel as a GitHub issue	RV-LH,LH-00	S		LootHistory-A-20	
+LH-DOCS	M3	LootHistory	Sync docs, regenerate the case inventory and badge, and record a fresh automated-test bundle (perf skip reason 2)	RV-LH,LH-35,LH-00	M	yes	LootHistory-A-12,LootHistory-R-20	
 AT-02	M3	AbsorbTracker	Slash and profile tests stop asserting nil==nil and stop leaking per-unit writes	RV-AT	S		AbsorbTracker-R-04	
 AT-03	M3	AbsorbTracker	/at profile new refuses an existing name; copy and delete check the name before AceDB sees it	RV-AT,AT-02,LK-03	S	yes	AbsorbTracker-R-01,AbsorbTracker-R-02	
 AT-04	M3	AbsorbTracker	/at lock, /at unlock and /at enable\|disable echo the STORED value in the set shape and refresh the panel; the enable comment tells the truth	RV-AT,AT-03	S	yes	AbsorbTracker-R-03,AbsorbTracker-R-05	
@@ -205,85 +209,88 @@ AT-23	M3	AbsorbTracker	The per-unit RegisterUnitEvent frames are the events-fram
 AT-24	M3	AbsorbTracker	ARCHITECTURE.md hub back under documentation-§3's spill rule: Settings Schema to docs/schema.md, Message Bus to docs/message-bus.md, the disabled-state essay to docs/lifecycle.md	RV-AT,AT-22,AT-23	M		AbsorbTracker-A-13	
 AT-25	M3	AbsorbTracker	One consolidated span bundle records the 24 unrecorded LibKa0s re-vendors, v1.18.0 to v1.53.0	WS-01,WA-01,RV-AT	M		AbsorbTracker-A-01	
 AT-DOCS	M3	AbsorbTracker	Close-out: sync-docs, regenerate docs/test-cases.md, record a fresh automated-test bundle, refresh the watch list, and tidy the issue store	RV-AT,AT-01,AT-02,AT-03,AT-04,AT-05,AT-06,AT-07,AT-08,AT-09,AT-10,AT-11,AT-12,AT-13,AT-14,AT-15,AT-16,AT-17,AT-18,AT-19,AT-20,AT-21,AT-22,AT-23,AT-24,AT-25	M		AbsorbTracker-A-20,AbsorbTracker-R-14,AbsorbTracker-A-19,AbsorbTracker-A-27	AbsorbTracker#25,AbsorbTracker#26,AbsorbTracker#10
-PM-01	M3	PanelMaster	Schema degradation stub matches v1.56.0: SetMany, instance-id forwarding on Get/ApplyDefault, row.normalize	RV-PM,LK-22	M			
-PM-02	M3	PanelMaster	Stand-down beats unlock: Canvas:Render strips the overlay while the latch is down, and the conformance suite gains the unlocked routes	RV-PM	S	yes	PanelMaster-R-01,PanelMaster-R-02	
-PM-03	M3	PanelMaster	Combat visibility flips at combat start: thread the REGEN event's truth into the render, Compat.InCombat prefers UnitAffectingCombat, and fix the reversed test	RV-PM	M	yes	PanelMaster-R-03,PanelMaster-R-06	
-PM-04	M3	PanelMaster	/pm recover bounds offsets in the panel's scaled space: one Util.EffectiveScale shared by the renderer and Recover	RV-PM	S	yes	PanelMaster-R-04	
-PM-05	M3	PanelMaster	RenderAll releases every mismatched frame before rendering, so a profile swap of frame names never creates a duplicate named frame	RV-PM,PM-03	S	yes	PanelMaster-R-05	
-PM-06	M3	PanelMaster	The Panels page's per-panel Unlock tick always shows the panel's real state	RV-PM,PM-02	S	yes	PanelMaster-R-08	PanelMaster#47
-PM-07	M3	PanelMaster	One grid maximum: C.MAX_GRID becomes 64, matching the slider	RV-PM	S		PanelMaster-R-07	
-PM-08	M3	PanelMaster	Every event registration goes through Core's SafeRegisterEvent with a rejected-names list the debug dump prints	RV-PM,LK-11	S		PanelMaster-A-01	
-PM-09	M3	PanelMaster	Library-absent composed-row verbs follow WS-02: enable/disable write through Schema writeThrough; lock/unlock print the library-absent line; the stub's DisabledLine is pinned to the library constant	RV-PM,PM-01,LK-23,LK-18,WS-02	M	yes	PanelMaster-R-09	
-PM-10	M3	PanelMaster	Migration stamp per WS-03: defaults declare schemaVersion = 0, the v1->v2 step walks every stored profile, and the docs stop claiming the stamp is undeclared	RV-PM,WS-03	M		PanelMaster-A-05,PanelMaster-A-06,PanelMaster-A-17,PanelMaster-R-09	
-PM-11	M3	PanelMaster	Minimap row CLI path reads in its shown sense: global.minimap.shown, stored at minimap.hide	RV-PM,WS-06	S	yes		
-PM-12	M3	PanelMaster	Wrap the bus message constants in LibKa0s-Bus-1.0's Catalog behind a stub seam, with a parity case (#52)	RV-PM,PM-09	M	yes		PanelMaster#52
-PM-13	M3	PanelMaster	Surface-parity case for the Lifecycle degradation stub	RV-PM,PM-12	S		PanelMaster-A-08	
-PM-14	M3	PanelMaster	TOC: comment the two load-bearing positions (Util after Constants, Slash after Schema) and mark the conventional groups	RV-PM,PM-12	S		PanelMaster-A-02,PanelMaster-A-03	
-PM-15	M3	PanelMaster	Issue store and register re-check: re-decide the architecture-§5 trigger and close the five issues whose premises are resolved	RV-PM	S		PanelMaster-A-07,PanelMaster-A-19	PanelMaster#19,PanelMaster#20,PanelMaster#22,PanelMaster#23,PanelMaster#24,PanelMaster#49
-PM-17	M3	PanelMaster	Restore the two frozen specs' 'catalogued' now that the kit skips docs/superpowers/	RV-PM,LK-07	S		PanelMaster-A-09	
-PM-18	M3	PanelMaster	One consolidated re-vendor span bundle for the 27 tags vendored without a record (v1.16.0 .. v1.54.2)	WS-01,WA-01,RV-PM	S		PanelMaster-A-15	
-PM-19	M3	PanelMaster	Correct the remaining stale comments and doc sentences: printer home, AceConsole embed, and the PLAYER_ENTERING_WORLD rationale	RV-PM,PM-10	S		PanelMaster-R-09	
-PM-20	M3	PanelMaster	Write docs/compat-layer.md for the eight Compat shims and flip the map row	RV-PM,PM-03	S		PanelMaster-A-04	PanelMaster#53
-PM-21	M3	PanelMaster	Restore docs/ARCHITECTURE.md to the hub shape: spill the schema narrative to schema.md, collapse retired-row prose, canonical headings	RV-PM,PM-15,PM-20	M		PanelMaster-A-10	
-PM-22	M3	PanelMaster	Inventory sweep: module-map covers every test and tool file, and every stale count and comment is re-derived	RV-PM,PM-13,PM-21	M		PanelMaster-A-11,PanelMaster-A-12	
-PM-23	M3	PanelMaster	DEPENDENCIES.md cites the kit by function name as well as by re-derived line	RV-PM	S		PanelMaster-A-13	
-PM-24	M3	PanelMaster	README: no angle-bracket placeholders, Usage ends on the configuration pointer, one disabled-state paragraph	RV-PM,PM-11	S		PanelMaster-A-14	
-PM-DOCS	M3	PanelMaster	Sync docs, regenerate the case inventory and badge, and record a fresh automated-test bundle (no version bump)	RV-PM,PM-01,PM-02,PM-03,PM-04,PM-05,PM-06,PM-07,PM-08,PM-09,PM-10,PM-11,PM-12,PM-13,PM-14,PM-15,PM-17,PM-18,PM-19,PM-20,PM-21,PM-22,PM-23,PM-24,LK-09,LK-33	M		PanelMaster-A-18	
-PC-01	M3	PrettyChat	Carry the v1.56.0 stub surfaces: Core SafeRegister* bodies, and the Schema instance stub's SetMany, normalize and instanceId forwarding	RV-PC,LK-11	M			
-PC-02	M3	PrettyChat	Slash v15 / kit 26 contract: the degraded DisabledLine is built from the library's verbatim format, pinned with Kit.assertLibraryConstant; pin CliSet's refusal echo	RV-PC,LK-18	S			
-PC-03	M3	PrettyChat	Migration runner: profile-scoped steps run on every stored profile, and the stamp advances only past a step that succeeded (WS-03)	RV-PC	M		PRETTYCHAT-R-03	
-PC-04	M3	PrettyChat	Drop the dead Loot copies of LOOT_ITEM_CREATED_SELF/_MULTIPLE, with an idempotent v2 profile migration onto Tradeskill; no global registered twice	RV-PC,PC-03	M	yes	PRETTYCHAT-R-02	PrettyChat#4
-PC-05	M3	PrettyChat	Move Schema.ResetRows onto the schema runtime's BulkRun/BulkAdd bracket (issue #18)	RV-PC,PC-01	M	yes		PrettyChat#18
-PC-06	M3	PrettyChat	Page-scoped Defaults buttons per options-ui: Categories resets every category tab, and General draws a Defaults button behind the same reset-all path	RV-PC,PC-05	M	yes	PRETTYCHAT-A-02,PRETTYCHAT-A-21	
-PC-07	M3	PrettyChat	NS.OriginalFormat answers the snapshot's nil instead of PrettyChat's own override when the client lacks the global	RV-PC	S		PRETTYCHAT-R-05	
-PC-08	M3	PrettyChat	Degraded install: /pc test and the Test button fall back to chat when the DebugLog library is absent	RV-PC	S		PRETTYCHAT-R-06	
-PC-09	M3	PrettyChat	Panel New box: parenthesize the gsub so its substitution count never reaches Schema.Set as instanceId	RV-PC,PC-06	S		PRETTYCHAT-R-07	
-PC-10	M3	PrettyChat	Stale user-facing text: the Test tooltip says the console, the resetall row says every setting, and three stale comments go	RV-PC,PC-04	S	yes	PRETTYCHAT-R-04	
-PC-11	M3	PrettyChat	One memoized sorted name list per category (NS.SortedStringNames) replaces four rebuild-and-sort loops	RV-PC,PC-04	S	yes	PRETTYCHAT-R-09	
-PC-12	M3	PrettyChat	The combat watcher registers through Core's SafeRegisterEvents with a rejected-name record, and the event/bus docs cite the v2.65.0 carve-out and threshold	RV-PC,PC-01,LK-11	M	yes	PRETTYCHAT-A-09,PRETTYCHAT-A-08,PRETTYCHAT-A-11	
-PC-13	M3	PrettyChat	Minimap row's CLI path reads in the row's own shown sense: global.minimap.hide -> global.minimap.shown (WS-06)	RV-PC,WS-06	S	yes		
-PC-14	M3	PrettyChat	Declare every default once in defaults/Profile.lua: NS.GlobalDefaults and NS.GeneralDefaults replace the copies in Database, Override and the Master spec	RV-PC,PC-03,PC-13	M		PRETTYCHAT-A-19	
-PC-15	M3	PrettyChat	Delete the dead legacy GetAddOnMetadata rung, and cite compat's applicability condition in the compat-layer row (WS-05)	RV-PC,WS-05	S		PRETTYCHAT-A-18	
-PC-16	M3	PrettyChat	Self-naming file headers on the eleven files that lack one, and an idempotent NS.Schema publish	RV-PC,PC-14	S		PRETTYCHAT-A-20,PRETTYCHAT-A-25	
-PC-17	M3	PrettyChat	Delete the 12 unused globals from .luacheckrc	RV-PC	S		PRETTYCHAT-R-08	
-PC-18	M3	PrettyChat	TOC: at-line comments on the four load-bearing lines, conventional-position notes on # Core/# Modules/# Settings, and the load-order doc aligned	RV-PC	S	yes	PRETTYCHAT-A-03,PRETTYCHAT-A-04,PRETTYCHAT-A-05,PRETTYCHAT-A-06,PRETTYCHAT-A-24	
-PC-19	M3	PrettyChat	Move the authored generator to tools/split_globalstrings.py, repo-root relative, with tools/ packaged out	RV-PC	S		PRETTYCHAT-A-07	
-PC-20	M3	PrettyChat	Doc and comment drift: the General-page description, the Slash minor, the 40/60 comment, the second-reader comment, and the .pkgmeta line citations	RV-PC,PC-18,PC-06	S		PRETTYCHAT-A-10	
-PC-21	M3	PrettyChat	Register hygiene: narrow the toc-file-§1 row to the brand mark, retire the debug-logging-§2 row, and re-point the dangling LIBKA0S-05 citation	RV-PC,PC-04	S		PRETTYCHAT-A-12,PRETTYCHAT-A-13,PRETTYCHAT-A-14	
-PC-22	M3	PrettyChat	Document that PrettyChat rewrites the loot/currency/money chat globals for every addon (handoff H-1), with a smoke step	RV-PC	S	yes	PRETTYCHAT-R-01	
-PC-23	M3	PrettyChat	performance-§12 exemption docs: performance.md shrinks to one screen with the sweep moved to a Tier-3 page, and testing.md names the exemption	RV-PC	M		PRETTYCHAT-A-16,PRETTYCHAT-A-29	
-PC-24	M3	PrettyChat	DEPENDENCIES names Pillow for the logo recipe, and the README 1.5.0 row speaks to players	RV-PC	S		PRETTYCHAT-A-22,PRETTYCHAT-A-23	
-PC-25	M3	PrettyChat	Record the 26 unrecorded vendored tags in one consolidated span bundle, docs/revendor/<date>-v1.18.0-v1.53.0/ (WS-01)	RV-PC,WA-01	S		PRETTYCHAT-A-01	
-PC-DOCS	M3	PrettyChat	Sync docs, regenerate the test inventory and badge, and record a fresh automated-test bundle on kit 26 (no version bump, no tag)	RV-PC,PC-01,PC-02,PC-03,PC-04,PC-05,PC-06,PC-07,PC-08,PC-09,PC-10,PC-11,PC-12,PC-13,PC-14,PC-15,PC-16,PC-17,PC-18,PC-19,PC-20,PC-21,PC-22,PC-23,PC-24,PC-25	M		PRETTYCHAT-A-15,PRETTYCHAT-A-17,PRETTYCHAT-A-27	
-WG-02	M3	WhatGroup	Re-pin settings registration in combat to LibKa0s Options' park-and-replay (LK-25) and settle any other kit-26 dry-run red	RV-WG,LK-03	S	yes		
-WG-03	M3	WhatGroup	Reopening a soft-hidden popup in combat with no capture never calls the secure teleport button's protected Hide (NO_CAPTURE sentinel)	RV-WG	M	yes	WHATGROUP-R-01,WHATGROUP-R-06	
-WG-04	M3	WhatGroup	ApplyFrameAlpha honors the soft-hidden state, so a gate-declined or alpha-only reopen in combat no longer reveals a popup the launcher and Escape cannot close	RV-WG,WG-03	S	yes	WHATGROUP-R-02,WHATGROUP-R-06	
-WG-05	M3	WhatGroup	Replace modules/Frame.lua's two private PLAYER_REGEN_ENABLED frames with a combat-end queue drained by the addon's AceEvent handler	RV-WG,WG-03	M	yes	WHATGROUP-A-08	
-WG-06	M3	WhatGroup	Route the four event registrations through LibKa0s-Core's SafeRegisterEvent, with the rejected names in the [Init] summary	RV-WG,WG-05	M	yes	WHATGROUP-A-07	
-WG-07	M3	WhatGroup	End a capture on the terminal LFG statuses timedout, invitedeclined and failed	RV-WG	S	yes	WHATGROUP-R-12	
-WG-08	M3	WhatGroup	Declare global.schemaVersion = 0 so the stamp persists, and make the migration runner step-driven (savedvariables-§1 at v2.65.0)	RV-WG,WS-03	M	yes	WHATGROUP-R-03	
-WG-09	M3	WhatGroup	The degraded Options stub keeps the host's real RestoreAllDefaults instead of overwriting it with a no-op	RV-WG	S		WHATGROUP-R-04	
-WG-10	M3	WhatGroup	Shrink the local EventRegistry fake to the kit's recording one; the disabled survey reads kind 'callback'	RV-WG,WG-01	S		WHATGROUP-A-03	
-WG-11	M3	WhatGroup	Rename the minimap row's CLI path to global.minimap.shown; storage stays LibDBIcon's minimap.hide (launcher-§3 at v2.65.0)	RV-WG,WS-06	S	yes	WHATGROUP-R-15	
-WG-12	M3	WhatGroup	Adopt LibKa0s-Schema-1.0 (WhatGroup#22); on a library-absent load /wg enable, /wg disable and /wg test print the library-absent line and raise no Lua error	RV-WG,WG-08,WG-09,WG-11,LK-23	L	yes		WhatGroup#22
-WG-13	M3	WhatGroup	One refusal line: the degraded Slash stub builds DisabledLine from the library's format bytes (Kit.assertLibraryConstant), and the launcher uses Launcher minor 2's isEnabled/disabledLine	RV-WG,WG-12	M	yes	WHATGROUP-A-19	
-WG-14	M3	WhatGroup	Surface-parity cases for the Launcher and Lifecycle degradation stubs (testing-§8)	RV-WG,WG-12,WG-13	S		WHATGROUP-A-11	
-WG-15	M3	WhatGroup	Teleport button script handlers defined once at file scope instead of three fresh closures per configure	RV-WG,WG-03,WG-05	S	yes	WHATGROUP-R-16	
-WG-16	M3	WhatGroup	NS.Debug call sites pass a format and raw values instead of building the message before the call (debug-logging-§4)	RV-WG,WG-08,WG-12,WG-15	M	yes	WHATGROUP-R-05	
-WG-17	M3	WhatGroup	settings/Panel.lua: drop the two unread category handles and build the landing logo path from the folder name	RV-WG	S	yes	WHATGROUP-R-13,WHATGROUP-A-21	
-WG-18	M3	WhatGroup	.luacheckrc: drop six unread read_globals and exclude docs/revendor/ as the lint template does	RV-WG	S		WHATGROUP-R-11,WHATGROUP-A-20	
-WG-19	M3	WhatGroup	Delete the unread 'WhatGroup is disabled' locale key and correct the locale header	RV-WG,WG-12,WG-13	S		WHATGROUP-R-10	
-WG-20	M3	WhatGroup	TOC: annotate core\Compat.lua as load-bearing and core\Util.lua as conventional	RV-WG,WG-12	S		WHATGROUP-A-09	
-WG-21	M3	WhatGroup	Comments tell the truth: modules/Frame.lua's stale taint and ticker comments, the wrong file homes, the drifting counts, and the malformed citations	RV-WG,WG-05,WG-13,WG-15	S		WHATGROUP-R-07,WHATGROUP-R-08,WHATGROUP-R-09,WHATGROUP-A-12,WHATGROUP-A-13	
-WG-22	M3	WhatGroup	Register evidence ids resolve, the register gate can fail, and the English-only row cites localization-§1	RV-WG,WG-16,WG-19	M		WHATGROUP-A-05,WHATGROUP-A-06,WHATGROUP-A-17	
-WG-23	M3	WhatGroup	## Message Bus cites the amended architecture-§4 threshold: a shell plus one feature module is below it	RV-WG,WG-05	S		WHATGROUP-A-04	
-WG-24	M3	WhatGroup	compat-layer.md and debug.md document only what is WhatGroup's own	RV-WG,WG-06	M		WHATGROUP-A-14	
-WG-25	M3	WhatGroup	Correct the eight docs and comment sites that drifted from the tree	RV-WG,WG-12	S		WHATGROUP-A-16	
-WG-26	M3	WhatGroup	Re-check settings-panel.md and .pkgmeta against the v2.65.0 wording (Page \| Covers; the .png excluded from the package)	RV-WG	S		WHATGROUP-A-22,WHATGROUP-A-23	
-WG-27	M3	WhatGroup	DEPENDENCIES.md names Python 3 + Pillow for the logo recipe and labels lizard as required at release	RV-WG	S		WHATGROUP-A-18	
-WG-28	M3	WhatGroup	Bring docs/ARCHITECTURE.md under ~400 lines: spill The stand-down and the per-file load order	RV-WG,WG-01,WG-05,WG-12,WG-22,WG-23,WG-24,WG-25	M		WHATGROUP-A-15	
-WG-29	M3	WhatGroup	Write the consolidated re-vendor span bundle for the 25 unrecorded LibKa0s tags (audit-review-history, WS-01 shape)	RV-WG,WA-01	S		WHATGROUP-A-10	
-WG-DOCS	M3	WhatGroup	Sync the docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-WG	M	yes	WHATGROUP-R-14,WHATGROUP-A-13	
+PM-00	M3	PanelMaster	Clear the 1 re-vendor red(s) RV-PM recorded, so every later M3 commit starts green	RV-PM	M			
+PM-01	M3	PanelMaster	Schema degradation stub matches v1.56.0: SetMany, instance-id forwarding on Get/ApplyDefault, row.normalize	RV-PM,LK-22,PM-00	M			
+PM-02	M3	PanelMaster	Stand-down beats unlock: Canvas:Render strips the overlay while the latch is down, and the conformance suite gains the unlocked routes	RV-PM,PM-00	S	yes	PanelMaster-R-01,PanelMaster-R-02	
+PM-03	M3	PanelMaster	Combat visibility flips at combat start: thread the REGEN event's truth into the render, Compat.InCombat prefers UnitAffectingCombat, and fix the reversed test	RV-PM,PM-00	M	yes	PanelMaster-R-03,PanelMaster-R-06	
+PM-04	M3	PanelMaster	/pm recover bounds offsets in the panel's scaled space: one Util.EffectiveScale shared by the renderer and Recover	RV-PM,PM-00	S	yes	PanelMaster-R-04	
+PM-05	M3	PanelMaster	RenderAll releases every mismatched frame before rendering, so a profile swap of frame names never creates a duplicate named frame	RV-PM,PM-03,PM-00	S	yes	PanelMaster-R-05	
+PM-06	M3	PanelMaster	The Panels page's per-panel Unlock tick always shows the panel's real state	RV-PM,PM-02,PM-00	S	yes	PanelMaster-R-08	PanelMaster#47
+PM-07	M3	PanelMaster	One grid maximum: C.MAX_GRID becomes 64, matching the slider	RV-PM,PM-00	S		PanelMaster-R-07	
+PM-08	M3	PanelMaster	Every event registration goes through Core's SafeRegisterEvent with a rejected-names list the debug dump prints	RV-PM,LK-11,PM-00	S		PanelMaster-A-01	
+PM-09	M3	PanelMaster	Library-absent composed-row verbs follow WS-02: enable/disable write through Schema writeThrough; lock/unlock print the library-absent line; the stub's DisabledLine is pinned to the library constant	RV-PM,PM-01,LK-23,LK-18,WS-02,PM-00	M	yes	PanelMaster-R-09	
+PM-10	M3	PanelMaster	Migration stamp per WS-03: defaults declare schemaVersion = 0, the v1->v2 step walks every stored profile, and the docs stop claiming the stamp is undeclared	RV-PM,WS-03,PM-00	M		PanelMaster-A-05,PanelMaster-A-06,PanelMaster-A-17,PanelMaster-R-09	
+PM-11	M3	PanelMaster	Minimap row CLI path reads in its shown sense: global.minimap.shown, stored at minimap.hide	RV-PM,WS-06,PM-00	S	yes		
+PM-12	M3	PanelMaster	Wrap the bus message constants in LibKa0s-Bus-1.0's Catalog behind a stub seam, with a parity case (#52)	RV-PM,PM-09,PM-00	M	yes		PanelMaster#52
+PM-13	M3	PanelMaster	Surface-parity case for the Lifecycle degradation stub	RV-PM,PM-12,PM-00	S		PanelMaster-A-08	
+PM-14	M3	PanelMaster	TOC: comment the two load-bearing positions (Util after Constants, Slash after Schema) and mark the conventional groups	RV-PM,PM-12,PM-00	S		PanelMaster-A-02,PanelMaster-A-03	
+PM-15	M3	PanelMaster	Issue store and register re-check: re-decide the architecture-§5 trigger and close the five issues whose premises are resolved	RV-PM,PM-00	S		PanelMaster-A-07,PanelMaster-A-19	PanelMaster#19,PanelMaster#20,PanelMaster#22,PanelMaster#23,PanelMaster#24,PanelMaster#49
+PM-17	M3	PanelMaster	Restore the two frozen specs' 'catalogued' now that the kit skips docs/superpowers/	RV-PM,LK-07,PM-00	S		PanelMaster-A-09	
+PM-18	M3	PanelMaster	One consolidated re-vendor span bundle for the 27 tags vendored without a record (v1.16.0 .. v1.54.2)	WS-01,WA-01,RV-PM,PM-00	S		PanelMaster-A-15	
+PM-19	M3	PanelMaster	Correct the remaining stale comments and doc sentences: printer home, AceConsole embed, and the PLAYER_ENTERING_WORLD rationale	RV-PM,PM-10,PM-00	S		PanelMaster-R-09	
+PM-20	M3	PanelMaster	Write docs/compat-layer.md for the eight Compat shims and flip the map row	RV-PM,PM-03,PM-00	S		PanelMaster-A-04	PanelMaster#53
+PM-21	M3	PanelMaster	Restore docs/ARCHITECTURE.md to the hub shape: spill the schema narrative to schema.md, collapse retired-row prose, canonical headings	RV-PM,PM-15,PM-20,PM-00	M		PanelMaster-A-10	
+PM-22	M3	PanelMaster	Inventory sweep: module-map covers every test and tool file, and every stale count and comment is re-derived	RV-PM,PM-13,PM-21,PM-00	M		PanelMaster-A-11,PanelMaster-A-12	
+PM-23	M3	PanelMaster	DEPENDENCIES.md cites the kit by function name as well as by re-derived line	RV-PM,PM-00	S		PanelMaster-A-13	
+PM-24	M3	PanelMaster	README: no angle-bracket placeholders, Usage ends on the configuration pointer, one disabled-state paragraph	RV-PM,PM-11,PM-00	S		PanelMaster-A-14	
+PM-DOCS	M3	PanelMaster	Sync docs, regenerate the case inventory and badge, and record a fresh automated-test bundle (no version bump)	RV-PM,PM-01,PM-02,PM-03,PM-04,PM-05,PM-06,PM-07,PM-08,PM-09,PM-10,PM-11,PM-12,PM-13,PM-14,PM-15,PM-17,PM-18,PM-19,PM-20,PM-21,PM-22,PM-23,PM-24,LK-09,LK-33,PM-00	M		PanelMaster-A-18	
+PC-00	M3	PrettyChat	Clear the 3 re-vendor red(s) RV-PC recorded, so every later M3 commit starts green	RV-PC	M			
+PC-01	M3	PrettyChat	Carry the v1.56.0 stub surfaces: Core SafeRegister* bodies, and the Schema instance stub's SetMany, normalize and instanceId forwarding	RV-PC,LK-11,PC-00	M			
+PC-02	M3	PrettyChat	Slash v15 / kit 26 contract: the degraded DisabledLine is built from the library's verbatim format, pinned with Kit.assertLibraryConstant; pin CliSet's refusal echo	RV-PC,LK-18,PC-00	S			
+PC-03	M3	PrettyChat	Migration runner: profile-scoped steps run on every stored profile, and the stamp advances only past a step that succeeded (WS-03)	RV-PC,PC-00	M		PRETTYCHAT-R-03	
+PC-04	M3	PrettyChat	Drop the dead Loot copies of LOOT_ITEM_CREATED_SELF/_MULTIPLE, with an idempotent v2 profile migration onto Tradeskill; no global registered twice	RV-PC,PC-03,PC-00	M	yes	PRETTYCHAT-R-02	PrettyChat#4
+PC-05	M3	PrettyChat	Move Schema.ResetRows onto the schema runtime's BulkRun/BulkAdd bracket (issue #18)	RV-PC,PC-01,PC-00	M	yes		PrettyChat#18
+PC-06	M3	PrettyChat	Page-scoped Defaults buttons per options-ui: Categories resets every category tab, and General draws a Defaults button behind the same reset-all path	RV-PC,PC-05,PC-00	M	yes	PRETTYCHAT-A-02,PRETTYCHAT-A-21	
+PC-07	M3	PrettyChat	NS.OriginalFormat answers the snapshot's nil instead of PrettyChat's own override when the client lacks the global	RV-PC,PC-00	S		PRETTYCHAT-R-05	
+PC-08	M3	PrettyChat	Degraded install: /pc test and the Test button fall back to chat when the DebugLog library is absent	RV-PC,PC-00	S		PRETTYCHAT-R-06	
+PC-09	M3	PrettyChat	Panel New box: parenthesize the gsub so its substitution count never reaches Schema.Set as instanceId	RV-PC,PC-06,PC-00	S		PRETTYCHAT-R-07	
+PC-10	M3	PrettyChat	Stale user-facing text: the Test tooltip says the console, the resetall row says every setting, and three stale comments go	RV-PC,PC-04,PC-00	S	yes	PRETTYCHAT-R-04	
+PC-11	M3	PrettyChat	One memoized sorted name list per category (NS.SortedStringNames) replaces four rebuild-and-sort loops	RV-PC,PC-04,PC-00	S	yes	PRETTYCHAT-R-09	
+PC-12	M3	PrettyChat	The combat watcher registers through Core's SafeRegisterEvents with a rejected-name record, and the event/bus docs cite the v2.65.0 carve-out and threshold	RV-PC,PC-01,LK-11,PC-00	M	yes	PRETTYCHAT-A-09,PRETTYCHAT-A-08,PRETTYCHAT-A-11	
+PC-13	M3	PrettyChat	Minimap row's CLI path reads in the row's own shown sense: global.minimap.hide -> global.minimap.shown (WS-06)	RV-PC,WS-06,PC-00	S	yes		
+PC-14	M3	PrettyChat	Declare every default once in defaults/Profile.lua: NS.GlobalDefaults and NS.GeneralDefaults replace the copies in Database, Override and the Master spec	RV-PC,PC-03,PC-13,PC-00	M		PRETTYCHAT-A-19	
+PC-15	M3	PrettyChat	Delete the dead legacy GetAddOnMetadata rung, and cite compat's applicability condition in the compat-layer row (WS-05)	RV-PC,WS-05,PC-00	S		PRETTYCHAT-A-18	
+PC-16	M3	PrettyChat	Self-naming file headers on the eleven files that lack one, and an idempotent NS.Schema publish	RV-PC,PC-14,PC-00	S		PRETTYCHAT-A-20,PRETTYCHAT-A-25	
+PC-17	M3	PrettyChat	Delete the 12 unused globals from .luacheckrc	RV-PC,PC-00	S		PRETTYCHAT-R-08	
+PC-18	M3	PrettyChat	TOC: at-line comments on the four load-bearing lines, conventional-position notes on # Core/# Modules/# Settings, and the load-order doc aligned	RV-PC,PC-00	S	yes	PRETTYCHAT-A-03,PRETTYCHAT-A-04,PRETTYCHAT-A-05,PRETTYCHAT-A-06,PRETTYCHAT-A-24	
+PC-19	M3	PrettyChat	Move the authored generator to tools/split_globalstrings.py, repo-root relative, with tools/ packaged out	RV-PC,PC-00	S		PRETTYCHAT-A-07	
+PC-20	M3	PrettyChat	Doc and comment drift: the General-page description, the Slash minor, the 40/60 comment, the second-reader comment, and the .pkgmeta line citations	RV-PC,PC-18,PC-06,PC-00	S		PRETTYCHAT-A-10	
+PC-21	M3	PrettyChat	Register hygiene: narrow the toc-file-§1 row to the brand mark, retire the debug-logging-§2 row, and re-point the dangling LIBKA0S-05 citation	RV-PC,PC-04,PC-00	S		PRETTYCHAT-A-12,PRETTYCHAT-A-13,PRETTYCHAT-A-14	
+PC-22	M3	PrettyChat	Document that PrettyChat rewrites the loot/currency/money chat globals for every addon (handoff H-1), with a smoke step	RV-PC,PC-00	S	yes	PRETTYCHAT-R-01	
+PC-23	M3	PrettyChat	performance-§12 exemption docs: performance.md shrinks to one screen with the sweep moved to a Tier-3 page, and testing.md names the exemption	RV-PC,PC-00	M		PRETTYCHAT-A-16,PRETTYCHAT-A-29	
+PC-24	M3	PrettyChat	DEPENDENCIES names Pillow for the logo recipe, and the README 1.5.0 row speaks to players	RV-PC,PC-00	S		PRETTYCHAT-A-22,PRETTYCHAT-A-23	
+PC-25	M3	PrettyChat	Record the 26 unrecorded vendored tags in one consolidated span bundle, docs/revendor/<date>-v1.18.0-v1.53.0/ (WS-01)	RV-PC,WA-01,PC-00	S		PRETTYCHAT-A-01	
+PC-DOCS	M3	PrettyChat	Sync docs, regenerate the test inventory and badge, and record a fresh automated-test bundle on kit 26 (no version bump, no tag)	RV-PC,PC-01,PC-02,PC-03,PC-04,PC-05,PC-06,PC-07,PC-08,PC-09,PC-10,PC-11,PC-12,PC-13,PC-14,PC-15,PC-16,PC-17,PC-18,PC-19,PC-20,PC-21,PC-22,PC-23,PC-24,PC-25,PC-00	M		PRETTYCHAT-A-15,PRETTYCHAT-A-17,PRETTYCHAT-A-27	
+WG-00	M3	WhatGroup	Clear the 3 re-vendor red(s) RV-WG recorded, so every later M3 commit starts green	RV-WG	M			
+WG-02	M3	WhatGroup	Re-pin settings registration in combat to LibKa0s Options' park-and-replay (LK-25) and settle any other kit-26 dry-run red	RV-WG,LK-03,WG-00	S	yes		
+WG-03	M3	WhatGroup	Reopening a soft-hidden popup in combat with no capture never calls the secure teleport button's protected Hide (NO_CAPTURE sentinel)	RV-WG,WG-00	M	yes	WHATGROUP-R-01,WHATGROUP-R-06	
+WG-04	M3	WhatGroup	ApplyFrameAlpha honors the soft-hidden state, so a gate-declined or alpha-only reopen in combat no longer reveals a popup the launcher and Escape cannot close	RV-WG,WG-03,WG-00	S	yes	WHATGROUP-R-02,WHATGROUP-R-06	
+WG-05	M3	WhatGroup	Replace modules/Frame.lua's two private PLAYER_REGEN_ENABLED frames with a combat-end queue drained by the addon's AceEvent handler	RV-WG,WG-03,WG-00	M	yes	WHATGROUP-A-08	
+WG-06	M3	WhatGroup	Route the four event registrations through LibKa0s-Core's SafeRegisterEvent, with the rejected names in the [Init] summary	RV-WG,WG-05,WG-00	M	yes	WHATGROUP-A-07	
+WG-07	M3	WhatGroup	End a capture on the terminal LFG statuses timedout, invitedeclined and failed	RV-WG,WG-00	S	yes	WHATGROUP-R-12	
+WG-08	M3	WhatGroup	Declare global.schemaVersion = 0 so the stamp persists, and make the migration runner step-driven (savedvariables-§1 at v2.65.0)	RV-WG,WS-03,WG-00	M	yes	WHATGROUP-R-03	
+WG-09	M3	WhatGroup	The degraded Options stub keeps the host's real RestoreAllDefaults instead of overwriting it with a no-op	RV-WG,WG-00	S		WHATGROUP-R-04	
+WG-10	M3	WhatGroup	Shrink the local EventRegistry fake to the kit's recording one; the disabled survey reads kind 'callback'	RV-WG,WG-01,WG-00	S		WHATGROUP-A-03	
+WG-11	M3	WhatGroup	Rename the minimap row's CLI path to global.minimap.shown; storage stays LibDBIcon's minimap.hide (launcher-§3 at v2.65.0)	RV-WG,WS-06,WG-00	S	yes	WHATGROUP-R-15	
+WG-12	M3	WhatGroup	Adopt LibKa0s-Schema-1.0 (WhatGroup#22); on a library-absent load /wg enable, /wg disable and /wg test print the library-absent line and raise no Lua error	RV-WG,WG-08,WG-09,WG-11,LK-23,WG-00	L	yes		WhatGroup#22
+WG-13	M3	WhatGroup	One refusal line: the degraded Slash stub builds DisabledLine from the library's format bytes (Kit.assertLibraryConstant), and the launcher uses Launcher minor 2's isEnabled/disabledLine	RV-WG,WG-12,WG-00	M	yes	WHATGROUP-A-19	
+WG-14	M3	WhatGroup	Surface-parity cases for the Launcher and Lifecycle degradation stubs (testing-§8)	RV-WG,WG-12,WG-13,WG-00	S		WHATGROUP-A-11	
+WG-15	M3	WhatGroup	Teleport button script handlers defined once at file scope instead of three fresh closures per configure	RV-WG,WG-03,WG-05,WG-00	S	yes	WHATGROUP-R-16	
+WG-16	M3	WhatGroup	NS.Debug call sites pass a format and raw values instead of building the message before the call (debug-logging-§4)	RV-WG,WG-08,WG-12,WG-15,WG-00	M	yes	WHATGROUP-R-05	
+WG-17	M3	WhatGroup	settings/Panel.lua: drop the two unread category handles and build the landing logo path from the folder name	RV-WG,WG-00	S	yes	WHATGROUP-R-13,WHATGROUP-A-21	
+WG-18	M3	WhatGroup	.luacheckrc: drop six unread read_globals and exclude docs/revendor/ as the lint template does	RV-WG,WG-00	S		WHATGROUP-R-11,WHATGROUP-A-20	
+WG-19	M3	WhatGroup	Delete the unread 'WhatGroup is disabled' locale key and correct the locale header	RV-WG,WG-12,WG-13,WG-00	S		WHATGROUP-R-10	
+WG-20	M3	WhatGroup	TOC: annotate core\Compat.lua as load-bearing and core\Util.lua as conventional	RV-WG,WG-12,WG-00	S		WHATGROUP-A-09	
+WG-21	M3	WhatGroup	Comments tell the truth: modules/Frame.lua's stale taint and ticker comments, the wrong file homes, the drifting counts, and the malformed citations	RV-WG,WG-05,WG-13,WG-15,WG-00	S		WHATGROUP-R-07,WHATGROUP-R-08,WHATGROUP-R-09,WHATGROUP-A-12,WHATGROUP-A-13	
+WG-22	M3	WhatGroup	Register evidence ids resolve, the register gate can fail, and the English-only row cites localization-§1	RV-WG,WG-16,WG-19,WG-00	M		WHATGROUP-A-05,WHATGROUP-A-06,WHATGROUP-A-17	
+WG-23	M3	WhatGroup	## Message Bus cites the amended architecture-§4 threshold: a shell plus one feature module is below it	RV-WG,WG-05,WG-00	S		WHATGROUP-A-04	
+WG-24	M3	WhatGroup	compat-layer.md and debug.md document only what is WhatGroup's own	RV-WG,WG-06,WG-00	M		WHATGROUP-A-14	
+WG-25	M3	WhatGroup	Correct the eight docs and comment sites that drifted from the tree	RV-WG,WG-12,WG-00	S		WHATGROUP-A-16	
+WG-26	M3	WhatGroup	Re-check settings-panel.md and .pkgmeta against the v2.65.0 wording (Page \| Covers; the .png excluded from the package)	RV-WG,WG-00	S		WHATGROUP-A-22,WHATGROUP-A-23	
+WG-27	M3	WhatGroup	DEPENDENCIES.md names Python 3 + Pillow for the logo recipe and labels lizard as required at release	RV-WG,WG-00	S		WHATGROUP-A-18	
+WG-28	M3	WhatGroup	Bring docs/ARCHITECTURE.md under ~400 lines: spill The stand-down and the per-file load order	RV-WG,WG-01,WG-05,WG-12,WG-22,WG-23,WG-24,WG-25,WG-00	M		WHATGROUP-A-15	
+WG-29	M3	WhatGroup	Write the consolidated re-vendor span bundle for the 25 unrecorded LibKa0s tags (audit-review-history, WS-01 shape)	RV-WG,WA-01,WG-00	S		WHATGROUP-A-10	
+WG-DOCS	M3	WhatGroup	Sync the docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-WG,WG-00	M	yes	WHATGROUP-R-14,WHATGROUP-A-13	
 CM-02	M3	ConsumableMaster	The local AceDB fake strips defaults on a profile switch and raises on bad Copy/Delete, as AceDB-3.0 and kit 26 do	RV-CM,LK-03	S		ConsumableMaster-R-06	
 CM-03	M3	ConsumableMaster	The color validator stores a copy, so /cm reset <color> can no longer alias and empty the shipped default	RV-CM,CM-02	S	yes	ConsumableMaster-R-02	
 CM-04	M3	ConsumableMaster	FlushPending replays the queued body through commitMacro, so a combat-deferred weapon-enchant macro keeps /use 16 and /use 17	RV-CM	S	yes	ConsumableMaster-R-01	
@@ -374,14 +381,14 @@ KC-25	M3	KickCD	Topic docs: a Tier 2 docs/debug.md, compat-layer.md stops restat
 KC-26	M3	KickCD	docs/ARCHITECTURE.md: re-derived inventories, symbol citations, the RESULTS.md wording, and back under about 400 lines	RV-KC,KC-25	M		KICKCD-A-11,KICKCD-A-22,KICKCD-A-25	
 KC-28	M3	KickCD	Issue-store hygiene: close #15, retitle #9, annotate #12, and file a peel issue per band file	RV-KC,KC-13	S		KICKCD-A-12,KICKCD-A-13,KICKCD-A-24,KICKCD-A-26	KickCD#15,KickCD#9,KickCD#12
 KC-DOCS	M3	KickCD	Sync the docs, regenerate docs/test-cases.md, and record a fresh automated-test bundle (no version bump)	RV-KC,KC-28	M		KICKCD-A-23,KICKCD-A-12,KICKCD-R-10	
-BL-25	M4	BankLedger	Revendor the standards reference to v2.65.0 (/wow-addon:revendor-standards)	RV-BL,BL-24,WS-08,BL-DOCS	S			
-PF-25	M4	PartyFrameEnhanced	/wow-addon:revendor-standards to v2.65.0	RV-PF,PF-23,WS-08,PF-DOCS	S			
-MM-32	M4	MultiMeters	Re-vendor the standard reference to v2.65.0	RV-MM,MM-31,WS-08,MM-DOCS	S			
-LH-36	M4	LootHistory	Re-vendor the standards reference to v2.65.0	RV-LH,LH-12,LH-13,LH-17,LH-30,LH-31,WS-08,LH-DOCS	S			
+BL-25	M4	BankLedger	Revendor the standards reference to v2.65.0 (/wow-addon:revendor-standards)	RV-BL,BL-24,WS-08,BL-DOCS,BL-00	S			
+PF-25	M4	PartyFrameEnhanced	/wow-addon:revendor-standards to v2.65.0	RV-PF,PF-23,WS-08,PF-DOCS,PF-00	S			
+MM-32	M4	MultiMeters	Re-vendor the standard reference to v2.65.0	RV-MM,MM-31,WS-08,MM-DOCS,MM-00	S			
+LH-36	M4	LootHistory	Re-vendor the standards reference to v2.65.0	RV-LH,LH-12,LH-13,LH-17,LH-30,LH-31,WS-08,LH-DOCS,LH-00	S			
 AT-26	M4	AbsorbTracker	Re-vendor the standards reference to v2.65.0	RV-AT,WS-08,AT-DOCS	S			
-PM-16	M4	PanelMaster	Re-vendor the standards reference to v2.65.0	RV-PM,WS-08,PM-11,PM-DOCS	S			
-PC-26	M4	PrettyChat	Re-vendor the standard reference to v2.65.0 (/wow-addon:revendor-standards)	RV-PC,PC-25,WS-08,PC-DOCS	S			
-WG-30	M4	WhatGroup	Revendor the standards reference to v2.65.0	RV-WG,WG-28,WS-08,WG-DOCS	S			
+PM-16	M4	PanelMaster	Re-vendor the standards reference to v2.65.0	RV-PM,WS-08,PM-11,PM-DOCS,PM-00	S			
+PC-26	M4	PrettyChat	Re-vendor the standard reference to v2.65.0 (/wow-addon:revendor-standards)	RV-PC,PC-25,WS-08,PC-DOCS,PC-00	S			
+WG-30	M4	WhatGroup	Revendor the standards reference to v2.65.0	RV-WG,WG-28,WS-08,WG-DOCS,WG-00	S			
 CM-31	M4	ConsumableMaster	/wow-addon:revendor-standards to v2.65.0	RV-CM,WS-08,CM-27,CM-DOCS	S			
 AM-35	M4	AuraMaster	Roll the standards reference to v2.65.0 with /wow-addon:revendor-standards	RV-AM,AM-34,WS-08,AM-DOCS	S			
 KC-27	M4	KickCD	Re-vendor the standards reference to Ka0s WoW Addon Standard v2.65.0	RV-KC,KC-26,WS-08,KC-DOCS	S			

@@ -1259,6 +1259,22 @@
    "milestone": "M2"
   },
   {
+   "id": "BL-00",
+   "repo": "BankLedger",
+   "milestone": "M3",
+   "title": "Clear the 1 re-vendor red(s) RV-BL recorded, so every later M3 commit starts green",
+   "change": "RV-BL copied LibKa0s v1.56.0 and recorded 1 failing test(s) in its commit body (`git log --grep=\"^RV-BL\" --format=%B`). Make every one of them green by adapting THIS addon (its stubs, fixtures, test drivers, adoption pins, or code) to the v1.56.0 contract. Never edit libs/ or tests/_kit/, and never weaken an assertion: re-pin it to the new library behavior the plan intends (03_SPEC.md, 02_UPSTREAM_CHANGES.md consumer follow-ups). Where a planned BL-nn item already names the fix (e.g. a stub gaining SetMany, a re-pin item such as WG-02 or PF-05), do exactly that part of that item here, say so in the commit body, and leave the rest of it to that item. The later item will then find that part done, record it, and carry on.",
+   "tests": "the recorded reds are the red tests; they must go green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua -> 0 failed; lizard CCN<=15; line cap",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "RV-BL"
+   ],
+   "effort": "M"
+  },
+  {
    "id": "BL-03",
    "repo": "BankLedger",
    "title": "Stand-down drops the capture context (L:DropContext): openContext, lastSnapshot, _settleSince and the session end with the latch",
@@ -1272,7 +1288,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-01"
+    "BL-01",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1292,7 +1309,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-03"
+    "BL-03",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1312,7 +1330,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-04"
+    "BL-04",
+    "BL-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1332,7 +1351,8 @@
    "depends_on": [
     "RV-BL",
     "BL-03",
-    "LK-11"
+    "LK-11",
+    "BL-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1351,7 +1371,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-06"
+    "BL-06",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1367,7 +1388,8 @@
    "finding_ids": [],
    "issue_refs": [],
    "depends_on": [
-    "RV-BL"
+    "RV-BL",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1383,7 +1405,8 @@
    "finding_ids": [],
    "issue_refs": [],
    "depends_on": [
-    "RV-BL"
+    "RV-BL",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1400,7 +1423,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-02"
+    "BL-02",
+    "BL-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1418,7 +1442,8 @@
    "depends_on": [
     "RV-BL",
     "BL-05",
-    "WS-03"
+    "WS-03",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1436,7 +1461,8 @@
    "depends_on": [
     "RV-BL",
     "BL-10",
-    "WS-06"
+    "WS-06",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1454,7 +1480,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-BL"
+    "RV-BL",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1474,7 +1501,8 @@
    "depends_on": [
     "RV-BL",
     "BL-10",
-    "BL-12"
+    "BL-12",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1493,7 +1521,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-04"
+    "BL-04",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1512,7 +1541,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-BL"
+    "RV-BL",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1531,7 +1561,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-05"
+    "BL-05",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1550,7 +1581,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "BL-08"
+    "BL-08",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1571,7 +1603,8 @@
     "RV-BL",
     "BL-05",
     "BL-06",
-    "BL-12"
+    "BL-12",
+    "BL-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1595,7 +1628,8 @@
    "depends_on": [
     "RV-BL",
     "BL-19",
-    "BL-13"
+    "BL-13",
+    "BL-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1615,7 +1649,8 @@
    "depends_on": [
     "RV-BL",
     "BL-06",
-    "BL-19"
+    "BL-19",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1633,7 +1668,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-BL"
+    "RV-BL",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1652,7 +1688,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "WA-01"
+    "WA-01",
+    "BL-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1676,7 +1713,8 @@
    ],
    "depends_on": [
     "RV-BL",
-    "BL-20"
+    "BL-20",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1697,10 +1735,27 @@
    "issue_refs": [],
    "depends_on": [
     "RV-BL",
-    "LK-12"
+    "LK-12",
+    "BL-00"
    ],
    "effort": "M",
    "milestone": "M3"
+  },
+  {
+   "id": "PF-00",
+   "repo": "PartyFrameEnhanced",
+   "milestone": "M3",
+   "title": "Clear the 9 re-vendor red(s) RV-PF recorded, so every later M3 commit starts green",
+   "change": "RV-PF copied LibKa0s v1.56.0 and recorded 9 failing test(s) in its commit body (`git log --grep=\"^RV-PF\" --format=%B`). Make every one of them green by adapting THIS addon (its stubs, fixtures, test drivers, adoption pins, or code) to the v1.56.0 contract. Never edit libs/ or tests/_kit/, and never weaken an assertion: re-pin it to the new library behavior the plan intends (03_SPEC.md, 02_UPSTREAM_CHANGES.md consumer follow-ups). Where a planned PF-nn item already names the fix (e.g. a stub gaining SetMany, a re-pin item such as WG-02 or PF-05), do exactly that part of that item here, say so in the commit body, and leave the rest of it to that item. The later item will then find that part done, record it, and carry on.",
+   "tests": "the recorded reds are the red tests; they must go green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua -> 0 failed; lizard CCN<=15; line cap",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "RV-PF"
+   ],
+   "effort": "M"
   },
   {
    "id": "PF-01",
@@ -1717,7 +1772,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "LK-03"
+    "LK-03",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1737,7 +1793,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-01"
+    "PF-01",
+    "PF-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1755,7 +1812,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PF"
+    "RV-PF",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1774,7 +1832,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-03"
+    "PF-03",
+    "PF-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1795,7 +1854,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "LK-04"
+    "LK-04",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1815,7 +1875,8 @@
    "depends_on": [
     "RV-PF",
     "PF-04",
-    "LK-05"
+    "LK-05",
+    "PF-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1833,7 +1894,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PF"
+    "RV-PF",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1851,7 +1913,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PF"
+    "RV-PF",
+    "PF-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1870,7 +1933,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-05"
+    "PF-05",
+    "PF-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1889,7 +1953,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-09"
+    "PF-09",
+    "PF-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -1910,7 +1975,8 @@
     "RV-PF",
     "PF-07",
     "PF-02",
-    "LK-23"
+    "LK-23",
+    "PF-00"
    ],
    "effort": "L",
    "milestone": "M3"
@@ -1930,7 +1996,8 @@
    "depends_on": [
     "RV-PF",
     "PF-11",
-    "PF-07"
+    "PF-07",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1948,7 +2015,8 @@
    "depends_on": [
     "RV-PF",
     "PF-11",
-    "WS-06"
+    "WS-06",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1968,7 +2036,8 @@
    "depends_on": [
     "RV-PF",
     "PF-04",
-    "PF-10"
+    "PF-10",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -1989,7 +2058,8 @@
    "depends_on": [
     "RV-PF",
     "PF-07",
-    "PF-12"
+    "PF-12",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2008,7 +2078,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-06"
+    "PF-06",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2027,7 +2098,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PF"
+    "RV-PF",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2046,7 +2118,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-10"
+    "PF-10",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2068,7 +2141,8 @@
     "PF-18",
     "PF-11",
     "PF-10",
-    "PF-09"
+    "PF-09",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2086,7 +2160,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PF"
+    "RV-PF",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2107,7 +2182,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-15"
+    "PF-15",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2128,7 +2204,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "PF-10"
+    "PF-10",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2150,7 +2227,8 @@
     "RV-PF",
     "PF-09",
     "PF-10",
-    "PF-22"
+    "PF-22",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2167,7 +2245,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PF",
-    "WA-01"
+    "WA-01",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2210,10 +2289,27 @@
     "PF-21",
     "PF-22",
     "PF-23",
-    "PF-24"
+    "PF-24",
+    "PF-00"
    ],
    "effort": "M",
    "milestone": "M3"
+  },
+  {
+   "id": "MM-00",
+   "repo": "MultiMeters",
+   "milestone": "M3",
+   "title": "Clear the 7 re-vendor red(s) RV-MM recorded, so every later M3 commit starts green",
+   "change": "RV-MM copied LibKa0s v1.56.0 and recorded 7 failing test(s) in its commit body (`git log --grep=\"^RV-MM\" --format=%B`). Make every one of them green by adapting THIS addon (its stubs, fixtures, test drivers, adoption pins, or code) to the v1.56.0 contract. Never edit libs/ or tests/_kit/, and never weaken an assertion: re-pin it to the new library behavior the plan intends (03_SPEC.md, 02_UPSTREAM_CHANGES.md consumer follow-ups). Where a planned MM-nn item already names the fix (e.g. a stub gaining SetMany, a re-pin item such as WG-02 or PF-05), do exactly that part of that item here, say so in the commit body, and leave the rest of it to that item. The later item will then find that part done, record it, and carry on.",
+   "tests": "the recorded reds are the red tests; they must go green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua -> 0 failed; lizard CCN<=15; line cap",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "RV-MM"
+   ],
+   "effort": "M"
   },
   {
    "id": "MM-01",
@@ -2230,7 +2326,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2251,7 +2348,8 @@
    "depends_on": [
     "RV-MM",
     "MM-01",
-    "LK-16"
+    "LK-16",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2269,7 +2367,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2287,7 +2386,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2305,7 +2405,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2324,7 +2425,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "MM-01"
+    "MM-01",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2342,7 +2444,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2360,7 +2463,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2376,7 +2480,8 @@
    "finding_ids": [],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2394,7 +2499,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2412,7 +2518,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2429,7 +2536,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "WS-03"
+    "WS-03",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2449,7 +2557,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "MM-12"
+    "MM-12",
+    "MM-00"
    ],
    "effort": "L",
    "milestone": "M3"
@@ -2470,7 +2579,8 @@
     "RV-MM",
     "MM-09",
     "MM-13",
-    "LK-22"
+    "LK-22",
+    "MM-00"
    ],
    "effort": "L",
    "milestone": "M3"
@@ -2487,7 +2597,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "MM-14"
+    "MM-14",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2506,7 +2617,8 @@
     "RV-MM",
     "MM-14",
     "WS-06",
-    "MM-12"
+    "MM-12",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2522,7 +2634,8 @@
    "finding_ids": [],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2539,7 +2652,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "LK-21"
+    "LK-21",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2557,7 +2671,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2576,7 +2691,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "MM-03"
+    "MM-03",
+    "MM-00"
    ],
    "effort": "L",
    "milestone": "M3"
@@ -2594,7 +2710,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2614,7 +2731,8 @@
    "depends_on": [
     "RV-MM",
     "MM-15",
-    "MM-09"
+    "MM-09",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2632,7 +2750,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2650,7 +2769,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2669,7 +2789,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "MM-02"
+    "MM-02",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2688,7 +2809,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "MM-25"
+    "MM-25",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2709,7 +2831,8 @@
     "RV-MM",
     "MM-15",
     "MM-12",
-    "MM-26"
+    "MM-26",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2729,7 +2852,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "MM-27"
+    "MM-27",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2750,7 +2874,8 @@
    "depends_on": [
     "RV-MM",
     "MM-28",
-    "MM-19"
+    "MM-19",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2769,7 +2894,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-MM",
-    "WA-01"
+    "WA-01",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2793,7 +2919,8 @@
    ],
    "depends_on": [
     "RV-MM",
-    "MM-13"
+    "MM-13",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2811,10 +2938,27 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-MM"
+    "RV-MM",
+    "MM-00"
    ],
    "effort": "M",
    "milestone": "M3"
+  },
+  {
+   "id": "LH-00",
+   "repo": "LootHistory",
+   "milestone": "M3",
+   "title": "Clear the 2 re-vendor red(s) RV-LH recorded, so every later M3 commit starts green",
+   "change": "RV-LH copied LibKa0s v1.56.0 and recorded 2 failing test(s) in its commit body (`git log --grep=\"^RV-LH\" --format=%B`). Make every one of them green by adapting THIS addon (its stubs, fixtures, test drivers, adoption pins, or code) to the v1.56.0 contract. Never edit libs/ or tests/_kit/, and never weaken an assertion: re-pin it to the new library behavior the plan intends (03_SPEC.md, 02_UPSTREAM_CHANGES.md consumer follow-ups). Where a planned LH-nn item already names the fix (e.g. a stub gaining SetMany, a re-pin item such as WG-02 or PF-05), do exactly that part of that item here, say so in the commit body, and leave the rest of it to that item. The later item will then find that part done, record it, and carry on.",
+   "tests": "the recorded reds are the red tests; they must go green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua -> 0 failed; lizard CCN<=15; line cap",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "RV-LH"
+   ],
+   "effort": "M"
   },
   {
    "id": "LH-01",
@@ -2829,7 +2973,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2848,7 +2993,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-01"
+    "LH-01",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2866,7 +3012,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2884,7 +3031,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -2902,7 +3050,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2920,7 +3069,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2938,7 +3088,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2957,7 +3108,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-04"
+    "LH-04",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2975,7 +3127,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -2994,7 +3147,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3012,7 +3166,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3031,7 +3186,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "WS-03"
+    "WS-03",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3049,7 +3205,8 @@
    "depends_on": [
     "RV-LH",
     "LH-12",
-    "WS-06"
+    "WS-06",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -3065,7 +3222,8 @@
    "finding_ids": [],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3083,7 +3241,8 @@
    "depends_on": [
     "RV-LH",
     "LH-13",
-    "LK-22"
+    "LK-22",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -3103,7 +3262,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-15"
+    "LH-15",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -3125,7 +3285,8 @@
     "LH-01",
     "LH-02",
     "LH-05",
-    "LK-11"
+    "LK-11",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -3144,7 +3305,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-17"
+    "LH-17",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3162,7 +3324,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3181,7 +3344,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3197,7 +3361,8 @@
    "finding_ids": [],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3217,7 +3382,8 @@
    "depends_on": [
     "RV-LH",
     "LH-15",
-    "LH-17"
+    "LH-17",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -3235,7 +3401,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3253,7 +3420,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3272,7 +3440,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-16"
+    "LH-16",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3289,7 +3458,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "WS-05"
+    "WS-05",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3311,7 +3481,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3335,7 +3506,8 @@
     "LH-01",
     "LH-03",
     "LH-16",
-    "LH-27"
+    "LH-27",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3354,7 +3526,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-10"
+    "LH-10",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3376,7 +3549,8 @@
     "LH-01",
     "LH-17",
     "LH-28",
-    "LH-29"
+    "LH-29",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -3397,7 +3571,8 @@
     "RV-LH",
     "LH-01",
     "LH-17",
-    "LH-30"
+    "LH-30",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3416,7 +3591,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-16"
+    "LH-16",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3434,7 +3610,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3453,7 +3630,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "WA-01"
+    "WA-01",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3471,7 +3649,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-LH"
+    "RV-LH",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -3491,7 +3670,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-LH",
-    "LH-35"
+    "LH-35",
+    "LH-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4017,6 +4197,22 @@
    "milestone": "M3"
   },
   {
+   "id": "PM-00",
+   "repo": "PanelMaster",
+   "milestone": "M3",
+   "title": "Clear the 1 re-vendor red(s) RV-PM recorded, so every later M3 commit starts green",
+   "change": "RV-PM copied LibKa0s v1.56.0 and recorded 1 failing test(s) in its commit body (`git log --grep=\"^RV-PM\" --format=%B`). Make every one of them green by adapting THIS addon (its stubs, fixtures, test drivers, adoption pins, or code) to the v1.56.0 contract. Never edit libs/ or tests/_kit/, and never weaken an assertion: re-pin it to the new library behavior the plan intends (03_SPEC.md, 02_UPSTREAM_CHANGES.md consumer follow-ups). Where a planned PM-nn item already names the fix (e.g. a stub gaining SetMany, a re-pin item such as WG-02 or PF-05), do exactly that part of that item here, say so in the commit body, and leave the rest of it to that item. The later item will then find that part done, record it, and carry on.",
+   "tests": "the recorded reds are the red tests; they must go green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua -> 0 failed; lizard CCN<=15; line cap",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "RV-PM"
+   ],
+   "effort": "M"
+  },
+  {
    "id": "PM-01",
    "repo": "PanelMaster",
    "title": "Schema degradation stub matches v1.56.0: SetMany, instance-id forwarding on Get/ApplyDefault, row.normalize",
@@ -4028,7 +4224,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "LK-22"
+    "LK-22",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4047,7 +4244,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PM"
+    "RV-PM",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4066,7 +4264,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PM"
+    "RV-PM",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4084,7 +4283,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PM"
+    "RV-PM",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4103,7 +4303,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "PM-03"
+    "PM-03",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4124,7 +4325,8 @@
    ],
    "depends_on": [
     "RV-PM",
-    "PM-02"
+    "PM-02",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4142,7 +4344,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PM"
+    "RV-PM",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4161,7 +4364,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "LK-11"
+    "LK-11",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4183,7 +4387,8 @@
     "PM-01",
     "LK-23",
     "LK-18",
-    "WS-02"
+    "WS-02",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4205,7 +4410,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "WS-03"
+    "WS-03",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4222,7 +4428,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "WS-06"
+    "WS-06",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4241,7 +4448,8 @@
    ],
    "depends_on": [
     "RV-PM",
-    "PM-09"
+    "PM-09",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4260,7 +4468,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "PM-12"
+    "PM-12",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4280,7 +4489,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "PM-12"
+    "PM-12",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4306,7 +4516,8 @@
     "PanelMaster#49"
    ],
    "depends_on": [
-    "RV-PM"
+    "RV-PM",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4325,7 +4536,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "LK-07"
+    "LK-07",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4345,7 +4557,8 @@
    "depends_on": [
     "WS-01",
     "WA-01",
-    "RV-PM"
+    "RV-PM",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4364,7 +4577,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "PM-10"
+    "PM-10",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4385,7 +4599,8 @@
    ],
    "depends_on": [
     "RV-PM",
-    "PM-03"
+    "PM-03",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4405,7 +4620,8 @@
    "depends_on": [
     "RV-PM",
     "PM-15",
-    "PM-20"
+    "PM-20",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4426,7 +4642,8 @@
    "depends_on": [
     "RV-PM",
     "PM-13",
-    "PM-21"
+    "PM-21",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4444,7 +4661,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PM"
+    "RV-PM",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4463,7 +4681,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PM",
-    "PM-11"
+    "PM-11",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4506,10 +4725,27 @@
     "PM-23",
     "PM-24",
     "LK-09",
-    "LK-33"
+    "LK-33",
+    "PM-00"
    ],
    "effort": "M",
    "milestone": "M3"
+  },
+  {
+   "id": "PC-00",
+   "repo": "PrettyChat",
+   "milestone": "M3",
+   "title": "Clear the 3 re-vendor red(s) RV-PC recorded, so every later M3 commit starts green",
+   "change": "RV-PC copied LibKa0s v1.56.0 and recorded 3 failing test(s) in its commit body (`git log --grep=\"^RV-PC\" --format=%B`). Make every one of them green by adapting THIS addon (its stubs, fixtures, test drivers, adoption pins, or code) to the v1.56.0 contract. Never edit libs/ or tests/_kit/, and never weaken an assertion: re-pin it to the new library behavior the plan intends (03_SPEC.md, 02_UPSTREAM_CHANGES.md consumer follow-ups). Where a planned PC-nn item already names the fix (e.g. a stub gaining SetMany, a re-pin item such as WG-02 or PF-05), do exactly that part of that item here, say so in the commit body, and leave the rest of it to that item. The later item will then find that part done, record it, and carry on.",
+   "tests": "the recorded reds are the red tests; they must go green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua -> 0 failed; lizard CCN<=15; line cap",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "RV-PC"
+   ],
+   "effort": "M"
   },
   {
    "id": "PC-01",
@@ -4523,7 +4759,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "LK-11"
+    "LK-11",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4540,7 +4777,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "LK-18"
+    "LK-18",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4558,7 +4796,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4579,7 +4818,8 @@
    ],
    "depends_on": [
     "RV-PC",
-    "PC-03"
+    "PC-03",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4598,7 +4838,8 @@
    ],
    "depends_on": [
     "RV-PC",
-    "PC-01"
+    "PC-01",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4618,7 +4859,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "PC-05"
+    "PC-05",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4636,7 +4878,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4654,7 +4897,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4673,7 +4917,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "PC-06"
+    "PC-06",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4692,7 +4937,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "PC-04"
+    "PC-04",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4711,7 +4957,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "PC-04"
+    "PC-04",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4733,7 +4980,8 @@
    "depends_on": [
     "RV-PC",
     "PC-01",
-    "LK-11"
+    "LK-11",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4750,7 +4998,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "WS-06"
+    "WS-06",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4770,7 +5019,8 @@
    "depends_on": [
     "RV-PC",
     "PC-03",
-    "PC-13"
+    "PC-13",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4789,7 +5039,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "WS-05"
+    "WS-05",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4809,7 +5060,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "PC-14"
+    "PC-14",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4827,7 +5079,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4849,7 +5102,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4867,7 +5121,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4887,7 +5142,8 @@
    "depends_on": [
     "RV-PC",
     "PC-18",
-    "PC-06"
+    "PC-06",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4908,7 +5164,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "PC-04"
+    "PC-04",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4926,7 +5183,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4945,7 +5203,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -4964,7 +5223,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-PC"
+    "RV-PC",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -4983,7 +5243,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-PC",
-    "WA-01"
+    "WA-01",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5028,10 +5289,27 @@
     "PC-22",
     "PC-23",
     "PC-24",
-    "PC-25"
+    "PC-25",
+    "PC-00"
    ],
    "effort": "M",
    "milestone": "M3"
+  },
+  {
+   "id": "WG-00",
+   "repo": "WhatGroup",
+   "milestone": "M3",
+   "title": "Clear the 3 re-vendor red(s) RV-WG recorded, so every later M3 commit starts green",
+   "change": "RV-WG copied LibKa0s v1.56.0 and recorded 3 failing test(s) in its commit body (`git log --grep=\"^RV-WG\" --format=%B`). Make every one of them green by adapting THIS addon (its stubs, fixtures, test drivers, adoption pins, or code) to the v1.56.0 contract. Never edit libs/ or tests/_kit/, and never weaken an assertion: re-pin it to the new library behavior the plan intends (03_SPEC.md, 02_UPSTREAM_CHANGES.md consumer follow-ups). Where a planned WG-nn item already names the fix (e.g. a stub gaining SetMany, a re-pin item such as WG-02 or PF-05), do exactly that part of that item here, say so in the commit body, and leave the rest of it to that item. The later item will then find that part done, record it, and carry on.",
+   "tests": "the recorded reds are the red tests; they must go green",
+   "verify": "/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .; /home/tushar/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua -> 0 failed; lizard CCN<=15; line cap",
+   "smoke": "",
+   "finding_ids": [],
+   "issue_refs": [],
+   "depends_on": [
+    "RV-WG"
+   ],
+   "effort": "M"
   },
   {
    "id": "WG-02",
@@ -5045,7 +5323,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "LK-03"
+    "LK-03",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5064,7 +5343,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5084,7 +5364,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-03"
+    "WG-03",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5103,7 +5384,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-03"
+    "WG-03",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5122,7 +5404,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-05"
+    "WG-05",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5140,7 +5423,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5159,7 +5443,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WS-03"
+    "WS-03",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5177,7 +5462,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5196,7 +5482,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-01"
+    "WG-01",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5215,7 +5502,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WS-06"
+    "WS-06",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5237,7 +5525,8 @@
     "WG-08",
     "WG-09",
     "WG-11",
-    "LK-23"
+    "LK-23",
+    "WG-00"
    ],
    "effort": "L",
    "milestone": "M3"
@@ -5256,7 +5545,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-12"
+    "WG-12",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5276,7 +5566,8 @@
    "depends_on": [
     "RV-WG",
     "WG-12",
-    "WG-13"
+    "WG-13",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5296,7 +5587,8 @@
    "depends_on": [
     "RV-WG",
     "WG-03",
-    "WG-05"
+    "WG-05",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5317,7 +5609,8 @@
     "RV-WG",
     "WG-08",
     "WG-12",
-    "WG-15"
+    "WG-15",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5336,7 +5629,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5355,7 +5649,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5375,7 +5670,8 @@
    "depends_on": [
     "RV-WG",
     "WG-12",
-    "WG-13"
+    "WG-13",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5394,7 +5690,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-12"
+    "WG-12",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5419,7 +5716,8 @@
     "RV-WG",
     "WG-05",
     "WG-13",
-    "WG-15"
+    "WG-15",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5441,7 +5739,8 @@
    "depends_on": [
     "RV-WG",
     "WG-16",
-    "WG-19"
+    "WG-19",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5460,7 +5759,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-05"
+    "WG-05",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5479,7 +5779,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-06"
+    "WG-06",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5498,7 +5799,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WG-12"
+    "WG-12",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5517,7 +5819,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5535,7 +5838,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5560,7 +5864,8 @@
     "WG-22",
     "WG-23",
     "WG-24",
-    "WG-25"
+    "WG-25",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -5579,7 +5884,8 @@
    "issue_refs": [],
    "depends_on": [
     "RV-WG",
-    "WA-01"
+    "WA-01",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M3"
@@ -5598,7 +5904,8 @@
    ],
    "issue_refs": [],
    "depends_on": [
-    "RV-WG"
+    "RV-WG",
+    "WG-00"
    ],
    "effort": "M",
    "milestone": "M3"
@@ -7374,7 +7681,8 @@
     "RV-BL",
     "BL-24",
     "WS-08",
-    "BL-DOCS"
+    "BL-DOCS",
+    "BL-00"
    ],
    "effort": "S",
    "milestone": "M4"
@@ -7393,7 +7701,8 @@
     "RV-PF",
     "PF-23",
     "WS-08",
-    "PF-DOCS"
+    "PF-DOCS",
+    "PF-00"
    ],
    "effort": "S",
    "milestone": "M4"
@@ -7412,7 +7721,8 @@
     "RV-MM",
     "MM-31",
     "WS-08",
-    "MM-DOCS"
+    "MM-DOCS",
+    "MM-00"
    ],
    "effort": "S",
    "milestone": "M4"
@@ -7435,7 +7745,8 @@
     "LH-30",
     "LH-31",
     "WS-08",
-    "LH-DOCS"
+    "LH-DOCS",
+    "LH-00"
    ],
    "effort": "S",
    "milestone": "M4"
@@ -7472,7 +7783,8 @@
     "RV-PM",
     "WS-08",
     "PM-11",
-    "PM-DOCS"
+    "PM-DOCS",
+    "PM-00"
    ],
    "effort": "S",
    "milestone": "M4"
@@ -7491,7 +7803,8 @@
     "RV-PC",
     "PC-25",
     "WS-08",
-    "PC-DOCS"
+    "PC-DOCS",
+    "PC-00"
    ],
    "effort": "S",
    "milestone": "M4"
@@ -7510,7 +7823,8 @@
     "RV-WG",
     "WG-28",
     "WS-08",
-    "WG-DOCS"
+    "WG-DOCS",
+    "WG-00"
    ],
    "effort": "S",
    "milestone": "M4"
@@ -8403,6 +8717,7 @@
   "KC-DOCS decoupled from gated KC-27",
   "gated to M4: ['BL-25', 'PF-25', 'MM-32', 'LH-36', 'AT-26', 'PM-16', 'PC-26', 'WG-30', 'CM-31', 'AM-35', 'KC-27']",
   "M1 items not ancestors of RV-AT: ['WA-02', 'WA-03']",
-  "M1 follow-up: WS-09 + LK-34 added (options-ui-\u00a79 park ruling per the approved plan; the tag is re-cut on the final commit); every RV depends on LK-34"
+  "M1 follow-up: WS-09 + LK-34 added (options-ui-\u00a79 park ruling per the approved plan; the tag is re-cut on the final commit); every RV depends on LK-34",
+  "M2 checkpoint: <AB>-00 \"clear the re-vendor reds\" added for BL LH MM PM PF PC WG; every other M3/M4 item of that repo depends on it"
  ]
 }
