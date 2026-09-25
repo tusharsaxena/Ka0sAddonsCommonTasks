@@ -16,8 +16,20 @@ the spec and the manifest are amended to match (commit `DR-OW-01`).
 
 ## DR-OW-02 (the buffer measurement)
 
-Pending: the owner runs the bench (`03_EXECUTION_PLAN.md` §5, option A, as the throwaway `Ka0sCopyBench`
-addon) and the figures are recorded here.
+Measured 2026-09-26 by the owner with the throwaway `Ka0sCopyBench` v2 (`03_EXECUTION_PLAN.md` §5,
+option A). Each figure is the median of 3 runs of Copy-open plus the next frame, with the N=0 baseline subtracted:
+
+| Width | N=1500 | N=3000 | N=5000 | Limit |
+|---|---|---|---|---|
+| W=120 | 112 ms | 246 ms | **378 ms** | 250 ms |
+| W=200 | 171 ms | 346 ms | 419 ms | 1000 ms |
+
+Hands-on at 5000 (`/copybench keep`): Copy captured all 5000 lines intact, but the owner found the box
+"a bit slow and sluggish".
+
+**Ruling: MAX_BUFFER = 3000, BUFFER_SLACK = 128.** At 5000 the W=120 case fails its 250 ms limit, and the
+hands-on check confirms it, so the Q2 fallback applies. 3000 passes, though only just (246 ms against 250 ms),
+which is why the fallback is not 5000. DR-LK-02, DR-WS-05 and DR-LK-05 use 3000.
 
 ## DR-OW-05 (AuraMaster sequencing)
 
