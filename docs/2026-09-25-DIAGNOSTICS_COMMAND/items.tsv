@@ -1,0 +1,84 @@
+id	milestone	repo	title	depends_on	effort	smoke
+DR-OW-01	M0	Ka0sAddonsCommonTasks	Record the owner's rulings on 04_OPEN_QUESTIONS.md (Q1-Q21; Q1 is committed as DR-OW-03, and the Q2 measurement stays DR-OW-02) in OWNER_RULINGS.md		S	
+DR-WS-01	M1	WowAddonStandards	Open v2.68.0 (header, changelog entry, footer fix, root README.md Status line); append debug-logging-§14 (STD-01..STD-16, STD-19..STD-20) and the §4/§5/§7 and adoption-line edits (STD-21)	DR-OW-01	M	
+DR-WS-02	M1	WowAddonStandards	slash-commands-§2/§3/§7: diagnostics becomes the thirteenth reserved live verb; every enumeration of the reserved verbs (:40, :45, :293) gains it (STD-22)	DR-WS-01	S	
+DR-WS-03	M1	WowAddonStandards	documentation-§1 item 9 ## Reporting a bug with the owner's wording, renumber 9-11 -> 10-12, fix cross-refs :10 (item 10->11), :92 and :96 (Credits 11->12); §3 Tier-2 docs/debug.md ruling (STD-17, STD-18, STD-23)	DR-WS-01	S	
+DR-WS-04	M1	WowAddonStandards	Anti-pattern #90 (STANDARDS.md range #1-#90) and the AUDIT.md step-4 diagnostics check; the live-verb enumerations at AUDIT.md :624/:631 gain diagnostics (AP-01, AUD-01)	DR-WS-02,DR-WS-03	S	
+DR-WS-06	M1	WowAddonStandards	Ripple into EXECUTIVE_SUMMARY.md (:56 file count), NEW_ADDON_CONTEXT.md (sections skeleton, README template, stub member, checklist), the NEW_ADDON.md playbook (step 6 README order :253-257, setup/sections file list near :123, slash step), library-stack.md (:82 recount to 22 files, :93 file column, :256 applicability row), STANDARDS.md :57 blurb, open-evolutions.md :13 (STD-24)	DR-WS-04	M	
+DR-WA-01	M1	wow-addon	wow-addon: README item citations after the renumber (bump-version :124 item 10->11, :192 check; sync-docs :172 and new-addon :210 Credits item 13->12); live-verb enumerations gain diagnostics (agents/standards-audit.md :219-221, :263; agents/review.md :470); new-addon and sync-docs name the mandatory ## Reporting a bug section and the diagnostics verb; plugin.json version bump and CLAUDE.md version line (STD-25)	DR-WS-03,DR-WS-02	S	
+DR-LK-01	M2	LibKa0s	Pre-check: feat/2026-09-25-draghandle-close tip is still 53c141a and no other workflow has LibKa0s checked out (else record the tip and stack on it). DebugLog minor 14 opens: lib.TIME_COPY copy-timing flag (BUF-06b) and lib.BUFFER_SLACK published at 64, with mocked-clock tests		S	S7
+DR-OW-02	M2	Ka0sAddonsCommonTasks	Owner measures Copy open+highlight at 1500/3000/5000 (BUF-02) and records the figures and the chosen MAX_BUFFER in OWNER_RULINGS.md		S	S7
+DR-LK-02	M2	LibKa0s	MAX_BUFFER 1500 -> 5000 (or 3000) and BUFFER_SLACK 200 (or 128); rewrite test_debuglog.lua :92-96, :195, :212-239 on the constants (BUF-01, BUF-03..BUF-05)	DR-LK-01,DR-OW-02	M	S7,S10
+DR-LK-03	M2	LibKa0s	New DebugLogDiagnostics.lua (DIAG_MINOR 1, key 14.1): RunDiagnostics, BuildDiagnostics, out:* helpers, DIAG_MAX_LINES, DebugVerb, install hook; test_debuglog_diagnostics.lua; shared testkit/test_diagnostics_contract.lua with a Kit.VERSION bump (Q20 (b)); majors.lua and LibKa0s.xml (LIB-01..LIB-09)	DR-LK-01,DR-OW-01	L	
+DR-LK-04	M2	LibKa0s	Slash minor 16: diagnostics in lib.LIVE_VERBS; comments at Slash.lua :89, :478 and :826 ('twelve reserved verbs'); re-pin test_slash.lua:1272-1273 (LIB-10)	DR-OW-01	S	S10
+DR-LK-05	M2	LibKa0s	Docs for v1.60.0: DebugLog version-14.1 and Slash version-16 docs, earlier ones Superseded, gen-api-members, docs/api/README.md, README module table, releasing.md (:7 constants table, :28 step-2 list 'All twenty-one' -> twenty-two with DIAG_MINOR, :226, :250), CHANGELOG, test-cases.md; Kit.VERSION bump documented (testkit gains test_diagnostics_contract.lua, Q20 (b))	DR-LK-02,DR-LK-03,DR-LK-04,DR-WS-05	M	
+DR-LK-06	M2	LibKa0s	Release run --release 1.60.0 on a clean tree with WowAddonStandards on the rollout branch; ANALYSIS.md; local tag v1.60.0 (not pushed)	DR-LK-05	S	
+DR-WS-05	M1	WowAddonStandards	Write the measured MAX_BUFFER into debug-logging §1/§9/§11, library-stack.md and NEW_ADDON_CONTEXT.md (BUF-07)	DR-WS-06,DR-OW-02	S	
+DR-OW-03	M3	Ka0sAddonsCommonTasks	Record the owner's Q1 ruling on the DragHandle X (X-02, X-04; OWNER_RULINGS.md): ConsumableMaster macroBar.enabled=false; AbsorbTracker units.<unit>.enabled=false on every bar, the player bar included; KickCD gets no X (X-03)		S	
+DR-OW-05	M3	Ka0sAddonsCommonTasks	AuraMaster batch-8/9/10 branch merged to master, or owner approves stacking on its recorded tip (Q16)		S	
+DR-AT-01	M3	AbsorbTracker	Re-vendor LibKa0s v1.60.0 with the provenance line; DebugLog stub gains RunDiagnostics; roll the liveVerbs builder; suite green	DR-LK-06	S	
+DR-AT-02	M3	AbsorbTracker	Read-only seams: visibility reason and last shown (Display), repaint pending (Timer), session counters (AbsorbTracker); degraded arms and tests	DR-AT-01	S	
+DR-AT-03	M3	AbsorbTracker	modules/Diagnostics.lua on the helper (DX-AT); diagnostics COMMANDS row and debug word; fold debug events; tests per STD-19; verb counts 18 -> 19	DR-AT-02	M	S1,S2,S5,S11,S3,S4,S8
+DR-AT-04	M3	AbsorbTracker	README ## Reporting a bug (step 3 names no destination, no GitHub link) and Troubleshooting/FAQ pointers (STD-17, STD-18)	DR-AT-03	S	S9
+DR-AT-05	M3	AbsorbTracker	Docs: new docs/debug.md and the Tier-2 row flip; slash-dispatch, module-map, schema, scope, smoke-tests; the buffer sites (ARCHITECTURE:75, module-map :306/:362, smoke-tests :95); the LibKa0s file count twenty-one -> twenty-two (ARCHITECTURE:49, module-map:908, performance.md:390)	DR-AT-03	S	S7
+DR-AT-06	M3	AbsorbTracker	DragHandle X on every bar strip (player, target and focus; no player-bar exception) per DR-OW-03 (X-01, X-04, X-05); re-check test_draghandle.lua:182 Measure pins; locale keys; smoke steps	DR-AT-01,DR-OW-03	S	S6
+DR-OW-07	M4	Ka0sAddonsCommonTasks	Executor asks the owner (Q21), then the owner merges and pushes WowAddonStandards v2.68.0 (and wow-addon) to master, because revendor-standards and standards-audit fetch the standard from raw GitHub master; recorded as a commit here	DR-WS-05,DR-WA-01	S	
+DR-AT-07	M4	AbsorbTracker	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-AT-04,DR-AT-05,DR-AT-06,DR-WS-05,DR-OW-07	S	
+DR-BL-01	M3	BankLedger	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics; add diagnostics to the degraded live list (Slash.lua:404); suite green	DR-LK-06	S	
+DR-BL-03	M3	BankLedger	modules/Diagnostics.lua on the helper (DX-BL), Ledger:Diagnose folded as a section; COMMANDS row and debug word; tests per STD-19; verb counts 17 -> 18	DR-BL-01	M	S1,S2,S5,S11,S3,S4,S8
+DR-BL-04	M3	BankLedger	README ## Reporting a bug, Troubleshooting row :163 points at it (STD-17, STD-18)	DR-BL-03	S	S9
+DR-BL-05	M3	BankLedger	Docs: debug.md diagnostics section and "which to paste", slash-dispatch, ARCHITECTURE counts, smoke-tests step and :391/:393 buffer lines, common-tasks, module-map	DR-BL-03	S	S7
+DR-BL-07	M4	BankLedger	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-BL-04,DR-BL-05,DR-WS-05,DR-OW-07	S	
+DR-CM-01	M3	ConsumableMaster	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics (library-absent line, no chat flood); tests/test_debuglog.lua:281 on the new value; suite green	DR-LK-06	S	
+DR-CM-02	M3	ConsumableMaster	Read-only accessors: MacroManager pendingUpdates snapshot, TooltipCache pending set, oversized/give-up tracking; tests	DR-CM-01	S	
+DR-CM-03	M3	ConsumableMaster	core/Diagnostics.lua on the helper (DX-CM); COMMANDS row and a debug diagnostics branch before the toggle; help string; test_slashsetup.lua:244 order pin, test_disabled; tests per STD-19	DR-CM-02	M	S1,S2,S5,S11,S3,S4,S8
+DR-CM-04	M3	ConsumableMaster	README ## Reporting a bug; fix Troubleshooting :117 (bare /cm debug does not enable logging) and :120 (STD-17, STD-18)	DR-CM-03	S	S9
+DR-CM-05	M3	ConsumableMaster	Docs: debug.md, slash-dispatch (live set), smoke-tests step and :289/:651 buffer lines	DR-CM-03	S	S7
+DR-CM-06	M3	ConsumableMaster	DragHandle X on the macro bar per DR-OW-03 (X-01, X-02, X-05): SetEnabled(false), locale keys, combat-deferred hide test, smoke step	DR-CM-01,DR-OW-03	S	S6
+DR-CM-07	M4	ConsumableMaster	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-CM-04,DR-CM-05,DR-CM-06,DR-WS-05,DR-OW-07	S	
+DR-KC-01	M3	KickCD	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics; test_slash.lua:940-955 live union still equals FEATURE_VERBS; suite green	DR-LK-06	S	
+DR-KC-02	M3	KickCD	Refactor Cooldowns:DebugDump, Castbar:DebugDump and Compat.DebugInterrupt to take an emit sink; keep chat output identical under their pinned tests	DR-KC-01	S	
+DR-KC-03	M3	KickCD	modules/Diagnostics.lua on the helper (DX-KC), lifecycle first; COMMANDS row and DEBUG_COMMANDS entry; TOC; tests per STD-19	DR-KC-02	M	S1,S2,S5,S11,S3,S4,S8
+DR-KC-04	M3	KickCD	README ## Reporting a bug; rewrite FAQ :100, prefer diagnostics in Troubleshooting :106/:110/:111 (STD-17, STD-18)	DR-KC-03	S	S9
+DR-KC-05	M3	KickCD	Docs: debug.md (the four chat dumps section becomes diagnostics + topics), slash-dispatch, testing matrices, test-cases, smoke-tests step, buffer sites (DebugLogSetup.lua:5, debug.md:28-29, smoke :659/:667)	DR-KC-03	S	S7
+DR-KC-07	M4	KickCD	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-KC-04,DR-KC-05,DR-WS-05,DR-OW-07	S	
+DR-LH-01	M3	LootHistory	Re-vendor LibKa0s v1.60.0 with the provenance line in one commit; stub RunDiagnostics; LIVE_WHILE_DISABLED (Schema.lua:858) + test_disabled.lua:310-313 + test_slash.lua:908 gain diagnostics; suite green	DR-LK-06	S	
+DR-LH-03	M3	LootHistory	modules/Diagnostics.lua on the helper (DX-LH); COMMANDS row and debug word before the toggle; fold debug events; degraded dispatcher and UNAVAILABLE_WITHOUT_LIB; TOC and loader; tests per STD-19; counts 16 -> 17	DR-LH-01	M	S1,S2,S5,S11,S3,S4,S8
+DR-LH-04	M3	LootHistory	README ## Reporting a bug; Troubleshooting pointer; Usage :58 live-verb list (STD-17, STD-18)	DR-LH-03	S	S9
+DR-LH-05	M3	LootHistory	Docs: debug.md, ARCHITECTURE slash table and :282, slash-dispatch, disabled-state, test-cases, smoke-tests :83 and buffer lines :706/:715/:716/:963	DR-LH-03	S	S7
+DR-LH-07	M4	LootHistory	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-LH-04,DR-LH-05,DR-WS-05,DR-OW-07	S	
+DR-MM-01	M3	MultiMeters	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics; suite green	DR-LK-06	S	
+DR-MM-02	M3	MultiMeters	Re-host D.Report on the helper under both forms; retire /mm debug diag as an unknown word (Q7, recommended (a): no hint); rename ~30 non-frozen references; markers, cap and plain text	DR-MM-01	M	S1,S2,S5,S11,S8
+DR-MM-03	M3	MultiMeters	Add the missing DX-MM sections: lifecycle, restriction and session flags, settings diff per profile and window, window inventory, sessions, aggregator, roster and cache counts; tests per STD-19	DR-MM-02	M	S3,S4
+DR-MM-04	M3	MultiMeters	README ## Reporting a bug; replace Troubleshooting :99 with a pointer, keep the debug tooltip advice (STD-17, STD-18)	DR-MM-03	S	S9
+DR-MM-05	M3	MultiMeters	Docs: debug.md, ARCHITECTURE :357 counts, slash-dispatch, smoke-tests; buffer prose (DebugLogSetup.lua:5/:59/:87, debug.md:47, common-tasks:66, scope:406, test_debuglogsetup.lua:299 comment; append to ARCHITECTURE:399)	DR-MM-03	S	S7
+DR-MM-07	M4	MultiMeters	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-MM-04,DR-MM-05,DR-WS-05,DR-OW-07	S	
+DR-PM-01	M3	PanelMaster	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics; degraded live list (Slash.lua:447-455) gains diagnostics; suite green	DR-LK-06	S	
+DR-PM-02	M3	PanelMaster	Read-only accessor for the Unlock.lua pendingUnlock/pendingPanels queue; test	DR-PM-01	S	
+DR-PM-03	M3	PanelMaster	modules/Diagnostics.lua on the helper (DX-PM); both forms; retire /pm debug dump with its tests (test_slash :646-664, test_libka0s :773, test_disabled :671-704, test_debuglog :163-213); tests per STD-19	DR-PM-02	M	S1,S2,S5,S11,S3,S4,S8
+DR-PM-04	M3	PanelMaster	README ## Reporting a bug; Troubleshooting :273 and Issues :280 point at it (STD-17, STD-18)	DR-PM-03	S	S9
+DR-PM-05	M3	PanelMaster	Docs: debug.md, common-tasks, ARCHITECTURE :189, module-map, test-cases, smoke-tests (dump steps and :685/:718/:881 buffer lines), DebugLogSetup.lua:9 comment	DR-PM-03	S	S7
+DR-PM-07	M4	PanelMaster	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-PM-04,DR-PM-05,DR-WS-05,DR-OW-07	S	
+DR-PF-01	M3	PartyFrameEnhanced	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics; LIVE_WHILE_DISABLED gains diagnostics; suite green	DR-LK-06	S	
+DR-PF-02	M3	PartyFrameEnhanced	Read-only accessors: RangeFade mode/unitOf/hooked, PendingSecureKeys, a session blocked-action counter; tests and surface parity	DR-PF-01	S	
+DR-PF-03	M3	PartyFrameEnhanced	modules/Diagnostics.lua on the helper (DX-PF); COMMANDS row and runDebug branch; TOC, loadorder test, file counts, locale keys; tests per STD-19	DR-PF-02	M	S1,S2,S5,S11,S3,S4,S8
+DR-PF-04	M3	PartyFrameEnhanced	README ## Reporting a bug; Troubleshooting :108 pointer (STD-17, STD-18)	DR-PF-03	S	S9
+DR-PF-05	M3	PartyFrameEnhanced	Docs: debug.md, slash-dispatch, ARCHITECTURE seventeen -> eighteen, module-map; DebugLogSetup.lua:4 comment made value-free	DR-PF-03	S	S7
+DR-PF-07	M4	PartyFrameEnhanced	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-PF-04,DR-PF-05,DR-WS-05,DR-OW-07	S	
+DR-PC-01	M3	PrettyChat	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics; rewrite test_debuglog.lua:184-212 on lib.MAX_BUFFER and test_libka0s.lua:204; test_disabled.lua:272-276 gains diagnostics; correct the liveVerbs comment (Slash.lua:127-131); suite green	DR-LK-06	S	
+DR-PC-03	M3	PrettyChat	modules/Diagnostics.lua on the helper (DX-PC) with out:escape for format values; live-global audit, snapshot health, patch drift, render check; COMMANDS row, debug word, usage line; tests per STD-19	DR-PC-01	M	S1,S2,S5,S11,S3,S4,S8
+DR-PC-04	M3	PrettyChat	README ## Reporting a bug; Usage :31, FAQ :53, Troubleshooting :63 pointers (STD-17, STD-18)	DR-PC-03	S	S9
+DR-PC-05	M3	PrettyChat	Docs: new docs/debug.md and its ARCHITECTURE map row, slash-dispatch (twelve -> thirteen), smoke-tests steps and buffer lines :217/:222/:223/:226/:727, Schema.lua:955 comment	DR-PC-03	S	S7
+DR-PC-07	M4	PrettyChat	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-PC-04,DR-PC-05,DR-WS-05,DR-OW-07	S	
+DR-WG-01	M3	WhatGroup	Re-vendor LibKa0s v1.60.0 with the provenance line; stub RunDiagnostics; test_slash.lua:473-475 live copy gains diagnostics; suite green	DR-LK-06	S	
+DR-WG-02	M3	WhatGroup	Read-only snapshot accessors for the capture tables (core/WhatGroup.lua) and popup file-locals (modules/Frame.lua), kept small in the near-cap files; tests	DR-WG-01	S	
+DR-WG-03	M3	WhatGroup	modules/Diagnostics.lua on the helper (DX-WG); COMMANDS row, runDebug branch, third usage line (test_slash.lua:304-308); :561 count; tests per STD-19	DR-WG-02	M	S1,S2,S5,S11,S3,S4,S8
+DR-WG-04	M3	WhatGroup	README ## Reporting a bug; Usage :33 pointer (STD-17, STD-18)	DR-WG-03	S	S9
+DR-WG-05	M3	WhatGroup	Docs: new docs/debug.md and ARCHITECTURE map row, debug-content.md :5-6/:11-13, slash-dispatch, Slash.lua:77 comment, smoke-tests step and buffer lines, ARCHITECTURE:262	DR-WG-03	S	S7
+DR-WG-07	M4	WhatGroup	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-WG-04,DR-WG-05,DR-WS-05,DR-OW-07	S	
+DR-AM-01	M3	AuraMaster	Re-vendor LibKa0s v1.60.0 with the provenance line (from v1.59.0) on a branch cut per DR-OW-05; stub RunDiagnostics; suite green; AuraMaster's X (container enabled=false) still green under WidgetsDragHandle 3	DR-LK-06,DR-OW-05	S	S6
+DR-AM-02	M3	AuraMaster	Migrate modules/Diagnostics.lua plumbing onto the helper (Q3): drop Out/section/Run, markers per STD-08, cap from lib.DIAG_MAX_LINES; adjust test_diagnostics.lua	DR-AM-01	M	S1,S2,S5,S11,S3,S4,S8
+DR-AM-04	M3	AuraMaster	README ## Reporting a bug: correct step 3, which today says "paste it into a GitHub issue" with a link, to "include it with your bug report" with no link; the closing note stays (STD-17)	DR-AM-02	S	S9
+DR-AM-05	M3	AuraMaster	Docs and comments: DebugLogSetup.lua:5, debug.md:19/:126/:129, known-limitations.md:234, smoke-tests.md:1328	DR-AM-02	S	S7
+DR-AM-07	M4	AuraMaster	revendor-standards to v2.68.0, sync-docs, AUD-01 self-check	DR-AM-04,DR-AM-05,DR-WS-05,DR-OW-07	S	
+DR-REC-01	M4	Ka0sAddonsCommonTasks	Execution record 99_REPORT.md: per-repo heads, battery totals, open smoke results, deviations	DR-AT-07,DR-BL-07,DR-CM-07,DR-KC-07,DR-LH-07,DR-MM-07,DR-PM-07,DR-PF-07,DR-PC-07,DR-WG-07,DR-AM-07	S	
