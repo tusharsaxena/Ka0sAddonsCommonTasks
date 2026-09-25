@@ -64,9 +64,15 @@ Runs so far are recorded in `plan-data/runs/` (the results JSON of each finished
 
 ## 5. What only the owner can do
 
-- Merge any remediation branch into master/main.
-- Push the `v1.56.0` tag, which happens with the LibKa0s merge.
-- Merge WowAddonStandards, which unblocks M4.
+Done on 2026-09-25, on the owner's go-ahead (`/wow-addon:finalize`; see the last row of `checkpoints.tsv`):
+
+- ~~Merge any remediation branch into master/main.~~ All fourteen repos, and this one, are merged
+  `--no-ff`, pushed, and their `feat/2026-09-23-review-audit-remediation` branches deleted.
+- ~~Push the `v1.56.0` tag.~~ LibKa0s `v1.56.0`, `v1.57.0` and `v1.58.0` are on origin.
+- ~~Merge WowAddonStandards.~~
+
+Still the owner's:
+
 - Run the in-client sessions in `06_SMOKE_TESTS.md`.
 - Bump addon versions and cut releases. Neither is in this plan.
 
