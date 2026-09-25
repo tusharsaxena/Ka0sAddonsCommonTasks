@@ -65,8 +65,8 @@ frame names or bus message names.
 ## Owed by the owner
 
 1. ~~Merge and push~~: done 2026-09-23.
-2. ~~In-game smoke tests~~: all 20 passed 2026-09-23. AbsorbTracker's drag-handle strip still owes
-   its own check (`docs/smoke-tests.md` item 68).
+2. ~~In-game smoke tests~~: all 20 passed 2026-09-23, and so did AbsorbTracker's drag-handle strip
+   check (`docs/smoke-tests.md` item 68).
 3. **Before AuraMaster's next release:** its two pre-existing CCN > 15 functions block
    `/wow-addon:bump-version`.
 

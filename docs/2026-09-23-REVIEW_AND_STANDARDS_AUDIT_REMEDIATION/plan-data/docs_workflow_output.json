@@ -1,0 +1,644 @@
+{
+  "summary": "Reconcile unmatched consumer follow-ups, write the upstream/spec/smoke docs, then critique the whole plan",
+  "agentCount": 12,
+  "logs": [
+    "reconcile: 23 mapped, 2 new items"
+  ],
+  "result": {
+    "reconcile": [
+      {
+        "repo": "BankLedger",
+        "mapped": [
+          {
+            "upstream_item": "LK-22",
+            "item_id": "BL-02",
+            "amend_change": " Upstream: this is the BankLedger consumer follow-up of LK-22 (LibKa0s Schema minor 2 adds SetMany to the instance surface and the docs/api/Schema/version-2-docs.md stub table); the stub SetMany mirrors LK-22's all-or-nothing semantics and log-silence exactly, and the post-RV-BL parity check is against the LK-22 surface.",
+            "add_depends_on": "LK-22"
+          },
+          {
+            "upstream_item": "LK-12",
+            "item_id": "BL-DOCS",
+            "amend_change": "",
+            "add_depends_on": "LK-12"
+          }
+        ],
+        "new_items": []
+      },
+      {
+        "repo": "LootHistory",
+        "mapped": [
+          {
+            "upstream_item": "LK-22",
+            "item_id": "LH-15",
+            "amend_change": " Upstream LK-22 (LibKa0s-Schema-1.0 minor 2): this item is the consumer follow-up that gives the host schema instance stub the SetMany member (with LK-22's all-or-nothing semantics and log-silence) plus the instanceId forwarding in R.Get/R.ApplyDefault, so the existing surface-parity case against the live v1.56.0 instance, which lists SetMany, stays green.",
+            "add_depends_on": "LK-22"
+          },
+          {
+            "upstream_item": "WS-06",
+            "item_id": "LH-13",
+            "amend_change": " Upstream WS-06 (launcher-§3, v2.65.0) is the rule this item applies: rename minimap.hide -> minimap.shown at settings/Schema.lua:91 (minimapPath), :213 (the stamped row key, get/set still inverting onto mm.hide) and RESET_EXEMPT :434. SavedVariables migration, so existing players keep their setting: the stored key db.global.minimap.hide does not move, so the setting carries over on its own, but add a defensive MIGRATIONS step in core/Database.lua (after LH-12 lands; `{ to = 9, apply = function(g) ... end }` after the to = 8 step) that normalizes the minimap table. If `g.minimap` is not a table, leave it alone (AceDB backfills the default). If a stray `g.minimap.shown` is stored (a dev build, a hand-edited SV, or a LibDBIcon-style copy), fold it in as `hide = not shown` only when `hide` is nil, then `g.minimap.shown = nil`, because a stored shown key is forbidden (anti-pattern #81). Otherwise leave `hide` untouched. Return the number of rows changed (0 or 1). Keep the step idempotent. Because the runner's highest `to` moves from 8 to 9, replace the literal 8 in tests/test_database.lua (:443, :449, :455, :476, :486, :501, :519 and the LH-12 cases) with a value derived from the runner (expose `NS.SCHEMA_LATEST`, which is MIGRATIONS[#MIGRATIONS].to, from core/Database.lua), and move LH-12's smoke expectation from 8 to 9. Additional tests, written first in tests/test_database.lua: (d) an existing account with schemaVersion = 8 and minimap = {hide = true} runs RunMigrations and still has hide == true with no `shown` key, and `/lh get minimap.shown` answers false; (e) a store with minimap = {shown = false} and no hide migrates to hide == true with shown == nil; (f) a store with both keys keeps hide and drops shown; (g) running RunMigrations twice is a no-op the second time. The commit body records the migration and the `/lh set minimap.hide` -> `/lh set minimap.shown <inverted>` macro release note. Smoke addition: on an existing account whose minimap button was hidden before the upgrade, log in on the new build; the button stays hidden, `/lh get minimap.shown` prints false, and `/dump LootHistoryDB.global.minimap` shows only `hide = true`.",
+            "add_depends_on": "WS-06"
+          },
+          {
+            "upstream_item": "WS-08",
+            "item_id": "LH-36",
+            "amend_change": " Upstream WS-08 is the gate: /wow-addon:revendor-standards fetches the standard from GitHub (WowAddonStandards main), so this item can only run after WS-08's v2.65.0 ripple, and the WowAddonStandards branch that carries WS-02..WS-08, is merged to main and pushed. Before that, the plugin would read v2.64.0 and pin the wrong version. Before running, confirm upstream: `gh api repos/<owner>/WowAddonStandards/contents/standards/STANDARDS.md --jq .content | base64 -d | grep -m1 v2.65.0`. The command sets the three-place reference to v2.65.0: LootHistory.toc `## X-Standard`, the README Standard badge, and CLAUDE.md 'Standards compliance'.",
+            "add_depends_on": "WS-08"
+          }
+        ],
+        "new_items": []
+      },
+      {
+        "repo": "MultiMeters",
+        "mapped": [
+          {
+            "upstream_item": "LK-22",
+            "item_id": "MM-14",
+            "amend_change": "This item is the LK-22 consumer follow-up (MultiMeters#52). SetByPaths becomes S:SetMany, and its announceBatch fires CONFIG_CHANGED exactly once per batch, pinned by test (b). The host primitives (splitPath/readFrom/writeInto/copy), the registry (index/reindex/FindSchemaRow/RegisterSchemaRows) and the bulk bracket are deleted from settings/Schema_Paths.lua. Single-path writes go through S:Set (NS.SetByPath = S:Set), which LK-22 makes expressible.",
+            "add_depends_on": "LK-22"
+          },
+          {
+            "upstream_item": "LK-16",
+            "item_id": "MM-02",
+            "amend_change": "This item is the LK-16 consumer follow-up for MultiMeters-R-04. The hand check at core/LauncherSetup.lua:229-237 is removed. The Launcher descriptor carries isEnabled, which is latch-inclusive through NS.IsStoodDown so a perf suspend also refuses, and disabledLine. The gate is enforced by the library's Launcher minor 2 that LK-16 ships.",
+            "add_depends_on": "LK-16"
+          },
+          {
+            "upstream_item": "LK-21",
+            "item_id": "MM-18",
+            "amend_change": "The smoke field's drag check is the LK-21 consumer follow-up. It is an in-client smoke of the library ReorderList drag in settings/ColumnBlocks.lua and needs no code change of its own. Run it and record it in docs/smoke-tests.md §5 'Column editor' even if the RenderTabbedSchema adoption is declined at the decision gate.",
+            "add_depends_on": "LK-21"
+          },
+          {
+            "upstream_item": "WS-08",
+            "item_id": "MM-32",
+            "amend_change": "EXECUTION GATE: /wow-addon:revendor-standards fetches the standard from GitHub, so this item can run only after WowAddonStandards's WS-08 branch (v2.65.0) is merged and pushed to origin. Before starting, check that the upstream default branch's standards/ reads v2.65.0. Until then the item is blocked. Do not point it at a local unmerged checkout.",
+            "add_depends_on": "WS-08"
+          },
+          {
+            "upstream_item": "WS-06",
+            "item_id": "MM-16",
+            "amend_change": "SavedVariables continuity for existing players (WS-06): only the CLI and schema path is renamed. The stored key stays db.global.minimap.hide (LibDBIcon's), which the v15 migration in core/Database.lua (:52, :850-891) already moved to the global store. An existing player's choice therefore carries over as it is, and no data migration step or CURRENT_DB_VERSION bump is added, because a stored `shown` key is forbidden (anti-pattern #81). Pin this with extra tests in tests/test_schema_batch.lua. (e) A legacy account loaded with db.global.minimap.hide=true reads `/mm get global.minimap.shown` as false, and the button stays hidden after load. (f) A pre-v15 account with profile.minimap.hide=true, run through the migration runner, also reads shown=false, and no `shown` key exists in the raw SV. If the implementer finds any path string persisted in SavedVariables (a saved reset-exempt list, a bookmark or similar), add migrations[<next>] in core/Database.lua. It rewrites 'global.minimap.hide' to 'global.minimap.shown' in those stored strings, is idempotent, writes no stamp (MM-12), and gets its own test.",
+            "add_depends_on": "WS-06"
+          }
+        ],
+        "new_items": []
+      },
+      {
+        "repo": "PartyFrameEnhanced",
+        "mapped": [
+          {
+            "upstream_item": "LK-23",
+            "item_id": "PF-11",
+            "amend_change": "Upstream follow-up LK-23 made explicit: this item is the PartyFrameEnhanced#14 re-application LK-23's adoption notes name. It needs LibKa0s-Schema-1.0 minor 2 with `writeThrough` in the vendored v1.56.0 payload (RV-PF), and the host stub takes the same list. The list {'enabled','locked'} covers every path the follow-up names: settings/Slash.lua runEnabled (:152, `NS.SetByPath(\"enabled\", on)`), runLock (:117, `NS.SetByPath(\"locked\", locked)`), and modules/Preview.lua forceLock (:134, `NS.SetByPath(\"locked\", true)`, the combat/master-switch/perf re-lock). Done when tests/test_schema.lua:209 ('without the library, /pfe disable and /pfe enable still write the stored path') is green on the adopted seam.",
+            "add_depends_on": "LK-23"
+          },
+          {
+            "upstream_item": "LK-03",
+            "item_id": "PF-01",
+            "amend_change": "Upstream follow-up LK-03 made explicit: under kit revision 26 the AceDB fake's CopyProfile/DeleteProfile raise the way AceDB-3.0 :531-537/:581-587 does. Case (c) and the delete case are the red-under-the-new-kit characterization for PartyFrameEnhanced-R-05. Land the exists() guards and the three refusal lines against that raising fake, and do not wrap db:CopyProfile in pcall.",
+            "add_depends_on": "LK-03"
+          },
+          {
+            "upstream_item": "LK-04",
+            "item_id": "PF-05",
+            "amend_change": "Upstream follow-up LK-04 made explicit: tests/test_disabled.lua regs() and sig() read the kit's recording EventRegistry through mocks.__registrations() entries of kind 'callback' (LK-04, kit revision 26). The surviving 'callback|EditMode.Exit' entry is the red that Providers:Suspend's UnregisterCallback (PartyFrameEnhanced-R-03) turns green.",
+            "add_depends_on": "LK-04"
+          },
+          {
+            "upstream_item": "LK-05",
+            "item_id": "PF-06",
+            "amend_change": "Upstream follow-up LK-05 made explicit: with the kit's CreateFrame now starting frames shown (LK-05), the F_on baseline in tests/test_disabled.lua includes the never-shown container frames (PartyFrameEnhanced_Fade_* and *_Holder). This item lands PartyFrameEnhanced-A-01 (hide them on stand-down) and keeps the direct step-5 IsShown() assertions alongside the baseline check. If the LK-05 dry-run (scratchpad dryrun-lk05-PartyFrameEnhanced.txt) lists other reds in this addon, fix them here by giving the setup the Hide() production performs. Never weaken an assertion.",
+            "add_depends_on": "LK-05"
+          },
+          {
+            "upstream_item": "WS-06",
+            "item_id": "PF-13",
+            "amend_change": "Upstream follow-up WS-06 made explicit: this item renames the minimap row's path to '.minimap.shown' (here `global.minimap.shown`, settings/General.lua:51 and tests/test_launcher.lua:11), with get/set closures that invert onto the stored `minimap.hide`. The stored LibDBIcon key does not move, so an existing player's `hide = true` survives the rename untouched. The owner still requires an explicit SavedVariables migration, so that a player keeps their setting even if a stray `global.minimap.shown` was ever stored. PF-26 carries it and runs after this item. Record the player-facing CLI change in the commit body for the next Version History roll: `/pfe get|set global.minimap.hide` is now `/pfe get|set global.minimap.shown`, and the old path answers 'unknown setting'. Replace the final sentence 'SavedVariables are unchanged.' with: 'The stored key is unchanged; PF-26 adds the defensive migration step.'",
+            "add_depends_on": "WS-06"
+          },
+          {
+            "upstream_item": "WS-08",
+            "item_id": "PF-25",
+            "amend_change": "Executable only after WowAddonStandards' v2.65.0 branch (WS-02..WS-08) is merged to its default branch and pushed. /wow-addon:revendor-standards fetches the standard from GitHub, so running it earlier refreshes against v2.64.0 and records the wrong version. Before running, confirm `gh api repos/<owner>/WowAddonStandards/contents/standards/STANDARDS.md --jq .content | base64 -d | grep -m1 'v2.65.0'` hits. If it does not, stop and leave this item open.",
+            "add_depends_on": "WS-08"
+          }
+        ],
+        "new_items": [
+          {
+            "id": "PF-26",
+            "repo": "PartyFrameEnhanced",
+            "title": "SavedVariables migration v2 for the minimap.shown rename: a stored `shown` folds into LibDBIcon's `hide`, so every player keeps their minimap setting",
+            "change": "Required by the owner alongside WS-06's path rename (PF-13), using PF-08's runner. The stored key stays `global.minimap.hide`, and the step is a defensive fold. core/Database.lua: `NS.SCHEMA_VERSION = 2` (was 1 after PF-08). Append one row to SCHEMA_STEPS: `{ to = 2, scope = 'global', apply = function(g) local m = g.minimap; if type(m) ~= 'table' or m.shown == nil then return end; if m.shown == false and not m.hide then m.hide = true end; m.shown = nil end }`. Comment on the row: AceDB strips `hide = false` (the default at defaults/Profile.lua:148) at logout, so a nil `hide` means shown. A stray `shown` key could only come from a raw path write to the new CLI path `global.minimap.shown` before the closure row was registered, or from a hand-edited SavedVariables file. Where both are present, `hide` (LibDBIcon's key) wins unless `shown == false`. Folding and deleting `shown` keeps the anti-pattern #81 rule of one stored state. Run the step on the no-AceDB path too: `g` is sv.global (core/Database.lua:21-27). Update the comment above SCHEMA_STEPS (:30-33): the ladder is no longer empty, and v2 is the minimap.shown rename. defaults/Profile.lua global block comment (:136-140): the CLI path is `global.minimap.shown` and the stored key stays `hide`. Point to the v2 step. docs/schema.md migration section (:85, :112, :117 after PF-08): add a v2 row naming the fold, and state that the stamp after first run is 2. The commit body records that the setting survives the rename.",
+            "tests": "Red first in tests/test_database.lua, restoring NS.db.global.minimap and the stamp after each case. (a) With global.schemaVersion = 1, set `minimap = { shown = false }`, run NS:RunMigrations(), and assert `minimap.hide == true`, `minimap.shown == nil` and `schemaVersion == 2`. Comment `-- red under: SCHEMA_STEPS without the v2 row`. (b) `minimap = { hide = true }` with no `shown` (an existing player who hid the button): after migration `hide == true`, and `/pfe get global.minimap.shown` (through the cli harness) answers false. This pins that the rename keeps the setting. (c) `minimap = { shown = true, hide = true }`: `hide` stays true and `shown` is cleared. (d) `minimap = { minimapPos = 200 }`: untouched apart from the stamp, so a dragged position survives. (e) A second RunMigrations is a no-op. Re-pin PF-08's 'InitDB stamps NS.SCHEMA_VERSION' case to 2. Regenerate docs/test-cases.md and the README Tests badge.",
+            "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/PartyFrameEnhanced; standard gate: ~/.claude/wow-addon/bin/ka0s-bounded luacheck . (0/0); ~/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua (0 failed); diff <(lua5.1 tests/run.lua --list) docs/test-cases.md (empty), badge = Totals; ~/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/perf.lua (exit 0); lizard -l lua -x './libs/*' -x './tests/_kit/*' -C 15 -w . (no output; RunMigrations stays under CCN 10); no authored .lua over 1500 lines. `grep -n 'SCHEMA_VERSION = 2' core/Database.lua` hits; `grep -rn 'minimap.shown\\s*=' core defaults settings` finds no stored-key write outside the migration's clear. Mutation: drop the v2 row -> case (a) fails.",
+            "smoke": "In game on a character whose minimap button was hidden before the update: log in and confirm the button is still hidden and `/pfe get global.minimap.shown` answers false. After logout, WTF/Account/<acct>/SavedVariables/PartyFrameEnhanced.lua shows global.schemaVersion = 2, `minimap.hide = true` and no `shown` key.",
+            "finding_ids": [],
+            "issue_refs": [],
+            "depends_on": [
+              "WS-06",
+              "RV-PF",
+              "PF-08",
+              "PF-13"
+            ],
+            "effort": "S"
+          }
+        ]
+      },
+      {
+        "repo": "PrettyChat",
+        "mapped": [
+          {
+            "upstream_item": "LK-11",
+            "item_id": "PC-01",
+            "amend_change": "\nUpstream follow-up LK-11 (LibKa0s Core minor 8 adds SafeRegisterEvent / SafeRegisterUnitEvent / SafeRegisterEvents): parts (1)-(3) of this item are the consumer half of LK-11. The Core stub in core/CoreSetup.lua gains the SafeRegister* one-rung bodies, as LibKa0s docs/api/Core/version-8-docs.md 'Degradation' prescribes, and the live arm binds lib.SafeRegister*. PC-12 routes the Override.lua registration loop through them (PRETTYCHAT-A-09).",
+            "add_depends_on": "LK-11"
+          },
+          {
+            "upstream_item": "LK-11",
+            "item_id": "PC-12",
+            "amend_change": "\nUpstream follow-up LK-11: this item completes it. The modules/Override.lua SyncCombatWatch registration loop (:138-140) goes through Core.SafeRegisterEvents (NS.Util.SafeRegisterEvents, bound by PC-01), and the caller-owned rejected list is NS.RejectedEvents (PRETTYCHAT-A-09).",
+            "add_depends_on": "LK-11"
+          },
+          {
+            "upstream_item": "LK-18",
+            "item_id": "PC-02",
+            "amend_change": "\nUpstream follow-up LK-18 (Kit.assertLibraryConstant plus the Slash version-15 doc's '## The degradation stub'): part (1) is the consumer half. The degraded Slash stub's DisabledLine (settings/Slash.lua) is built from STUB_DISABLED_LINE_FORMAT, and tests/test_surface_parity.lua pins it with Kit.assertLibraryConstant(…, 'LibKa0s-Slash-1.0', 'DISABLED_LINE_FORMAT').",
+            "add_depends_on": "LK-18"
+          },
+          {
+            "upstream_item": "WS-08",
+            "item_id": "PC-26",
+            "amend_change": "\nUpstream follow-up WS-08 ('/wow-addon:revendor-standards to v2.65.0'). EXECUTION GATE: this item can run only after the WowAddonStandards feat/2026-09-23-review-audit-remediation branch, carrying WS-02..WS-08 and the dated v2.65.0 changelog entry, is merged to its default branch and pushed. The /wow-addon:revendor-standards plugin fetches STANDARDS.md and the section files from GitHub, not from the local sibling, so if it runs earlier it finds v2.64.0 and rolls nothing. Before running, confirm with `gh api repos/<owner>/WowAddonStandards/contents/standards/STANDARDS.md --jq .content | base64 -d | head -1`, which must name v2.65.0. Until then the item stays blocked. Do NOT hand-edit the three-place reference to v2.65.0 from the local sibling. That replaces the local-sibling fallback in the paragraph above.",
+            "add_depends_on": "WS-08"
+          }
+        ],
+        "new_items": [
+          {
+            "id": "PC-27",
+            "repo": "PrettyChat",
+            "title": "SavedVariables migration for the minimap rename: a v3 global-scope step keeps every existing player's button choice across global.minimap.hide -> global.minimap.shown (WS-06)",
+            "change": "PC-13 renames the minimap row's schema/CLI path from global.minimap.hide to global.minimap.shown. Storage stays LibDBIcon's db.global.minimap.hide (launcher-§3, anti-pattern #81). This item adds a versioned migration so every existing player keeps their setting after the rename, and so no second stored 'shown' key can survive next to 'hide'. It lands after PC-03 (the scoped runner) and PC-04 (which takes schema v2).\n(1) core/Database.lua:\n- SCHEMA_VERSION 2 -> 3.\n- Add `migrations[3] = { scope = 'global', run = foldMinimapShown }`.\n- `local function foldMinimapShown(global)`: `local mm = global and global.minimap`. If `type(mm) ~= 'table'`, return, so AceDB's declared default `minimap = { hide = false }` materializes as today. If `mm.shown ~= nil`: when `mm.hide == nil`, set `mm.hide = not mm.shown`; then set `mm.shown = nil`. An existing `hide`, and `minimapPos`, are never touched, so `hide` always wins.\n- The step is idempotent: a second run finds no `shown` and does nothing. It never assigns the whole `minimap` table, because LibDBIcon keeps minimapPos in it (the Database.lua :20-26 rule).\n- Keep the step at CCN 5 or below.\n(2) core/Database.lua header comment (:20-33). Replace 'no schemaVersion bump: this is a new default, not a stored-path move' with the v3 note: the row's PATH moved to global.minimap.shown (WS-06), the STORED key stays hide, and v3 folds any stray stored `shown` into `hide` so the player's choice survives. Add the matching migrations-table comment line.\n(3) settings/Schema.lua :139-146 and :216-228 comments (already reworded by PC-13): add one sentence pointing at Database migrations[3] as the guarantee that the rename moved no stored value.\n(4) Docs:\n- docs/schema.md: the minimap row entry notes the v3 migration.\n- docs/ARCHITECTURE.md: the savedvariables / migrations section lists v2 (PC-04's Loot lift) and v3 (the minimap fold).\n- README Version History, next release row (owner writes it): '/pc get|set global.minimap.hide is now global.minimap.shown; your minimap button setting is kept.'\n- docs/smoke-tests.md: add the upgrade step below as a new T-nn.",
+            "tests": "Red first, in tests/test_database.lua. Each case uses a fresh ctx.loadAddon with a seeded PrettyChatDB. Mark each '-- red under: SCHEMA_VERSION 2 with no migrations[3]'.\n(a) 'an existing hidden button stays hidden across the minimap rename'. Seed global = { schemaVersion = 2, minimap = { hide = true, minimapPos = 200 } }. After load: db.global.minimap.hide == true, minimapPos == 200, db.global.schemaVersion == 3, and Schema.Get('global.minimap.shown') == false.\n(b) 'a stray stored shown key is folded into hide and removed'. Seed minimap = { shown = false }: hide == true and shown == nil. Seed minimap = { shown = true }: hide is false or nil, and shown == nil.\n(c) 'hide wins over a conflicting stray shown'. Seed { hide = true, shown = true }: hide == true, shown == nil.\n(d) 'the v3 step is idempotent'. Run Database.RunMigrations a second time and nothing changes.\n(e) 'a fresh install still stamps 3 and shows the button'.\nThe existing :59 ahead-stamp normalization case stays green. Regenerate docs/test-cases.md (`lua5.1 tests/run.lua --list > docs/test-cases.md`) and the README Tests badge in this commit.",
+            "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/PrettyChat && luacheck . && ~/.claude/wow-addon/bin/ka0s-bounded lua5.1 tests/run.lua && diff --strip-trailing-cr <(lua5.1 tests/run.lua --list) docs/test-cases.md && lizard -l lua -x './libs/*' -x './tests/_kit/*' -C 15 -w . && git ls-files '*.lua' | grep -v '^libs/\\|^tests/_kit/\\|^GlobalStrings/GlobalStrings.lua$' | xargs wc -l | sort -rn | sed -n 2p  # largest authored file < 1500. No tests/perf.lua (performance-§12 exemption), so perf is skipped. `grep -n 'SCHEMA_VERSION = 3\\|foldMinimapShown' core/Database.lua` resolves. `grep -rn 'minimap\\.shown\\s*=' --include='*.lua' core modules settings` prints nothing: no code stores a shown key.",
+            "smoke": "In-client upgrade check, on an install whose minimap button was hidden before the update: install the new build and /reload. The button stays hidden. `/pc get global.minimap.shown` prints false and the General > Master controls 'Minimap button' checkbox is unticked. Then `/pc set global.minimap.shown true` brings the button back at its old dragged position (minimapPos kept). /reload again, and it stays shown.",
+            "finding_ids": [],
+            "issue_refs": [],
+            "depends_on": [
+              "WS-06",
+              "RV-PC",
+              "PC-03",
+              "PC-04",
+              "PC-13"
+            ],
+            "effort": "S"
+          }
+        ]
+      },
+      {
+        "repo": "WhatGroup",
+        "mapped": [
+          {
+            "upstream_item": "LK-23",
+            "item_id": "WG-12",
+            "amend_change": " Upstream follow-up LK-23 (WhatGroup#22 adoption note) is this item: LibKa0s-Schema-1.0 minor 2 with the writeThrough descriptor field must be in the RV-WG payload, and WhatGroup deliberately passes NO writeThrough list (the owner's route (b) under WS-02). On a library-absent load /wg enable, /wg disable and /wg test on|off print the WS-02 library-absent line ('/wg enable is unavailable: the LibKa0s library did not load.') and raise no Lua error. The two tests/test_libka0s.lua characterization cases are rewritten to assert that line and the unchanged store, and the options-ui-§1 SHOULD deviation row is recorded in docs/ARCHITECTURE.md. HostSchemaStub copies LK-23's referenceStub (which gains writeThrough) but leaves writeThrough unset.",
+            "add_depends_on": "LK-23"
+          },
+          {
+            "upstream_item": "WS-06",
+            "item_id": "WG-11",
+            "amend_change": " Upstream follow-up WS-06 (WHATGROUP-R-15, launcher-§3 at v2.65.0) is this item. SavedVariables carry-over (required by the owner so existing players keep their minimap setting): the stored key stays db.global.minimap.hide, as WS-06 requires, so no stored value moves. The rename still ships a guarded migration step, which also depends on WG-08's step-driven runner. In core/Database.lua, bump NS.SCHEMA_VERSION to 2 and add NS.MIGRATIONS[2] = function(db): local m = db.global and db.global.minimap; if m and m.shown ~= nil then if m.hide == nil then m.hide = not m.shown end; m.shown = nil end. This folds any stray stored `shown` key (anti-pattern #81, e.g. from a dev build or a hand-edited SV) into LibDBIcon's hide and deletes it, and it never touches minimapPos. The step is idempotent and a no-op for the ordinary store. The same step also deletes the dead profile-scoped branch, walking raw WhatGroupDB.profiles[*].global.minimap per WS-03; it is the branch the Schema.lua:613 comment names. docs/schema.md records the v2 step. Extra tests in tests/test_database.lua: (1) 'database: a pre-rename SV with global.minimap.hide = true boots with global.minimap.shown reading false and the button hidden', which boots from a raw v1 SV { global = { schemaVersion = 1, minimap = { hide = true, minimapPos = 200 } } } and asserts H.Get('global.minimap.shown') == false, db.global.minimap.hide == true, minimapPos == 200 and schemaVersion == 2. (2) 'database: a stray stored minimap.shown folds into hide and is removed', where { shown = false } gives hide == true, shown == nil and the step re-run is a no-op. Extra smoke: before updating, hide the button with the old build, then install the new build and /reload. The button stays hidden, and /wg get global.minimap.shown answers false.",
+            "add_depends_on": "WS-06"
+          },
+          {
+            "upstream_item": "WS-08",
+            "item_id": "WG-30",
+            "amend_change": " Upstream follow-up WS-08 ('/wow-addon:revendor-standards to v2.65.0') is this item. Executable only after WowAddonStandards's v2.65.0 branch (WS-02..WS-08) is merged to its main and pushed. The plugin fetches the standard from GitHub, not from the sibling checkout, so running it earlier revendors to v2.64.x. Gate: `gh api repos/:owner/WowAddonStandards/contents/standards/STANDARDS.md --jq .content | base64 -d | head -5` names v2.65.0 before the run. The TOC ## X-Standard, the README badge and CLAUDE.md all read v2.65.0 afterwards.",
+            "add_depends_on": "WS-08"
+          }
+        ],
+        "new_items": []
+      }
+    ],
+    "critique": [
+      {
+        "severity": "blocker",
+        "where": "plan-data/items.json RV-AM, RV-BL, RV-CM, RV-KC, RV-WG, RV-AT, RV-PF, RV-PM, RV-PC, RV-LH (depends_on = ['LK-33'] only); AM-01, AM-02, BL-01, BL-02, CM-01, KC-01, WG-01 (each depends_on includes its RV-x)",
+        "problem": "The pre-re-vendor ordering is backwards in the dependency graph. The item text, the plan_notes and 03_SPEC.md:195-207 ('Lands before or with RV' table) all say these fixes land BEFORE the addon's RV commit so the re-vendor commit is green. AM-01 says 'RUNS BEFORE RV-AM'. CM-01 says 'RV-CM depends on it'. BL-01 and BL-02 say 'LANDS BEFORE RV-BL'. KC-01 says 'LANDS BEFORE RV-KC'. WG-01 says it 'must land BEFORE the re-vendor'. Yet every one of these items lists RV-x in depends_on, and no RV item lists any of them. A scheduler that follows depends_on will run each re-vendor first, and the RV commit will be red (lone CR at AuraMaster tests/page_helpers.lua:80, the prose-gate spellings in ConsumableMaster and KickCD, BankLedger's wow_mock C_Timer no-op, WhatGroup's SetItemRef callback). That breaks the spec's 'SG steps 1-3 are green at the RV commit itself'. The same gap covers the SetMany stub halves the spec lists as 'before or with RV': LH has no pre-RV item at all (LH-15 depends on RV-LH), and PM-01, PC-01, AT-01, PF-05 and PF-06 all depend on their RV. The RV change text ('the fixes are this addon's M3 items') contradicts the spec too.",
+        "fix": "For each pre-fix, remove RV-x from depends_on and depend on LK-33 plus the specific LK item instead (AM-01: LK-06, LK-33; BL-02: LK-22, LK-33; CM-01: LK-07, LK-33; KC-01: LK-07, LK-13, LK-33; WG-01: LK-33). Then add the pre-fixes to the RV item: RV-AM gets AM-01 and AM-02, RV-BL gets BL-01 and BL-02, RV-CM gets CM-01, RV-KC gets KC-01, RV-WG gets WG-01. Fold these into the RV commit by name: WG-02 into RV-WG; the SetMany stub half of AT-01, PM-01 and PC-01 into RV-AT, RV-PM and RV-PC; PF-05 and PF-06 into RV-PF (or make RV-PF depend on them); and a minimal LH stub SetMany into RV-LH. Rewrite the RV change text to name its pre-fixes, and drop the sentence 'fixes are this addon's M3 items'. Consider re-milestoning the pre-fixes to M2."
+      },
+      {
+        "severity": "major",
+        "where": "plan-data/items.json LK-33 depends_on; LK-03; PF-01 (reconcile adds LK-03); WG-02 text",
+        "problem": "LK-03 (the AceDB fake: CopyProfile and DeleteProfile raise, SetProfile strips defaults) is the only LibKa0s item outside LK-33's transitive closure. The closure check shows M1 items not reachable from LK-33 are exactly LK-03, WA-01, WA-02 and WA-03. LK-33 step (1) still lists 'AceDB raises' among the kit-26 behavioral flips it documents, and the v1.56.0 payload is meant to carry it. So v1.56.0 can be tagged without LK-03, which would leave PF-01's raising-fake characterization, WG-02's LK-03 candidate check (tests/test_disabled.lua:516-529) and AT-03's 'LK-03 consumer obligation' running against a kit that lacks it. PF-01 has an explicit dependency on LK-03, but that cannot put LK-03 into an already-cut tag.",
+        "fix": "Add LK-03 to LK-33.depends_on. Add LK-03 to WG-02.depends_on as well, since its text names it as a candidate red."
+      },
+      {
+        "severity": "major",
+        "where": "plan-data/items.json WA-01, WA-02, WA-03; RV-* items; span-bundle items BL-23, MM-30, LH-34, PC-25, KC-24, PF-24, WG-29; upstream_notes 'revendor-libka0s reads the local sibling and is unaffected'",
+        "problem": "The wow-addon plugin is installed from GitHub: known_marketplaces.json lists source github tusharsaxena/wow-addon, and the install cache is ~/.claude/plugins/cache/wow-addon/wow-addon/2.3.0. WA-01's revised /wow-addon:revendor-libka0s procedure and WA-02's bin/ka0s-bounded therefore reach the command anyone actually runs only after the wow-addon branch is merged and pushed, WA-03's 2.4.0 bump is published and the plugin is updated. The upstream note is wrong on this point: the library source is local, but the command body is not. Meanwhile 03_SPEC.md:210 requires each RV to write docs/revendor/<date>-v1.56.0/ 'by the WA-01 procedure', and PC-DOCS step (4) checks that RV-PC's bundle exists. The RV items do a manual copy ('No other edits'), write no bundle and do not depend on WA-01, so C01's acceptance (the amended step-4 check 'prints nothing, and that includes v1.56.0', 03_SPEC.md:241-244) fails. Seven of the eleven span-bundle items (BL-23, MM-30, LH-34, PC-25, KC-24, PF-24, WG-29) cite 'the WA-01 shape' but do not depend on WA-01; only AT-25, PM-18, CM-28 and AM-02 do. The upstream note 'No addon is touched until ... WA-01 has landed' is not encoded anywhere.",
+        "fix": "Add WA-01 to every RV-* item and to BL-23, MM-30, LH-34, PC-25, KC-24, PF-24 and WG-29. Either (a) mark RV-* as gated on the owner merging and pushing wow-addon (WA-01..WA-03) and updating the plugin to 2.4.0 before running /wow-addon:revendor-libka0s, or (b) have the RV change text write the v1.56.0 bundle by hand, following the local ../wow-addon/commands/revendor-libka0s.md at the WA-01 commit, and add docs/revendor/ to the RV 'No other edits' list. Make each span-bundle item land before its RV (as AM-02 already says) so the v1.56.0 bundle is the 'normal' one after it. Correct the upstream note."
+      },
+      {
+        "severity": "major",
+        "where": "plan-data/items.json BL-25 (depends_on ['RV-BL','BL-24']), KC-27 (['RV-KC','KC-26']), AT-26, PM-16, CM-31, AM-35",
+        "problem": "The reconcile pass added the owner-merge gate and an explicit WS-08 dependency only to the LH, MM, PF, PC and WG revendor-standards items (LH-36, MM-32, PF-25, PC-26, WG-30). The other six /wow-addon:revendor-standards items were left inconsistent. BL-25 and KC-27 have no WS-08 dependency (they reach it only transitively through LK-33) and no gate. AT-26, PM-16, CM-31 and AM-35 all say to run 'against the local ../WowAddonStandards' and verify with `head -1 ../WowAddonStandards/standards/STANDARDS.md`. The plugin fetches the standard from GitHub, so before the owner merges and pushes the v2.65.0 branch, these items would roll to v2.64.0 while their local verify still passes. PC-26's amend explicitly forbids that local-sibling route, and PM-16 prescribes it, so the plan contradicts itself.",
+        "fix": "Add WS-08 to BL-25 and KC-27. In all six, replace the local-sibling wording with the same EXECUTION GATE used in PC-26 and WG-30: blocked until WowAddonStandards v2.65.0 (WS-02..WS-08) is merged to its default branch and pushed; before running, check that `gh api repos/<owner>/WowAddonStandards/contents/standards/STANDARDS.md --jq .content | base64 -d | head -1` names v2.65.0. Change their verify to that gh check. Flag the downstream DOCS items (BL-DOCS, KC-DOCS and the others that depend on these) as inheriting the gate."
+      },
+      {
+        "severity": "major",
+        "where": "plan-data/items.json WG-11 (depends_on ['RV-WG','WS-06'] + reconcile adds only WS-06); WG-08",
+        "problem": "The WG-11 amend adds NS.MIGRATIONS[2], bumps NS.SCHEMA_VERSION to 2 and says outright that it 'also depends on WG-08's step-driven runner'. WG-08 creates NS.MIGRATIONS[1] and the stamp-advancing loop. The reconcile's add_depends_on adds only WS-06, so WG-11 can be scheduled before WG-08 and would write a migration table and version bump into a runner that does not exist yet. WG-11's base change text also still says 'No SavedVariables migration', which contradicts the amend.",
+        "fix": "Add WG-08 to WG-11.depends_on. When merging the amend, delete 'No SavedVariables migration: the stored key does not move.' from WG-11.change."
+      },
+      {
+        "severity": "minor",
+        "where": "plan-data/items.json MM-16 (depends_on ['RV-MM','MM-14','WS-06'])",
+        "problem": "The MM-16 amend's conditional migration step 'writes no stamp (MM-12)', so it relies on MM-12's runner and stamp ownership (defaults schemaVersion 0, the runner owns the stamp). MM-16 does not depend on MM-12. If the implementer does have to add migrations[<next>], they may add it to the pre-MM-12 runner.",
+        "fix": "Add MM-12 to MM-16.depends_on (as LH-13 depends on LH-12 and PF-26 on PF-08)."
+      },
+      {
+        "severity": "minor",
+        "where": "plan-data/items.json LK-19 (depends_on ['LK-02'])",
+        "problem": "LK-19's change says 'MAX_BUFFER stays 1500, which WS-07 makes the standard's number', and its version-13 doc states the 1500 cap as the standard's figure. The item implements a WS ruling but does not depend on it, which breaks the ordering rule that WS rulings land before the LK items that implement them. Every other such pair is explicit: LK-06 and LK-07 on WS-07, LK-11 on WS-04, LK-18 and LK-23 on WS-02.",
+        "fix": "Add WS-07 to LK-19.depends_on."
+      },
+      {
+        "severity": "minor",
+        "where": "plan-data/items.json BL-06, LH-17 (SafeRegisterEvent, no LK-11); BL-11, MM-12, LH-12, WG-08 (schemaVersion 0, no WS-03); BL-12, KC-17 (minimap.shown, no WS-06); LH-26, PC-15 (compat applicability, no WS-05)",
+        "problem": "These M3 items adopt a v1.56.0 surface or apply a v2.65.0 ruling but depend only on their RV item. They are correct transitively (RV -> LK-33 -> LK-11 / WS-08 -> WS-03..06). Their siblings in other repos carry the explicit dependency, though: PC-12 has LK-11, AT-06/PM-10/CM-16/AM-10 have WS-03, AT-12/PM-11/WG-11 have WS-06, AT-16 has WS-05. So 05_TRACEABILITY.md and any per-upstream-item follow-up query will miss these consumers, and WS-06's player-facing CLI rename will look unimplemented in BankLedger and KickCD.",
+        "fix": "Add the direct upstream id to each: BL-06 and LH-17 get LK-11; BL-11, MM-12, LH-12 and WG-08 get WS-03; BL-12 and KC-17 get WS-06; LH-26 and PC-15 get WS-05. Then regenerate the traceability table."
+      },
+      {
+        "severity": "blocker",
+        "where": "RV-AT..RV-WG (all 11 M2 items), with PC-25 verify and PC-DOCS step (4)",
+        "problem": "No re-vendor item writes a docs/revendor/<date>-v1.56.0/ bundle. Every RV-<AB> change says 'Copy ... WHOLE ... and roll the CLAUDE.md provenance line ... No other edits.' None of them runs /wow-addon:revendor-libka0s either. But PC-25's verify says 'the v1.56.0 bundle comes from RV-PC', and PC-DOCS (4) says 'Confirm that RV-PC's docs/revendor/<date>-v1.56.0/ bundle exists'. No item in the plan creates that bundle, in any addon. Findings AuraMaster-A-01, BankLedger-A-01, ConsumableMaster-A-02, PRETTYCHAT-A-01 and WHATGROUP-A-10 all come from re-vendors that shipped without a bundle (audit-review-history MUST). As written, the owner-mandated whole-payload re-vendor would repeat that defect in all eleven addons on the next audit.",
+        "fix": "Amend every RV-<AB> change so its commit also writes docs/revendor/<YYYY-MM-DD>-v1.56.0/, either by running /wow-addon:revendor-libka0s after WA-01, or by hand with 01_DELTA.md line 1 'Delta: LibKa0s v1.55.0 -> v1.56.0' plus 05_SUMMARY.md. Add to each RV verify: `test -f docs/revendor/*-v1.56.0/01_DELTA.md && head -1 ... | grep -q 'v1.55.0 -> v1.56.0'`. Make RV-* depend on WA-01."
+      },
+      {
+        "severity": "major",
+        "where": "WA-01 (pre-flight check and dry-run), CM-28 (the note about the frozen v1.55.0 bundle), WS-01 (vendored-side loop), BL-23 / PC-25 / WG-29 / CM-28 / LH-34 (span lists)",
+        "problem": "Every addon had a kit-only re-vendor of v1.54.2 that touched only tests/_kit/: AuraMaster 329e1a3, ConsumableMaster 1f86d4e, BankLedger 6b12edf, PrettyChat 8421342 and WhatGroup 7f38ddd. At each of those commits CLAUDE.md reads v1.54.2, so every addon's frozen 2026-09-23-v1.55.0 bundle is right to say 'v1.54.2 -> v1.55.0'. Three parts of the plan get this wrong. (1) WA-01 says its pre-flight 'finds AuraMaster's v1.54.2-for-v1.53.0 base', and its dry-run expects v1.53.0 as the base. That contradicts AM-02 and raw_plan's cluster note ('AuraMaster's v1.55.0 base note is correct (kit-only v1.54.2) and must not be corrected'). WA-01's cross-check `git log -1 -- libs/LibKa0s` cannot see kit-only re-vendors, so the pre-flight would flag all eleven addons and invite false 'correction' notes. (2) CM-28 tells the implementer to note that the frozen v1.55.0 bundle's v1.54.2 base disagrees with a previous tag of v1.53.0, which is false. (3) BL-23, PC-25, WG-29, CM-28 and LH-34 derive their spans from `git log -- libs/LibKa0s` and leave out v1.54.2. WS-01's amended AUDIT.md loop walks only libs/LibKa0s too, so the kit-only re-vendor stays invisible and unrecorded.",
+        "fix": "WA-01: cross-check the base with `git log -1 -- libs/LibKa0s tests/_kit`. Drop the claim that AuraMaster's base is misstated. Change the dry-run expectation to v1.54.2 (329e1a3). WS-01: the vendored-side loop walks `-- libs/LibKa0s tests/_kit`. CM-28: delete the 'misstated base' note. Every span bundle derives its tag list from both paths, so v1.54.2 is in the span (as AM-02 already does)."
+      },
+      {
+        "severity": "major",
+        "where": "LK-33 depends_on / LK-03",
+        "problem": "LK-03 changes the kit's AceDB fake (CopyProfile and DeleteProfile raise; SetProfile strips defaults) and is part of kit revision 26. It is not in LK-33's transitive dependency closure: LK-33 depends on LK-32 and LK-05 and others, while LK-03 depends only on LK-02 and nothing depends on LK-03. The v1.56.0 tag can therefore be cut without it. PF-01's test (c), AT-03, PF-02's 'SetProfile strips defaults' cases and the PartyFrameEnhanced-R-09 disposition all assume the raising fake is in the vendored kit. WA-01, WA-02 and WA-03 are also outside every gate, so M3 items can start before the wow-addon changes land. That breaks owner scope rule 2 (upstream first).",
+        "fix": "Add LK-03 to LK-33.depends_on. Add WA-01..WA-03 to the RV-* dependencies, or to LK-33's, so no M3 item can start before them. Re-run the closure check: every M1 item must be an ancestor of every RV-*."
+      },
+      {
+        "severity": "major",
+        "where": "Minimap rename SavedVariables migration: PF-26, PC-27, LH-13 amend, WG-11 amend vs MM-16 amend, BL-12, AT-12, PM-11, KC-17, AM-14, CM-19; OWNER_SCOPE.md",
+        "problem": "The reconcile results assert an owner requirement ('The owner still requires an explicit SavedVariables migration', PF-13 amend; 'required by the owner', WG-11 amend and PF-26). OWNER_SCOPE.md records no such ruling. The plan then applies it to only four of the eleven addons. PartyFrameEnhanced, PrettyChat, LootHistory and WhatGroup get a fold-`shown`-into-`hide` step. MM-16's amendment explicitly adds no migration and no version bump. BL-12 ('No SavedVariables change and no migration'), AT-12, PM-11, KC-17, AM-14 and CM-19 add none either. So the collection gets two inconsistent answers to one WS-06 rule. The base text of LH-13, PC-13 and WG-11 also still says 'no SavedVariables change and no migration', and the appended amendments contradict that. Only PF-13's amendment replaces its sentence.",
+        "fix": "Get the owner's ruling recorded in OWNER_SCOPE.md. If a migration is required, add the same defensive, idempotent fold step, with its tests and an upgrade smoke check, to MM-16, BL-12, AT-12, PM-11, KC-17, AM-14 and CM-19. If it is not required, drop PF-26, PC-27 and the migration halves of the LH-13 and WG-11 amendments. Either way, delete the stale 'no migration' sentences in LH-13, PC-13 and WG-11 so no item's change text contradicts itself."
+      },
+      {
+        "severity": "major",
+        "where": "WG-11 depends_on (amended)",
+        "problem": "The WG-11 amendment adds NS.MIGRATIONS[2] and bumps NS.SCHEMA_VERSION to 2, and says the step 'depends on WG-08's step-driven runner'. It adds only WS-06 to depends_on. WG-11's depends_on is ['RV-WG'] and WG-08 is not in it, so WG-11 can be scheduled before the runner and the SCHEMA_VERSION = 1 baseline it bumps from exist.",
+        "fix": "Add WG-08 to WG-11.depends_on, alongside WS-06."
+      },
+      {
+        "severity": "major",
+        "where": "RV-* change vs LK-05 / LK-07 / LK-33 consumer follow-ups and BankLedger plan_notes; AM-02",
+        "problem": "The ordering is contradictory. LK-05 and LK-07 say each dry-run red is 'an addon fix owed before its re-vendor'. BankLedger's plan_notes say BL-01 and BL-02 must land 'immediately BEFORE RV-BL, or fold them into RV-BL's commit, so the re-vendor commit is green'. AM-02's change opens with 'RUNS BEFORE RV-AM'. Yet BL-01 and BL-02 depend on RV-BL, AM-02 depends on RV-AM, and every RV-* says 'No other edits. If the suite goes red ... record the failures in the commit body'. So the plan both requires and forbids a red re-vendor commit, and the dependency graph schedules the 'before' items after.",
+        "fix": "Choose one model. Either (a) each RV-<AB> folds in that addon's owed dry-run fixes (named per addon from dryrun-lk05-*.txt and the LK-07 dry run), with the verify requiring '0 failed', and pre-RV items such as AM-02 and BL-01/BL-02 drop their RV dependency and depend on LK-33 instead. Or (b) keep RV edit-free and delete the 'before its re-vendor' wording from LK-05, LK-07, AM-02 and the BankLedger notes."
+      },
+      {
+        "severity": "minor",
+        "where": "Span-bundle line-1 grammar: BL-23, CM-28, PC-25, WG-29, LH-34, PM-18, AM-02 vs WS-01 (4)",
+        "problem": "WS-01 defines line 1 as exactly `Delta: LibKa0s v<A> -> v<B> (span: v<A> v<...> v<B>)`, with the folder named -v<A>-v<B>. The items differ from that and from each other. CM-28 uses a non-tag base 'v1.17.x'. BL-23 names v1.15.0 -> v1.54.2 in a folder named -v1.18.0-v1.53.0, with a span ending at v1.53.0. LH-34 uses v1.15.0 -> v1.53.0, PM-18 uses v1.16.0 -> v1.54.2, and PC-25 and WG-29 use v1.18.0 -> v1.53.0. Some separate the span with commas and some with spaces. The amended recorded-side loop greps every vX.Y.Z on line 1, so bases like v1.15.0 get counted as recorded, and 'v1.17.x' is silently dropped.",
+        "fix": "Normalize every span item to WS-01's exact grammar: A = first unrecorded tag, B = last (v1.54.2 per the kit-only issue), the folder named -v<A>-v<B>, and a space-separated span. Put the true previous base in the body, not on line 1."
+      },
+      {
+        "severity": "blocker",
+        "where": "LH-13 (amend: MIGRATIONS to=9), PC-27 (foldMinimapShown), WG-11 (amend: NS.MIGRATIONS[2])",
+        "problem": "The fold only runs `hide = not shown` when `hide == nil`. Every one of these addons declares `minimap = { hide = false }` as a default: LootHistory/defaults/Global.lua:63, PrettyChat/core/Database.lua:37 and WhatGroup/settings/Schema.lua:610 (BuildDefaults). AceDB's copyDefaults, and the kit's faithful copy at tests/_kit/mock_record.lua:173-195, fills `hide = false` into db.global at AceDB:New. That happens before RunMigrations, so `hide` is never nil when the step runs. The branch can't be reached, and a stray `shown = false` is dropped while hide stays false, so the player's hidden button comes back. Each item's own red-first test then fails for good: LH-13 (e) `{shown=false}` gives hide == true, PC-27 (b) seeds `{shown=false}` and expects hide == true, and WG-11 test (2) `{shown=false}` gives hide == true.",
+        "fix": "Use PF-26's rule, which is correct under copyDefaults: `if m.shown == false and not m.hide then m.hide = true end; m.shown = nil`, with `hide` winning in every other case. Apply it in LH-13, PC-27 and WG-11. Also add a comment in each step saying that AceDB materializes `hide = false` before the runner, which is why `hide == nil` can't be used as the test."
+      },
+      {
+        "severity": "major",
+        "where": "AM-17 vs LK-28 (LibKa0s OptionsTabs RenderTabbedSchema opts)",
+        "problem": "AM-17 maps AuraMaster's `disabledFor` and `disabledNotice` straight onto LK-28's opts, and its characterization pins must stay green after the swap. One of those pins is the 'disabled state on Bars/Icons/Text'. But LK-28 specifies that disabledNotice 'renders the notice in place of rows when disabledFor answers true'. AuraMaster today draws the notice and then every row disabled (settings/OptionsSetup.lua:624-640, via RenderRows opts.disabled and ctx.__renderDisabled for bespoke tabs), so the pins go red after the swap. AM-17 also depends on 'a tab keyed by a schema group replaces that group's rows, as the v1.56.0 Options doc specifies', which is AuraMaster's collectTabs behavior at :560-580. LK-28 only defines bespoke tabs 'placed before a named group via before' and never specifies replacement. As planned, AM-17 hits its own STOP condition.",
+        "fix": "Amend LK-28 before it is tagged. `disabledFor` true should draw the notice above the rows and render the rows disabled (RenderRows opts.disabled, plus ctx.__renderDisabled around bespoke render), not replace them. A `tabs` entry whose key equals a schema group should take that group's place in the strip and be handed the group's rows (render(ctx, rows)). Add library tests for both, so AM-17 can adopt without a fork or a re-pin."
+      },
+      {
+        "severity": "major",
+        "where": "MM-14 change (2) and the MM-14 amend ('SetByPaths becomes S:SetMany')",
+        "problem": "The shims are written with colon syntax: `NS.FindSchemaRow = S:FindRow`, `NS.RegisterSchemaRows = S:AddRows`, `NS.GetSetting(path, id) = S:Get(path, id)`, `S:Set`, `S:ApplyDefault`, `S:SetMany(entries, …)`. `NS.X = S:FindRow` is not valid Lua. The LibKa0s-Schema-1.0 instance members are also dot-defined (LibKa0s/Schema.lua:306-607: `function S.Get(path, instanceId)`, `function S.Set(path, value, instanceId)` and so on). A literal `S:Get(path, id)` passes S as `path`. Every other adopter item (PF-11, WG-12, KC-18, AM-15, CM-17) uses dot form.",
+        "fix": "Rewrite MM-14 and its amend in dot form: `NS.FindSchemaRow = S.FindRow`, `NS.RegisterSchemaRows = function(rows) S.AddRows(rows) end`, `NS.GetSetting = function(p, id) return S.Get(p, id) end`, `NS.SetByPath = S.Set`, `NS.ApplyDefault = function(row, id) return S.ApplyDefault(row, id) end`, and `S.SetMany(entries, { instanceId = windowId, act = …, scope = … })`."
+      },
+      {
+        "severity": "major",
+        "where": "WG-11 depends_on (after the reconcile amend)",
+        "problem": "The amend adds `NS.SCHEMA_VERSION = 2` and `NS.MIGRATIONS[2] = function(db) …` and says the step 'depends on WG-08's step-driven runner'. The only dependency it adds is WS-06, so WG-11's depends_on is ['RV-WG','WS-06']. Today's WhatGroup/core/Database.lua:23-45 has no NS.MIGRATIONS table and just stamps `g.schemaVersion = NS.SCHEMA_VERSION`, so if WG-11 is scheduled before WG-08, the v2 step never runs and its tests can't pass. WG-08's own red test also sets `NS.SCHEMA_VERSION = 2` and `NS.MIGRATIONS[2]`, which collides with WG-11's real v2 step if the order is reversed.",
+        "fix": "Add WG-08 to WG-11's depends_on. Have WG-08's injected test step use `SCHEMA_VERSION + 1`, taken from the runner, instead of a literal 2, and restore the table afterwards, so it stays valid once WG-11 has taken v2."
+      },
+      {
+        "severity": "major",
+        "where": "LH-13 change text (base vs amend)",
+        "problem": "The base change opens with 'The stored key stays db.global.minimap.hide, so no SavedVariables change and no migration.' The appended amend then requires a MIGRATIONS `{ to = 9 }` step, `NS.SCHEMA_LATEST`, rewriting the literal 8 at tests/test_database.lua:443/449/455/476/486/501/519, and moving LH-12's smoke from 8 to 9. The item contradicts itself, and the verify line (just 'renamed and added cases') doesn't check the migration either. PC-13's and PF-13's texts say the same 'no migration' thing, while PC-27 and PF-26 add one. For PF-13 the amend corrects the sentence; PC-13 is left as it was.",
+        "fix": "In LH-13, delete 'so no SavedVariables change and no migration' and replace it with 'the stored key is unchanged; a defensive to = 9 fold step is added (below)'. Add `grep -n 'to = 9' core/Database.lua` and the four new test cases to the verify. Reword PC-13 the same way to point at PC-27."
+      },
+      {
+        "severity": "minor",
+        "where": "PC-27 vs PC-14 (both edit the minimap/defaults comment in PrettyChat core/Database.lua)",
+        "problem": "PC-27 (2) rewrites 'core/Database.lua header comment (:20-33)' and its 'no schemaVersion bump' sentence. PC-14 deletes Database.defaults (:34-39) and moves that same reasoning from core/Database.lua:16-33 into defaults/Profile.lua. PC-27 depends on PC-03, PC-04 and PC-13 but not PC-14, so the order between them is undefined. If PC-14 lands first, PC-27's target comment is gone. If PC-27 lands first, PC-14 moves a comment that has already been rewritten, and the item text doesn't expect that.",
+        "fix": "Add PC-14 to PC-27's depends_on, and retarget PC-27 (2) to the moved comment in defaults/Profile.lua (NS.GlobalDefaults) plus the migrations-table comment in core/Database.lua."
+      },
+      {
+        "severity": "minor",
+        "where": "MM-16 amend ('the v15 migration in core/Database.lua (:52, :850-891)')",
+        "problem": "Those lines are wrong. CURRENT_DB_VERSION is at MultiMeters/core/Database.lua:53. The step that moves minimap to the global store (v14->v15) is `migrations[14]` at :904, since the runner indexes by the from-version (`migrations[from]`). Lines 850-891 are inside migrations[13]. An implementer following the cite reads the wrong step, and test (f) ('pre-v15 account with profile.minimap.hide=true, run through the migration runner') needs to know it is migrations[14].",
+        "fix": "Change the cite to core/Database.lua:53 and migrations[14] (:895-935), and say in test (f) that the account is seeded at schemaVersion 14 so migrations[14] moves profile.minimap.hide into global."
+      },
+      {
+        "severity": "minor",
+        "where": "MM-13 / MM-14 / MM-20 verify ('line-cap awk (no output)')",
+        "problem": "The verify names a check that isn't written out anywhere in the item, and MultiMeters has no script by that name. Other repos' items spell the command out: `git ls-files '*.lua' | grep -v -e '^libs/' -e '^tests/_kit/' | xargs wc -l | awk '$2!=\"total\" && $1>1500'`. MM-20 in particular depends on it (Row.lua is 1469, test_row.lua 1490).",
+        "fix": "Replace 'line-cap awk' in the MM verify fields with the literal command above."
+      },
+      {
+        "severity": "minor",
+        "where": "MM-20 change (2) ('peel the cell-clear helpers (:1446-1455) into modules/Row_NameCell.lua's sibling')",
+        "problem": "modules/Row.lua:1446-1455 is RowProto:Release, not a set of cell-clear helpers. Moving it to a new sibling file also needs a TOC entry and a load-order position, and the item mentions neither. Separately, ApplyLayout today allocates `local live = {}` at Row.lua:1311 on every call. The item says liveCells is 'never reallocated', so this existing allocation has to go, which the item doesn't say.",
+        "fix": "Name the peel target precisely: a new modules/Row_Cells.lua holding Release and the cell-clear loop, added to MultiMeters.toc right after modules\\Row.lua, with a LOAD-BEARING comment. Say explicitly that the `local live = {}` at :1311 is replaced by the reused self.liveCells."
+      }
+    ]
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Reconcile"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Write"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Critique"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "reconcile:BankLedger",
+      "phaseIndex": 1,
+      "phaseTitle": "Reconcile",
+      "agentId": "a7132d1a8f854aadb",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179621508,
+      "queuedAt": 1790179621489,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790179646911,
+      "tokens": 49105,
+      "toolCalls": 4,
+      "durationMs": 25398,
+      "resultPreview": "{\"mapped\":[{\"upstream_item\":\"LK-22\",\"item_id\":\"BL-02\",\"amend_change\":\" Upstream: this is the BankLedger consumer follow-up of LK-22 (LibKa0s Schema minor 2 adds SetMany to the instance surface and the docs/api/Schema/version-2-docs.md stub table); the stub SetMany mirrors LK-22's all-or-nothing semantics and log-silence exactly, and the post-RV-BL parity check is against the LK-22 surface.\",\"add_d…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "reconcile:LootHistory",
+      "phaseIndex": 1,
+      "phaseTitle": "Reconcile",
+      "agentId": "a99e99b0112a9ecb8",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179621509,
+      "queuedAt": 1790179621489,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790179677988,
+      "tokens": 54977,
+      "toolCalls": 7,
+      "durationMs": 54984,
+      "resultPreview": "{\"mapped\":[{\"upstream_item\":\"LK-22\",\"item_id\":\"LH-15\",\"amend_change\":\" Upstream LK-22 (LibKa0s-Schema-1.0 minor 2): this item is the consumer follow-up that gives the host schema instance stub the SetMany member (with LK-22's all-or-nothing semantics and log-silence) plus the instanceId forwarding in R.Get/R.ApplyDefault, so the existing surface-parity case against the live v1.56.0 instance, which…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "reconcile:MultiMeters",
+      "phaseIndex": 1,
+      "phaseTitle": "Reconcile",
+      "agentId": "adb618ba404c0c147",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179621510,
+      "queuedAt": 1790179621489,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790179669709,
+      "tokens": 60727,
+      "toolCalls": 5,
+      "durationMs": 46704,
+      "resultPreview": "{\"mapped\":[{\"upstream_item\":\"LK-22\",\"item_id\":\"MM-14\",\"amend_change\":\"This item is the LK-22 consumer follow-up (MultiMeters#52). SetByPaths becomes S:SetMany, and its announceBatch fires CONFIG_CHANGED exactly once per batch, pinned by test (b). The host primitives (splitPath/readFrom/writeInto/copy), the registry (index/reindex/FindSchemaRow/RegisterSchemaRows) and the bulk bracket are deleted f…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "reconcile:PartyFrameEnhanced",
+      "phaseIndex": 1,
+      "phaseTitle": "Reconcile",
+      "agentId": "acd2da3ecbb991502",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179621511,
+      "queuedAt": 1790179621489,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790179708391,
+      "tokens": 74478,
+      "toolCalls": 7,
+      "durationMs": 85386,
+      "resultPreview": "{\"mapped\":[{\"upstream_item\":\"LK-23\",\"item_id\":\"PF-11\",\"amend_change\":\"Upstream follow-up LK-23 made explicit: this item is the PartyFrameEnhanced#14 re-application LK-23's adoption notes name. It needs LibKa0s-Schema-1.0 minor 2 with `writeThrough` in the vendored v1.56.0 payload (RV-PF), and the host stub takes the same list. The list {'enabled','locked'} covers every path the follow-up names: se…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "reconcile:PrettyChat",
+      "phaseIndex": 1,
+      "phaseTitle": "Reconcile",
+      "agentId": "adb45a428414c5a7b",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179621512,
+      "queuedAt": 1790179621489,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790179710352,
+      "tokens": 65432,
+      "toolCalls": 8,
+      "durationMs": 87347,
+      "resultPreview": "{\"mapped\":[{\"upstream_item\":\"LK-11\",\"item_id\":\"PC-01\",\"amend_change\":\"\\nUpstream follow-up LK-11 (LibKa0s Core minor 8 adds SafeRegisterEvent / SafeRegisterUnitEvent / SafeRegisterEvents): parts (1)-(3) of this item are the consumer half of LK-11. The Core stub in core/CoreSetup.lua gains the SafeRegister* one-rung bodies, as LibKa0s docs/api/Core/version-8-docs.md 'Degradation' prescribes, and th…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "reconcile:WhatGroup",
+      "phaseIndex": 1,
+      "phaseTitle": "Reconcile",
+      "agentId": "aef63f9bb3503a99c",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179621512,
+      "queuedAt": 1790179621490,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790179674389,
+      "tokens": 52687,
+      "toolCalls": 5,
+      "durationMs": 51384,
+      "resultPreview": "{\"mapped\":[{\"upstream_item\":\"LK-23\",\"item_id\":\"WG-12\",\"amend_change\":\" Upstream follow-up LK-23 (WhatGroup#22 adoption note) is this item: LibKa0s-Schema-1.0 minor 2 with the writeThrough descriptor field must be in the RV-WG payload, and WhatGroup deliberately passes NO writeThrough list (the owner's route (b) under WS-02). On a library-absent load /wg enable, /wg disable and /wg test on|off prin…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "write:02",
+      "phaseIndex": 2,
+      "phaseTitle": "Write",
+      "agentId": "a1c0bffbe8cd4b385",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179711584,
+      "queuedAt": 1790179711581,
+      "attempt": 1,
+      "lastToolName": "Write",
+      "lastToolSummary": "/mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonT…",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790180660879,
+      "tokens": 303919,
+      "toolCalls": 48,
+      "durationMs": 949292,
+      "resultPreview": "I wrote `02_UPSTREAM_CHANGES.md` with all 44 Milestone 1 items in execution order. The plan data was read-only and I committed nothing. On the question you asked me to answer: yes, six LibKa0s items wait on standards rulings. They are LK-06 and LK-07 (WS-07), LK-11 (WS-04), LK-18 and LK-23 (WS-02), and LK-33 (WS-08). WA-01 also waits on WS-01.\n\nEvery item has its findings, change, version ripple, …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "write:03",
+      "phaseIndex": 2,
+      "phaseTitle": "Write",
+      "agentId": "a1afe42eba3edd3df",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179711585,
+      "queuedAt": 1790179711581,
+      "attempt": 1,
+      "lastToolName": "Bash",
+      "lastToolSummary": "F=/mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommo…",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790180374738,
+      "tokens": 430042,
+      "toolCalls": 36,
+      "durationMs": 661520,
+      "resultPreview": "I've written `03_SPEC.md` (1,841 lines, about 121 KB), modeled on the 2026-09-07 spec. Every one of the 47 clusters (C01–C47) has its three parts: target, checkable acceptance and non-goals. I checked that all 47 cluster headings are present with no duplicates. Nothing else was modified and nothing was committed.\n\nThe acceptance checks are shell commands, greps, named test cases and in-client step…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "write:06",
+      "phaseIndex": 2,
+      "phaseTitle": "Write",
+      "agentId": "a8574bad9998cc013",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790179711586,
+      "queuedAt": 1790179711581,
+      "attempt": 1,
+      "lastToolName": "Bash",
+      "lastToolSummary": "F=/mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommo…",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790180394951,
+      "tokens": 182856,
+      "toolCalls": 20,
+      "durationMs": 681733,
+      "resultPreview": "I wrote `/mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION/06_SMOKE_TESTS.md`. It has 2,008 lines and 193 steps. No other file changed, and nothing is committed.\n\n**Coverage:** 170 of 170 ids are mapped: the 168 items with a smoke field plus the two new items from the reconcile pass, PF-26 and PC-27. I checked this with a script …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 10,
+      "label": "critic:1",
+      "phaseIndex": 3,
+      "phaseTitle": "Critique",
+      "agentId": "a1c707ff29a005e9a",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790180663706,
+      "queuedAt": 1790180663685,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790180900648,
+      "tokens": 103491,
+      "toolCalls": 18,
+      "durationMs": 236939,
+      "resultPreview": "{\"issues\":[{\"severity\":\"blocker\",\"where\":\"plan-data/items.json RV-AM, RV-BL, RV-CM, RV-KC, RV-WG, RV-AT, RV-PF, RV-PM, RV-PC, RV-LH (depends_on = ['LK-33'] only); AM-01, AM-02, BL-01, BL-02, CM-01, KC-01, WG-01 (each depends_on includes its RV-x)\",\"problem\":\"The pre-re-vendor ordering is backwards in the dependency graph. The item text, the plan_notes and 03_SPEC.md:195-207 ('Lands before or with …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 11,
+      "label": "critic:2",
+      "phaseIndex": 3,
+      "phaseTitle": "Critique",
+      "agentId": "a89fbefb5671eed96",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790180663707,
+      "queuedAt": 1790180663685,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790180948509,
+      "tokens": 159685,
+      "toolCalls": 30,
+      "durationMs": 283235,
+      "resultPreview": "{\"issues\":[{\"severity\":\"blocker\",\"where\":\"RV-AT..RV-WG (all 11 M2 items), with PC-25 verify and PC-DOCS step (4)\",\"problem\":\"No re-vendor item writes a docs/revendor/<date>-v1.56.0/ bundle. Every RV-<AB> change says 'Copy ... WHOLE ... and roll the CLAUDE.md provenance line ... No other edits.' None of them runs /wow-addon:revendor-libka0s either. But PC-25's verify says 'the v1.56.0 bundle comes …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 12,
+      "label": "critic:3",
+      "phaseIndex": 3,
+      "phaseTitle": "Critique",
+      "agentId": "aba8c129df4d5aa0b",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790180663708,
+      "queuedAt": 1790180663685,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION. Inputs: inputs/OWNER_SCOPE.md (binding owner scope and rulings), inputs/findings/<Repo>.json (436 verified findings), plan-data/items.json (every work item: M1 upstream WS-/LK-/WA-, M2 re-vendor RV-<AB>, M3 addon items <AB>-nn; fields id, repo, milestone, title, change, t…",
+      "promptFramed": true,
+      "lastProgressAt": 1790181068568,
+      "tokens": 185059,
+      "toolCalls": 51,
+      "durationMs": 403294,
+      "resultPreview": "{\"issues\":[{\"severity\":\"blocker\",\"where\":\"LH-13 (amend: MIGRATIONS to=9), PC-27 (foldMinimapShown), WG-11 (amend: NS.MIGRATIONS[2])\",\"problem\":\"The fold only runs `hide = not shown` when `hide == nil`. Every one of these addons declares `minimap = { hide = false }` as a default: LootHistory/defaults/Global.lua:63, PrettyChat/core/Database.lua:37 and WhatGroup/settings/Schema.lua:610 (BuildDefaults…"
+    }
+  ],
+  "totalTokens": 1722458,
+  "totalToolCalls": 239
+}
