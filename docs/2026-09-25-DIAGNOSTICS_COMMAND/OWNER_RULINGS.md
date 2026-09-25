@@ -39,4 +39,14 @@ player bar included; **KickCD** gets no X (X-03). The M3 items for those three a
 
 ## DR-OW-05 (AuraMaster sequencing)
 
-Pending. AuraMaster's items wait for its batch 8, 9 and 10 branch to merge (Q16 (a)).
+Done 2026-09-26. With every smoke section (Z to AD) passed, the owner approved the merge, and
+`/wow-addon:finalize` merged AuraMaster's `feat/2026-09-25-feedback-batch8` (batches 8 to 11) to master as
+`73e2d8f`. It vendors LibKa0s v1.59.0, whose close-button branch was merged (`c01db86`) and tagged and
+pushed first. AuraMaster's DR-AM items now start from that master.
+
+## DR-OW-07 (publishing the standard)
+
+Done 2026-09-26, on the owner's go-ahead in the same finalize pass: WowAddonStandards v2.68.0 merged to
+master (`2854053`) and wow-addon merged (`837554f`), so revendor-standards and standards-audit fetch the
+new standard from raw GitHub master. LibKa0s's rollout branch was merged too (`db0c54a`, v1.60.0
+unreleased); its release and local tag remain DR-LK-06, which needs the owner.
