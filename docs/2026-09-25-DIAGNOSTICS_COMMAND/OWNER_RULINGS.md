@@ -31,6 +31,12 @@ Hands-on at 5000 (`/copybench keep`): Copy captured all 5000 lines intact, but t
 hands-on check confirms it, so the Q2 fallback applies. 3000 passes, though only just (246 ms against 250 ms),
 which is why the fallback is not 5000. DR-LK-02, DR-WS-05 and DR-LK-05 use 3000.
 
+## DR-OW-03 (the DragHandle X, Q1)
+
+Ruled in DR-OW-01 (the Q1 row above) and recorded here as its own item: **ConsumableMaster**'s X sets
+`macroBar.enabled = false`; **AbsorbTracker**'s X sets `units.<unit>.enabled = false` on every bar, the
+player bar included; **KickCD** gets no X (X-03). The M3 items for those three addons follow this.
+
 ## DR-OW-05 (AuraMaster sequencing)
 
 Pending. AuraMaster's items wait for its batch 8, 9 and 10 branch to merge (Q16 (a)).
