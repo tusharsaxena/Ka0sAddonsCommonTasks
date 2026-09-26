@@ -177,3 +177,22 @@ This run was not allowed to file GitHub issues, so the owner files these.
    WowAddonStandards, then LibKa0s (push the `v1.61.0` tag at that point), then AuraMaster. Push the
    `refs/notes/ka0s-review` notes and delete the feature branches. Until then all three branches and
    the tag exist only locally.
+
+## Owner results and finalize (2026-09-26)
+
+- **In-client checks.** The owner reported, with screenshots: the rail's top level with the tabs (S2),
+  only the controls scroll (S3), the style entry follows the container (S4), each section keeps its
+  tab (S5), old links land on the right section (S7, S11), the whole page locked in combat (S8), and
+  another Ka0s addon's settings unchanged under the shared v1.61.0 library (S16). All passed. S1, S6,
+  S9, S10 and S12–S15 were not reported individually; AuraMaster `docs/smoke-tests.md` records this
+  (commit `b4274bb`).
+- **Finalize, owner go-ahead.** Each branch merged `--no-ff`, its gate re-run on the merge, pushed,
+  and deleted:
+  - WowAddonStandards `master` `30aa3cd`: v2.69.0, served by raw.githubusercontent.com.
+  - LibKa0s `master` `cf38896`: 1744 pass / 0 fail / 1 skip, luacheck 0/0, lizard clean. Tag
+    **v1.61.0 pushed** (annotated `7e64131`, on `c6183bd`).
+  - AuraMaster `master` `b51aee8`: 1640 pass, luacheck 0/0, lizard clean, `libs/LibKa0s` identical
+    to v1.61.0, provenance line v1.61.0.
+  - Review notes pushed in all three. No addon version bumped.
+- **Next (owner):** file the follow-ups below, then re-vendor LibKa0s v1.61.0 into every addon and
+  build the same layout in MultiMeters (#55) and KickCD (#33), as a new bundle.
