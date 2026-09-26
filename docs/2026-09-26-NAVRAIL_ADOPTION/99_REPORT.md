@@ -234,3 +234,22 @@ each gate on the merge, push `master` and the `refs/notes/ka0s-review` notes, an
 branches. The ten are independent of one another, and LibKa0s and WowAddonStandards need nothing:
 the tag and the standard are already published. No addon version is bumped as part of it. Until
 then, all ten branches exist only locally.
+
+## Owner results and finalize (2026-09-26)
+
+- **In-client checks.** The owner reported every check passing: MultiMeters MM-S1 to MM-S11,
+  KickCD KC-S1 to KC-S11, the PanelMaster Panels band fix (5-w, 5-x), and the other addons'
+  settings pages unchanged. Recorded in `06_SMOKE_TESTS.md` and in each addon's
+  `docs/smoke-tests.md`.
+- **Finalize, owner go-ahead.** Each addon's `feat/2026-09-26-navrail-adoption` merged `--no-ff` to
+  master, its gate re-run on the merge (tests 0 failed, luacheck 0/0, complexity clean,
+  `libs/LibKa0s` identical to v1.61.0), then pushed with its review notes:
+  AbsorbTracker `cc46bab` (810), BankLedger `0851298` (1104), ConsumableMaster `bc284a4` (1112),
+  KickCD `cdff980` (1201), LootHistory `3ce80a7` (961), MultiMeters `c125001` (2092),
+  PanelMaster `1763c0c` (964, with the Panels band fix, `pm-band-fix-01`), PartyFrameEnhanced
+  `8250bd2` (383), PrettyChat `496d2fd` (518), WhatGroup `54ef2f1` (823).
+- Feature branches, the PanelMaster test stack and fix branch, and its worktree are deleted. No
+  version bumped, no tag. MultiMeters#55 and KickCD#33 are closed as done.
+- **Every Ka0s addon now vendors LibKa0s v1.61.0.** The New-instance rail rule (owner, 2026-09-26)
+  holds in AuraMaster (New container lands on General/General) and MultiMeters (New window lives
+  only on General's single tab); KickCD has no New act.
