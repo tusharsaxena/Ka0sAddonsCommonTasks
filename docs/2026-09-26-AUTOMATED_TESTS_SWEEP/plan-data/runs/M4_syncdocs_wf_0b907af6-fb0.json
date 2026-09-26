@@ -1,0 +1,837 @@
+{
+  "summary": "Automated-tests sweep M4: /wow-addon:sync-docs per touched repo on the sweep branch, committed, independently reviewed",
+  "agentCount": 25,
+  "logs": [],
+  "result": [
+    {
+      "sync": {
+        "id": "AT-ATS-SD",
+        "status": "landed",
+        "sha": "58c04ec",
+        "gate": "bounded lua tests/run.lua: 810 passed / 0 failed / 810 total (it was 809/1 at 0479a09 because of a British spelling in RESULTS.md); luacheck .: 0 warnings / 0 errors in 67 files; docs/test-cases.md matches `lua tests/run.lua --list` exactly",
+        "summary": "One docs-only commit in /mnt/d/Profile/Users/Tushar/Documents/GIT/AbsorbTracker on feat/2026-09-26-automated-tests-sweep. Not pushed. What changed: (1) docs/module-map.md: the harness suite list now matches tests/run.lua. It adds test_draghandle, test_events and test_diagnostics, and names all four kit suites (test_prose, test_diagnostics_contract, test_eol, test_layout_cap). (2) docs/scope.md: the same list adds test_events, test_diagnostics and the three kit suites it was missing. (3) docs/automated-tests/RESULTS.md: changed \"neighbour\" to \"neighbor\" in the test_widgets Disposition prose. The kit's prose gate (localization-§5) had the suite red at HEAD 0479a09 with 809/1. Only that prose word changed; no recorded number was touched. Other checks came back clean. Every module-map row's line count matches wc -l, the \"thirty-two suites plus the kit's four\" count is right, the Documentation map matches docs/ on disk, and the ARCHITECTURE largest-file census (test_slashcmds 1321) is correct. README's 810/810 badge, CLAUDE.md's LibKa0s v1.62.0 provenance line and DEPENDENCIES.md needed no change. CRLF was preserved per .gitattributes. Dead exports and a full README audit were out of scope for this pass; the README was not edited, so no de-AI pass was needed. The only stale comment citations are in .luacheckrc (listed as pending, not edited).",
+        "pendingCommentCitations": [
+          ".luacheckrc:118 - says the degraded-arm stub `SlashLib:New(d)` is 'at :410' of settings/Slash.lua; it is actually at settings/Slash.lua:603",
+          ".luacheckrc:120 - cites `function lib:New(d)` at libs/LibKa0s/Slash.lua:375; after the v1.62.0 re-vendor it is at libs/LibKa0s/Slash.lua:484 (line 375 is now an unrelated comment)",
+          ".luacheckrc:120 - says `SlashLib:New({...})` is called 'at :448' of settings/Slash.lua; the call is at settings/Slash.lua:661",
+          ".luacheckrc:124 - says Sl methods are reached with a colon from core/AbsorbTracker.lua:44; line 44 is a comment-free blank/unrelated line, the NS.Slash:Register() call is at core/AbsorbTracker.lua:52"
+        ]
+      },
+      "review": {
+        "ok": true,
+        "issues": [
+          "Nit (non-blocking): docs/module-map.md lists the four kit suites as a group at the end, but tests/run.lua runs them interleaved: test_prose right after test_docs, and test_diagnostics_contract right after test_diagnostics. The commit message says the list 'matches tests/run.lua's ordered list', which overstates this. Every suite is named, so membership is correct.",
+          "Nit (pre-existing, not introduced here): docs/scope.md still lists test_optionssetup after test_widgets, while run.lua runs it after test_launcher. That list does not claim to be in order.",
+          "Verified: the commit changes 3 .md files and nothing else, so no code changed. docs/automated-tests/RESULTS.md is the rolling record, not a frozen bundle. All 3 files are CRLF on disk (CR count equals LF count). The LOC figures 1073, 894 and 1321 match the tree. The LibKa0s v1.62.0 provenance in CLAUDE.md is untouched and test_vendor_sync passes. The ka0s-bounded rerun gives 810/0/810 and luacheck reports 0 warnings and 0 errors in 67 files. The git note is written under refs/notes/ka0s-review on 58c04ec with verdict PASS."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "AM-ATS-SD",
+        "status": "no_drift",
+        "summary": "I ran wow-addon:sync-docs over /mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster on branch feat/2026-09-26-automated-tests-sweep. The tree was clean at aad1287 and has no AM-ATS-SD commit. The docs already match the tree, because the sweep commits updated them as they went, so there is nothing to commit.\n\nWhat I checked:\n- **New files:** the four files added in the sweep (modules/Anchors_Attach.lua, settings/GeneralUserCategories.lua, tests/test_anchors_handle.lua, tests/handle_recorder.lua) are covered in module-map.md, ARCHITECTURE.md (load order), common-tasks.md and settings-panel.md.\n- **Library versions:** LibKa0s v1.62.0 is the same in CLAUDE.md, DEPENDENCIES.md and the module-map library table.\n- **Test counts:** docs/test-cases.md is identical to a fresh `lua tests/run.lua --list`, and its Total of 1661 matches the README badge (1661/1661).\n- **File-size census:** ARCHITECTURE.md says no file is over 1500 lines. That is true: the largest is core/Database.lua at 1327.\n- **Documentation map:** it matches docs/ in both directions.\n- **module-map.md:** it matches every source, test and tool file in both directions.\n- **DEPENDENCIES.md:** every file:line reference still points at the right line after the re-vendor (run-automated-tests.sh, loader.lua, vendor_sync.lua, test_layout_cap.lua, test_lintconfig.lua, test_docs.lua, test_locale.lua, test_setups.lua).\n- **Moved code:** performance.md already describes the AM-ATS-01 compile fix, and the docs' Anchors.AttachPoints / AttachEdge / DefaultEdge references still work.\n- **README:** no library inventory, and the standard badge is not wrapped in a link.\n\nNo README edit was made, so the README humanize pass was not needed.\n\nStale source comments: I edited none of them. They are listed in pendingCommentCitations. The LibKa0s v1.62.0 re-vendor split OptionsWidgets.lua (now 1422 lines) into OptionsIdList.lua and other files. As a result, 11 file:line references in AuraMaster comments now point past the end of OptionsWidgets.lua, and two more references without a line number name the wrong file.",
+        "proof": "Commands run in /mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster:\n- `git status --short`: clean before and after.\n- `git log --grep='^AM-ATS-SD: '`: no match.\n- `lua tests/run.lua --list` vs docs/test-cases.md (CR stripped): identical.\n- Module-map parity loop over `git ls-files` (excluding libs/ and tests/_kit/): nothing missing in either direction. The spell-research test_sid_*.py files and fixtures/ are covered by the glob row at module-map.md:236.\n- DEPENDENCIES.md citation lines checked with `sed -n`: every one resolves to the named call.\n- `wc -l` over authored .lua: the largest is 1327 lines, so no file is over the cap, as ARCHITECTURE.md says.\n- Green gate via ka0s-bounded: `lua tests/run.lua` gave \"1661 passed, 0 failed, 0 skipped, 1661 total (16 shards)\"; `luacheck .` gave \"0 warnings / 0 errors in 144 files\".",
+        "pendingCommentCitations": [
+          "modules/CastAura.lua:126 cites 'libs/LibKa0s/OptionsWidgets.lua:1991-1993' for ID_HELP_DIM; that file now has 1422 lines. The truth: ID_HELP_TINT and ID_HELP_DIM are at libs/LibKa0s/OptionsIdList.lua:177-179.",
+          "modules/CastAura.lua:181 cites 'libs/LibKa0s/OptionsWidgets.lua:2979-2985' for entryHelpLevel, which is past the end of the file. The truth: entryHelpLevel is at libs/LibKa0s/OptionsIdList.lua:488-494.",
+          "settings/Filters.lua:711 cites 'libs/LibKa0s/OptionsWidgets.lua:3340-3342' for entryNoted, which is past the end of the file. The truth: entryNoted is at libs/LibKa0s/OptionsIdList.lua:849-851, and the own-row rule is entryColumns at :890-893.",
+          "settings/GeneralSpells.lua:672 cites 'libs/LibKa0s/OptionsWidgets.lua:2756-2803' for entry.suffix, which is past the end of the file. The truth: entrySuffix and entryLabel are at libs/LibKa0s/OptionsIdList.lua:265-301.",
+          "settings/GeneralSpells.lua:704 cites 'libs/LibKa0s/OptionsWidgets.lua:2874-2886' for entryTooltip, which is past the end of the file. The truth: entryTooltip is at libs/LibKa0s/OptionsIdList.lua:383-395.",
+          "settings/GeneralSpells.lua:865-866 cites 'libs/LibKa0s/OptionsWidgets.lua:3344-3354' for the columns clamp, plus '`:1953`' for ID_COLUMNS_MAX; both are past the end of the file. The truth: idColumns is at libs/LibKa0s/OptionsIdList.lua:856-863 and ID_COLUMNS_MAX = 2 is at :139.",
+          "settings/GeneralSpells.lua:882 names 'libs/LibKa0s/OptionsWidgets.lua' as the home of entryNameRel and ID_ICON_SIZE; they are not in that file any more. The truth: libs/LibKa0s/OptionsIdList.lua:666 (entryNameRel) and :44 (ID_ICON_SIZE).",
+          "tests/general_page_helpers.lua:216 cites 'libs/LibKa0s/OptionsWidgets.lua:1991-1993' for ID_HELP_TINT/ID_HELP_DIM, which is past the end of the file. The truth: libs/LibKa0s/OptionsIdList.lua:177-179.",
+          "tests/test_pages_filters.lua:72 cites 'libs/LibKa0s/OptionsWidgets.lua:3021' for where __helpTint is recorded, which is past the end of the file. The truth: libs/LibKa0s/OptionsIdList.lua:530 (h.__helpTint = tint).",
+          "tests/test_pages_filters.lua:94 cites 'libs/LibKa0s/OptionsWidgets.lua:2928-2934' for listHasHelp, which is past the end of the file. The truth: listHasHelp is at libs/LibKa0s/OptionsIdList.lua:437-443.",
+          "tests/test_pages_filters.lua:880 cites 'libs/LibKa0s/OptionsWidgets.lua:3334-3342' for entryNoted, which is past the end of the file. The truth: libs/LibKa0s/OptionsIdList.lua:849-851 (entryNoted) and :890-893 (entryColumns).",
+          "Outside the mechanical check (a stale reason, not a broken path): tests/test_anchors_seam.lua:6 says the suite is separate 'because tests/test_anchors.lua sits near layout-§1's 1500-line cap'. After AM-ATS-02, tests/test_anchors.lua is 815 lines, so the owner should decide whether to reword this comment."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "BL-ATS-SD",
+        "status": "landed",
+        "sha": "872522179b5c971df6865fbaf6d149d50add0faf",
+        "gate": "lua tests/run.lua: 1104 passed, 0 failed, 0 skipped; luacheck: 0 warnings / 0 errors in 76 files (both run through ka0s-bounded)",
+        "summary": "I ran wow-addon:sync-docs on BankLedger (branch feat/2026-09-26-automated-tests-sweep). It found drift in one file, docs/testing.md, in its \"How the harness works\" tree. That tree said _kit/framework.lua holds the assertions, which has been wrong since kit revision 26 moved them to asserts.lua. It also had no rows for asserts.lua, inventory.lua, test_libka0s.lua or the new test_libka0s_slash.lua (the ATS-24 split). The fix is +8/-1 lines, with CRLF line endings kept. Everything else checked was already accurate: the README's Tests badge (1104/1104) matches docs/test-cases.md, the CLAUDE.md provenance line (v1.62.0, kit revision 31) matches the vendored copy, DEPENDENCIES.md needs nothing because the kit's runner changes use only POSIX tools, and every file under docs/ has its row in the ARCHITECTURE.md Documentation map, with revendor/ named once as a directory. The README was not touched, so no de-AI pass was needed. No frozen bundles, libs/ or tests/_kit/ were edited. The work is one commit, not pushed. Six stale line references in code comments are listed for the owner to confirm and were not edited.",
+        "proof": "git log -1: 8725221 BL-ATS-SD: Sync docs to the tree after the automated-tests sweep; git status clean afterwards",
+        "pendingCommentCitations": [
+          ".luacheckrc:63 -- says the harness global is written at tests/run.lua:74; _G.BL_TEST = Kit.expose{ is now at tests/run.lua:86",
+          ".luacheckrc:120 -- says libs/LibKa0s/DebugLog.lua calls D:UpdateStatus() at :557, :625 and :680; in the vendored v1.62.0 those calls are at :607, :690 and :753",
+          ".luacheckrc:124 -- says tests/test_libka0s.lua:537 pins all twelve members by name; that list is now at tests/test_libka0s.lua:560-562 and has fifteen members (RunDiagnostics, BuildDiagnostics and DebugVerb were added)",
+          "tests/test_envsetup.lua:16 -- says tests/_kit/mock_base.lua:183 explains why C_AddOns is not stubbed; that note is now at tests/_kit/mock_base.lua:1110",
+          "tests/test_surface_parity.lua:163 -- says DebugLog stamps the _...ForTest seams at libs/LibKa0s/DebugLog.lua:477, :482, :712, :713; they are now at :527, :532, :809, :810",
+          "tests/test_surface_parity.lua:242 -- says O.__print is set at libs/LibKa0s/Options.lua:536 and read at OptionsWidgets.lua:1347; after the v1.62.0 re-vendor it is set at Options.lua:499 and read at OptionsWidgets.lua:404 (also read at OptionsTabs.lua:461)"
+        ]
+      },
+      "review": {
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "sync": {
+        "id": "CM-ATS-SD",
+        "status": "landed",
+        "sha": "fda94fc01ffc5dff9761a5b0a10c31f1b28d1337",
+        "gate": "lua5.1 tests/run.lua: 1112 passed, 0 failed, 0 skipped. luacheck: 0 warnings / 0 errors in 126 files. Both run through ka0s-bounded, before and after the edit. tests/run.lua --list matches docs/test-cases.md exactly.",
+        "proof": "Checked with sync-docs. The Tests badge (1112/1112) matches, and docs/test-cases.md is identical to the regenerated --list output. The Documentation map matches the files on disk. The 1500-line census matches wc -l (largest file is settings/MacroBar.lua at 1169). module-map Peel history, macro-bar.md, slash-dispatch.md and testing.md (kit revision 31 / v1.62.0) match the tree. The test-file claims in ARCHITECTURE.md:130, common-tasks.md:31, macro-bar.md:469/492, settings-panel.md:40/124 and module-map.md:508 all still point at the suites that hold those cases. The 14 consumed majors are unchanged, since v1.62.0 added only attach files. The DEPENDENCIES.md line references into tests/_kit/vendor_sync.lua, loader.lua, test_runner_list.lua and .luacheckrc all still resolve. No addon source changed during the sweep; only libs/ did.",
+        "summary": "I made one commit, fda94fc, on feat/2026-09-26-automated-tests-sweep in /mnt/d/Profile/Users/Tushar/Documents/GIT/ConsumableMaster. It fixes two stale references into the vendored library, both in CRLF files, and the line endings are kept. (1) /mnt/d/Profile/Users/Tushar/Documents/GIT/ConsumableMaster/docs/perf-analysis/README.md cited libs/LibKa0s/Perf.lua:163-179, which is deriveArm. It now cites :176-191, where interfaceVersion and its comment are. (2) /mnt/d/Profile/Users/Tushar/Documents/GIT/ConsumableMaster/docs/smoke-tests.md step 18 named OptionsWidgets.lua as TabStrip's file. It now says OptionsTabs.lua today, and OptionsWidgets.lua when step 18 landed; I checked that location against the LibKa0s v1.27.0 tag. The rest of the docs already matched the tree: counts, badge, test-cases.md, Documentation map, 1500-line census, peel history and DEPENDENCIES. The README was not touched, so the de-AI pass was not needed. I found no dead exports while doing this. The other unresolved references in source comments are fine: they point at other repos (standard lint.md, LibKa0s docs/api, ADDONS.md, KickCD/MultiMeters files, Blizzard SecureTemplates.lua) or record history (core/LSMPatch.lua, tests/harness.lua). Nothing was pushed.",
+        "pendingCommentCitations": [
+          "settings/OptionsSetup.lua:55 — says SetColor is at libs/LibKa0s/OptionsWidgets.lua:1446-1453. That range is past the end of the file, which has 1422 lines since the v1.62.0 re-vendor. The readColor/SetColor block is now at libs/LibKa0s/OptionsWidgets.lua:855-862.",
+          "settings/Panel.lua:542 — says `enumList` is at libs/LibKa0s/OptionsWidgets.lua:78-79. Lines 74-82 are applyWidth, and they were already applyWidth before this re-vendor. enumList is defined at libs/LibKa0s/OptionsWidgets.lua:105, and the array-vs-map test is at :109."
+        ]
+      },
+      "review": {
+        "ok": true,
+        "issues": [
+          "Nit (non-blocking): docs/perf-analysis/README.md now cites libs/LibKa0s/Perf.lua:176-191, but the interfaceVersion comment block starts at line 175 ('-- The interface version this capture was taken on...'); function is 187-191. The commit message claims the range covers 'interfaceVersion and its comment', so :175-191 would be exact.",
+          "Pre-existing, correctly left unedited and disclosed in the commit message: settings/OptionsSetup.lua:55 and settings/Panel.lua:542 cite stale libs/LibKa0s/OptionsWidgets.lua line ranges (comment-only fix needs owner confirmation).",
+          "Verified OK: docs-only (2 files, 1 line each), no code or frozen-bundle edits, CRLF intact (807/807, 147/147), TabStrip in OptionsTabs.lua at v1.62.0 and in OptionsWidgets.lua at v1.27.0 per ../LibKa0s tags, vendored Perf.lua/OptionsTabs.lua byte-match v1.62.0 modulo EOL, CLAUDE.md provenance v1.62.0, bounded tests 1112/1112, luacheck 0/0 in 126 files, README badge and test-cases.md total agree. Git note written to refs/notes/ka0s-review on fda94fc (PASS)."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "KC-ATS-SD",
+        "status": "landed",
+        "sha": "be32c849ae247acc0db0c6fce321d32f2b27471d",
+        "gate": "lua tests/run.lua: 1201 passed, 0 failed, 0 skipped. luacheck: 0 warnings / 0 errors in 112 files. Both run through ka0s-bounded.",
+        "summary": "Ran sync-docs over /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD on feat/2026-09-26-automated-tests-sweep and found two small pieces of drift. Both are fixed in one commit (be32c84), which has not been pushed.\n\n1. docs/module-map.md: the table of files in the 1000-1500 line band had three stale line counts. modules/IconGrid.lua went from 1368 to 1381, tests/test_options_panel.lua from 1099 to 1101 and core/Database.lua from 1002 to 1069. Now that modules/Castbar.lua is down to 1217, the rows are re-sorted largest first. The same nine files and issues are listed. The \"measured on\" line now names the automated-tests sweep branch.\n2. docs/castbar.md: the route-map paragraph now says that the handlers named in CASTBAR_CAST_ROUTES are defined in modules/Castbar_Events.lua. The table itself stays in modules/Castbar.lua.\n\nThese were already accurate and were left alone:\n- README.md: the Tests badge says 1201/1201, which matches the suite.\n- CLAUDE.md: the provenance line says LibKa0s v1.62.0.\n- DEPENDENCIES.md: the toolchain has not changed.\n- docs/ARCHITECTURE.md: the Documentation map resolves in both directions, the load order and subsystem row already name Castbar_Events.lua, and the census of files over 1500 lines is empty.\n- docs/testing.md.\n- Every other docs/*.md: the \"as vendored at LibKa0s v1.60.0\" figures still hold. DebugLog is still minor 14, Slash minor 16 and MAX_BUFFER 3000.\n\nThe generated files (docs/test-cases.md and docs/automated-tests/RESULTS.md) and the frozen bundles were not touched. README.md did not change, so the humanize pass did not run.\n\nComment-citation check: every path that did not resolve is a deliberate historical reference to something deleted, such as modules/DebugLog.lua or core/LSMPatch.lua. The Castbar comments were already updated in KC-ATS-01. The one stale line citation is listed under pending comment citations and was not edited.\n\nNo dead exports were checked for this item.",
+        "pendingCommentCitations": [
+          "tests/test_lifecycle.lua:61 -- says: \"the same self:Layout() call sites (IconGrid.lua:627/633/661) the crash hid behind\". True today: modules/IconGrid.lua has no self:Layout() call at any line; 627 is a locales comment, 633 is blank, 661 is a comment about a secret width and backdrops. The citation is historical (the crash-era line numbers), so either drop the line numbers or re-point them at the current Layout call sites; owner to name the replacement."
+        ]
+      },
+      "review": {
+        "ok": true,
+        "issues": [
+          "Nit, no fix needed: the commit message says modules/Castbar.lua (1217) is 'no longer the largest'. It was not the largest before this commit either, because IconGrid.lua was 1368 at the time. The old table in /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/docs/module-map.md was just sorted wrong. The new table is correct."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "LK-ATS-SD",
+        "status": "landed",
+        "sha": "662da790602ffd9a1b7944c3d7b0e2a80f46271e",
+        "gate": "lua tests/run.lua via ka0s-bounded: 1747 passed, 0 failed, 1 skipped, 1748 total; luacheck . via ka0s-bounded: 0 warnings / 0 errors in 122 files. docs/test-cases.md regenerated with `lua tests/run.lua --list` and is byte-identical to the committed file.",
+        "proof": "Commit 662da79 in /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s on feat/2026-09-26-automated-tests-sweep. It changes 2 files (DEPENDENCIES.md and docs/adoption-prompt.md), both kept CRLF, with CR count equal to LF count. The tree is clean afterwards and nothing was pushed.",
+        "summary": "sync-docs pass on LibKa0s, which is a library repo, so library-stack-§7 scoping applies. Most of the docs were already in step with the tree. Checked and found current:\n- README: module and file lists, the MODULES minors (v1.62.0), 113 icons and 7 textures, standard v2.69.0 (matches upstream).\n- CLAUDE.md: the band line counts (all ten re-measured and matching), the census (nothing over the cap), the Documentation map (every docs/*.md has a row and every row resolves), and the file:line citations in the deviation register.\n- docs/test-cases.md: matches a fresh regeneration exactly.\n\nDrift fixed in commit 662da79:\n- DEPENDENCIES.md, \"verified with\" line: it cited an old run's manifest. It now cites the newest one, 20260926-193105.\n- DEPENDENCIES.md, `ls -A` row: it pointed at testkit/framework.lua:515. Kit revision 28 moved the suite inventory out of that file, so it now points at testkit/inventory.lua:190.\n- DEPENDENCIES.md, git row: it named only test_kitsync. It now also names the kit's eol and layout-cap gates (`git ls-files -z` at testkit/test_eol.lua:130 and testkit/test_layout_cap.lua:171) and the `git init` fixtures in test_kit_eol.\n- DEPENDENCIES.md, new row: the POSIX tools mktemp, mkdir, rm and pwd. The kit's own inventory and eol suites use them (tests/test_kit_inventory.lua:43/58/70, tests/test_kit_eol.lua:22/32/81).\n- docs/adoption-prompt.md: two stale line citations fixed. DebugLog.lua:195 is now :371 (the d.skin read). OptionsWidgets.lua:698 is now :913 (the number arm of O.RenderField).\n\nStale citations in source and test comments were not edited. They are listed in pendingCommentCitations and need the owner's confirmation. No dead exports were examined in depth, and none are flagged. README.md was not edited, so the de-AI pass did not run.",
+        "pendingCommentCitations": [
+          "tests/test_options_compose.lua:124 -- says 'the empty-list report at OptionsWidgets.lua:1442'; OptionsWidgets.lua is 1422 lines (past EOF). True location: LibKa0s/OptionsWidgets.lua:784 (`if row.values == nil and #enumList(row) == 0`).",
+          "tests/test_options_compose.lua:114 -- says '`enumList` (OptionsWidgets.lua:78-79)'; lines 78-79 are applyWidth. True: enumList is defined at LibKa0s/OptionsWidgets.lua:105.",
+          "LibKa0s/OptionsCompose.lua:250 -- says 'enumList (OptionsWidgets.lua:78-79)'; same as above, true location LibKa0s/OptionsWidgets.lua:105.",
+          "tests/test_options_compose.lua:120 -- cites 'Options.lua:759-763' for the LSM deferral rationale; those lines are the Defaults button wiring. True: the O.LSMValues deferral comment is at LibKa0s/Options.lua:1180-1185 (function at :1186).",
+          "LibKa0s/OptionsCompose.lua:254 -- 'precisely the failure Options.lua:759-763 says the deferral exists to prevent'; true location LibKa0s/Options.lua:1180-1185.",
+          "LibKa0s/OptionsIdList.lua:110 -- 'the AceGUI ScrollFrame that anchorScroll anchors (Options.lua:877-883)'; those lines are the refreshers reset. True: anchorScroll is at LibKa0s/Options.lua:794.",
+          "LibKa0s/OptionsIdList.lua:112 -- 'declared as PADDING_X - 4 and PADDING_X + 12 at Options.lua:187-188'; 187-188 are INTERNAL comment lines. True: L.CONTENT_LEFT / L.CONTENT_RIGHT are at LibKa0s/Options.lua:190-191.",
+          "tests/test_options_idlist_layout.lua:203 -- '(12 + 28, LibKa0s/Options.lua:187-188)'; true location LibKa0s/Options.lua:190-191.",
+          "LibKa0s/OptionsIdList.lua:114 -- 'forced on every one of these scrolls at Options.lua:929'; line 929 is RestoreDefaults' doc comment. True: O.PatchAlwaysShowScrollbar(scroll) is called at LibKa0s/Options.lua:849.",
+          "tests/fixture_widgets.lua:30 -- 'The instance resolves AceGUI ONCE, at New() time (`LibKa0s/Options.lua:217`)'; line 217 is the NO_GROUPS string. True: `O.AceGUI = LibStub and LibStub(\"AceGUI-3.0\", true) or nil` at LibKa0s/Options.lua:508.",
+          "tests/test_options_tabs.lua:43 -- same 'LibKa0s/Options.lua:217' AceGUI-at-New() citation; true location LibKa0s/Options.lua:508."
+        ]
+      },
+      "review": {
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "sync": {
+        "id": "LH-ATS-SD",
+        "status": "landed",
+        "sha": "30fe813",
+        "gate": "lua tests/run.lua: 961 passed, 0 failed, 0 skipped, 961 total. luacheck .: 0 warnings / 0 errors in 70 files. Regenerating docs/test-cases.md with `lua tests/run.lua --list` gives an identical file. All edited docs are still CRLF, as .gitattributes declares.",
+        "summary": "One commit in /mnt/d/Profile/Users/Tushar/Documents/GIT/LootHistory on feat/2026-09-26-automated-tests-sweep. It changes 9 docs, 61 lines in and 61 out, and is not pushed. The LibKa0s v1.62.0 re-vendor moved code into four new Options files and shortened Options.lua and OptionsWidgets.lua, which left many file:line citations in the docs pointing at the wrong lines. For every citation I found the commit that last wrote that doc line, mapped the cited line forward to HEAD with git diff, and re-pointed it. I checked the library citations by hand against the function or variable they name.\n\nFiles changed: docs/settings-panel.md (about 50 citations; registerMain, buildPage and the combat refusal now cite OptionsRegistry.lua; the O.IdList note now names OptionsIdList.lua), docs/common-tasks.md, docs/slash-dispatch.md, docs/combat-path-sweep.md, docs/schema.md, docs/module-map.md, docs/ARCHITECTURE.md, docs/smoke-tests.md (TabStrip's home is now OptionsTabs.lua) and DEPENDENCIES.md (citations into testing.md).\n\nOne wrong claim, older than this sweep, was also fixed. settings-panel.md said `row.wide` is not read by the library's row-layout loop. It is: the loop sends wide rows through a full-width branch (OptionsWidgets.lua:241, :1370). As a result, settings.excludedSources (a wide row the library cannot draw) produces an empty full-width line before the checkbox picker this addon draws itself. The doc now says so. The owner may want to check whether that blank line shows in game.\n\nChecks with no findings: the Documentation map matches the docs/ directory; LibKa0s has 15 majors and 27 files; the test badge (961/961), the 17 slash verbs and the 22 compat shims match the code; the largest file is 1289 lines; the provenance line reads v1.62.0.\n\nNot done: README.md was not touched, so the de-AI pass was not needed. I did not run a full dead-export scan. None of the frozen bundles, libs/ or tests/_kit/ were edited. Comment citations in source and test files were left alone and are listed in pendingCommentCitations for the owner to confirm.",
+        "pendingCommentCitations": [
+          "settings/Panel.lua:303 - says entryNoWrap is at libs/LibKa0s/OptionsWidgets.lua:2924, called from idLine at :3003-3007 - that is past the end of the file (1422 lines). entryNoWrap is now libs/LibKa0s/OptionsIdList.lua:726, and idLine (:794) calls it at :817",
+          "settings/Panel.lua:305 - says entryLabel is at :2643-2654 (continuing OptionsWidgets.lua) - past the end of the file. entryLabel is now libs/LibKa0s/OptionsIdList.lua:301-312",
+          "settings/Panel.lua:394 - says an absent `columns` reads as one at libs/LibKa0s/OptionsWidgets.lua:3041-3051 - past the end of the file. That logic is now idColumns at libs/LibKa0s/OptionsIdList.lua:855-862",
+          "tests/panel_support.lua:126 - says the fake gives `original_width = 400` at tests/_kit/mock_base.lua:1302 - that line is now at tests/_kit/mock_base.lua:1307",
+          "tests/panel_support.lua:127 - says the scrollbar gutter is taken off at OptionsScroll.lua:34 and :73-74 - GUTTER is defined at libs/LibKa0s/OptionsScroll.lua:35 and the width is reduced at :74-75",
+          "tests/panel_support.lua:134 - says fitIdColumns / entryMinContent are at libs/LibKa0s/OptionsWidgets.lua:3136-3174 - past the end of the file. entryMinContent is now libs/LibKa0s/OptionsIdList.lua:948-968 and fitIdColumns is :990-999",
+          "tests/test_envsetup.lua:17 - says tests/_kit/mock_base.lua:1047 explains why C_AddOns is not stubbed - line 1047 is now an unrelated frame-stub comment. The C_AddOns note is at tests/_kit/mock_base.lua:1110",
+          "tests/test_envsetup.lua:74 - same citation, tests/_kit/mock_base.lua:1047 - the C_AddOns note is now at tests/_kit/mock_base.lua:1110",
+          "tests/test_panel_filters.lua:168 - says entryLabel is at libs/LibKa0s/OptionsWidgets.lua:2643-2654 - past the end of the file. It is now libs/LibKa0s/OptionsIdList.lua:301-312",
+          "tests/test_surface_parity.lua:166 - says OptionsWidgets reads O.__print at OptionsWidgets.lua:763 - line 763 is now the LSM30_ dialogControl comment. O.__print is read at libs/LibKa0s/OptionsWidgets.lua:404 (comment at :397) and published at libs/LibKa0s/Options.lua:499",
+          ".luacheckrc:64 - says _G.LH_TEST is written at tests/run.lua:103 - it is written at tests/run.lua:159 (`_G.LH_TEST = Kit.expose{`)"
+        ],
+        "proof": "git log --oneline -1 -> 30fe813 LH-ATS-SD: Sync docs to the tree after the automated-tests sweep. git status --short shows a clean tree."
+      },
+      "review": {
+        "ok": false,
+        "issues": [
+          "docs/schema.md (the blacklist/whitelist/currencyBlacklist bullet): the commit moved `Sl:CliResetAll` from `:473` to `:477` and its degraded-install twin from `:337` to `:341` in /mnt/d/Profile/Users/Tushar/Documents/GIT/LootHistory/settings/Slash.lua. Both new numbers are still wrong. Line 477 is `Sl.OnSlash = ...` and line 341 is the closing `end` of the stub's PrintHelp. `function Sl:CliResetAll()` is at :508, the line ARCHITECTURE.md and slash-dispatch.md in the same commit cite correctly. The degraded stub's `Sl.CliResetAll = function()` is at :364. Hunk arithmetic carried forward an old citation that was already wrong, and no by-hand check caught it.",
+          "No other defects. The other ~100 re-pointed citations each resolve to the symbol they name: OptionsRegistry.lua:118/139/251, Options.lua:111/516/573/589/608/617/625/655/680/738/824/849/858/880/933/989/1078/1097/1114/1118, OptionsWidgets.lua:69/182/241/290/503/543/673/698/739/761/818/842/911/915/1025/1367/1370/1376/1387/1405, OptionsScroll.lua, DebugLog.lua:158/166/523/698, LibKa0s Slash.lua and the addon-side lines. The corrected `row.wide` claim matches the code: the drawWide branch runs at :1370, and RenderField returns nil for `type = \"table\"`, which leaves an empty full-width line. The OptionsIdList.lua and OptionsTabs.lua provenance matches LH-ATS-RV (93e879d), and CLAUDE.md:56 records LibKa0s v1.62.0. The DEPENDENCIES.md citations docs/testing.md:187 and :195 are correct. The commit changes docs only (9 files, 61 lines in and 61 out) and touches no code and no frozen bundle. Line endings are clean: the blobs are LF and the working-tree CR count equals the LF count. I re-ran the gate through ka0s-bounded: 961/961 tests pass and luacheck reports 0 warnings / 0 errors in 70 files. I wrote the review note to refs/notes/ka0s-review on 30fe813 with verdict FAIL."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "MM-ATS-SD",
+        "status": "landed",
+        "sha": "54a82140c1e5de42c62fb0073a8eb0765ca7c118",
+        "gate": "lua tests/run.lua: 2092 passed, 0 failed, 0 skipped (ka0s-bounded); luacheck .: 0 warnings / 0 errors in 144 files",
+        "summary": "I ran sync-docs on MultiMeters (branch feat/2026-09-26-automated-tests-sweep) and found two small gaps. I fixed both in one commit, 54a8214, and did not push.\n1. /mnt/d/Profile/Users/Tushar/Documents/GIT/MultiMeters/docs/testing.md had no entry for the MM-ATS-01 split of tests/test_slash.lua. I added a paragraph: the diagnostics verbs moved to tests/test_slash_diagnostics.lua, the disabled-state refusal tests moved to tests/test_slash_refusal.lua, and the parent file keeps the rest. Every other split in the sweep was already covered there.\n2. The list of topic docs in /mnt/d/Profile/Users/Tushar/Documents/GIT/MultiMeters/CLAUDE.md now includes debug.md, disabled-state.md and performance.md. All three exist and are already registered in docs/ARCHITECTURE.md.\n\nThese needed no change:\n- README (test badge 2092/2092, and it lists no bundled libraries).\n- DEPENDENCIES.md.\n- The file counts in ARCHITECTURE and module-map (63 files: 1/20/1/26/15).\n- The documentation map in ARCHITECTURE.md.\n- Every file path cited in the docs. The only ones that don't resolve are historical mentions of files since removed, or paths in the LibKa0s repo.\n- The line citations in the perf docs (Aggregator.lua:903 and :1151, Row.lua:1157).\n- docs/test-cases.md, which regenerates byte-identical.\n- The claim of 16 expected files in common-tasks.md.\n\nI found no stale comment citations and no dead exports. The newest RESULTS.md row (20260926) is newer than the last release, 1.0.1.",
+        "proof": "git diff 54a8214~1 54a8214 --stat: CLAUDE.md +2/-1, docs/testing.md +9. Both files are still CRLF, as .gitattributes declares. `lua tests/run.lua --list` output diffs clean against docs/test-cases.md. I checked every path cited in the live docs and in the addon's own source comments against the tree and ../LibKa0s. None is stale; the only ones that don't resolve are historical mentions of retired files.",
+        "pendingCommentCitations": []
+      },
+      "review": {
+        "ok": true,
+        "issues": [
+          "Non-blocking nit: docs/testing.md line 205 says tests/test_slash.lua was peeled 'when it passed its line-cap re-check'. That can be read as the file passing the check, but it means the file went past the 1400-line re-check threshold (a2ee920: 1411 lines). Suggested wording: 'when it crossed its 1400-line re-check'. The review found nothing else wrong.",
+          "Verified: the commit changes only CLAUDE.md and docs/testing.md. It touches no code, no libs/ or tests/_kit/ file and no frozen bundle. The blobs are stored LF, and the working tree is CRLF with CR and LF counts equal (55/55 and 725/725), as .gitattributes requires.",
+          "Verified: docs/debug.md, docs/disabled-state.md and docs/performance.md exist. test_slash.lua has 834 lines and 50 cases, test_slash_diagnostics.lua has 437 lines and 20 cases (perf plus the /mm debug ladder) and test_slash_refusal.lua has 325 lines and 11 cases. resetall stays in the parent, and the suite total is still 2092.",
+          "Verified: the claims in the commit message hold. There are 63 non-lib Lua files (core 20, defaults 1, locales 1, modules 26, settings 15). The citations Aggregator.lua:903 and :1151 and Row.lua:1157 point at the aggregate and renderRow perf lines, and the README badge reads 2092/2092.",
+          "Verified: the vendored libs/LibKa0s/*.lua files match LibKa0s tag v1.62.0 byte for byte (ignoring CR), which matches the provenance line at CLAUDE.md:55.",
+          "Re-run through ka0s-bounded: lua tests/run.lua gave 2092 passed, 0 failed, 0 skipped, and luacheck gave 0 warnings / 0 errors in 144 files. The git note is written under refs/notes/ka0s-review on 54a82140 with verdict PASS."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "PM-ATS-SD",
+        "status": "landed",
+        "sha": "76d4bd9db43e82e83bc908e9485ac79dafbd6f9d",
+        "gate": "lua tests/run.lua: 964 passed / 0 failed / 964 total; luacheck: 0 warnings / 0 errors in 66 files (both run through ka0s-bounded); docs/test-cases.md regenerated with --list is byte-identical.",
+        "summary": "Ran the sync-docs process on /mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster (branch feat/2026-09-26-automated-tests-sweep) and found four small drifts left by the PM-ATS-01/02 peels. They are fixed in one commit, 76d4bd9, with CRLF kept.\n\n- docs/testing.md: the linter's file count is now 66, not 61 (two places).\n- docs/module-map.md: six files take NS.Print as a file-scope upvalue, not five. settings/PanelEditorTabs.lua is the one that was missing.\n- docs/ARCHITECTURE.md: the events-frames-taint-§8 deviation row now lists settings/PanelEditorTabs.lua among the files that pre-format their print lines.\n- docs/common-tasks.md: settings/PanelEditor.lua draws the Panels page's strip, and settings/PanelEditorTabs.lua does the ctx.activeTab dispatch.\n\nREADME.md, CLAUDE.md (the provenance line says v1.62.0, which matches the vendored copy), DEPENDENCIES.md and the Documentation map had no drift. The line citations into both editor files and into test_panel/test_panels_page resolve correctly, and the list of 15 LibKa0s majors is still right.\n\nFive stale comments in source and test files are listed for owner confirmation and were not edited. The comment references to SunnArt_Core.lua and packaging.md point at files outside this repo, so they are not flagged. Not pushed.",
+        "pendingCommentCitations": [
+          "core/Constants.lua:23 - says `label` is what settings/PanelEditor.lua reads for its hand-drawn dropdowns; the reader is now settings/PanelEditorTabs.lua:182 (opt.label), after the PM-ATS-02 peel",
+          "core/CoreSetup.lua:20-22 - lists the files that take the printer as a load-time upvalue as 'modules/Unlock.lua, settings/Schema.lua, settings/Slash.lua, settings/PanelEditor.lua and settings/Panel.lua. All five ...'; settings/PanelEditorTabs.lua:5 also has `local print = NS.Print`, so there are six",
+          "tests/test_schema.lua:315 - says the Panels page's tab strip is 'hand-drawn from settings/PanelEditor.lua's own ordered list'; EDITOR_TABS is now defined in settings/PanelEditorTabs.lua:73, and PanelEditor.lua only binds it (:53)",
+          "tests/wow_mock.lua:386 - says 'the whole of settings/PanelEditor.lua below buildPanelEditor's first statement was unreachable'; buildPanelEditor is now defined in settings/PanelEditorTabs.lua:113",
+          "tests/test_options_groups.lua:3-4 - header says 'settings/PanelEditor.lua types out none of options-ui-§16's border, bar or font blocks; that the three blocks it draws are composed ...'; the blocks are now drawn in settings/PanelEditorTabs.lua, which is the file the suite scans (EDITOR = \"settings/PanelEditorTabs.lua\" at :39)"
+        ]
+      },
+      "review": {
+        "ok": true,
+        "issues": [
+          "Info only, not a defect: two source comments still say 'five files' take the printer as `local print = NS.Print`, but six do now. They are /mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster/core/Util.lua:240 and core/CoreSetup.lua:7. The commit says it reported its stale comment citations for the owner to confirm instead of editing them, which is what that process calls for.",
+          "Every changed claim matches the tree. luacheck reports 0 warnings and 0 errors in 66 files. Six files take `local print = NS.Print` at file scope, and settings/PanelEditorTabs.lua:5 is the new one. settings/PanelEditorTabs.lua:632 is a pre-formatted print. The Panels page draws its tab strip in PanelEditor.lua (drawTabStrip at :435) and dispatches on ctx.activeTab at PanelEditorTabs.lua:785. The CLAUDE.md line that records LibKa0s v1.62.0 matches the re-vendor commit PM-ATS-RV (84b25be).",
+          "Scope and line endings are clean. The commit changes only 4 files under docs/ and touches no code or frozen bundle. The committed files contain no CR bytes, and the files on disk are CRLF as .gitattributes requires.",
+          "I re-ran the tests with ka0s-bounded: `lua tests/run.lua` gives 964 passed, 0 failed, 0 skipped. I wrote the git note under refs/notes/ka0s-review on 76d4bd9 with the verdict PASS."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "PFE-ATS-SD",
+        "status": "landed",
+        "sha": "2ce21bb658f1691a5f65404c48c08d39d452b870",
+        "gate": "lua tests/run.lua: 383 passed, 0 failed, 0 skipped; luacheck .: 0 warnings / 0 errors in 75 files (both via ka0s-bounded); tree clean after commit; not pushed",
+        "summary": "I made one documentation fix in /mnt/d/Profile/Users/Tushar/Documents/GIT/PartyFrameEnhanced/docs/automated-tests/README.md. It said a bundle's ANALYSIS.md is written only for release runs. automated-tests-§5 makes it required at release and recommended for other runs, and 11 of the 12 bundles have one, including both sweep bundles. The line now says that. The file is still CRLF, as .gitattributes declares.\n\nThese were checked and needed no change: the CLAUDE.md LibKa0s provenance line (v1.62.0), the README Tests badge (383/383), docs/test-cases.md (the regenerated inventory diffs empty), and the Documentation map against docs/ in both directions. The Tier 2 counts are also correct: 18 commands in NS.COMMANDS, 15 Compat shims and 4 messages. So are the DEPENDENCIES.md tool rows and their kit citations (framework.lua:123 and :127 still point at the timeout and systemd-run probes after the kit revision 31 re-vendor), docs/testing.md and the ARCHITECTURE version lines.\n\nI found no missing or past-end-of-file path citations in the addon's own comments. Every unresolved path is either an upstream LibKa0s or standards doc that exists there, or a deliberate historical mention of a removed file. I left 4 comments pointing at older LibKa0s API docs unedited, as the task requires, and listed them in pendingCommentCitations. All 4 predate this sweep.",
+        "pendingCommentCitations": [
+          "core/Bus.lua:35: cites LibKa0s docs/api/Bus/version-1-docs.md for the Bus record. True: the vendored Bus is minor 2 (libs/LibKa0s/Bus.lua:44), and version-2-docs.md supersedes version 1 and changes the record's behavior. Candidate replacement: docs/api/Bus/version-2-docs.md (owner to confirm).",
+          "tests/test_bus.lua:88: cites LibKa0s docs/api/Bus/version-1-docs.md. True: the vendored Bus is minor 2, so version-2-docs.md is the current source of truth (owner to confirm).",
+          "settings/Slash.lua:374: cites LibKa0s docs/api/Slash/version-15-docs.md ('The degradation stub'). True: the vendored Slash is minor 16 (libs/LibKa0s/Slash.lua:21), and version-16-docs.md has its own '## The degradation stub' section (line 620), though it says version 15's document first prescribed the stub. This may be an intended origin citation (owner to decide).",
+          "tests/test_surface_parity.lua:121: cites LibKa0s docs/api/Slash/version-15-docs.md ('The degradation stub'). Same as settings/Slash.lua:374: the vendored Slash is minor 16 and version-16-docs.md is the current document (owner to decide)."
+        ]
+      },
+      "review": {
+        "ok": true,
+        "issues": [
+          "Nit, non-blocking: the commit body says automated-tests-§5 makes ANALYSIS.md 'recommended otherwise'. §5 (../WowAddonStandards/standards/standards/automated-tests.md:325-328) only says SHOULD for a run whose verdict is not green or whose numbers moved. The README text itself ('required for a release run and written for most others') is accurate: 11 of the 12 bundles carry an ANALYSIS.md, and only 20260915-141340 has none.",
+          "Nothing else found. The commit edits only docs, in one file (docs/automated-tests/README.md), and touches no code or frozen bundle. The file has CRLF endings (54 CR / 54 LF). libs/LibKa0s and tests/_kit match the LibKa0s v1.62.0 tag once CR characters are stripped. The README badge reads 383/383. I re-ran the gate through ka0s-bounded: 383 passed, 0 failed, 0 skipped, and luacheck reported 0 warnings and 0 errors in 75 files. The git note is written under refs/notes/ka0s-review on 2ce21bb."
+        ]
+      }
+    },
+    {
+      "sync": {
+        "id": "PC-ATS-SD",
+        "status": "landed",
+        "sha": "bab847f",
+        "gate": "lua tests/run.lua: 518 passed, 0 failed, 0 skipped, 518 total; luacheck .: 0 warnings / 0 errors in 51 files (both run through ka0s-bounded)",
+        "summary": "Ran sync-docs on /mnt/d/Profile/Users/Tushar/Documents/GIT/PrettyChat. One file had drifted: docs/testing.md. Three fixes, in one commit (bab847f) on feat/2026-09-26-automated-tests-sweep, not pushed. (1) The vendored tests/_kit/ listing was missing seven kit revision 31 files: asserts.lua, inventory.lua, mock_events.lua, prose_lists.lua, prose_coverage.lua, prose_selftests.lua and test_diagnostics_contract.lua. (2) It said five files call GetAddon; there are six, because modules/Diagnostics.lua:30 was missing. Two stale line citations there were also fixed: Schema.lua:3 is now :6 and OptionsSetup.lua:181 is now :220. (3) The scoped luacheck figure said 48 files; the real count is 51. Checked and found accurate: README (Tests badge 518/518), the CLAUDE.md provenance line (v1.62.0), DEPENDENCIES.md (the new runner uses only awk, which was already in use), the ARCHITECTURE.md Documentation map against docs/ in both directions, the count of fifteen LibKa0s majors, module-map.md, debug.md and slash-dispatch.md. The comment-citation scan of the addon's own source found no stale citations. Every hit was either a TOC backslash path the scanner split wrongly, a path relative to the file's own directory, a LibKa0s-repo doc path, or a comment that knowingly names a deleted file (core/Compat.lua, core/DebugLog.lua, tests/test_compat.lua, tests/perf.lua). The version citations are historical 'new at vX' notes, not claims about what this build vendors. The generated docs (test-cases.md, RESULTS.md) were not edited, and README was not touched, so no de-AI pass was needed.",
+        "proof": "git log --oneline -1 -> bab847f PC-ATS-SD: Sync docs to the tree after the automated-tests sweep; git status clean",
+        "pendingCommentCitations": []
+      },
+      "review": {
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "sync": {
+        "id": "WG-ATS-SD",
+        "status": "landed",
+        "sha": "03bd393",
+        "summary": "Ran the wow-addon:sync-docs pass on /mnt/d/Profile/Users/Tushar/Documents/GIT/WhatGroup. Only one piece of drift turned up: the layout-§1 file-size census in /mnt/d/Profile/Users/Tushar/Documents/GIT/WhatGroup/docs/ARCHITECTURE.md (\"Files over the 1500-line cap\") was out of date. It is now re-measured as of 2026-09-26: modules/Frame.lua has 1211 lines (was 1173) and core/WhatGroup.lua 1161 (was 1143). Nothing is over the cap. The edit kept the file's declared CRLF line endings. Checked and already accurate: the README tests badge (824/824), the CLAUDE.md provenance line (LibKa0s v1.62.0), the Documentation map (every live docs/*.md has exactly one row, no dead rows, the Tier 2 not-applicable rows carry their triggers), the 14-verb COMMANDS count, DEPENDENCIES.md, docs/testing.md and the RESULTS.md record (newest row is today's). No frozen bundles, libs/ or tests/_kit/ were touched. The README was not edited, so no de-AI pass was needed. Committed as one change on feat/2026-09-26-automated-tests-sweep and not pushed.",
+        "gate": "lua tests/run.lua: 824 passed, 0 failed, 0 skipped. luacheck .: 0 warnings / 0 errors in 54 files. Both ran through ka0s-bounded.",
+        "proof": "git show 03bd393 -- docs/ARCHITECTURE.md (one line changed). Comment-citation scan of the addon's own .lua/.xml/.toc comments, excluding libs/ and tests/_kit/: every path, member and version it matched was a deliberate historical note (for example \"core/DebugLog.lua ... lived in\"), a negative (\"no core/PerfSetup.lua\", \"NS.Zone ... have no host here\"), a Blizzard source path, or an upstream LibKa0s doc name that exists. No stale citations.",
+        "pendingCommentCitations": []
+      },
+      "review": {
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "sync": {
+        "id": "WA-ATS-SD",
+        "status": "landed",
+        "sha": "7424022",
+        "summary": "Ran the sync-docs pass on README.md, CLAUDE.md and DEPENDENCIES.md in /mnt/d/Profile/Users/Tushar/Documents/GIT/wow-addon, checking them against the tree after WA-ATS-01, 01R and 02. It found one drift item. In /mnt/d/Profile/Users/Tushar/Documents/GIT/wow-addon/DEPENDENCIES.md, the Lua 5.1 / luacheck / lizard row cited CLAUDE.md:59 as its source for \"a stated skip, never an inferred pass\", but line 59 is the bullet about retiring docs/complexity.md. The citation now points to CLAUDE.md:55, which says a missing tool is a skip recorded with its reason. These checks found nothing wrong: 40 tracked files, broken down as the docs state; 22 commands and 2 agents; version 2.5.0; every file:line citation into scripts/, hooks/ and CLAUDE.md; the bounded_runs.py imports at :29-32 (no shlex); the command-position-only matcher described in README.md and CLAUDE.md; and KIT_MIN_REVISION=23. The design spec under docs/superpowers/specs was left alone because it is historical. One commit, not pushed.",
+        "gate": "python3 scripts/test_bounded_runs.py: Ran 20 tests, OK. plugin.json, marketplace.json and hooks.json all parse with json.load. DEPENDENCIES.md has 0 CR bytes (LF, as .gitattributes requires). Tree clean after the commit.",
+        "proof": "git log --oneline -1 shows 7424022 WA-ATS-SD: Sync docs to the tree after the automated-tests sweep. The diff is 1 line in DEPENDENCIES.md, changing (`CLAUDE.md:60`, `CLAUDE.md:59`) to (`CLAUDE.md:60`, `CLAUDE.md:55`).",
+        "pendingCommentCitations": []
+      },
+      "review": {
+        "ok": true,
+        "issues": []
+      }
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Sync"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Review"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "sync AbsorbTracker",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "ad42f5ca86fdb6f37",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881550,
+      "queuedAt": 1790431881534,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AT-ATS-SD",
+      "promptPreview": "Item AT-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/AbsorbTracker, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"AT-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs c…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432077246,
+      "tokens": 83904,
+      "toolCalls": 22,
+      "durationMs": 195687,
+      "resultPreview": "{\"id\":\"AT-ATS-SD\",\"status\":\"landed\",\"sha\":\"58c04ec\",\"gate\":\"bounded lua tests/run.lua: 810 passed / 0 failed / 810 total (it was 809/1 at 0479a09 because of a British spelling in RESULTS.md); luacheck .: 0 warnings / 0 errors in 67 files; docs/test-cases.md matches `lua tests/run.lua --list` exactly\",\"summary\":\"One docs-only commit in /mnt/d/Profile/Users/Tushar/Documents/GIT/AbsorbTracker on feat…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "sync AuraMaster",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "ada10143ba379483e",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881551,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AM-ATS-SD",
+      "promptPreview": "Item AM-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"AM-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs comm…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432145310,
+      "tokens": 101651,
+      "toolCalls": 32,
+      "durationMs": 261351,
+      "resultPreview": "{\"id\":\"AM-ATS-SD\",\"status\":\"no_drift\",\"summary\":\"I ran wow-addon:sync-docs over /mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster on branch feat/2026-09-26-automated-tests-sweep. The tree was clean at aad1287 and has no AM-ATS-SD commit. The docs already match the tree, because the sweep commits updated them as they went, so there is nothing to commit.\\n\\nWhat I checked:\\n- **New files:** the f…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "sync BankLedger",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a55758052e790b143",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881552,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "BL-ATS-SD",
+      "promptPreview": "Item BL-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/BankLedger, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"BL-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs comm…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432189544,
+      "tokens": 99220,
+      "toolCalls": 32,
+      "durationMs": 305584,
+      "resultPreview": "{\"id\":\"BL-ATS-SD\",\"status\":\"landed\",\"sha\":\"872522179b5c971df6865fbaf6d149d50add0faf\",\"gate\":\"lua tests/run.lua: 1104 passed, 0 failed, 0 skipped; luacheck: 0 warnings / 0 errors in 76 files (both run through ka0s-bounded)\",\"summary\":\"I ran wow-addon:sync-docs on BankLedger (branch feat/2026-09-26-automated-tests-sweep). It found drift in one file, docs/testing.md, in its \\\"How the harness works\\\" …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "sync ConsumableMaster",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "ae58b963ff0d3218d",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881553,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "CM-ATS-SD",
+      "promptPreview": "Item CM-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/ConsumableMaster, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"CM-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-doc…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432216141,
+      "tokens": 118567,
+      "toolCalls": 41,
+      "durationMs": 332181,
+      "resultPreview": "{\"id\":\"CM-ATS-SD\",\"status\":\"landed\",\"sha\":\"fda94fc01ffc5dff9761a5b0a10c31f1b28d1337\",\"gate\":\"lua5.1 tests/run.lua: 1112 passed, 0 failed, 0 skipped. luacheck: 0 warnings / 0 errors in 126 files. Both run through ka0s-bounded, before and after the edit. tests/run.lua --list matches docs/test-cases.md exactly.\",\"proof\":\"Checked with sync-docs. The Tests badge (1112/1112) matches, and docs/test-cases…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "sync KickCD",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a916f6dab0052c88c",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881554,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "KC-ATS-SD",
+      "promptPreview": "Item KC-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"KC-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs command …",
+      "promptFramed": true,
+      "lastProgressAt": 1790432127878,
+      "tokens": 92549,
+      "toolCalls": 25,
+      "durationMs": 243918,
+      "resultPreview": "{\"id\":\"KC-ATS-SD\",\"status\":\"landed\",\"sha\":\"be32c849ae247acc0db0c6fce321d32f2b27471d\",\"gate\":\"lua tests/run.lua: 1201 passed, 0 failed, 0 skipped. luacheck: 0 warnings / 0 errors in 112 files. Both run through ka0s-bounded.\",\"summary\":\"Ran sync-docs over /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD on feat/2026-09-26-automated-tests-sweep and found two small pieces of drift. Both are fixed in o…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "sync LibKa0s",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a91214c59b47a7797",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881554,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "LK-ATS-SD",
+      "promptPreview": "Item LK-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"LK-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs command…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432170433,
+      "tokens": 132077,
+      "toolCalls": 34,
+      "durationMs": 286472,
+      "resultPreview": "{\"id\":\"LK-ATS-SD\",\"status\":\"landed\",\"sha\":\"662da790602ffd9a1b7944c3d7b0e2a80f46271e\",\"gate\":\"lua tests/run.lua via ka0s-bounded: 1747 passed, 0 failed, 1 skipped, 1748 total; luacheck . via ka0s-bounded: 0 warnings / 0 errors in 122 files. docs/test-cases.md regenerated with `lua tests/run.lua --list` and is byte-identical to the committed file.\",\"proof\":\"Commit 662da79 in /mnt/d/Profile/Users/Tus…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "sync LootHistory",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a49e2e9e00f462053",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881555,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "LH-ATS-SD",
+      "promptPreview": "Item LH-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/LootHistory, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"LH-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs com…",
+      "promptFramed": true,
+      "lastProgressAt": 1790442427932,
+      "tokens": 193571,
+      "toolCalls": 67,
+      "durationMs": 10543971,
+      "resultPreview": "{\"id\":\"LH-ATS-SD\",\"status\":\"landed\",\"sha\":\"30fe813\",\"gate\":\"lua tests/run.lua: 961 passed, 0 failed, 0 skipped, 961 total. luacheck .: 0 warnings / 0 errors in 70 files. Regenerating docs/test-cases.md with `lua tests/run.lua --list` gives an identical file. All edited docs are still CRLF, as .gitattributes declares.\",\"summary\":\"One commit in /mnt/d/Profile/Users/Tushar/Documents/GIT/LootHistory o…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "sync MultiMeters",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a7bc58b48532f4ff9",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881556,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "MM-ATS-SD",
+      "promptPreview": "Item MM-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/MultiMeters, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"MM-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs com…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432220496,
+      "tokens": 116665,
+      "toolCalls": 43,
+      "durationMs": 336535,
+      "resultPreview": "{\"id\":\"MM-ATS-SD\",\"status\":\"landed\",\"sha\":\"54a82140c1e5de42c62fb0073a8eb0765ca7c118\",\"gate\":\"lua tests/run.lua: 2092 passed, 0 failed, 0 skipped (ka0s-bounded); luacheck .: 0 warnings / 0 errors in 144 files\",\"summary\":\"I ran sync-docs on MultiMeters (branch feat/2026-09-26-automated-tests-sweep) and found two small gaps. I fixed both in one commit, 54a8214, and did not push.\\n1. /mnt/d/Profile/Us…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "sync PanelMaster",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "aa5f300f0dc4492ee",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881556,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "PM-ATS-SD",
+      "promptPreview": "Item PM-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"PM-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs com…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432172684,
+      "tokens": 110850,
+      "toolCalls": 34,
+      "durationMs": 288722,
+      "resultPreview": "{\"id\":\"PM-ATS-SD\",\"status\":\"landed\",\"sha\":\"76d4bd9db43e82e83bc908e9485ac79dafbd6f9d\",\"gate\":\"lua tests/run.lua: 964 passed / 0 failed / 964 total; luacheck: 0 warnings / 0 errors in 66 files (both run through ka0s-bounded); docs/test-cases.md regenerated with --list is byte-identical.\",\"summary\":\"Ran the sync-docs process on /mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster (branch feat/2026-0…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 10,
+      "label": "sync PartyFrameEnhanced",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a844da64ad88ca3a8",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881557,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "PFE-ATS-SD",
+      "promptPreview": "Item PFE-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/PartyFrameEnhanced, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"PFE-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432092184,
+      "tokens": 86040,
+      "toolCalls": 24,
+      "durationMs": 208222,
+      "resultPreview": "{\"id\":\"PFE-ATS-SD\",\"status\":\"landed\",\"sha\":\"2ce21bb658f1691a5f65404c48c08d39d452b870\",\"gate\":\"lua tests/run.lua: 383 passed, 0 failed, 0 skipped; luacheck .: 0 warnings / 0 errors in 75 files (both via ka0s-bounded); tree clean after commit; not pushed\",\"summary\":\"I made one documentation fix in /mnt/d/Profile/Users/Tushar/Documents/GIT/PartyFrameEnhanced/docs/automated-tests/README.md. It said a …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 11,
+      "label": "sync PrettyChat",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a4fcb6145fcca6ce9",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881558,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "PC-ATS-SD",
+      "promptPreview": "Item PC-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/PrettyChat, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"PC-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs comm…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432153736,
+      "tokens": 106808,
+      "toolCalls": 30,
+      "durationMs": 269774,
+      "resultPreview": "{\"id\":\"PC-ATS-SD\",\"status\":\"landed\",\"sha\":\"bab847f\",\"gate\":\"lua tests/run.lua: 518 passed, 0 failed, 0 skipped, 518 total; luacheck .: 0 warnings / 0 errors in 51 files (both run through ka0s-bounded)\",\"summary\":\"Ran sync-docs on /mnt/d/Profile/Users/Tushar/Documents/GIT/PrettyChat. One file had drifted: docs/testing.md. Three fixes, in one commit (bab847f) on feat/2026-09-26-automated-tests-sweep…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 12,
+      "label": "sync WhatGroup",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "a1d6432b2fe56c3b0",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881558,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "WG-ATS-SD",
+      "promptPreview": "Item WG-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/WhatGroup, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"WG-ATS-SD: \" exists, return already_done).\nRun the wow-addon:sync-docs comma…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432144003,
+      "tokens": 93343,
+      "toolCalls": 29,
+      "durationMs": 260040,
+      "resultPreview": "{\"id\":\"WG-ATS-SD\",\"status\":\"landed\",\"sha\":\"03bd393\",\"summary\":\"Ran the wow-addon:sync-docs pass on /mnt/d/Profile/Users/Tushar/Documents/GIT/WhatGroup. Only one piece of drift turned up: the layout-§1 file-size census in /mnt/d/Profile/Users/Tushar/Documents/GIT/WhatGroup/docs/ARCHITECTURE.md (\\\"Files over the 1500-line cap\\\") was out of date. It is now re-measured as of 2026-09-26: modules/Frame.…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 13,
+      "label": "sync wow-addon",
+      "phaseIndex": 1,
+      "phaseTitle": "Sync",
+      "agentId": "abbc3f0d2aa7d442f",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431881559,
+      "queuedAt": 1790431881535,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "WA-ATS-SD",
+      "promptPreview": "Item WA-ATS-SD of the Ka0s automated-tests sweep (plan /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M4). Repo /mnt/d/Profile/Users/Tushar/Documents/GIT/wow-addon, branch feat/2026-09-26-automated-tests-sweep, must be clean (if a commit subject \"WA-ATS-SD: \" exists, return already_done).\nRun the dev-copilot:sync-docs com…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432029115,
+      "tokens": 102387,
+      "toolCalls": 20,
+      "durationMs": 145152,
+      "resultPreview": "{\"id\":\"WA-ATS-SD\",\"status\":\"landed\",\"sha\":\"7424022\",\"summary\":\"Ran the sync-docs pass on README.md, CLAUDE.md and DEPENDENCIES.md in /mnt/d/Profile/Users/Tushar/Documents/GIT/wow-addon, checking them against the tree after WA-ATS-01, 01R and 02. It found one drift item. In /mnt/d/Profile/Users/Tushar/Documents/GIT/wow-addon/DEPENDENCIES.md, the Lua 5.1 / luacheck / lizard row cited CLAUDE.md:59 as…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 14,
+      "label": "review wow-addon",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "af126f2b067c3ddfa",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432030573,
+      "queuedAt": 1790432030556,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 7424022 (\"WA-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/wow-addon: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the repo's test suite through ~/.claud…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432085507,
+      "tokens": 60142,
+      "toolCalls": 8,
+      "durationMs": 54933,
+      "resultPreview": "{\"ok\":true,\"issues\":[]}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 15,
+      "label": "review AbsorbTracker",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "ad70b1fbc4866cce8",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432078658,
+      "queuedAt": 1790432078656,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 58c04ec (\"AT-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/AbsorbTracker: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the repo's test suite through ~/.c…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432150947,
+      "tokens": 51555,
+      "toolCalls": 9,
+      "durationMs": 72289,
+      "resultPreview": "{\"ok\":true,\"issues\":[\"Nit (non-blocking): docs/module-map.md lists the four kit suites as a group at the end, but tests/run.lua runs them interleaved: test_prose right after test_docs, and test_diagnostics_contract right after test_diagnostics. The commit message says the list 'matches tests/run.lua's ordered list', which overstates this. Every suite is named, so membership is correct.\",\"Nit (pre-…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 16,
+      "label": "review PartyFrameEnhanced",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a1a004285b42e6090",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432093404,
+      "queuedAt": 1790432093403,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 2ce21bb658f1691a5f65404c48c08d39d452b870 (\"PFE-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/PartyFrameEnhanced: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432182905,
+      "tokens": 49275,
+      "toolCalls": 12,
+      "durationMs": 89501,
+      "resultPreview": "{\"ok\":true,\"issues\":[\"Nit, non-blocking: the commit body says automated-tests-§5 makes ANALYSIS.md 'recommended otherwise'. §5 (../WowAddonStandards/standards/standards/automated-tests.md:325-328) only says SHOULD for a run whose verdict is not green or whose numbers moved. The README text itself ('required for a release run and written for most others') is accurate: 11 of the 12 bundles carry an …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 17,
+      "label": "review KickCD",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "afdc1ff8f55100cd5",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432129284,
+      "queuedAt": 1790432129282,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit be32c849ae247acc0db0c6fce321d32f2b27471d (\"KC-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the repo…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432228405,
+      "tokens": 57519,
+      "toolCalls": 12,
+      "durationMs": 99120,
+      "resultPreview": "{\"ok\":true,\"issues\":[\"Nit, no fix needed: the commit message says modules/Castbar.lua (1217) is 'no longer the largest'. It was not the largest before this commit either, because IconGrid.lua was 1368 at the time. The old table in /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/docs/module-map.md was just sorted wrong. The new table is correct.\"]}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 18,
+      "label": "review WhatGroup",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a960555bfc4cb5d9b",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432145329,
+      "queuedAt": 1790432145328,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 03bd393 (\"WG-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/WhatGroup: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the repo's test suite through ~/.claud…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432225651,
+      "tokens": 48793,
+      "toolCalls": 13,
+      "durationMs": 80322,
+      "resultPreview": "{\"ok\":true,\"issues\":[]}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 19,
+      "label": "review PrettyChat",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a7d4fe051ce414751",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432155018,
+      "queuedAt": 1790432155016,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit bab847f (\"PC-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/PrettyChat: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the repo's test suite through ~/.clau…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432224788,
+      "tokens": 50878,
+      "toolCalls": 9,
+      "durationMs": 69770,
+      "resultPreview": "{\"ok\":true,\"issues\":[]}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 20,
+      "label": "review LibKa0s",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a22de258f6eb7fae0",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432171698,
+      "queuedAt": 1790432171696,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 662da790602ffd9a1b7944c3d7b0e2a80f46271e (\"LK-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the rep…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432240585,
+      "tokens": 50791,
+      "toolCalls": 8,
+      "durationMs": 68887,
+      "resultPreview": "{\"ok\":true,\"issues\":[]}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 21,
+      "label": "review PanelMaster",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a44c0085f2f4c9418",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432174027,
+      "queuedAt": 1790432174025,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 76d4bd9db43e82e83bc908e9485ac79dafbd6f9d (\"PM-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432233547,
+      "tokens": 54618,
+      "toolCalls": 8,
+      "durationMs": 59520,
+      "resultPreview": "{\"ok\":true,\"issues\":[\"Info only, not a defect: two source comments still say 'five files' take the printer as `local print = NS.Print`, but six do now. They are /mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster/core/Util.lua:240 and core/CoreSetup.lua:7. The commit says it reported its stale comment citations for the owner to confirm instead of editing them, which is what that process calls fo…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 22,
+      "label": "review BankLedger",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a3ae5e100606b5abd",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432190977,
+      "queuedAt": 1790432190976,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 872522179b5c971df6865fbaf6d149d50add0faf (\"BL-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/BankLedger: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the …",
+      "promptFramed": true,
+      "lastProgressAt": 1790432272351,
+      "tokens": 60287,
+      "toolCalls": 12,
+      "durationMs": 81374,
+      "resultPreview": "{\"ok\":true,\"issues\":[]}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 23,
+      "label": "review ConsumableMaster",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a48d75548e5eb4f01",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432217482,
+      "queuedAt": 1790432217481,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit fda94fc01ffc5dff9761a5b0a10c31f1b28d1337 (\"CM-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/ConsumableMaster: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-ru…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432290967,
+      "tokens": 49684,
+      "toolCalls": 10,
+      "durationMs": 73485,
+      "resultPreview": "{\"ok\":true,\"issues\":[\"Nit (non-blocking): docs/perf-analysis/README.md now cites libs/LibKa0s/Perf.lua:176-191, but the interfaceVersion comment block starts at line 175 ('-- The interface version this capture was taken on...'); function is 187-191. The commit message claims the range covers 'interfaceVersion and its comment', so :175-191 would be exact.\",\"Pre-existing, correctly left unedited and…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 24,
+      "label": "review MultiMeters",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "aa15b46bc507e2b60",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790432220040,
+      "queuedAt": 1790432220039,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 54a82140c1e5de42c62fb0073a8eb0765ca7c118 (\"MM-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/MultiMeters: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the…",
+      "promptFramed": true,
+      "lastProgressAt": 1790432323720,
+      "tokens": 52963,
+      "toolCalls": 11,
+      "durationMs": 103679,
+      "resultPreview": "{\"ok\":true,\"issues\":[\"Non-blocking nit: docs/testing.md line 205 says tests/test_slash.lua was peeled 'when it passed its line-cap re-check'. That can be read as the file passing the check, but it means the file went past the 1400-line re-check threshold (a2ee920: 1411 lines). Suggested wording: 'when it crossed its 1400-line re-check'. The review found nothing else wrong.\",\"Verified: the commit c…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 25,
+      "label": "review LootHistory",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a379f457474747002",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790442429620,
+      "queuedAt": 1790442429618,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently review commit 30fe813 (\"LH-ATS-SD\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/LootHistory: a documentation sync. For each changed claim, check it against the tree (counts, file names, line figures, commands, versions, LibKa0s v1.62.0 provenance). Flag anything now wrong, any edit to code or to a frozen bundle, and line-ending violations. Re-run the repo's test suite through ~/.cla…",
+      "promptFramed": true,
+      "lastProgressAt": 1790442563294,
+      "tokens": 81632,
+      "toolCalls": 17,
+      "durationMs": 133674,
+      "resultPreview": "{\"ok\":false,\"issues\":[\"docs/schema.md (the blacklist/whitelist/currencyBlacklist bullet): the commit moved `Sl:CliResetAll` from `:473` to `:477` and its degraded-install twin from `:337` to `:341` in /mnt/d/Profile/Users/Tushar/Documents/GIT/LootHistory/settings/Slash.lua. Both new numbers are still wrong. Line 477 is `Sl.OnSlash = ...` and line 341 is the closing `end` of the stub's PrintHelp. `…"
+    }
+  ],
+  "totalTokens": 2105769,
+  "totalToolCalls": 562
+}

@@ -76,3 +76,27 @@ No function is above CCN 15 and no authored file is over the cap anywhere in the
 - Pushing the LibKa0s `v1.62.0` tag, and any addon version bump or release.
 - In-client smoke checks. The peels are moves with no intended behavior change, but none has been exercised
   in the client.
+
+## M4: sync-docs and comment citations (added 2026-09-26)
+
+- **Sync-docs** landed in 12 of the 13 repos (`<P>-ATS-SD`). AuraMaster had no document drift. Its
+  `AM-ATS-SD` commit is the comment-citation pass below. All 13 were reviewed independently. LootHistory's
+  sync failed review on one wrong `docs/schema.md` line citation, and `LH-ATS-SDR` fixed it.
+- **Stale comment citations** (the owner approved fixing them all): 60 were corrected in 9 repos. Most of them
+  pointed into the vendored `OptionsWidgets.lua` after the v1.62.0 split.
+  - AbsorbTracker: 4
+  - AuraMaster: 20. The pass found 8 more than listed, plus one stale reason, which was reworded.
+  - BankLedger: 6
+  - ConsumableMaster: 2
+  - KickCD: 1
+  - LibKa0s: 7 (non-payload files only)
+  - LootHistory: 13
+  - PanelMaster: 5
+  - PartyFrameEnhanced: 4
+
+  The last open review finding in each of AbsorbTracker and AuraMaster was fixed by the orchestrator
+  (`AT-ATS-SDR`, `AM-ATS-SDR`), which also wrote those two notes.
+- **Deferred to the next LibKa0s release, not fixed:** five citations inside the vendored payload.
+  They are `LibKa0s/OptionsCompose.lua:250`, `:254` and `LibKa0s/OptionsIdList.lua:110`, `:112`, `:114`. Every
+  addon already carries v1.62.0 byte for byte, so editing them now would break the vendor match. The true
+  locations are in `plan-data/runs/M4_citations_wf_a28b002e-4e2.json`.
