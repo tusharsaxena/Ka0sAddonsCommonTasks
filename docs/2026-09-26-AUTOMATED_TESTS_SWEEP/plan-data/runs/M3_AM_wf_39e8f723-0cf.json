@@ -1,0 +1,88 @@
+{
+  "summary": "Automated-tests sweep M3: fresh recorded /wow-addon:automated-tests run per repo, dispositions refreshed, committed, then independently verified",
+  "agentCount": 2,
+  "logs": [],
+  "result": [
+    {
+      "run": {
+        "id": "AM-ATS-99",
+        "status": "landed",
+        "sha": "aad1287",
+        "bundle": "/mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster/docs/automated-tests/20260926-193601/",
+        "verdict": "green",
+        "suites": "lint: pass, 0 warnings / 0 errors in 144 files (gates run, commit and tag)\ntests: pass, 1661 passed / 0 skipped / 0 failed / 1661 total (gates run, commit and tag)\nperf: pass, 11 scenarios (gates the tag only, not the run or commit); compile 3576.0 B/iter, applyPass 104403.4 B/iter\ncomplexity: pass, 0 warnings, max CCN 15, 39990 NLOC / 4352 funcs, avg NLOC 8.2, avg CCN 2.3, avg tokens 72.5, 9 band files, 0 over cap (gates the tag only, not the run or commit)",
+        "newlyCrossed": "None. Nothing entered the 1000-1500 band and no function went above CCN 15. The band shrank from 12 files to 9: tests/test_anchors.lua, settings/GeneralSpells.lua and modules/Anchors.lua left it. Functions at exactly CCN 15 went from 6 to 5 after steadyRelative was fixed.",
+        "notes": "Compared with 20260926-160451 (e5bb12c, 12 commits earlier):\n- Lint covered 140 -> 144 files. The 4 new files came from the peels.\n- Tests went 1660 -> 1661.\n- Perf bytes/iter: compile fell 42424.0 -> 3576.0 (-91.6%) and applyPass fell 164883.4 -> 104403.4 (-36.7%). api/iter did not change. AM-ATS-01 is the only commit in the range that touched modules/FilterCompiler.lua, so the drop is put down to it. It was not bisected.\n\nRESULTS.md Disposition cells (ATS-23):\n- The four cells that said \"newly crossed\" (core/Database.lua, defaults/Categories.lua, settings/Schema.lua, modules/Style.lua) now say \"in the band since 20260926-160451\" and give today's unchanged LOC.\n- Two stale case counts were corrected: tests/test_pages_filters.lua 48 -> 49 and tests/test_style.lua 59 -> 60.\n- The function counts and max CCN in the other cells were checked against this run's complexity.txt and still match. No ruling changed.\n- The three files that left the band were already dropped by the runner.\n\nOther:\n- The Write tool refused ANALYSIS.md, so I wrote it in the scratchpad and copied it in, converted to CRLF. check-attr confirms eol=crlf, and the CR and LF counts match for every bundle file and for RESULTS.md.\n- Runner console log: /tmp/claude-1000/-mnt-d-Profile-Users-Tushar-Documents-GIT-Ka0sAddonsCommonTasks/ca70269d-c9ad-415f-a043-165eff2b7348/scratchpad/am-ats99-run.log\n- Runner mode was already 100755. No suites were skipped. There is no release run yet, so the shelf-life rule does not apply.\n- Not pushed. The tree is clean after the commit."
+      },
+      "verify": {
+        "ok": true,
+        "issues": [
+          "Minor wording only, not blocking: ANALYSIS.md 'What moved > complexity' says `steadyRelative` (`modules/Anchors.lua`) left the CCN-15 list through AM-ATS-05. That was its location at 20260926-160451 (Anchors.lua@554-569). This run's complexity.txt has it at `modules/Anchors_Attach.lua@325-340` with CCN 7, because the AM-ATS-04 peel moved it. The CCN figures (15 -> 7) are correct. Only the file attribution is stale for the current tree.",
+          "Verified with no discrepancy: manifest.json (lint 0/0 over 144 files, tests 1661/0/0/1661, perf 11, complexity 0 warnings, max CCN 15, 39990 NLOC, 4352 funcs, avg 8.2/2.3/72.5, bandFiles 9, overCap 0, sha 8f7fcfb, clean) matches lint.txt, tests.txt, perf.txt and the lizard footer in complexity.txt.",
+          "Verified: ANALYSIS.md exists, and every figure traces to an artifact. Checked the previous run's values against the 20260926-160451 bundle (lint 140 files, NLOC 39928, funcs 4349, band 12, six CCN-15 functions). Checked perf deltas: compile 42424.0 -> 3576.0 = -91.6% and applyPass 164883.4 -> 104403.4 = -36.7%; api/iter is identical and ms/iter is lower on all 11 scenarios. The 20260924-185738 values (22200.0 and 118147.2) are correct. e5bb12c..8f7fcfb is 12 commits, and 9134abd (AM-ATS-01) is the only commit in that range that touches modules/FilterCompiler.lua. The five remaining CCN-15 functions and their locations match. Peeled LOC matches: test_anchors 1481 -> 815, GeneralSpells 1480 -> 984, Anchors 1243 -> 890. None of the four new files (398/550/645/55 LOC) is in the band.",
+          "Verified: the new RESULTS.md history row (20260926-193601 | 8f7fcfb | clean | 0.1.0 | 0/0 | 144 | 1661/0/1661 | pass | 39990 | 4352 | 8.2 | 2.3 | 15 | 0 | green) matches manifest.json. The generated sections (test count, lint scope, perf table, watch-list header, band rows' Band/File/LOC) match the bundle. The added 'None.' under the empty functions table is generator output (run-automated-tests.sh:834-850, kit rev 30), not a hand edit.",
+          "Verified: every Disposition cell states current figures. The band LOCs equal `wc -l` at 8f7fcfb (1327, 1282, 1271, 1203, 1194, 1085, 1053, 1035, 1018). Function counts and max CCN match complexity.txt: Database 87/14 MigrateV5, Categories 7/4, Schema 62/13 normalizeCategoryEdits, Style 65/13 CurveColor. Test-file max CCN matches (filtercompiler 5, style 7, database 4, pages_filters 15 entryHelp, containermanager 4). The `test(` case counts match at 85, 60, 73, 49 and 53, which confirms the corrections 48 -> 49 and 59 -> 60. No ruling changed.",
+          "Verified: git show --stat aad1287 touches only the new bundle docs/automated-tests/20260926-193601/* and docs/automated-tests/RESULTS.md. No frozen older bundle changed.",
+          "Verified: line endings match .gitattributes (`* text=auto eol=crlf`). git ls-files --eol shows i/lf w/crlf for all 9 files. The working-tree CR count equals the LF count for each file (for example ANALYSIS.md 110/110 and RESULTS.md 123/123)."
+        ]
+      }
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Run"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "run AuraMaster",
+      "phaseIndex": 1,
+      "phaseTitle": "Run",
+      "agentId": "a8bbe426bc10394fb",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431539493,
+      "queuedAt": 1790431539479,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AM-ATS-99",
+      "promptPreview": "Item AM-ATS-99 of the Ka0s automated-tests sweep (plan: /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP/01_EXECUTION_PLAN.md, M3). Repo: /mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster, branch feat/2026-09-26-automated-tests-sweep (must be clean; if a commit subject \"AM-ATS-99: \" exists, return already_done).\nPerform the /wow-addon:automat…",
+      "promptFramed": true,
+      "lastProgressAt": 1790431715775,
+      "tokens": 80483,
+      "toolCalls": 24,
+      "durationMs": 176281,
+      "resultPreview": "{\"id\":\"AM-ATS-99\",\"status\":\"landed\",\"sha\":\"aad1287\",\"bundle\":\"/mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster/docs/automated-tests/20260926-193601/\",\"verdict\":\"green\",\"suites\":\"lint: pass, 0 warnings / 0 errors in 144 files (gates run, commit and tag)\\ntests: pass, 1661 passed / 0 skipped / 0 failed / 1661 total (gates run, commit and tag)\\nperf: pass, 11 scenarios (gates the tag only, not th…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "verify AuraMaster",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a7fcd200c0288d103",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431717171,
+      "queuedAt": 1790431717157,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independently verify commit aad1287 (\"AM-ATS-99\") in /mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster. Read the new bundle's manifest.json and suite artifacts and check: ANALYSIS.md exists and every figure in it matches an artifact (no invented numbers); the RESULTS.md new row matches the manifest; the Disposition cells state current figures (compare against the bundle's complexity.txt / wc -l…",
+      "promptFramed": true,
+      "lastProgressAt": 1790431782129,
+      "tokens": 58842,
+      "toolCalls": 8,
+      "durationMs": 64957,
+      "resultPreview": "{\"ok\":true,\"issues\":[\"Minor wording only, not blocking: ANALYSIS.md 'What moved > complexity' says `steadyRelative` (`modules/Anchors.lua`) left the CCN-15 list through AM-ATS-05. That was its location at 20260926-160451 (Anchors.lua@554-569). This run's complexity.txt has it at `modules/Anchors_Attach.lua@325-340` with CCN 7, because the AM-ATS-04 peel moved it. The CCN figures (15 -> 7) are corr…"
+    }
+  ],
+  "totalTokens": 139325,
+  "totalToolCalls": 32
+}

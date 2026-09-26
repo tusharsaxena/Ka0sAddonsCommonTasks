@@ -1,0 +1,82 @@
+{
+  "summary": "Automated-tests sweep: run item chains per repo (implement -> independent review -> fix loop), git is state",
+  "agentCount": 2,
+  "logs": [
+    "AuraMaster AM-ATS-05: landed / review pass"
+  ],
+  "result": [
+    {
+      "repo": "AuraMaster",
+      "out": [
+        {
+          "id": "AM-ATS-05",
+          "impl": {
+            "id": "AM-ATS-05",
+            "status": "landed",
+            "sha": "8f7fcfb",
+            "summary": "I checked each of the three ATS-18 functions against the four refactor shapes that performance-§11 permits. Only steadyRelative had an honest one, so it is the only function refactored.\n\n- **steadyRelative** (modules/Anchors_Attach.lua) went from CCN 15 to 7. engineLead, next to it, repeated the same four growth ternaries and went from CCN 9 to 1. Both now read two tables, GROW_START and GROW_SIGN, which are built once when the file loads (shape 3, a data table in place of the repeated defaulting), so nothing is allocated per call. Growth arriving at both functions is always one of right/left and down/up (NS.Container.Growth normalizes it), so the table lookups give the same results as the old ternaries.\n- **New test first.** \"steady: a side join holds steady on y under every growth direction, the engine lead included\" was added to tests/test_anchors_steady.lua before the refactor and passed on the old code. The existing tests never covered upward growth on the vertical-offset path. Flipping GROW_SIGN.up as a check makes this test fail and no other. Tests went from 1660 to 1661; docs/test-cases.md was regenerated and the README badge updated.\n- **standUp** (core/LifecycleSetup.lua:105, CCN 15) is left as it is. It is an ordered run of guarded optional calls with a call-time argument (InCombatLockdown()) and comments explaining why between the steps. A table-and-loop rewrite or a guard helper would only move the decisions elsewhere (anti-pattern #52).\n- **ContainerClass:ApplyHang** (modules/Container.lua:592, CCN 15; lizard reports it only as \"ContainerClass\") is also left as it is. Its count comes from the and/or boolean expressions in nine lines, and hangModeFor is already a separate helper. There is no if/elseif chain, repeated defaulting or builder to split.\n\nThe commit body records why those two functions were left alone. CRLF line endings were kept. The tree is clean on feat/2026-09-26-automated-tests-sweep.",
+            "gate": "All run through ka0s-bounded. `lua tests/run.lua`: 1661 passed, 0 failed, 0 skipped (was 1660/0/0). luacheck: 0 warnings / 0 errors in 144 files. lizard (excluding libs/* and tests/_kit/*): 0 functions above CCN 15 (standUp and ApplyHang remain at exactly 15). Largest authored file is 1327 lines (core/Database.lua), under the 1500 cap."
+          },
+          "review": {
+            "verdict": "pass",
+            "issues": [],
+            "noteWritten": true
+          }
+        }
+      ]
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Execute"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "impl AM-ATS-05",
+      "phaseIndex": 1,
+      "phaseTitle": "Execute",
+      "agentId": "aa5cccfc9818f550f",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431104092,
+      "queuedAt": 1790431104079,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AM-ATS-05",
+      "promptPreview": "Context: you are executing one item of the Ka0s automated-tests sweep plan. The plan bundle is /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP\n(read 01_EXECUTION_PLAN.md, especially \"Rules every fix item follows\", and 00_FIX_QUEUE.md for the evidence;\nitems.tsv has the item's full title). The repo is /mnt/d/Profile/Users/Tushar/Documents/GIT/Au…",
+      "promptFramed": true,
+      "lastProgressAt": 1790431388289,
+      "tokens": 85378,
+      "toolCalls": 31,
+      "durationMs": 284197,
+      "resultPreview": "{\"id\":\"AM-ATS-05\",\"status\":\"landed\",\"sha\":\"8f7fcfb\",\"summary\":\"I checked each of the three ATS-18 functions against the four refactor shapes that performance-§11 permits. Only steadyRelative had an honest one, so it is the only function refactored.\\n\\n- **steadyRelative** (modules/Anchors_Attach.lua) went from CCN 15 to 7. engineLead, next to it, repeated the same four growth ternaries and went fr…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "review AM-ATS-05",
+      "phaseIndex": 1,
+      "phaseTitle": "Execute",
+      "agentId": "a286589a7d8ff74d2",
+      "model": "claude-opus-5-5[1m]",
+      "state": "done",
+      "startedAt": 1790431389863,
+      "queuedAt": 1790431389852,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "pass",
+      "promptPreview": "Context: you are executing one item of the Ka0s automated-tests sweep plan. The plan bundle is /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-26-AUTOMATED_TESTS_SWEEP\n(read 01_EXECUTION_PLAN.md, especially \"Rules every fix item follows\", and 00_FIX_QUEUE.md for the evidence;\nitems.tsv has the item's full title). The repo is /mnt/d/Profile/Users/Tushar/Documents/GIT/Au…",
+      "promptFramed": true,
+      "lastProgressAt": 1790431520940,
+      "tokens": 66797,
+      "toolCalls": 19,
+      "durationMs": 131076,
+      "resultPreview": "{\"verdict\":\"pass\",\"issues\":[],\"noteWritten\":true}"
+    }
+  ],
+  "totalTokens": 152175,
+  "totalToolCalls": 50
+}

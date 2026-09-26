@@ -1,0 +1,81 @@
+id	milestone	repo	title	depends_on	effort	traces
+ATS-PLAN	M0	Ka0sAddonsCommonTasks	Commit the plan bundle on the sweep branch		S	-
+AT-ATS-00	M0	AbsorbTracker	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160433/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+AM-ATS-00	M0	AuraMaster	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160451/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+BL-ATS-00	M0	BankLedger	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160240/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+CM-ATS-00	M0	ConsumableMaster	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160431/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+KC-ATS-00	M0	KickCD	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160251/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+LK-ATS-00	M0	LibKa0s	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160448/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+LH-ATS-00	M0	LootHistory	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160249/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+MM-ATS-00	M0	MultiMeters	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160431/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+PM-ATS-00	M0	PanelMaster	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160448/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+PFE-ATS-00	M0	PartyFrameEnhanced	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160553/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+PC-ATS-00	M0	PrettyChat	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160432/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+WG-ATS-00	M0	WhatGroup	Record the 2026-09-26 sweep run: bundle docs/automated-tests/20260926-160442/ and RESULTS.md, as the sweep left them	ATS-PLAN	S	sweep
+LK-ATS-01	M1	LibKa0s	#32: peel the id surface (module-scope id resolution + suggestions blocks, and the lookup/list/suggestion members of lib.__AttachWidgets) out of LibKa0s/OptionsWidgets.lua into LibKa0s/OptionsIds.lua, the OptionsTabs.lua worked example: LibKa0s.xml row, lib.MODULES entry, own minor + paired shell guard (__idsMinor/__idsShellMinor), tests/majors.lua row, Options version key component, docs/api page, manifest; peel the matching ResolveId/IdInput/IdList cases out of tests/test_options_widgets.lua into tests/test_options_ids.lua in the same commit (#33 part 1). Both source files under 1500	LK-ATS-00	L	ATS-04; #32 #33
+LK-ATS-02	M1	LibKa0s	#33: split what remains of tests/test_options_widgets.lua on its own case seams until every file is under 1500 (target <1300); drop both census rows from CLAUDE.md so test_layout_cap stays green	LK-ATS-01	M	ATS-04; #33
+LK-ATS-03	M1	LibKa0s	Peel LibKa0s/OptionsTabs.lua (1493, Accepted past shelf life) on a real seam to <=1300, same multi-file ripple as LK-ATS-01 if a new module file results	LK-ATS-02	M	ATS-03 ATS-06
+LK-ATS-04	M1	LibKa0s	Peel LibKa0s/Options.lua (1462, Accepted past shelf life) on a real seam to <=1300	LK-ATS-03	M	ATS-03
+LK-ATS-05	M1	LibKa0s	Peel testkit/framework.lua (1386, Accepted past shelf life) on a real seam to <1000; kit revision bump as the kit's own rules require	LK-ATS-04	M	ATS-03
+LK-ATS-06	M1	LibKa0s	Split test files in the band: tests/test_widgets.lua (1493), tests/test_slash.lua (1339), tests/test_options_tabs.lua (1218), tests/test_options_idsuggest.lua (1002) each to <1000 on case seams; wire new suites in tests/run.lua	LK-ATS-05	M	ATS-03 ATS-06
+LK-ATS-07	M1	LibKa0s	Split testkit/test_prose.lua (1486) to <1000 on case seams; kit revision bump	LK-ATS-06	S	ATS-07
+LK-ATS-08	M1	LibKa0s	Runner: an empty generated watch-list table (functions warned / band files) gets a None. line under it in RESULTS.md; test in the kit's own suite	LK-ATS-07	S	ATS-20
+LK-ATS-09	M1	LibKa0s	Runner: the band table omits generated files per the playbook's generated-file carve-out (e.g. PrettyChat GlobalStrings/GlobalStrings.lua), using the same detection the cap gate uses; test in the kit's own suite	LK-ATS-08	S	ATS-21
+LK-ATS-10	M1	LibKa0s	Release v1.62.0: CHANGELOG, version strings, docs/api + manifest regenerated, CLAUDE.md census (now empty) and band prose re-measured, the six shelf-life entries resolved in RESULTS.md dispositions; full battery green; LOCAL tag v1.62.0 (never pushed)	LK-ATS-09	M	ATS-03 ATS-04
+WA-ATS-01	M1	wow-addon	ka0s-bounded PreToolUse hook: match lua/luacheck/lizard/run-automated-tests only in command position, not inside heredoc bodies or quoted prose; tests for both (a heredoc containing the word lizard passes, a bare lizard run is refused)		S	ATS-22
+WA-ATS-02	M1	wow-addon	automated-tests skill: when run as a subagent, write ANALYSIS.md via a scratchpad file + cp (the Write tool refuses subagent report files) and capture the runner log to a per-repo unique path, never a shared run.log	WA-ATS-01	S	ATS-22
+AM-ATS-01	M2	AuraMaster	Perf: bisect the compile (+91%) and applyPass (+40%) bytes/iter rise over 79d4f80..e5bb12c with tests/perf.lua; fix avoidable allocation within performance-§11 (no behavior change); if the cost is an intended feature, say so with the bisected commit in the commit body and perf watch	AM-ATS-00	M	ATS-02
+CM-ATS-01	M2	ConsumableMaster	Perf: bisect the recompute bytes/iter rise (6505.88 -> 14740.12) over f8729fa..bc284a4 with tests/perf.lua; fix avoidable allocation within performance-§11; if intended, say so with the bisected commit	CM-ATS-00	M	ATS-01
+AT-ATS-RV	M2	AbsorbTracker	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	AT-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+AM-ATS-RV	M2	AuraMaster	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	AM-ATS-00,LK-ATS-10,AM-ATS-01	S	ATS-20 ATS-21
+BL-ATS-RV	M2	BankLedger	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	BL-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+CM-ATS-RV	M2	ConsumableMaster	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	CM-ATS-00,LK-ATS-10,CM-ATS-01	S	ATS-20 ATS-21
+KC-ATS-RV	M2	KickCD	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	KC-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+LH-ATS-RV	M2	LootHistory	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	LH-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+MM-ATS-RV	M2	MultiMeters	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	MM-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+PM-ATS-RV	M2	PanelMaster	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	PM-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+PFE-ATS-RV	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	PFE-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+PC-ATS-RV	M2	PrettyChat	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	PC-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+WG-ATS-RV	M2	WhatGroup	Re-vendor LibKa0s v1.62.0 from the local tag (libs/LibKa0s + tests/_kit), CLAUDE.md provenance, stub/inventory updates for OptionsIds and any other new module file, docs/test-cases.md regenerated, docs/revendor bundle	WG-ATS-00,LK-ATS-10	S	ATS-20 ATS-21
+AM-ATS-02	M2	AuraMaster	Split tests/test_anchors.lua (1481) to <1000 on case seams	AM-ATS-RV	S	ATS-08
+AM-ATS-03	M2	AuraMaster	Peel settings/GeneralSpells.lua (1480) on the Make-a-new-category seam to <=1250	AM-ATS-02	M	ATS-09
+AM-ATS-04	M2	AuraMaster	Peel modules/Anchors.lua (1243) on the attachment seam (attachSpec, pairFor, steadyRelative) to <1000	AM-ATS-03	M	ATS-15
+AM-ATS-05	M2	AuraMaster	CCN 15 -> <=14 for standUp (core/LifecycleSetup.lua:105), steadyRelative, ContainerClass (modules/Container.lua:592) ONLY via a performance-§11 permitted shape; any function with no honest shape is left and recorded in the commit body (anti-pattern #52)	AM-ATS-04	S	ATS-18
+CM-ATS-02	M2	ConsumableMaster	Split tests/test_slash.lua (1426), tests/test_macrobar.lua (1425), tests/test_settingsui.lua (1419) each to <1000 on case seams	CM-ATS-RV	M	ATS-14
+PM-ATS-01	M2	PanelMaster	Split tests/test_panel.lua (1491) to <1000 on case seams	PM-ATS-RV	S	ATS-05
+PM-ATS-02	M2	PanelMaster	#47: peel settings/PanelEditor.lua (1464) on a real seam to <=1250	PM-ATS-01	M	ATS-10; #47
+AT-ATS-01	M2	AbsorbTracker	R-14: split tests/test_helpers.lua (1447) to <1000 on case seams	AT-ATS-RV	S	ATS-11; R-14
+MM-ATS-01	M2	MultiMeters	Split tests/test_slash.lua (1411): peel the diagnostics-verb cases into a sibling suite, to <1000	MM-ATS-RV	S	ATS-12
+MM-ATS-02	M2	MultiMeters	Peel modules/Row.lua (1446) on a real seam to <=1250	MM-ATS-01	M	ATS-12
+MM-ATS-03	M2	MultiMeters	Peel modules/Aggregator.lua (1432) on a real seam to <=1250	MM-ATS-02	M	ATS-12
+MM-ATS-04	M2	MultiMeters	CCN 15 -> <=14 for doDebug (settings/Slash.lua:736) via a performance-§11 permitted shape only (e.g. verb dispatch table); if none is honest, record why in the commit	MM-ATS-03	S	ATS-17
+KC-ATS-01	M2	KickCD	#24: peel modules/Castbar.lua (1440) on a real seam to <=1250	KC-ATS-RV	M	ATS-13; #24
+WG-ATS-01	M2	WhatGroup	CCN 15 -> <=14 for NS.FrameSnapshot (modules/Frame.lua:1168): dense and/or coercion -> data table plus one loop (performance-§10/§11)	WG-ATS-RV	S	ATS-16
+BL-ATS-01	M2	BankLedger	Split tests/test_libka0s.lua (1020) back under 1000 on case seams (replaces the provisional Accepted)	BL-ATS-RV	S	ATS-24
+AT-ATS-99	M3	AbsorbTracker	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	AT-ATS-01	S	ATS-23
+AM-ATS-99	M3	AuraMaster	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	AM-ATS-05	S	ATS-23
+BL-ATS-99	M3	BankLedger	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	BL-ATS-01	S	ATS-23
+CM-ATS-99	M3	ConsumableMaster	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	CM-ATS-02	S	ATS-23
+KC-ATS-99	M3	KickCD	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	KC-ATS-01	S	ATS-23
+LK-ATS-99	M3	LibKa0s	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	LK-ATS-10	S	ATS-23
+LH-ATS-99	M3	LootHistory	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	LH-ATS-RV	S	ATS-23
+MM-ATS-99	M3	MultiMeters	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	MM-ATS-04	S	ATS-23
+PM-ATS-99	M3	PanelMaster	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	PM-ATS-02	S	ATS-23
+PFE-ATS-99	M3	PartyFrameEnhanced	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	PFE-ATS-RV	S	ATS-23
+PC-ATS-99	M3	PrettyChat	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	PC-ATS-RV	S	ATS-23
+WG-ATS-99	M3	WhatGroup	Final /wow-addon:automated-tests run: bundle + ANALYSIS.md + RESULTS.md, every carried Disposition cell refreshed to today's figures (ATS-23), committed	WG-ATS-01	S	ATS-23
+ATS-REC-01	M3	Ka0sAddonsCommonTasks	Execution record 99_REPORT.md: per-item outcome, final run table, checkpoints	AT-ATS-99,AM-ATS-99,BL-ATS-99,CM-ATS-99,KC-ATS-99,LK-ATS-99,LH-ATS-99,MM-ATS-99,PM-ATS-99,PFE-ATS-99,PC-ATS-99,WG-ATS-99	S	-
+AT-ATS-SD	M4	AbsorbTracker	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+AM-ATS-SD	M4	AuraMaster	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+BL-ATS-SD	M4	BankLedger	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+CM-ATS-SD	M4	ConsumableMaster	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+KC-ATS-SD	M4	KickCD	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+LK-ATS-SD	M4	LibKa0s	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+LH-ATS-SD	M4	LootHistory	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+MM-ATS-SD	M4	MultiMeters	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+PM-ATS-SD	M4	PanelMaster	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+PFE-ATS-SD	M4	PartyFrameEnhanced	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+PC-ATS-SD	M4	PrettyChat	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+WG-ATS-SD	M4	WhatGroup	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+WA-ATS-SD	M4	wow-addon	/wow-addon:sync-docs on the sweep branch: README, CLAUDE.md, DEPENDENCIES.md, ARCHITECTURE docs match the tree; commit	ATS-REC-01	S	owner 2026-09-26
+ATS-FIN	M4	Ka0sAddonsCommonTasks	/wow-addon:finalize across every touched repo in dependency order (LibKa0s, wow-addon, the eleven addons, then this repo): merge --no-ff to master/main, push, delete the sweep branch; done = exceptions.tsv row proving every merge	AT-ATS-SD,AM-ATS-SD,BL-ATS-SD,CM-ATS-SD,KC-ATS-SD,LK-ATS-SD,LH-ATS-SD,MM-ATS-SD,PM-ATS-SD,PFE-ATS-SD,PC-ATS-SD,WG-ATS-SD,WA-ATS-SD	M	owner 2026-09-26
