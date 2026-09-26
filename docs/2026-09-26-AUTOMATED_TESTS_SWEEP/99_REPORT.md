@@ -100,3 +100,10 @@ No function is above CCN 15 and no authored file is over the cap anywhere in the
   They are `LibKa0s/OptionsCompose.lua:250`, `:254` and `LibKa0s/OptionsIdList.lua:110`, `:112`, `:114`. Every
   addon already carries v1.62.0 byte for byte, so editing them now would break the vendor match. The true
   locations are in `plan-data/runs/M4_citations_wf_a28b002e-4e2.json`.
+
+## Finalize (ATS-FIN)
+
+This ran on the owner's go-ahead. Thirteen repos were merged `--no-ff` into `master`, with the gate run on each
+merge result, and pushed together with their review notes. The sweep branch was deleted locally and on origin.
+LibKa0s went first and its `v1.62.0` tag is pushed. This repo was merged into `main` last. No addon
+version was bumped, so a release is still the owner's to cut.
