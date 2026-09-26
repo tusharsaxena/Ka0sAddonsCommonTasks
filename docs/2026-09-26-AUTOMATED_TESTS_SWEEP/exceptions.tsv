@@ -1,0 +1,2 @@
+id	reason
+ATS-19	Owner ruled 2026-09-26: keep as designed; the standard fixes the exact command, so only CCN warns and the 1500-line cap is the size guardrail. Proof: grep -c "lizard -l lua -x \"./libs/\*\" -x \"./tests/_kit/\*\" \." ../../../WowAddonStandards/standards/NEW_ADDON_CONTEXT.md
