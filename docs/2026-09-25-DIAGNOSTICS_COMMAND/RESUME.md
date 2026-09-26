@@ -37,3 +37,13 @@ so a fresh session can pick it up at any point.
   is also safe.
 - A dirty tree in an addon is that item's partial work: continue it, never discard it.
 - A red gate stops that addon's chain; the other addons carry on. Fix, then relaunch.
+
+## Relaunch of 2026-09-26 (session 643b5f13)
+
+- M3 stood at 23/55, M4 at 1/13. Seven addons carried interrupted `-03` work in a dirty tree (no process
+  running on them): LootHistory, PartyFrameEnhanced, WhatGroup, PanelMaster, KickCD, AbsorbTracker,
+  ConsumableMaster.
+- The same script, copied with two constants changed (the scratchpad path and the commit trailer's model
+  name): `/tmp/claude-1000/-mnt-d-Profile-Users-Tushar-Documents-GIT-Ka0sAddonsCommonTasks/643b5f13-aec3-4d93-a0b4-136f6ee6954c/scratchpad/diag-rollout-m3-m4-resume.js`,
+  run `wf_e01f1bcc-33f`. Resume it in that session with that `scriptPath` and `resumeFromRunId`; from any
+  other session, relaunch it from scratch (every implementer skips an item git already records).
