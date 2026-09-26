@@ -1,1 +1,2 @@
 when	checkpoint	evidence
+2026-09-26	M0	ATS-PLAN + 12 x <P>-ATS-00 committed; all 13 trees clean; pushed feat/2026-09-26-automated-tests-sweep: Ka0sAddonsCommonTasks 5dbee36, AbsorbTracker 7f4fa5a, AuraMaster 6eb86a5, BankLedger 1ef43af, ConsumableMaster e4a42cd, KickCD a6415e4, LibKa0s adb8d24, LootHistory 21a6545, MultiMeters 963ab29, PanelMaster 12b1c61, PartyFrameEnhanced c9b8f5c, PrettyChat 18ea2dc, WhatGroup ee76ac0

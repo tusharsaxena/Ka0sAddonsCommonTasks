@@ -49,3 +49,11 @@ Then either continue the item from where the diff stops, or stash it with
   final step. No addon version is bumped and no release is cut.
 - The owner files no GitHub issues for this sweep. Existing issues close through `Fixes #N` in commit
   bodies when the owner merges.
+
+## The executor
+
+`plan-data/execute_chains.js` is the Workflow script. Pass its body inline (or as `scriptPath`) with
+`args = {"chains": [{"repo": "<Repo>", "items": ["<ID>", ...]}, ...]}`. Chains run in parallel, and
+the items in a chain run in order. List only the items that have not landed; the implementer also skips
+any item that git already records. Each item runs implement → independent review (with the note
+written) → up to two `<ID>R` fix rounds. A failed item stops its chain.
