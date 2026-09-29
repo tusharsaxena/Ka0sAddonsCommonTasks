@@ -185,21 +185,23 @@ version bump rather than bumping).
 
 ## S6. AuraMaster: empty weapon-enchant name on a fresh login (owner report, 2026-09-29)
 
-On a fresh login the weapon-enchant bar (engine `AddItemEnchantment` frame, name bound with
-`SetSpellName`) shows its icon and time but an empty name; a `/reload` shows the name (the equipped
-weapon's name). Find the root cause in Blizzard's AuraContainer code (research record:
-`research/amx-enchant.md` once written) and fix it at the cause, test first, with a smoke check. No
-behavior change beyond the fix.
+On a fresh login the weapon-enchant bar shows its icon and time but an empty name (the name is the
+equipped weapon's item name); a `/reload` fixes it. Research: `research/amx-enchant.md` (the engine only
+updates an unchanged enchant in place and nothing retries a lost name). Fix: `ContainerClass:ResetEnchants()`
+flips a LIVE engine that has enchant frames (`SetEnabled(false)` then `(true)`; never an engine that should
+be off, parked, stale, hidden or previewing), run after the loading screen ends (independent of the font
+primer) and when an equipped weapon's item data arrives (debounced). Test first (the gates, the flip, the
+triggers), smoke check, docs (midnight-quirks "Weapon enchants", known-limitations if relevant).
 
-## S7. AuraMaster: `/am redraw [light|full]` (owner decision, 2026-09-29)
+## S7. AuraMaster: `/am redraw [light|full]` (owner decisions, 2026-09-29)
 
-- `/am redraw light`: refresh every live container's engine now (auras, enchant names, timers), in any
-  state (combat, auras secret). No frame is rebuilt.
-- `/am redraw full`: rebuild every container (the startup-build path). If combat lockdown or aura
-  secrecy forbids it now, it queues through the existing apply queue with the usual deferral notice
-  and runs when allowed.
-- Bare `/am redraw`: `full` when a full rebuild can run right now, otherwise `light`, and it says which
-  it did.
-- Refused while the addon is disabled (a feature verb, slash-commands-§2/§7). COMMANDS triple with an
-  NS.L description; tests (each form, combat, secret, disabled, the queue notice); docs (slash tables,
-  counts, smoke checks).
+- `/am redraw light`: the S6 flip on every live container (repaints aura bars and resets enchant
+  names), now, in any state (combat, auras secret). No frame is rebuilt, nothing leaks.
+- `/am redraw full`: `FontPrimer.PrimeAll()`, the light flip now, plus a system re-apply of every
+  container that re-dresses every button in place (`CM.RequestApply(nil, true)` path: fonts, textures,
+  labels, bindings). If combat lockdown or aura secrecy holds applies, the re-dress part queues with the
+  usual deferral notice and runs when allowed; the command says so. It never retires/rebuilds engines
+  (that would leak one engine frame per container per run).
+- Bare `/am redraw`: `full` when nothing holds applies right now, otherwise `light`; it says which ran.
+- Refused while the addon is disabled (a feature verb). COMMANDS triple with an NS.L description; tests
+  (each form, combat, secret, disabled, the queue notice); docs (slash tables, counts, smoke checks).
