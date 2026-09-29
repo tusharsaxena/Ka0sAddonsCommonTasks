@@ -1,0 +1,31 @@
+id	milestone	repo	title	depends_on	spec
+SP-PLAN-01	M0	Ka0sAddonsCommonTasks	Plan bundle: overview, spec, execution plan, manifest, resume kit, research	-	-
+SP-LIB-01	M1	LibKa0s	Slash minor 17: CliProfile, ProfileSwitch, ProfileNames, profiles descriptor field, strings, tests, api docs, CHANGELOG v1.63.0, local tag v1.63.0	-	S1
+SP-BL-01	M1	BankLedger	Profile support: vendor AceConfig/AceDBOptions, Profiles page, profile callbacks, docs/profiles.md, settings moved global->profile with migration	-	S2
+SP-LH-01	M1	LootHistory	Profile support: vendor AceConfig/AceDBOptions, Profiles page, profile callbacks, docs/profiles.md, settings moved global->profile with migration	-	S2
+SP-PC-01	M1	PrettyChat	Profile support: vendor AceConfig/AceDBOptions, Profiles page, profile callbacks, docs/profiles.md	-	S2
+SP-WG-01	M1	WhatGroup	Profile support: vendor AceConfig/AceDBOptions, Profiles page, profile callbacks, docs/profiles.md	-	S2
+SP-AT-02	M2	AbsorbTracker	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs) ; rework existing profile sub-tree	SP-LIB-01	S3
+SP-AM-02	M2	AuraMaster	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01	S3
+SP-BL-02	M2	BankLedger	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01,SP-BL-01	S3
+SP-CM-02	M2	ConsumableMaster	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01	S3
+SP-KC-02	M2	KickCD	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01	S3
+SP-LH-02	M2	LootHistory	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01,SP-LH-01	S3
+SP-MM-02	M2	MultiMeters	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01	S3
+SP-PM-02	M2	PanelMaster	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01	S3
+SP-PF-02	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs) ; rework existing profile sub-tree	SP-LIB-01	S3
+SP-PC-02	M2	PrettyChat	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01,SP-PC-01	S3
+SP-WG-02	M2	WhatGroup	Re-vendor LibKa0s v1.63.0 + profile verb via CliProfile (liveVerbs, stub, tests, docs)	SP-LIB-01,SP-WG-01	S3
+SP-AT-03	M3	AbsorbTracker	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-AT-02	S4
+SP-AM-03	M3	AuraMaster	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-AM-02	S4
+SP-BL-03	M3	BankLedger	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-BL-02	S4
+SP-CM-03	M3	ConsumableMaster	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-CM-02	S4
+SP-KC-03	M3	KickCD	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-KC-02	S4
+SP-LH-03	M3	LootHistory	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-LH-02	S4
+SP-MM-03	M3	MultiMeters	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-MM-02	S4
+SP-PM-03	M3	PanelMaster	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-PM-02	S4
+SP-PF-03	M3	PartyFrameEnhanced	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-PF-02	S4
+SP-PC-03	M3	PrettyChat	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-PC-02	S4
+SP-WG-03	M3	WhatGroup	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-WG-02	S4
+SP-PLUG-01	M3	wow-addon	new-addon.md: re-point smoke worked examples to LOC-1, describe the S4 shape	SP-CM-03,SP-KC-03	S5
+SP-FIN-01	M4	Ka0sAddonsCommonTasks	Doc sync per repo, gates, push branches, 99_REPORT.md, checkpoints	all	-
