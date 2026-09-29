@@ -135,7 +135,8 @@ One paragraph: what this is (in-client checks the headless suite cannot make), h
 ## <Theme>          (one section per theme, checks numbered <THEME>-<n>)
 ...
 ## Non-English client   (this exact heading text; LOC-<n> checks)
-## Pending sign-off     (only if any: unsigned owner checks carried over, each with its new ID)
+## Pending sign-off     (per the Pending rule below: carried-over checks with no recorded pass, and every
+                         check new or corrected in this run, each with its new ID and origin)
 ```
 **Check format**: `**<ID>. <Title>.** <setup / steps> → <expected>. Result:` on one bullet or short
 paragraph. One behavior per check; steps say exactly what to click or type.

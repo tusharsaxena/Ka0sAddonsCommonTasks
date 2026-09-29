@@ -10,7 +10,7 @@ Frozen once execution starts; progress lives in git (see `RESUME.md`). Branch in
 | M0 | Plan bundle committed | SP-PLAN-01 | inline |
 | M1 | LibKa0s v1.63.0 (`CliProfile`) + profile support in the four addons without it | SP-LIB-01; SP-PC-01, SP-WG-01, SP-BL-01, SP-LH-01 | one workflow, 5 repos in parallel, each item adversarially reviewed |
 | M2 | Re-vendor v1.63.0 + `profile` verb in all eleven | SP-<XX>-02 ×11 | one workflow, 11 repos in parallel, reviewed |
-| M3 | Smoke-test rework in all eleven + plugin citation | SP-<XX>-03 ×11; SP-PLUG-01 | one workflow per batch, reviewed against the coverage map |
+| M3 | Smoke-test rework in all eleven + plugin citation + two AuraMaster items added mid-run (S6, S7) | SP-<XX>-03 ×11; SP-PLUG-01; SP-AMX-01, SP-AMX-02 | workflows per batch, reviewed against the coverage map; AMX items implement + review on AuraMaster's branch after SP-AM-03 |
 | M4 | Doc sync, gates, record | SP-FIN-01 | workflow + inline |
 
 ## Order and dependencies
@@ -32,6 +32,12 @@ Frozen once execution starts; progress lives in git (see `RESUME.md`). Branch in
 6. Independent review: a separate agent re-reads the diff against the spec and the standard, runs the
    gate, and either signs off (git note `refs/notes/ka0s-review`, "OK <ID>") or lists defects. Defects
    are fixed as `<ID>R: ...` commits and re-reviewed.
+
+## Coverage maps
+
+Every SP-<XX>-03 agent writes `smoke-maps/<Addon>.md` in this bundle and does **not** commit it (the
+addon agents commit only in their own repos). The orchestrator commits all maps in this repo when M3
+closes, as part of the M3 checkpoint commit.
 
 ## Checkpoints and pushes
 
