@@ -152,8 +152,15 @@ diagnostics, perf), DEGRADED (library-absent install), plus 1-5 feature themes n
   whole expectation is already asserted by a named headless test (name it in the coverage map) or it
   checks a thing that no longer exists.
 - Filled-in historical sign-off batches are dropped; their still-relevant checks survive as evergreen
-  checks. Unsigned owner checks (empty or "owed" Result) are kept under Pending sign-off with their
-  new ID and origin (old section/number).
+  checks.
+- **Pending sign-off** (clarified 2026-09-29 after M3 batch A reviews) lists, by new ID with origin:
+  (a) old checks whose last recorded result is empty, "owed", "not run", or a FAIL with no later pass
+  (including checks an owed list in a Ka0sAddonsCommonTasks plan names as never run); (b) every check
+  **new** in this run (PROFILE checks, checks whose expectation was corrected against the code). A check
+  with a recorded pass and an unchanged expectation is not pending.
+- **Review bar for S4**: a defect is lost coverage, an expectation that does not match the code (wrong
+  string, impossible step, wrong state), a wrong Pending list, a broken reference, or a remaining
+  duplicate. Wording preferences are not defects.
 - The Non-English client section keeps whatever the addon's doc-structure test requires (WhatGroup: the
   literal `C_SpellBook.IsSpellKnown`). Its first check is `LOC-1`.
 - Add PROFILE checks for the new verb (list, switch, unknown name refused, quotes, disabled, combat).
