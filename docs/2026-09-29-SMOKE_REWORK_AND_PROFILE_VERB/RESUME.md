@@ -21,8 +21,10 @@ cd /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-09-
 ./resume-state.sh -v
 ```
 
-It prints each milestone's done/reviewed count, the READY items (every dependency done), whether the
-LibKa0s `v1.63.0` tag exists locally, and each repo's branch, dirty state and ahead-of-origin count.
+It prints each milestone's done/reviewed count, the READY items (every dependency done **and
+reviewed**; an item never starts on unreviewed work), whether the
+LibKa0s `v1.63.0` tag exists locally, and each repo's branch, dirty state and ahead-of-origin count
+(`never-pushed` when the branch has no origin copy yet: a push is owed at the milestone end).
 
 ## Clean up an interrupted item
 

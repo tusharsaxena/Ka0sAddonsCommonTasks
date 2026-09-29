@@ -50,7 +50,11 @@ In `LibKa0s/LibKa0s/Slash.lua`, bump `LibKa0s-Slash-1.0` to minor 17 and add:
   creates, combat refusal, missing `profiles`, store returning nil, no trailing colon on any line.
 - Docs: `docs/api/Slash/version-17-docs.md` (the new members and the descriptor field), CHANGELOG
   `## v1.63.0 — 2026-09-29`, README/CLAUDE counts, and whatever else the repo's own gate requires.
-- Tag `v1.63.0` **locally** on the item commit. The tag is pushed only with the owner's merge go-ahead.
+- Tag `v1.63.0` **locally** on the commit that carries the newest clean all-pass 1.63.0 release record
+  (docs/releasing.md step 7), i.e. the final reviewed SP-LIB-01/SP-LIB-01R commit. An `SP-LIB-01R` fix
+  after the tag is cut means re-taking the record and force-moving the local tag to the new record
+  commit (it has never been pushed). No S3 re-vendor starts until SP-LIB-01 is reviewed at the tagged
+  commit. The tag is pushed only with the owner's merge go-ahead.
 
 ## S2. Profile support where it is missing (PrettyChat, WhatGroup, BankLedger, LootHistory)
 
@@ -117,8 +121,9 @@ Per addon:
 
 ## S4. Smoke-test rework (after S3 in the same repo)
 
-Rewrite `docs/smoke-tests.md` as one evergreen, deduplicated, theme-grouped suite. It must stay under the
-kit's 1500-line layout cap; aim for well under the current length.
+Rewrite `docs/smoke-tests.md` as one evergreen, deduplicated, theme-grouped suite. Aim for well under
+the current length (a target, not a gate: the kit's line cap covers `.lua` files only). When length and
+coverage conflict, coverage wins: never drop a check to save lines.
 
 **Shape**
 ```

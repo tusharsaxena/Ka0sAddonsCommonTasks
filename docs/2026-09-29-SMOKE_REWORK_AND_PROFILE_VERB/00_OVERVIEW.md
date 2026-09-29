@@ -44,5 +44,5 @@ Full research: `research/research.json` (standard, LibKa0s, plugin, 11 inventori
 - `02_SPEC.md` the contract for every item.
 - `03_EXECUTION_PLAN.md` milestones, order, gates, pushes.
 - `items.tsv` the manifest; `checkpoints.tsv` the milestone record; `RESUME.md` + `resume-state.sh` resume.
-- `smoke-maps/<Addon>.md` old-to-new coverage map per addon (M4).
-- `99_REPORT.md` the execution record (M5).
+- `smoke-maps/<Addon>.md` old-to-new coverage map per addon (M3).
+- `99_REPORT.md` the execution record (M4).

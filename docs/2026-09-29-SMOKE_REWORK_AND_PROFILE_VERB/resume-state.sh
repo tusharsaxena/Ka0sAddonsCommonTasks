@@ -48,14 +48,14 @@ for m in M0 M1 M2 M3 M4; do
   echo "$m: done $d/$t, reviewed $v/$t"
 done
 
-echo "READY:"
+echo "READY (every dependency done AND reviewed):"
 for id in $ids; do
   [[ -n ${DONE[$id]} ]] && continue
   ok=1
   if [[ ${DEPS[$id]} == all ]]; then
-    for o in $ids; do [[ $o == $id ]] && continue; [[ -z ${DONE[$o]} ]] && ok=0; done
+    for o in $ids; do [[ $o == $id ]] && continue; [[ -z ${REVIEWED[$o]} ]] && ok=0; done
   else
-    for dep in ${(s:,:)DEPS[$id]}; do [[ -n $dep && $dep != - && -z ${DONE[$dep]} ]] && ok=0; done
+    for dep in ${(s:,:)DEPS[$id]}; do [[ -n $dep && $dep != - && -z ${REVIEWED[$dep]} ]] && ok=0; done
   fi
   (( ok )) && echo "  $id (${REPO[$id]})"
 done
@@ -70,7 +70,11 @@ echo "TREES:"
 for r in ${(u)REPO}; do
   b=$(git -C $BASE/$r branch --show-current 2>/dev/null)
   dirty=$(git -C $BASE/$r status --porcelain 2>/dev/null | wc -l)
-  ahead=$(git -C $BASE/$r log --oneline origin/$b..$b 2>/dev/null | wc -l)
+  if git -C $BASE/$r rev-parse -q --verify origin/$b >/dev/null; then
+    ahead=$(git -C $BASE/$r log --oneline origin/$b..$b | wc -l)
+  else
+    ahead=never-pushed
+  fi
   echo "  $r: branch=$b dirty=$dirty unpushed=$ahead"
 done
 exit 0
