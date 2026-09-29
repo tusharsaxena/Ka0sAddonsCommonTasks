@@ -182,3 +182,24 @@ edited.
 examples and asks for "a row in the doc's index table". Re-point both to the `LOC-1` checks and
 describe the S4 shape. Docs-only; follow that repo's own gate and version rules (report if it demands a
 version bump rather than bumping).
+
+## S6. AuraMaster: empty weapon-enchant name on a fresh login (owner report, 2026-09-29)
+
+On a fresh login the weapon-enchant bar (engine `AddItemEnchantment` frame, name bound with
+`SetSpellName`) shows its icon and time but an empty name; a `/reload` shows the name (the equipped
+weapon's name). Find the root cause in Blizzard's AuraContainer code (research record:
+`research/amx-enchant.md` once written) and fix it at the cause, test first, with a smoke check. No
+behavior change beyond the fix.
+
+## S7. AuraMaster: `/am redraw [light|full]` (owner decision, 2026-09-29)
+
+- `/am redraw light`: refresh every live container's engine now (auras, enchant names, timers), in any
+  state (combat, auras secret). No frame is rebuilt.
+- `/am redraw full`: rebuild every container (the startup-build path). If combat lockdown or aura
+  secrecy forbids it now, it queues through the existing apply queue with the usual deferral notice
+  and runs when allowed.
+- Bare `/am redraw`: `full` when a full rebuild can run right now, otherwise `light`, and it says which
+  it did.
+- Refused while the addon is disabled (a feature verb, slash-commands-§2/§7). COMMANDS triple with an
+  NS.L description; tests (each form, combat, secret, disabled, the queue notice); docs (slash tables,
+  counts, smoke checks).

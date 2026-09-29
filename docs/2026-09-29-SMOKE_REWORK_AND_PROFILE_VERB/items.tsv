@@ -28,4 +28,6 @@ SP-PF-03	M3	PartyFrameEnhanced	Smoke-test rework: evergreen, deduped, theme-grou
 SP-PC-03	M3	PrettyChat	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-PC-02	S4
 SP-WG-03	M3	WhatGroup	Smoke-test rework: evergreen, deduped, theme-grouped; coverage map; inbound refs	SP-WG-02	S4
 SP-PLUG-01	M3	wow-addon	new-addon.md: re-point smoke worked examples to LOC-1, describe the S4 shape	SP-CM-03,SP-KC-03	S5
+SP-AMX-01	M3	AuraMaster	Fresh-login weapon-enchant bar with an empty name (a /reload fixes it): root-cause fix	SP-AM-03	S6
+SP-AMX-02	M3	AuraMaster	/am redraw [light|full]: light refresh anytime; full rebuild now or queued; bare = full when allowed now, else light	SP-AMX-01	S7
 SP-FIN-01	M4	Ka0sAddonsCommonTasks	Doc sync per repo, gates, push branches, 99_REPORT.md, checkpoints	all	-
