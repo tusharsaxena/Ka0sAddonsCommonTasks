@@ -83,6 +83,8 @@ Goal: the addon behaves like the seven that already have profiles.
   - BankLedger: delete the `savedvariables-§2` row from `docs/ARCHITECTURE.md` → Documented deviations
     (the addon now conforms); fix every doc that says the addon has no profiles.
   - LootHistory: rewrite `docs/schema.md`'s "addon never touches `db.profile`" section.
+  - **D6**: settings that govern recorded data (`retentionDays`, prune/purge rules) stay in
+    `db.global`; profile events never prune or delete history.
   - Tests: migration (values land in the profile, global cleared, idempotent), reads resolve against
     the profile, recorded data untouched, profile switch re-applies settings.
 
@@ -103,8 +105,10 @@ Per addon:
    passing `lib.LIVE_VERBS` plus `"profile"` (and nothing else); hosts that already widen add `"profile"`.
    Update the comments that say the host passes no liveVerbs. `tests/test_disabled.lua` pins `profile`
    as live.
-5. **Degraded stub** (no LibKa0s): carries `CliProfile` (prints the unavailable line); the
-   surface-parity test covers it.
+5. **Degraded stub** (no LibKa0s): carries `CliProfile` (prints the unavailable line) **and
+   `ProfileSwitch`** (or an explicit ignore entry for it). The kit's by-name `assertSurfaceParity`
+   reads the live dispatcher instance, so the re-vendor alone turns it red until both are on the stub
+   (amended 2026-09-29, SP-LIB-01 review).
 6. **Tests**: COMMANDS count/order pins, help line counts, disabled pins, a switch test (existing →
    switched + handler ran), an unknown-name test (refused, nothing created), quotes test.
 7. **Docs**: ARCHITECTURE Slash Commands table, `docs/slash-dispatch.md`, README command table, verb

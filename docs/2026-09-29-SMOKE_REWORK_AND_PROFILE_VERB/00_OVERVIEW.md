@@ -17,6 +17,7 @@ WhatGroup), plus LibKa0s and the wow-addon plugin. Outfitter is not a Ka0s addon
 | D3 | Grammar | `profile <name>` switches to an **existing** profile only (exact case, surrounding quotes stripped, spaces allowed); an unknown name is refused with the list. Bare `profile` lists profiles, current marked. AbsorbTracker and PartyFrameEnhanced keep their sub-verbs. |
 | D4 | Smoke history | **Evergreen only**: one deduplicated, theme-grouped suite; filled-in batch records dropped (git keeps them); unsigned owner checks kept under "Pending sign-off". |
 | D5 | What a profile holds in BankLedger / LootHistory | **Settings only.** Recorded data (ledger, loot history, sessions) stays account-wide in `db.global`; settings move into the profile by a one-time migration into `Default`. BankLedger's `savedvariables-§2` deviation row is retired. |
+| D6 | Settings that govern recorded data (BankLedger / LootHistory `retentionDays`, prune/purge rules) | **Stay account-wide** in `db.global`, outside every profile. A profile switch, copy or reset never prunes or deletes history. The Settings page marks retention as account-wide (tooltip) and `docs/profiles.md` lists it under what stays account-wide. (Decided 2026-09-29 after SP-BL-01 review found per-profile retention pruning shared history.) |
 
 Execution guidelines (owner): resumable, checkpointed plan; work on a branch, commit incrementally; push
 the branches to origin after major milestones; **no merge to master without the owner's go-ahead**;
