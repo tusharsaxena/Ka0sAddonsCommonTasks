@@ -1,1 +1,2 @@
 when	checkpoint	evidence
+2026-09-29	M1	LibKa0s dd7a774 (tag v1.63.0 local, annotated, on the final release record; bundle 20260929-113624 measured ac61f37) 1777/0/1, luacheck 0/0 in 123. BankLedger ab3128e 1141/0/0, 0/0 in 81. LootHistory 6d33675 976/0/0, 0/0 in 73. PrettyChat 4f26883 531/0/0, 0/0 in 55. WhatGroup ca19235 837/0/0, 0/0 in 58. All five reviewed (OK notes). D6 decided mid-milestone (retention stays global). Plan fixed by SP-PLAN-01R x2 (plan re-review pending with M2). Branches pushed to origin with review notes; tag not pushed; nothing merged.
