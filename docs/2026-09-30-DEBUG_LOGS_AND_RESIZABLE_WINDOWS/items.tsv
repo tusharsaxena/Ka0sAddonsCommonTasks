@@ -27,3 +27,17 @@ DL-WG-02	M3	WhatGroup	060 debug coverage: inventory, gaps vs §8/§9, fill + qui
 DL-FIN-01	M4	Ka0sAddonsCommonTasks	IN_GAME_CHECKS.md, 99_REPORT.md, coverage maps, checkpoints, pushes	all	-
 DL-LIB-02	A1	LibKa0s	Diagnostics link in the console title bar (orange text beside Debug On/Off), DebugLog minor 16, folded into v1.64.0, tag moved	DL-LIB-01	S5.1
 DL-AM-03	A1	AuraMaster	Re-vendor v1.64.0 with the Diagnostics link; smoke row; owner preview	DL-LIB-02,DL-AM-02	S5.2
+DL-STD-02	A2	WowAddonStandards	v2.71.0: §14 diagnostics turns logging on for the session (host may opt out); §1 names the Diagnostics link; ripple	DL-STD-01	S6.1
+DL-LIB-03	A2	LibKa0s	RunDiagnostics turns logging on first (opt-out descriptor field); kit rev 34 contract; v1.64.0 re-cut, tag moved	DL-LIB-02	S6.2
+DL-PLUG-01	A2	wow-addon	Match v2.71.0 where the plugin states the diagnostics contract or console furniture	DL-STD-02	S6.3
+DL-AM-04	A2	AuraMaster	Re-vendor final v1.64.0 (kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs/smoke	DL-LIB-03,DL-STD-02,DL-AM-03	S6.4
+DL-AT-03	A2	AbsorbTracker	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-AT-02	S6.4
+DL-BL-03	A2	BankLedger	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-BL-02	S6.4
+DL-CM-03	A2	ConsumableMaster	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-CM-02	S6.4
+DL-KC-03	A2	KickCD	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-KC-02	S6.4
+DL-LH-03	A2	LootHistory	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-LH-02	S6.4
+DL-MM-03	A2	MultiMeters	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-MM-02	S6.4
+DL-PM-03	A2	PanelMaster	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PM-02	S6.4
+DL-PF-03	A2	PartyFrameEnhanced	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PF-02	S6.4
+DL-PC-03	A2	PrettyChat	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PC-02	S6.4
+DL-WG-03	A2	WhatGroup	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-WG-02	S6.4

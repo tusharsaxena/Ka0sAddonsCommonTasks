@@ -42,7 +42,7 @@ for id in $ids; do
   [[ $note == "OK $id"* ]] && REVIEWED[$id]=1
 done
 
-for m in M0 M1 M2 M3 M4 A1; do
+for m in M0 M1 M2 M3 M4 A1 A2; do
   t=0; d=0; v=0
   for id in $ids; do [[ ${MS[$id]} == $m ]] || continue; ((t++)); [[ -n ${DONE[$id]} ]] && ((d++)); [[ -n ${REVIEWED[$id]} ]] && ((v++)); done
   echo "$m: done $d/$t, reviewed $v/$t"
