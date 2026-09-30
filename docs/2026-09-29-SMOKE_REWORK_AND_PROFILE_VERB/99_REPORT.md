@@ -3,7 +3,7 @@
 Run: 2026-09-29 09:20 → 2026-09-30 ~01:30 (IST), with a 13:07–20:14 pause while the owner's PC slept.
 All 33 items done and independently reviewed (git notes `refs/notes/ka0s-review`). Branch
 `feat/2026-09-29-smoke-and-profile` pushed in 14 repos. **Nothing merged; LibKa0s tag `v1.63.0` local
-only** (on `dd7a774`, the release-record commit).
+only** (on `1856218`, the release-record commit for kit revision 32).
 
 ## What shipped
 
@@ -49,7 +49,7 @@ their semantics (S7: full re-dresses in place rather than rebuilding engines, wh
 | PartyFrameEnhanced | e1086cb | 393 | 0/0 |
 | PrettyChat | cea1ed4 | 538 | 0/0 |
 | WhatGroup | 5b62a2f | 846 | 0/0 |
-| LibKa0s | a05ae00 | 1777 (+1 skipped) | 0/0 |
+| LibKa0s | 1856218 (was a05ae00 at M4) | 1777 (+1 skipped) | 0/0 |
 | wow-addon | da32bba | 20 (its own suite) | n/a |
 
 ## Left for the owner
@@ -59,8 +59,8 @@ their semantics (S7: full re-dresses in place rather than rebuilding engines, wh
    the `v1.63.0` tag, delete the branches.
 3. Comment corrections from the doc sync: six APPLIED on 2026-09-30 with the owner's OK (KickCD 2312d75,
    WhatGroup a65e4de, PrettyChat ea56280, AbsorbTracker f11a3d7, BankLedger ceb629d, MultiMeters
-   241976d; each gated green). Held: LibKa0s `testkit/README.md` still says "twelve places ... ten
-   consumers" (now thirteen and eleven). Any testkit change needs a kit-revision bump and a
-   re-vendor into all twelve copies, so it waits on an owner call: fold into the unpublished v1.63.0
-   or carry to the next release.
+   241976d; each gated green). The seventh, LibKa0s `testkit/README.md`'s consumer count, was
+   folded into v1.63.0 on the owner's call: kit revision 32 (06cc010), release run re-taken
+   (20260930-084657, record commit 1856218), local tag `v1.63.0` moved to 1856218 (still unpushed), and
+   `tests/_kit/` re-vendored in all eleven addons (each gated green, byte-identical to the tag).
 4. Dead exports reported, not deleted (see each repo's sync notes), e.g. MultiMeters test-only seams.
