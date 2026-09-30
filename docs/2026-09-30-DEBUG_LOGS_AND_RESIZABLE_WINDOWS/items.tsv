@@ -1,0 +1,56 @@
+id	milestone	repo	title	depends_on	spec
+DL-PLAN-01	M0	Ka0sAddonsCommonTasks	Plan bundle: overview, spec, execution plan, manifest, resume kit	-	-
+DL-STD-01	M1	WowAddonStandards	v2.70.0: debug-logging §8 diagnosis checklist, §9 quiet steady state, §1/performance-§4 resizable windows, anti-pattern, ripple	-	S1
+DL-LIB-01	M1	LibKa0s	v1.64.0: Core resize helper; console, CopyWindow, PerfPanel resizable (session-only); kit rev 33; tests; api docs; local tag	-	S2
+DL-AT-01	M2	AbsorbTracker	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-AM-01	M2	AuraMaster	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-BL-01	M2	BankLedger	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-CM-01	M2	ConsumableMaster	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-KC-01	M2	KickCD	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-LH-01	M2	LootHistory	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-MM-01	M2	MultiMeters	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-PM-01	M2	PanelMaster	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-PF-01	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-PC-01	M2	PrettyChat	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-WG-01	M2	WhatGroup	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-AT-02	M3	AbsorbTracker	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-AT-01	S4
+DL-AM-02	M3	AuraMaster	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-AM-01	S4
+DL-BL-02	M3	BankLedger	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-BL-01	S4
+DL-CM-02	M3	ConsumableMaster	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-CM-01	S4
+DL-KC-02	M3	KickCD	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-KC-01	S4
+DL-LH-02	M3	LootHistory	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-LH-01	S4
+DL-MM-02	M3	MultiMeters	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-MM-01	S4
+DL-PM-02	M3	PanelMaster	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-PM-01	S4
+DL-PF-02	M3	PartyFrameEnhanced	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-PF-01	S4
+DL-PC-02	M3	PrettyChat	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-PC-01	S4
+DL-WG-02	M3	WhatGroup	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-WG-01	S4
+DL-FIN-01	M4	Ka0sAddonsCommonTasks	IN_GAME_CHECKS.md, 99_REPORT.md, coverage maps, checkpoints, pushes	all	-
+DL-LIB-02	A1	LibKa0s	Diagnostics link in the console title bar (orange text beside Debug On/Off), DebugLog minor 16, folded into v1.64.0, tag moved	DL-LIB-01	S5.1
+DL-AM-03	A1	AuraMaster	Re-vendor v1.64.0 with the Diagnostics link; smoke row; owner preview	DL-LIB-02,DL-AM-02	S5.2
+DL-STD-02	A2	WowAddonStandards	v2.71.0: §14 diagnostics turns logging on for the session (host may opt out); §1 names the Diagnostics link; ripple	DL-STD-01	S6.1
+DL-LIB-03	A2	LibKa0s	RunDiagnostics turns logging on first (opt-out descriptor field); kit rev 34 contract; v1.64.0 re-cut, tag moved	DL-LIB-02	S6.2
+DL-PLUG-01	A2	wow-addon	Match v2.71.0 where the plugin states the diagnostics contract or console furniture	DL-STD-02	S6.3
+DL-AM-04	A2	AuraMaster	Re-vendor final v1.64.0 (kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs/smoke	DL-LIB-03,DL-STD-02,DL-AM-03	S6.4
+DL-AT-03	A2	AbsorbTracker	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-AT-02	S6.4
+DL-BL-03	A2	BankLedger	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-BL-02	S6.4
+DL-CM-03	A2	ConsumableMaster	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-CM-02	S6.4
+DL-KC-03	A2	KickCD	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-KC-02	S6.4
+DL-LH-03	A2	LootHistory	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-LH-02	S6.4
+DL-MM-03	A2	MultiMeters	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-MM-02	S6.4
+DL-PM-03	A2	PanelMaster	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PM-02	S6.4
+DL-PF-03	A2	PartyFrameEnhanced	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PF-02	S6.4
+DL-PC-03	A2	PrettyChat	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PC-02	S6.4
+DL-WG-03	A2	WhatGroup	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-WG-02	S6.4
+DL-STD-03	A3	WowAddonStandards	v2.72.0: README uses bullets, never numbered lists (CurseForge); bulleted Reporting a bug; ripple	DL-STD-02	S7.1
+DL-PLUG-02	A3	wow-addon	Match v2.72.0 wherever the plugin writes or checks README content	DL-STD-03,DL-PLUG-01	S7.2
+DL-AM-05	A3	AuraMaster	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-AM-04	S7.3
+DL-AT-04	A3	AbsorbTracker	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-AT-03	S7.3
+DL-BL-04	A3	BankLedger	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-BL-03	S7.3
+DL-CM-04	A3	ConsumableMaster	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-CM-03	S7.3
+DL-KC-04	A3	KickCD	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-KC-03	S7.3
+DL-LH-04	A3	LootHistory	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-LH-03	S7.3
+DL-MM-04	A3	MultiMeters	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-MM-03	S7.3
+DL-PM-04	A3	PanelMaster	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-PM-03	S7.3
+DL-PF-04	A3	PartyFrameEnhanced	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-PF-03	S7.3
+DL-PC-04	A3	PrettyChat	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-PC-03	S7.3
+DL-WG-04	A3	WhatGroup	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-WG-03	S7.3
