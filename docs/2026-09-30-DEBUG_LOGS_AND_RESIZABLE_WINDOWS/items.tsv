@@ -41,3 +41,16 @@ DL-PM-03	A2	PanelMaster	Re-vendor final v1.64.0 (Diagnostics link, kit 34), stan
 DL-PF-03	A2	PartyFrameEnhanced	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PF-02	S6.4
 DL-PC-03	A2	PrettyChat	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-PC-02	S6.4
 DL-WG-03	A2	WhatGroup	Re-vendor final v1.64.0 (Diagnostics link, kit 34), standard v2.71.0, diagnostics-turns-logging-on tests/docs, smoke rows	DL-LIB-03,DL-STD-02,DL-WG-02	S6.4
+DL-STD-03	A3	WowAddonStandards	v2.72.0: README uses bullets, never numbered lists (CurseForge); bulleted Reporting a bug; ripple	DL-STD-02	S7.1
+DL-PLUG-02	A3	wow-addon	Match v2.72.0 wherever the plugin writes or checks README content	DL-STD-03,DL-PLUG-01	S7.2
+DL-AM-05	A3	AuraMaster	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-AM-04	S7.3
+DL-AT-04	A3	AbsorbTracker	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-AT-03	S7.3
+DL-BL-04	A3	BankLedger	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-BL-03	S7.3
+DL-CM-04	A3	ConsumableMaster	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-CM-03	S7.3
+DL-KC-04	A3	KickCD	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-KC-03	S7.3
+DL-LH-04	A3	LootHistory	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-LH-03	S7.3
+DL-MM-04	A3	MultiMeters	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-MM-03	S7.3
+DL-PM-04	A3	PanelMaster	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-PM-03	S7.3
+DL-PF-04	A3	PartyFrameEnhanced	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-PF-03	S7.3
+DL-PC-04	A3	PrettyChat	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-PC-03	S7.3
+DL-WG-04	A3	WhatGroup	README bullets + v2.72.0 fixed Reporting a bug text; tests; standards ref	DL-STD-03,DL-WG-03	S7.3
