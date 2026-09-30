@@ -1,0 +1,17 @@
+id	milestone	repo	title	depends_on	spec
+DG-PLAN-01	M0	Ka0sAddonsCommonTasks	Plan bundle	-	-
+DG-LIB-01	M1	LibKa0s	v1.65.0: G1 Slash debug, G2 DebugLog onClear + change-gate, G3 Options combat-lock lines, G4 at-enable queue for Launcher, G5 Lifecycle edges; local tag	-	S1
+DG-STD-01	M1	WowAddonStandards	v2.73.0: library modules log through the host debug sink; hosts pass it, no duplicates, use the change-gate	DG-LIB-01	S2
+DG-PLUG-01	M1	wow-addon	Match v2.73.0 where the plugin prescribes or checks debug wiring	DG-STD-01	S3
+DG-AT-01	M2	AbsorbTracker	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-AM-01	M2	AuraMaster	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-BL-01	M2	BankLedger	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-CM-01	M2	ConsumableMaster	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-KC-01	M2	KickCD	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-LH-01	M2	LootHistory	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-MM-01	M2	MultiMeters	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-PM-01	M2	PanelMaster	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-PF-01	M2	PartyFrameEnhanced	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-PC-01	M2	PrettyChat	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-WG-01	M2	WhatGroup	Adopt v1.65.0: pass debug to every descriptor, library change-gate/at-enable queue, drop duplicate host lines, tests, docs, smoke	DG-LIB-01,DG-STD-01	S4
+DG-FIN-01	M3	Ka0sAddonsCommonTasks	Record, checkpoints, pushes	all	S5
