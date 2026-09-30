@@ -3,3 +3,4 @@ when	checkpoint	evidence
 2026-09-30	M2	All eleven re-vendored to LibKa0s v1.64.0 (kit rev 33) citing standard v2.70.0, resize smoke rows added; every DL-<XX>-01 reviewed OK (BL in round 2). Heads at M3 close below.
 2026-09-30	M3	All eleven DL-<XX>-02 reviewed OK: AT 7f4ed1e 833/0, AM d8d52c6 1767/0, BL 7ef7940 1167/0, CM a98d3bb 1146/0, KC 0cb364d 1228/0 (round-3 citation defect fixed by the orchestrator), LH cb5e5d7 1003/0, MM 75eaa37 2125/0, PM 751ac73 991/0, PF e971f63 406/0, PC 1d7cdb5 552/0, WG 3d0f356 869/0; luacheck 0/0 everywhere. Coverage maps committed here. All eleven branches + review notes pushed. Nothing merged; tag not pushed.
 2026-09-30	M4	IN_GAME_CHECKS.md and 99_REPORT.md written (residuals: 5 LibKa0s gaps + 4 owner calls). Awaiting the owner go-ahead to merge and push the tag.
+2026-09-30	M4	Owner reports every in-game check from IN_GAME_CHECKS.md passes (060 and 090).

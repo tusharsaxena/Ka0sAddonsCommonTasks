@@ -25,3 +25,5 @@ DL-PF-02	M3	PartyFrameEnhanced	060 debug coverage: inventory, gaps vs §8/§9, f
 DL-PC-02	M3	PrettyChat	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-PC-01	S4
 DL-WG-02	M3	WhatGroup	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-WG-01	S4
 DL-FIN-01	M4	Ka0sAddonsCommonTasks	IN_GAME_CHECKS.md, 99_REPORT.md, coverage maps, checkpoints, pushes	all	-
+DL-LIB-02	A1	LibKa0s	Diagnostics link in the console title bar (orange text beside Debug On/Off), DebugLog minor 16, folded into v1.64.0, tag moved	DL-LIB-01	S5.1
+DL-AM-03	A1	AuraMaster	Re-vendor v1.64.0 with the Diagnostics link; smoke row; owner preview	DL-LIB-02,DL-AM-02	S5.2
