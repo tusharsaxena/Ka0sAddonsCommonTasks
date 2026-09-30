@@ -1,0 +1,27 @@
+id	milestone	repo	title	depends_on	spec
+DL-PLAN-01	M0	Ka0sAddonsCommonTasks	Plan bundle: overview, spec, execution plan, manifest, resume kit	-	-
+DL-STD-01	M1	WowAddonStandards	v2.70.0: debug-logging §8 diagnosis checklist, §9 quiet steady state, §1/performance-§4 resizable windows, anti-pattern, ripple	-	S1
+DL-LIB-01	M1	LibKa0s	v1.64.0: Core resize helper; console, CopyWindow, PerfPanel resizable (session-only); kit rev 33; tests; api docs; local tag	-	S2
+DL-AT-01	M2	AbsorbTracker	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-AM-01	M2	AuraMaster	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-BL-01	M2	BankLedger	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-CM-01	M2	ConsumableMaster	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-KC-01	M2	KickCD	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-LH-01	M2	LootHistory	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-MM-01	M2	MultiMeters	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-PM-01	M2	PanelMaster	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-PF-01	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-PC-01	M2	PrettyChat	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-WG-01	M2	WhatGroup	Re-vendor LibKa0s v1.64.0 + kit, standards ref v2.70.0, resize smoke checks	DL-LIB-01,DL-STD-01	S3
+DL-AT-02	M3	AbsorbTracker	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-AT-01	S4
+DL-AM-02	M3	AuraMaster	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-AM-01	S4
+DL-BL-02	M3	BankLedger	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-BL-01	S4
+DL-CM-02	M3	ConsumableMaster	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-CM-01	S4
+DL-KC-02	M3	KickCD	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-KC-01	S4
+DL-LH-02	M3	LootHistory	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-LH-01	S4
+DL-MM-02	M3	MultiMeters	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-MM-01	S4
+DL-PM-02	M3	PanelMaster	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-PM-01	S4
+DL-PF-02	M3	PartyFrameEnhanced	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-PF-01	S4
+DL-PC-02	M3	PrettyChat	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-PC-01	S4
+DL-WG-02	M3	WhatGroup	060 debug coverage: inventory, gaps vs §8/§9, fill + quiet steady state, tests, docs/debug.md Coverage, coverage map	DL-WG-01	S4
+DL-FIN-01	M4	Ka0sAddonsCommonTasks	IN_GAME_CHECKS.md, 99_REPORT.md, coverage maps, checkpoints, pushes	all	-
