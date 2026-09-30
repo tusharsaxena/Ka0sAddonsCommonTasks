@@ -67,3 +67,21 @@ Addon-level owner calls:
 
 Merge `--no-ff` per repo, standard and LibKa0s first, gate on each merge, push master, push tag
 `v1.64.0`, delete the feature branches. Then the in-game checks in `IN_GAME_CHECKS.md`.
+
+## Addenda and finalize (2026-09-30, later the same day)
+
+- **A1** orange Diagnostics link in every console title bar (LibKa0s DebugLog 16); owner saw the AuraMaster
+  preview: "Looks good".
+- **A2** running diagnostics turns debug logging on for the session (standard v2.71.0 reverses §14's
+  flag rule on the owner's decision; LibKa0s DebugLog 17, DebugLogDiagnostics 2, kit revision 34).
+- **A3** README uses bullets, never numbered lists, because CurseForge does not render them (standard
+  v2.72.0); every README converted, Reporting a bug is the bulleted fixed text in all eleven.
+- AuraMaster, outside the DL ids: a new user spell category starts Hide in existing containers (7dfba5a).
+- **Finalized** on the owner's go-ahead, in order WowAddonStandards → (LibKa0s | wow-addon) → the eleven addons
+  → this repo: doc sync (content only), gate on the branch and on the merge, `--no-ff` merge, push, review notes
+  pushed, branches deleted. LibKa0s tag **v1.64.0 pushed**. Master heads: WAS 00b1bed, LibKa0s 4cdaa36,
+  wow-addon 3e195b1, AT c6e5acb, AM 9751fec, BL 56a2ba1, CM b64b221, KC 34072c7, LH 15725a1, MM 7dc1cab,
+  PM dbc6d82, PF c4bbf0e, PC e10a474, WG 4d53415. Every merge gate green.
+- Reported by the doc syncs, not acted on: stale line numbers in some `.luacheckrc` / test comments (BL, LH, WG,
+  KC), no `docs/revendor/` bundle for the v1.64.0 re-vendor (KC, PM; that bundle is `/wow-addon:revendor-libka0s`'s),
+  and test-only exports (AM, MM, PM, PF).
