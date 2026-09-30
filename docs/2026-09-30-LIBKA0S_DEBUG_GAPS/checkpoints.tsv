@@ -1,1 +1,4 @@
 when	checkpoint	evidence
+2026-10-01	M1	LibKa0s v1.65.0 (G1 bed5936, G2 3eccc9f, G3 7856aa7, G4 321438b, G5 0bc8b01, release 6cb04da; 1917/0/2, luacheck 0/0 in 133; local tag) OK. Standard v2.73.0 04bff5c OK. wow-addon: no change (exception).
+2026-10-01	M2	All eleven adopted v1.65.0: AT fb069bc 844/0, AM 500e779 1781/0, BL 4077d77 1178/0, CM b63453a 1160/0 (round-3 line-count defect fixed by the orchestrator), KC 5277432, LH be84935, MM a6fe9af, PM 911e6ab, PF 6944951, PC 36b73c2, WG 5ab7efa; all OK, vendor drift 0. Open for the owner: LH [Set] rejected beside the library [Cmd] refused set line; MM kept its own steady gate (with its (xN) counts) rather than DebugChanged. Owner go-ahead to finalize given.
+2026-10-01	M3	Finalized all 14 repos on the owner go-ahead (doc sync first): masters pushed, tag v1.65.0 pushed, branches deleted. Record: 99_REPORT.md.

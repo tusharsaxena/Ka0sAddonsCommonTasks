@@ -1,0 +1,1 @@
+DG-PLUG-01	No change needed: the plugin fetches debug wiring from the standard at runtime; reviewed OK on wow-addon 3e195b1 (git -C ../../../wow-addon notes --ref=ka0s-review show 3e195b1)
