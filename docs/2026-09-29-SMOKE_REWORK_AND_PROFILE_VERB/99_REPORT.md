@@ -57,10 +57,10 @@ their semantics (S7: full re-dresses in place rather than rebuilding engines, wh
 1. In-game checks: `IN_GAME_CHECKS.md` (includes the ConsumableMaster key test owed from 2026-09-29).
 2. Merge go-ahead: then per repo, LibKa0s first: merge `--no-ff`, gate on the merge, push master, push
    the `v1.63.0` tag, delete the branches.
-3. Comment corrections the doc sync reported but may not apply without confirmation (no behavior
-   change): KickCD `IconGrid:_TextTickerStart` (no such method); WhatGroup `.toc` load-order line
-   citations; PrettyChat `tests/wow_mock.lua` header numbers two items "16"; AbsorbTracker test comment
-   naming the deleted `tests/prose_waivers.lua`; BankLedger locale comments saying nothing routes through
-   `NS.L`; MultiMeters "five" vs "six" seams (`tests/run.lua:395` vs `docs/testing.md:90`); LibKa0s
-   `testkit/README.md` "ten consumers" (kit change upstream).
+3. Comment corrections from the doc sync: six APPLIED on 2026-09-30 with the owner's OK (KickCD 2312d75,
+   WhatGroup a65e4de, PrettyChat ea56280, AbsorbTracker f11a3d7, BankLedger ceb629d, MultiMeters
+   241976d; each gated green). Held: LibKa0s `testkit/README.md` still says "twelve places ... ten
+   consumers" (now thirteen and eleven). Any testkit change needs a kit-revision bump and a
+   re-vendor into all twelve copies, so it waits on an owner call: fold into the unpublished v1.63.0
+   or carry to the next release.
 4. Dead exports reported, not deleted (see each repo's sync notes), e.g. MultiMeters test-only seams.
