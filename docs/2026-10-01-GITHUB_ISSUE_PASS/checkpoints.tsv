@@ -1,1 +1,2 @@
 when	checkpoint	evidence
+2026-10-01	M1	LibKa0s v1.66.0 local tag on e4c5ef7 (1997/0/2, luacheck 0/0 in 144 files, sighted complexity 0 warnings, max CCN 15, 6041 functions, 0 blind files; release bundle 20261001-133255). Payload 32 files (PerfCommands, PerfSampler, WidgetsReorder, SlashParse added). Standard v2.74.0 at 544db10. wow-addon d3b05f5 (20/20 bounded-run tests). Addendum A1 (-L 1500) and A2 (Perf 975, Slash 877). All 14 items reviewed OK.
