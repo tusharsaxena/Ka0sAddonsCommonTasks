@@ -135,3 +135,46 @@ checks its implementer added (all **never run**):
 2. Give the merge go-ahead. `/wow-addon:finalize` then merges in dependency order (LibKa0s → standard → wow-addon →
    addons → this repo), pushes tag `v1.66.0`, deletes the branches and closes the 30 fixed issues plus
    ConsumableMaster#16. PartyFrameEnhanced#3 closes only on COMBAT-6/9/10.
+
+## Finalize (2026-10-02)
+
+The owner ran every in-client check and reported **all pass** on 2026-10-02, then gave the merge go-ahead.
+`04_SMOKE_TESTS.md` records it (33 rows), and each addon's `docs/smoke-tests.md` records its own rows from
+this pass in a `GI-FIN-02:` commit. Older owed rows from other work were left owed.
+
+Each repo got a content-only doc sync and a re-run gate (tests, luacheck 0/0, vendor diff empty), then a
+`--no-ff` merge into `master`. Each merge tree is identical to its gated branch tree, because no `master` had
+moved. Then the push and the branch deletion, local and remote. Order: WowAddonStandards → wow-addon → LibKa0s
+(then tag `v1.66.0` pushed, on e4c5ef7) → the eleven addons → this repo. The plan named LibKa0s first. Nothing
+the standard or the plugin publishes depends on the library's push, so that order still holds.
+
+| Repo | GI-FIN-02 commit | Gate | master |
+|---|---|---|---|
+| WowAddonStandards | none (docs true) | no Lua; luacheck 0 files | e693ef6 |
+| wow-addon | 4eb8331 | 20/20 bounded-run tests | 9eb7d25 |
+| LibKa0s | none (docs true) | 1997/0/2, 0/0 in 144 | e918c5c |
+| AbsorbTracker | f921770 | 855/0/1, 0/0 in 68 | b70362b |
+| AuraMaster | 2a51ade | 1788/0/1, 0/0 in 151 | 9094fe3 |
+| BankLedger | 26e7190 | 1214/0/1, 0/0 in 86 | a4d4459 |
+| ConsumableMaster | c910771 | 1186/0/1, 0/0 in 130 | 49d207a |
+| KickCD | 5657d50 | 1282/0/1, 0/0 in 127 | 72b1be7 |
+| LootHistory | 7870ae4 | 1040/0/1, 0/0 in 80 | a58a472 |
+| MultiMeters | 26a0ca4 | 2168/0/1, 0/0 in 146 | 0cddb61 |
+| PanelMaster | f9c21e2 | 1033/0/1, 0/0 in 71 | 3008fd9 |
+| PartyFrameEnhanced | ca0a900 | 453/0/1, 0/0 in 79 | 3b029ad |
+| PrettyChat | none (docs true) | 571/0/1, 0/0 in 56 | 896d216 |
+| WhatGroup | 70036d3 | 913/0/1, 0/0 in 59 | 86ebe5b |
+
+Issues closed with `state:done` and a comment naming the merge: the 30 fixed here, ConsumableMaster#16 and
+PartyFrameEnhanced#3 (COMBAT-6, 9 and 10 passed). No addon version was bumped.
+
+Follow-ups the doc sync surfaced and left alone:
+
+- PanelMaster `core/Util.lua:271 Util.CountChanged` has no shipped caller left after GI-PM-03; only
+  `tests/test_util.lua` calls it.
+- WhatGroup has 11 stale line citations in comments (TOC, `.luacheckrc`, `core/DebugLogSetup.lua`,
+  `tests/test_surface_parity.lua`). Five were shifted by GI-WG-01. A fix only touches comments.
+- BankLedger `.luacheckrc:23` says 12 `files[...]` stanzas, but there are 14.
+- LootHistory `docs/common-tasks.md:263` cites `settings/Panel.lua:529/530`, but those lines are now comments.
+- KickCD: `/kcd perf` is not in the README. Several comments name deleted files on purpose, as history.
+- Every addon's Pending sign-off table still lists rows owed from earlier work.
