@@ -1,0 +1,1073 @@
+# Per-issue designs (validation output)
+
+Generated on 2026-10-01 from `plan-data/validation.json`: six read-only agents, one per repo group, checked every owner-actioned issue against the code at the v1.65.0 merges. Each section gives the verdict, the evidence and the design the implementer works from. `02_SPEC.md` overrides anything here where they differ.
+
+
+## KickCD
+
+**Repo notes.** KickCD (/mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD), on master, clean, head e6f19b7, LibKa0s v1.65.0 vendored. Green gate from its CLAUDE.md: `lua tests/run.lua` + `luacheck .` (0/0). Run both through the bounded runner; a hook enforces this: `/home/tushar/.claude/wow-addon/bin/ka0s-bounded lua tests/run.lua` and `/home/tushar/.claude/wow-addon/bin/ka0s-bounded luacheck .`. Measured today: 1238 passed, 0 failed, 1 skipped (1239 total). luacheck 0 warnings / 0 errors in 114 files. Collection gate also expects lizard CCN <= 15 (`lizard -l lua -x "./libs/*" -x "./tests/_kit/*" .`) and the 1500-line cap.
+
+wc -l NOW vs at filing: IconGrid.lua 1420 (1368, growing, 80 lines from cap), Castbar.lua 1251 (1435; Castbar_Events peel already landed in 99211f0 but the file regrew from 1217), Database.lua 1121 (1002, growing), wow_mock.lua 1233, Spells.lua 1115, test_options_panel.lua 1101, test_slash.lua 1054, test_perfsetup.lua 1018, IconGrid_Render.lua 1014. The docs/module-map.md:394-408 band table is stale (IconGrid 1381, Castbar 1217, Database 1069), so refresh it with each peel and drop rows as files exit the band.
+
+Recommended KickCD order:
+1. Pure-move peels first, each its own commit with identical suite totals: #25 IconGrid (most urgent) -> #26 Render ticker (as IconGrid_Ticker.lua) -> #27 wow_mock -> #24 Castbar_Frame -> #29 Database_Migrations -> #28 Spells_Header -> #30/#31/#32 test splits.
+2. Behaviour: #9 (inside IconGrid_Ticker.lua + Icon:Apply + Cooldowns.StateChanged).
+3. #10 KickCD half after the LibKa0s release + re-vendor.
+
+Peeling first means each behaviour diff is reviewed in a small file.
+
+New module files must go in KickCD.toc's LOAD-BEARING blocks after their parent, because they call NS:GetModule at file scope (toc:105-117, 156-158). The test loader derives the file list from the TOC (Loader.tocFiles), so there is no separate test load list. New test files MUST be added to the explicit SUITES list in tests/run.lua:166, because Kit.run asserts every test_*.lua is declared. Doc touch points the repo requires per change: docs/module-map.md (module entries + band table), docs/ARCHITECTURE.md module map/lifecycle, docs/smoke-tests.md (§9c for #9, §10/§25 for #10), docs/midnight-quirks.md for #9. Never edit libs/ (re-vendor reverts it). Never bump the version.
+
+KickCD#7: the owner decided to CLOSE it, but the proposed code fix is NOT present: no DELAYED/CHANNEL_UPDATE in IconGrid ICON_CAST_ROUTES, and no ApplyVisibilityMask in Castbar_Events.lua OnCastDelayed. The close comment should say it no longer reproduces, not that it is fixed.
+
+KickCD#10 cross-repo: the original blocker 1 (parent) is moot for KickCD, because Spells.lua now draws into H.EnsureScroll since c5682dd. The real blocker is RenderGrid's unconditional 8px ROW_VSPACER, which breaks the 28px ReorderList stride. LibKa0s change needed in ../LibKa0s/LibKa0s/OptionsWidgets.lua:1027 (WIDGETS_MINOR 33->34): add the parent param, opts.gap opt-out, the wide-branch guard fix, and a documented (not automatic) DoLayout. Then a LibKa0s release (v1.66.0 if nothing else claims it) and a re-vendor into all 11 addons. RenderGrid now has many consumers (AbsorbTracker, AuraMaster, ConsumableMaster, MultiMeters, PanelMaster, PrettyChat, KickCD Grid/General/Icons/Castbar), so every consumer suite must stay unchanged. Batch this LibKa0s release with any other LibKa0s items in the run so the 11-repo re-vendor happens once.
+
+
+### KickCD#7 (not-addressed, effort S)
+
+**Evidence.** The narrow fix the issue proposes is NOT in code. (1) modules/IconGrid.lua:90-100 ICON_CAST_ROUTES (the event set EnableUnit arms via NS.Util.NewUnitCastFilter at :876-878) lists START/STOP/FAILED/INTERRUPTED/CHANNEL_START/CHANNEL_STOP/INTERRUPTIBLE/NOT_INTERRUPTIBLE/EMPOWER_START/UPDATE/STOP. It does not list UNIT_SPELLCAST_DELAYED or UNIT_SPELLCAST_CHANNEL_UPDATE. (2) Castbar:OnCastDelayed moved to modules/Castbar_Events.lua:142-166 in the KC-ATS-01 peel (99211f0). It re-reads GetCastingInfo, resets SetMinMaxValues and calls ApplyState, but never calls ApplyVisibilityMask(inst.frame, inst.unit). Only OnInterruptibilityChanged (:135) and Start (Castbar.lua:972) do. The Castbar side does route DELAYED/CHANNEL_UPDATE/EMPOWER_UPDATE to OnCastDelayed (Castbar.lua:122-129). No deferred C_Timer re-apply exists anywhere in modules/IconGrid*.lua or Castbar*.lua. git log --grep '#7' and -S UNIT_SPELLCAST_DELAYED -- modules show no fix commit, only the original cast-bar commits.
+
+**Design.** The owner has decided CLOSE. Close KickCD#7 with a comment along these lines: 'Closed as no longer reproducing, per the owner's 2026-09-30 decision. The code-trace fix the issue proposed was never applied: the grid's ICON_CAST_ROUTES has no DELAYED/CHANNEL_UPDATE, and Castbar:OnCastDelayed (modules/Castbar_Events.lua) does not re-apply ApplyVisibilityMask. If it recurs, reopen and apply that fix.' Leave the state:will-not-do or state:done label to the orchestrator's convention, preferring a closure reason of 'not planned / no longer reproduces'. Do NOT claim it is fixed. If the owner later wants the fix anyway, it is about 6 lines, test first: add `UNIT_SPELLCAST_DELAYED = "OnUnitCastEvent"` and `UNIT_SPELLCAST_CHANNEL_UPDATE = "OnUnitCastEvent"` to ICON_CAST_ROUTES, plus `if isVisible(inst) then ApplyVisibilityMask(inst.frame, inst.unit) end` at the end of OnCastDelayed's `if rec` branch. Tests: test_icongrid_visibility (firing DELAYED through the filter re-runs RefreshVisibility) and test_castbar (OnCastDelayed in target_casting_interruptible mode and locked calls SetAlphaFromBoolean on the bar frame).
+
+**Dependencies.** none
+
+**Risks.** Closing without the fix leaves the theoretical gap in place. The owner accepts that. Wording the close as 'no longer reproduces' rather than 'fixed' keeps the record honest.
+
+
+**Default.** Close as no longer reproducing. Say explicitly in the closing comment that the proposed code fix was not applied, and give the reopen trigger.
+
+
+### KickCD#9 (not-addressed, effort L)
+
+**Evidence.** modules/Cooldowns.lua:269-275 StateChanged still compares handle identity (`prev.cdObject ~= next_.cdObject`, `prev.chargeCdObject ~= next_.chargeCdObject`), and Refresh (:439-545) emits SPELL_STATE on every poll for any spell on cooldown (comment at :519 'Emit unconditionally — the renderer needs the fresh handle'). MaterialChange (:244) is a log gate only. modules/IconGrid_Render.lua: the ticker (_tickAllTextIcons :928, _RegisterTextIcon :954) drives only _RenderCooldownText (:374). It registers only via Icon:StartCooldownText (:345), which bails when `not cfg.showCooldownText`. The curve work (renderFullCooldown :680, applyGcdSuppressionAlpha :618) still runs inside Icon:Apply on each emit. plainStateMoved (:666) is the 35% half from 9fc0d8b, already landed. No commit references #9 (git log --grep '#9' shows only d721883, an unrelated KC-28 doc).
+
+**Design.** Rule: emit = state changed, ticker = time passed. Land it AFTER the #26 peel, so the ticker lives in its own file.
+1. Ticker generalisation, in the post-#26 file modules/IconGrid_Ticker.lua (see #26). Rename _textIcons to _cdIcons. Icon registration becomes `IconGrid:_RegisterCdIcon(icon, branch)`, called whenever Apply selects branch 1 (cdObject) or branch 2 (chargeCdObject), regardless of cfg.showCooldownText. The per-icon tick `Icon:_TickCooldown()`: (a) branch 1: `local _,_,_,_,isActive = Compat.GetSpellCooldown(spellID)`, which is plain. If not isActive, run the existing stop path (hide/clear swipe, stop text, unregister). Otherwise fetch `h = Compat.GetSpellCooldownDuration(spellID)`, evaluate the alpha/tint curves via evaluateByTotal, SetAlphaFromBoolean/SetVertexColor, `cooldown:SetCooldownFromDurationObject(h)`, applyGcdSuppressionAlpha(icon, h), and if cfg.showCooldownText then `cooldownText:SetFormattedText('%.1f', h:GetRemainingDuration())`. (b) branch 2: re-fetch the recharge handle through a published Cooldowns.RechargeHandle(spellID) (expose the existing local rechargeHandle at Cooldowns.lua:141). If nil, unregister. Otherwise do swipe + suppression alpha + text, with no body alpha/tint. Keep the empty-set self-cancel and _StopTextTicker (rename to _StopCdTicker and update its caller in IconGrid:Suspend). Keep the Perf bucket 'cdText', or rename it to 'cdTick' and update core/PerfSetup.lua bucket names and tests/perf.lua scenarios together.
+2. Icon:Apply (IconGrid_Render.lua): when stateWork is true, do the branch selection, an initial paint (same calls as one tick, so the first frame is correct), glow and ticker register/unregister. When stateWork is false and not force, do only renderChargesBadge, because charges can be secret. force (config re-apply) still repaints everything.
+3. Cooldowns.StateChanged: delete the two identity lines. Handle presence is already in MaterialChange, so fold StateChanged = MaterialChange plus the conservative secret-charges emit (MaterialChange returns false on secret charges; StateChanged must keep returning true there). Keep both exports (Cooldowns.MaterialChange is used by tests).
+4. SWIPE STUTTER RISK: calling SetCooldownFromDurationObject with a fresh handle every 0.1s may restart the swipe animation. The issue lists 'swipe animates smoothly' as acceptance. Default: re-arm the swipe only on stateWork, not on every tick. The C-side DurationObject keeps animating, which is what happens today between emits anyway. Re-evaluate the curves and text per tick.
+Tests first: test_cooldowns (a spell on an unchanged cooldown polled twice with fresh handle objects emits once, a secret-charges poll still emits, isActive flipping emits); test_icongrid_render / test_icongrid_apply (an icon on branch 1 with showCooldownText=false is registered on the ticker; a tick re-evaluates the alpha curve against a fresh handle; a tick after isActive=false hides the swipe and unregisters; branch-2 ticks never touch body alpha); test_icongrid_curves (the final-1.6s GCD_UPPER brighten is reached by ticks alone with no emit). Mock: wow_mock's C_Timer ticker queue (around :524) must let a test step ticks, so check it after the #27 peel. Docs: docs/midnight-quirks.md (the 'emit rate is forced' note becomes historical: ticker owns time), docs/ARCHITECTURE.md / docs/module-map.md (the IconGrid_Ticker role, Cooldowns emit contract), docs/smoke-tests.md §9c (add 'cooldown text off: icon still brightens at end of CD' and '/kcd debug on: no SPELL_STATE line repeats during a steady cooldown'). docs/perf: the next perf-analysis should show iconApply calls/sec at about 0 in combat.
+
+**Dependencies.** none (KickCD-only). Sequence after KickCD#26 (ticker peel) and #27 (mock peel), because it edits the same code.
+
+**Risks.** (1) Swipe restart or stutter if the swipe is re-armed per tick (mitigated by re-arming only on stateWork). (2) The charges badge must stay live with secret counts, so keep the conservative emit. (3) Curve updates stop if registration stays gated on showCooldownText (covered by tests). (4) Fetching a fresh DurationObject per icon per tick is about the same allocation as today's per-emit fetch, so no regression, but measure with tests/perf.lua. (5) Every interaction must stay C-side in combat: no Lua comparison on handle getters.
+
+
+**Default.** Implement as designed, with the swipe re-armed only on a state transition and the curves and text driven per tick. Land it after the #26 peel.
+
+
+### KickCD#10 (partially-addressed, effort M)
+
+**Evidence.** Blocker 1 (no `parent` on RenderGrid) is NO LONGER blocking for KickCD. settings/Spells.lua no longer hand-builds a ScrollFrame: :762-767 says 'buildScrollContainer is GONE'. renderRows (:827-881) uses H.PageHeader + H.TabStrip + `container = H.EnsureScroll(ctx)` and calls container:DoLayout() itself (:880). Landed in c5682dd. The list loop is now fillRows (:778-825), `for i = 1, #list do local row = Spells.BuildRow(...); scroll:AddChild(row); reorder:AddRow(row.frame, ...)`, with buildRow in settings/Spells_Rows.lua:274 (28px SimpleGroup Flow). In LibKa0s v1.65.0 (../LibKa0s/LibKa0s/OptionsWidgets.lua, WIDGETS_MINOR=33), the library side is UNCHANGED: `function O.RenderGrid(ctx, items)` at :1027, hard-bound `local scroll = O.EnsureScroll(ctx)` at :1028, no DoLayout at the end, unconditional `O.AddSpacer(scroll, L.ROW_VSPACER)` (ROW_VSPACER=8, Options.lua:87) after every flushed row (:1035) and after every wide item even when its render failed (:1053-1056). LibKa0s docs/adoption-prompt.md:752-760 still lists both gaps under 'Known library gaps' and cites KickCD#10. The issue's 'one consumer' claim is stale: RenderGrid is now called in AbsorbTracker, AuraMaster, ConsumableMaster, MultiMeters, PanelMaster, PrettyChat and KickCD's own Grid/General/Icons/Castbar pages. The REAL remaining blocker is the spacer: fillRows hands W.ReorderList `stride = Spells.ROW_HEIGHT` (28) because 'AceGUI's List layout stacks children with no gap'. RenderGrid's 8px spacer per row would break both the visual ('row strip visually unchanged') and the reorder drop math.
+
+**Design.** A. LibKa0s (upstream first, failing tests first in ../LibKa0s/tests/test_options_widgets.lua):
+  1. `O.RenderGrid(ctx, items, parent, opts)`, with `local scroll = parent or O.EnsureScroll(ctx)`. Additive, so existing two-arg calls are unchanged.
+  2. `opts.gap`: the spacer height after each flushed row, defaulting to L.ROW_VSPACER. `false` or `0` emits no spacer. This is the actual unblocker.
+  3. Fix the wide branch to honour guard-per-item: `if renderInto(item, r, nil) then scroll:AddChild(r); spacer else r:Release() end`. Today a failed wide item leaves a blank group + gap.
+  4. DoLayout: do NOT auto-call it. Several consumers call RenderGrid more than once per page (AuraMaster GeneralSpells :816/:825, Containers) and then lay out once, so auto-DoLayout would add a layout pass per call across 7 addons. Instead document the asymmetry in the RenderGrid docstring and README (LibKa0s/README.md Options section): 'RenderGrid does not lay out; call scroll:DoLayout() after your last render, as RenderRows does for you'. That satisfies the acceptance criterion's 'or documented' arm.
+  Bump WIDGETS_MINOR 33 -> 34, add a CHANGELOG entry, update docs/adoption-prompt.md 'Known library gaps' (remove the parent/spacer bullets, keep the two-width limit), docs/test-cases.md, and the docs/api entry. Cut a LibKa0s release (next tag after v1.65.0, likely v1.66.0, batched with any other LibKa0s items in this run). Re-vendor into all 11 addons (/wow-addon:revendor-libka0s). Every consumer suite must stay unchanged.
+B. KickCD, after re-vendor: rewrite fillRows to build `items` (empty list -> one `{ wide=true, path='spells.empty', make=function(_, p) p:AddChild(label) return true end }`; otherwise per entry `{ wide=true, path='spells['..i..']', make=function(_, p) local row = Spells.BuildRow(AceGUI, list, i); if not row then return false end; p:AddChild(row); frames[#frames+1] = { p = p, i = i }; return true end }`). Then call `H.RenderGrid(ctx, items, scroll, { gap = false })`. AFTER RenderGrid returns, walk `frames` and call `reorder:AddRow(entry.p.frame, {ghostText=...})`, because AddRow must follow AddChild-to-scroll and RenderGrid adds the wrapper after make returns. Then reorder:Finish. Register the wrapper group (the child actually stacked in the List layout) with ReorderList, not the inner row. The wrapper is a Flow SimpleGroup of full width; confirm its auto-height equals ROW_HEIGHT (28) in a test, or the stride drifts. Keep the existing container:DoLayout() in renderRows. Check that H.RenderGrid is exposed in the KickCD Options degradation stub list (settings/OptionsSetup.lua already names RenderGrid) and that the stub handles the 4-arg form.
+Tests first (KickCD): tests/test_settings_spells_editor.lua: rows render through RenderGrid (spy on H.RenderGrid; assert parent == ctx.scroll and opts.gap == false); there is no spacer widget between rows; reorder receives N frames in list order; a BuildRow returning nil leaves no blank gap; the empty-list label still renders. Docs: docs/settings-panel.md (Spells page list now via RenderGrid), docs/module-map.md item 20/20a, docs/smoke-tests.md §10/§25 (row strip unchanged, drag reorder lands on the right slot), the CLAUDE.md provenance line (via revendor).
+
+**Dependencies.** LibKa0s: RenderGrid parent + opts.gap + the wide-branch guard fix + a documented DoLayout asymmetry. That needs a LibKa0s minor bump, a release tag, and a re-vendor into all 11 addons before the KickCD half. Sequence the KickCD half after the #28 Spells peel.
+
+**Risks.** (1) ReorderList stride: the extra wrapper SimpleGroup must lay out at exactly 28px, or the drop targets drift, so pin it with a test and smoke §10. (2) The re-vendor touches 11 repos, so batch it with other LibKa0s changes in this run to pay that cost once. (3) The wide-branch release-on-failure changes behaviour for existing consumers only when a wide item's render fails (today that leaves a blank gap), which is a bug fix, but check each consumer suite. (4) Low payoff in lines retired. The value is the library contract and a second real List-shaped consumer.
+
+
+**Default.** Add parent and opts.gap upstream. Fix the wide-branch guard. Document rather than auto-call DoLayout. Release, re-vendor, then adopt in fillRows with gap=false and register reorder rows after RenderGrid returns.
+
+
+### KickCD#24 (partially-addressed, effort M)
+
+**Evidence.** The named seam has landed: 99211f0 'KC-ATS-01: Peel Castbar's event and message handlers into modules/Castbar_Events.lua (1440 -> 1217)'. modules/Castbar_Events.lua exists (OnCastDelayed at :142). But `wc -l modules/Castbar.lua` = 1251 NOW. It has regrown past 1217 and is still in the 1000-1500 band. The header note at Castbar.lua:3-13 and docs/module-map.md:400 both say 'still in the band'. tests/test_castbar_skin.lua:469 asserts only < 1500.
+
+**Design.** Next seam: lock/drag/anchor + frame construction into a new modules/Castbar_Frame.lua. Move dragAllowed, onDragStart, saveAnchor, onDragStop, toSetPoint, Castbar:ApplyAnchor and Castbar:ApplyLock (Castbar.lua about :356-538), plus Castbar:EnsureFrame (:540-667). That is about 310 lines, leaving Castbar.lua at about 940. EnsureFrame wires the forward-declared local `onUpdate` (:180 forward decl, :799 def), so publish it as `Castbar._OnUpdate = onUpdate` in the existing exposure block (:1214+), the same pattern Castbar_Handle/Skin/Events already use, and resolve it at call time in the new file. Helpers it needs (cfg, resolveGridFrame, fetchBorderTexture, etc.) are read through the Castbar table exports the existing siblings already use. TOC: add `modules\Castbar_Frame.lua` in the LOAD-BEARING block after modules\Castbar.lua (KickCD.toc:110-117) and update the comment listing the siblings. Pure move, no behaviour change: run the full suite before and after with identical totals (1238 passed / 1 skipped today). Extend the test_castbar_skin.lua LOC test to cover Castbar_Frame.lua (< 1500), and optionally assert Castbar.lua < 1000 so it cannot regrow silently. Docs: Castbar.lua header note (:3-13), docs/module-map.md (add a Castbar_Frame entry; remove the Castbar row from 'Files in the 1000-1500 band' at :396-408), docs/ARCHITECTURE.md module map if it lists files, docs/castbar.md if it names file locations. Close #24 citing both peel commits.
+
+**Dependencies.** none. Do it before any behaviour change in Castbar, and independently of #7 (closed without code).
+
+**Risks.** Forward-declared onUpdate and file-local upvalues: a missed export raises only at EnsureFrame time, so test_castbar_frame must run through EnsureFrame and drag paths. Load order matters: NS:GetModule('Castbar') at file scope requires the TOC position after Castbar.lua.
+
+
+**Default.** Peel lock/anchor/drag + EnsureFrame into modules/Castbar_Frame.lua (about -310 lines, to about 940).
+
+
+### KickCD#25 (not-addressed, effort M)
+
+**Evidence.** `wc -l modules/IconGrid.lua` = 1420 now. It has grown from 1368 at filing and 1381 in docs/module-map.md:397, and is 80 lines from the 1500 hard cap, making it the most urgent peel. No modules/IconGrid_Visibility.lua exists (ls modules: Castbar*, Cooldowns, Diagnostics, IconGrid, IconGrid_Layout, IconGrid_Render, UnitLabel).
+
+**Design.** Two peels, both pure moves. (1) modules/IconGrid_Visibility.lua, the issue's named seam: instanceCasting (:173), visibilityMode (:185), shouldBeVisible (:204), ApplyInterruptibilityMask (:242), IconGrid:RefreshVisibility (:1177), the glow-gate block (resolveInterruptible :1259, gateMoved :1277, logGateChange, IconGrid:RefreshAllGlows :1308-1350), and the cast/target/focus handlers OnUnitCastEvent/OnTargetChanged/OnFocusChanged (:1200-1232). That is about 280 lines. Keep the test exports (IconGrid.VisibilityMode/ShouldBeVisible/InstanceCasting at :1417-1420) by moving them with their functions. EnableUnit (:853) calls RefreshVisibility/RefreshAllGlows and instanceCasting, so the new file must publish `IconGrid.InstanceCasting` and EnableUnit must resolve it at call time, or keep instanceCasting in IconGrid.lua and export it. (2) modules/IconGrid_Handle.lua, mirroring Castbar_Handle: handleText, anchorHandle, buildHandle and IconGrid:ApplyLock (about :625-805, about 180 lines). Result: about 960 lines. ICON_CAST_ROUTES (:85-101) stays in IconGrid.lua because EnableUnit owns the filter. TOC: add both after modules\IconGrid.lua in the LOAD-BEARING block (KickCD.toc:105-109), since they call NS:GetModule('IconGrid') at file scope. Suite totals must be identical before and after. Add a LOC guard (< 1500 for every IconGrid_*.lua, < 1000 for IconGrid.lua) beside test_castbar_skin.lua:469 or in a dedicated test. Docs: IconGrid.lua header, docs/module-map.md (new entries + band table), docs/ARCHITECTURE.md module map, docs/midnight-quirks.md if it names IconGrid.lua as the mask's home.
+
+**Dependencies.** none. Peel FIRST of all KickCD work (closest to the cap). It composes with #9, which edits IconGrid_Render not IconGrid, and with #26.
+
+**Risks.** File-local upvalues shared between the visibility code and lifecycle (instanceCasting, isEnabled, forEachEnabled, instances table): the instances table must be reachable from the new file (IconGrid:GetInstance/PeekInstance already exist; use those or a published accessor). Any missed upvalue raises only on the event path, so test_icongrid_visibility and test_icongrid_glowgate must exercise every moved handler.
+
+
+**Default.** Peel visibility + glow gate + cast handlers into IconGrid_Visibility.lua, and the drag strip into IconGrid_Handle.lua (about -460 lines, to about 960).
+
+
+### KickCD#26 (not-addressed, effort S)
+
+**Evidence.** `wc -l modules/IconGrid_Render.lua` = 1014, unchanged since filing. The ticker code is still in the file: Icon:StartCooldownText :345, StopCooldownText :363, _RenderCooldownText :374, and the shared ticker block :919-990 (_tickAllTextIcons, _RegisterTextIcon, _StopTextTicker, _UnregisterTextIcon), with the module locals _textIcons/_textTicker at :43-46.
+
+**Design.** Peel the cooldown-text ticker (the comment block :310-345, StartCooldownText, StopCooldownText, _RenderCooldownText, and the shared ticker block :919-990 with its _textIcons/_textTicker locals) into a new file. Name the file modules/IconGrid_Ticker.lua rather than the issue's IconGrid_Text.lua, because #9 turns it into the general cooldown ticker (curves + swipe + text). That is about 170 lines, leaving IconGrid_Render at about 845. It needs evaluateByTotal, applyGcdSuppressionAlpha and curvesFor only after #9, so publish those from Render then (IconGrid.CurvesFor is already published). The Icon prototype: confirm where Icon is defined (IconGrid_Render's CreateIconWidget) and attach the methods to the same prototype from the new file at load. TOC: after modules\IconGrid_Render.lua. IconGrid:Suspend calls _StopTextTicker, so check that it still resolves. Pure move: identical suite totals, and the Perf bucket 'cdText' is unchanged. Docs: docs/module-map.md (entry + band table), docs/ARCHITECTURE.md module map. Then #9 lands inside this file.
+
+**Dependencies.** none. Must precede KickCD#9.
+
+**Risks.** The Icon prototype methods must be installed before the first CreateIconWidget call (load order). The TOC position after IconGrid_Render handles that, since widgets are created at enable time, not at load.
+
+
+**Default.** Peel into modules/IconGrid_Ticker.lua (named for its post-#9 role), then do #9 there.
+
+
+### KickCD#27 (not-addressed, effort M)
+
+**Evidence.** `wc -l tests/wow_mock.lua` = 1233, unchanged. FRAME_METHODS (the frame model) runs from about :97 (recordPoint) through the widget-method definitions (:110-~500+). It is loaded via `loadfile(root..'/tests/wow_mock.lua')(root)` from tests/run.lua:26 and layers over tests/_kit/mock_base.lua (:50).
+
+**Design.** Peel the frame model (recordPoint, the FRAME_METHODS table and every FRAME_METHODS.* method, plus the CreateFrame/object-construction helpers that consume it) into tests/wow_mock_frames.lua, returning a module `function(root, deepcopy) return { FRAME_METHODS = ..., newFrame = ... } end`, loaded from wow_mock.lua with `assert(loadfile(root..'/tests/wow_mock_frames.lua'))(root)`. Do not use require, which keeps the root-relative resolution the runner already uses. Target: wow_mock.lua at about 700 and wow_mock_frames.lua at about 550. luacheck covers tests/ (docs/common-tasks.md:265), so .luacheckrc may need the new file's globals/std entry. Do not add the file to SUITES: it is not a test_*.lua, and run.lua asserts only test_*.lua files against the list. Identical suite totals before and after. Docs: docs/testing.md (mock layout), docs/module-map.md band table, docs/common-tasks.md:342 (timer handle note) if the timer moves.
+
+**Dependencies.** none. Do it before #9, which needs ticker-stepping support in the mock.
+
+**Risks.** The mock's upvalues (deepcopy, shared state tables like the timer queue) are referenced across sections. Pass them explicitly or keep the timer in wow_mock.lua. The kit's mock_base layering order must be kept.
+
+
+**Default.** Peel FRAME_METHODS and the frame constructors into tests/wow_mock_frames.lua via loadfile(root).
+
+
+### KickCD#28 (not-addressed, effort S)
+
+**Evidence.** `wc -l settings/Spells.lua` = 1115, unchanged. The header builders are still in place: titleCaseToken :524, classDisplayName :530, classColorHex :538, classIconMarkup :548, buildSpecIconCache :562, specIconMarkup :584, buildSpecEntries :594, buildSpellsHeader :630-735. The row builders were already peeled earlier (abc06cd -> settings/Spells_Rows.lua, 302 lines).
+
+**Design.** Peel titleCaseToken ... buildSpellsHeader (:524-735, about 210 lines) into settings/Spells_Header.lua, leaving Spells.lua at about 905. Mirror the Spells_Rows pattern exactly: page file-locals the header needs (selection getters/setters, addFromBox, ensureSelection callbacks, notify, sortedKeys/specOrder, refresh) reach it through a deps table filled at Spells.lua's file end (extend `Spells.__rowDeps` or add `Spells.__headerDeps`), and the header publishes `Spells.BuildHeader` for renderRows (:858-861) to call at render time. TOC: after settings\Spells_Rows.lua with a LOAD-BEARING comment (it takes NS.Settings.SpellsPanel as a file-scope upvalue), KickCD.toc:156-158. Identical totals for test_settings_spells_editor and the full suite. Docs: docs/module-map.md (a new 20b entry + band table), docs/settings-panel.md if it names file homes.
+
+**Dependencies.** none. Do it before the KickCD half of #10 (fillRows), which edits the same file.
+
+**Risks.** buildSpellsHeader closes over mutable page state (selectedClass/selectedSpec locals). It must read them through accessor functions in deps, not copied values, or the header goes stale after a selection change.
+
+
+**Default.** Peel into settings/Spells_Header.lua via the existing __rowDeps-style deps seam.
+
+
+### KickCD#29 (not-addressed, effort S)
+
+**Evidence.** `wc -l core/Database.lua` = 1121. It has grown from 1002 at filing and 1069 in docs/module-map.md. The migrations are still in place: foldAnchors :624, Database:FoldLegacyUnits :640, BackfillLabelStyle :665, migrateDebug :689, collectStringKeys :697, rekeyOne :710, MigrateSpecKeys :744, looksLikeColor/keyedEquals/reshapeColor :763-828, MigrateColorShape :829, MigrateFontFlags :871, reportMigrationFailure :907, MigrateProfile :931-~980.
+
+**Design.** Peel :620-~982 (foldAnchors through MigrateProfile, about 360 lines) into core/Database_Migrations.lua, leaving Database.lua at about 760. The migrations are methods on NS.Database (Database:Fold..., NS.Database:MigrateColorShape), so the new file does `local Database = NS.Database` and defines them. Database:Init (:1062) and OnProfileChanged (:1007) call them at runtime, not load time, so a TOC position directly after core\Database.lua (KickCD.toc:70) suffices. Shared locals: CURRENT_DB_VERSION (published as Database.CURRENT_DB_VERSION :38), copy (:54), isEmpty; re-declare small pure helpers or publish them. Identical totals for test_database, test_color_shape and the full suite. Docs: docs/ARCHITECTURE.md lifecycle step 2 (names Database:Fold... and the runner, so add the file), docs/schema.md / saved-variables doc if it names the migration home, docs/module-map.md band table.
+
+**Dependencies.** none
+
+**Risks.** reportMigrationFailure and the version-advance runner touch db.global.schemaVersion. Keep the runner and steps together in one file so the step order is readable in one place.
+
+
+**Default.** Peel all shape migrations and the MigrateProfile runner into core/Database_Migrations.lua.
+
+
+### KickCD#30 (not-addressed, effort S)
+
+**Evidence.** `wc -l tests/test_slash.lua` = 1054 (was 1035 at filing; re-measured 1054 in docs/module-map.md:404 after /kcd profile landed). There is no tests/test_slash_degraded.lua. tests/run.lua:160-166 SUITES is an explicit list, and Kit.run asserts that every tests/test_*.lua is declared.
+
+**Design.** Move the disabled-state and degraded-stub cases (those that build a fresh NS via the run.lua fresh-instance helper with the Slash library absent, and the `refuse while disabled` cases) into tests/test_slash_degraded.lua. Add 'test_slash_degraded' to SUITES directly after 'test_slash'. Shared local helpers (capture-print, dispatch wrapper) can be duplicated, since they are small, or hoisted into a tests/ helper file required by both. Target: both files under about 700. The total case count must be identical before and after (1238 passed / 1 skipped baseline), with names unchanged. Docs: docs/testing.md and docs/slash-dispatch.md:189 and docs/ARCHITECTURE.md:188 mention 'tests/test_slash.lua' as pinning specific behaviour, so update any reference whose case moved; docs/module-map.md band table.
+
+**Dependencies.** none
+
+**Risks.** Cases relying on suite-order state from earlier cases in the same file would break when moved. Run the new suite alone and in order.
+
+
+**Default.** Split the degraded and disabled cases into tests/test_slash_degraded.lua and register it in SUITES.
+
+
+### KickCD#31 (not-addressed, effort S)
+
+**Evidence.** `wc -l tests/test_options_panel.lua` = 1101 (1099 at filing). There is no tests/test_options_panel_degraded.lua.
+
+**Design.** Move the degraded-stub cases (Options library absent or stubbed: the L-trap absence scan over the vendored XML's Options files described in docs/testing.md:310) and the linked-Focus cases into tests/test_options_panel_degraded.lua, registered in SUITES after test_options_panel. Target: both files under about 700. Identical case counts and names. Docs: docs/testing.md:310 lists test_options_panel.lua among the L-trap guards, so name the new file if that case moves; docs/ARCHITECTURE.md:188 pins a case in test_options_panel.lua, so keep that case in place or update the reference; docs/module-map.md band table. Note that test_options_panel.lua references RenderGrid, so if #10's KickCD half adds Spells/RenderGrid cases, put them in test_settings_spells_editor.lua, not here.
+
+**Dependencies.** none
+
+**Risks.** The same suite-order state risk as #30.
+
+
+**Default.** Split into tests/test_options_panel_degraded.lua, registered in SUITES.
+
+
+### KickCD#32 (not-addressed, effort S)
+
+**Evidence.** `wc -l tests/test_perfsetup.lua` = 1018, unchanged. There is no tests/test_perfsetup_latch.lua. The file holds the L-trap guard (docs/testing.md:298) and the firstWatchedSpell helper with a luacheck suppression (docs/common-tasks.md:275).
+
+**Design.** Move the latch, suspended-flag and library-absent cases into tests/test_perfsetup_latch.lua, registered after test_perfsetup in SUITES. If firstWatchedSpell is needed by both files, hoist it to a shared tests/ helper and keep its inline luacheck suppression with it (common-tasks.md:275 cites the location, so update that citation). Keep the L-trap case in test_perfsetup.lua (testing.md:298 names it). Identical case counts. Docs: common-tasks.md:275 if the helper moves; docs/module-map.md band table.
+
+**Dependencies.** none
+
+**Risks.** Low, the same suite-order risk as #30.
+
+
+**Default.** Split into tests/test_perfsetup_latch.lua.
+
+
+## LibKa0s
+
+**Repo notes.** LibKa0s: on master, clean, at 512d2c8 (v1.65.0+2, Merge DG v1.65.0). Green gate (LibKa0s/CLAUDE.md § The green gate): `lua tests/run.lua` (Lua 5.1; the kit self-bounds) and `luacheck .` (0/0, scoped by .luacheckrc exclude_files). Measured today: 1917 passed, 0 failed, 2 skipped, 1919 total. A release follows docs/releasing.md: repo semver plus the per-file LibStub minor, a CHANGELOG.md entry that tests/test_versioning.lua checks, the tests/majors.lua row for multi-file majors with the paired-minor guard, and the release automated-tests run (testkit/run-automated-tests.sh) with all four suites at pass and 0 CCN>15. Kit: testkit/framework.lua Kit.VERSION = 34, and every addon vendors kit 34. A kit change needs a revision bump plus docs/api/testkit/version-N-docs.md (the testing-§11 kit-sync gate). LibKa0s payload is 28 files in LibKa0s/LibKa0s.xml. Consumers derive their load list via Loader.xmlFiles, but WowAddonStandards library-stack-§7, EXECUTIVE_SUMMARY.md and NEW_ADDON_CONTEXT.md LIB_FILES count the files and must be recounted when #7 (PerfCommands.lua) and #36 (WidgetsReorder.lua) add two (28 -> 30).
+
+File sizes (wc -l, 2026-10-01): Perf.lua 1319, Widgets.lua 1303, tests/test_options.lua 1339, tests/test_schema.lua 1335, Slash.lua 999, testkit/mock_base.lua 1456 (re-check trigger 1490 or +30 lines, so any kit-35 edit there must be net-zero), OptionsWidgets.lua 1423, OptionsIds.lua 1359, OptionsTabs.lua 1294, Options.lua 1282, OptionsIdList.lua 1197, testkit/run-automated-tests.sh 1203. Nothing is over 1500, and none of the #35/#36/#38/#7 triggers (1450/1500) has fired. These are owner-requested early peels. Band dispositions live in CLAUDE.md § Files over the 1500-line cap (~:208-230, :301-310) and docs/automated-tests/RESULTS.md watch list (:180-188), and both need updating with each peel. Regenerate docs/test-cases.md with `lua tests/run.lua --list`, never by hand.
+
+Lizard: use /home/tushar/.claude/wow-addon/bin/ka0s-bounded for any raw lizard call; a PreToolUse hook blocks unbounded lizard. lizard is 1.24.0 at /home/tushar/.local/bin. Its Lua reader inherits RubylikeReader (site-packages/lizard_languages/rubylike.py), the source of the it/class/module/begin blind spots beyond `#`. Prototype sanitizer and counter scripts are in the session scratchpad (sanitize.lua, fncount.lua, hazard.lua) for reference; they are not committed.
+
+Suggested release grouping: one LibKa0s minor release carrying #7 (PerfCommands peel), #12 (zero-count ancestors), #1 (budget mechanism), #36 (WidgetsReorder peel), #40 (Slash minor 19) and kit 35 (WAS-6 sighted complexity plus the mock_base comment for #17-20). The test-only peels #35/#38 can land first with no release. Then WowAddonStandards v2.74.0 (automated-tests-§3 sighting MUST, perf budgets SHOULD, library-stack-§7 recount), the wow-addon review agent and perf-analysis reader, and the re-vendor into all 11 addons. After that come the per-addon follow-ups: ConsumableMaster#16 close, perf budgets in 6 PerfSetup.lua files, and CCN refactors in MultiMeters, LootHistory, BankLedger, KickCD and ConsumableMaster, plus retiring AuraMaster's local `#` case. Per Ka0sAddonsCommonTasks CLAUDE.md, tags, merges and version bumps need the owner's explicit go-ahead. Earlier sweeps cut LibKa0s versions on the feature branch and re-vendored from there.
+
+ConsumableMaster#16 is OPEN and blocked on LibKa0s#40. LibKa0s#5 and #3 are open and related to #1 but not blocking. #17-#20 can be closed now (state:done) with the evidence comment; the kit comment fix rides kit 35.
+
+
+### LibKa0s#1 (not-addressed, effort L)
+
+**Evidence.** No threshold or budget mechanism exists: grep -i 'ceiling|threshold|budget' LibKa0s/Perf.lua LibKa0s/PerfPanel.lua returns nothing (Perf minor 13, LibKa0s v1.65.0 at 512d2c8). The blocker the issue names is now met. Six consumers are wired and have captures: AbsorbTracker 2 (latest 20260909-013016), AuraMaster 3 (20260927-214132), ConsumableMaster 2, KickCD 2, MultiMeters 3 (20260924-141756), PartyFrameEnhanced 3. Every dump.json is schema 2. Top-level ms/s recomputed from those dumps: AT 0.14-0.33, AM 0.12-0.34, CM 1.78-2.87, KC 3.67-6.30, MM 1.85-5.41, PFE 0.45-0.86. Worst maxMs: KC spellPoll 9.64 (09-09; 1.75 on 08-07), MM refresh 3.39, AM styleElement 0.68. The earlier analysis is ../Ka0sAddonsCommonTasks/docs/2026-08-24-LIBKA0S_PERF_THRESHOLDS/01_ANALYSIS.md. Its findings: deltaMsPerFrame was negative in 3 of 3 captures and sits below the noise floor; there is an 18.5x spread between addons, so one shared default cannot work; the recommendation is per-bucket ms/s plus maxMs, report-only, declared per addon in the descriptor.
+
+**Design.** Take the analysis's answers as the decisions and record them in the closing comment: (1) the in-game capture stays report-only for good. The only automatic gate is the offline tests/perf.lua deterministic counters, which automated-tests-§3 already makes release-gating, so no new CI gate is added. (2) Ceiling shape: per-bucket ms/s plus per-call maxMs. Never deltaMsPerFrame. (3) The library owns the mechanism; each host owns its numbers in its descriptor.
+
+LibKa0s (lands in the same Perf minor as #12, after the #7 peel):
+- lib:New's bucket declaration gains an optional `budget = { msPerSec = <n>, maxMs = <n> }`. Validate it next to `within` where P.BUCKET_ORDER/P.BUCKET_WITHIN are built (around :391-397). A non-number value is refused, the same way a bad `within` is.
+- P.BuildRecord copies the budget onto each emitted bucket as `budget = {msPerSec, maxMs}`. This is additive within schema 2, so an offline reader of dump.json can compare without the source.
+- A new report section, addBudgetLines(add, P, record, secs), goes in the Report sections block after addBucketLines. Each budgeted bucket prints `ok` or `OVER` with observed and ceiling values for both ms/s and maxMs. A bucket that recorded no calls prints `not exercised`. The finish ack carries one line, `N bucket(s) over budget`, or nothing at all when no bucket declares a budget, so un-adopted hosts see no change.
+- Nothing gates: no exit code, no refusal.
+- Tests first, in tests/test_perf_core.lua (or a new tests/test_perf_budget.lua if that file is near the band): a malformed budget is refused; the budget travels into BuildRecord and the JSON; the report prints OVER for a bucket noted above its ms/s ceiling and above its maxMs, and ok otherwise; a host with no budgets gets a byte-identical report (red under always emitting the section).
+- Docs: docs/record-schema.md (the `budget` field), docs/api/Perf/version-1-docs.md, CHANGELOG.md.
+
+WowAddonStandards: performance section (where perf-analysis captures are defined) gets a SHOULD that a host with a Perf descriptor declares a budget per top-level bucket, with ceilings derived from its own captures. PERF_ANALYSIS.md gets a step to read the budgets and name the OVER rows in ANALYSIS.md. Bump the version and add a changelog entry.
+
+wow-addon: the perf-analysis skill/playbook consumer reads `budget` from dump.json and reports breaches.
+
+Consumers (6: AbsorbTracker, AuraMaster, ConsumableMaster, KickCD, MultiMeters, PartyFrameEnhanced), after the re-vendor: core/PerfSetup.lua declares budgets per top-level bucket. Rule: ceil(2 x max observed ms/s across that addon's committed captures) and ceil(2 x max observed maxMs), with the source captures cited in a comment. Add a characterization test in each consumer's test_perfsetup asserting every top-level bucket has a budget.
+
+**Dependencies.** Lands after LibKa0s#7 (the peel moves code) and alongside LibKa0s#12 (same Perf minor). It needs a LibKa0s release plus a re-vendor into the 6 wired consumers. Standard and wow-addon perf-analysis changes follow the library release. LibKa0s#5 (in/out-of-combat variants) is related but not a blocker.
+
+**Risks.** maxMs is noisy: KickCD spellPoll ranged from 1.75 to 9.64 ms between captures, likely GC hitches, so the 2x rule can still flag OVER on a hitch. That is acceptable because the budget is report-only. Budgets taken from n=2-3 captures are provisional, so the comment should say so. Adding the `budget` field must not break the frozen dump.json readers; it is additive within schema 2.
+
+
+**Default.** Report-only per-bucket ms/s and maxMs budgets, mechanism in the lib and values per host in the descriptor, derived as 2x the max observed. No deltaMsPerFrame threshold and no new CI gate.
+
+
+### LibKa0s#7 (not-addressed, effort M)
+
+**Evidence.** wc -l LibKa0s/Perf.lua = 1319 today (1163 when the issue was filed): on notice, under the 1500 cap. docs/automated-tests/RESULTS.md:184 says 'Tracked as #7'. CLAUDE.md band paragraph (~:222) names it. No peel commit exists. Structure: lib:New spans 327-1319 as a single closure. The command surface (P.Usage :1119, SUBS.* :1172-1257, P.StatusLines :1259, P.OnCommand :1276) is about 210 lines and only touches closure locals P, d, tr, hostPrint, showLog plus lib. The issue's named seam is the sampler (:842-1065), which touches many closure locals (sampler, fpsArms, windows, buckets). A sighted lizard run (see WowAddonStandards#6) also measures lib@327-1319 at CCN 109, because closure-level and/or chains count.
+
+**Design.** Peel the command surface instead of the sampler. Each of its closure dependencies can be passed in, and the sampler would need about ten closure locals threaded through. Record this deviation from the issue's named seam in the closing comment.
+- New payload file LibKa0s/PerfCommands.lua. It is part of LibKa0s-Perf-1.0, uses the multi-file idiom from PerfPanel.lua and WidgetsDragHandle.lua, has its own COMMANDS_MINOR = 1, and pairs on the shell minor via `lib.__commandsMinor` / `lib.__commandsShellMinor`. It exports `lib.__installCommands(P, ctx)`, where ctx = { d = d, tr = tr, hostPrint = hostPrint, showLog = showLog }. Move P.Usage, SUBS, P.StatusLines and P.OnCommand there unchanged.
+- lib:New calls lib.__installCommands(P, ctx) where the block used to be. If PerfCommands is absent (partial vendor), P.OnCommand is a stub that prints one line.
+- LibKa0s.xml: add `<Script file="PerfCommands.lua"/>` after Perf.lua and before PerfPanel.lua.
+- tests/majors.lua Perf row: files = {"Perf","PerfCommands","PerfPanel"}, plus a paired entry {file="PerfCommands", minorField="__commandsMinor", probeField="__commandsShellMinor"}.
+- Perf MINOR goes 13 -> 14, shared with #12 and #1 in the same release.
+- While moving code, also split lib:New's closure-level decision chains (the `type(d.x)=="function" and d.x or noop` block at :348-352 and similar) into a file-level `resolveHooks(d)`. This brings the sighted CCN of the closure under 15, which the release gate will require once WowAddonStandards#6 lands.
+- Tests first: run test_perf_command.lua, test_perf_core.lua and test_perf_run.lua unchanged (case count identical before and after). Add one test that loads Perf without PerfCommands and gets the stub line. test_versioning reads the majors.lua row and catches the pairing guard.
+- Docs: docs/api/Perf/version-1-docs.md (file list), CHANGELOG.md, CLAUDE.md band paragraph and RESULTS.md disposition (Perf.lua leaves the band at about 1100), docs/test-cases.md regenerated via `lua tests/run.lua --list`.
+
+**Dependencies.** Needs a LibKa0s release and a re-vendor into all 11 addons (whole-folder copy; consumer load lists derive from LibKa0s.xml via Loader.xmlFiles, so nothing to edit there, but grep each consumer for a pinned file count of 28). WowAddonStandards library-stack-§7 counts 'fifteen majors across twenty-eight files', and that count plus NEW_ADDON_CONTEXT.md LIB_FILES and EXECUTIVE_SUMMARY.md must be recounted (+1 here, +1 for #36). Sequence: before #12 and #1.
+
+**Risks.** Closure-local capture: anything in the moved block that reads a local not in ctx becomes a nil global, and luacheck plus the moved suites catch that. A partial vendor (old PerfPanel with new Perf) is handled by the pairing guard. The peel is churn against an issue whose own hard trigger (1500) is not met. The owner asked for it now.
+
+
+**Default.** Peel the command surface to LibKa0s/PerfCommands.lua (same major, paired minor), not the sampler. Bundle it with the #12 and #1 Perf minor in one LibKa0s release.
+
+
+### LibKa0s#9 (not-addressed, effort L)
+
+**Evidence.** No census commit (git log --grep '#9|census|zero-consumer' shows only layout-cap census commits). docs/adoption-prompt.md:815-822 'Thinly-consumed surfaces' still says 'as of v1.5.0' (library is at v1.65.0). Quick textual census today: 215 public capitalized members across LibKa0s/*.lua (function lib./O./Sl./P./D. and lib.X =). Searched in 1052 tracked non-vendored .lua files across the 11 ADDONS.md addons (excluding libs/ and tests/_kit/), 11 have zero textual mentions: AT_ENABLE_MAX, CommandRows, ContextLines, DIAG_MAX_PER_LIST, FindCommand, GATE_MAX_KEYS, PanelIsActionable, ProfileNames, SplitVerb, TIME_COPY, TogglePanel. This count excludes names that appear only in degradation stubs, such as HelpRows, which is the hard part.
+
+**Design.** Deliverable: a measured census, not code changes. Nothing is deleted, because -1.0 is additive-only.
+1. Tool: plan-data/census.lua in the bundle (Ka0sAddonsCommonTasks). It enumerates the public members of every major (from tests/majors.lua files plus the patterns above), plus descriptor fields read via `d.<field>` in each lib:New / CreatePanel. For each member and each addon it lists every textual hit with file:line, excluding libs/ and tests/_kit/.
+2. Manual classification of each hit as call, host duplicate, or degradation stub. Heuristic: a hit inside a file or block that defines a fallback when LibStub(...) is nil is a stub. A `function X(` or `X = function` definition in host code with the same name is a duplicate. A descriptor field counts only when it is passed in a descriptor table literal; the doc already warns that a grep for a bare key finds locals.
+3. Output in LibKa0s: a new docs/api/CONSUMERS.md (table: major, export, consumers with file:line, classification, verdict), stamped v1.65.0 with the method stated. Add a row for it in CLAUDE.md's docs table, since the repo requires a row for every docs page. Rewrite docs/adoption-prompt.md 'Thinly-consumed surfaces' counts to v1.65.0. In each docs/api/<Major>/version-1-docs.md, add a one-line 'no consumer as of v1.65.0, kept because ...' under each zero-consumer export.
+4. Three-way split. A zero-consumer export with a host duplicate behind it becomes one GitHub issue in that host, filed through issue-add conventions (state:triaged, severity:low, throttled), not implemented this cycle. An export with no duplicate and no plausible host gets the doc line only. An export with a suspect shape gets a LibKa0s issue to settle its contract before first adoption. Per the CX06 ruling recorded on the issue, no signature change or retirement unless the payoff is more than cosmetic.
+5. Close #9 with the census link and the filed issue list.
+
+**Dependencies.** None blocking. Run it after this cycle's LibKa0s surface changes (#7 PerfCommands, #36 WidgetsReorder, #40 Slash ParseValue/FormatValue third arg), so the census reflects the released surface.
+
+**Risks.** Classification is judgment-heavy; a grep count is the method that produced the three disagreeing records. A census taken before this cycle's new exports land goes stale at once. Bulk issue filing must be spaced out (rate limits).
+
+
+**Default.** Census plus documentation now. File host-adoption issues rather than executing adoptions in this cycle. Delete nothing.
+
+
+### LibKa0s#12 (not-addressed, effort S)
+
+**Evidence.** LibKa0s/Perf.lua P.BuildRecord (:743-790) still emits only buckets present in the lazily populated `buckets` table (`for key, b in pairs(buckets)`), with `within = P.BUCKET_WITHIN[key]`. A declared parent that recorded no calls is therefore still absent while its child names it. The in-process readers still fall back to the live descriptor (addBucketLines depthOf :225 and the nesting note :276), so only out-of-process dump.json readers are affected. No test covers it: grep in tests/test_perf*.lua for orphan/absent/dangling finds nothing. The schema doc's promise is at docs/record-schema.md:26 and :93.
+
+**Design.** Choose the issue's first option: emit the declared-but-unnoted ANCESTORS of any emitted bucket with zero counts. Dropping `within` instead would lose the descriptor's declared claim, which is the point of the field. Do not emit every declared bucket; record size for unrelated idle buckets stays the same.
+- In P.BuildRecord, after building `out`: for each key in out, walk `P.BUCKET_WITHIN` upward with the existing depth guard of 8. For each ancestor not in out, insert `{ calls = 0, totalMs = 0, maxMs = 0, within = P.BUCKET_WITHIN[anc] }` with no observedWithin. Put this in a file-level helper `fillAncestors(out, withinMap)` so it adds no CCN to the closure.
+- addBucketLines then prints the parent row with 0 calls in declared order. That is acceptable and informative.
+- Tests first, in tests/test_perf_core.lua: declare {key='appearance'} and {key='visibility', within='appearance'}; Note only visibility; BuildRecord -> buckets.appearance exists with calls == 0 and buckets.visibility.within == 'appearance'. A three-level chain where only the leaf fired emits both ancestors. A declared bucket with no noted descendant stays absent. The encoded JSON round-trip contains the parent key. Red under removing the fillAncestors call.
+- Perf MINOR shared bump (14).
+- Docs: docs/record-schema.md (the guarantee: every `within` names a key present in `buckets`; a zero-call parent may appear), docs/api/Perf/version-1-docs.md, CHANGELOG.md.
+
+**Dependencies.** Same Perf minor and release as #7 and #1. A re-vendor reaches consumers, but no consumer code change is needed.
+
+**Risks.** The perf-analysis skill or readers that compute totals must keep excluding nested buckets. Zero rows add nothing, so the totals are unchanged. Frozen dump.json files from earlier captures keep the dangling reference, which is fine because they are frozen.
+
+
+**Default.** Emit zero-count rows for the missing ancestors of emitted buckets.
+
+
+### LibKa0s#17 (addressed, effort S)
+
+**Evidence.** The kit flip never happened. testkit/framework.lua:20 Kit.VERSION = 34, and testkit/mock_base.lua:183 still reads `function f:GetHeight() return (self.__geomLive and self.__geomH) or 0 end`. Its comment (:173-182) still promises the flip at 'revision 20 at the earliest'. The defect class is nevertheless pinned where the geometry lives. All four consumers draw the strip through the library's H.TabStrip (AbsorbTracker/settings/UnitPanel.lua:327, MultiMeters/settings/Columns.lua:322, PrettyChat/settings/Panel.lua:622, PanelMaster/settings/PanelEditorTabs.lua:48). The pitch and band are computed only in LibKa0s/OptionsTabs.lua (tabArtHeight :125, O.__tabBand :803/:1126). LibKa0s/tests/test_options_tabs.lua carries red-verified selection-invariance cases: 'a wrapped strip's geometry is IDENTICAL for every value of the selection' (:571+), 'a wrapped SUB strip's geometry is invariant under the selected sub tab' (:912), plus hit-rect and measured-once cases. They use an instrumented CreateFrame harness whose two atlas families answer different heights (INACTIVE_ART 28 and ACTIVE_ART 33), so the cases can fail without the kit flip. These landed in 895cdf4 (2026-09-02) and moved in b3e161c (2026-09-16).
+
+**Design.** Close as state:done, with a comment saying the obstacle was bypassed rather than removed. The library's suite pins chrome band height and every row's y offset across selections, red under the atlas-height mutation. That is exactly the case the issue asked for, at the one place the geometry is computed. The kit-wide GetHeight flip is retired, since it would churn ~308 consumer test files to re-test library code from four consumers. In the kit revision this cycle cuts for WowAddonStandards#6, rewrite the stale flip comment in testkit/mock_base.lua (:173-182) to say the flip is retired, and why, with a pointer to test_options_tabs.lua. The rewrite must not add lines: mock_base.lua is at 1456, with a re-check trigger at 1490 or more than 30 lines added. Record it in docs/api/testkit/version-35-docs.md.
+
+**Dependencies.** The comment update rides the kit revision for WowAddonStandards#6. The closure itself does not depend on it.
+
+**Risks.** A consumer-specific addition to the band (AbsorbTracker's ctx.__bannerHeight) is not covered by the library cases. It is constant per page and not selection-dependent, so the residual risk is low.
+
+
+**Default.** Close #17-#20 as done, citing the library-owned invariance cases. Retire the GetHeight flip and fix the stale mock_base comment in kit 35.
+
+
+### LibKa0s#18 (addressed, effort S)
+
+**Evidence.** Same as LibKa0s#17. MultiMeters draws its strips with H.TabStrip (MultiMeters/settings/Columns.lua:322, settings/Windows.lua), so selection invariance is computed and pinned in LibKa0s/OptionsTabs.lua plus tests/test_options_tabs.lua (:571, :912). Kit is 34 and GetHeight still defaults to 0 (mock_base.lua:183).
+
+**Design.** Close as state:done with the same comment as #17. The mock_base comment fix rides kit 35.
+
+**Dependencies.** none
+
+**Risks.** As in #17.
+
+
+**Default.** Close as done.
+
+
+### LibKa0s#19 (addressed, effort S)
+
+**Evidence.** Same as LibKa0s#17. PanelMaster/settings/PanelEditorTabs.lua:48 draws with H.TabStrip, 'exactly as the reference implementation'. Invariance is pinned in LibKa0s tests/test_options_tabs.lua with a harness that gives the TAB_ATLAS families distinct heights. This is the 'verified red under the TAB_ATLAS mutation' the issue asks for.
+
+**Design.** Close as state:done with the same comment as #17.
+
+**Dependencies.** none
+
+**Risks.** As in #17.
+
+
+**Default.** Close as done.
+
+
+### LibKa0s#20 (addressed, effort S)
+
+**Evidence.** Same as LibKa0s#17. PrettyChat/settings/Panel.lua:622 draws its Categories strip with H.TabStrip. Invariance is pinned in LibKa0s tests/test_options_tabs.lua.
+
+**Design.** Close as state:done with the same comment as #17.
+
+**Dependencies.** none
+
+**Risks.** As in #17.
+
+
+**Default.** Close as done.
+
+
+### LibKa0s#35 (not-addressed, effort S)
+
+**Evidence.** wc -l tests/test_options.lua = 1339 (unchanged since filing); 85 test( cases. The seam banners are still there: ':439 -- ── the page registry and the two refresh tiers' through ':718 -- ── LSMValues'. No test_options_render.lua exists (ls tests/test_options_*.lua). RESULTS.md:187 and CLAUDE.md:218/:301 track it as #35. The trigger (1450, or the next appended case) has not fired.
+
+**Design.** Peel lines 439-717 (the registry and two refresh tiers block, about 280 lines) whole into a new tests/test_options_render.lua. Copy the file header idiom from tests/test_options_bulk.lua, and copy any local helpers the block uses (bench/fixture), or move them to the existing shared fixture file if both suites need them. Register 'test_options_render' in tests/run.lua's suite list beside test_options_bulk/test_options_fontpreload (:83). Gate: `lua tests/run.lua` total stays 1919 (1917 pass, 2 skip), the same case names, and the case count across the two files equals 85. Then luacheck 0/0. Regenerate docs/test-cases.md with `lua tests/run.lua --list`. Update CLAUDE.md § Files over the 1500-line cap: drop test_options.lua from the band paragraph and name #35 as closed by the peel. The RESULTS.md watch-list row drops on the next run. Add a CHANGELOG Unreleased line. Close #35 citing the commit.
+
+**Dependencies.** none (tests only; no payload, no re-vendor)
+
+**Risks.** A shared local helper the cases depend on gets missed, and the moved suite shows it as nil-call failures. The suite inventory or kit test-wiring gate may require the new suite to be listed. Run the full suite.
+
+
+**Default.** Peel the block as the issue specifies.
+
+
+### LibKa0s#36 (not-addressed, effort M)
+
+**Evidence.** wc -l LibKa0s/Widgets.lua = 1303 (1266 at filing, then +32 for minor 11's resizable copy window and +5 in DL-LIB-01R). It still holds three widgets: dropdown :58-431, copy window :432-657, ReorderList :658-1303 (lib.ReorderList at :1109). Only LibKa0s/WidgetsDragHandle.lua has been peeled. RESULTS.md:185 tracks it as #36. tests/majors.lua:63-66 Widgets row files = {Widgets, WidgetsDragHandle}.
+
+**Design.** Peel ReorderList (:658-end, about 645 lines, including its banner comments, ghost, handle pool, row box and drag) to a new payload file LibKa0s/WidgetsReorder.lua, in LibKa0s-Widgets-1.0, using the same multi-file idiom as WidgetsDragHandle.lua. It gets its own REORDER_MINOR = 1, paired on the shell: `lib.__reorderMinor` / `lib.__reorderShellMinor`. The shell's minor bumps so the probe can detect a mismatched pair. Before moving, check which file-level locals of Widgets.lua the ReorderList block uses (e.g. core/Media handles, ROW_BOX, menu helpers). Reach them via `lib.` published members or re-derive them in the new file; never via globals.
+- LibKa0s.xml: insert `<Script file="WidgetsReorder.lua"/>` after Widgets.lua and before WidgetsDragHandle.lua. If DragHandle reads lib.ROW_BOX or anything ReorderList publishes, keep that order.
+- tests/majors.lua Widgets row: files gain 'WidgetsReorder', plus a paired entry.
+- Tests first: test_widgets_reorderlist.lua and test_widgets_reorder.lua run unchanged (count identical), plus one load-without-WidgetsReorder case (lib.ReorderList is nil and nothing errors). The test_versioning pairing guard covers the rest.
+- Docs: docs/api/Widgets/version-1-docs.md file list, CHANGELOG, CLAUDE.md band paragraph and RESULTS.md (Widgets.lua drops to about 660 and leaves the band), docs/test-cases.md regenerated.
+
+**Dependencies.** Needs a LibKa0s release and a re-vendor into all 11 addons. WowAddonStandards library-stack-§7, EXECUTIVE_SUMMARY and NEW_ADDON_CONTEXT LIB_FILES file count goes 28 -> 30 together with #7.
+
+**Risks.** Hidden coupling through file-level locals of Widgets.lua. Any consumer stub or surface-parity case that enumerates Widgets members still sees the same members, but load-order assumptions in consumer tests could break; their load list derives from the XML. ReorderList consumers (AuraMaster, ConsumableMaster and others) must be smoke-tested in-game for drag reorder after the re-vendor.
+
+
+**Default.** ReorderList first, to LibKa0s/WidgetsReorder.lua, in the same LibKa0s release as #7, #12, #1 and #40.
+
+
+### LibKa0s#38 (not-addressed, effort S)
+
+**Evidence.** wc -l tests/test_schema.lua = 1335 (unchanged since filing); 73 test( cases. Banners: fixtures :19, reference degradation stub :172, the major :377, path primitives :570, registry :645, write seam :695, defaults :937, bulk bracket :988, profile reset's count :1121, shape check :1182. Only tests/test_schema_batch.lua exists beside it. RESULTS.md:188 tracks it as #38.
+
+**Design.** Move the write stage onward (write seam :695 through the profile reset's count, ending before :1182) to a new tests/test_schema_write.lua. Lift the shared fixtures (:19-376: fixtures plus the reference degradation stub) into a local helper, tests/fixture_schema.lua (same convention as tests/fixture_widgets.lua and tests/fixture_ids.lua), loaded by test_schema.lua, test_schema_write.lua and test_schema_batch.lua if it duplicates them. The shape-check cases stay in test_schema.lua. Register test_schema_write next to test_schema_batch in tests/run.lua :81. Gate: suite total unchanged (1919), case count across files equals 73, luacheck 0/0. Regenerate docs/test-cases.md. Update CLAUDE.md band paragraph and the CHANGELOG Unreleased line. Close #38.
+
+**Dependencies.** none (tests only)
+
+**Risks.** The fixture helper must not become a suite the runner tries to execute. Follow the fixture_* naming the inventory already ignores. The kit's US-English and layout-cap gates read the new files.
+
+
+**Default.** Write stage onward to test_schema_write.lua, with fixtures in fixture_schema.lua.
+
+
+### LibKa0s#40 (not-addressed, effort M)
+
+**Evidence.** LibKa0s/Slash.lua (MINOR 18) still reads lib.STRINGS at file level, above lib:New (:549): parseBool :340 (ERR_BOOL), parseNumber :406/:415 (ERR_NUMBER, ERR_ALLOWED), parseString :430/:440 (ERR_STRING, ERR_ALLOWED), parseColor :446 (ERR_COLOR), lib.ParseValue :470 (ERR_TYPE), and FORMATTERS.string :200 (NONE, reached through lib.FormatValue :206). The instance resolver Sl:Text (:601-605, rawget on the host's strings) is never handed to them. The instance uses `parse = d.parse or lib.ParseValue` (:578) and calls lib.FormatValue at :637/:639. The doc comment at :524 even says L 'does NOT reach' some lines. ConsumableMaster#16 is OPEN (gh). ConsumableMaster/settings/Slash.lua SLASH_STRINGS keeps ERR_BOOL, ERR_ALLOWED and ERR_COLOR marked dead, and its tests/test_slashsetup.lua enum case lowercases before matching, which hides the gap.
+
+**Design.** LibKa0s (Slash MINOR 18 -> 19), additive only:
+- lib.ParseValue(row, text, textOf) and lib.FormatValue(row, v, textOf) gain an optional third argument, a key -> string resolver. The default is `function(k) return lib.STRINGS[k] end`, so existing callers and hosts' own d.parse/d.format keep identical behavior.
+- Thread `S` (the resolver) through parseBool(args, S), parseNumber(args, row, S), parseString(text, row, S), parseColor(args, S) and FORMATTERS.string(row, v, S). allowedText itself reads no strings; the ERR_ALLOWED format at its call sites is the one to route.
+- In lib:New build `local textOf = function(k) return Sl:Text(k) end`. The default parse becomes `function(row, text) return lib.ParseValue(row, text, textOf) end`. A host-supplied d.parse is additionally called with textOf as a third argument (additive). The :637/:639 FormatValue calls pass textOf.
+- Update the :524 doc comment: L now reaches every parse and format string. The disabled refusal line stays the collection's.
+- Tests first, in tests/test_slash_parse.lua: an instance built with L = { ERR_BOOL='B!', ERR_ALLOWED='A:%s', ERR_COLOR='C!', ERR_NUMBER='N!', ERR_STRING='S!', ERR_TYPE='T:%s', NONE='--' } emits each override on the matching bad `set` input or empty-string `get`. That is red today, which reproduces the bug. A key-echoing locale (metatable __index returning the key) still falls through to library defaults, the rawget rule. lib.ParseValue(row, text) with no third argument returns the library strings (backward compatibility).
+- Docs: docs/api/Slash/version-1-docs.md (the new optional arg and that L reaches parsers), CHANGELOG.
+
+Consumer follow-up in ConsumableMaster, after the re-vendor: un-mark ERR_BOOL, ERR_ALLOWED and ERR_COLOR as dead in settings/Slash.lua. Make tests/test_slashsetup.lua's enum case match case-sensitively on the shipped wording, and add bool and color cases asserting the override text. Close ConsumableMaster#16 and LibKa0s#40. Grep the other 10 addons' Slash L tables for these keys; any host passing them gets the fix with no code change, and noting it is enough.
+
+**Dependencies.** Needs a LibKa0s release, then a re-vendor into ConsumableMaster (and all addons in the same wave). ConsumableMaster#16 closes only after its re-vendor.
+
+**Risks.** A host's d.parse that already takes a third positional argument for something else would now receive textOf. Grep the 11 addons for `parse =` in Slash descriptors before the change; PrettyChat, BankLedger and LootHistory pass `format`, so check those too. Behavior change for hosts that pass L with these keys: their wording now appears, which is the intent.
+
+
+**Default.** Thread an optional resolver argument through ParseValue/FormatValue and the file-level parsers (Slash minor 19), then the ConsumableMaster follow-up and close CM#16.
+
+
+### WowAddonStandards#6 (partially-addressed, effort XL)
+
+**Evidence.** Fixed only in AuraMaster: tests/test_lintconfig.lua:257 has the case 'lintconfig: no length operator shares its line with a keyword or brace lizard must see'. AuraMaster's own hazard count is 0, and no other addon has a guard. The standard does not document it: grep -i 'length operator|preprocessor' over WowAddonStandards/**/*.md (excluding harvests/audits) finds nothing. automated-tests.md §3 (:101-178) has no sighting rule. No kit guard exists in LibKa0s testkit (grep finds nothing; Kit.VERSION 34). Measured today with lizard 1.24.0 (via ka0s-bounded), comparing `function`-keyword tokens (strings and comments stripped) with the functions lizard lists, per repo: LibKa0s 5782 vs 5444 (88 files mismatched), AbsorbTracker 2134/2044, AuraMaster 4685/4662 (8), BankLedger 3368/3235, ConsumableMaster 3120/2962, KickCD 3374/3187, LootHistory 2872/2732, MultiMeters 4815/4564 (90), PanelMaster 2086/2014, PartyFrameEnhanced 1509/1436, PrettyChat 1313/1230, WhatGroup 1750/1693. That is about 1,600 functions unmeasured collection-wide. NEW FINDING: the cause is broader than `#`. lizard's Lua reader (site-packages/lizard_languages/lua.py) subclasses RubylikeReader (rubylike.py:21-37), so the bare identifiers `class`, `module` and `begin` open a block that wants an `end`, and `it` enters an RSpec state. Minimal repros: `local function a(t) local it = t ... end` and `{ class = '?' }`, each dropping the whole function. Live examples: LibKa0s/Perf.lua P.Context (`class = "?"` at :700) is not listed, and AuraMaster modules/TextTemplate.lua 36 vs 26 (`for _, it in ipairs`). So AuraMaster's `#`-only guard leaves it blind in 8 files. Prototype: a token-aware sanitizer (`#` -> space; bare it/class/module/begin/unless -> name_ unless after `.`/`:`; line structure preserved) closes parity almost entirely (LibKa0s 5782 vs 5789, AuraMaster 4685/4684, KickCD 3374/3376, MM 4815/4824). The remaining +1 per file comes from lizard naming `function a:b()` as `a`, which is harmless. Sighted, these functions sit above CCN 15 today: LibKa0s 7 (lib:New closures in Perf.lua CCN 109, DebugLog.lua 58, Slash.lua 56; P.Context 19; testkit/asserts.lua Kit.assertSurfaceParity 19; testkit/framework.lua renderInventory 17; testkit/test_eol.lua anonymous@565 34). MultiMeters 8 (Diagnostics reportTargets 39, Window WindowProto 22, Targets.ForPlayer 21, buildMap 19, DrillDown 18, Schema_Paths normalizeColumns 18, Export.Send 18, Roster build 16). KickCD 3 (Cooldowns 46, IconGrid 29, tests/test_perfsetup anonymous@916 19). BankLedger 4 (Export E 44, Ledger L 37, NS.StandDown 23, W.BuildBackToBackRows 19). LootHistory 5 (Analytics 86, Export E 41, Panel refreshAuctionTable 36, Collector 20, Diagnostics browser 18). ConsumableMaster 2 (Selector mergePins 18, MacroBar renderSlotList 16). AbsorbTracker, AuraMaster, PanelMaster, PartyFrameEnhanced, PrettyChat and WhatGroup have 0.
+
+**Design.** Fix the measurement rather than rewriting about 2,800 hazard lines across the collection. Then refactor what the sighted gate reveals.
+
+A. LibKa0s kit revision 35:
+- New testkit/lizard_sighted.lua (pure Lua 5.1). It provides sanitize(src): token-aware, skipping short strings, long brackets and comments; it replaces `#` with a space and renames bare identifiers it/class/module/begin/unless to name_ when the previous significant char is not `.` or `:`; line count and line numbers are preserved byte-for-line. It provides countFunctions(src), which counts `function` keyword tokens. It has a CLI with two modes: `shadow <dir>` reads a file list on stdin and writes sanitized copies at the same relative paths; `parity <lizard-output>` reads the file list and prints `path tokens listed` for each mismatch.
+- testkit/run-automated-tests.sh complexity block (around :483-585): build the shadow from `git ls-files '*.lua'` minus libs/ and tests/_kit/ in a mktemp dir, then run `bounded lizard -l lua .` with cwd = the shadow, so complexity.txt paths read exactly as before. Then run parity. Any mismatch beyond the +1 `a:b` artifact means ST[complexity]="fail" with NOTE 'lizard blind in N file(s): ...' and a new manifest field "blindFiles": N. To handle the artifact, count `function <name>:` method definitions and allow listed == tokens, or have lizard_sighted rewrite `function a:b(` to `function a.b(self, ` in the shadow; the rewrite is cleaner and gives correct names. Complexity stays amber or recorded per automated-tests-§3: it never fails the run or the commit, and blocks only the release gate. Keep the shell growth small, since the runner is 1203 lines.
+- New kit gate testkit/test_lizard_sighted.lua, wired by consumers as {name='test_lizard_sighted', dir='tests/_kit/'}. Positive repros: `for _, x in ipairs(t) do t[#t + 1] = x end`, `local class = c`, `for _, it in ipairs(t) do`, `{ module = 1 }`, `x:begin()`. Negatives: `u.class`, `'#'` inside a string, `-- it class` in a comment, long strings. Line-count preservation. When lizard is on PATH, run it on a fixture and assert sanitized parity, skipping with a reason otherwise.
+- Rewrite the mock_base GetHeight comment (#17-#20) with no net growth.
+- Kit.VERSION = 35, docs/api/testkit/version-35-docs.md, CHANGELOG.
+- Refactor LibKa0s's own 7 revealed functions below 15 before the release run: hoist the closure-level `and/or` hook resolution in Perf/DebugLog/Slash lib:New into file-level helpers (#7 does Perf's); split P.Context's guarded reads into a table of readers; split assertSurfaceParity, renderInventory and the test_eol anonymous case.
+
+B. WowAddonStandards (v2.74.0): add to automated-tests-§3 a MUST, 'The complexity gate is sighted'. The complexity suite measures through the kit's sanitized shadow, and a function-count parity mismatch means complexity did not pass, so it blocks the release like a skip. Document lizard 1.24.0's Lua blind spots: `#` read as a C preprocessor line, and the Ruby-like reader's it/class/module/begin/unless. Add an anti-pattern entry. Ripple: STANDARDS.md blurb and changelog; performance.md, AUDIT.md, NEW_ADDON_CONTEXT.md and EXECUTIVE_SUMMARY.md, which quote the raw `lizard -l lua -x ...` command, now point at the runner's complexity suite (`bash tests/_kit/run-automated-tests.sh --suite complexity`). AUDIT.md check: kit revision 35 or later.
+
+C. wow-addon: agents/review.md quotes the raw lizard command; switch it to the runner's complexity suite. The bump-version release gate already reads suites.complexity.status, so a blind run blocks; have it also print blindFiles.
+
+D. Consumers: re-vendor kit 35 (all 11), wire test_lizard_sighted in tests/run.lua, and update any CLAUDE.md green-gate line quoting raw lizard (2 CLAUDE.md files do). Refactor the revealed over-15 functions below CCN 15: MultiMeters 8, LootHistory 5, BankLedger 4, KickCD 3, ConsumableMaster 2, each with characterization tests first per repo CLAUDE.md. Retire AuraMaster's local `#` scanner case in tests/test_lintconfig.lua as superseded by the kit gate (a twelfth local copy of a kit gate is the drift testing-§9 warns about). Re-run the automated-test battery in every repo and record the corrected max-CCN figures, which is proposal 4.
+
+**Dependencies.** Order: LibKa0s kit 35 plus LibKa0s's own refactors, then the LibKa0s release. Then WowAddonStandards v2.74.0 and wow-addon review agent. Then the re-vendor into 11 addons and the per-addon refactors. Each addon's next release is blocked until its revealed functions are under 15. It shares the LibKa0s release with #7/#12/#1/#36/#40, and #7 removes Perf's lib:New CCN 109.
+
+**Risks.** About 29 newly visible over-15 functions across 6 repos (several are large closures/constructors: LootHistory Analytics 86, Perf lib:New 109, KickCD Cooldowns 46), and refactors of them risk regressions that need in-game smoke. The sanitizer is a heuristic: an unknown future lizard blind spot is caught by parity, not by the sanitizer, which is why parity is mandatory. Method-definition names (`a:b`) change in complexity.txt if the shadow rewrites them, which shifts RESULTS.md watch-list names once. Pin the lizard version in DEPENDENCIES.md, because a lizard upgrade may change reader behavior.
+
+
+**Default.** Sighted-shadow measurement plus mandatory function-count parity in the kit runner (kit 35), not a collection-wide source rewrite. Document both blind-spot families in automated-tests-§3. Refactor the ~29 revealed functions in this cycle so every repo's release gate stays passable.
+
+
+## AbsorbTracker
+
+**Repo notes.** AbsorbTracker green gate (CLAUDE.md / docs/testing.md): `lua tests/run.lua` and `luacheck .` (0/0) before every commit, plus lizard with the collection exclusions (`lizard -l lua -x "./libs/*" -x "./tests/_kit/*" .`, no function above CCN 15) and the 1500-line file cap. Never stage, commit or push, and never bump the version, without explicit instruction. Today: lua tests/run.lua gives 844 passed, 0 failed, 1 skipped (845 total) on master f9f3645. Vendored LibKa0s is v1.65.0 (OptionsTabs TABS_MINOR 7), the same as ../LibKa0s master 512d2c8 and the newest tag v1.65.0. File sizes: settings/UnitPanel.lua 418, tests/test_widgets.lua 1073 (on-notice band, so prefer putting new cases in tests/test_panelpages.lua at 894), libs/LibKa0s/OptionsTabs.lua 1294 (on notice, near the cap), ../LibKa0s/tests/test_options_tabbed.lua 291. Paths: /mnt/d/Profile/Users/Tushar/Documents/GIT/AbsorbTracker/settings/UnitPanel.lua (renderUnitPanelBody, partitionTabs, the two-tier refresher), /mnt/d/Profile/Users/Tushar/Documents/GIT/AbsorbTracker/settings/Appearance.lua (build(), SetRenderer, the mirror row with skipRender and group \"Link\"), /mnt/d/Profile/Users/Tushar/Documents/GIT/AbsorbTracker/libs/LibKa0s/Options.lua (refreshCtx/isShown/_dirty ~1064-1140), /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s/LibKa0s/OptionsTabs.lua (partition ~1137, collectTabs, renderBody, RenderTabbedSchema ~1260). #20 is effectively done: one pin test, then close. #32 needs the LibKa0s minor first. Any library change MUST be opt-in, because BankLedger (Filters group made only of a skipRender row and drawn via afterGroup), LootHistory (a skipRender row that opens the 'Price sources' subgroup heading) and AuraMaster (Filters category rows) depend on today's partition keeping skipRender rows.
+
+
+### AbsorbTracker#20 (addressed, effort S)
+
+**Evidence.** The defect described in F-008 no longer exists. Two changes removed it: (1) 156077c (2026-09-01) "The settings panel becomes three pages with tab strips" folded the old Bar/Border/Font unit pages into ONE Appearance page (settings/Appearance.lua build(), a single ctx), so there are no longer three off-screen copies to rebuild. (2) 5c03fb8 (2026-09-08) "M2-16: the settings pages adopt SetRenderer": settings/Appearance.lua build() now calls H.SetRenderer(ctx, function(c) H.RenderUnitPanel(c, PAGE) end). With a renderer declared, the vendored LibKa0s v1.65.0 Options.lua refreshCtx() checks isShown(ctx) (ctx.panel:IsShown()) first. For a hidden panel it sets ctx._dirty = true and returns WITHOUT running ctx.refreshers. The SetRenderer OnShow then re-renders when `not ctx._rendered or ctx._dirty`. This applies to RefreshAllPanels, RefreshScalars, RefreshPanel and the combat unlockPage. So the two-tier mirror refresher (settings/UnitPanel.lua renderUnitPanelBody, the closure appended to ctx.refreshers at the end) runs only while the page is on screen, and a hidden page is marked dirty and re-renders lazily on its next OnShow. That is exactly the issue's Direction, implemented by the library rather than the host. I checked every refresher entry point in the addon: core/DebugLogSetup.lua:166 and settings/OptionsSetup.lua:383 (NS.RefreshOptionsPanel) both go through Helpers.RefreshAllPanels, which is gated. The only ungated runner is O.RestoreDefaults(pageKey, ctx) (Options.lua ~971), and it is reached only from this page's own Defaults button, which can only be clicked while the page is visible. Existing tests already note the gate: tests/test_panelpages.lua "`/at set units.<unit>.mirror` re-syncs an open panel's mirror checkbox" and "a mirror-state change DOES re-render" both have to panel:Show() first because "a hidden one it merely flags dirty". No test asserts the hidden-page half directly. Test run today: lua tests/run.lua gives 844 passed, 0 failed, 1 skipped (845).
+
+**Design.** No functional change needed. Before closing, land one small pin case so the behaviour cannot silently regress if the page ever drops SetRenderer. Write it test-first; it should be green on arrival. File: tests/test_panelpages.lua (894 lines; keep it out of test_widgets.lua, which is already 1073). Case: "a hidden Appearance page is not rebuilt by a mirror flip; its next OnShow rebuilds it". Steps: barPanel(); panel:__fire("OnShow"); ctx = NS.Helpers.__lastUnitCtx; set NS.db.profile.units.focus.mirror = false; ctx.unit = "focus"; NS.Helpers.RenderUnitPanel(ctx, "appearance"); panel:Hide(); record widgetsBefore = #NS.AceGUI.__created; NS.SetByPath("units.focus.mirror", true); NS.Helpers.RefreshAllPanels(). Assert #NS.AceGUI.__created == widgetsBefore (no rebuild while hidden). Then panel:Show(); panel:__fire("OnShow") and assert that widgets were created and that mirrorHeaderState(ctx) reports checked=true, hasRows=false. Restore state at the end the way the neighbouring cases do (mirror back to true, ctx.unit = "player", re-render). Commit as `AT-20: pin the hidden Appearance page's lazy rebuild (closes #20)`. Docs: one sentence in docs/settings-panel.md (Appearance section) and the settings/UnitPanel.lua refresher comment saying the refresher runs only while the page is shown, because SetRenderer's refresh gate marks a hidden page dirty (options-ui-§11, anti-pattern #39). No smoke-test row is needed because nothing visible changes. Close the issue with a comment citing 156077c, 5c03fb8 and the pin commit.
+
+**Dependencies.** none (relies on the already-vendored LibKa0s v1.65.0 SetRenderer gate)
+
+**Risks.** Very low. If a future refactor removes SetRenderer from the Appearance page, the legacy fallback in refreshCtx runs refreshers ungated again and the problem comes back. The pin case exists to catch that.
+
+
+**Default.** Add the one pin test plus the doc sentence in a single commit, then close #20 as delivered by 5c03fb8 and 156077c.
+
+
+### AbsorbTracker#32 (blocked, effort L)
+
+**Evidence.** Still blocked, upstream in LibKa0s. The vendored libs/LibKa0s/OptionsTabs.lua is TABS_MINOR = 7 (line 49, LibKa0s v1.65.0). That is the same as ../LibKa0s master HEAD 512d2c8 and the newest tag v1.65.0, so nothing newer exists upstream. All three gaps named in the issue are still present in O.RenderTabbedSchema (OptionsTabs.lua ~1260-1293). (iv) `local function partition(rows)` (~1137) still buckets on `row.group ~= nil` only and never reads skipRender, so the mirror row (settings/Appearance.lua ~265, skipRender = true, group = "Link") would become a sixth "Link" tab on target and focus. (b) renderBody/drawDisabledNotice still draws disabledNotice ABOVE rows that are still drawn, disabled. The doc comment says "The rows are still drawn." There is no option for the notice to replace the rows. (c) The TabStrip onSelect still does `O.ClearScroll(ctx); O.RenderTabbedSchema(ctx, pageKey, afterGroup, pairWith, opts)`. ClearScroll resets ctx.refreshers (Options.lua ~900), so the host's two-tier mirror refresher, which settings/UnitPanel.lua appends after the body, is lost on the first tab click. No existing opt fixes this cleanly. opts.chrome is re-run per render, but it runs before the rows, which would break the "registered LAST" ordering the refresher relies on. The host composition in settings/UnitPanel.lua (partitionTabs with its skipRender filter, Helpers.TabStrip, RenderRows / renderMirroredHint) is still the correct shape and is documented in docs/settings-panel.md:169 and docs/module-map.md row 21. Cross-consumer constraint found during validation: a global "partition skips skipRender" change would break other consumers. BankLedger's Filters group consists ONLY of a skipRender IdList row (settings/Schema.lua S.BespokeRows ~440) and is drawn through an afterGroup hook. LootHistory's "AH Price" skipRender row (settings/Schema.lua ~333) must stay in its bucket so RenderRows opens its subgroup heading. AuraMaster Filters' category rows are also skipRender. So the upstream change has to be opt-in, or at least has to preserve tabs that are claimed by a hook or host tab and keep the rows in their buckets.
+
+**Design.** Two phases. Phase A is LibKa0s; Phase B is the AbsorbTracker adoption.
+
+PHASE A — LibKa0s, OptionsTabs minor 8 (TABS_MINOR 7 -> 8), released as v1.66.0. Three new optional fields on RenderTabbedSchema's `opts`. All default off, so all ten other consumers keep their current behaviour unchanged.
+ 1. `opts.untabbedSkipRender = true`. In partition(), when this is set, a skipRender row stays in its group's bucket (so the subgroup heading is kept and RenderRows still skips it as today), but a group whose rows are ALL skipRender does not become a tab unless a host tab (opts.tabs) or an afterGroup hook is keyed by it. Implementation: have partition() also return a `drawable[g]` boolean, and have collectTabs() skip any group g where `not drawable[g] and not bespoke[g] and not (afterGroup and afterGroup[g])` when the flag is set. This also keeps the group's declaration-order position whenever the group is still a tab.
+ 2. `opts.disabledReplaces = true`. In renderBody(), when the page is disabled and this is set, draw the notice and then STOP: no RenderRows and no renderHostTab. Optional companion `opts.disabledNoticeFont` (default "GameFontHighlightSmall") lets AbsorbTracker keep its current normal-size hint if wanted.
+ 3. `opts.rerender = function(ctx)`. In onSelect, when this is set: set ctx.activeTab = key, then pcall(opts.rerender, ctx) INSTEAD of ClearScroll plus the self re-render. Report a raise the same way renderCtx does. The host takes over the whole redraw, so its chrome block and refreshers survive the click. The combat refusal at the tab button is unchanged.
+ Tests first, in ../LibKa0s/tests/test_options_tabbed.lua (291 lines, plenty of room): (a) with the flag, an all-skipRender group is not a tab, while a mixed group still is and its skipRender row stays undrawn; (b) without the flag, today's strip is unchanged (characterization); (c) an all-skipRender group that an afterGroup hook or host tab claims IS still a tab, in declaration order; (d) with disabledReplaces, the notice is drawn and no row or host-tab widget is created; (e) without it, notice plus disabled rows as today; (f) with rerender, a tab click calls the host once, sets activeTab, does NOT ClearScroll itself, and a refresher the host appended survives; (g) a raising rerender is reported and the strip stays usable. Docs: the RenderTabbedSchema doc block in OptionsTabs.lua; a new docs/api/Options/version-<combined>-docs.md snapshot with the minor-8 opts; a CHANGELOG.md v1.66.0 entry; any release checklist in docs/releasing.md. OptionsTabs.lua is 1294 lines, and roughly 40-60 more stays under the 1500 cap, but note it in the layoutcap census, since the file is already in the on-notice band. Green gate: the LibKa0s CLAUDE.md suite (headless tests, versioning suite, kit-sync gate, luacheck, lizard CCN<=15, so keep collectTabs/renderBody under 15 by extracting a small `isTab(g)` helper), then cut the tag. Re-vendor v1.66.0 into all eleven addons with /wow-addon:revendor-libka0s (whole payload copy plus the CLAUDE.md provenance line). Adoption in the other ten is optional and should be declined or filed by the revendor interview, although MultiMeters' Columns page may benefit from `rerender`.
+
+PHASE B — AbsorbTracker adoption (after the v1.66.0 re-vendor).
+ Tests first: the two AT-15 characterization cases in tests/test_widgets.lua ("every unit's Appearance strip is its schema's groups..." and "a mirrored unit's every tab draws the hint...") must stay green untouched. Add to tests/test_panelpages.lua: (1) "after a tab click the two-tier refresher is still registered": open focus unmirrored, click tab 2, panel:Show(), SetByPath mirror true, RefreshAllPanels, then assert the rows are gone and the checkbox is checked (red under the library's default tab click); (2) "the Link group never becomes a tab" for target and focus.
+ Code, settings/UnitPanel.lua renderUnitPanelBody step 2: replace partitionTabs + Helpers.TabStrip + the RenderRows/renderMirroredHint branch with `Helpers.RenderTabbedSchema(ctx, pageKey, nil, nil, { untabbedSkipRender = true, disabledReplaces = true, disabledFor = function() return NS.Units.IsMirrored(ctx.unit) end, disabledNotice = "Linked to Player \226\128\148 uncheck to customize.", disabledNoticeFont = <current Label font or default>, rerender = function() Helpers.RenderUnitPanel(ctx, pageKey) end })`. Keep the PageHeader chrome block BEFORE the call, keep the refresher registration AFTER it, and keep the ctx.__rendering guard. Delete partitionTabs, Helpers.__partitionTabs and renderMirroredHint, and update any tests that reach Helpers.__partitionTabs (grep tests/ for it) so they assert through the strip instead. Rewrite the file-header comment block that explains why RenderTabbedSchema is not used. settings/OptionsSetup.lua stub: RenderTabbedSchema is already a no-op member there, so nothing to add.
+ Docs: docs/settings-panel.md:169 (the paragraph explaining TabStrip-direct becomes the adoption note), docs/module-map.md rows 21 and 25 and line 752 (RenderUnitPanel now delegates the strip to RenderTabbedSchema with the minor-8 opts), docs/ARCHITECTURE.md:88 module-map row, docs/smoke-tests.md Appearance section (the hint wording or font if it changes; tab clicks on a mirrored and an unmirrored unit; a mirror flip after a tab click still re-partitions), the CLAUDE.md provenance line (via revendor). Green gate: lua tests/run.lua, luacheck . 0/0, lizard (exclusions per CLAUDE.md) with no function above CCN 15. Close #32 citing both the LibKa0s and the AbsorbTracker commits.
+
+**Dependencies.** LibKa0s: OptionsTabs minor 8 (three opt-in RenderTabbedSchema opts) -> LibKa0s v1.66.0 tag -> re-vendor into all eleven addons (/wow-addon:revendor-libka0s) -> then the AbsorbTracker adoption. Sequence after AbsorbTracker#20's pin test if both land in the same branch, since both touch the UnitPanel refresher area.
+
+**Risks.** (1) Changing the library partition by default would break BankLedger Filters (an all-skipRender group drawn by afterGroup), LootHistory's AH Price subgroup heading, and possibly AuraMaster Filters. That is why the design is opt-in, with characterization cases for the default path. (2) Under rerender, the host must set nothing beyond what RenderUnitPanel already does. The ctx.__rendering guard means a rerender fired from inside a render is a no-op, which matches today's onSelect path. (3) The notice font: the library's small font differs from today's normal-size Label hint, a visible change the owner would see in the smoke test. disabledNoticeFont avoids it. (4) OptionsTabs.lua is 1294 lines, close to the 1500 cap. (5) A collection-wide re-vendor touches eleven repos and needs eleven green gates. (6) The in-game smoke tests for the Appearance page (tab clicks while mirrored or unmirrored, mirror flip after a tab click, Defaults, profile switch) are the owner's to run.
+
+
+**Default.** Do it now as an opt-in LibKa0s minor (untabbedSkipRender, disabledReplaces with an optional disabledNoticeFont, rerender), released as v1.66.0 and re-vendored collection-wide. Then adopt in AbsorbTracker, keeping the hint at its current normal font via disabledNoticeFont so the page looks identical. If the owner prefers not to grow the library surface for one consumer, the fallback is to close #32 as will-not-do and keep the host composition, which is already standards-compliant and documented.
+
+
+## PanelMaster
+
+**Repo notes.** PanelMaster (/mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster), on master, clean, HEAD 8b84c47 (LibKa0s v1.65.0 vendored, from the provenance line in CLAUDE.md).
+
+Green gate (CLAUDE.md):
+- `lua tests/run.lua` and `luacheck .` at 0 warnings / 0 errors before every commit.
+- The vendor gate whenever ../LibKa0s has moved; docs/testing.md has the four diffs.
+- Never edit libs/ or tests/_kit/.
+- No version bump or push without instruction.
+- A lizard CCN of 15 or below and the 1500-line cap apply collection-wide.
+
+Current figures:
+- README badge: 1003/1003 tests passing. I did not run the suite (read-only task).
+- docs/test-cases.md is generated by `lua tests/run.lua --list`. Regenerate it whenever a case is added or retitled, and move the README Tests badge with it.
+- New suites must be added to the list in tests/run.lua (~lines 94-110).
+
+Largest files:
+- modules/Registry.lua 987
+- modules/Canvas.lua 953
+- settings/PanelEditorTabs.lua 798
+- settings/Schema.lua 794
+- settings/PanelEditor.lua 746
+- tests/test_libka0s.lua 1160
+- tests/test_slash.lua 1083
+
+All are under 1500, but #54 should add a new settings/PanelSchema.lua (TOC between settings/Schema.lua and settings/Slash.lua) rather than grow Registry.lua or Schema.lua.
+
+Docs CLAUDE.md requires touching on behaviour change:
+- docs/ARCHITECTURE.md: Known Limitations count, Documented deviations register.
+- docs/scope.md, docs/settings-panel.md, docs/schema.md, docs/data-flow.md, docs/module-map.md.
+- docs/smoke-tests.md, with in-game checks the owner runs and never marks passed.
+- docs/test-cases.md.
+
+Suggested order: #42 (S, independent), then #15 (S, introduces C.MIN/MAX_PANEL_LEVEL), then #54 (L). If #54 lands after #15, the level slider automatically writes through the new seam, because it calls NS.Registry:Set.
+
+No LibKa0s dependency for any of the three. The vendored Schema v2 already forwards instanceId, resolvedId and SetMany/announceBatch.
+
+The GitHub MCP server failed to connect this session, so any gh reads or closes must use the `gh` CLI.
+
+
+### PanelMaster#15 (not-addressed, effort S)
+
+**Evidence.** The Position and size tab body is `sections[TAB_POSITION]` in settings/PanelEditorTabs.lua (around lines 402-430). It builds Width|Height, X offset|Y offset, Anchor|Frame strata, then Panel scale at full width. It has no `level` control. docs/scope.md:56-59 still lists 'No per-panel strata level UI'. docs/ARCHITECTURE.md:261 Known Limitations still counts 'no per-panel level UI' among its seven. docs/smoke-tests.md FRAME-12 (line ~151) says '(the Panels page has no Level control)'. docs/settings-panel.md control table (around lines 60-80) has no Frame level row. The level bounds are spelled inline: modules/Registry.lua:104 CLAMPED `{ "level", 0, 100 }` and modules/Canvas.lua:115 `Util.Clamp(rec.level, 0, 100, 0)`. No commit mentions #15. The data path already exists and only the widget is missing: C.PANEL_FIELD_TYPE.level = "number", R:Set coerces and clamps it, and Canvas strides it by C.PANEL_LEVEL_STRIDE. The M4-15 band move the issue comment warns about has landed: the band holds the picker and the General tab holds Enabled/Unlock/Reset/Delete. Build against that current shape.
+
+**Design.** Tests first:
+- tests/test_panels_page.lua, case 'only the active tab's controls are built': add `assertTrue(position["Frame level"], ...)`. It goes red today.
+- tests/test_constants.lua 'no slider in the panel editor decides its own bounds': add `['"Frame level", "level"'] = "C.MIN_PANEL_LEVEL, C.MAX_PANEL_LEVEL"` to `expected`.
+- New test_constants case: C.MIN_PANEL_LEVEL == 0, C.MAX_PANEL_LEVEL == 100, and C.MAX_PANEL_LEVEL * C.PANEL_LEVEL_STRIDE + C.UNLOCK_FRAME_LEVEL stays under the client's frame-level ceiling. This keeps the existing 'highest is 800' comment honest.
+- Registry case: `R:Set(id, "level", 101)` clamps to C.MAX_PANEL_LEVEL, and `R:Set(id, "level", -1)` clamps to 0.
+
+Code:
+- core/Constants.lua: add `C.MIN_PANEL_LEVEL = 0` and `C.MAX_PANEL_LEVEL = 100` beside C.PANEL_LEVEL_STRIDE. The bound must be named, never inlined (options-ui-§8). Re-point the stride comment to these names.
+- modules/Registry.lua CLAMPED row and modules/Canvas.lua:115: use the named constants.
+- settings/PanelEditorTabs.lua `sections[TAB_POSITION]`: after the Anchor|Frame strata row, add `editorSpacer(group, EDITOR_ROW_GAP)` and a `layerRow = editorRow(group)` holding `numberField(layerRow, "Frame level", "level", C.MIN_PANEL_LEVEL, C.MAX_PANEL_LEVEL, 1, <tooltip>)` at the default half width. It sits directly under Frame strata, so the two layer controls read together. Leave Anchor and Strata where they are, so existing smoke steps and player habit still hold.
+- Tooltip text: 'Orders panels that share a frame strata: a higher level draws entirely in front of a lower one. Panels on the same strata and level have no guaranteed order. Strata decides first; level only orders panels within one strata.'
+- E.SliderSpan already handles values outside the bounds. The write goes through NS.Registry:Set, the existing seam, so there is no new write path.
+
+Docs:
+- docs/scope.md: delete the 'No per-panel strata level UI' bullet. Keep the creation-order caveat for equal levels and move it into the Frame level row text in settings-panel.md.
+- docs/ARCHITECTURE.md Known Limitations: 'Seven' becomes 'Six', and drop 'no per-panel level UI' from the list.
+- docs/settings-panel.md control table: add a 'Frame level' row after 'Frame strata'.
+- docs/smoke-tests.md FRAME-12: replace the CLI-only parenthetical with a step that sets Frame level on the Panels page Position and size tab, keeping the CLI path as an alternative. Add a new LOOK/PANEL step: the slider shows the CLI-set value after `/pm panel X level 7`, and dragging it re-orders two overlapping panels live.
+- docs/test-cases.md: regenerate with `lua tests/run.lua --list`. Move the README Tests badge count to match.
+- Close #15 citing the commit.
+
+**Dependencies.** none
+
+**Risks.** Low. Today the slider passes values at step 1, but a CLI write can still store a fractional level (pre-existing). Optionally floor the level in Sanitize so SetFrameLevel always gets an integer. The client clamps either way. The 0.5-width slider leaves the right half of its row empty, and options-ui allows a lone control.
+
+
+**Default.** A 'Frame level' slider (0-100, step 1) on its own half-width row directly under 'Frame strata' on the Position and size tab, with named bounds C.MIN_PANEL_LEVEL and C.MAX_PANEL_LEVEL.
+
+
+### PanelMaster#42 (not-addressed, effort S)
+
+**Evidence.** modules/SunnArt.lua:239-248 still defines `function S.Installed() return #S.Themes() > 0 end`, with the misleading comment 'Used to keep the whole feature silent ... no category, no rows, no settings copy'. It has zero callers in core/, modules/, settings/, defaults/ and locales/. The only matches are the unrelated `folderInstalled` local at :230 and `S.__masterInstalled` in settings/Schema.lua. The test callers are unchanged: tests/test_sunnart.lua:104, 115, 129, 687, 704, and the dedicated case at 812-822. docs/rendering.md:256-258 still ends with 'S.Installed() is therefore defined as #S.Themes() > 0 ...'. docs/test-cases.md:944 still lists 'SunnArt: Installed() agrees with the dropdown rather than with the globals'. `git log -S"S.Installed"` shows only automated-test record commits and nothing that removed it. Triage on 2026-08-07 decided DELETE and ruled out 'wire it'. Re-check today: settings/ has no Sunn-conditional copy, and the feature still silences itself through `S.Rows(S.Themes())`.
+
+**Design.** One commit: 'PM-xx: delete the dead S.Installed() export (#42)'.
+
+Tests first. Rewrite the assertions so the suite stays green and covers exactly what it covered before:
+- tests/test_sunnart.lua:104 becomes `assertEqual(#S.Themes(), 0, "reported a pack with no Sunn global present")`. The next line already asserts `#S.Themes() == 0`, so just drop the now-redundant line.
+- :115 and :129 become `assertTrue(#S.Themes() > 0)`.
+- :687 becomes `assertTrue(#S.Themes() > 0, "a known pack folder on disk did not count as installed")`.
+- :704: drop it. The next line already asserts `#S.Themes() == 0`.
+- Case 812: keep the case, because the drift it guards is about S.Themes()/S.Rows(). Retitle it 'SunnArt: a SunnArt whose every theme is uninstalled offers nothing', replace `assertFalse(S.Installed(), ...)` with `assertEqual(#S.Themes(), 0, "offered themes whose every pack is uninstalled")`, and keep the S.Rows assertion. Reword the comment to drop 'Installed() is now defined as...'.
+- Add a guard assertion `assertNil(S.Installed, ...)` to the first detection case, so a reintroduction is deliberate.
+
+Code: delete modules/SunnArt.lua lines 239-248, the comment block and the function.
+
+Docs:
+- docs/rendering.md: trim only the final sentence of the folder-gate paragraph, 'S.Installed() is therefore defined as ... answers no to.' The reasoning above it stays.
+- docs/test-cases.md: regenerate with `lua tests/run.lua --list`. The case count is unchanged unless one is added, so the README badge stays at 1003 unless the count moves.
+- Check docs/compat-layer.md:56's citation `modules/SunnArt.lua:236` (addonFolders). It sits above the deleted block, so it should not shift. Verify.
+- Run the dead-export check in sync-docs if the module-map lists S's exports.
+- Green gate: `lua tests/run.lua` and `luacheck .` must both report 0/0.
+- Close #42 with the commit hash.
+
+**Dependencies.** none
+
+**Risks.** Minimal. Nothing in the repo or in other Ka0s addons calls it, and no public-api doc exists, so no external consumer is documented. A grep across sibling repos for 'PanelMaster' and 'Installed' before deleting would confirm that no other addon reaches into NS. NS is the private addon table, not a global, so none can.
+
+
+**Default.** Delete, as triaged on 2026-08-07: rewrite the assertions as #S.Themes() checks, retitle the dedicated case, and trim the last sentence in rendering.md.
+
+
+### PanelMaster#54 (not-addressed, effort L)
+
+**Evidence.** settings/Schema.lua:469 is `resolveRoot = function() return NS.db and NS.db.profile, 1 end`, which ignores both parts and instanceId. The colon wrappers (Schema.lua ~692-712) are `S:FindRow`, `S:ReadPath` and the BulkBegin/End/Line passthroughs. `NS.Schema:Set` and `:Get` take no id. modules/Registry.lua R:Set (~801-841) writes `rec[field] = value` directly, then R.Sanitize, NS.DebugBuild('Panel', ...) and fire(MSG.PANEL). R:SetPosition (~843), R:Reset (~433), R:CopyFrom (~474), R:FitToArtwork (~667, through R.ApplyArtSize), R:Recover (~936) and R:ResetPositions (~974) mutate records directly and call NS.Schema.BulkLine. modules/Unlock.lua:221-226 writes rec.point and rec.relPoint raw, then calls :SetPosition. The docs/ARCHITECTURE.md:341 architecture-§5 deviation row is still live, and its trigger is unmet. No commit references #54. Upstream support already exists in the vendored LibKa0s v1.65.0 Schema: `resolveRoot(parts, instanceId) -> root, first, resolvedId`, `Set(path, v, instanceId)`, `Get(path, instanceId)`, `ApplyDefault(row, id)`, `SetMany(entries, {instanceId, act, scope})` all-or-nothing with one bracket line and `announceBatch`, plus `validate`/`normalize`/`onChange` receiving resolvedId (LibKa0s docs/api/Schema/version-2-docs.md). The host stub in settings/Schema.lua already forwards the id through `resolve(parts, id)`. No library change is required to adopt.
+
+**Design.** Goal: every per-panel field write goes through the single Schema seam with the panel id as instanceId. This satisfies the architecture-§5 row's trigger, and the row retires in the same change.
+
+A. Resolver (settings/Schema.lua). Replace the resolveRoot closure with `S.ResolveRoot(parts, id)`:
+- `parts[1] == "panel"`: `local rec = id ~= nil and NS.Registry and NS.Registry:Get(id)`. If there is no rec, return `nil, "no such panel"` when id is set and `nil, "panel rows need a panel"` when it is nil. Otherwise return `rec, 2, rec.id`.
+- Otherwise return `NS.db and NS.db.profile, 1`, unchanged.
+- The colon wrappers gain `function S:Set(path, v, id) return R.Set(path, v, id) end` and `function S:Get(path, id) return R.Get(path, id) end`, plus `S:SetMany(entries, opts)`. If S:Set/S:Get already exist through another delegate, add the id argument instead. This is the literal trigger text in the deviation row.
+
+B. Rows (new file settings/PanelSchema.lua). Put it in the TOC after settings/Schema.lua and before settings/Slash.lua, and add it to tests/run.lua's load list if the harness loads by list. Schema.lua is at 794 lines and Registry.lua at 987, so the rows must not go in either.
+- Generate one row per C.PANEL_FIELD_ORDER field except `name`: `{ path = "panel."..field, default = C.PANEL_TEMPLATE[field], type = <number|boolean|string|table>, scope = "panel", skipRender = true, hidden = true, validate = fieldValidate(field), normalize = fieldNormalize(field), onChange = panelChanged }`.
+- validate and normalize reuse Registry's COERCE table. Export it as `R.Coerce(field, value) -> value | nil, why`, built on the existing COERCE[kind] functions. normalize then applies the per-field clamp or repair: refactor R.Sanitize's CLAMPED/token/flag tables into a per-field `R.SanitizeField(field, value) -> value`, and have R.Sanitize loop over it, so the whole-record and per-field repairs cannot diverge.
+- `onChange(value, rid)` stays empty. The per-write reaction moves into a host `announce(row, path, value, rid)`: when `row.scope == "panel"`, fire(MSG.PANEL, rid). `announceBatch(writes, rid)` fires MSG.PANEL once for one rid, or MSG.PANELS when several rids are involved.
+- Register them with `R.AddRows(panelRows)` at file load. Schema.lua does the same for the composed master block.
+- Validate: S:Register's `defaultsRoot` gains `if parts[1] == "panel" then return C.PANEL_TEMPLATE, 2 end`. The template is the panel fields' declaration site (savedvariables-§2), so the boot shape check now covers every panel field. Today it covers none.
+
+C. Keep the instance rows off the profile surfaces. The library's generic consumers walk `allRows`/`findRow`, so the host filters:
+- `S.ProfileRows()` is a cached filtered array, rebuilt after any AddRows, of rows where `row.scope ~= "panel"`. `S.FindProfileRow(path)` refuses panel rows.
+- settings/Slash.lua descriptor (~639-640): `findRow = S.FindProfileRow` and `allRows = S.ProfileRows`. `/pm list|get|set|resetall` therefore never see `panel.*`. `/pm panel <name> <field> <value>` stays the CLI.
+- settings/OptionsSetup.lua:189: `allRows = S.ProfileRows`.
+- S:SnapshotPersisted and the diagnostics dump: confirm they read ProfileRows, or that rows carry `hidden = true`. DebugLogDiagnostics already skips `hidden`.
+- tests/test_surface_parity.lua must still pass. The stub's resolve already forwards the id.
+
+D. Writes through the seam (modules/Registry.lua):
+- R:Set keeps its public signature, the Resolve(key) name/id lookup, the `name` route to R:Rename, and the refusal echo. The body becomes `local ok, err, why = NS.SchemaRuntime.Set("panel."..field, value, rec.id)`; on failure it returns `false, why or err`. The raw store, the Sanitize call, the DebugBuild line and fire are deleted from R:Set, because the seam and announce now own them.
+- Debug line (debug-logging-§10, one line per write): the library writes `[Set] panel.width = 300`, which has no panel name. Give the descriptor `format = function(row, value)` that renders through R.FormatField for panel rows. For the name, use the host-only route: Registry sets a file-local `writing = rec` around the Set call, and format appends " on '<name>'". Drop the Registry's own 'Panel' per-write line so it is not duplicated. Update the tests that grep for the old `'Name'.field = v` line.
+- R:SetPosition: `SetMany({{path="panel.x",value=x},{path="panel.y",value=y}}, {instanceId=rec.id})`. That is one announce, keeping today's 'one repaint per gesture' property. Each write logs its own line, or pass `act="move", scope="'name'"` to get one bracket line.
+- Unlock drag-stop: stop writing rec.point and rec.relPoint raw. Extend SetPosition to `R:SetPosition(key, x, y, point, relPoint)` so the four fields go in one SetMany, and update modules/Unlock.lua:221-226.
+- R:Reset: build entries for every template field except id/name/frameName, from C.PANEL_TEMPLATE plus applyNewPanelDefaults, then `SetMany(entries, {instanceId=rec.id, act="reset", scope="'name'"})`. This replaces the wipe-and-BulkLine. The bracket line's N comes from the library's read-back tally, which matches Util.CountChanged semantics. A record missing fields from an older build still gets every field written.
+- R:CopyFrom: entries come from the source fields not in COPY_EXCLUDED, `act="copy"`, scope "from 'a' to 'b'".
+- R:FitToArtwork: compute w and h with ApplyArtSize run on a copy, or refactor it to return w, h without mutating. Then SetMany the width and height with no act, and keep the 'fit ...' debug line. The separate line is acceptable as a verb line, or drop it in favour of a bracket with act "fit".
+- R:Recover and R:ResetPositions (multi-record): open `NS.Schema.BulkBegin("recover"|"reset", "positions")` once, call `SetMany(entries, {instanceId=rec.id})` per moved record so writes join the outer tally, close with BulkEnd, then fire(MSG.PANELS) once. To avoid one PANEL per record before the final PANELS, announce checks a host `S.suppressAnnounce` depth flag set by these two verbs.
+- create(), destroy() and Rename stay record-structural and outside the seam. `name` and `frameName` are identity, not preferences. Say so in the module-map. R.Sanitize stays as the on-load and migration repair.
+
+E. Tests first. New suite tests/test_panel_schema.lua, registered in tests/run.lua:
+- resolveRoot answers the record and first=2 for a known id, refuses an unknown id and a nil id, and still answers the profile for `settings.*`.
+- Every C.PANEL_FIELD_ORDER field except name has exactly one `panel.<field>` row whose default equals C.PANEL_TEMPLATE. Mirror test: no PANEL_FIELD_TYPE field lacks a row.
+- `NS.Schema:Set("panel.width", 300, id)` stores, clamps 99999 to C.MAX_SIZE, refuses 'abc' with the coercer's sentence, fires exactly one PANEL with that id, and writes exactly one [Set] line naming the panel.
+- `/pm list` output and the Options flow contain no `panel.` path, and `/pm set panel.width 5` is refused as unknown.
+- The R:Reset, R:CopyFrom, R:Recover and R:ResetPositions bracket lines and counts match today's existing tests in tests/test_registry.lua and tests/test_debuglog.lua. Run those unchanged as regression.
+- SetPosition with four fields gives one announce. Drag-stop through the mock gives point, relPoint, x and y in one act.
+- The degraded load (hostSchemaStub) drives the same writes. Extend tests/test_schema.lua's stub cases.
+- Every existing R:Set-based test in test_registry, test_slash and test_panel stays green untouched. That is the behavioural-equivalence proof.
+- Watch the perf ceiling: R:Set is on the slider-mouse-up path, not per frame, but a Registry perf scenario exists only if tests/perf.lua covers it.
+
+F. Docs, in the same change:
+- docs/ARCHITECTURE.md: delete the architecture-§5 'fields on a panel' row from Documented deviations, and add the instance-addressed design to the schema section.
+- docs/schema.md: a new 'Instance rows (panel.*)' section explaining the resolver, the filter, and why the rows are hidden from list and options.
+- docs/data-flow.md: the write path for a panel field is now Registry:Set, then SchemaRuntime.Set(id), then announce, then MSG.PANEL.
+- docs/module-map.md: PanelSchema.lua's load position. Update the CLAUDE.md luacheck file count if sync-docs tracks it.
+- docs/smoke-tests.md: new steps covering every editor control on each of the six tabs still repainting live, drag-stop persisting across /reload, Reset/Copy/Recover/Reset position each printing one [Set] line with /pm debug on, and /pm list showing no panel.* rows.
+- Regenerate docs/test-cases.md and update the README badge.
+- Close #54 and cite #49.
+
+**Dependencies.** None blocking. LibKa0s v1.65.0, the vendored version, already provides instanceId forwarding, resolvedId, SetMany with act/scope and announceBatch. An optional upstream nicety, which I do not recommend for this pass: Schema minor 3 passing resolvedId to the descriptor's `format(row, value, resolvedId)`, so the [Set] line can name the instance without the host's file-local 'writing' upvalue. That would need a LibKa0s release and a re-vendor into all 11 addons, so use the host-only route unless a LibKa0s release is already being cut in this cycle. If one is, fold it in and drop the upvalue.
+
+**Risks.** The largest per-record migration in the collection. Main risks:
+- Debug-line drift: tests in test_debuglog.lua and test_registry.lua assert today's 'Name'.field = v and BulkLine texts, and the library's [Set] format differs. The rewording needs the owner to accept the new line shape, or a format hook that reproduces the old text.
+- Repaint storms: Recover and ResetPositions must not fire per-record PANEL before PANELS. Hence the suppress flag.
+- Instance rows leaking into the profile surfaces (/pm list, Reset all, Options flow, diagnostics dump, SnapshotPersisted) if any descriptor still binds the raw AllRows/FindRow.
+- R:Reset semantics: the old wipe also removed unknown or legacy keys from the record, and SetMany only writes known fields. Keep a pre-pass that strips keys not in PANEL_TEMPLATE, or accept the difference.
+- File caps: Registry.lua is 987 lines and Schema.lua 794. Put the rows and filter in the new settings/PanelSchema.lua and keep the lizard CCN at 15 or below. Register normalize per field through tables, not if-chains.
+- Profile switch: ids are per-profile, so resolveRoot must look up through R:Get at call time, never cache.
+
+
+**Decision point.** The register row was re-decided as 'keep' (option b) on 2026-09-24, and the owner has now marked #54 'fix now', which reverses that. The only genuine product question is whether the debug [Set] line wording for panel writes may change. The library's line is `[Set] panel.width = 300 on 'Alpha'`, and today's is the Registry's `'Alpha'.width = 300`. Recommend accepting the library shape, because one line shape for every write is the point of the seam.
+
+**Default taken.** Adopt option (a) host-side only. Use one Schema runtime with `panel.<field>` rows (scope='panel', hidden, skipRender) generated from C.PANEL_FIELD_ORDER into a new settings/PanelSchema.lua, and an S.ResolveRoot that maps the instance id to the Registry record (first=2). Bind the Slash and Options descriptors to a filtered S.ProfileRows/S.FindProfileRow. Registry:Set and every whole-record and bulk verb go through SchemaRuntime.Set or SetMany with instanceId, and announce fires MSG.PANEL. Retire the architecture-§5 row in the same commit. No LibKa0s release.
+
+
+## PartyFrameEnhanced
+
+**Repo notes.** PartyFrameEnhanced is on master at 7db0f1e with a clean tree, and it bundles LibKa0s v1.65.0 (kit 34).
+
+Green gate (CLAUDE.md): `lua tests/run.lua` and `luacheck .` must both be clean (0/0). The Ka0s convention adds lizard at CCN ≤ 15, `lizard -l lua -x "./libs/*" -x "./tests/_kit/*" .`, and the 1500-line file cap. Never stage, commit, push or bump the version without an explicit instruction.
+
+A PreToolUse hook blocks unbounded runs of lua tests and luacheck. Prefix every one with `/home/tushar/.claude/wow-addon/bin/ka0s-bounded`. The same goes for `lua tests/perf.lua`, which sits outside the green gate.
+
+Measured today with ka0s-bounded:
+- tests/run.lua: 420 passed, 0 failed, 1 skipped (421 total).
+- luacheck: 0 warnings / 0 errors in 77 files.
+- tests/perf.lua (two identical runs): castStartStop 3.6 B/iter with 55 API calls per iteration, settingsDrag 925.9, targetTickUnchanged 0.1, probeOverheadOn 0.5, and every other scenario 0.
+
+Largest files: modules/Providers.lua 406, Anchor.lua 396, CastBars.lua 427, TargetFrames.lua 377, and tests/test_launcher.lua 578. All are well under the cap.
+
+The #12 attribution came from a scratch copy at /tmp/claude-1000/-mnt-d-Profile-Users-Tushar-Documents-GIT-Ka0sAddonsCommonTasks/e267a4de-b85a-4c3d-8a5f-6bbae688a0e9/scratchpad/pfe. It is an instrumented tests/perf.lua with GC-stopped n-sweep, per-unit STEP and NEWKEY diffs, and it is safe to delete.
+
+Under the CLAUDE.md, a deviation from the standard needs a Documented-deviations row in docs/ARCHITECTURE.md, which the owner ratifies. #3's stand-down residue is that kind of case. The v0.1.0 spec docs/superpowers/specs/2026-09-15-party-frame-enhanced-design.md is history: do not edit it (§6.4 and §10 item 3 are the source of #3).
+
+ConsumableMaster's tests/wow_mock.lua:262-280 is the in-collection precedent for a template-gated SecureHandler mock (SetFrameRef/GetFrameRef/Execute/WrapScript).
+
+Neither issue needs a change in LibKa0s. Promoting a SecureHandler mock into the LibKa0s test kit later is optional.
+
+
+### PartyFrameEnhanced#12 (partially-addressed, effort S)
+
+**Evidence.** The figure has already dropped, from 16.6 to 3.6 bytes per iteration (docs/performance.md:88 and :100; tests/perf.lua:265-281). I ran the suite twice with ka0s-bounded on HEAD 7db0f1e and it reads castStartStop 3.6 both times, 55 API calls, ceiling 41. The acceptance criteria are only half met. docs/performance.md:100-105 puts the residue down to 'the interpreter's memory layout', which is vague and in fact wrong, and the ceiling was never re-derived (it is still 41, from 16.6 + 24).
+
+I attributed the residue in a scratch copy of the tree, instrumented and run under ka0s-bounded:
+(a) With GC stopped, cycles 1, 10, 100, 1000 and 5000 allocate 3560 bytes in total for n=1 and 0 bytes for every later n. Retained growth after a full collect is 0 for every n. So 3560 / 1000 = 3.56, which is the reported 3.6.
+(b) Stepping per unit, the FIRST UNIT_SPELLCAST_START on each bar allocates and keeps about 696 bytes (776 for the first bar, which pays 80 bytes once). Every stop, and every later start, allocates 0.
+(c) Diffing table keys across the first cycle shows new fields appearing for the first time. On the element (modules/CastBars.lua setTicking/start/stop): tick, __ticking, __manualFill, fade. In the mock's recorders: __scripts.OnUpdate, bar.__color/__min/__max, text.__text, text2.__text, icon.__texture, shield.__alpha. Each new key forces a one-time rehash of a table's hash part.
+
+So this is a first-cast warm-up cost per bar: table-shape growth, partly the addon's own lazily created fields and partly the mock's recorder fields. It is not a per-cycle allocation, and the steady state is exactly 0. That also explains the 3.6/5.4 flicker 'at commits that touch no cast path' and the old 16.6: whether a new key crosses a power-of-two boundary in the hash part depends on how many keys the element and mock tables already hold, which unrelated commits change. Adding one untimed cycle before measure() makes castStartStop read 0.0 (confirmed in the scratch run). Separately, targetTickUnchanged 0.1 and probeOverheadOn 0.5 are probably the same first-touch effect. They are not part of this issue.
+
+**Design.** Tests first, all in tests/perf.lua, which is outside the green gate:
+1. Before `measure("castStartStop", ...)`, add a warm-up: run the same five-unit start/stop body once, untimed. Comment it: the first cast on each bar adds fields the element and the mock never held before (tick, __ticking, __manualFill, fade, and the recorders' __color/__min/__max/__text/__texture/__alpha/__scripts.OnUpdate), and the resulting one-time ~696-byte rehash per bar was the whole 3.6 (and the earlier 16.6). Do the warm-up through a local `castCycle()` so the measured body and the warm-up cannot drift; it must allocate nothing per call, so it should be a plain function that closes over CASTS and bars.
+2. Re-derive the ceiling: castStartStop = 24 (figure 0 + 24), the same as every other hot path. Rewrite the ceiling comment block at the 'Set on 2026-09-15...' text to give the attribution and the new figure.
+3. Optional hardening in the addon, not required: pre-seed `el.tick = 0`, `el.__ticking = false`, `el.__manualFill = false` and `el.fade = 0` where CastBars creates each bar (CastBars:OnEnable, next to the CreateFrame at modules/CastBars.lua:371). The client then pays the rehash at enable rather than on the first cast in combat. Do it only if the warm-up-free measurement is wanted. The recommended default is to NOT do it: the in-client cost is a one-off of a few hundred bytes per bar and is not observable.
+
+Docs:
+- docs/performance.md: change the castStartStop row to Bytes/iter 0, Asserted ≤ 24 bytes. Replace the '**castStartStop is no longer 16.6.**' paragraph with the measured attribution, including the GC-stopped n-sweep table (n=1: 3560 B; n≥10: 0) and the list of new keys. State that it is a first-cast table-growth warm-up, part addon fields and part mock recorder fields, and that steady state is 0.
+- Refresh the 'Figures from' date line.
+- Optionally run /wow-addon:automated-tests to roll a new bundle and RESULTS.md row. Recommended, so the RESULTS.md table at :79 stops showing 3.6.
+
+Finally, close #12 with a comment that cites the commit.
+
+**Dependencies.** none
+
+**Risks.** Very low. perf.lua is outside the green gate. The warm-up must not hide a real per-cycle allocation, which is why the steady-state measurement (1000 iterations after the warm-up) still runs and is still asserted at ≤ 24. Do not add a GC-stop to measure() itself: that would change every scenario's semantics.
+
+
+**Default.** Add an untimed warm-up cycle and set castStartStop's ceiling to 24. Document the attribution in docs/performance.md. Do not pre-seed fields in CastBars.
+
+
+### PartyFrameEnhanced#3 (not-addressed, effort L)
+
+**Evidence.** There is no SecureHandler, WrapScript or SetFrameRef anywhere in core/, modules/ or settings/. `git log --all -S SecureHandlerWrapScript` returns only d9d4f70, the v0.1.0 spec. The current behavior is still fade-then-regen:
+- modules/Anchor.lua deferSecure(), called from Anchor.Apply when `spec.secure and InCombatLockdown()`, sets alpha 0 on any secure element whose __aTarget differs from Providers.FrameFor(unit), then queues NS.RunSecure('anchor:'..key).
+- docs/ARCHITECTURE.md:338-339 Known Limitations still cites #3.
+- docs/smoke-tests.md COMBAT-6 asserts the fade.
+- docs/midnight-quirks.md:121-123 describes it.
+
+The relevant structure:
+- The secure buttons are SecureUnitButtonTemplate (modules/UnitButtons.lua Create). They are unit-bound (btn.unit = member, btn.token = partyNtarget/partypetN), parented to RangeFade.Parent(unit), and registered by TargetFrames (key 'target') and PetFrames (key 'pet') with secure = true.
+- Providers (modules/Providers.lua) declares itself 'READ-ONLY by construction': it only HookScripts the member frames (OnShow, OnHide, OnAttributeChanged→Request). The member frames are ERFPartyHeaderUnitButton1-5 plus ERFPartySelfButton, or CompactPartyFrame.memberUnitFrames / CompactPartyFrameMember1-5. Blizzard classic never re-sorts.
+- `/pfe set` writes ARE accepted in combat (smoke COMBAT-5, COMBAT-7), so placement can change mid-combat through the deferred path.
+- Neither tests/wow_mock.lua nor tests/_kit mocks SecureHandler*. ConsumableMaster/tests/wow_mock.lua:262-280 has a template-gated SetFrameRef/Execute/WrapScript stub worth copying.
+- Baseline: 420 passed / 0 failed / 1 skipped, and luacheck 0/0 across 77 files.
+
+**Design.** A new module, modules/SecureFollow.lua (about 200-250 lines), listed in the TOC after Anchor.lua, TargetFrames.lua and PetFrames.lua. tests/test_loadorder.lua derives the order from the TOC.
+
+OWNER HEADER
+At OnEnable, and out of combat (OnEnable already is), create `CreateFrame('Frame', 'PartyFrameEnhancedSecureFollow', UIParent, 'SecureHandlerBaseTemplate')`. Use that single template only: the ConsumableMaster lesson is that combining templates drops the injected methods. Then:
+- For each feature in {target, pet} and each member unit in Units.LIST, call `header:SetFrameRef(feature..':'..unit, button)`. The buttons come from NS.TargetFrames.__buttons and NS.PetFrames.__buttons.
+- Attributes:
+  - `pfe-provider` (the active provider id, or 'none')
+  - per feature `<f>-live` (bool: enabled, not stood down, anchorMode ~= 'free', feature on)
+  - `<f>-point`, `<f>-rel`, `<f>-x`, `<f>-y`
+  - `<f>-match` plus `<f>-lp`, `<f>-lr`, `<f>-rp`, `<f>-rr`, precomputed from Anchor's LEFT_OF/RIGHT_OF tables. Export those as Anchor.__LEFT_OF/__RIGHT_OF; do not duplicate them.
+
+ATTRIBUTE SYNC
+- `SecureFollow.Sync()` is built ONCE as a named function. It reads the live config through each feature spec's config() and Anchor's placementOf (export it as Anchor.PlacementOf).
+- It writes only attributes whose value changed, keeping a scalar memo per attribute so no tables are allocated.
+- It runs directly out of combat. In combat it goes through `NS.RunSecure('follow:sync', SecureFollow.Sync)`, which passes the prebuilt function, so no closure is created per call. That keeps perf.lua anchorUnchanged at 0 SetPoint and ≤ 24 bytes.
+- It is triggered from the LAYOUT, CONFIG, PROFILE and VISIBILITY bus messages.
+
+WRAPPING
+- `SecureFollow.Wrap()` runs out of combat only. In combat it is queued as RunSecure('follow:wrap', SecureFollow.Wrap).
+- It iterates the ACTIVE provider's frames through a new read-only accessor, `Providers.ForEachActiveFrame(cb)`, which calls active.ForEachFrame.
+- It wraps only the 're-sorting' providers (ellesmere, blizzard-raid). Add a `resorts = true` flag to those provider specs.
+- For each frame not already in a weak-keyed `wrapped[frame]` set, and only if `frame:IsProtected()` is true and `_G.SecureHandlerWrapScript` exists, it calls `SecureHandlerWrapScript(frame, 'OnAttributeChanged', header, SNIPPET[providerId])`.
+- If a wrap fails (pcall), record it in `NS.State.followRefused` and leave fade-then-regen in place for that frame.
+- Wrap is triggered from LAYOUT, meaning after a resolve.
+
+SNIPPET
+A pre-body, one string per provider id with the id embedded literally. Restricted dialect: no `{}` constructors, only handle methods.
+```
+if name ~= 'unit' or owner:GetAttribute('pfe-provider') ~= '<id>' or not value then return end
+for f = 1, 2 do
+  local feat = f == 1 and 'target' or 'pet'
+  local btn = owner:GetAttribute(feat..'-live') and owner:GetFrameRef(feat..':'..value)
+  if btn then
+    btn:ClearAllPoints()
+    if owner:GetAttribute(feat..'-match') then
+      btn:SetPoint(owner:GetAttribute(feat..'-lp'), self, owner:GetAttribute(feat..'-lr'), x, y)
+      btn:SetPoint(rp, self, rr, x, y)
+    else
+      btn:SetPoint(point, self, rel, x, y)
+    end
+  end
+end
+```
+Unit values outside Units.LIST (raidN) find no frameref and do nothing.
+
+ANCHOR CHANGES (modules/Anchor.lua)
+- In deferSecure, before fading an element, ask `NS.SecureFollow and NS.SecureFollow.Covers(spec.key, want)`. It returns true when the feature is live in the header's last-synced attributes, the active provider is wrapped, and `wrapped[want]` is set. If it does, do NOT fade. Instead set `el.__aSet = nil` to invalidate the memo, because restricted code moved the element behind the memo's back. Keep queuing the regen Apply as today, so the deferred pass reconciles placement changes made in combat.
+- Count 'followed' alongside 'faded' in the Anchor debug line.
+- Frames that are not wrapped (a header child created in combat, a refused wrap) keep the existing fade.
+
+STAND-DOWN (slash-commands-§7)
+- SecureFollow:Suspend sets every `<f>-live` to false and `pfe-provider` to 'none' through RunSecure. That is idempotent.
+- Then, out of combat, it unwraps only where ours is the outermost wrap: call `SecureHandlerUnwrapScript(frame, 'OnAttributeChanged')`. If the returned header ~= ours, immediately re-wrap with the returned header, pre-body and post-body to restore the other addon's wrap. Only drop `wrapped[frame]` when ours was the one removed.
+- Resume re-wraps through Wrap().
+- Whatever cannot be unwrapped stays wrapped, with an early-returning body. Record that as a Documented deviation (see the owner decision).
+
+TESTS FIRST (new tests/test_securefollow.lua)
+1. Mocks: add SecureHandlerBaseTemplate support to tests/wow_mock.lua. SetFrameRef/GetFrameRef/Execute only on frames created with that template, as in ConsumableMaster/tests/wow_mock.lua:262-280. Add a `SecureHandlerWrapScript` recorder that stores (frame, script, header, pre, post) and raises when InCombatLockdown is true. Add a `SecureHandlerUnwrapScript` that pops the last wrap. Add `IsProtected` on mock member frames.
+2. Run the snippet: compile SNIPPET[id] with load() in a sandbox env that has no table constructor reachable (assert the string contains no '{'). Pass fake handles: owner (GetAttribute/GetFrameRef answering from the real header's recorded attributes and refs), self (the member frame), name='unit', value='party2'. Assert that the target and pet buttons for party2 get ClearAllPoints then SetPoint(point, memberFrame, rel, x, y). Assert the two-point form when match is set.
+3. Assert no-ops for: name ~= 'unit'; a provider id mismatch; `<f>-live` false (free mode, disabled); value = 'raid3'; value = nil.
+4. Wrap happens only out of combat. In combat it is queued, and it flushes on PLAYER_REGEN_ENABLED. Assert it is never called twice for the same frame across repeated LAYOUT messages. Assert it is skipped for the blizzard-party provider and for unprotected frames.
+5. Run deferSecure in combat with the followed frame wrapped: no SetAlpha(0), the memo is invalidated, and the regen Apply is queued. With the frame unwrapped, the existing fade still happens. This guards the old COMBAT-6 behavior.
+6. After a secure move, the regen Apply re-pins even when FrameFor returns the frame the memo last held (the A→B→A case).
+7. Sync writes nothing when nothing changed. Run it under the perf.lua anchorUnchanged scenario and keep 0 SetPoint and ≤ 24 bytes. A placement /pfe set in combat queues the sync.
+8. Stand-down: the live attributes are cleared. With ours outermost, it unwraps. With another header wrapped after ours, the other wrap is restored and ours stays recorded. Extend test_disabled.lua's stand-down inventory.
+9. Library-absent and degraded env (tests/degraded_env.lua): with no SecureHandlerWrapScript, the module is inert and the fade path is unchanged.
+Green gate: lua tests/run.lua, luacheck . at 0/0, and lizard CCN ≤ 15. Split Wrap and Covers into helpers so no function goes above 15.
+
+DOCS
+- docs/ARCHITECTURE.md: rewrite the Known Limitations #3 row to say that wrapped re-sorting providers follow in combat and that frames created in combat or refused fall back to the fade. Add a taint-notes paragraph about the wrap on another addon's or Blizzard's frames. If the owner ratifies it, add the Documented-deviations row.
+- docs/module-map.md: a SecureFollow row.
+- docs/data-flow.md:38: the in-combat path.
+- docs/midnight-quirks.md 'Frame systems re-sort in combat'.
+- The Providers.lua header comment: say that wrapping lives in SecureFollow and Providers stays read-only.
+- docs/test-cases.md: the new cases.
+- docs/debug.md: the new 'Follow' debug lines, if any.
+- docs/smoke-tests.md:
+  - Rewrite COMBAT-6. A mid-pull join or leave on EllesmereUI and on Blizzard raid-style sorted by role: the target and pet frames jump beside the right member immediately, with no fade, no ADDON_ACTION_BLOCKED and no taint error on the debug console or in BugSack. Also check that EllesmereUI's own frames still sort and click normally.
+  - Add COMBAT-9: /pfe disable out of combat, then a reshuffle in combat. Our frames stay hidden and the EllesmereUI frames behave normally.
+  - Add COMBAT-10: /pfe set target.offsetX 10 in combat, then a reshuffle. The frame follows with the old offset and corrects at regen.
+The v0.1.0 spec under docs/superpowers/specs is history. Do not edit it.
+
+**Dependencies.** None is required. Everything lives in PartyFrameEnhanced, including its own tests/wow_mock.lua SecureHandler mock. Possibly later: promote the SecureHandler mock surface into the LibKa0s test kit (tests/_kit/mock_base.lua). That would need a LibKa0s release and a re-vendor into every addon, so file it as a LibKa0s issue rather than blocking on it.
+
+**Risks.** Several things CANNOT be proven offline and need the owner's in-client smoke test before anyone calls this done:
+(1) Whether Blizzard's raid-style CompactPartyFrame members actually change their 'unit' ATTRIBUTE in combat. Providers says they re-sort 'in combat too', but CompactUnitFrame may defer or only set the Lua `frame.unit`. If no attribute change fires, the wrap never runs and the fade fallback stays in effect, which is harmless.
+(2) Whether ERFPartyHeader children and CompactPartyFrame members report IsProtected() and accept SecureHandlerWrapScript from a third-party header.
+(3) Whether restricted SetPoint between our SecureUnitButton and another addon's protected frame is allowed under lockdown (anchor-family restrictions).
+(4) Taint: no ADDON_ACTION_BLOCKED, and no taint carried into EllesmereUI's SecureGroupHeader_Update or Blizzard's sort, across a full raid-instance session.
+(5) Header children that SecureGroupHeader creates IN combat are unwrapped until regen, so they keep the fade.
+(6) WrapScript nesting with other addons that wrap the same frames (Clique wraps OnEnter/OnLeave, not OnAttributeChanged, but others might). The unwrap-if-outermost logic must be exercised.
+(7) Placement changed in combat through /pfe set follows with stale attributes until regen.
+
+Offline tests can prove: the snippet's logic against fake handles, the restricted-dialect hygiene (no tables), wrap/sync timing relative to lockdown, deduplication, the stand-down path, the fallback fade, memo invalidation and zero perf regression.
+
+The design also weakens Providers' documented 'read-only by construction' invariant. It moves that power to a new module, but the addon now wraps a script on another addon's or Blizzard's frame. That is not banned by events-frames-taint-§3 (which is about replacing Blizzard UI) or library-stack-§6 (presence-guarded optional integration is allowed), but it is a change in posture.
+
+
+**Decision point.** Stand-down residue (slash-commands-§7). A secure wrap on another addon's frame can be unwrapped only safely when ours is the outermost wrap. Otherwise our wrapper has to stay attached, with an early-returning body gated on `<f>-live`. That is a gate, which §7 forbids except for one-way hooks. Two options: ratify it as a Documented-deviations row in docs/ARCHITECTURE.md (Rule: slash-commands-§7; What differs: a SecureHandlerWrapScript wrapper that cannot be safely unwrapped stays attached, gated off, while disabled; Re-check trigger: Blizzard offers a safe by-header unwrap), or treat it as a standard evolution that extends the hooksecurefunc carve-out to secure wraps we cannot unwrap safely.
+
+**Default taken.** Build it as designed. Wrap lazily, only for the re-sorting providers (EllesmereUI, Blizzard raid-style), and only out of combat. Keep the fade as the fallback for anything not wrapped. On stand-down, unwrap when ours is the outermost wrap and otherwise leave it gated. Record that residue as an accepted deviation row under slash-commands-§7 rather than changing the standard. Do not close #3 until the owner's in-client COMBAT-6, 9 and 10 pass. The offline green gate alone is not enough evidence.
+
+
+## Small
+
+**Repo notes.** I made no edits, commits or GitHub writes; this was a read-only check. All four repos are on master and clean, each at its merge of feat/2026-09-30-libka0s-debug-gaps, and each vendors LibKa0s v1.65.0 (kit 34). None of these four fixes needs a LibKa0s change, so there is no release and no re-vendor.
+
+Green gate from every repo's CLAUDE.md:
+- `lua tests/run.lua` and `luacheck .` must both be 0/0.
+- WhatGroup also has a vendor gate: `diff -r` of ../LibKa0s/LibKa0s against libs/LibKa0s, and of ../LibKa0s/testkit against tests/_kit.
+- Complexity: `lizard -l lua -x "./libs/*" -x "./tests/_kit/*" .` with no function above CCN 15.
+- The 1500-line file cap is enforced by test_layout_cap.
+- A hook blocks unbounded heavy runs. Prefix lua and lizard with `/home/tushar/.claude/wow-addon/bin/ka0s-bounded`.
+
+Baselines I ran today (passed / failed / skipped, total):
+
+| Repo | Passed | Failed | Skipped | Total |
+|---|---|---|---|---|
+| BankLedger | 1178 | 0 | 1 | 1179 |
+| WhatGroup | 879 | 0 | 1 | 880 |
+| MultiMeters | 2137 | 0 | 1 | 2138 |
+| LootHistory | 1011 | 0 | 1 | 1012 |
+
+Every new test means regenerating docs/test-cases.md and updating the README tests badge in that repo.
+
+File sizes (lines):
+- BankLedger: Browser.lua 1227, Insights.lua 1002, Ledger.lua 997, Database.lua 943. The new modules/Backfill.lua must go into the TOC.
+- WhatGroup: core/WhatGroup.lua 1240, modules/Frame.lua 1310.
+- MultiMeters: Aggregator.lua 1237, Aggregator_Identity.lua 668.
+- LootHistory: Analytics.lua 1211, Browser.lua 1330, BrowserTable.lua 1252.
+
+Repo rules an implementer must follow:
+- WhatGroup's CLAUDE.md forbids auto-stage, commit or push without an explicit instruction in the current turn, and forbids version bumps.
+- All four forbid version bumps, and say never edit libs/ or tests/_kit/.
+- A standards deviation must be flagged and either recorded in ARCHITECTURE.md's Documented deviations or taken upstream. None is expected for these four.
+- docs/agent-context.md must not be created.
+- Every repo needs docs/smoke-tests.md rows for new behaviour. In-client results are the owner's to record.
+
+The test harnesses load addon files from the TOC (Loader.tocFiles), so a new file only needs its TOC line. The issues' line numbers are stale. The citations above are re-located by symbol at the current master heads: BankLedger f3afd93, WhatGroup a970f13, MultiMeters d7f8b3b, LootHistory b652d40.
+
+
+### BankLedger#2 (not-addressed, effort M)
+
+**Evidence.** The issue is still open in the code and docs. modules/Ledger.lua L:BuildEntry (about :462-515) says in a comment: "There is NO backfill: the stored row keeps only its id". docs/ARCHITECTURE.md:358 under Known Limitations still reads "An uncached item is skipped when a minimum quality is set, and there is no name backfill", and docs/scope.md:47-48 says the same. Nothing in core/, modules/ or settings/ calls GET_ITEM_INFO_RECEIVED or ITEM_DATA_LOAD_RESULT. `git log --grep=backfill` only finds c714a31, which is about AceDB's defaults backfill and unrelated. The stale issue citation `core/Compat.lua:215-225` (the request-and-callback path) has moved to NS.Item.LoadItem (core/ItemSetup.lua:64-67, plus libs/LibKa0s/Item.lua:131): it calls RequestLoadItemDataByID and then fires an optional callback after a fixed C_Timer.After(0.4). Compat.GetItemDetails(idOrLink) at core/Compat.lua:153 returns (name, quality, itemType, itemSubType, link), or nil for an uncached item. Rows live in NS.db.global.ledger, a flat array. The login retention pass is armed 5s after PLAYER_ENTERING_WORLD in addon:OnEnterWorld (core/BankLedger.lua:303-323) and calls Database:PruneOld (core/Database.lua:919). Database:FireLedgerChanged at :828 repaints the views. NS.SCHEMA_VERSION is 4. Baseline: 1178 passed, 0 failed, 1 skipped.
+
+**Design.** Recommended default: backfill all four fields (itemName, quality, itemType, itemSubType), plus itemLink when it is missing. Only nil fields are filled; a present field is never overwritten. Without itemType and itemSubType the row stays out of the Insights breakdowns, which is the point of the issue. Backfilling quality cannot contradict a threshold that was in force at record time, because L:GateReason only admits an uncached item when the minimum quality is 0 or the item is whitelisted.
+
+Why not a migration step: NS.MIGRATIONS runs synchronously at init and is stamped once. Item loading is asynchronous, and new uncached rows keep arriving after the schema is current. So the backfill is a bounded repair pass that runs on every login.
+
+New file modules/Backfill.lua, publishing NS.Backfill. Add it to BankLedger.toc after modules/Ledger.lua.
+- Backfill.Collect(ledger, cap) is pure. It returns an ordered list of distinct itemIDs, at most cap of them (constant NS.C.BACKFILL_MAX_IDS = 40), taken from rows where kind == C.Kind.ITEM, itemID is present, and itemName or itemType is nil. It also returns a map from itemID to row indexes. It walks the ledger once and does no API calls.
+- Backfill.Apply(rows, name, quality, itemType, itemSubType, link) fills nil fields only and returns the number of rows changed. Running it twice is a no-op. It never adds or removes a row.
+- Backfill:Run() first tries to resolve each id synchronously. It resolves through the row's stored itemLink first, then the id, using Compat.GetItemDetails(row.itemLink or id), so a bonus-upgraded drop keeps its real quality. That matches BuildEntry. Ids that are still uncached go through NS.Item.LoadItem(id). The pass registers GET_ITEM_INFO_RECEIVED(itemID, success) only while it is in flight. On each event for a pending id it re-resolves and applies. It finishes when every pending id has answered or a 10s AceTimer timeout fires. Then it unregisters the event and, only if any row changed, fires Database:FireLedgerChanged() once (coalesced; never once per id). Stand-down: NS.StandDown's CancelAllTimers cancels the timeout, and the event must also be unregistered in the stand-down path (slash-commands-§7). Each handler body also checks NS.IsStoodDown() as a belt, because the pass writes saved variables.
+- Hook it into the login timer in addon:OnEnterWorld, right after PruneOld, so it runs after pruning and only once per session (gated by st.cleanupDone). Add a debug line under a new tag: `[Backfill] N rows over M ids filled now, K requested` and, at the end, `[Backfill] done: N rows filled, K unresolved`. Add the tag to the docs/debug.md Coverage list and keep test_debug_coverage green.
+- Update the comment in Ledger.lua BuildEntry: no more "NO backfill"; it now points at modules/Backfill.lua.
+
+Tests first, in a new tests/test_backfill.lua. The mock already records C_Item.RequestLoadItemDataByID in M.__loadRequests, and the kit's C_Timer and AceTimer record calls.
+1. An uncached item row gains name, quality, type and sub-type after the item becomes cached and the pass runs (fire GET_ITEM_INFO_RECEIVED from the mock).
+2. A row with a present itemName or quality is not overwritten.
+3. Running the pass twice leaves the second run unchanged: same ledger length, same field values, no LEDGER_CHANGED.
+4. The cap holds: with 100 distinct uncached ids, at most 40 load requests are made per pass.
+5. Gold rows and rows that are already complete are never touched.
+6. A row with a stored itemLink resolves through the link, not the base id (the bonus-quality case).
+7. Exactly one LEDGER_CHANGED fires when rows change, and none when nothing changed.
+8. A stand-down mid-pass unregisters the event and writes nothing afterwards.
+9. The timeout ends the pass and leaves the unresolved rows untouched.
+
+Docs to update:
+- docs/ARCHITECTURE.md: module map row, load order, event wiring (GET_ITEM_INFO_RECEIVED, registered while the pass runs), and the Known Limitations line rewritten to "An uncached item is skipped when a minimum quality is set". The name-backfill clause comes out, and a new line notes that the backfill is capped at 40 ids per login.
+- docs/scope.md:47-48.
+- docs/module-map.md and docs/data-flow.md: the backfill step.
+- docs/smoke-tests.md: a new CAPT row, for example CAPT-18. With Minimum quality at 0, deposit an item the client has not cached, then `/reload`. Within about 10s of login the History row shows its real name and Insights counts it under Type and Sub-type, with `[Backfill]` lines in the console.
+- Regenerate docs/test-cases.md and update the README tests badge.
+
+**Dependencies.** none (uses existing NS.Item.LoadItem / Compat.GetItemDetails; no LibKa0s change)
+
+**Risks.** This is a write path over saved variables, so idempotency (fill nil fields only) and the 40-id cap are the guards. GET_ITEM_INFO_RECEIVED can arrive with success=false for an id that no longer exists; that id stays unresolved and is retried at the next login, which is acceptable. A large legacy ledger with many uncached ids takes several logins to drain at 40 ids each, so the docs should say so. The pass must not run under the debug-off/stand-down latch. The repo CLAUDE.md requires a deviation check, but none is expected.
+
+
+**Default.** Backfill name, quality, itemType, itemSubType and itemLink, filling nil fields only. Run once per login after PruneOld, capped at 40 distinct ids, with a 10s event-driven window. Coalesce to one LedgerChanged.
+
+
+### WhatGroup#1 (not-addressed, effort M)
+
+**Evidence.** No role exists anywhere in the capture or display path. buildCapture (core/WhatGroup.lua, about :565) has no role field. The ApplyToGroup hook at :83-87 deliberately drops the role flags; the comment at :76-82 says "ApplyToGroup also carries the role flags ... a closure that declares fewer parameters simply drops the rest". WhatGroup:ResolveSearchResultID (about :658-688) is the GetApplicationInfo bridge. It reads only the first return, or res.searchResultID/res.id for the table shape. NOTIFY_ROWS (about :806-821) has Instance, Type, Leader, Playstyle and Teleport rows only. The popup in modules/Frame.lua builds fixed rows (Group, Instance, Type, Leader, Playstyle) at about :836-840, and lblPort anchors to lblStyle. PopulateFields is at about :977. defaults/Profile.lua has no notify.showRole, and locales/enUS.lua has no Role string. `git log --grep=role` finds nothing relevant. The tests/wow_mock.lua GetApplicationInfo stub (:582) returns only the searchResultID. modules/Diagnostics.lua:113 already pcalls GetApplicationInfo. File sizes: core/WhatGroup.lua 1240 lines, modules/Frame.lua 1310 lines, both under the 1500 cap. Baseline: 879 passed, 0 failed, 1 skipped.
+
+**Design.** Capture the role and show it as a popup row and a chat row. Pick the most authoritative source available at join time:
+(a) UnitGroupRolesAssigned("player") read at notify/populate time, when it is not "NONE". This is the role the leader actually assigned.
+(b) The role GetApplicationInfo returns: its 5th return, `id, appStatus, pendingStatus, appDuration, role`, or `res.role` in the table shape. Read it at "invited" and at "inviteaccepted".
+(c) The roles offered at apply time, from the ApplyToGroup flags, shown for example as "Tank / Healer".
+
+core/WhatGroup.lua:
+- Widen the hook closure to function(searchResultID, tankOK, healerOK, damageOK) and pass the flags to OnApplyToGroup. Store captured.appliedRoles = {tank=, healer=, damage=} as plain booleans. Update the :76-82 comment and the signature note in docs/data-flow.md.
+- Change ResolveSearchResultID to return (resultID, role), with role taken from the 5th multi-return or res.role. pcall is already in place. Accept a role only if it is a string ("TANK"/"HEALER"/"DAMAGER"); go through NS.SafeToString or a type check so a secret value is never compared.
+- In LFG_LIST_APPLICATION_STATUS_UPDATED: on "invited", stamp the role onto the paired capture (pendingApplications[appID].role). That arm is currently deliberately empty, so keep its comment accurate. On "inviteaccepted", carry the role into `final`; fresh wins over queued only when it has a role.
+- Add Labels.GetRoleLabel(info) beside GetPlaystyleLabel. Order: UnitGroupRolesAssigned("player") through NS.Compat, then info.role, then appliedRoles joined with " / ", then "". Map tokens to Blizzard's localized globals TANK, HEALER and DAMAGER, and prefix the inline role icon, for example CreateAtlasMarkup on "roleicon-tiny-tank" through a Compat shim.
+- Add NOTIFY_ROWS entry { flag = "showRole", label = "Role:", omitWhenNil = true }, placed after Leader.
+- Add role = "DAMAGER" to SampleInfo so test mode exercises the row.
+
+core/Compat.lua: add a nil-safe Compat.AssignedRole() that wraps UnitGroupRolesAssigned and returns nil for "NONE" or a missing API.
+
+modules/Frame.lua: add a lblRole/valRole MakeLabel after Leader and re-anchor Playstyle to it. lblPort follows Playstyle, so the secure button's derived offset stays correct. Set fields.role in PopulateFields with the dim em-dash for no data. Raise the default popup height from 260 to 278 in defaults/Profile.lua (one row at yGap 18; the clamp range of 200-520 is unchanged). AceDB strips default values, so players on the default pick up the new height automatically.
+
+settings/Schema.lua: add a notify.showRole bool row (Chat > Text, label "Role", default true) and default it in defaults/Profile.lua. Add the "Role:" string to locales/enUS.lua.
+
+Tests first:
+- test_capture: the ApplyToGroup flags land on the capture as appliedRoles.
+- The "invited" status stamps GetApplicationInfo's role. Extend the mock so GetApplicationInfo returns (id, "invited", nil, 0, role) from mock.applicationRoles[appID].
+- "inviteaccepted" carries the role into pendingInfo.
+- GetRoleLabel prefers the assigned role over info.role, and info.role over appliedRoles. It returns "" when nothing is known.
+- In ShowNotification, the Role row prints when showRole is on and is omitted when the role is unknown or the flag is off.
+- The popup sets fields.role, and the No-data branch sets the em-dash.
+- A table-shaped GetApplicationInfo return still resolves both the id and the role.
+- Settings and schema parity tests for the new row; test_surface_parity if it counts rows.
+
+Docs to update: docs/data-flow.md (role capture and the hook signature), docs/frame.md (new row, default height), docs/schema.md and docs/settings-panel.md (notify.showRole), ARCHITECTURE.md where it lists popup fields, docs/smoke-tests.md, docs/test-cases.md (regenerate), README feature list, settings table and tests badge.
+
+New smoke rows: (1) Sign up for a premade as DPS only and get invited; the popup and chat show "Role: Damage". (2) Sign up for Tank and Healer and have the leader accept you as healer; Role shows Healer. (3) `/wg test` shows the sample role. (4) With Settings > Chat > Role off, the chat row is gone and the popup row stays. Also add the role to `/wg diagnostics`' application dump (modules/Diagnostics.lua:113), so the owner can verify the 5th return in the client.
+
+**Dependencies.** none
+
+**Risks.** The position of the role in GetApplicationInfo's return list is not documented by Blizzard; it is the 5th return in current FrameXML usage. That is why there is a three-level fallback and why the diagnostics line exists. UnitGroupRolesAssigned may read "NONE" for a moment on the join tick, but popup population is delayed (notify.delay or the roster update), and the fallback covers it. An extra row could crowd the popup at the 200px minimum height; it is clamped and the content is anchored, so check this in a smoke test. Widening the hooksecurefunc closure is taint-neutral, since it only reads its arguments. core/WhatGroup.lua grows by roughly 40 lines to about 1280, which is still well under 1500.
+
+
+**Default.** Show the role in both the popup (always) and chat (toggle notify.showRole, default on). The source order is the assigned role, then the application role, then the roles offered. Show Blizzard's localized role names with the tiny role icon.
+
+
+### MultiMeters#56 (not-addressed, effort S)
+
+**Evidence.** modules/Aggregator.lua:
+- companionClass (about :625-640) admits any source with sourceDisplayType == None (plain) whose classFilename is a RAID_CLASS_COLORS key. It does not check the GUID or creature ID, so a classed NPC (for example the PvP Training Dummy, creatureID 243211, class=WARRIOR) would pass.
+- unownedAllyRow (about :700-722) uses `kind ~= Ally and not companionClass(src)`.
+- isEnemySource (:596-600) keys only on Enemy (2), which the client never sends; enemies arrive as None (docs/midnight-quirks.md, commit d312851).
+modules/Aggregator_Identity.lua: :255 (sweepColumn) and :631 (buildByIdentity) rely on isEnemySource alone, so in identity mode any None source is admitted.
+The last relevant commit, d312851, only changed the diagnostics count (core/Diagnostics.lua:793-802), not admission.
+Tests: tests/test_aggregator.lua:789-819 covers the Valeera companion (GUID Creature-0-3748-2933-99554-248567-..., None, ROGUE, admitted), :822 a None source with an unknown class (refused), :843 an Enemy with a class (refused), and :859 no display type (refused). No test covers a classed None NPC. Provider.collectSource (modules/Provider.lua:242-285) already copies src.sourceCreatureID as `creatureID`.
+File sizes: Aggregator.lua 1237, Aggregator_Identity.lua 668, Constants.lua 617. Baseline: 2137 passed, 0 failed, 1 skipped.
+
+**Design.** Keep the Enemy gate. It is cheap and future-proof, and the existing test at :843 pins it. Add a companion-identity test to the None arm.
+
+core/Constants.lua: add Constants.COMPANION_CREATURE_IDS = { [248567] = "Valeera Sanguinar" }, seeded only with the measured id. Comment that the diagnostics drop line prints creatureID, so a new companion is added from a measurement, never guessed.
+
+modules/Aggregator.lua:
+- New local companionIdentity(src). It returns true when:
+  (a) src.guid passes Secrets.IsSafeKey, is a string and starts with "Player-"; or
+  (b) src.creatureID passes Secrets.IsSafeKey and is in COMPANION_CREATURE_IDS; or
+  (c) src.guid is plain and its npc field (guid:match("^Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)%-") through tonumber) is in COMPANION_CREATURE_IDS.
+  It returns false otherwise. Never use `..` or a comparison on a secret.
+- companionClass(src) adds `if not companionIdentity(src) then return nil end` after the class check.
+- New local isForeignSource(src) = isEnemySource(src) or (plain None AND a real RAID class AND (src.creatureID or src.guid is plain) AND not companionIdentity(src)). An undecidable source, with both identifiers secret, keeps today's identity-mode behaviour (admitted), so the mid-pull companion is not lost. Players in identity mode have no creatureID and a secret GUID, so they are never refused.
+- Export isForeignSource on Aggregator._identity in place of, or next to, isEnemySource. Aggregator_Identity.lua :43, :255 and :631 switch to it.
+- Update the long comment blocks at :601-624 and :680-697. Their safety argument ("a mob would have to report None AND carry a genuine class filename") is now known to be false, so they should cite issue #56 and the PvP dummy measurement.
+
+Tests first, in tests/test_aggregator.lua:
+1. A classed NPC source in DamageDone (GUID Creature-0-1-2-3-243211-..., creatureID 243211, None, WARRIOR) is refused, so #result is 1. This is red under the current code.
+2. Valeera is still admitted through the GUID npc id (the existing :789 case stays green) and through a plain creatureID with no GUID npc parse.
+3. A Player-GUID None classed source is admitted.
+4. Identity mode (secret GUID): a classed None NPC with a plain non-allowlisted creatureID is dropped and pass.dropped increments; a companion with an allowlisted creatureID is kept; a source with secret creatureID and secret GUID is still admitted (pins the status quo).
+5. The Enemy-with-class refusal at :843 is unchanged.
+Also cover the Identity-mode collision sweep: no keyOf entry for a refused source.
+
+Diagnostics, optional and small: core/Diagnostics.lua:793 already prints creatureID. Add `would admit=yes/no`, computed through the same exported predicate, so the in-client check is direct. Update the matching test_diagnostics case.
+
+Docs: docs/midnight-quirks.md ("Enemies are filed under None" plus the classed-NPC finding and the allowlist rule), docs/data-flow.md (admission rules), ARCHITECTURE.md Known Limitations (a new delve companion stays off the grid until its creature ID is added), docs/smoke-tests.md, docs/test-cases.md (regenerate), README tests badge.
+
+Smoke rows: (1) Hit a PvP Training Dummy; the grid shows only you and `/mm diagnostics` reports the dummy with would admit=no. (2) A delve with Valeera; her row is still on the grid out of combat and mid-pull. (3) Pets and guardians (warlock or shaman) still show.
+
+**Dependencies.** none
+
+**Risks.** An allowlist is the opposite trade-off to today's rule. A future companion with an unmeasured creature ID drops off the grid; the header total still counts it. That is a visible absence, which matches the file's stated rule that a dropped row beats a mislabelled one, and the diagnostics line gives the id to add. Brann Bronzebeard's id is unmeasured and should not be seeded. The GUID npc-field pattern must tolerate other GUID shapes (Vehicle-, Pet-), which should simply not match. Pets are admitted through the Ally arm and are unaffected, but test 4 must confirm the identity-mode change does not refuse Ally-typed pets.
+
+
+**Default.** Admit a None source only with a real RAID class AND (a Player- GUID or a creature ID in Constants.COMPANION_CREATURE_IDS, seeded with 248567 only). Keep the Enemy gate. In identity mode refuse a classed None source only when its creature ID is plain and not allowlisted.
+
+
+### LootHistory#32 (not-addressed, effort M)
+
+**Evidence.** Measured now: `wc -l modules/Analytics.lua` gives 1211 lines (the issue said 1200; RESULTS.md last recorded 1200). Lizard reports 80 functions and none above CCN 13; the worst are _buildCharStackRows at CCN 13, Layout at 11, and three functions at 9.
+
+Structure:
+- Pure helpers and palettes, about :11-232: constants, SOURCE_COLOR/BOUND_*/WEEKDAY, starMarkup, classColor, qualityColor, shortChar, _fitFontSize, PALETTE/paletteColor/paletteMap, _truncate, _charStackSegments, _buildCharStackRows, money, _tipText.
+- Widget factories, :234-393: showCursorTooltip, makeBar, positionBar, makeStackedBar, positionStacked, makeStripBar, makeListRow, makeSwatch.
+- Build and refresh, :394-700: CARD_DEFS, Attach, Refresh, UpdateCards, Layout, sectionHeader/sectionDivider/listPanel, BuildCharts, Enable/Disable.
+- Renderers, :701-870: renderBarSection, renderStackedBarSection, renderLegend, renderCharCompanion, renderStrip, renderListPanel, HideAllCharts.
+- Segmenting helpers, :873-909: dayKeyList, shortDay, sortedByCount, each exported as Analytics._*.
+- LayoutCharts, :911-1211.
+No split commit exists; 3eb4edf (LH-35) only recorded the tracking issue. docs/automated-tests/RESULTS.md:102 says "Re-rule when #32 closes". Neighbouring files: Browser.lua 1330 and BrowserTable.lua 1252, also in the watch band but outside this issue. The harness loads files from the TOC (tests/run.lua:28 Loader.tocFiles), so new files only need TOC lines. tests/test_analytics.lua (62 cases) has a source-scan test at :431-440 that reads only modules/Analytics.lua. Baseline: 1011 passed, 0 failed, 1 skipped.
+
+**Design.** Split into three files. The behaviour and the NS.Analytics surface stay identical.
+
+1. modules/AnalyticsFormat.lua, about 300 lines, loaded BEFORE Analytics.lua. All pure formatting and segmenting:
+- the layout constants (BAR_H, BAR_GAP, LABELW, VALW, LIST_ROW_H, STRIP_*, LABEL_MAXCHARS, LEGEND_MAXCHARS, MAX_STACK_SEGS, MIN_HEADLINE_SIZE, MAX_DAY_BARS, NEUTRAL, WHITE, COIN_H), published as Analytics.K;
+- the color tables (SOURCE_COLOR, BOUND_LABEL, BOUND_COLOR, BOUND_ORDER, WEEKDAY, PALETTE);
+- the helpers starMarkup, classColor, qualityColor, shortChar, _fitFontSize, paletteColor, paletteMap, _truncate, _charStackSegments, _buildCharStackRows, money/_money, _tipText, dayKeyList/_dayKeyList, shortDay/_shortDay, sortedByCount/_sortedByCount.
+It creates NS.Analytics (`NS.Analytics = NS.Analytics or {}`) and publishes the private helpers on Analytics._fmt, or keeps the existing _-prefixed names. Per docs/common-tasks.md's hot-path upvalue rule, each consumer file binds them to file-scope locals once at load.
+
+2. modules/AnalyticsCharts.lua, about 330 lines, loaded AFTER Analytics.lua. The widget factories (showCursorTooltip, makeBar, positionBar, makeStackedBar, positionStacked, makeStripBar, makeListRow, makeSwatch), the section chrome (sectionHeader, sectionDivider, listPanel), and the renderer methods (renderBarSection, renderStackedBarSection, renderLegend, renderCharCompanion, renderStrip, renderListPanel, HideAllCharts). Factories that BuildCharts needs at runtime go out on an Analytics._charts seam table. Follow MultiMeters' Aggregator._identity precedent: the seam is resolved at call time inside BuildCharts, because this file loads after Analytics.lua.
+
+3. modules/Analytics.lua, about 600 lines: CARD_DEFS, Attach, SummaryLine, ResetRenderTrace, Refresh, UpdateCards, Layout, BuildCharts, Enable, Disable, LayoutCharts.
+
+TOC: add `modules\AnalyticsFormat.lua` before line 97 and `modules\AnalyticsCharts.lua` after it. Fix the TOC comment at :71 that cites modules/Analytics.lua:616.
+
+Tests first, as characterization before moving code:
+- A test that snapshots the full set of NS.Analytics keys and their types after load; it must be identical before and after the split.
+- Widen the source-scan test (:431-440) to iterate Analytics.lua, AnalyticsFormat.lua and AnalyticsCharts.lua: no hand-built pool literal and no local releaseAll in any of them.
+- A test that LayoutCharts on a fixture stats table releases and re-acquires the same per-pool widget counts (NS.Pool.Counts) as before.
+- A load-order test: AnalyticsFormat precedes Analytics, which precedes AnalyticsCharts, in the TOC.
+All 62 existing test_analytics cases plus test_stats, test_panel, test_debug_coverage and test_disabled must stay green unchanged. Move code verbatim, in one commit per file, with the gate run between.
+
+Docs:
+- docs/ARCHITECTURE.md: module table rows for the two new files; the :94 row text ("Pooled bar/strip/list renderers" moves to the Charts row); the :75 citation `modules/Analytics.lua:627`, re-pointed; the layout-§1 census sentence at :369-373 (largest file is still Browser.lua at 1330, so the line count need not change, but check it).
+- docs/module-map.md: the tree at :127 and the numbered load-order list (renumber after item 28).
+- docs/browser.md: every `Analytics.lua:NNN` citation re-pointed to the new file and line (:104-175).
+- docs/common-tasks.md, if it names Analytics as an example.
+- docs/test-cases.md (regenerate) and the README tests badge.
+- RESULTS.md is generated; leave it to the next automated-tests run, which re-rules the cell.
+In-client smoke row: open the Insights tab with real and `/lh test` data. Every LOOT and CURRENCY section, the legends, hover tooltips and the strips render as before; resizing re-lays out; filter changes refresh live.
+
+**Dependencies.** none
+
+**Risks.** This is a pure refactor, so the risks are load order and upvalues. A helper referenced as a file-local in LayoutCharts that is now in another file becomes a nil global. luacheck's undefined-global check plus the key-snapshot test catch it. Hot-path upvalue rules: bind seam functions to locals at file scope, never look them up per row. Many docs cite Analytics.lua:NNN, and the citation re-pointing is easy to miss (sync-docs' comment-citation check). Browser.lua (1330) and BrowserTable.lua (1252) stay in the watch band and need their own issues.
+
+
+**Default.** Three files: AnalyticsFormat.lua (pure helpers, constants, palettes, segmenting) before Analytics.lua, which keeps build/refresh/layout, then AnalyticsCharts.lua (widget factories, section chrome, render* methods). Code moves verbatim and the NS.Analytics surface is unchanged.
