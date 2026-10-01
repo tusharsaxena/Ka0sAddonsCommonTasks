@@ -1,0 +1,58 @@
+id	milestone	repo	title	depends_on	issues
+GI-PLAN-01	M0	Ka0sAddonsCommonTasks	Plan bundle	-	-
+GI-LK-01	M1	LibKa0s	Peel tests/test_options.lua render/refresh block to test_options_render.lua	GI-PLAN-01	LibKa0s#35
+GI-LK-02	M1	LibKa0s	Split tests/test_schema.lua: write stage onward to test_schema_write.lua	GI-PLAN-01	LibKa0s#38
+GI-LK-03	M1	LibKa0s	Slash minor 19: host L resolver reaches parseBool/parseNumber/parseString/parseColor/FormatValue	GI-PLAN-01	LibKa0s#40
+GI-LK-04	M1	LibKa0s	Peel ReorderList to LibKa0s/WidgetsReorder.lua (paired minor)	GI-PLAN-01	LibKa0s#36
+GI-LK-05	M1	LibKa0s	RenderGrid(ctx, items, parent, opts): parent, opts.gap, wide-branch guard, DoLayout asymmetry documented	GI-PLAN-01	KickCD#10
+GI-LK-06	M1	LibKa0s	OptionsTabs minor 8: opts.untabbedSkipRender, opts.disabledReplaces, opts.rerender	GI-PLAN-01	AbsorbTracker#32
+GI-LK-07	M1	LibKa0s	Peel Perf command surface to LibKa0s/PerfCommands.lua; resolveHooks(d) out of lib:New	GI-PLAN-01	LibKa0s#7
+GI-LK-08	M1	LibKa0s	Perf: a declared-but-unnoted parent is emitted with zero counts (within never dangles)	GI-LK-07	LibKa0s#12
+GI-LK-09	M1	LibKa0s	Perf: report-only per-bucket budgets (msPerSec, maxMs) in descriptor, record and report	GI-LK-08	LibKa0s#1
+GI-LK-10	M1	LibKa0s	Kit 35: lizard_sighted shadow + parity in the runner, test_lizard_sighted gate, mock_base GetHeight comment	GI-PLAN-01	WowAddonStandards#6;LibKa0s#17-20
+GI-LK-11	M1	LibKa0s	Refactor LibKa0s functions the sighted gate reveals above CCN 15	GI-LK-10,GI-LK-07	WowAddonStandards#6
+GI-LK-12	M1	LibKa0s	Release v1.66.0: CHANGELOG, versioning, release automated-test run (sighted), local tag	GI-LK-01,GI-LK-02,GI-LK-03,GI-LK-04,GI-LK-05,GI-LK-06,GI-LK-09,GI-LK-11	-
+GI-STD-01	M1	WowAddonStandards	v2.74.0: complexity gate is sighted (automated-tests-§3 MUST, lizard Lua blind spots, anti-pattern, ripple)	GI-LK-10	WowAddonStandards#6
+GI-PLUG-01	M1	wow-addon	review agent and bump-version use the runner's sighted complexity suite; print blindFiles	GI-STD-01	WowAddonStandards#6
+GI-AT-RV	M2	AbsorbTracker	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-AM-RV	M2	AuraMaster	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-BL-RV	M2	BankLedger	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-CM-RV	M2	ConsumableMaster	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-KC-RV	M2	KickCD	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-LH-RV	M2	LootHistory	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-MM-RV	M2	MultiMeters	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-PM-RV	M2	PanelMaster	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-PF-RV	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-PC-RV	M2	PrettyChat	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-WG-RV	M2	WhatGroup	Re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, record sighted complexity	GI-LK-12,GI-STD-01	WowAddonStandards#6
+GI-AT-01	M2	AbsorbTracker	Pin the hidden Appearance page's lazy rebuild (test + doc sentence)	GI-AT-RV	AbsorbTracker#20
+GI-AT-02	M2	AbsorbTracker	Adopt O.RenderTabbedSchema with minor-8 opts for the Appearance strip	GI-AT-01	AbsorbTracker#32
+GI-AM-01	M2	AuraMaster	Retire the local # scanner case (superseded by kit test_lizard_sighted)	GI-AM-RV	WowAddonStandards#6
+GI-BL-01	M2	BankLedger	Backfill name/quality/type/subtype/link onto uncached ledger rows (bounded, idempotent)	GI-BL-RV	BankLedger#2
+GI-BL-02	M2	BankLedger	Refactor sighted CCN>15 functions below 15	GI-BL-01	WowAddonStandards#6
+GI-CM-01	M2	ConsumableMaster	Un-dead the three Slash L overrides now that Slash minor 19 reaches them	GI-CM-RV	ConsumableMaster#16;LibKa0s#40
+GI-CM-02	M2	ConsumableMaster	Refactor sighted CCN>15 functions below 15	GI-CM-01	WowAddonStandards#6
+GI-KC-01	M2	KickCD	Peel IconGrid.lua visibility/glow gate to IconGrid_Visibility.lua	GI-KC-RV	KickCD#25
+GI-KC-02	M2	KickCD	Peel IconGrid_Render.lua cooldown ticker to IconGrid_Ticker.lua	GI-KC-01	KickCD#26
+GI-KC-03	M2	KickCD	Peel tests/wow_mock.lua frame model to wow_mock_frames.lua	GI-KC-02	KickCD#27
+GI-KC-04	M2	KickCD	Peel Castbar.lua lock/drag/anchor + EnsureFrame to Castbar_Frame.lua	GI-KC-03	KickCD#24
+GI-KC-05	M2	KickCD	Peel core/Database.lua migrations to Database_Migrations.lua	GI-KC-04	KickCD#29
+GI-KC-06	M2	KickCD	Peel settings/Spells.lua header builders to Spells_Header.lua	GI-KC-05	KickCD#28
+GI-KC-07	M2	KickCD	Split tests/test_slash.lua degraded cases to test_slash_degraded.lua	GI-KC-06	KickCD#30
+GI-KC-08	M2	KickCD	Split tests/test_options_panel.lua degraded/linked-Focus cases	GI-KC-07	KickCD#31
+GI-KC-09	M2	KickCD	Split tests/test_perfsetup.lua latch cases to test_perfsetup_latch.lua	GI-KC-08	KickCD#32
+GI-KC-10	M2	KickCD	Ticker owns time-varying icon render; emit only on material change	GI-KC-09	KickCD#9
+GI-KC-11	M2	KickCD	Spell-list editor renders through RenderGrid(ctx, items, scroll, {gap=false})	GI-KC-10	KickCD#10
+GI-KC-12	M2	KickCD	Refactor sighted CCN>15 functions below 15	GI-KC-11	WowAddonStandards#6
+GI-LH-01	M2	LootHistory	Peel Analytics.lua into AnalyticsFormat / Analytics / AnalyticsCharts	GI-LH-RV	LootHistory#32
+GI-LH-02	M2	LootHistory	Refactor sighted CCN>15 functions below 15	GI-LH-01	WowAddonStandards#6
+GI-MM-01	M2	MultiMeters	Tighten the None-source admission (companion identity), keep the Enemy gate	GI-MM-RV	MultiMeters#56
+GI-MM-02	M2	MultiMeters	Refactor sighted CCN>15 functions below 15	GI-MM-01	WowAddonStandards#6
+GI-PM-01	M2	PanelMaster	Delete the dead S.Installed() export	GI-PM-RV	PanelMaster#42
+GI-PM-02	M2	PanelMaster	Frame level slider on the Position and size tab, named bounds	GI-PM-01	PanelMaster#15
+GI-PM-03	M2	PanelMaster	Instance-addressed schema rows for per-panel fields; retire the architecture-§5 row	GI-PM-02	PanelMaster#54
+GI-PF-01	M2	PartyFrameEnhanced	Attribute castStartStop residue (first-cast warm-up), re-derive ceiling	GI-PF-RV	PartyFrameEnhanced#12
+GI-PF-02	M2	PartyFrameEnhanced	SecureFollow: in-combat re-anchor of target/pet frames via SecureHandlerWrapScript	GI-PF-01	PartyFrameEnhanced#3
+GI-WG-01	M2	WhatGroup	Show the signed-up role in the popup and (toggle) chat	GI-WG-RV	WhatGroup#1
+GI-LK-13	M3	LibKa0s	Zero-consumer export census at v1.66.0: docs/api/CONSUMERS.md, adoption-prompt counts, file host issues	all-M2	LibKa0s#9
+GI-FIN-01	M3	Ka0sAddonsCommonTasks	Execution record, issue comments, push branches	GI-LK-13	-
