@@ -178,3 +178,11 @@ Follow-ups the doc sync surfaced and left alone:
 - LootHistory `docs/common-tasks.md:263` cites `settings/Panel.lua:529/530`, but those lines are now comments.
 - KickCD: `/kcd perf` is not in the README. Several comments name deleted files on purpose, as history.
 - Every addon's Pending sign-off table still lists rows owed from earlier work.
+
+**Follow-ups resolved (2026-10-02).** The owner asked for all five to be fixed. Each landed on
+`feat/2026-10-02-finalize-followups` and was merged `--no-ff` and pushed, and the branches were deleted:
+PanelMaster aec946d (`Util.CountChanged` and its test deleted; 1032 pass; master eeb9143), WhatGroup c3f0fa3
+(11 comment citations; master 6a12032), BankLedger b9bb055 (the `.luacheckrc` stanza count; master c3e9bf4),
+LootHistory e05f0c5 (the `common-tasks.md` census citations, plus three stale `BrowserTable.lua` lines; master
+81472b9), KickCD 499cf1e (a README FAQ row for `/kcd perf`; master d781771). The older owed smoke rows are
+still owed.
