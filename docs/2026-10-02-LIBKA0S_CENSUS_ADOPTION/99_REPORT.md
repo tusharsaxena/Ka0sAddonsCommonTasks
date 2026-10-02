@@ -81,3 +81,21 @@ All are in `01_DESIGN.md` (D1 to D3.11). The ones the owner may want to revisit:
 1. Run `03_SMOKE_TESTS.md` (each addon's `docs/smoke-tests.md` carries its rows under its own ids).
 2. Give the merge go-ahead. `/wow-addon:finalize` then merges in dependency order (standard → LibKa0s →
    addons → this repo), pushes tag `v1.67.0`, deletes the branches and closes the nine issues.
+
+## Finalize (2026-10-02)
+
+The owner approved merging before the in-client smoke run ("smoke tests have not passed, I'll run them
+after the merge"), so the nine issues stay open until `03_SMOKE_TESTS.md` is reported.
+
+Each repo got a content-only doc sync (`CA-FIN-02: doc sync before merge` where anything changed:
+LibKa0s, AuraMaster, BankLedger, ConsumableMaster, KickCD, PartyFrameEnhanced, WhatGroup), a re-run gate,
+then a `--no-ff` merge into `master` whose tree equals the gated branch, a push and the branch deleted.
+Order: WowAddonStandards (cf116ec) → LibKa0s (fce3003, tag `v1.67.0` pushed) → AbsorbTracker (db9dee0),
+AuraMaster (184d6a9), BankLedger (8fb08db), ConsumableMaster (8ae419e), KickCD (1d5c223), LootHistory
+(392eedb), MultiMeters (a0debc6), PanelMaster (ccd5ddb), PartyFrameEnhanced (c37aa03), PrettyChat
+(a812a51), WhatGroup (6235a71) → this repo.
+
+AuraMaster's separate duplicate-bars fix (`feat/2026-10-02-spell-list-views`, its own spec and plan in
+AuraMaster `docs/superpowers/`) merged after the census branch: master was merged into it first (doc-only
+conflicts; its smoke checks renumbered FILT-46..52 behind this run's FILT-43..45), gated (1833/0/1 in
+the main tree), then merged as 5b6c9f2.
