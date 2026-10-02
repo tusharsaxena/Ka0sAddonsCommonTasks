@@ -32,3 +32,5 @@ other ten in parallel. M3 TP-FIN-01. State: `./resume-state.sh`; restart: `RESUM
 **Smoke (owner).** AuraMaster DRAG-11 (tooltip beside the strip, flips left near the right edge); the
 same hover on AbsorbTracker's, ConsumableMaster's and KickCD's strips if adopted. Never marked passed
 by the orchestrator.
+
+**Addendum (owner, 2026-10-02):** after AbsorbTracker and ConsumableMaster declined (their strip tooltips are strip-owned), the owner asked for consistency across all Ka0s addons: TP-AT-02 and TP-CM-02 adopt the same beside-the-strip placement as AuraMaster and KickCD.

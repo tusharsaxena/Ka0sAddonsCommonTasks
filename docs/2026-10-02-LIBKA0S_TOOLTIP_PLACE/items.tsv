@@ -13,3 +13,5 @@ TP-PF-01	M2	PartyFrameEnhanced	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
 TP-PC-01	M2	PrettyChat	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
 TP-WG-01	M2	WhatGroup	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
 TP-FIN-01	M3	Ka0sAddonsCommonTasks	Battery per repo, checkpoint row, push every feature branch; merge, tag push and branch cleanup only on the owner's go-ahead	all-M2	-
+TP-AT-02	M2	AbsorbTracker	Adopt tooltipPlace: strip tooltip beside the strip (owner: consistency across all Ka0s addons)	TP-AT-01	-
+TP-CM-02	M2	ConsumableMaster	Adopt tooltipPlace: strip tooltip beside the strip (owner: consistency across all Ka0s addons)	TP-CM-01	-
