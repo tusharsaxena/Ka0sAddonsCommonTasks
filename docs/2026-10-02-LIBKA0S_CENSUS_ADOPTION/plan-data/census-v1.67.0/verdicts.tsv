@@ -1,0 +1,99 @@
+major	kind	member	verdict	kept_because	evidence
+Lifecycle	instance	Hold	documented	every host drives the latch through `Set(key, on)`, which calls `Hold`/`Release`; the two remain the primitive pair `Set` is defined by	stubs only (18 stub lines across 6 hosts)
+Lifecycle	instance	Release	documented	every host drives the latch through `Set(key, on)`, which calls `Hold`/`Release`; LibKa0s-Perf-1.0 releases its `perf` hold through it	stubs only; the 7 name hits are other tables' `Release`
+Lifecycle	instance	PrintHolds	documented	it is the latch's chat readout for a host verb that wants one; hosts report holds through their diagnostics sections instead	stubs only
+Lifecycle	instance	name	documented	it is the descriptor's `name` mirrored for the edge lines and for a suite to assert identity	instance data field
+Schema	lib	STRINGS	documented	it is the English fallback every refusal resolves through; hosts override by key through the descriptor's `L`	no host reads the table by name
+Media	lib	FONTS	documented	it is the catalog `Font` and `RegisterLSM` read; all eleven hosts reach it through those two	no host reads the table by name
+Media	lib	ICONS	documented	it is the catalog `Icon` reads; all eleven hosts reach it through `Icon`	no host reads the table by name
+Media	lib	TEXTURES	documented	it is the catalog `Texture` and `RegisterLSM` read, and `RegisterLSM` registers every entry for LibSharedMedia pickers	no host reads the table by name
+Media	lib	Texture	documented	`RegisterLSM` publishes the same textures to LibSharedMedia, which is how hosts offer them; a host drawing one directly needs a path	ConsumableMaster's two `Texture` hits are its own `MacroDisplay.Texture`
+Media	lib	VENDOR_PATH	documented	it is the default every Media reader falls back to when `vendorPath` is omitted, which every host does	default value
+Widgets	descriptor	backdrop	documented	`CopyWindow` defaults to Core's skin; the field is the escape hatch for a window that must not wear it	no `CopyWindow` descriptor passes it
+Widgets	descriptor	makeCloseButton	documented	DebugLog forwards its own `makeCloseButton` here so that published contract did not narrow (Widgets minor 7)	no `CopyWindow` descriptor passes it
+Widgets	descriptor	scrollName	documented	DebugLog passes it from inside the library, so the copy window keeps its `<name>DebugCopyScroll` global	library-internal caller only
+DebugLog	lib	AT_ENABLE_MAX	documented	it names the at-enable queue's cap (32) so tests and documents cite the number rather than restating it	tuning constant
+DebugLog	lib	BUFFER_SLACK	documented	it names the compaction slack (128) that `Add` reads at call time	tuning constant
+DebugLog	lib	DIAG_MAX_LINES	documented	it names the diagnostics report's line cap (1200)	tuning constant
+DebugLog	lib	DIAG_MAX_PER_LIST	documented	it names `out:list`'s default cap (40)	tuning constant
+DebugLog	lib	GATE_MAX_KEYS	documented	it names the change gate's key cap (256)	tuning constant
+DebugLog	lib	MAX_BUFFER	documented	the standard fixes the line cap (3000) and host suites read it to assert the cap; no host code needs it	read by host tests only
+DebugLog	lib	TIME_COPY	documented	it is a session-only switch for timing the copy window, flipped by hand from the client	diagnostic switch
+DebugLog	lib	MakeCloseButton	documented	it forwards to `Core.MakeCloseButton`, which every host calls directly; the forwarder is permanent under `-1.0`'s additive-only rule	the 21 name hits are `Core.MakeCloseButton` calls
+DebugLog	lib	STRINGS	documented	it is the English fallback for every console string; hosts override by key through the descriptor's `L`	no host reads the table by name
+DebugLog	instance	MakeCloseButton	documented	it mirrors the lib-level forwarder onto the instance so a host holds one object	mirror of the lib-level member
+DebugLog	instance	Text	documented	the console resolves its own strings through it; hosts resolve theirs through their own locale	the 15 name hits are `Sl:Text` (LibKa0s-Slash-1.0) calls
+DebugLog	instance	BufferSize	documented	host suites read it to assert the kept count past the cap	read by host tests only (62 hits)
+DebugLog	instance	BuildDiagnostics	documented	it is the diagnostics report as data, for tests; hosts run the report through `RunDiagnostics`/`DebugVerb`	read by host tests only
+DebugLog	instance	CopyText	documented	host suites read it because the copy window's EditBox is write-only through the frame API	read by host tests only
+DebugLog	instance	FindLine	documented	host suites use it to assert a logged line	read by host tests only (88 hits)
+DebugLog	instance	LastLine	documented	host suites use it to assert the newest logged line	read by host tests only
+DebugLog	instance	buffer	documented	host suites read it directly; the document calls it part of the contract	read by host tests only (478 hits)
+DebugLog	descriptor	diagnosticsEnablesLogging	documented	it is the opt-out for a host that must not let a report turn logging on; every host keeps the default	no descriptor passes it
+DebugLog	descriptor	makeCloseButton	documented	both former callers dropped it on purpose once the library's close became the collection's mark; the override stays for a close control different in kind	BankLedger core/DebugLogSetup.lua:146 and LootHistory core/DebugLogSetup.lua:163 record why
+DebugLog	descriptor	skin	documented	every host takes Core's skin; the field is the override for chrome that differs in shape	no descriptor passes it (MultiMeters settings/Schema_Compose.lua:248 is a locale key)
+Slash	instance	CliResetAll	deliberate-host-copy	the library's `resetall` verb runs it in every host that does not replace it; BankLedger and LootHistory replace it on purpose with a confirmed profile reset	LootHistory settings/Slash.lua:433-435 and BankLedger settings/Slash.lua:478-479 record why
+Launcher	lib	STRINGS	documented	it is the English fallback for the menu and tooltip; a host overrides by key through the descriptor's `L`	no host reads the table by name
+Launcher	instance	Object	documented	it is published for a suite to drive the shared click, and for a host with a live value to show	read by host tests only (110 hits)
+Launcher	descriptor	L	documented	no host localizes the launcher's strings yet; it is the only route for one that does	no descriptor passes it
+Options	lib	LAYOUT	documented	it holds the panel geometry the library draws to; the four published keys are read off the LibStub table by a host that aligns to the panel, and none does today. KickCD deleted its two copies of internal header keys rather than re-reading them (KickCD#36)	KickCD core/Constants.lua:109-116 records the deletion; no host reads the table by name
+Options	lib	PatchAlwaysShowScrollbar	documented	`EnsureScroll` applies it to every scroll the library builds; a host calls it only for a scroll frame of its own	reached through `EnsureScroll`
+Options	lib	STRINGS	documented	it is the English fallback for the combat lock and the other library strings	no host reads the table by name
+Options	instance	CHROME_GAP	documented	it is published for a host that draws bespoke chrome of its own and has to know where the band ends	no host draws such chrome today
+Options	instance	FONT_FLAGS	deliberate-host-copy	`O.FontGroup` offers it on every composed font row; MultiMeters keeps its own localized list, keyed `NONE` rather than `""`	MultiMeters settings/Schema_Compose.lua:165-184 records why
+Options	instance	FONT_FLAGS_SORT	deliberate-host-copy	the declared order of `FONT_FLAGS`, read by `O.FontGroup`	MultiMeters settings/Schema_Compose.lua:184
+Options	instance	ID_NAME_HINT	documented	`IdInput` reads it for its tooltip; it is published for a host's own tooltip	reached through `IdInput`
+Options	instance	PatchAlwaysShowScrollbar	documented	the instance mirror of the lib-level patch, reached through `EnsureScroll`	reached through `EnsureScroll`
+Options	instance	RenderSchema	documented	every host moved to `RenderTabbedSchema` and `RenderRows`; the untabbed wrapper is permanent under `-1.0`	superseded in practice
+Options	instance	SetChromeHeight	documented	`TabStrip`, `PageBanner` and `PageHeader` reserve their band through it; a host calls it only for chrome of its own	reached through the chrome makers
+Options	instance	TAB_H	documented	it is published for a host that measures its own strip; every host draws the library's	no host measures its own strip today
+Options	instance	UnnamedCandidates	documented	`IdInput` calls it to ask the client for names; it is pure and published for tests	reached through `IdInput`
+Options	instance	VISIBILITY_SORT	deliberate-host-copy	`O.MasterControls` offers it on every General page; MultiMeters keeps the library's keys with its own localized labels	MultiMeters settings/Schema_Compose.lua:602-611 records why
+Options	instance	VISIBILITY_VALUES	deliberate-host-copy	`O.MasterControls` offers it on every General page; MultiMeters keeps the library's keys with its own localized labels	MultiMeters settings/Schema_Compose.lua:602-611 records why
+Options	descriptor	afterRestoreAll	documented	it is the hook for reset state in neither the schema nor the profile; since window positions moved into the profile no host has any	no descriptor passes it
+Perf	lib	DEFAULT_RING	documented	it is the capture ring's depth (10) when the descriptor omits `ring`, which every host does	default value
+Perf	lib	EncodeJSON	documented	`dump` encodes through it; host suites call it to assert a record round-trips	read by host tests only
+Perf	lib	SCHEMA	documented	it stamps every record and is what `docs/record-schema.md` versions; host suites assert it	read by host tests only
+Perf	lib	STRINGS	documented	it is the English fallback for every perf string	no host reads the table by name
+Perf	instance	Announce	documented	the perf verbs announce through it; hosts announce through their own printer	reached through `OnCommand`
+Perf	instance	BuildRecord	documented	`finish` and `dump` build the record through it; host suites call it	reached through `OnCommand`
+Perf	instance	Cancel	documented	the `cancel` verb runs it	reached through `OnCommand`
+Perf	instance	Close	documented	Shape B's bracket close; every host instruments with `Note` (Shape A) instead	no host brackets with `Open`/`Close`
+Perf	instance	Context	documented	`start` snapshots it and `report` prints it	reached through `OnCommand`
+Perf	instance	ContextLines	documented	the chat ack and the report render `Context()` through it	reached through `OnCommand`
+Perf	instance	EXPERIMENTS	documented	`Measure` maps `a`/`b` to an arm through it	library-internal table (not in the instance table)
+Perf	instance	EncodeJSON	documented	the instance mirror of `lib.EncodeJSON`	read by host tests only
+Perf	instance	FormatReport	documented	`report` renders through it; host suites call it	reached through `OnCommand`
+Perf	instance	HidePanel	documented	the panel's own close and the perf verbs hide through it	reached through `OnCommand` and the panel
+Perf	instance	IsPanelShown	documented	the perf verbs read it; host suites assert it	read by host tests only
+Perf	instance	LABELS	documented	the sampler prints an arm's letter through it	library-internal table (not in the instance table)
+Perf	instance	Log	documented	the perf verbs log through it	reached through `OnCommand`
+Perf	instance	MarkReviewed	documented	`report` and `dump` mark themselves through it	reached through `OnCommand`
+Perf	instance	Measure	documented	the `a`/`b` verbs arm a window through it	reached through `OnCommand`
+Perf	instance	Open	documented	Shape B's bracket open; every host instruments with `Note` (Shape A) instead	no host brackets with `Open`/`Close`
+Perf	instance	PanelIsActionable	documented	published for a host drawing its own chrome in `decorate`; no host does	no `decorate` host
+Perf	instance	PanelStateOf	documented	published for a host drawing its own chrome in `decorate`; no host does	no `decorate` host
+Perf	instance	Progress	documented	the panel renders it	reached through the panel
+Perf	instance	RefreshPanel	documented	every state change repaints through it	reached through the library's own transitions
+Perf	instance	Reset	documented	the `reset` verb runs it	reached through `OnCommand`
+Perf	instance	Resume	documented	`finish` and `cancel` release the `perf` hold through it	reached through `OnCommand`
+Perf	instance	SCHEMA	documented	the instance mirror of `lib.SCHEMA`	read by host tests only
+Perf	instance	STEPS	documented	the panel's rows; published for a `decorate` host	reached through the panel
+Perf	instance	Save	documented	`finish` saves through it	reached through `OnCommand`
+Perf	instance	ShowPanel	documented	the `panel` verb and `start` show it	reached through `OnCommand`
+Perf	instance	Start	documented	the `start` verb runs it	reached through `OnCommand`
+Perf	instance	StatusLines	documented	a bare `perf` prints it	reached through `OnCommand`
+Perf	instance	Stop	documented	`finish` runs it	reached through `OnCommand`
+Perf	instance	Suspend	documented	the `b` arm takes the `perf` hold through it	reached through `OnCommand`
+Perf	instance	TogglePanel	documented	the `panel` verb toggles through it	reached through `OnCommand`
+Perf	instance	Usage	documented	`StatusLines` and the help verb print it	reached through `OnCommand`
+Perf	instance	context	documented	the snapshot `Start` took, read by `report` and `BuildRecord`	instance data field (not in the instance table)
+Perf	instance	descriptor	documented	the descriptor the probe was built from, read by the sibling files of the major	instance data field (not in the instance table)
+Perf	instance	name	documented	the descriptor's `name`, read by the sibling files of the major	instance data field (not in the instance table)
+Perf	instance	ringMax	documented	`Save` trims the ring to it	instance data field (not in the instance table)
+Perf	instance	slash	documented	the panel and `Usage` print commands with it	instance data field (not in the instance table)
+Perf	instance	title	documented	the panel title	instance data field (not in the instance table)
+Perf	descriptor	L	documented	no host localizes the perf strings yet; it is the only route for one that does	no descriptor passes it
+Perf	descriptor	decorate	documented	every host takes the library's panel chrome; the hook is for a host that draws its own	no descriptor passes it
+Perf	descriptor	onChange	documented	it is the hook for a host that republishes perf state on its own bus; none does	no descriptor passes it
+Perf	descriptor	ring	documented	every host takes the default depth of 10	no descriptor passes it

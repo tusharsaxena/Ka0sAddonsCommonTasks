@@ -1,0 +1,98 @@
+Lifecycle	instance	- `Hold`: no consumer as of v1.67.0, kept because every host drives the latch through `Set(key, on)`, which calls `Hold`/`Release`; the two remain the primitive pair `Set` is defined by.
+Lifecycle	instance	- `PrintHolds`: no consumer as of v1.67.0, kept because it is the latch's chat readout for a host verb that wants one; hosts report holds through their diagnostics sections instead.
+Lifecycle	instance	- `Release`: no consumer as of v1.67.0, kept because every host drives the latch through `Set(key, on)`, which calls `Hold`/`Release`; LibKa0s-Perf-1.0 releases its `perf` hold through it.
+Lifecycle	instance	- `name`: no consumer as of v1.67.0, kept because it is the descriptor's `name` mirrored for the edge lines and for a suite to assert identity.
+Schema	lib	- `lib.STRINGS`: no consumer as of v1.67.0, kept because it is the English fallback every refusal resolves through; hosts override by key through the descriptor's `L`.
+Media	lib	- `lib.FONTS`: no consumer as of v1.67.0, kept because it is the catalog `Font` and `RegisterLSM` read; all eleven hosts reach it through those two.
+Media	lib	- `lib.ICONS`: no consumer as of v1.67.0, kept because it is the catalog `Icon` reads; all eleven hosts reach it through `Icon`.
+Media	lib	- `lib.TEXTURES`: no consumer as of v1.67.0, kept because it is the catalog `Texture` and `RegisterLSM` read, and `RegisterLSM` registers every entry for LibSharedMedia pickers.
+Media	lib	- `lib.Texture`: no consumer as of v1.67.0, kept because `RegisterLSM` publishes the same textures to LibSharedMedia, which is how hosts offer them; a host drawing one directly needs a path.
+Media	lib	- `lib.VENDOR_PATH`: no consumer as of v1.67.0, kept because it is the default every Media reader falls back to when `vendorPath` is omitted, which every host does.
+Widgets	descriptor	- `backdrop`: no consumer as of v1.67.0, kept because `CopyWindow` defaults to Core's skin; the field is the escape hatch for a window that must not wear it.
+Widgets	descriptor	- `makeCloseButton`: no consumer as of v1.67.0, kept because DebugLog forwards its own `makeCloseButton` here so that published contract did not narrow (Widgets minor 7).
+Widgets	descriptor	- `scrollName`: no consumer as of v1.67.0, kept because DebugLog passes it from inside the library, so the copy window keeps its `<name>DebugCopyScroll` global.
+DebugLog	lib	- `lib.AT_ENABLE_MAX`: no consumer as of v1.67.0, kept because it names the at-enable queue's cap (32) so tests and documents cite the number rather than restating it.
+DebugLog	lib	- `lib.BUFFER_SLACK`: no consumer as of v1.67.0, kept because it names the compaction slack (128) that `Add` reads at call time.
+DebugLog	lib	- `lib.DIAG_MAX_LINES`: no consumer as of v1.67.0, kept because it names the diagnostics report's line cap (1200).
+DebugLog	lib	- `lib.DIAG_MAX_PER_LIST`: no consumer as of v1.67.0, kept because it names `out:list`'s default cap (40).
+DebugLog	lib	- `lib.GATE_MAX_KEYS`: no consumer as of v1.67.0, kept because it names the change gate's key cap (256).
+DebugLog	lib	- `lib.MAX_BUFFER`: no consumer as of v1.67.0, kept because the standard fixes the line cap (3000) and host suites read it to assert the cap; no host code needs it.
+DebugLog	lib	- `lib.MakeCloseButton`: no consumer as of v1.67.0, kept because it forwards to `Core.MakeCloseButton`, which every host calls directly; the forwarder is permanent under `-1.0`'s additive-only rule.
+DebugLog	lib	- `lib.STRINGS`: no consumer as of v1.67.0, kept because it is the English fallback for every console string; hosts override by key through the descriptor's `L`.
+DebugLog	lib	- `lib.TIME_COPY`: no consumer as of v1.67.0, kept because it is a session-only switch for timing the copy window, flipped by hand from the client.
+DebugLog	instance	- `BufferSize`: no consumer as of v1.67.0, kept because host suites read it to assert the kept count past the cap.
+DebugLog	instance	- `BuildDiagnostics`: no consumer as of v1.67.0, kept because it is the diagnostics report as data, for tests; hosts run the report through `RunDiagnostics`/`DebugVerb`.
+DebugLog	instance	- `CopyText`: no consumer as of v1.67.0, kept because host suites read it because the copy window's EditBox is write-only through the frame API.
+DebugLog	instance	- `FindLine`: no consumer as of v1.67.0, kept because host suites use it to assert a logged line.
+DebugLog	instance	- `LastLine`: no consumer as of v1.67.0, kept because host suites use it to assert the newest logged line.
+DebugLog	instance	- `MakeCloseButton`: no consumer as of v1.67.0, kept because it mirrors the lib-level forwarder onto the instance so a host holds one object.
+DebugLog	instance	- `Text`: no consumer as of v1.67.0, kept because the console resolves its own strings through it; hosts resolve theirs through their own locale.
+DebugLog	instance	- `buffer`: no consumer as of v1.67.0, kept because host suites read it directly; the document calls it part of the contract.
+DebugLog	descriptor	- `diagnosticsEnablesLogging`: no consumer as of v1.67.0, kept because it is the opt-out for a host that must not let a report turn logging on; every host keeps the default.
+DebugLog	descriptor	- `makeCloseButton`: no consumer as of v1.67.0, kept because both former callers dropped it on purpose once the library's close became the collection's mark; the override stays for a close control different in kind.
+DebugLog	descriptor	- `skin`: no consumer as of v1.67.0, kept because every host takes Core's skin; the field is the override for chrome that differs in shape.
+Slash	instance	- `CliResetAll`: no consumer as of v1.67.0, kept because the library's `resetall` verb runs it in every host that does not replace it; BankLedger and LootHistory replace it on purpose with a confirmed profile reset.
+Launcher	lib	- `lib.STRINGS`: no consumer as of v1.67.0, kept because it is the English fallback for the menu and tooltip; a host overrides by key through the descriptor's `L`.
+Launcher	instance	- `Object`: no consumer as of v1.67.0, kept because it is published for a suite to drive the shared click, and for a host with a live value to show.
+Launcher	descriptor	- `L`: no consumer as of v1.67.0, kept because no host localizes the launcher's strings yet; it is the only route for one that does.
+Options	lib	- `lib.LAYOUT`: no consumer as of v1.67.0, kept because it holds the panel geometry the library draws to; the four published keys are read off the LibStub table by a host that aligns to the panel, and none does today. KickCD deleted its two copies of internal header keys rather than re-reading them (KickCD#36).
+Options	lib	- `lib.PatchAlwaysShowScrollbar`: no consumer as of v1.67.0, kept because `EnsureScroll` applies it to every scroll the library builds; a host calls it only for a scroll frame of its own.
+Options	lib	- `lib.STRINGS`: no consumer as of v1.67.0, kept because it is the English fallback for the combat lock and the other library strings.
+Options	instance	- `CHROME_GAP`: no consumer as of v1.67.0, kept because it is published for a host that draws bespoke chrome of its own and has to know where the band ends.
+Options	instance	- `FONT_FLAGS`: no consumer as of v1.67.0, kept because `O.FontGroup` offers it on every composed font row; MultiMeters keeps its own localized list, keyed `NONE` rather than `""`.
+Options	instance	- `FONT_FLAGS_SORT`: no consumer as of v1.67.0, kept because the declared order of `FONT_FLAGS`, read by `O.FontGroup`.
+Options	instance	- `ID_NAME_HINT`: no consumer as of v1.67.0, kept because `IdInput` reads it for its tooltip; it is published for a host's own tooltip.
+Options	instance	- `PatchAlwaysShowScrollbar`: no consumer as of v1.67.0, kept because the instance mirror of the lib-level patch, reached through `EnsureScroll`.
+Options	instance	- `RenderSchema`: no consumer as of v1.67.0, kept because every host moved to `RenderTabbedSchema` and `RenderRows`; the untabbed wrapper is permanent under `-1.0`.
+Options	instance	- `SetChromeHeight`: no consumer as of v1.67.0, kept because `TabStrip`, `PageBanner` and `PageHeader` reserve their band through it; a host calls it only for chrome of its own.
+Options	instance	- `TAB_H`: no consumer as of v1.67.0, kept because it is published for a host that measures its own strip; every host draws the library's.
+Options	instance	- `UnnamedCandidates`: no consumer as of v1.67.0, kept because `IdInput` calls it to ask the client for names; it is pure and published for tests.
+Options	instance	- `VISIBILITY_SORT`: no consumer as of v1.67.0, kept because `O.MasterControls` offers it on every General page; MultiMeters keeps the library's keys with its own localized labels.
+Options	instance	- `VISIBILITY_VALUES`: no consumer as of v1.67.0, kept because `O.MasterControls` offers it on every General page; MultiMeters keeps the library's keys with its own localized labels.
+Options	descriptor	- `afterRestoreAll`: no consumer as of v1.67.0, kept because it is the hook for reset state in neither the schema nor the profile; since window positions moved into the profile no host has any.
+Perf	lib	- `lib.DEFAULT_RING`: no consumer as of v1.67.0, kept because it is the capture ring's depth (10) when the descriptor omits `ring`, which every host does.
+Perf	lib	- `lib.EncodeJSON`: no consumer as of v1.67.0, kept because `dump` encodes through it; host suites call it to assert a record round-trips.
+Perf	lib	- `lib.SCHEMA`: no consumer as of v1.67.0, kept because it stamps every record and is what `docs/record-schema.md` versions; host suites assert it.
+Perf	lib	- `lib.STRINGS`: no consumer as of v1.67.0, kept because it is the English fallback for every perf string.
+Perf	instance	- `Announce`: no consumer as of v1.67.0, kept because the perf verbs announce through it; hosts announce through their own printer.
+Perf	instance	- `BuildRecord`: no consumer as of v1.67.0, kept because `finish` and `dump` build the record through it; host suites call it.
+Perf	instance	- `Cancel`: no consumer as of v1.67.0, kept because the `cancel` verb runs it.
+Perf	instance	- `Close`: no consumer as of v1.67.0, kept because Shape B's bracket close; every host instruments with `Note` (Shape A) instead.
+Perf	instance	- `Context`: no consumer as of v1.67.0, kept because `start` snapshots it and `report` prints it.
+Perf	instance	- `ContextLines`: no consumer as of v1.67.0, kept because the chat ack and the report render `Context()` through it.
+Perf	instance	- `EXPERIMENTS`: no consumer as of v1.67.0, kept because `Measure` maps `a`/`b` to an arm through it.
+Perf	instance	- `EncodeJSON`: no consumer as of v1.67.0, kept because the instance mirror of `lib.EncodeJSON`.
+Perf	instance	- `FormatReport`: no consumer as of v1.67.0, kept because `report` renders through it; host suites call it.
+Perf	instance	- `HidePanel`: no consumer as of v1.67.0, kept because the panel's own close and the perf verbs hide through it.
+Perf	instance	- `IsPanelShown`: no consumer as of v1.67.0, kept because the perf verbs read it; host suites assert it.
+Perf	instance	- `LABELS`: no consumer as of v1.67.0, kept because the sampler prints an arm's letter through it.
+Perf	instance	- `Log`: no consumer as of v1.67.0, kept because the perf verbs log through it.
+Perf	instance	- `MarkReviewed`: no consumer as of v1.67.0, kept because `report` and `dump` mark themselves through it.
+Perf	instance	- `Measure`: no consumer as of v1.67.0, kept because the `a`/`b` verbs arm a window through it.
+Perf	instance	- `Open`: no consumer as of v1.67.0, kept because Shape B's bracket open; every host instruments with `Note` (Shape A) instead.
+Perf	instance	- `PanelIsActionable`: no consumer as of v1.67.0, kept because published for a host drawing its own chrome in `decorate`; no host does.
+Perf	instance	- `PanelStateOf`: no consumer as of v1.67.0, kept because published for a host drawing its own chrome in `decorate`; no host does.
+Perf	instance	- `Progress`: no consumer as of v1.67.0, kept because the panel renders it.
+Perf	instance	- `RefreshPanel`: no consumer as of v1.67.0, kept because every state change repaints through it.
+Perf	instance	- `Reset`: no consumer as of v1.67.0, kept because the `reset` verb runs it.
+Perf	instance	- `Resume`: no consumer as of v1.67.0, kept because `finish` and `cancel` release the `perf` hold through it.
+Perf	instance	- `SCHEMA`: no consumer as of v1.67.0, kept because the instance mirror of `lib.SCHEMA`.
+Perf	instance	- `STEPS`: no consumer as of v1.67.0, kept because the panel's rows; published for a `decorate` host.
+Perf	instance	- `Save`: no consumer as of v1.67.0, kept because `finish` saves through it.
+Perf	instance	- `ShowPanel`: no consumer as of v1.67.0, kept because the `panel` verb and `start` show it.
+Perf	instance	- `Start`: no consumer as of v1.67.0, kept because the `start` verb runs it.
+Perf	instance	- `StatusLines`: no consumer as of v1.67.0, kept because a bare `perf` prints it.
+Perf	instance	- `Stop`: no consumer as of v1.67.0, kept because `finish` runs it.
+Perf	instance	- `Suspend`: no consumer as of v1.67.0, kept because the `b` arm takes the `perf` hold through it.
+Perf	instance	- `TogglePanel`: no consumer as of v1.67.0, kept because the `panel` verb toggles through it.
+Perf	instance	- `Usage`: no consumer as of v1.67.0, kept because `StatusLines` and the help verb print it.
+Perf	instance	- `context`: no consumer as of v1.67.0, kept because the snapshot `Start` took, read by `report` and `BuildRecord`.
+Perf	instance	- `descriptor`: no consumer as of v1.67.0, kept because the descriptor the probe was built from, read by the sibling files of the major.
+Perf	instance	- `name`: no consumer as of v1.67.0, kept because the descriptor's `name`, read by the sibling files of the major.
+Perf	instance	- `ringMax`: no consumer as of v1.67.0, kept because `Save` trims the ring to it.
+Perf	instance	- `slash`: no consumer as of v1.67.0, kept because the panel and `Usage` print commands with it.
+Perf	instance	- `title`: no consumer as of v1.67.0, kept because the panel title.
+Perf	descriptor	- `L`: no consumer as of v1.67.0, kept because no host localizes the perf strings yet; it is the only route for one that does.
+Perf	descriptor	- `decorate`: no consumer as of v1.67.0, kept because every host takes the library's panel chrome; the hook is for a host that draws its own.
+Perf	descriptor	- `onChange`: no consumer as of v1.67.0, kept because it is the hook for a host that republishes perf state on its own bus; none does.
+Perf	descriptor	- `ring`: no consumer as of v1.67.0, kept because every host takes the default depth of 10.

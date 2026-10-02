@@ -1,0 +1,39 @@
+id	milestone	repo	title	depends_on	issues
+CA-PLAN-01	M0	Ka0sAddonsCommonTasks	Plan bundle	-	-
+CA-LK-01	M1	LibKa0s	Core 10: MakeResizable canResize, onResizeStop, gripParent	CA-PLAN-01	LibKa0s#41
+CA-LK-02	M1	LibKa0s	Options 28 / OptionsIdList 3: addonName loaded-addon guard and one debug line	CA-LK-01	LibKa0s#42
+CA-LK-03	M1	LibKa0s	v1.67.0 release record and local tag	CA-LK-02	LibKa0s#41;LibKa0s#42
+CA-STD-01	M1	WowAddonStandards	options-ui-§1 addonName descriptor row and NEW_ADDON_CONTEXT template	CA-PLAN-01	LibKa0s#42
+CA-AT-RV	M2	AbsorbTracker	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-AM-RV	M2	AuraMaster	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-BL-RV	M2	BankLedger	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-CM-RV	M2	ConsumableMaster	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-KC-RV	M2	KickCD	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-LH-RV	M2	LootHistory	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-MM-RV	M2	MultiMeters	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-PM-RV	M2	PanelMaster	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-PF-RV	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-PC-RV	M2	PrettyChat	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-WG-RV	M2	WhatGroup	Re-vendor LibKa0s v1.67.0	CA-LK-03	-
+CA-AT-NM	M2	AbsorbTracker	Options descriptor passes addonName	CA-AT-RV	LibKa0s#42
+CA-AM-NM	M2	AuraMaster	Options descriptor passes addonName (help marks draw the info art)	CA-AM-RV	LibKa0s#42
+CA-BL-NM	M2	BankLedger	Options descriptor passes addonName	CA-BL-RV	LibKa0s#42
+CA-CM-NM	M2	ConsumableMaster	Options descriptor passes addonName	CA-CM-RV	LibKa0s#42
+CA-KC-NM	M2	KickCD	Options descriptor passes addonName	CA-KC-RV	LibKa0s#42
+CA-LH-NM	M2	LootHistory	Options descriptor passes addonName	CA-LH-RV	LibKa0s#42
+CA-MM-NM	M2	MultiMeters	Options descriptor passes addonName	CA-MM-RV	LibKa0s#42
+CA-PM-NM	M2	PanelMaster	Options descriptor passes addonName	CA-PM-RV	LibKa0s#42
+CA-PF-NM	M2	PartyFrameEnhanced	Options descriptor passes addonName	CA-PF-RV	LibKa0s#42
+CA-PC-NM	M2	PrettyChat	Options descriptor passes addonName	CA-PC-RV	LibKa0s#42
+CA-WG-NM	M2	WhatGroup	Options descriptor passes addonName	CA-WG-RV	LibKa0s#42
+CA-AT-01	M2	AbsorbTracker	Adopt Slash.SplitVerb, Slash.ProfileNames and Core.SECRET	CA-AT-NM	AbsorbTracker#33
+CA-BL-01	M2	BankLedger	Adopt Core.MakeResizable on the ledger and session windows	CA-BL-NM	BankLedger#21
+CA-CM-01	M2	ConsumableMaster	Adopt Slash.SplitVerb, FindCommand and CommandRows	CA-CM-NM	ConsumableMaster#44
+CA-KC-01	M2	KickCD	Adopt Slash.SplitVerb, FindCommand and CommandRows	CA-KC-NM	KickCD#36
+CA-KC-02	M2	KickCD	Adopt Core.SECRET; delete PANEL_HEADER_TOP/HEIGHT	CA-KC-01	KickCD#36
+CA-LH-01	M2	LootHistory	Adopt Core.MakeResizable with canResize on the History browser	CA-LH-NM	LootHistory#33
+CA-MM-01	M2	MultiMeters	Adopt Core.SECRET	CA-MM-NM	MultiMeters#58
+CA-MM-02	M2	MultiMeters	Adopt Core.MakeResizable with gripParent and onResizeStop	CA-MM-01	MultiMeters#58
+CA-PM-01	M2	PanelMaster	Read O.PADDING_X for the Profiles container	CA-PM-NM	PanelMaster#56
+CA-LK-04	M3	LibKa0s	Census re-run on v1.67.0 consumers (CONSUMERS.md restamp)	all-M2	LibKa0s#9
+CA-FIN-01	M3	Ka0sAddonsCommonTasks	Execution record, smoke list, issue comments	CA-LK-04	-
