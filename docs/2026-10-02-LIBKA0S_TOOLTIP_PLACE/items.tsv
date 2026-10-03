@@ -1,0 +1,17 @@
+id	milestone	repo	title	depends_on	issues
+TP-PLAN-01	M0	Ka0sAddonsCommonTasks	Plan bundle	-	-
+TP-LK-01	M1	LibKa0s	WidgetsDragHandle minor 4: tooltipPlace host hook; release v1.68.0 (local tag)	TP-PLAN-01	AuraMaster#22
+TP-AM-01	M2	AuraMaster	Re-vendor v1.68.0; adopt tooltipPlace: strip tooltip beside the strip (right, or left near the right edge)	TP-LK-01	AuraMaster#22
+TP-AT-01	M2	AbsorbTracker	Re-vendor v1.68.0; evaluate and adopt tooltipPlace for its drag strip	TP-LK-01	-
+TP-CM-01	M2	ConsumableMaster	Re-vendor v1.68.0; evaluate and adopt tooltipPlace for its macro-bar strip	TP-LK-01	-
+TP-KC-01	M2	KickCD	Re-vendor v1.68.0; evaluate and adopt tooltipPlace for its castbar and icon-grid strips	TP-LK-01	-
+TP-BL-01	M2	BankLedger	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
+TP-LH-01	M2	LootHistory	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
+TP-MM-01	M2	MultiMeters	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
+TP-PM-01	M2	PanelMaster	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
+TP-PF-01	M2	PartyFrameEnhanced	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
+TP-PC-01	M2	PrettyChat	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
+TP-WG-01	M2	WhatGroup	Re-vendor v1.68.0 (no drag strip)	TP-LK-01	-
+TP-FIN-01	M3	Ka0sAddonsCommonTasks	Battery per repo, checkpoint row, push every feature branch; merge, tag push and branch cleanup only on the owner's go-ahead	all-M2	-
+TP-AT-02	M2	AbsorbTracker	Adopt tooltipPlace: strip tooltip beside the strip (owner: consistency across all Ka0s addons)	TP-AT-01	-
+TP-CM-02	M2	ConsumableMaster	Adopt tooltipPlace: strip tooltip beside the strip (owner: consistency across all Ka0s addons)	TP-CM-01	-

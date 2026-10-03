@@ -1,0 +1,2 @@
+id	repo	why	proof
+TP-LK-01	LibKa0s	Delivered under the DA-LK-* prefix (DA-LK-01..07R) on feat/2026-10-02-drag-attach; reviewed note "OK DA-LK" on cc9f5eb	git -C ../LibKa0s rev-parse "v1.68.0^{commit}" (= cc9f5eb) and git -C ../LibKa0s notes --ref=ka0s-review show cc9f5eb
