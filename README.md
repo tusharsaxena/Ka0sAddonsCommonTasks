@@ -7,12 +7,12 @@ belongs in.
 
 - **Not an addon.** Nothing here is installed by a player, loaded by the client, or packaged. There is no
   TOC, no `libs/`, no test suite.
-- **Not upstream of anything.** It is not `LibKa0s`, not `WowAddonStandards`, not the `wow-addon` plugin.
+- **Not upstream of anything.** It is not `LibKa0s`, not `WowAddonStandards`, not the `dev-copilot` plugin.
   No addon vendors from here, depends on here, or fetches anything from here at runtime. Those three are the
   real upstreams — this folder sits beside them, not above them.
 - **Not a home for code that has a home.** If a script belongs to one addon, it goes in that addon. If a rule
   belongs to the standard, it goes in `WowAddonStandards`. If a command belongs to the plugin, it goes in
-  `wow-addon`.
+  `dev-copilot`.
 
 ## What belongs here
 
@@ -44,7 +44,7 @@ Everything below is a sibling directory under the same parent.
 |---|---|
 | `WowAddonStandards` | The Ka0s WoW Addon Standard — source of truth for every rule an addon is audited against |
 | `LibKa0s` | The shared library and the test kit, vendored into every addon |
-| `wow-addon` | The Claude Code plugin — the `/wow-addon:*` commands and agents |
+| `dev-copilot` | The Claude Code plugin — the `/dev-copilot:*` commands and agents |
 
 **The addons** — read [`../WowAddonStandards/standards/ADDONS.md`](../WowAddonStandards/standards/ADDONS.md).
 That roster is the single source of truth for which addons are in scope, and it is the one place scope is

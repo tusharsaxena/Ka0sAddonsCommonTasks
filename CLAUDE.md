@@ -9,7 +9,7 @@ Every Ka0s repo is a sibling of this one, under `/mnt/d/Profile/Users/Tushar/Doc
 them as `../<Repo>`.
 
 - **Upstreams:** `WowAddonStandards` (the Ka0s WoW Addon Standard), `LibKa0s` (the shared library and test
-  kit, vendored into every addon) and `wow-addon` (the Claude Code plugin behind `/wow-addon:*`).
+  kit, vendored into every addon) and `dev-copilot` (the Claude Code plugin behind `/dev-copilot:*`).
 - **Addons:** `../WowAddonStandards/standards/ADDONS.md` is the single source of truth for which addons
   are in scope. Never copy that list into this repo, because a copy goes stale.
 - Other directories under `GIT/` (for example `steamdb` or `weakaura_sounds`) are not part of the
@@ -34,7 +34,7 @@ Decide first whether the work belongs to one repo or to several.
 - **Cross-repo work** (a collection-wide review remediation, a LibKa0s adoption sweep, anything that
   reasons about the collection as a whole) goes here as a dated bundle, `docs/<YYYY-MM-DD>-<TOPIC>/`.
 - **Anything with a better home goes there:** a rule belongs in `WowAddonStandards`, a command or agent in
-  `wow-addon`, shared code in `LibKa0s`, and one addon's script in that addon.
+  `dev-copilot`, shared code in `LibKa0s`, and one addon's script in that addon.
 
 ## Bundle conventions
 
@@ -76,7 +76,7 @@ For long multi-repo runs, follow the pattern in `docs/2026-09-23-REVIEW_AND_STAN
 - **Commit** incrementally, and **push feature branches** at milestone checkpoints, only when the owner
   has authorized it for that piece of work.
 - **Never** merge into `master`/`main`, push a tag, bump an addon version or cut a release without the
-  owner's explicit go-ahead. Once the owner approves, `/wow-addon:finalize` does the merge.
+  owner's explicit go-ahead. Once the owner approves, `/dev-copilot:finalize` does the merge.
 - Merge `--no-ff`, then delete the feature branch.
 - Commit messages end with the session's attribution trailers.
 - Space out bulk GitHub writes (issue create and edit), because rate limits hurt more than slowness.
@@ -86,7 +86,7 @@ For long multi-repo runs, follow the pattern in `docs/2026-09-23-REVIEW_AND_STAN
 - Every addon's green gate is in its own `CLAUDE.md`. It is typically `lua tests/run.lua`, `luacheck .`
   (0 warnings / 0 errors) and `lizard -l lua -x "./libs/*" -x "./tests/_kit/*" .` (no function above
   CCN 15), plus the 1500-line file cap.
-- For long batteries, use the bounded runner at `/home/tushar/.claude/wow-addon/bin/ka0s-bounded`.
+- For long batteries, use the bounded runner at `/home/tushar/.claude/dev-copilot/bin/ka0s-bounded`.
 - In-client smoke tests are the owner's to run. Record their results in the bundle's smoke-test file and
   never mark a smoke check as passed yourself.
 - For regressions, bisect before theorizing. A commit message documents only the change its author knew
@@ -94,8 +94,9 @@ For long multi-repo runs, follow the pattern in `docs/2026-09-23-REVIEW_AND_STAN
 
 ## Useful commands
 
-- `/wow-addon:finalize`: sync docs, commit, merge, push and delete branches, across repos in dependency
+- `/dev-copilot:finalize`: sync docs, commit, merge, push and delete branches, across repos in dependency
   order.
-- `/wow-addon:issue-summary`: issue counts across the whole collection.
-- `/wow-addon:execution-status`: where a planned run stands.
-- `/wow-addon:revendor-libka0s`, `/wow-addon:revendor-standards`: push upstream changes into addons.
+- `/dev-copilot:issue-summary`: issue counts across the whole collection.
+- `/dev-copilot:execution-status`: where a planned run stands.
+- `/dev-copilot:wow-revendor-libka0s`, `/dev-copilot:wow-revendor-standards`: push upstream changes into
+  addons.
