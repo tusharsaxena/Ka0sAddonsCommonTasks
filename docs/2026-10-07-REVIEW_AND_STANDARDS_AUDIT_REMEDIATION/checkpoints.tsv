@@ -1,2 +1,3 @@
 when	checkpoint	evidence
 2026-10-07	M0 record: audit + review bundles committed in 14 repos; plan committed (164 items)	all 15 feat branches pushed to origin (Ka0sAddonsCommonTasks 715c072)
+2026-10-07	M1 upstream COMPLETE (38/38 incl. DC-14 and LK-11 exceptions, all reviewed)	LibKa0s cb274a4: luacheck 0/0 in 155 files, 2139 passed / 0 failed / 2 skipped, lizard CCN<=15, max file 1458 lines; local tag v1.71.0 on cb274a4 (not pushed); dev-copilot 4/4 python suites OK; WowAddonStandards v2.77.0 check-standard.sh all passed; pushed WowAddonStandards ffb3d6a, LibKa0s cb274a4, dev-copilot decf642 + ka0s-review notes
