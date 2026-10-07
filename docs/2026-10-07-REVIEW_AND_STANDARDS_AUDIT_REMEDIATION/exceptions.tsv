@@ -1,1 +1,2 @@
 id	reason
+DC-14	remote-only: owner approved 2026-10-07; origin/main (d2ed30d, ancestor of master) deleted; proof: git -C ../../../dev-copilot ls-remote --heads origin main prints nothing
