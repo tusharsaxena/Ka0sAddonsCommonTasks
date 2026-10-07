@@ -1,0 +1,186 @@
+{
+ "repo": "PrettyChat",
+ "items": [
+  {
+   "id": "RV-PC",
+   "milestone": "M2",
+   "repo": "PrettyChat",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 re-vendors in one span bundle",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PC-A-01",
+    "PC-R-07"
+   ],
+   "spec": "Mechanical re-vendor per the dev-copilot:wow-revendor-libka0s convention, no adoption interview, no GitHub issue filing (OWNER_SCOPE 5). (1) Payloads: `libs/LibKa0s/` replaced whole by the v1.71.0 tag's `LibKa0s/` tree and `tests/_kit/` replaced whole by its `testkit/` tree (read from the LOCAL tag in ../LibKa0s, e.g. `git -C ../LibKa0s archive v1.71.0 LibKa0s testkit` into a scratch dir, then copy; never from the working tree). (2) CLAUDE.md provenance line becomes exactly `Bundles [LibKa0s](https://github.com/tusharsaxena/LibKa0s) v1.71.0 (MIT).` in the same commit (tests/test_vendor_sync.lua greps it). docs/ARCHITECTURE.md ## External dependencies `v1.70.0` -> `v1.71.0` (only the version token; the rest of that paragraph is PC-06's). (3) Kit revision 38 changes the --list Totals semantics (LK-01): regenerate docs/test-cases.md in the same commit; the one declared skip moves to a `| Skipped | 1 |` row and Total now reads 572, equal to the README badge 572/572 (resolves PC-R-07; if the badge count has moved since, Total must equal it). (4) Span bundle for the two re-vendors that left no record (commits 136cf54 v1.69.0 and 7a1aabf v1.70.0): docs/revendor/2026-10-07-v1.69.0-v1.70.0/ with 01_DELTA.md whose line 1 is exactly `Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)`; the body names base v1.68.1 (bundle 2026-10-04-v1.68.1), both commits, WidgetsLineChart.lua (new at v1.69.0), WidgetsAutocomplete.lua and kit 37's mock_lines.lua; 05_SUMMARY.md has one line per tag: carried by the sweep, nothing adopted; Widgets declined (#11). Match the file set of 2026-10-01-v1.64.0-v1.65.0 (01_DELTA, 02_CANDIDATES, 03_DECISIONS, 05_SUMMARY). (5) Release bundle docs/revendor/2026-10-07-v1.71.0/ (01_DELTA.md line 1 `Delta: LibKa0s v1.70.0 -> v1.71.0`; per-file LibStub minors; kit 37 -> 38 pairing; majors this addon consumes (Core, Env, Media, DebugLog, Slash, Options, Launcher, Lifecycle, Schema): Env minor 2 and OptionsIdList minor 4 drop dead rungs, Slash key 20.2 ParseValue refuses nan/inf, no contract change under an unmoved signature; 02_CANDIDATES/03_DECISIONS list Kit.secret (LK-02), the WidgetsLineChart/WidgetsAutocomplete fixes (LK-03/LK-04, Widgets declined #11) as `not adopted in this run`; 05_SUMMARY.md states the Totals fix closes PC-R-07). (6) Any red the fresh payload causes is fixed in this commit only if it is a mechanical consequence of the copy (e.g. a test asserting the old Totals shape or the old provenance string); a behaviour red stops and is flagged. No change to authored addon code beyond that.",
+   "steps": "1. `git -C ../LibKa0s tag -l v1.71.0` exists (local); stage the tag's LibKa0s/ and testkit/ in the scratchpad.\n2. `rm -rf libs/LibKa0s tests/_kit` then copy both whole; restore CRLF per .gitattributes (git add --renormalize if needed).\n3. Roll the CLAUDE.md provenance line and the ARCHITECTURE.md version token.\n4. `lua tests/run.lua`; fix only mechanical copy consequences; regenerate docs/test-cases.md; confirm Total == badge.\n5. Write docs/revendor/2026-10-07-v1.69.0-v1.70.0/ (from `git show 136cf54 --stat`, `git show 7a1aabf --stat`) and docs/revendor/2026-10-07-v1.71.0/.\n6. Green gate; commit `RV-PC: re-vendor LibKa0s v1.71.0 (kit 38); record the v1.69.0/v1.70.0 span`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; libs/LibKa0s and tests/_kit match the v1.71.0 tag's LibKa0s/ and testkit/ byte-for-byte modulo CR (`lua tests/run.lua` runs test_vendor_sync PASS, not SKIP, against v1.71.0); grep -c 'v1.71.0 (MIT)' CLAUDE.md = 1; head -1 docs/revendor/2026-10-07-v1.69.0-v1.70.0/01_DELTA.md = 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)'; head -1 docs/revendor/2026-10-07-v1.71.0/01_DELTA.md = 'Delta: LibKa0s v1.70.0 -> v1.71.0'; grep -n '| Skipped |' docs/test-cases.md (one row) and the Total row equals the README badge; the AUDIT.md re-vendor two-listing check reports no unrecorded tag.",
+   "smoke": "Owner: /reload with PrettyChat enabled; no Lua errors; /pc config opens General, Categories and Profiles; /pc test prints the preview."
+  },
+  {
+   "id": "PC-01",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Schema refuses an empty or whitespace-only format, so the panel can no longer store a blank chat string",
+   "depends_on": [
+    "RV-PC"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PC-R-02"
+   ],
+   "spec": "settings/Schema.lua refusedBySignature(row, value) (:342) gains a first rule for format rows: a value that is a string and matches `^%s*$` is refused with a localized reason from a new locales/enUS.lua key, e.g. L[\"A format can't be blank. Use Reset to restore the default.\"] (add it to every locale file the repo keeps per the locales rule, enUS as the source). Because Schema.Set (:362) and the default self-check (:1026) both route through refusedBySignature, the settings panel path (settings/Panel.lua:274-277, Enter on a cleared New box -> Schema.Set(path, \"\")) is refused and the previous stored value is kept; the panel shows the refusal the same way it shows a signature refusal today. /pc set's existing blank refusal (settings/Slash.lua:270-272) stays; if it can now defer to the schema's message without changing its output, leave it untouched (no scope creep). No shipped default is blank, so the load-time default check stays green.",
+   "steps": "1. Red: tests/test_schema.lua cases: Schema.Set('<a real format path>', '') returns refused with the new message and leaves the stored value unchanged; same for '   ' and '\\t'; a non-blank valid format still sets. Add a tests/test_panel.lua case that drives the New box's Enter handler with '' and asserts db.profile is unchanged. Add `-- red under:` notes. Run and see red.\n2. Implement the rule and the locale key.\n3. Regenerate the inventory (`lua tests/run.lua --list > docs/test-cases.md`) and move the README `Tests` badge to the new Total in the SAME commit (docs/testing.md:216).\n4. Green gate; commit `PC-01: refuse blank formats in the schema (panel stored \"\")`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; grep -n \"can't be blank\" locales/enUS.lua settings/Schema.lua; the new cases appear in docs/test-cases.md.",
+   "smoke": "Owner: /pc config -> Categories -> Loot; clear one message's New box and press Enter; the box is refused (message shown) and /pc test still prints that message formatted, not blank."
+  },
+  {
+   "id": "PC-02",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "RunMigrations leaves a newer build's data alone: no prune and no restamp when the stored schemaVersion is ahead",
+   "depends_on": [
+    "RV-PC",
+    "PC-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PC-R-04"
+   ],
+   "spec": "core/Database.lua RunMigrations (:194-204): when `db.global.schemaVersion` is a number greater than Database.SCHEMA_VERSION, emit one NS.Debug(\"Migrate\", \"stored schema v%d is newer than this build's v%d; leaving the profile untouched\", ...) and return before runSteps, the restamp and PruneOrphans, so strings[G]/disabledStrings[G] written by a newer build survive a rollback and the stamp stays. Rewrite the header comment (:189-193) to state the new rule (ahead = written by a newer build, left untouched) instead of 'normalized down'. Behaviour for stamps <= SCHEMA_VERSION is unchanged.",
+   "steps": "1. Red: deliberately rewrite tests/test_database.lua:61-65 ('the runner stamps the current version...') so an ahead stamp (SCHEMA_VERSION + 5) is asserted UNCHANGED; add a case with schemaVersion 99 plus a stored override under a global with no schema row in this build, asserting it survives RunMigrations and the debug line is emitted once. `-- red under:` notes. See red.\n2. Implement the early return; update the header comment.\n3. Regenerate the inventory (`lua tests/run.lua --list > docs/test-cases.md`) and move the README `Tests` badge to the new Total in the SAME commit (docs/testing.md:216).\n4. Green gate; commit `PC-02: do not prune or restamp a profile written by a newer build`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; grep -n 'newer than this build' core/Database.lua; the stamp-99 survival case listed in docs/test-cases.md.",
+   "smoke": ""
+  },
+  {
+   "id": "PC-03",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Categories page header Defaults asks before resetting all eight tabs; the footer path (already confirmed by Blizzard) does not ask twice",
+   "depends_on": [
+    "RV-PC",
+    "PC-02"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PC-R-03"
+   ],
+   "spec": "Decision taken (owner delegated): do it, header path only. settings/Panel.lua: new StaticPopupDialogs[\"PRETTYCHAT_RESET_CATEGORIES\"] next to PRETTYCHAT_RESET_ALL (:43), text from a new locale key, e.g. L[\"Reset the strings on every category tab to their defaults? Your edits in every category are discarded.\"], button1 YES, button2 NO, timeout 0, whileDead, hideOnEscape, OnAccept = PrettyChat:ResetCategoriesPage(). New PrettyChat:ConfirmResetCategories() shows it. The library routes BOTH the header button (libs/LibKa0s/Options.lua:792-797, called as onClick(widget, ...)) and the footer forwarder (Options.lua:681-685, called as defaultsOnClick() with no args) through panel.defaultsOnClick, so the Categories handler (:756-758) distinguishes them by argument count: `function(...) if select('#', ...) > 0 then PrettyChat:ConfirmResetCategories() else PrettyChat:ResetCategoriesPage() end end`, with a comment explaining that the footer path has already been confirmed by Blizzard's own Defaults dialog. Combat refusal stays in the library on both paths. The General page is not changed. README.md:63/:65 wording says the Categories Defaults button asks first; docs/settings-panel.md if it describes the button.",
+   "steps": "1. Red: tests/test_panel.lua:384 case reworked: panel.defaultsBtn's OnClick (header path) shows PRETTYCHAT_RESET_CATEGORIES and changes nothing until the popup's OnAccept runs, after which the one `[Set] reset Categories: 2 rows` line appears; add a case that panel.OnDefault() (footer path) resets directly with no popup. Use the harness's StaticPopup mock as the ResetAll tests do. See red.\n2. Implement popup, ConfirmResetCategories, the handler and the locale key.\n3. README/settings-panel wording.\n4. Regenerate the inventory (`lua tests/run.lua --list > docs/test-cases.md`) and move the README `Tests` badge to the new Total in the SAME commit (docs/testing.md:216).\n5. Green gate; commit `PC-03: confirm the Categories header Defaults before resetting every tab`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; grep -n 'PRETTYCHAT_RESET_CATEGORIES' settings/Panel.lua; grep -n 'asks first' README.md covers the Categories button.",
+   "smoke": "Owner: Categories page header Defaults -> a confirmation appears; No keeps edits, Yes resets every tab. The Settings window footer Defaults on the Categories page asks once (Blizzard's dialog) and resets without a second popup."
+  },
+  {
+   "id": "PC-04",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "/pc test category: General is not a test category; leave it out of the Valid list and refuse it as unknown",
+   "depends_on": [
+    "RV-PC",
+    "PC-03"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PC-R-11"
+   ],
+   "spec": "settings/Slash.lua runTest (:575-600): build the 'Valid:' list from Schema.CATEGORY_ORDER without \"General\" (a local helper, used by both the usage line :588-589 and the unknown line :593); after ResolveCategory, a matched == \"General\" takes the same unknown-category path (same message, debug line `test refused: unknown category 'General'`). Schema.CATEGORY_ORDER itself is unchanged (the panel uses it). Any slash help or docs/common-tasks.md text listing test categories drops General.",
+   "steps": "1. Red: tests/test_slash.lua cases: `/pc test category General` (and `general`) prints the unknown-category line and no preview; the usage and unknown lines' Valid list does not contain General but does contain Loot..Misc. See red.\n2. Implement.\n3. Regenerate the inventory (`lua tests/run.lua --list > docs/test-cases.md`) and move the README `Tests` badge to the new Total in the SAME commit (docs/testing.md:216).\n4. Green gate; commit `PC-04: /pc test category no longer offers General`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; the new test_slash cases are in docs/test-cases.md.",
+   "smoke": "Owner: `/pc test category General` prints the unknown-category message with a Valid list that starts at Loot; `/pc test category Loot` still previews."
+  },
+  {
+   "id": "PC-05",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Comment and doc truth: _G writes do taint (only non-protected readers), and the report-size and addon-count figures stop contradicting each other",
+   "depends_on": [
+    "RV-PC",
+    "PC-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PC-R-05",
+    "PC-R-06"
+   ],
+   "spec": "Comment/doc only, no code change. (1) docs/data-flow.md:141: replace \"`ApplyStrings` is unprotected; `_G` writes don't taint.\" with: the writes DO taint the overridden globals (issecurevariable answers false, \"PrettyChat\"), but only non-protected chat formatting reads them, so no protected path is affected and the pipeline needs no combat guard; note it is unverified against the current client and is an owner in-client observation, not a gate. (2) settings/Panel.lua:89-90 ('500+ lines'), :109 ('eighty-odd lines') and modules/Override.lua:752 ('A 500-line preview'): describe the Test() report size consistently without an exact count (e.g. 'a few hundred lines with every category on'), or, if a count is wanted, the one recounted from the headless Test() output (about 335). (3) settings/Schema.lua:104-105: 'nine addons drawing the same tab from nine hand-written copies' becomes count-free ('every addon drawing the same tab from its own hand-written copy'). No other comment trimming.",
+   "steps": "1. Edit the five sites.\n2. grep the tree (excluding libs/, tests/_kit/ and frozen docs/audits|reviews|automated-tests|revendor bundles) for other '500+'/'500-line'/'eighty-odd'/'nine addons' claims and align them.\n3. Green gate (test_doc_structure, prose gate); commit `PC-05: correct the taint sentence and the contradictory report-size figures`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; ! grep -n \"don't taint\" docs/data-flow.md; ! grep -nE '500\\+|500-line|eighty-odd' settings/Panel.lua modules/Override.lua; ! grep -n 'nine addons' settings/Schema.lua.",
+   "smoke": ""
+  },
+  {
+   "id": "PC-06",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Docs sync against the tree: the Item/Pool/Widgets sentence, the perf-sweep commit, .luacheckrc counts, PRETTYCHAT-A-NN ids remapped, LootHistory cited by name",
+   "depends_on": [
+    "RV-PC",
+    "WS-07",
+    "PC-05"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PC-A-02",
+    "PC-R-10"
+   ],
+   "spec": "(1) docs/ARCHITECTURE.md ## External dependencies (:418): rewrite the Item/Pool/Widgets sentence: the addon's own code consumes none of the three; vendored LibKa0s files resolve them internally (DebugLog.lua -> Widgets; OptionsNav/OptionsTabs/OptionsWidgets -> Pool; OptionsIds/OptionsIdList -> Item, as of v1.71.0, cite by file name not line); the folder is copied whole. Drop the hand-kept list of vendored-but-unused files. (2) docs/performance-sweep.md header (:8-9 'DG-PC-01') and the ARCHITECTURE.md register row (:284 'SP-PC-02R') name the SAME commit (the one that actually last re-took the sweep; check `git log -S` on performance-sweep.md); the 'verbatim' block cites the test in tests/test_libka0s.lua by its test name, not :802-831. Do not re-run the sweep. (3) .luacheckrc:34-37: 'Seven files here DO read it' becomes count-free; keep the historical 'eleven' (M4c-06). Comment only. (4) Remap the cycle-less PRETTYCHAT-A-NN ids to the 2026-09-23 audit's in-repo PC-NN ids: A-03 -> PC-77, A-07 -> PC-83, A-08 -> PC-84, A-09 -> PC-85, A-19 -> PC-94, A-20 -> PC-95, A-25 -> PC-99 (verify each against docs/audits/2026-09-23*/ before rewriting) at docs/ARCHITECTURE.md (:100, :171, :173, :375 and any other), docs/module-map.md:54, :58, defaults/Profile.lua:3, core/Database.lua:36, tests/test_override.lua:77, tests/test_defaults.lua:303, tests/test_doc_structure.lua:410, :469; frozen bundles (docs/automated-tests/, docs/revendor/, docs/audits/, docs/reviews/) are NOT edited. (5) docs/ARCHITECTURE.md:202: cite LootHistory's Util.BuildLootPatterns / Util.BuildCurrencyPatterns (and the two neighbouring functions) by symbol per WS-07's documentation-§6 cross-repo citation SHOULD, no line numbers.",
+   "steps": "1. Resolve each A-NN mapping and the sweep commit from git/audit bundles.\n2. Make the edits (comment-only in .lua files).\n3. Green gate (test_doc_structure asserts hub content; adjust only if a test pins the old wording, and say so in the commit).\n4. Commit `PC-06: sync hub, sweep page, luacheckrc and finding ids with the tree`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; ! git grep -n 'PRETTYCHAT-A-' -- ':!docs/audits' ':!docs/reviews' ':!docs/automated-tests' ':!docs/revendor' ':!libs' ':!tests/_kit'; ! grep -n 'Util.lua:1[0-9][0-9]' docs/ARCHITECTURE.md; grep -n 'Seven' .luacheckrc prints nothing; the commit named in performance-sweep.md equals the one in the performance-§12 register row.",
+   "smoke": ""
+  },
+  {
+   "id": "PC-07",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Hub ARCHITECTURE.md back under ~400 lines: census exemption prose to global-strings.md, retired-row narratives to one line",
+   "depends_on": [
+    "RV-PC",
+    "WS-05",
+    "PC-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PC-A-03"
+   ],
+   "spec": "docs/global-strings.md gains a new `## The cap exemption` section holding only the three-condition and gate explanatory prose now in docs/ARCHITECTURE.md (~:362-412). The `Files over the 1500-line cap` heading, the measurement command, the table and the verdict STAY under ## Documented deviations in ARCHITECTURE.md (layout-§1, test_layout_cap reads them), with a one-line pointer to the new section. Retired register-row narratives (~:293-335) shrink to one sentence each plus the PC-id/bundle id. Target ~360 lines; no rule content lost. docs/ARCHITECTURE.md ## Documentation map row for global-strings.md mentions the exemption reasoning.",
+   "steps": "1. Move/shorten.\n2. `wc -l docs/ARCHITECTURE.md` <= 400.\n3. Green gate (tests/_kit/test_layout_cap.lua, tests/test_doc_structure.lua).\n4. Commit `PC-07: spill the census exemption prose out of the hub`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; wc -l docs/ARCHITECTURE.md <= 400; grep -n '## The cap exemption' docs/global-strings.md; grep -n 'Files over the 1500-line cap' docs/ARCHITECTURE.md.",
+   "smoke": ""
+  },
+  {
+   "id": "PC-08",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Issue #8: comment that SP-PC-01's Profiles page superseded the per-character profile decline (no relabel, no commit)",
+   "depends_on": [
+    "RV-PC",
+    "PC-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PC-A-05"
+   ],
+   "spec": "One spaced GitHub write (OWNER_SCOPE 5 allows commenting an issue a finding names): `gh issue comment 8 --repo tusharsaxena/PrettyChat` with a body saying SP-PC-01 (2026-09-29) added the Profiles page (AceDBOptions, options-ui-§3), which offers per-character and per-realm profiles, so this decline is superseded; the will-not-do label stays as the record of the decision as it stood. No label change, no code change. Lands with no commit: add a row to the bundle's exceptions.tsv: `PC-08<TAB>PrettyChat<TAB>issue comment only<TAB>gh issue view 8 --repo tusharsaxena/PrettyChat --comments | grep -q SP-PC-01`.",
+   "steps": "1. Batch with the run's other GitHub writes, spaced out.\n2. Post the comment.\n3. Add the exceptions.tsv row in Ka0sAddonsCommonTasks.",
+   "verify": "gh issue view 8 --repo tusharsaxena/PrettyChat --comments | grep -q SP-PC-01; gh issue view 8 --json labels still shows state:will-not-do; grep -n '^PC-08' ../Ka0sAddonsCommonTasks/docs/2026-10-07-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION/exceptions.tsv.",
+   "smoke": ""
+  },
+  {
+   "id": "PC-STD",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Roll the standards reference to the version WowAddonStandards opens in this run (v2.77.0) and sync docs with this run's changes",
+   "depends_on": [
+    "WS-11",
+    "PC-08"
+   ],
+   "effort": "S",
+   "finding_ids": [],
+   "spec": "Run dev-copilot:wow-revendor-standards against the version on ../WowAddonStandards' feature branch (`head -1 ../WowAddonStandards/standards/STANDARDS.md`, expected v2.77.0): the three-place reference (PrettyChat.toc `## X-Standard`, README.md Standard badge, CLAUDE.md `## Standards compliance`) carries whatever version notation that skill requires; sweep retired notation, file names and unresolvable `filename-§N` references out of authored files (not libs/, tests/_kit/, frozen bundles), in particular WS-03's line-endings, WS-04's toc-file-§5 and WS-08's versioning-git wording where this repo's docs restate them; docs/ARCHITECTURE.md register rows whose Re-check trigger names a standard change made in this run are re-checked and dated. Then a sync-docs pass over README.md, CLAUDE.md, docs/ARCHITECTURE.md, docs/testing.md and DEPENDENCIES.md for anything RV-PC..PC-07 changed (badge count, LibKa0s v1.71.0 + kit 38 mentions, new locale keys, the Categories confirmation, the blank-format refusal in docs/schema.md/settings-panel.md, the migration rule in docs/data-flow.md or schema.md). No version bump.",
+   "steps": "1. Read the WowAddonStandards changelog entry for v2.77.0 on its feature branch.\n2. Roll the three places; sweep citations.\n3. Sync docs; prose gate.\n4. Green gate; commit `PC-STD: roll standards reference to v2.77.0; sync docs`.",
+   "verify": "cd ../PrettyChat && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x './libs/*' -x './tests/_kit/*' . (no function above CCN 15); diff --strip-trailing-cr <(lua tests/run.lua --list) docs/test-cases.md prints nothing; README Tests badge count equals the Total row of docs/test-cases.md; grep -n 'WowAddonStandards' PrettyChat.toc README.md CLAUDE.md all name the run's version (if versioned); test_doc_structure green; git diff master --stat touches no libs/ or tests/_kit/ file in this commit.",
+   "smoke": ""
+  }
+ ]
+}

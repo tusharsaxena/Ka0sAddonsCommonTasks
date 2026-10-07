@@ -1,0 +1,220 @@
+{
+ "repo": "KickCD",
+ "items": [
+  {
+   "id": "RV-KC",
+   "milestone": "M2",
+   "repo": "KickCD",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag, with the v1.71.0 bundle and the unrecorded v1.69.0-v1.70.0 span bundle",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "KC-A-01",
+    "KC-A-07"
+   ],
+   "spec": "Mechanical re-vendor, one commit. (1) Payloads: rm -rf libs/LibKa0s tests/_kit, then copy ../LibKa0s/LibKa0s/ -> libs/LibKa0s/ and ../LibKa0s/testkit/ -> tests/_kit/ WHOLE from the LOCAL tag v1.71.0 (git -C ../LibKa0s archive v1.71.0 LibKa0s testkit | tar -x into a scratch dir, then copy; keep the runner executable bits). No edit under libs/ or tests/_kit/ beyond the copy. (2) CLAUDE.md provenance line 'Bundles [LibKa0s](...) v1.70.0 (MIT).' -> v1.71.0. (3) docs/testing.md:187 version-now sentence (\"`../LibKa0s` sits on **v1.68.1**, CLAUDE.md names the same tag\", already stale since v1.69.0/v1.70.0): de-tag it so it no longer names a version (state the relationship: the checkout and the CLAUDE.md tag agree only between a re-vendor and the library's next tag), per KC-A-01's verdict; it must not rot on the next re-vendor. (4) Kit revision 38 (LK-01) delivers KC-A-07: regenerate docs/test-cases.md in THIS commit with lua tests/run.lua --list; its Total must now equal the README badge's passing count (1302 today) and a '| Skipped | 1 |' row must list the diagnostics opt-out declared skip (tests/test_diagnostics_contract via the kit). The badge itself does not move unless the case count changed. Do not make case registration host-dependent and make no local edit to the inventory. (5) Bundle docs/revendor/<date>-v1.71.0/ (date = the commit day) written by hand following the LOCAL ../dev-copilot wow-revendor-libka0s procedure run non-interactively: 01_DELTA.md whose line 1 is exactly 'Delta: LibKa0s v1.70.0 -> v1.71.0' (base from the CLAUDE.md provenance line, confirmed against the payload bytes), per-file LibStub minors old/new (WidgetsLineChart 3, WidgetsAutocomplete 2, Slash key 20.2, Env 2, OptionsIdList 4 per LK-03..LK-06), both payload diffs summarized, kit revision pairing 37 -> 38, the majors KickCD consumes, and contract changes under unchanged signatures (Slash ParseValue now refuses nan/inf: delivered free to /kcd set, class A; kit --list Totals semantics: delivered free, closes KC-A-07). 02_CANDIDATES.md lists the new surfaces (Kit.secret and the opt-in issecretvalue installer, LineChart clipping/hover, Autocomplete re-hook guard) each as 'not adopted in this run' (OWNER_SCOPE ruling 5): no interview, no GitHub issue. 05_SUMMARY.md: delivered free / candidates / adopted none / declined none / gate numbers after the copy. (6) Span bundle for the unrecorded re-vendors da8a8b8 (v1.69.0) and 9d4a10b (v1.70.0): docs/revendor/<date>-v1.69.0-v1.70.0/ with 01_DELTA.md line 1 exactly 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)', base v1.68.1 named in the body, per-tag minors and kit revisions from git -C ../LibKa0s diff v1.68.1 v1.69.0 / v1.69.0 v1.70.0, both vendoring commits cited as KickCD@<sha>, WidgetsAutocomplete named as a possible Spells add-box candidate (a note, not an adoption, no issue); and 05_SUMMARY.md with one line per tag: carried by sweep, nothing adopted. Shape matches docs/revendor/2026-10-01-v1.64.0-v1.65.0/. If the new library or kit turns the suite red, fix nothing addon-side here: record each failure in the commit body; the M3 items clear them and KC-STD is green at the latest.",
+   "steps": "1. git -C ../LibKa0s tag -l v1.71.0 (must exist locally; stop if absent). 2. Extract the tag into the scratchpad; rm -rf libs/LibKa0s tests/_kit; copy both payloads whole. 3. Roll the CLAUDE.md provenance line; de-tag docs/testing.md:187. 4. Run the gate; regenerate docs/test-cases.md with --list; confirm Total == badge and the Skipped row reads 1. 5. Write docs/revendor/<date>-v1.71.0/{01_DELTA,02_CANDIDATES,05_SUMMARY}.md. 6. Write docs/revendor/<date>-v1.69.0-v1.70.0/{01_DELTA,05_SUMMARY}.md from the tag diffs and commits da8a8b8/9d4a10b. 7. One commit 'RV-KC: re-vendor LibKa0s v1.71.0 ...' with any red cases listed in the body.",
+   "verify": "T=$(mktemp -d); git -C ../LibKa0s archive v1.71.0 LibKa0s testkit | tar -x -C $T; diff -r $T/LibKa0s /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/libs/LibKa0s (empty); diff -r $T/testkit /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/tests/_kit (empty); grep -q 'LibKa0s.*v1.71.0' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/CLAUDE.md; ! grep -n 'sits on \\*\\*v1\\.' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/docs/testing.md; head -1 /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/docs/revendor/*-v1.71.0/01_DELTA.md | grep -qx 'Delta: LibKa0s v1.70.0 -> v1.71.0'; head -1 /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/docs/revendor/*-v1.69.0-v1.70.0/01_DELTA.md | grep -qx 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)'; grep -n 'Skipped' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/docs/test-cases.md (one row, 1); Total in docs/test-cases.md equals the README badge count; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck .; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (record result; reds listed in the commit body)",
+   "smoke": ""
+  },
+  {
+   "id": "KC-01",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Cast bar drops a stale primary-icon anchor when the icon grid empties",
+   "depends_on": [
+    "RV-KC"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-R-01"
+   ],
+   "spec": "modules/Castbar_Events.lua Castbar:OnGridLayout (~:250-:255): the payload is the full layout announcement, so cache primaryIcon UNCONDITIONALLY: inst.lastGridLayout.primaryIcon = payload.primaryIcon (nil included). IconGrid announces primaryIcon = nil for an empty grid (modules/IconGrid.lua announceLayout(inst, nil, ...) at ~:495) and the old 'only cache when populated' guard kept a pooled button that IconGrid had released (ClearAllPoints + Hide), so Castbar:ApplyAnchor (modules/Castbar_Frame.lua:142) in PRIMARY mode kept anchoring to an orphan and never reached resolveGridFrame. gridFrame stays guarded (an announcement always carries it). Rewrite the misleading 'Defensive: only cache when the field is actually populated' comment to say why primaryIcon is copied verbatim (nil = no primary icon, so ApplyAnchor falls back to the grid frame) and why gridFrame keeps its guard. Also refresh the resolveGridFrame/resolvePrimaryIcon comments in modules/Castbar.lua (~:208, :218) that call the payload cache 'preferred' if they imply a nil is never cached.",
+   "steps": "1. Red first: in tests/test_castbar_frame.lua (or tests/test_castbar.lua) add 'an empty grid announcement drops the cached primary icon and anchors to the grid frame' with a '-- red under: Castbar_Events.lua guarding primaryIcon ~= nil' line: load, enable target castbar with anchorMode PRIMARY, call Castbar:OnGridLayout('Ka0s_KickCD_GridLayout', {unit='target', gridFrame=G, primaryIcon=btnA}), assert the bar's SetPoint relativeTo is btnA; then OnGridLayout with {unit='target', gridFrame=G, primaryIcon=nil} and stub IconGrid:GetPrimaryIcon to return nil; assert inst.lastGridLayout.primaryIcon == nil and the last SetPoint relativeTo is G. Red on HEAD (still btnA). 2. Add a focus-payload case: a focus announcement never touches the target cache. 3. Make the one-line fix and rewrite the comment. 4. Gate; regenerate docs/test-cases.md and the badge.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); grep -n 'primaryIcon ~= nil' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/modules/Castbar_Events.lua (empty); lua tests/run.lua --list > docs/test-cases.md and the README Tests badge (passed/passed) moved in the same commit; Total row equals the badge",
+   "smoke": "In client, cast bar Anchor mode = Primary icon: remove or disable every watched spell for the current spec (or switch to a spec with no learned watched spell), then target a hostile caster. The cast bar stays visible, anchored at the grid position, not vanished; re-add a spell and it re-anchors to the first icon without /reload."
+  },
+  {
+   "id": "KC-02",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Cast-bar name truncation counts UTF-8 characters, not bytes",
+   "depends_on": [
+    "RV-KC",
+    "KC-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-R-02"
+   ],
+   "spec": "Option B (verdict): modules/Castbar.lua gains a file-local utf8Prefix(s, cap) mirroring MultiMeters/modules/Row_NameCell.lua utf8Truncate (walk bytes, count every byte outside 0x80-0xBF as a character start, return s:sub(1, i-1) at the (cap+1)th start, else s). truncateName (:335) keeps its nil/0/secret short-circuits, then: local cut = utf8Prefix(name, maxChars); if cut == name return name; else return cut .. '…'. A name of exactly maxChars characters is never truncated, whatever its byte length. Rewrite the stale header comment (:320-:334): length is counted in characters (UTF-8 lead bytes), a cut never splits a code point, pure Lua because strlenutf8 is absent from the headless harness, and never called on a secret. No LibKa0s helper (two call sites; promote only if LibKa0s already cuts a release for other reasons, which LK-12 does not plan). settings/Castbar.lua:436 label 'Truncate after (characters)' is now accurate and stays.",
+   "steps": "1. Red first, tests/test_castbar_helpers.lua: (a) Castbar.TruncateName('Éclair de givre', 3) == 'Écl…'; (b) a CJK case, TruncateName('脚踢打断', 2) == '脚踢…'; (c) a 4-character Cyrillic name at cap 4 is returned unchanged; (d) every output passes a UTF-8 validity check (a small test-local pattern: no lead byte without its continuation bytes at the end before '…'). Each carries '-- red under: byte-counted #name / string.sub'. (a)-(c) are red on HEAD. 2. Implement utf8Prefix and rewrite truncateName and its comment. 3. Existing ASCII cases stay green; secret pass-through case unchanged. 4. Gate; regenerate docs/test-cases.md and the badge; docs/castbar.md's truncation sentence (if it says bytes or nothing) says characters.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); grep -n '#name <= maxChars' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/modules/Castbar.lua (empty); lua tests/run.lua --list > docs/test-cases.md and the README Tests badge (passed/passed) moved in the same commit; Total row equals the badge",
+   "smoke": "In client: Cast bar -> Truncate after (characters) = 5; target a caster whose spell name is longer than 5 characters; the bar shows the first 5 characters plus '…'. Optional on a non-English client: an accented or Cyrillic name truncates at the same character count with no broken glyph box. Set the option back to 0."
+  },
+  {
+   "id": "KC-03",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Glow gate tracks any target cast so the target_casting glow trigger follows friendly casts",
+   "depends_on": [
+    "RV-KC",
+    "KC-02"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-R-05"
+   ],
+   "spec": "Decision (session lead, autonomous): the 'target_casting' glow trigger means ANY cast by the unit, the same meaning the same-named visibility mode already has (IconGrid_Visibility.lua shouldBeVisible: mode 'target_casting' -> instanceCasting(inst); settings label 'When target is casting'); 'target_casting_interruptible' stays hostile-only. So the trigger (modules/IconGrid_Render.lua triggerSatisfied :451, inst.isCasting()) is correct and the GATE is fixed: modules/IconGrid_Visibility.lua IconGrid:RefreshAllGlows computes a third scalar `local anyCasting = hostileCasting or IconGrid.InstanceCasting(inst)` (no extra API call when hostile casting is already true); gateMoved(inst, hostileCasting, interruptible, anyCasting) also compares inst.lastGateAnyCasting; the cache write stores all three scalars (no table, anti-pattern #43 unchanged). Update the RefreshAllGlows doc comment (~:233-:249) to name the three gate inputs and why the raw cast state is in it, and the defaults/Profile.lua glow-trigger comment (~:121-:131) to say 'target_casting' = any cast, friendly or hostile. docs/icon-grid.md glow-gate paragraph likewise. Keep RefreshAllGlows and gateMoved at CCN <= 15; the glowGate perf bracket is unchanged in shape.",
+   "steps": "1. Red first, tests/test_icongrid_glowgate.lua: 'a friendly cast moves the gate for the target_casting trigger' ('-- red under: gate keyed only on IsHostileUnitCasting'): glow trigger = target_casting, UnitExists true, UnitCanAttack false, UnitCastingInfo returns a cast; RefreshAllGlows(inst) must call each icon's UpdateGlow (spy) and the glow is on; then UnitCastingInfo returns nil and RefreshAllGlows turns it off. Red on HEAD (UpdateGlow never called). 2. A case that an unmoved friendly-cast gate still short-circuits (second call with the same state skips the loop). 3. Implement; update comments and docs/icon-grid.md. 4. Gate (tests/perf.lua glowGate scenarios within their ceilings); regenerate docs/test-cases.md and the badge.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); lua tests/run.lua --list > docs/test-cases.md and the README Tests badge (passed/passed) moved in the same commit; Total row equals the badge",
+   "smoke": "In client: set an icon glow trigger to 'When target is casting'; target a friendly player or NPC that casts (e.g. a party member's Hearthstone). The glow comes on during the cast and goes off when it ends. With 'interruptible' trigger, a hostile caster still behaves as before."
+  },
+  {
+   "id": "KC-04",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "/kcd debug: an unknown word refuses without toggling the console; castbar and interrupt take an optional target|focus unit",
+   "depends_on": [
+    "RV-KC",
+    "KC-03"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "KC-R-03",
+    "KC-R-04"
+   ],
+   "spec": "core/KickCD.lua. (1) Split the sub-verb list printer out of runDebug's bare branch into a file-local printDebugList(self) (prints 'debug subcommands' plus NS.Slash.CommandRows('/kcd debug', DEBUG_COMMANDS, '  ')). The bare `/kcd debug` keeps its sanctioned behaviour (toggle the console, debug-logging-§5, then printDebugList). The unknown-word path becomes refuse(...) then printDebugList(self): it no longer re-enters runDebug(self, '') so it never toggles the console. (2) runDebug passes the remainder after the sub-verb to the handler: entry[3](self, remainder). A file-local parseDebugUnit(word) accepts '' -> 'target', 'target', 'focus' (case-insensitive) and returns nil otherwise. The castbar row calls m:DebugDump(unit) and the interrupt row NS.Compat.DebugInterrupt(unit); an unrecognized unit word refuses ('unknown unit '<w>', expected target or focus') through the existing refuse helper and runs nothing. Help strings: 'Print a unit's cast bar state (target by default, or focus)' and the interrupt row likewise names '[target|focus]'. Other rows ignore the remainder. runDebug stays at CCN <= 15. (3) Docs: docs/debug.md '/kcd debug castbar' (:277) and '/kcd debug interrupt' (:290) sections show the optional unit, docs/slash-dispatch.md's debug rows and README's command list if it names these verbs. Standard basis: slash-commands and debug-logging-§5 already sanction both the bare toggle and a usage reply.",
+   "steps": "1. Red first in tests/test_slash.lua: replace the 'toggle it back' workaround in 'an unknown debug word refuses, then reprints the list' with an assertion that the debug console's shown state is identical before and after `/kcd debug NoSuch` ('-- red under: refuse then runDebug(self, \"\")'); red on HEAD. 2. Add: '/kcd debug castbar focus dumps the focus bar' (spy Castbar:DebugDump, assert arg 'focus'); '/kcd debug castbar' still passes 'target'; '/kcd debug interrupt focus' calls Compat.DebugInterrupt('focus'); '/kcd debug interrupt bogus' refuses and calls nothing. All but the default case red on HEAD. 3. Implement printDebugList, the remainder pass-through and parseDebugUnit; update help strings. 4. tests/test_slash_style.lua and any help-row snapshot tests updated to the new strings. 5. Docs. 6. Gate; regenerate docs/test-cases.md and the badge.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); grep -n 'runDebug(self, \"\")' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/core/KickCD.lua (empty); lua tests/run.lua --list > docs/test-cases.md and the README Tests badge (passed/passed) moved in the same commit; Total row equals the badge",
+   "smoke": "In client: '/kcd debug spels' prints the refusal and the list and does NOT open or close the debug console. Set a focus on a hostile caster: '/kcd debug castbar focus' and '/kcd debug interrupt focus' print the focus unit's state; '/kcd debug castbar' still reports the target."
+  },
+  {
+   "id": "KC-05",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Migration target published as NS.SCHEMA_VERSION; the Database.CURRENT_DB_VERSION alias goes",
+   "depends_on": [
+    "RV-KC",
+    "KC-04"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "KC-A-04"
+   ],
+   "spec": "savedvariables-§1 names the runner target NS.SCHEMA_VERSION. core/Database.lua: replace `local CURRENT_DB_VERSION = 5` (:36) and `Database.CURRENT_DB_VERSION = CURRENT_DB_VERSION` (:39) with `NS.SCHEMA_VERSION = 5`; fix the :78 comment. core/Database_Migrations.lua: :18 reads NS.SCHEMA_VERSION; the runner loop (:376) and the missing-step jump (:382) use it; comments :12, :32, :339, :368, :381 renamed. modules/Diagnostics.lua:103-104 state section reports schema stored vs NS.SCHEMA_VERSION. No Database.CURRENT_DB_VERSION alias survives. Tests: tests/test_database.lua :44/:62 comments, tests/test_diagnostics.lua:145-147 read NS.SCHEMA_VERSION, tests/test_color_shape.lua:271 red-under note renamed. Docs: docs/ARCHITECTURE.md:405, docs/module-map.md:51, :389 ('this file keeps CURRENT_DB_VERSION (published)' -> publishes NS.SCHEMA_VERSION), :417 (Diagnostics state section), :438, docs/schema.md:13, :281, :283, :351. Frozen docs/audits, docs/reviews, docs/revendor, docs/automated-tests and docs/superpowers bundles are left untouched. Value stays 5; no stored data changes.",
+   "steps": "1. Red first in tests/test_database.lua: 'NS.SCHEMA_VERSION is the migration target and a fresh install ends on it' (assertEqual(NS.SCHEMA_VERSION, 5); a fresh T.load(true) leaves db.global.schemaVersion == NS.SCHEMA_VERSION; assertNil(NS.Database.CURRENT_DB_VERSION)) with '-- red under: the target kept as Database.CURRENT_DB_VERSION'. Red on HEAD. If Database_Migrations exposes its step table, also pin NS.SCHEMA_VERSION == #steps + 1. 2. Rename across code, tests and live docs. 3. Gate; regenerate docs/test-cases.md and the badge.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; git grep -n 'CURRENT_DB_VERSION' -- core modules settings 'tests/*.lua' docs/ARCHITECTURE.md docs/module-map.md docs/schema.md (empty, test red-under notes excepted only if they name the retired spelling deliberately); git grep -n 'NS.SCHEMA_VERSION' core/Database.lua; lua tests/run.lua --list > docs/test-cases.md and the README Tests badge (passed/passed) moved in the same commit; Total row equals the badge",
+   "smoke": ""
+  },
+  {
+   "id": "KC-06",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Util.Throttle reuses a frozen empty-args sentinel for zero-argument calls",
+   "depends_on": [
+    "RV-KC",
+    "KC-05"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-R-09"
+   ],
+   "spec": "core/Util.lua Util.Throttle (:170-:215): hoist a file-scope `local EMPTY_ARGS = { n = 0 }` (never mutated; fire() only reads args.n and unpack) and set `local n = select('#', ...); pendingArgs = n == 0 and EMPTY_ARGS or { n = n, ... }`. Cooldowns' Refresh throttle (modules/Cooldowns.lua:645, called with no args on SPELL_UPDATE_COOLDOWN / _USABLE / _CHARGES) then allocates nothing per event. The per-burst args guarantee for calls WITH arguments is unchanged. Update the 'pendingArgs is a fresh table per burst' comment to name the zero-arg sentinel and why it is safe. No perf scenario required (verdict).",
+   "steps": "1. Characterization first in tests/test_util.lua: 'a zero-argument throttle fires fn once per burst with no arguments' (three calls in one burst -> one call, select('#', ...) == 0 inside fn); 'a zero-arg burst after an args burst does not leak the old args'. 2. Implement the sentinel. 3. Existing Throttle cases (test_util.lua:78, test_util_anchor.lua:131, test_disabled.lua:216) stay green. 4. Gate; regenerate docs/test-cases.md and the badge.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); grep -n 'EMPTY_ARGS' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/core/Util.lua; lua tests/run.lua --list > docs/test-cases.md and the README Tests badge (passed/passed) moved in the same commit; Total row equals the badge",
+   "smoke": ""
+  },
+  {
+   "id": "KC-07",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": ".luacheckrc read_globals keeps only names a linted file reads bare",
+   "depends_on": [
+    "RV-KC",
+    "KC-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-R-08"
+   ],
+   "spec": ".luacheckrc top-level read_globals (:48-:79): remove every name with no bare reader in any linted file (libs/ and tests/_kit/ are excluded from lint). Starting list from the verdict: _G, GetTime, GetTimePreciseSec, GameFontNormal, GameFontHighlight, GameFontDisable, STANDARD_TEXT_FONT, hooksecurefunc, securecallfunction, issecretvalue, C_Timer, C_Spell, C_SpecializationInfo, GetLocale, InCombatLockdown, PlaySound, UnitCastingInfo, UnitChannelInfo, UnitExists, UnitCanAttack, UnitGUID, UnitName, UnitIsDead, IsLoggedIn, UISpecialFrames, UIDropDownMenu_AddButton, CreateColorFromHexString, WrapTextInColorCode, CopyTable, wipe, tContains, tinsert, tremove, strsplit, strtrim, strjoin, date, time, BackdropTemplateMixin, CreateFromMixins, NORMAL_FONT_COLOR, HIGHLIGHT_FONT_COLOR, RED_FONT_COLOR, GREEN_FONT_COLOR. Before deleting each, confirm with git grep -nwE '(^|[^._A-Za-z0-9])NAME' over linted .lua (bare reads only, not _G.NAME, comments or mock field writes); after deleting, run luacheck and RESTORE any name it flags (luacheck is the arbiter). Keep the group comments meaningful (drop a heading whose names all went). Do NOT add a files['tests/'] read_globals stanza. If tests/test_lintconfig.lua pins a removed name, update that case to the new list and say why.",
+   "steps": "1. Build the bare-reader census for each candidate name (record it in the commit body). 2. Delete the unread names; run luacheck .; restore any name flagged. 3. tests/test_lintconfig.lua green (adjust a pinned list if any). 4. Gate; regenerate docs/test-cases.md and the badge if the count moved.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); grep -nE 'UIDropDownMenu_AddButton|GameFontDisable' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/.luacheckrc (empty); grep -n 'files\\[\"tests/\"\\].*read_globals' /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/.luacheckrc (no new stanza)",
+   "smoke": ""
+  },
+  {
+   "id": "KC-08",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Rot-proof the four drifted inventories: ARCHITECTURE addonName rule, .luacheckrc history comment, compat-layer combat listener, .pkgmeta count",
+   "depends_on": [
+    "RV-KC",
+    "KC-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-A-02"
+   ],
+   "spec": "documentation-§5 count drift, fixed by naming the rule instead of a count. (1) docs/ARCHITECTURE.md:79-83: drop 'Eight do' / 'The other thirty-six' and the closed list; state the rule: a file reads the first vararg (addonName) only when it hands the addon folder name to a vendored LibKa0s payload that cannot infer it (the *Setup.lua files and core/Constants.lua's Bus.Catalog, settings/OptionsSetup.lua included), every other file opens `local _, NS = ...`; a reader can list them with `git grep -l 'local addonName, NS = \\.\\.\\.'`. (2) .luacheckrc:25-29: the history comment keeps what M4c-06 did but drops the present-tense 'Eight files in this addon do read it' and 'thirty-three authored files open that way today' counts (keep the historical 'twenty-nine' as past tense, or point at the ARCHITECTURE rule). (3) docs/compat-layer.md:34: NS.State.SetInCombat is called only by core/State.lua's combat listener, an AceEvent target armed via State.Arm (core/State.lua), on PLAYER_REGEN_DISABLED / _ENABLED / PLAYER_LOGIN — not a bootstrap CreateFrame. (4) .pkgmeta:22-23: drop 'Seven files, 7.5M' and the size claim; say the tracked media/screenshots art is project-page material the CurseForge CDN already serves. luacheck stays 0/0.",
+   "steps": "1. Edit the four sites. 2. grep each for residual numerals. 3. Gate (doc-structure and prose suites green).",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; ! grep -nE 'Eight (files|do)|thirty-six|thirty-three' docs/ARCHITECTURE.md .luacheckrc; ! grep -n 'bootstrap .CreateFrame' docs/compat-layer.md; ! grep -n '7.5M\\|Seven files' .pkgmeta",
+   "smoke": ""
+  },
+  {
+   "id": "KC-09",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Qualify the standalone bare §N citations in tests and live docs",
+   "depends_on": [
+    "RV-KC",
+    "KC-08",
+    "WS-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-A-03"
+   ],
+   "spec": "documentation-§6 citation form (as WS-07 restates it): qualify each standalone bare §N with its section file. tests/test_flow_traces.lua :28, :52, :68, :83, :110, :133, :145, :216, :228, :258, :275, :318 -> debug-logging-§8 / debug-logging-§9 as the context reads (the ':216/:258/:318 -- §8 diagnosis:' lines especially); tests/test_library_lines.lua:97 -> debug-logging-§8; docs/settings-panel.md:62 -> options-ui-§7, :203 -> options-ui-§14; docs/slash-dispatch.md:70 and :97 -> slash-commands-§7. Leave adjacent continuations that already resolve from the same sentence (e.g. slash-dispatch.md:117) and docs/smoke-tests.md's own retired section numbers alone. Comment and doc text only; no test_source_style guard (verdict).",
+   "steps": "1. Re-locate each site by grep (line numbers may have shifted after KC-01..KC-08). 2. Qualify. 3. Gate.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; grep -nE '(^|[^a-z-])§[0-9]' tests/test_flow_traces.lua tests/test_library_lines.lua docs/settings-panel.md docs/slash-dispatch.md (only qualified or same-sentence continuations remain; review each hit)",
+   "smoke": ""
+  },
+  {
+   "id": "KC-10",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Issue store: record on closed #11 that #10 (e0da04c) superseded the RenderGrid decline",
+   "depends_on": [
+    "RV-KC",
+    "KC-09"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "KC-A-06"
+   ],
+   "spec": "One GitHub write, spaced from the run's other writes (OWNER_SCOPE ruling 5 allows commenting on an issue a finding names). gh issue comment 11 --repo tusharsaxena/KickCD with: superseded by #10 (KickCD@e0da04c), which adopted LibKa0s RenderGrid for the Spells list (settings/Spells.lua) and a General page row (settings/General.lua) once the two LibKa0s gaps this decline named were closed; the decline is no longer policy. Leave #11 closed and its state:will-not-do label as is. No repo commit: record the item in the bundle's exceptions.tsv with the proof command.",
+   "steps": "1. gh issue view 11 --repo tusharsaxena/KickCD --comments (confirm no such comment yet). 2. Post the comment. 3. Add the exceptions.tsv row (KC-10, reason: GitHub-only write, proof command below).",
+   "verify": "gh issue view 11 --repo tusharsaxena/KickCD --json state,comments --jq '.state, (.comments[].body | select(test(\"e0da04c\")))' (CLOSED and one matching comment); grep -P '^KC-10\\t' /mnt/d/Profile/Users/Tushar/Documents/GIT/Ka0sAddonsCommonTasks/docs/2026-10-07-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION/exceptions.tsv",
+   "smoke": ""
+  },
+  {
+   "id": "KC-STD",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Roll the standards reference to Ka0s WoW Addon Standard v2.77.0 and sync the docs",
+   "depends_on": [
+    "WS-11",
+    "KC-10"
+   ],
+   "effort": "M",
+   "finding_ids": [],
+   "spec": "(1) Standards reference, following the LOCAL ../dev-copilot wow-revendor-standards procedure against ../WowAddonStandards on branch feat/2026-10-07-review-audit-remediation (v2.77.0): the three places (KickCD.toc ## X-Standard, README Standard badge, CLAUDE.md 'Standards compliance') are checked against the canonical form; today all three are version-free URLs/labels, so they change only if v2.77.0 changes the canonical form; any live doc that names a 'current' standard version is rolled to v2.77.0, while historical 'standard v2.54.0/v2.65.0/v2.67.0 introduced X' citations in docs/ARCHITECTURE.md stay (history). Sweep the live tree (excluding libs/, tests/_kit/ and the frozen docs/audits, docs/reviews, docs/automated-tests, docs/revendor, docs/superpowers bundles) for retired notation and unresolvable section references against v2.77.0, notably WS-08's versioning-git wording (CLAUDE.md / docs/common-tasks.md branch-and-commit prose), WS-03's line-endings shebang carve-outs if docs restate them, and WS-07's citation form. (2) Docs sync of what KC-01..KC-10 changed: docs/ARCHITECTURE.md, docs/module-map.md, docs/castbar.md, docs/icon-grid.md, docs/debug.md, docs/slash-dispatch.md, docs/schema.md, README (command list, Tests badge) and docs/smoke-tests.md gains rows for the KC-01..KC-04 smoke checks (recorded unrun; never marked passed). docs/test-cases.md regenerated; badge == Total. No version bump, no CHANGELOG release section.",
+   "steps": "1. git -C ../WowAddonStandards log -1 feat/2026-10-07-review-audit-remediation and read the standard's version stamp (v2.77.0). 2. Run the revendor-standards checks (three places, retired notation, section-reference resolution) and fix the hits. 3. Docs sync over the KC items' surfaces; add the smoke rows. 4. Gate; regenerate docs/test-cases.md and the badge.",
+   "verify": "cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded luacheck . (0 warnings / 0 errors); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed); /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua (every scenario passes); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" -C 15 -w . (no output); wc -l on every touched file (< 1500); cd /mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD; grep -n 'X-Standard' KickCD.toc; grep -n 'Standard' README.md | head -2; every §-reference in live docs resolves to a heading in ../WowAddonStandards/standards/*.md (the revendor-standards resolver reports zero unresolved); lua tests/run.lua --list > docs/test-cases.md and the README Tests badge (passed/passed) moved in the same commit; Total row equals the badge",
+   "smoke": ""
+  }
+ ]
+}

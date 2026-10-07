@@ -1,0 +1,208 @@
+{
+ "repo": "AbsorbTracker",
+ "items": [
+  {
+   "id": "RV-AT",
+   "milestone": "M2",
+   "repo": "AbsorbTracker",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 span; kit 38 clears the Totals/badge mismatch",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "AT-A-01",
+    "AT-R-07"
+   ],
+   "spec": "Follow /dev-copilot:wow-revendor-libka0s mechanically (OWNER_SCOPE 5: no interview, no issue filing). (1) Payload: copy ../LibKa0s at the LOCAL tag v1.71.0 (`git -C ../LibKa0s archive v1.71.0` or a detached worktree, never the LibKa0s working tree) whole into libs/LibKa0s/ (LibKa0s/ payload incl. LibKa0s.xml) and tests/_kit/ (testkit/), deleting files the tag no longer ships. Kit.VERSION in tests/_kit/framework.lua becomes 38. (2) CLAUDE.md provenance line `Bundles [LibKa0s](...) v1.70.0 (MIT).` -> v1.71.0, same commit. (3) Regenerate docs/test-cases.md with kit 38: the Totals table no longer counts the declared skip (AT-R-07: was Total 877 vs badge 876/876); Total now equals the README badge figure, and the skip sits on a `| Skipped | 1 |` row. If the badge figure differs from the new Total, roll the badge. (4) Unrecorded-tag record (AT-A-01, cluster C03): v1.69.0 (commit 5075fd5) and v1.70.0 (4c16982) were vendored with no docs/revendor/ bundle; the newest recorded bundle is docs/revendor/2026-10-04-v1.68.1/. Write ONE consolidated span bundle docs/revendor/<today>-v1.69.0-v1.70.0/ in the shape of docs/revendor/2026-10-01-v1.64.0-v1.65.0/: 01_DELTA.md whose line 1 reads `Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)` (span names only the unrecorded tags, first included, per the command spec; NOT the audit's v1.68.1-v1.70.0 shape), with per-file minor changes per tag, and 05_SUMMARY.md with one line per tag (carried, nothing adopted; vendoring commits 5075fd5 / 4c16982 cited by sha). (5) The v1.71.0 bundle docs/revendor/<today>-v1.71.0/: 01_DELTA.md line 1 `Delta: LibKa0s v1.70.0 -> v1.71.0`, per-file LibStub minors (Env 2, Slash key 20.2, Widgets/LineChart/Autocomplete minors, OptionsIdList 4, kit 38), both payload diffs summarised, which majors AbsorbTracker consumes, contract changes under unmoved signatures (Env drops the bare-global GetAddOnMetadata rung: core/EnvSetup.lua's own library-absent fallback is unaffected; confirm). 02_CANDIDATES.md lists new surfaces (Kit.secret, ChartMath.ClipSegment, ParseValue nan/inf refusal, ...) each as `not adopted in this run` with one-line reason; 03_DECISIONS.md records the same; 05_SUMMARY.md. Widgets adoption is handled by AT-02, so it is named there as planned, not as a candidate. (6) Nothing outside libs/LibKa0s/, tests/_kit/, CLAUDE.md, docs/test-cases.md, README.md (badge only, if needed) and docs/revendor/ changes. Commit subject `RV-AT: re-vendor LibKa0s v1.71.0; span bundle v1.69.0-v1.70.0`.",
+   "steps": "1. `git -C ../LibKa0s tag -l v1.71.0` exists (local). Export the tag to a scratch dir; rsync --delete its LibKa0s/ into libs/LibKa0s/ and testkit/ into tests/_kit/.\n2. Roll the CLAUDE.md provenance line.\n3. Run the gate; tests/test_vendor_sync.lua must pass against the new payload. If any suite reds on a contract change, stop and record it in 01_DELTA.md as an adoption blocker and fix in this commit only if it is the mechanical consequence of the copy.\n4. Regenerate docs/test-cases.md; compare Total with the README badge; roll the badge if they differ.\n5. Write docs/revendor/<today>-v1.69.0-v1.70.0/{01_DELTA.md,05_SUMMARY.md} from `git -C ../LibKa0s diff v1.68.1 v1.69.0 -- LibKa0s testkit` and `v1.69.0 v1.70.0`.\n6. Write docs/revendor/<today>-v1.71.0/{01_DELTA.md,02_CANDIDATES.md,03_DECISIONS.md,05_SUMMARY.md}.\n7. Gate, then commit.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); export v1.71.0 to $T and `diff -r $T/LibKa0s libs/LibKa0s && diff -r $T/testkit tests/_kit` prints nothing; grep -n 'Kit.VERSION = 38' tests/_kit/framework.lua; grep -n 'v1.71.0' CLAUDE.md; grep -n '| Skipped |' docs/test-cases.md; the Total in docs/test-cases.md equals the README Tests badge numerator and denominator; head -1 docs/revendor/*-v1.69.0-v1.70.0/01_DELTA.md reads 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)'; test -f docs/revendor/*-v1.71.0/05_SUMMARY.md; grep -c 'not adopted in this run' docs/revendor/*-v1.71.0/02_CANDIDATES.md >= 1.",
+   "smoke": "Owner: /reload with AbsorbTracker enabled on the v1.71.0 payload; no Lua errors; /at opens help, the settings panel opens, unlock shows the drag strips."
+  },
+  {
+   "id": "AT-01",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Offline perf measures the shipped doRepaint: NS.Timer.__doRepaint seam, repaintPass scenario, re-derived dormant ceiling",
+   "depends_on": [
+    "RV-AT"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "AT-R-01"
+   ],
+   "spec": "Review C-1. modules/Timer.lua: publish the file-local doRepaint as the suite seam `NS.Timer.__doRepaint = doRepaint` beside the existing NS.Timer.__ev seam, with a comment saying it is a test seam only (no production caller). No behaviour change. tests/perf.lua: (a) scenario 3 `paintPass` (:196-197, which wraps NS.ForEachUnit/NS.UpdateAbsorbBar in a test closure) is renamed `paintBars` and keeps its 12-API-calls assertion; (b) a new `repaintPass` scenario calls NS.Timer.__doRepaint() directly per iteration (re-arming nothing; doRepaint clears `pending` itself), asserting apiPerIter == 12 too; (c) scenario 6 probeOverheadOff/probeOverheadOn (:224-229) move onto NS.Timer.__doRepaint() so the dormant/armed comparison runs the outer repaintPass bracket, the `parent` derivation and doRepaint's own fan-out; (d) PROBE_OFF_BYTES_CEILING is re-derived by the method its comment documents (three runs of the dormant arm, measured figure + headroom smaller than one empty table, the one-`{}` cost re-measured under this interpreter) and the RE-BASELINED comment block is rewritten with the date and the three numbers. The current per-pass closure (expected ~144 B/iter vs the 72 B ceiling) is what the new figure includes: set the ceiling from the measurement as it stands on this commit (AT-05 later removes the closure and lowers it). docs/performance.md:72-77 (the offline scenario table / prose naming paintPass and the 48.0 B figure) describes the new scenario set and figures. A perf-runner assertion that fails exits non-zero, so `lua tests/perf.lua` must exit 0.",
+   "steps": "1. Add the seam in modules/Timer.lua (one line + comment).\n2. Red first: point probeOverheadOff at the seam with the OLD 72 ceiling and run `lua tests/perf.lua`; record that it reds (the closure + bracket are now measured) in the commit message as the proof the old gate missed the shipped path.\n3. Rename paintPass -> paintBars, add repaintPass, re-derive the ceiling (3 runs, plus the one-`{}` probe) and rewrite the comment.\n4. Update docs/performance.md:72-77.\n5. Gate + `lua tests/perf.lua` exit 0; commit `AT-01: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua exits 0 and prints rows paintBars, repaintPass, probeOverheadOff, probeOverheadOn; grep -n '__doRepaint' modules/Timer.lua tests/perf.lua (seam + >= 3 uses); grep -n 'paintPass' tests/perf.lua docs/performance.md prints nothing stale (only paintBars/repaintPass); bash tests/_kit/run-automated-tests.sh --suite complexity passes.",
+   "smoke": ""
+  },
+  {
+   "id": "AT-02",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "LibKa0s-Widgets-1.0 gets its setup seam: core/WidgetsSetup.lua publishes NS.Widgets with a library-absent stub and a parity case",
+   "depends_on": [
+    "RV-AT",
+    "AT-01"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "AT-A-07"
+   ],
+   "spec": "Option A of AT-A-07 (library-stack: one setup file per adopted module, degrading to a stub; testing-§8 parity per adopted module). New core/WidgetsSetup.lua, shaped like core/PerfSetup.lua / core/LauncherSetup.lua: resolves `LibStub(\"LibKa0s-Widgets-1.0\", true)` once and publishes NS.Widgets = the live major, or, when absent, a stub carrying exactly the members AbsorbTracker reaches: DragHandle (a function answering nil, so NS.CreateBar draws no strip, as today) and DRAG_HANDLE = nil semantics preserved by the consumers (the stub publishes no DRAG_HANDLE table, or one the consumers treat as zero room; pick the shape that keeps HANDLE_ROOM = 0 and say so in the comment). modules/Bar.lua:15 and modules/Display.lua:26-28 stop calling LibStub and read NS.Widgets instead; their nil-guards are reduced to the stub contract (Bar draws a strip only when NS.Widgets.DragHandle returns a frame; Display derives HANDLE_ROOM from NS.Widgets.DRAG_HANDLE or 0). Comments at Bar.lua:10-14 and the docs/ARCHITECTURE.md:49-51 passage that says 'there is no core/<Name>Setup.lua seam' are rewritten. AbsorbTracker.toc: `core\\WidgetsSetup.lua` in the # Core block before modules\\Bar.lua is reached (place it after core\\CoreSetup.lua if the stub uses NS.LIBKA0S_MISSING, otherwise with the other setup seams), annotated `# LOAD-BEARING: publishes NS.Widgets, captured as a file-scope upvalue by modules/Bar.lua and modules/Display.lua.` (toc-file-§5). tests/run.lua registers nothing new unless suites are listed explicitly (check; add the file to any explicit load list, wow_mock/degraded_env TOC readers follow the TOC). tests/test_surface_parity.lua: new case `parity: the Widgets stub carries every Widgets member the addon reaches` enumerating the reached members by name (DragHandle, DRAG_HANDLE) against the live major, in the style of the Perf case (:241). tests/test_draghandle.lua or tests/test_widgets.lua: a degraded-load case asserting no strip is drawn and HANDLE_ROOM is 0 with the library absent (reuse loadDegraded from tests/degraded_env.lua). docs/module-map.md and docs/ARCHITECTURE.md module map gain the file. No register row (Option B) is needed once the seam exists.",
+   "steps": "1. Red first: add the parity case and the degraded-load case referencing NS.Widgets; run and see them fail (NS.Widgets nil). '-- red under:' notes on both.\n2. Write core/WidgetsSetup.lua and the annotated TOC line; switch Bar.lua and Display.lua to NS.Widgets.\n3. tests/test_loadorder.lua (if it pins the TOC listing) and any explicit file lists updated.\n4. Docs: ARCHITECTURE.md:49-51, module map, docs/module-map.md.\n5. regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`, CRLF per the repo's .gitattributes) and roll the README Tests badge to the new Total in the same commit (testing-§5).\n6. Gate; commit `AT-02: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'LibStub' modules/Bar.lua modules/Display.lua prints nothing for LibKa0s-Widgets-1.0; grep -n 'WidgetsSetup' AbsorbTracker.toc (one line, preceded by a '# LOAD-BEARING' comment); grep -n 'parity: the Widgets stub' tests/test_surface_parity.lua; lua tests/run.lua --list | grep -c Widgets increased; README badge == docs/test-cases.md Total.",
+   "smoke": "Owner: /at unlock; each visible bar shows its drag strip above it and dragging by the strip or the bar body moves and saves the bar; /reload keeps the position; /at lock hides the strips."
+  },
+  {
+   "id": "AT-03",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Annotate the load-bearing settings TOC lines: Schema.lua and OptionsSetup.lua",
+   "depends_on": [
+    "RV-AT",
+    "AT-02",
+    "WS-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AT-A-04",
+    "AT-A-05"
+   ],
+   "spec": "toc-file-§5 (as WS-04 restates it: the load-bearing denominator covers every position in the listing, not only # Core). AbsorbTracker.toc: above `settings\\Schema.lua` (:83) add `# LOAD-BEARING: publishes NS.SchemaRuntime (AllRows/BulkBegin/BulkEnd, read at file load by settings/OptionsSetup.lua) and NS.RegisterSchemaRows (called at file load by settings/General.lua).`; above `settings\\OptionsSetup.lua` (:85) add `# LOAD-BEARING: publishes NS.Helpers, captured as a file-scope upvalue by settings/UnitPanel.lua, About.lua, General.lua and Appearance.lua and called inside NS.RegisterSchemaRows at load.` Re-verify each claimed reader by grep before writing (settings/OptionsSetup.lua:98,144,145; settings/General.lua:12,254; settings/UnitPanel.lua:17; settings/About.lua:19; settings/Appearance.lua:74). Walk every other line of the listing (# Modules, # Settings: Slash.lua, UnitPanel, About, General, Appearance, Profiles; # Defaults; locales) and annotate any further load-bearing position found, or mark it `# Conventional order, not load-bearing` where a reader would otherwise wonder (SHOULD; Slash/Profiles). If tests/test_loadorder.lua pins annotated positions from the TOC, extend it so the two new lines are pinned (test-first). Comment-only in the TOC; no reorder.",
+   "steps": "1. Grep the readers; confirm file-load capture vs call-time resolution for each.\n2. If test_loadorder.lua checks LOAD-BEARING annotations against a list, add the two entries first (red), then the comments (green).\n3. Add the comments; walk the rest of the listing.\n4. Gate; commit `AT-03: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n -B1 'settings\\\\Schema.lua\\|settings\\\\OptionsSetup.lua' AbsorbTracker.toc shows a '# LOAD-BEARING' line above each; git diff HEAD~1 -- AbsorbTracker.toc adds only comment lines.",
+   "smoke": ""
+  },
+  {
+   "id": "AT-04",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Retire the savedvariables-§1 register row the standard now sanctions, recording its two residual differences",
+   "depends_on": [
+    "RV-AT",
+    "AT-03"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AT-A-06"
+   ],
+   "spec": "docs/ARCHITECTURE.md -> ## Documented deviations row at :375 (`savedvariables-§1` per-profile schemaVersion stamp) is removed. docs/recorded-decisions.md -> ## Retired register rows gains a dated entry (today) for it: the rule text it cited, that savedvariables-§1 since v2.65.0 sanctions the per-profile-stamp route re-run from OnProfileChanged/OnProfileCopied/OnProfileReset and swept at load (core/AbsorbTracker.lua NS.OnProfileChanged and the three callbacks; core/Database.lua migrateAllProfiles), and that the addon follows it, so it is no longer a deviation; keep the [profiles.md](./profiles.md#the-v3-lift-and-why-the-gate-is-per-profile) link. The same entry (or a row under ## Recorded, but not deviations) records the two residual differences so a later audit does not re-raise them blind: the per-profile stamp defaults to 1 (defaults/Profile.lua:68 - cite by symbol) and the v3 lift writes the per-profile stamp itself (core/Database.lua ~:89, cite by function name), each with why it is consistent with §1 or, if the §1 MUSTs are ambiguous on it, the re-check trigger 'savedvariables-§1 ruling on per-profile stamp defaults/ownership'. Use WS-07's citation form (symbol/heading for present tense). Any other page that points at the retired row (grep 'per-profile' / 'savedvariables-§1' in docs/) is updated. Docs-only.",
+   "steps": "1. Read savedvariables-§1 on the WowAddonStandards feature branch and the current row.\n2. Move the row; write the residual-differences note.\n3. grep docs/ for links into the row; fix.\n4. Gate (tests/test_docs.lua checks links/anchors); commit `AT-04: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'savedvariables-§1' docs/ARCHITECTURE.md shows no register row under '## Documented deviations'; grep -n 'savedvariables-§1' docs/recorded-decisions.md shows the retired entry with today's date and both residual differences.",
+   "smoke": ""
+  },
+  {
+   "id": "AT-05",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "doRepaint iterates NS.Units.LIST directly instead of building a closure per coalesced pass",
+   "depends_on": [
+    "RV-AT",
+    "AT-01",
+    "AT-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AT-R-02"
+   ],
+   "spec": "Review C-2. modules/Timer.lua doRepaint (:40-42): replace `NS.ForEachUnit(function(unit) ... end)` with `for _, unit in ipairs(NS.Units.LIST) do if NS.UpdateAbsorbBar(unit, parent) then painted = true end end` (or a numeric for over the list), so a coalesced pass allocates no closure, matching the file header's hoisting rationale (:13-16). Behaviour identical: same unit order (ForEachUnit iterates NS.Units.LIST - confirm in core/Units.lua), same painted/NoteRepaint/Perf.Note accounting. No suite stubs NS.ForEachUnit (verified in the assessment; re-grep). tests/perf.lua: AT-01's repaintPass / probeOverheadOff figures drop by the closure's cost; re-derive PROBE_OFF_BYTES_CEILING again by the documented method and rewrite the RE-BASELINED block (before/after bytes recorded in the comment and the commit message). docs/performance.md figures follow.",
+   "steps": "1. Record AT-01's repaintPass and probeOverheadOff bytes/iter (one run).\n2. Red first: lower PROBE_OFF_BYTES_CEILING to the expected closure-free figure + headroom and see `lua tests/perf.lua` fail on the current code.\n3. Replace the closure with the loop; perf goes green.\n4. Rewrite the baseline comment; docs/performance.md.\n5. Gate + perf; commit `AT-05: ...` with before/after figures.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua exits 0; repaintPass bytes/iter lower than the AT-01 figure; grep -n 'ForEachUnit' modules/Timer.lua prints nothing; tests/test_timer.lua green.",
+   "smoke": "Owner (review S-01): in combat at a target dummy with a shield, the Player/Target/Focus bars update as before; /at debug on shows the [Combat] rollup with events >= repaints."
+  },
+  {
+   "id": "AT-06",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "/at debug hold refuses while the addon is stood down for a perf capture; the degraded-load test asserts the latch, not a stub literal",
+   "depends_on": [
+    "RV-AT",
+    "AT-05"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AT-R-03",
+    "AT-R-06"
+   ],
+   "spec": "Review C-3 (AT-R-03): settings/Slash.lua runHold (:319-) gates on the stand-down latch, not only the stored `enabled`. Order: if `NS.GetSetting(\"enabled\") == false` keep today's DisabledLine refusal (and its NS.Debug line); else if `NS.IsStoodDown()` (core/Lifecycle.lua:214; a perf capture's suspend holds the latch) refuse with NS.Debug(\"Cmd\", \"debug hold refused: stood down\") and one host chat line naming the reason (e.g. 'Bars are suspended for a perf capture; run /at perf finish first' - word it from the perf verbs' actual names) and return before parseHold/paintHold/NS.HoldPreview, so no 'Holding...' line prints and no expiry timer is armed onto a stood-down bus. Comment at :320-322 updated. tests/test_debughold.lua: +1 case 'refuses while stood down for a perf capture, arms no timer' (stand the addon down through the same path /at perf start uses, run `/at debug hold 50000`, assert the refusal line, no 'Holding' line, no HoldPreview timer armed / testHoldUntil unset), with a '-- red under:' note naming the removed gate. C-4 corrected per the assessment (AT-R-06): tests/test_perf.lua:538 `assertEqual(NS2.Perf.suspended, false, ...)` reads back the stub literal; replace it with an assertion on what the show ladder actually reads, `assertEqual(NS2.IsStoodDown(), false, \"and the stand-down latch reports a running addon\")` (and, if cheap, that NS2.ShouldShowBar(\"player\") is not refused by the latch). KEEP `suspended = false` in core/PerfSetup.lua's degraded stub: tests/test_surface_parity.lua:253 and the LibKa0s Perf host contract still name it. Smoke row STATE-3/the Perf run section of docs/smoke-tests.md mention the new refusal.",
+   "steps": "1. Red first: add the stood-down hold case; it fails (prints Holding, arms the timer).\n2. Gate runHold on NS.IsStoodDown(); green.\n3. Retarget test_perf.lua:538; confirm it can red (temporarily make IsStoodDown answer true in a scratch run, not committed) and note it as '-- red under:'.\n4. docs/smoke-tests.md + docs/debug.md (debug hold refusals) wording.\n5. regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`, CRLF per the repo's .gitattributes) and roll the README Tests badge to the new Total in the same commit (testing-§5).\n6. Gate; commit `AT-06: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'IsStoodDown' settings/Slash.lua shows the runHold gate; grep -n 'Perf.suspended' tests/test_perf.lua prints nothing; grep -n 'suspended = false' core/PerfSetup.lua still present; README badge == docs/test-cases.md Total.",
+   "smoke": "Owner (review S-03): /at perf start, then /at debug hold 50000 -> a refusal line, no 'Holding' line, bars unchanged; /at perf finish, then /at debug hold 50000 5 -> holds for 5 s as before."
+  },
+  {
+   "id": "AT-07",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "NS.RelockForCombat: standing up or enabling mid-combat re-locks unlocked bars so the fight starts on live data",
+   "depends_on": [
+    "RV-AT",
+    "AT-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AT-R-04"
+   ],
+   "spec": "Review C-5. core/AbsorbTracker.lua: extract the re-lock half of addon:OnEnterCombat (:318-321: `if not NS.GetSetting(\"locked\") then NS.SetByPath(\"locked\", true); NS.Print(\"Bars locked — combat started\"); NS.RefreshOptionsPanel() end`) into `function NS.RelockForCombat()` returning true when it re-locked. OnEnterCombat calls it and keeps its EITHER/OR (publish VISIBILITY+REPAINT only when it did not re-lock). core/Lifecycle.lua StandUp, at its end (after the POSITION/APPEARANCE/REPAINT publishes), and addon:OnEnable's running path (core/AbsorbTracker.lua, after the bars are placed; covers /reload mid-combat on an unlocked profile) call NS.RelockForCombat() when `UnitAffectingCombat(\"player\")` is true. The chat line may read 'Bars locked — in combat' on the stand-up path (the shared helper takes the reason, or prints one neutral line; keep one literal per reason). No new event registration; respects the stood-down latch (StandUp runs after release). Comments in docs/lifecycle.md (the stand-up rebuild) and docs/ARCHITECTURE.md -> The disabled state is total gain one sentence on the in-combat stand-up. tests: +2 cases (tests/test_disabled.lua for '/at enable mid-combat on an unlocked profile re-locks and prints once'; tests/test_events.lua or tests/test_visibility.lua for 'OnEnable while in combat on an unlocked profile re-locks'), each with a '-- red under:' note; the existing OnEnterCombat re-lock cases stay green. wow_mock must answer UnitAffectingCombat (check; add a settable flag only if missing).",
+   "steps": "1. Red first: the two cases.\n2. Extract NS.RelockForCombat; wire OnEnterCombat, StandUp, OnEnable.\n3. Docs sentence in docs/lifecycle.md and ARCHITECTURE.md.\n4. regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`, CRLF per the repo's .gitattributes) and roll the README Tests badge to the new Total in the same commit (testing-§5).\n5. Gate + complexity suite (no function above CCN 15); commit `AT-07: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); bash tests/_kit/run-automated-tests.sh --suite complexity passes; grep -n 'RelockForCombat' core/AbsorbTracker.lua core/Lifecycle.lua (definition + 3 call sites); README badge == docs/test-cases.md Total.",
+   "smoke": "Owner (review S-04): /at unlock out of combat, /at disable, enter combat at a dummy, /at enable -> one 'Bars locked' line, bars show live absorbs (not the placeholder) for the rest of the fight. Also /reload in combat on an unlocked profile -> bars locked and live."
+  },
+  {
+   "id": "AT-08",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Debug and chat output hygiene: the two log-on-change memos go through DebugChanged; the migration-failure line hands its parts to the printer",
+   "depends_on": [
+    "RV-AT",
+    "AT-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AT-A-09",
+    "AT-A-08"
+   ],
+   "spec": "AT-A-09 (debug-logging-§9 SHOULD): core/AbsorbTracker.lua traceAbsorb (:241-251) drops the dbgAbsorbSecret memo comparison and writes the readable/secret edge through `NS.DebugLog.DebugChanged(\"absorb:secret\", \"Absorb\", secret and \"reads secret: shield transitions not traced until readable\" or \"reads readable\")` so the state is restated after Clear() or a fresh enable (the library gate re-arms on both; confirm in libs/LibKa0s/DebugLogGates.lua and the shell's Clear). Keep the existing transition texts; the first readable observation now writes one 'reads readable' line (acceptable, documented in the comment). modules/Display.lua NS.ApplyVisibility (:381-383): the log line goes through `NS.DebugLog.DebugChanged(\"bar:\" .. unit, \"Bar\", \"%s: %s (%s)\", unit, ...)` under the same NS.State.debug guard (so visibilityReason is not built with debug off); dbgLastShown stays as diagnostics data for NS.LastAppliedVisibility, written unconditionally as now. Both files get the gate members the degraded DebugLog stub already carries (core/DebugLogSetup.lua:52 DebugChanged answers false), so nothing new in the stub. If the debug flag check makes the key concatenation a hot-path allocation with debug off, keep the concat inside the guard. AT-A-08 (events-frames-taint-§8 SHOULD NOT outside the trigger set; owner scope puts optionals in): core/Database.lua runLadder (:234-235) `NS.Print(\"Settings upgrade stopped at v\" .. from .. \" -> v\" .. step.to .. \"; ...\")` becomes a call handing the parts to the shared printer in its supported shape (check core/CoreSetup.lua NS.Print / LibKa0s printer: format string + args, e.g. NS.Print(\"Settings upgrade stopped at v%s -> v%s; saved settings were left as they were\", from, step.to) if the printer formats, else separate args); chat text byte-identical. The events-frames-taint-§8 register row (docs/ARCHITECTURE.md:376) count is unchanged (it covers settings/Slash.lua only); confirm no other register text names Database.lua. tests: characterization first - tests/test_debuglog.lua (or test_debugcoverage.lua) case: enable logging, trigger a bar visibility change, Clear(), re-apply the same visibility -> the line is written again (red under the old memo); same for absorb secret edge; tests/test_database.lua existing failing-step case asserts the exact chat line (add the assertion if missing) and stays green across the printer change.",
+   "steps": "1. Characterization: pin the migration-failure chat line text in test_database.lua (green now).\n2. Red first: the after-Clear restatement cases for bar:<unit> and absorb:secret.\n3. Route both through DebugChanged; green.\n4. Change the Database.lua print call; the pinned line stays green.\n5. regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`, CRLF per the repo's .gitattributes) and roll the README Tests badge to the new Total in the same commit (testing-§5).\n6. Gate + perf (`lua tests/perf.lua` exit 0, absorbEvent < 64 B with debug off); commit `AT-08: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua exits 0; grep -n 'dbgAbsorbSecret' core/AbsorbTracker.lua prints nothing (or only removed); grep -n 'DebugChanged' core/AbsorbTracker.lua modules/Display.lua (2 sites); grep -n '\" .. from .. \"' core/Database.lua prints nothing; README badge == docs/test-cases.md Total.",
+   "smoke": ""
+  },
+  {
+   "id": "AT-09",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Doc drift sweep against the tree; the automated-tests page quotes the runner; Master-scale drift recorded for smoke S-05",
+   "depends_on": [
+    "RV-AT",
+    "AT-08",
+    "WS-07"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "AT-A-02",
+    "AT-A-03",
+    "AT-R-05"
+   ],
+   "spec": "AT-A-02, all seven items, re-checked against the tree as it stands after AT-01..AT-08 (counts move): (1) the 'thirty-two files' claims (docs/ARCHITECTURE.md:49 and three more sites; grep 'thirty-two') cite libs/LibKa0s/LibKa0s.xml instead of restating a count, or state the count recounted from the v1.71.0 XML; (2) both load-order chains in docs/module-map.md (:786 and the other) include WidgetsLineChart.lua and WidgetsAutocomplete.lua (and anything v1.71.0 added) in XML order; (3) docs/testing.md:170 stops naming v1.68.1: cite the CLAUDE.md provenance line rather than a tag; (4) docs/module-map.md:884 run.lua line/suite counts re-derived (or replaced by a pointer to tests/run.lua and docs/test-cases.md); (5) :887 rewritten for one frame per unit (core/AbsorbTracker.lua per-unit RegisterUnitEvent frames, cite by symbol), not a two-frame split; (6) :916 drops the DebugLog/Slash/Perf minors (or re-derives them from the vendored LibStub lines; prefer dropping); (7) :468 and :817 settle on v1.42.0 to match the register and docs/slash-dispatch.md:52. docs/performance.md:390 and any other site the finding lists fixed likewise. Use WS-07's citation form: symbol/heading for present tense, Repo@sha:path:line for history. Also roll docs/module-map.md and ARCHITECTURE.md module map for files added by AT-02 if AT-02 missed any. AT-A-03: docs/automated-tests/README.md:29 complexity cell becomes `bash tests/_kit/run-automated-tests.sh --suite complexity` (matching docs/testing.md and DEPENDENCIES.md); scan the same table's other cells for the same drift. AT-R-05 (optional, gated on the owner's in-client check per the review plan T6.x): no code change in this run. docs/smoke-tests.md ## Bars gains a check 'Master scale keeps a dragged bar in place' (drag a bar off its default anchor, change General > Master scale from 1.0 to 1.5 and back, observe whether the bar's on-screen position moves) listed under ## Pending sign-off as review F-005 / S-05 'confirm or refute; C-6 (a stored-shape change with a savedvariables-§1 v6 ladder step) is designed only if confirmed'. docs/ARCHITECTURE.md -> Known limitations gains one line: saved positions are stored in the bar's scaled space (modules/Bar.lua savePosition, modules/Display.lua NS.RestoreBarPosition) so a Master scale change may shift a dragged bar; pending S-05. Docs-only.",
+   "steps": "1. Run /dev-copilot:sync-docs scoped to the cited pages (or by hand): recount from tree for every number the finding lists.\n2. Fix the seven AT-A-02 items and docs/performance.md:390.\n3. docs/automated-tests/README.md:29.\n4. S-05 smoke row + Known limitations line.\n5. Gate (tests/test_docs.lua checks links/claims); commit `AT-09: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -rn 'thirty-two' docs/ARCHITECTURE.md docs/module-map.md docs/performance.md prints nothing (or matches the XML count); grep -n 'v1.68.1' docs/testing.md prints nothing; grep -n 'v1.41.0' docs/module-map.md prints nothing; grep -n 'WidgetsLineChart\\|WidgetsAutocomplete' docs/module-map.md shows both chains; grep -n 'lizard -l lua' docs/automated-tests/README.md prints nothing; grep -n 'run-automated-tests.sh --suite complexity' docs/automated-tests/README.md; grep -n 'Master scale' docs/smoke-tests.md docs/ARCHITECTURE.md.",
+   "smoke": "Owner (review S-05, confirm or refute only): drag the Player bar away from its default spot, set General > Master scale 1.0 -> 1.5 -> 1.0; record whether the bar's on-screen position moved. Result goes in the bundle's smoke file; a 'confirmed' opens C-6 as a follow-up, not in this run."
+  },
+  {
+   "id": "AT-STD",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Roll the standards reference to the version WowAddonStandards opens in this run (v2.77.0); docs sync of everything AT-01..AT-09 changed",
+   "depends_on": [
+    "WS-11",
+    "AT-09"
+   ],
+   "effort": "S",
+   "finding_ids": [],
+   "spec": "Run /dev-copilot:wow-revendor-standards against the version on ../WowAddonStandards' feature branch (`head -1 ../WowAddonStandards/standards/STANDARDS.md`, expected v2.77.0). The three-place reference (AbsorbTracker.toc `## X-Standard:` line, README.md Standard badge, CLAUDE.md 'Standards compliance') takes whatever form v2.77.0 prescribes (today all three are unversioned URL/badge; add a version only if the standard's toc-file / documentation rules now require it). Sweep the repo (excluding libs/, tests/_kit/ and the frozen docs/audits/, docs/reviews/, docs/automated-tests/<stamp>/, docs/revendor/ bundles) for retired notation, retired file names and section references that no longer resolve against v2.77.0 (WS-01..WS-10 moved the changelog into standards/CHANGELOG.md, reworded line-endings, toc-file-§5, documentation-§3/§6/§8, versioning-git, events-frames-taint-§8); any 'standard vN' citation in docs/ARCHITECTURE.md's standards table / documentation map rolls to v2.77.0. Code/config comment citations are corrected comment-only. Then a /dev-copilot:sync-docs pass over README.md, CLAUDE.md, DEPENDENCIES.md, docs/ARCHITECTURE.md and the docs/ topic pages for anything AT-01..AT-09 changed (new file core/WidgetsSetup.lua, NS.RelockForCombat, NS.Timer.__doRepaint seam, the debug hold refusal, perf scenario names, test counts): README Tests badge == docs/test-cases.md Total; docs/testing.md suite list. No version bump, no CHANGELOG release block.",
+   "steps": "1. Read the standard's changelog between the version the addon last swept to and v2.77.0 (standards/CHANGELOG.md on the feature branch).\n2. /dev-copilot:wow-revendor-standards (this repo only); apply documentation edits; comment-only citation fixes.\n3. /dev-copilot:sync-docs for drift introduced by this run's items.\n4. Gate; commit `AT-STD: ...`.",
+   "verify": "cd ../AbsorbTracker && ~/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); bash tests/_kit/run-automated-tests.sh --suite complexity passes; every 'filename-§N' citation outside libs/, tests/_kit/ and frozen bundles resolves against ../WowAddonStandards/standards/ (the revendor-standards sweep reports zero unresolved); grep -n 'X-Standard' AbsorbTracker.toc matches the v2.77.0 form; README Tests badge == docs/test-cases.md Total; grep -n 'WidgetsSetup\\|RelockForCombat' docs/ARCHITECTURE.md docs/module-map.md.",
+   "smoke": ""
+  }
+ ]
+}

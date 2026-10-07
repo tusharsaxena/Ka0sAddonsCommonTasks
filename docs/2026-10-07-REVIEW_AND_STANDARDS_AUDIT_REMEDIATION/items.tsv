@@ -1,0 +1,165 @@
+id	milestone	repo	title	depends_on	effort	smoke	finding_ids
+WS-01	M1	WowAddonStandards	Open v2.77.0: move the changelog history out of the index into standards/CHANGELOG.md; fix the changelog typos, the order and the footer stamp		M		WAS-R-03,WAS-A-18,WAS-R-12,WAS-R-07,WAS-A-13
+WS-02	M1	WowAddonStandards	This repo keeps its own docs/audits/ and docs/reviews/ stores: rewrite the self-description, register both stores, drop the file count and single-source the roster	WS-01	S		WAS-A-01,WAS-A-02,WAS-A-03,WAS-A-17,WAS-R-11
+WS-03	M1	WowAddonStandards	line-endings: the repo's own .gitattributes becomes the §5 LF body byte-for-byte; every restatement names both shebang carve-outs; check (e) passes paths positionally; the §7 EOL-gate MUST is scoped to repos that run a suite	WS-01	M		WAS-R-01,WAS-A-04,WAS-R-02,WAS-A-05,WAS-A-06,WAS-A-07,WAS-R-08,DC-A-14
+WS-04	M1	WowAddonStandards	toc-file-§5: the load-bearing denominator covers every position in the listing; AUDIT.md step 4 checks the whole TOC; the worked example is cited by heading	WS-01	S		AT-A-15,AT-A-14
+WS-05	M1	WowAddonStandards	documentation-§3/§6/§8 and library-stack-§7 agree with themselves: §6 cites §3's frozen-store list, §8's arithmetic and single executable-content trigger, the documentation-§5/§6 row labels, ordinals and Tier 2 membership	WS-03	M		WAS-A-14,WAS-A-12,WAS-A-15,DC-A-15,LK-A-10,WAS-R-06,WAS-A-16
+WS-06	M1	WowAddonStandards	Retire the pre-adoption 'expect findings in every addon' wording for launcher and the disabled latch; correct the scaffold runner comment on missing suites	WS-01	S		WAS-A-08,WAS-R-05
+WS-07	M1	WowAddonStandards	documentation-§6 gains a cross-repo citation SHOULD (symbol/heading for present tense, Repo@sha:path:line for history); convert the rotted citations and misleading counts to it	WS-05	L		WAS-A-09,WAS-A-10,WAS-A-11,WAS-R-09,LK-A-08
+WS-08	M1	WowAddonStandards	versioning-git: default-branch work by default, owner-directed or multi-repo changesets on a same-named feat/<date>-<topic> branch merged --no-ff; ripple to the index blurb, context pack, anti-pattern #21, documentation-§8 and CLAUDE.md	WS-05	S		DC-A-16
+WS-09	M1	WowAddonStandards	events-frames-taint-§8 names the spell-cooldown fields in its trigger set; open-evolutions records the library-absent stub-burden question (U-3)	WS-01	S		WG-R-08,PC-R-08
+WS-10	M1	WowAddonStandards	scripts/check-standard.sh: an on-demand mechanical gate for the standard's own invariants (CR bytes, .gitattributes body, citation ranges, Sections list, anti-pattern contiguity, version stamps, roster pointers)	WS-02,WS-03,WS-04,WS-05,WS-06,WS-07,WS-08,WS-09	M		WAS-R-04
+WS-11	M1	WowAddonStandards	Close v2.77.0: ripple every change through the executive summary, context pack, playbooks, README and index blurbs; finish the changelog entry; gate on check-standard.sh	WS-10	M		
+LK-01	M1	LibKa0s	Kit revision 38: --list Totals count only cases that run; declared skips get their own row		S		AM-R-03
+LK-02	M1	LibKa0s	Kit revision 38: Kit.secret, a shared secret-value simulator and an opt-in issecretvalue installer	LK-01	M		WG-R-09
+LK-03	M1	LibKa0s	WidgetsLineChart minor 3: segments clipped to the plot rect, hover re-syncs on every render, formatX locale note	LK-01	M	yes	LK-R-01,LK-R-03,LK-R-10
+LK-04	M1	LibKa0s	WidgetsAutocomplete minor 2: generation-guarded re-hook, set-scripts-first precondition, integral maxRows, backdrop set once	LK-03	M	yes	LK-R-02,LK-R-07,LK-R-08,LK-R-09
+LK-05	M1	LibKa0s	Slash key 20.2: ParseValue refuses nan/inf, and Slash.lua cites the standard by section (closes #43)	LK-01	S	yes	LK-R-06,LK-A-06
+LK-06	M1	LibKa0s	Env minor 2 and OptionsIdList minor 4: drop the dead bare-global GetAddOnMetadata and IsAddOnLoaded rungs	LK-01	S		LK-A-04
+LK-07	M1	LibKa0s	Live-doc drift: resolvable evidence ids in CLAUDE.md, no derived headroom figure, Perf stub template comments	LK-01,WS-07	S		LK-A-05,LK-A-03,AT-R-08
+LK-08	M1	LibKa0s	US-English sweep of docs/adoption-prompt.md and docs/adoption-report.md, now gated as authored files	LK-07	S		LK-A-02
+LK-09	M1	LibKa0s	Band watch list: the five over-shelf-life 'accepted' Options files become one tracked deviation row; dispositions point at it	LK-08,LK-06	S		LK-A-01
+LK-10	M1	LibKa0s	Sampled mutation pass on the widget suites: '-- red under:' notes for the key negative cases	LK-03,LK-04	S		LK-R-11
+LK-11	M1	LibKa0s	Issue-store housekeeping: closed #32, #33, #37, #39 relabelled state:done		S		LK-A-07
+LK-12	M1	LibKa0s	Cut LibKa0s release v1.71.0: version block, release run with ANALYSIS.md, LOCAL tag only	LK-01,LK-02,LK-03,LK-04,LK-05,LK-06,LK-07,LK-08,LK-09,LK-10,LK-11,WS-11	M	yes	
+DC-01	M1	dev-copilot	Bounded-runs hook: stop denying 'command -v' tool probes; clean up test tempdirs		S		DC-A-06,DC-R-02,DC-R-14
+DC-02	M1	dev-copilot	Bounded-runs matcher: close the 'ulimit -v unlimited' and 'sh -c' false negatives	DC-01	S		DC-R-13
+DC-03	M1	dev-copilot	ka0s-bounded: kill the whole tree on timeout when non-interactive; recompute slots while waiting		M		DC-R-01,DC-R-08
+DC-04	M1	dev-copilot	Line-ending hook: add an automated test suite (symlink case expected-red)		M		DC-R-06
+DC-05	M1	dev-copilot	Line-ending hook: resolve symlinks so the target is converted and the link survives	DC-04	S		DC-R-03
+DC-06	M1	dev-copilot	Author the docs/ARCHITECTURE.md hub (documentation-§8 Substitutes #3): Overview, Module Map, Known Limitations, Documentation map, Documented deviations	DC-01,DC-03,DC-05	M		DC-A-01,DC-A-02,DC-A-03
+DC-07	M1	dev-copilot	Finish the wow-addon rename sweep and add the tooling kind to user-facing descriptions	DC-06	S		DC-A-07,DC-R-10,DC-R-15
+DC-08	M1	dev-copilot	Issue commands: one shared meaning of 'all' in a WoW repo	DC-07	M		DC-R-04
+DC-09	M1	dev-copilot	Replace rotted worked examples in specs with durable citations	DC-06,WS-07	M		DC-A-09
+DC-10	M1	dev-copilot	Cross-addon pass: mktemp roots file and drop the frozen v1.56.0 baseline	DC-09	S		DC-R-05,DC-R-11
+DC-11	M1	dev-copilot	Push-safety wording: wow-new-addon roster step and finalize push rejection	DC-07	S		DC-R-07,DC-R-12
+DC-15	M1	dev-copilot	Audit agent and spec handoffs from the standard: documentation-lane register read, stale launcher/EOL content, the changelog's new home, check (e) quoting, sync-docs runs check-standard.sh, README standard version	DC-06,DC-07,WS-01,WS-03,WS-10,WS-11	M		DC-A-05,WAS-A-20,DC-A-10
+DC-12	M1	dev-copilot	US-English sweep over live specs and root docs	DC-06,DC-07,DC-08,DC-09,DC-10,DC-11,DC-15	S		DC-A-11
+DC-13	M1	dev-copilot	DEPENDENCIES.md: command-based inventory, fresh citations and reasoned version floors	DC-12	S		DC-A-08,DC-R-09
+DC-14	M1	dev-copilot	Delete the stale origin/main branch (owner go-ahead only)		S		DC-A-13
+RV-AT	M2	AbsorbTracker	Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 span; kit 38 clears the Totals/badge mismatch	LK-12	M	yes	AT-A-01,AT-R-07
+RV-AM	M2	AuraMaster	Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 span	LK-12	M	yes	AM-A-01
+RV-BL	M2	BankLedger	Re-vendor LibKa0s v1.71.0 (kit 38) from the local tag; record it plus the unrecorded v1.69.0/v1.70.0 span bundle	LK-12	M	yes	BL-A-01,BL-A-03
+RV-CM	M2	ConsumableMaster	Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 re-vendors in one span bundle	LK-12	M	yes	CM-A-01
+RV-KC	M2	KickCD	Re-vendor LibKa0s v1.71.0 from the local tag, with the v1.71.0 bundle and the unrecorded v1.69.0-v1.70.0 span bundle	LK-12	M		KC-A-01,KC-A-07
+RV-LH	M2	LootHistory	Re-vendor LibKa0s v1.71.0 from the local tag: both payloads whole, provenance line, docs/revendor bundle, regenerated inventory	LK-12	M		LH-A-13
+RV-MM	M2	MultiMeters	Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 re-vendors as a span bundle and de-tag the stale library/kit stamps	LK-12	M		MM-A-01,MM-A-02
+RV-PM	M2	PanelMaster	Re-vendor LibKa0s v1.71.0 (kit revision 38) from the local tag; record the unrecorded v1.69.0-v1.70.0 span	LK-12	M		PM-A-11,PM-R-09
+RV-PF	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 span; de-tag live docs	LK-12	M	yes	PFE-A-02,PFE-A-11,PFE-A-05
+RV-PC	M2	PrettyChat	Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 re-vendors in one span bundle	LK-12	M	yes	PC-A-01,PC-R-07
+RV-WG	M2	WhatGroup	Re-vendor LibKa0s v1.71.0 (kit 38) from the local tag; record the unrecorded v1.69.0/v1.70.0 re-vendors in a span bundle; de-tag stale v1.68.1 stamps	LK-12	M		WG-A-02
+AT-01	M3	AbsorbTracker	Offline perf measures the shipped doRepaint: NS.Timer.__doRepaint seam, repaintPass scenario, re-derived dormant ceiling	RV-AT	M		AT-R-01
+AT-02	M3	AbsorbTracker	LibKa0s-Widgets-1.0 gets its setup seam: core/WidgetsSetup.lua publishes NS.Widgets with a library-absent stub and a parity case	RV-AT,AT-01	M	yes	AT-A-07
+AT-03	M3	AbsorbTracker	Annotate the load-bearing settings TOC lines: Schema.lua and OptionsSetup.lua	RV-AT,AT-02,WS-04	S		AT-A-04,AT-A-05
+AT-04	M3	AbsorbTracker	Retire the savedvariables-§1 register row the standard now sanctions, recording its two residual differences	RV-AT,AT-03	S		AT-A-06
+AT-05	M3	AbsorbTracker	doRepaint iterates NS.Units.LIST directly instead of building a closure per coalesced pass	RV-AT,AT-01,AT-04	S	yes	AT-R-02
+AT-06	M3	AbsorbTracker	/at debug hold refuses while the addon is stood down for a perf capture; the degraded-load test asserts the latch, not a stub literal	RV-AT,AT-05	S	yes	AT-R-03,AT-R-06
+AT-07	M3	AbsorbTracker	NS.RelockForCombat: standing up or enabling mid-combat re-locks unlocked bars so the fight starts on live data	RV-AT,AT-06	S	yes	AT-R-04
+AT-08	M3	AbsorbTracker	Debug and chat output hygiene: the two log-on-change memos go through DebugChanged; the migration-failure line hands its parts to the printer	RV-AT,AT-07	S		AT-A-09,AT-A-08
+AT-09	M3	AbsorbTracker	Doc drift sweep against the tree; the automated-tests page quotes the runner; Master-scale drift recorded for smoke S-05	RV-AT,AT-08,WS-07	M	yes	AT-A-02,AT-A-03,AT-R-05
+AT-STD	M3	AbsorbTracker	Roll the standards reference to the version WowAddonStandards opens in this run (v2.77.0); docs sync of everything AT-01..AT-09 changed	WS-11,AT-09	S		
+AM-01	M3	AuraMaster	/am select and /am delete resolve a bare number by exact name before id, refuse a cross-match, '#N' always means id	RV-AM	S	yes	AM-R-05
+AM-02	M3	AuraMaster	Schema-migration summary lines reach the log through DebugAtEnable	AM-01	S	yes	AM-A-08
+AM-03	M3	AuraMaster	Slash help rows: the library-absent stub stops copying FormatRow; debug row rekeyed; containers listing documented as printed	AM-02	S	yes	AM-A-07,AM-R-07
+AM-04	M3	AuraMaster	Split tests/test_anchors_drag.lua along the lifecycle vs drop/attach seam	AM-03	M		AM-R-04
+AM-05	M3	AuraMaster	logCandidates below CCN 15: extract the per-target text helper (byte-identical [Anchor] line)	AM-04	S		AM-R-01,AM-A-03
+AM-06	M3	AuraMaster	Peel the frozen schema migrations out of core/Database.lua into core/Database_Migrations.lua	AM-05	M	yes	AM-R-02
+AM-07	M3	AuraMaster	Container picker labels stop lowercasing translated strings	AM-06	S	yes	AM-R-06
+AM-08	M3	AuraMaster	Launcher test-mode drift: docs and comments name the menu's Test mode entry; stale map row and test comment	AM-07	S		AM-A-06
+AM-09	M3	AuraMaster	docs/ARCHITECTURE.md Module Map spills its drag/snap/detach narrative into docs/data-flow.md	AM-08	S		AM-A-02
+AM-10	M3	AuraMaster	.pkgmeta ignores .claude and media/screenshots	AM-09	S		AM-A-04,AM-A-09
+AM-STD	M3	AuraMaster	Roll the standards reference to the run's standard version; docs sync; close-out label on #22	WS-11,AM-10	S		AM-A-05
+BL-01	M3	BankLedger	LT.GroupEntries back under CCN 15: module-level group comparators, characterization case first	RV-BL	S		BL-R-01,BL-A-02
+BL-02	M3	BankLedger	Browser search: trimmed query matches the suggestions, one filter pass per ApplyView/tab switch, printer arguments	BL-01	M	yes	BL-R-04,BL-R-03,BL-A-05
+BL-03	M3	BankLedger	Peel the per-tab view machinery out of modules/Browser.lua into modules/Browser_Views.lua (pure move)	BL-02	M	yes	BL-R-02
+BL-04	M3	BankLedger	Docs drift sweep: Logo-art pointers, the mono-glyph comment, per-tab saved views, session-only lastTab, PANEL-28 both tabs	BL-03	S	yes	BL-A-04,BL-R-05
+BL-05	M3	BankLedger	Library-absent Meta drops the dead bare-global GetAddOnMetadata rung (cluster C27 parity with LK-06, MM-07, PM-09)	RV-BL,BL-04	S		
+BL-STD	M3	BankLedger	Roll the standards reference to WowAddonStandards v2.77.0 and sync docs for this run's changes	WS-11,BL-05	S		
+CM-01	M3	ConsumableMaster	Macro fingerprint is trusted only when the live account-wide macro still holds that body; deleted or overwritten KCM_* macros are rewritten	RV-CM	M	yes	CM-R-01
+CM-02	M3	ConsumableMaster	Seed the Devourer Demon Hunter stat priority (12_1480, Intellect) and test per playable spec, not per class	RV-CM,CM-01	S	yes	CM-R-02,CM-R-08
+CM-03	M3	ConsumableMaster	OnSpecChanged ignores groupmates' respecs and runs a discovery pass for the new spec before recomputing	RV-CM,CM-02	S	yes	CM-R-04,CM-R-07
+CM-04	M3	ConsumableMaster	/cm priority accepts only a positive item ID or s:<positive spell ID>; everything else prints the usage line	RV-CM,CM-03,LK-05	S		CM-R-06
+CM-05	M3	ConsumableMaster	One composite-config rule: Selector.compositeRefs delegates to a published MacroManager.CompositeConfig	RV-CM,CM-04	S		CM-R-05
+CM-06	M3	ConsumableMaster	Out-of-combat bar refresh scores each flyout candidate once: one scoreCache per MacroBar.Refresh threaded to Selector.ListAvailable	RV-CM,CM-05	M	yes	CM-R-03
+CM-07	M3	ConsumableMaster	Authored-doc drift: cite handlers and writers by name in ARCHITECTURE.md, resolvable register evidence ids, the renamed perf-analysis command, and the sighted complexity command	RV-CM,CM-06,WS-07	S		CM-A-02,CM-A-04,CM-A-05
+CM-08	M3	ConsumableMaster	TOC load-bearing notes: CoreSetup names both file-scope printer consumers, SlashDump cites the right seam, and the seed files are marked conventional	RV-CM,CM-07,WS-04	S		CM-A-03,CM-A-07
+CM-09	M3	ConsumableMaster	Library-absent Meta drops the dead bare-global GetAddOnMetadata rung (cluster C27 parity with LK-06, MM-07, PM-09)	RV-CM,CM-08	S		
+CM-STD	M3	ConsumableMaster	Roll the standards reference to the version WowAddonStandards opens in this run, and sync the docs earlier items changed	WS-11,CM-09	S		
+KC-01	M3	KickCD	Cast bar drops a stale primary-icon anchor when the icon grid empties	RV-KC	S	yes	KC-R-01
+KC-02	M3	KickCD	Cast-bar name truncation counts UTF-8 characters, not bytes	RV-KC,KC-01	S	yes	KC-R-02
+KC-03	M3	KickCD	Glow gate tracks any target cast so the target_casting glow trigger follows friendly casts	RV-KC,KC-02	S	yes	KC-R-05
+KC-04	M3	KickCD	/kcd debug: an unknown word refuses without toggling the console; castbar and interrupt take an optional target|focus unit	RV-KC,KC-03	M	yes	KC-R-03,KC-R-04
+KC-05	M3	KickCD	Migration target published as NS.SCHEMA_VERSION; the Database.CURRENT_DB_VERSION alias goes	RV-KC,KC-04	M		KC-A-04
+KC-06	M3	KickCD	Util.Throttle reuses a frozen empty-args sentinel for zero-argument calls	RV-KC,KC-05	S		KC-R-09
+KC-07	M3	KickCD	.luacheckrc read_globals keeps only names a linted file reads bare	RV-KC,KC-06	S		KC-R-08
+KC-08	M3	KickCD	Rot-proof the four drifted inventories: ARCHITECTURE addonName rule, .luacheckrc history comment, compat-layer combat listener, .pkgmeta count	RV-KC,KC-07	S		KC-A-02
+KC-09	M3	KickCD	Qualify the standalone bare §N citations in tests and live docs	RV-KC,KC-08,WS-07	S		KC-A-03
+KC-10	M3	KickCD	Issue store: record on closed #11 that #10 (e0da04c) superseded the RenderGrid decline	RV-KC,KC-09	S		KC-A-06
+KC-STD	M3	KickCD	Roll the standards reference to Ka0s WoW Addon Standard v2.77.0 and sync the docs	WS-11,KC-10	M		
+LH-01	M3	LootHistory	Self-loot, currency and roll-won patterns rebuild when the chat globals they were compiled from change (PrettyChat rewrites them mid-session)	RV-LH	M	yes	PC-R-01
+LH-02	M3	LootHistory	Util.Coalesce: a window canceled by the stand-down no longer wedges the trigger for the rest of the session	RV-LH,LH-01	S	yes	LH-R-04
+LH-03	M3	LootHistory	Reconciler: the combat-exit LoginScan/Flush runs outside the ledgerEvent perf bracket	RV-LH,LH-02	S		LH-R-05
+LH-04	M3	LootHistory	Surface parity case for the Perf library-absent stub	RV-LH,LH-03	S		LH-A-04
+LH-05	M3	LootHistory	TOC: annotate the four unannotated load-bearing positions, mark the # Modules group's free positions, AnalyticsCharts publishes NS.Analytics idempotently	RV-LH,LH-04,WS-04,WS-07	S		LH-A-01,LH-A-15,LH-A-16,LH-A-17,LH-A-18,LH-A-02
+LH-06	M3	LootHistory	Timeline: one parser for the holder/container location string; the pane-resize double render pinned and recorded	RV-LH,LH-05	S		LH-R-08,LK-R-04
+LH-07	M3	LootHistory	Five chat lines pass their arguments to the shared printer instead of pre-formatting	RV-LH,LH-06	S		LH-A-12
+LH-08	M3	LootHistory	Peel BrowserTable's grouping/holder-move layer into modules/BrowserTableGroup.lua (pure move)	RV-LH,LH-07	M	yes	LH-R-02
+LH-18	M3	LootHistory	Peel Browser's widget kit into modules/BrowserWidgets.lua (pure move)	RV-LH,LH-08	M	yes	
+LH-09	M3	LootHistory	Complexity: core/Database.lua's four functions above CCN 15 (convertHolderMoves, compileFilter, accumulateLedger, Database:Stats)	RV-LH,LH-18	M		
+LH-10	M3	LootHistory	Complexity: core/Ledger.lua (PairHolders, scopeReason, RecomputeFlows) and modules/AnalyticsLedger.lua (BackToBackRows)	RV-LH,LH-09	M		
+LH-11	M3	LootHistory	Complexity: modules/Reconciler.lua (onEvent, planHolder, WriteRows) and modules/Escrow.lua (planMailMoney, planExits, commitExits)	RV-LH,LH-10,LH-03	L		
+LH-12	M3	LootHistory	Complexity: core/LifecycleSetup.lua (NS.StandDown, NS.StandUp) and core/Compat.lua (ListedCurrencyID, ListCurrencies)	RV-LH,LH-11	M	yes	
+LH-13	M3	LootHistory	Complexity: modules/Collector.lua currencyLine, modules/Holdings.lua Holdings:Search, modules/TestData.lua walk and DefaultTimelineThing	RV-LH,LH-12	M		
+LH-14	M3	LootHistory	Complexity: Browser/BrowserTable (historyCharItems, holderCharItems, holderMoves, SetTestMode, GroupRecords) to zero warnings; fresh sighted automated-test bundle	RV-LH,LH-13,LH-08,LH-18	M	yes	LH-R-01,LH-A-11
+LH-15	M3	LootHistory	docs/ARCHITECTURE.md hub: spill the module map to module-map.md, complete the out-of-scope store list, record the auction-exit known limitation	RV-LH,LH-14,WS-05	M		LH-A-03,LH-A-09,LH-R-06
+LH-16	M3	LootHistory	Doc-set drift: re-derived counts and citations, the complexity command, the holdings writer list, the suite count	RV-LH,LH-15,WS-07	S		LH-A-06,LH-R-09,LH-A-08,LH-A-10
+LH-17	M3	LootHistory	README: one closing signpost sentence in Usage; drop the contributor-facing line from the 1.4.0 Version History row	RV-LH,LH-16	S		LH-A-05,LH-A-07
+LH-STD	M3	LootHistory	Roll the standards reference to the version WowAddonStandards opens in this run; docs sync of everything earlier items changed; owner's LED-P2 in-client gate listed	WS-11,LH-17	S	yes	LH-R-03
+MM-01	M3	MultiMeters	Merge pets: an owner's own figures add to a cell its pet created earlier in the column instead of replacing it	RV-MM	M	yes	MM-R-01,MM-R-02
+MM-02	M3	MultiMeters	Secrets.PlainTruth is the one boolean probe; Aggregator, Tooltip and the Provider diagnostics use it and the field census no longer short-circuits on booleans	RV-MM,MM-01	S		MM-R-06,MM-R-07
+MM-03	M3	MultiMeters	A partial roster is rebuilt at most once per aggregate pass, not on every lookup	RV-MM,MM-02	M		MM-R-03
+MM-04	M3	MultiMeters	Renaming a window to a different case of its own name keeps the name instead of appending ' 2'	RV-MM,MM-03	S	yes	MM-R-04
+MM-05	M3	MultiMeters	Conformance 'Disabled 8' also drives the launcher right-click menu: only Enabled clickable, nothing written, nothing shown	RV-MM,MM-04	S		MM-A-08
+MM-06	M3	MultiMeters	Remove the retired drill-down Back button machinery and its three tests	RV-MM,MM-05	S	yes	MM-R-08
+MM-07	M3	MultiMeters	Library-absent NS.Meta drops the dead bare-global GetAddOnMetadata rung; its defending comments reworded	RV-MM,MM-06,LK-06	S		MM-A-05
+MM-08	M3	MultiMeters	1.1.0 Version History row tells players the minimap CLI path moved to global.minimap.shown	RV-MM,MM-07	S		MM-A-06
+MM-09	M3	MultiMeters	Docs quote the kit's sighted complexity suite, not raw lizard; un-pin lizard per documentation-§7	RV-MM,MM-08	S		MM-A-07
+MM-10	M3	MultiMeters	Hub and comment truth: ARCHITECTURE.md counts and retired-row headings, hub slimmed toward ~400 lines, two false Slash.lua comments, the architecture-§4 citation, and window-copy by id documented	RV-MM,MM-09	M		MM-A-04,MM-A-09,MM-A-03,MM-R-05
+MM-STD	M3	MultiMeters	Roll the standards reference to WowAddonStandards v2.77.0 and sync the docs earlier items changed	WS-11,MM-10	S		
+PM-01	M3	PanelMaster	Delete-all popup names the active profile and says every character on it loses its panels	RV-PM	S	yes	PM-R-02
+PM-02	M3	PanelMaster	Reset all settings sweeps the session-only rows: re-lock and hide the debug console, with a blast-radius test	PM-01	M	yes	PM-A-02,PM-A-01
+PM-03	M3	PanelMaster	Per-panel Delete and Reset in the editor ask first, naming the panel; the Registry comment becomes true	PM-02	M	yes	PM-R-05
+PM-04	M3	PanelMaster	Stand-down drops combat-held unlocks so a later combat exit cannot unlock every panel	RV-PM	S	yes	PM-R-06
+PM-05	M3	PanelMaster	Non-Latin and accented panel names get distinct frame names; duplicate-name check folds UTF-8 case	PM-03	M	yes	PM-R-01
+PM-06	M3	PanelMaster	Panel number fields refuse NaN and infinity, and /pm recover repairs a non-finite position in one run	PM-05	M	yes	PM-R-03
+PM-07	M3	PanelMaster	R.Sanitize repairs every template field (accent colors, artBlend, artDesaturate) with a coverage property test; lists treat enabled==nil as enabled	PM-06	S		PM-R-04,PM-R-07
+PM-08	M3	PanelMaster	Library-absent Slash stub stops copying the library's colored key = value format	PM-07	S		PM-A-03
+PM-09	M3	PanelMaster	Delete the dead bare-global AddOns fallbacks in EnvSetup and Compat.AddOnFolders	PM-08	S		PM-A-04
+PM-10	M3	PanelMaster	Issue store: closed #47 relabelled state:done	RV-PM	S		PM-A-12
+PM-11	M3	PanelMaster	Doc-and-comment sweep against the tree: lifecycle/launcher comments, register row, census, sighted complexity runner, ARCHITECTURE trim	PM-09,PM-04	M		PM-A-09,PM-R-08,PM-A-07,PM-A-10
+PM-12	M3	PanelMaster	CLAUDE.md stub items in standard order; README drops angle-bracket placeholders and the 1.2.0 release-process line	PM-11	S		PM-A-06,PM-A-08
+PM-STD	M3	PanelMaster	Roll the standards reference to WowAddonStandards v2.77.0 and sync the docs the earlier items changed	WS-11,PM-12	S		
+PF-01	M3	PartyFrameEnhanced	Secure-write queue: one raising deferred write no longer orphans the rest; unwrapFrame re-wrap guarded	RV-PF	M	yes	PFE-R-02,PFE-R-03,PFE-R-05
+PF-02	M3	PartyFrameEnhanced	Profile change in combat cannot turn preview on: PROFILE receiver honours the combat refusal	RV-PF,PF-01	S	yes	PFE-R-01
+PF-03	M3	PartyFrameEnhanced	Pending-secure listener moves from a private CreateFrame to a dedicated AceEvent target (events-frames-taint-§1)	RV-PF,PF-02	S	yes	PFE-A-01
+PF-04	M3	PartyFrameEnhanced	/pfe status prints one unlocked flag	RV-PF,PF-03	S	yes	PFE-R-04
+PF-05	M3	PartyFrameEnhanced	Doc-set drift: kit/command/shim-count fixes, fourth Documentation-map table, settings-panel shape, register row text	RV-PF,PF-04,WS-05	S		PFE-A-03,PFE-A-04,PFE-A-07,PFE-A-06
+PF-06	M3	PartyFrameEnhanced	Library-absent Meta drops the dead bare-global GetAddOnMetadata rung (cluster C27 parity with LK-06, MM-07, PM-09)	RV-PF,PF-05	S		
+PF-STD	M3	PartyFrameEnhanced	Roll the standards reference to WowAddonStandards v2.77.0 and sync docs	WS-11,PF-06	S		
+PC-01	M3	PrettyChat	Schema refuses an empty or whitespace-only format, so the panel can no longer store a blank chat string	RV-PC	S	yes	PC-R-02
+PC-02	M3	PrettyChat	RunMigrations leaves a newer build's data alone: no prune and no restamp when the stored schemaVersion is ahead	RV-PC,PC-01	S		PC-R-04
+PC-03	M3	PrettyChat	Categories page header Defaults asks before resetting all eight tabs; the footer path (already confirmed by Blizzard) does not ask twice	RV-PC,PC-02	S	yes	PC-R-03
+PC-04	M3	PrettyChat	/pc test category: General is not a test category; leave it out of the Valid list and refuse it as unknown	RV-PC,PC-03	S	yes	PC-R-11
+PC-05	M3	PrettyChat	Comment and doc truth: _G writes do taint (only non-protected readers), and the report-size and addon-count figures stop contradicting each other	RV-PC,PC-04	S		PC-R-05,PC-R-06
+PC-06	M3	PrettyChat	Docs sync against the tree: the Item/Pool/Widgets sentence, the perf-sweep commit, .luacheckrc counts, PRETTYCHAT-A-NN ids remapped, LootHistory cited by name	RV-PC,WS-07,PC-05,LH-01	M		PC-A-02,PC-R-10
+PC-07	M3	PrettyChat	Hub ARCHITECTURE.md back under ~400 lines: census exemption prose to global-strings.md, retired-row narratives to one line	RV-PC,WS-05,PC-06	S		PC-A-03
+PC-08	M3	PrettyChat	Issue #8: comment that SP-PC-01's Profiles page superseded the per-character profile decline (no relabel, no commit)	RV-PC,PC-07	S		PC-A-05
+PC-STD	M3	PrettyChat	Roll the standards reference to the version WowAddonStandards opens in this run (v2.77.0) and sync docs with this run's changes	WS-11,PC-08	S		
+WG-01	M3	WhatGroup	Teleport-cooldown reader survives secret cooldown values: unknown instead of a raise, ticker stays armed; regression cases on Kit.secret	RV-WG,LK-02,WS-09	M	yes	WG-R-01,WG-R-02
+WG-02	M3	WhatGroup	RunTest previews without clobbering pendingInfo, and builds nothing while stood down; reloadProfile comment corrected	WG-01	M	yes	WG-R-03,WG-R-04,WG-R-07
+WG-03	M3	WhatGroup	Stand-down's owed-Hide PLAYER_REGEN_ENABLED registration goes through NS.SafeRegisterEvent	WG-02	S		WG-A-01
+WG-04	M3	WhatGroup	Popup Height tooltip and Frame.lua size comment stop restating a default number	WG-03	S	yes	WG-R-05
+WG-05	M3	WhatGroup	Re-measure the offline perf baseline after WG-01/WG-02; bisect the showFrameRepeat 18->19 API move and record the cause	WG-04	S		WG-R-06
+WG-06	M3	WhatGroup	Docs and comment drift sync: Compat load-order header, shim count via the documentation-§3 grep, durable citations, count-free settings and .pkgmeta wording	WG-05,WS-07	M		WG-A-03
+WG-07	M3	WhatGroup	Library-absent Meta drops the dead bare-global GetAddOnMetadata rung (cluster C27 parity with LK-06, MM-07, PM-09)	RV-WG,WG-06	S		
+WG-STD	M3	WhatGroup	Roll the standards reference to the v2.77.x WowAddonStandards opens in this run; docs sync of everything WG-01..WG-07 changed	WS-11,WG-07	S		
