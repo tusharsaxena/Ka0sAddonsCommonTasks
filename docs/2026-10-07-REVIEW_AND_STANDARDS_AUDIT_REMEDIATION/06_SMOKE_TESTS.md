@@ -225,6 +225,31 @@ must record them before LootHistory 1.4.0 ships.
 | WG-02 | Join or capture a real group, then run `/wg test notify` and separately press the panel Test button. Close the popup and run `/wg show`, then click the chat details link. Then `/wg disable`, press Test, and `/wg enable`. | The sample notice and popup appear. `/wg show` and the link open the real group, not `Test Group`. While disabled, Test gives a chat preview only with no popup. After enable, no popup appears unasked. | |
 | WG-04 | Open the settings panel, Popup > Layout, and hover Height. | The tooltip reads `Height of the group-info popup, in pixels.` and states no default. | |
 
+## Owner session 2026-10-07: minimal set
+
+The owner ran the minimal set below on the feature-branch build (LibKa0s v1.71.0 payload in every addon)
+and reported **all pass** on 2026-10-07. Rows in the per-addon tables above that are not listed here were
+not run; their Result cells stay blank.
+
+| Check | Rows covered | Result |
+|---|---|---|
+| Load all addons, open every settings panel | RV-AT, RV-AM, RV-BL, RV-CM, RV-PF, RV-PC, LK-12 | pass |
+| BankLedger search suggestions | LK-04 | pass |
+| LootHistory Timeline hover + resize | LK-03 | pass |
+| MultiMeters pet merge vs Blizzard meter | MM-01 | pass |
+| LootHistory records loot after a PrettyChat change | LH-01 | pass |
+| Deleted KCM_ macro recreated on resync | CM-01 | pass |
+| Devourer DH stat priority | CM-02 | pass |
+| PanelMaster delete-all prompt names the profile | PM-01 | pass |
+| KickCD cast bar with an empty icon grid | KC-01 | pass |
+| WhatGroup M+ teleport cooldown in combat | WG-01 | pass |
+| PartyFrameEnhanced disable in combat | PF-03 | pass |
+| AbsorbTracker enable in combat after unlock | AT-07 | pass |
+| KickCD glow on a friendly cast | KC-03 | pass |
+| PrettyChat Categories Defaults prompts | PC-03 | pass |
+
+Deferred: LED-P2-01..24 (LootHistory 1.4.0 release gate) and every unlisted row.
+
 ---
 
 # Sign-off
