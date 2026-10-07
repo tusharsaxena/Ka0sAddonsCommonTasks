@@ -1,0 +1,25 @@
+{
+  "cluster": "C32",
+  "title": "versioning-git trunk-based MUST vs feature-branch practice",
+  "cluster_summary": "versioning-git.md:13 requires trunk-based work and allows branching only 'when the human explicitly asks'. WowAddonStandards/CLAUDE.md:116-117 uses a looser judgment trigger ('when a changeset genuinely warrants isolation'). dev-copilot/CLAUDE.md:111, Ka0sAddonsCommonTasks/CLAUDE.md and /dev-copilot:finalize all make same-named feat/<date>-<topic> branches, merged --no-ff and then deleted, the standing flow. The cause is a single stale rule in WowAddonStandards, so the fix is one revision there, carried through the full ripple. That revision makes the per-repo finding DC-A-12 moot, so no per-repo deviation rows are needed.",
+  "verdicts": [
+    {
+      "id": "DC-A-16",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "WowAddonStandards",
+      "assessment": "Verified: versioning-git.md:13 contradicts the standard's own CLAUDE.md:116-117, dev-copilot/CLAUDE.md:111, this workspace's CLAUDE.md and how finalize works. A MUST that nobody follows will be re-filed by every audit in every repo. There is no runtime impact, but one paragraph upstream ends the churn, so it should be fixed.",
+      "remediation": "Revise versioning-git.md §1 (line 13). Work goes on the default branch by default. Owner-directed or multi-repo changesets go on feat/<YYYY-MM-DD>-<topic>, with the same name in every repo touched, merged --no-ff and then deleted. Merge, tag, push and release keep their owner go-ahead gates. Replace 'the addon's default branch' with repo-kind-neutral wording, because documentation-§8 binds the rule to tooling repos too. Ripple: the STANDARDS.md:78 index blurb, NEW_ADDON_CONTEXT.md git rule 23 (~:1520), the anti-pattern 'Creating a feature branch without an explicit request' (~:1576), and WowAddonStandards/CLAUDE.md:116-117 so the wording matches. Then bump the standard's version and add a changelog entry. File no per-repo deviation rows."
+    },
+    {
+      "id": "DC-A-12",
+      "reality": "corrected",
+      "needs_addressing": "no",
+      "severity_after": "info",
+      "fix_home": "WowAddonStandards",
+      "assessment": "The facts are accurate: dev-copilot/CLAUDE.md:111 makes feature branches the default, and the repo has no Documented deviations register. But the finding is derived from DC-A-16 rather than an independent defect, and owner-directed cross-repo branches already fall under the rule's 'human explicitly asks' clause. Once the upstream revision lands, CLAUDE.md:111 complies with no local change. Only if the owner rejects DC-A-16 would a deviation row, which depends on DC-02, be needed.",
+      "remediation": ""
+    }
+  ]
+}

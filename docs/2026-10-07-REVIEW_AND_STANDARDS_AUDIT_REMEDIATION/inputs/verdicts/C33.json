@@ -1,0 +1,25 @@
+{
+  "cluster": "C33",
+  "title": "British spellings in live docs (localization-§5)",
+  "cluster_summary": "Live authored prose in LibKa0s (two adoption docs) and dev-copilot (commands, agents, profiles, root docs and one script comment) uses British spellings, which breaks the localization-§5 MUST. Each repo has its own cause: LibKa0s's own prose gate (tests/test_prose.lua) does not list the two adoption docs, and its register row 3 wrongly treats adoption-prompt.md as a frozen record; dev-copilot has no prose gate at all. Each fix stays in its own repo: a mechanical sweep with the canonical testkit/prose_lists.lua lists, plus, in LibKa0s, extending the gate and correcting the register. No upstream change makes either item moot. Address LibKa0s as should; dev-copilot is worth a cheap sweep (optional+), prioritizing step headings that seed generated bundles.",
+  "verdicts": [
+    {
+      "id": "LK-A-02",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "LibKa0s",
+      "assessment": "Verified: CLAUDE.md:75 lists '21 in docs/adoption-prompt.md' among records not to be rewritten, yet CLAUDE.md:437/447 treats it as a maintained live page, and tests/test_prose.lua AUTHORED_FILES (about line 347) omits both adoption docs, which is why the gate stays green. The register claim is false, and the brief is copied into consumer repos, so the fix is cheap and the gate keeps it from coming back.",
+      "remediation": "Sweep docs/adoption-prompt.md and docs/adoption-report.md to US English using testkit/prose_lists.lua (BRITISH/ALLOWED). Add both paths to AUTHORED_FILES in tests/test_prose.lua. Strike '21 in docs/adoption-prompt.md' from register row 3 (CLAUDE.md:75) in the same commit. Verify with lua tests/run.lua, luacheck and lizard green."
+    },
+    {
+      "id": "DC-A-11",
+      "reality": "corrected",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "dev-copilot",
+      "assessment": "The 37 hits are real, and documentation-§8 binds localization-§5 to dev-copilot, but they span agents/, profiles/wow/ and scripts/bounded_runs.py:52 as well as commands/ and the root docs. There is no player impact. The one real mechanism is that prompt text such as 'Step 8 — Summarise' (commands/wow-revendor-libka0s.md:409, verified) seeds British spellings into bundles written into gated addon repos. dev-copilot has no prose gate, so a sweep alone will drift back.",
+      "remediation": "Run one US-English sweep with the full canonical BRITISH/ALLOWED lists over CLAUDE.md, README.md, agents/, commands/, profiles/ and scripts/ (comments only), starting with step headings and output-file instructions. Leave dated docs/superpowers/ untouched; a re-run should report TOTAL 5, all in docs/superpowers/. Optionally add a small scripts/ prose check, with a test, that copies the canonical lists whole so it does not recur."
+    }
+  ]
+}

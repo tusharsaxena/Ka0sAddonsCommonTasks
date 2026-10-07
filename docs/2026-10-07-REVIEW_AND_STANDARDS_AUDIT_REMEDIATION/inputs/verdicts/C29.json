@@ -1,0 +1,34 @@
+{
+  "cluster": "C29",
+  "title": "Pre-formatted chat lines (events-frames-taint-§8)",
+  "cluster_summary": "Printer calls in three addons build the chat line with .. or :format before calling the shared printer. Every value formatted is addon-owned or typed by the player, so none of the sites is in the §8 combat-protected trigger set. That makes them SHOULD NOT observations with no behaviour change and no way to expose a secret value. I read every site. AbsorbTracker's and LootHistory's are as cited. Of BankLedger's six, three are not real deviations: Slash.lua:253 and :339 carry comments citing §8 that explain why they are written that way, and DebugLogSetup.lua:51 is a localized whole-sentence format. None of these needs to be addressed. Fix the remaining sites in each repo only when the file is already being edited in this run, using the secret-safe NS.Format (the library's printer.Format) for :format sites so the wording does not change. Separate printer arguments are joined with spaces, so splitting would print 'v 3'. Optionally, WowAddonStandards AUDIT.md could also stop reopening sites outside the trigger set as per-repo findings.",
+  "verdicts": [
+    {
+      "id": "AT-A-08",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "info",
+      "fix_home": "AbsorbTracker",
+      "assessment": "core/Database.lua:234-235 joins two addon-owned schema integers on the cold path where a settings migration fails. The values are outside the §8 trigger set and the deviation row (Slash.lua) does not cover this file. It changes no behaviour, so fold the fix in only if Database.lua is already being edited this run.",
+      "remediation": "If Database.lua is touched, change the line to NS.Print(\"Settings upgrade stopped at version\", from, \"->\", step.to, \"; saved settings were left as they were\"), or use NS.Format if the addon publishes it, which keeps the v<n> wording. Do not widen the deviation row to cover it. Otherwise fix it when the file is next touched."
+    },
+    {
+      "id": "BL-A-05",
+      "reality": "corrected",
+      "needs_addressing": "optional",
+      "severity_after": "info",
+      "fix_home": "BankLedger",
+      "assessment": "I confirmed three real sites: modules/Browser.lua:901 and :915 (lastTab :format) and settings/Slash.lua:111 (profile name joined with ..). The other three are not real deviations. Slash.lua:253 (comment at :249-252, citing §8) keeps the library's v%s VERSION wording with no space. Slash.lua:339 (comment at :336-338) already passes the verb as its own argument. DebugLogSetup.lua:51 formats a localized whole sentence, which localization.md asks for. All are Info, outside the trigger set, with no player impact.",
+      "remediation": "Narrow the finding to Browser.lua:901, Browser.lua:915 and Slash.lua:111. When those files are touched, switch the Browser :format calls to NS.Format(fmt, lastTab), or the library's printer.Format, and pass the profile name in Slash.lua:111 through NS.Format or as a printer argument. Leave Slash.lua:253, Slash.lua:339 and DebugLogSetup.lua:51 as they are."
+    },
+    {
+      "id": "LH-A-12",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "info",
+      "fix_home": "LootHistory",
+      "assessment": "All five sites exist as cited (Schema.lua:1098; Slash.lua:239, :243; Browser.lua:919, :933). Each pre-formats addon-owned or player-typed values outside the §8 trigger set, and no deviation row covers them. This is Info with no behaviour change. It is worth doing only alongside other edits to these files.",
+      "remediation": "When these files are touched, switch the :format sites (Slash.lua:243, Browser.lua:919/:933) to NS.Format(fmt, ...), which is already published in core/CoreSetup.lua. Pass the joined values in Schema.lua:1098 and Slash.lua:239 as printer arguments or through NS.Format. Do not make a standalone sweep commit."
+    }
+  ]
+}

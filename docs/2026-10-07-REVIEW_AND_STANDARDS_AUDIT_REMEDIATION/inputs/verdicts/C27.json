@@ -1,0 +1,43 @@
+{
+  "cluster": "C27",
+  "title": "Dead compat fallback rungs on removed AddOns globals",
+  "cluster_summary": "The bare AddOns globals (GetAddOnMetadata, IsAddOnLoaded, GetNumAddOns, GetAddOnInfo) were removed from the client in 11.0, and every admitted client is Interface 120100. Every fallback rung that calls one of them sits behind a C_AddOns rung that answers first, so it is unreachable dead code under compat.md's v2.65.0 MUST. compat.md:9 is correct and names this exact GetAddOnMetadata rung as its worked case. The defect is LibKa0s/Env.lua:52-53, which claims the global is 'still present'. Nothing goes upstream to WowAddonStandards. The fix lands in three places. In LibKa0s, delete the Env and OptionsIdList rungs, bump to Env minor 2 and IDLIST minor 4, rewrite the comment, fix the tests and docs, and ship in this run's LibKa0s release; every addon then picks it up on re-vendor. MultiMeters and PanelMaster each delete their own host-side rungs. An owner /dump of the four globals on live retail is a cheap confirmation to fold into the smoke pass, but it does not gate the work, because the standard has already ruled on it.",
+  "verdicts": [
+    {
+      "id": "LK-A-04",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "LibKa0s",
+      "assessment": "I checked LibKa0s/Env.lua:52-53, which still says 'deprecated but still present, so both rungs are live', and OptionsIdList.lua:485, which still falls back to bare IsAddOnLoaded. Both rungs are unreachable on 120100. Player impact is zero. The library every addon vendors contradicts the standard's worked case, though, so every audit rotation will file this again.",
+      "remediation": "1. Delete the bare-global rungs at Env.lua:64-66 and OptionsIdList.lua:485, keeping the C_AddOns rung and nil.\n2. Rewrite the Env.lua:50-55 doc comment so it no longer claims the global exists.\n3. Bump Env MINOR 1->2 and IDLIST_MINOR 3->4.\n4. Tests, red first: replace tests/test_env.lua:31 and tests/test_options_idlist_layout.lua:585-597 with cases that plant the bare global with C_AddOns absent and assert it is never called and the result is nil. Drop withLoadedApi's `global` parameter.\n5. Docs: update docs/test-cases.md:98 and :1460, add new docs/api version docs, regenerate the members json and add a CHANGELOG entry.\n6. Drop GetAddOnMetadata and IsAddOnLoaded from .luacheckrc:8-9.\n7. Ship in this run's LibKa0s release alongside the LibKa0s#43 payload comment. Addons pick it up via re-vendor.\n8. Optional confirmation, not a gate: the owner runs /dump GetAddOnMetadata, IsAddOnLoaded, GetNumAddOns, GetAddOnInfo in live retail during smoke."
+    },
+    {
+      "id": "LK-A-09",
+      "reality": "corrected",
+      "needs_addressing": "no",
+      "severity_after": "info",
+      "fix_home": "LibKa0s",
+      "assessment": "The contradiction is real, but the standard is the side that is right, so there is no standard defect and no upstream route. This finding duplicates LK-A-04, and rewriting the Env.lua comment there resolves it.",
+      "remediation": ""
+    },
+    {
+      "id": "MM-A-05",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "MultiMeters",
+      "assessment": "I verified MultiMeters core/EnvSetup.lua:93-95, which keeps a _G.GetAddOnMetadata rung below the C_AddOns rung in the Env-absent stub. This is the standard's literal worked case, and no deviation covers it. The code is dead and harmless, but the MUST is named and the fix costs a few lines.",
+      "remediation": "1. Red first: replace the tests/test_envsetup.lua:146-160 case with one that plants a bare GetAddOnMetadata spy with C_AddOns and Env absent, and asserts zero calls and a nil result.\n2. Delete core/EnvSetup.lua:93-95.\n3. Reword the comments that defend the deleted rung: EnvSetup.lua:84, tests/test_envsetup.lua:4, settings/Slash.lua:64 and core/PerfSetup.lua:94.\n4. Do not create a Compat shim.\n5. Batch this into MultiMeters' remediation commits."
+    },
+    {
+      "id": "PM-A-04",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "PanelMaster",
+      "assessment": "I verified both rungs. core/EnvSetup.lua:55-57 has a bare GetAddOnMetadata rung, and core/Compat.lua:30-33 has bare GetNumAddOns/GetAddOnInfo rungs inside AddOnFolders. All three globals went in the 11.0 AddOns purge, so neither rung is reachable on 120100. The finding is wrong that a test drives the global rung, and it misses docs/compat-layer.md.",
+      "remediation": "1. Delete EnvSetup.lua:55-57 and the global fallback in Compat.AddOnFolders (lines 30-33), keeping the C_AddOns check and the nil return. Compat.lua stays because it carries other live shims.\n2. Drop GetAddOnMetadata, GetNumAddOns and GetAddOnInfo from .luacheckrc:34 read_globals.\n3. Tests, red first: add a test_compat case that plants bare GetNumAddOns/GetAddOnInfo with C_AddOns absent and asserts AddOnFolders returns nil. Remove the redundant mocks.GetAddOnMetadata save/restore in tests/test_envsetup.lua:56-59.\n4. Rewrite docs/compat-layer.md:47-52.\n5. The /dump is only a confirmation, as for LK-A-04."
+    }
+  ]
+}

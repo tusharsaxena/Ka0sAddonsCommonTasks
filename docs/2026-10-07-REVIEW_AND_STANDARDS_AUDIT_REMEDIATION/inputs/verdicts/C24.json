@@ -1,0 +1,19 @@
+{
+  "cluster": "C24",
+  "title": "Debug-logging change gates and load-time logging",
+  "cluster_summary": "There is no shared root cause. Each finding is a per-repo debug-logging detail, and no LibKa0s change makes any of them moot. Only AuraMaster's migration lines are a real diagnostic gap. Its [Migrate] lines run only from OnInitialize, while State.debug is false, so they never reach the log, which leaves the debug-logging-§8 Lifecycle coverage (schema migration) unmet. Fix it with one DebugAtEnable summary line. AbsorbTracker's two hand-rolled memos are an optional SHOULD-level cleanup. The ConsumableMaster and PartyFrameEnhanced items are compliant as written, and nothing needs to be done for them.",
+  "verdicts": [
+    {"id": "AM-A-08", "reality": "corrected", "needs_addressing": "should", "severity_after": "low", "fix_home": "AuraMaster",
+     "assessment": "Confirmed. About 18 NS.Debug('Migrate', ...) sites in core/Database.lua run only through NS.RunMigrations, which NS.InitDB calls (:292) at OnInitialize, while State.debug is false. None of them can land. The citation is corrected to debug-logging-§8 Lifecycle coverage (MUST: schema migration when one runs), with DebugAtEnable as the mechanism. The stub at core/DebugLogSetup.lua:60 already carries it. Failures still print to chat, so severity stays low.",
+     "remediation": "Write a red case first: run a migration with logging off, call SetEnabled(true), and expect a '[Migrate] vX -> vY' line after [Init]. Then add one summary line per run through NS.DebugLog.DebugAtEnable('Migrate', ...), for example 'v3 -> v12 over N profile(s), seeded K', so the 32-entry queue cannot overflow. Optionally queue the per-step lines as well, or fold the summary into initSummary. Owner in-game check (optional): /reload after a schema bump, then /am debug on."},
+    {"id": "AT-A-09", "reality": "corrected", "needs_addressing": "optional", "severity_after": "low", "fix_home": "AbsorbTracker",
+     "assessment": "Real but minor, and only a SHOULD (debug-logging-§9). The memos are dbgAbsorbSecret at core/AbsorbTracker.lua:244 and dbgLastShown at modules/Display.lua:381-384. dbgLastShown is written unconditionally, and no onClear re-arms either memo, so state is not restated after Clear or enable. Diagnostics still report LastAppliedVisibility. Evidence correction: only core/AbsorbTracker.lua:139 uses DebugOnce, and Display.lua has no console gate.",
+     "remediation": "If the files are touched: keep dbgLastShown as the unconditional diagnostics record and add NS.DebugLog.DebugChanged('bar:'..unit, 'Bar', ...) for the log line in Display.lua. Route traceAbsorb's secret edge through DebugChanged('absorb:secret', ...), or alternatively pass an onClear that resets the memos. Write a characterization case first."},
+    {"id": "CM-A-09", "reality": "refuted", "needs_addressing": "no", "severity_after": "info", "fix_home": "ConsumableMaster",
+     "assessment": "This is not a deviation. debug-logging-§9 allows a host gate as long as it re-arms from onClear. KCM.DebugQuiet is reset in onClear (core/DebugLogSetup.lua:258-259) and on enable, and its reason (counting held passes) is documented. The finding itself says no local change is owed. A counting DebugChanged in LibKa0s would serve one consumer, so it is speculative.",
+     "remediation": ""},
+    {"id": "PFE-A-08", "reality": "refuted", "needs_addressing": "no", "severity_after": "info", "fix_home": "PartyFrameEnhanced",
+     "assessment": "settings/Slash.lua:243-254 implements the required behavior in the correct order (diagnostics first, then on/off through SetEnabled, then Toggle). The standard and the library both say DebugVerb is optional and that the behavior is what is required, not the call. The stub carries DebugVerb (core/DebugLogSetup.lua:71), so a swap would be safe, but it is cosmetic dedup only.",
+     "remediation": ""}
+  ]
+}

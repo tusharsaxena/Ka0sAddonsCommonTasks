@@ -1,0 +1,16 @@
+{
+  "cluster": "C36",
+  "title": "AuraMaster: packaging and recorded deviation",
+  "cluster_summary": "AuraMaster's .pkgmeta has two gaps, and both fixes belong in AuraMaster. The .claude ignore line is commented out even though .claude/commands/ is tracked, which fails the packaging-section strong-form MUST. Nothing actually ships, because the packager skips dotfiles. media/screenshots (26M) is not ignored. AuraMaster is the only collection addon that leaves its screenshots out of its ignore list: the other 11 already ignore them, either as media/screenshots or, in Outfitter, as Media. So no upstream route is needed, and the reality lens was wrong to say the gap is collection-wide. The options-ui-§17 deviation is ratified and still valid, and needs no action. Recommendation: make one small AuraMaster commit that fixes both .pkgmeta lines, then re-run packaging checks (a) to (c).",
+  "verdicts": [
+    {"id": "AM-A-04", "reality": "corrected", "needs_addressing": "should", "severity_after": "low", "fix_home": "AuraMaster",
+     "assessment": "The MUST failure is real. .pkgmeta:12-13 has '# - .claude' commented out, .claude/commands/aura-spells-review.md is tracked, and packaging.md:42 says a commented-out line fails the strong form. The claim that the file ships is false, because the BigWigs packager skips dotfiles, so this is a conformance gap only.",
+     "remediation": "Replace the commented .pkgmeta:12-13 lines with '  - .claude          # dev-only: agent tooling (.claude/commands/); never loaded by the client', then re-run packaging checks (a) to (c). Corrected title: the .claude ignore line is commented out while .claude/ is tracked (packaging strong-form MUST); nothing actually ships."},
+    {"id": "AM-A-09", "reality": "corrected", "needs_addressing": "should", "severity_after": "low", "fix_home": "AuraMaster",
+     "assessment": "The 26M of unloadable PNG and JPG files does ship in every download, and the README uses forgecdn copies. The reality lens said the gap is collection-wide. That is refuted: AbsorbTracker, BankLedger, ConsumableMaster, KickCD, LootHistory, MultiMeters, PanelMaster, PartyFrameEnhanced, PrettyChat and WhatGroup all ignore media/screenshots, and Outfitter ignores Media. AuraMaster is the lone outlier, so this is a one-line per-repo fix rather than an owner's-call observation that needs an upstream template change.",
+     "remediation": "Add '  - media/screenshots   # project-page art, served from the CurseForge CDN; the client cannot load PNG/JPG' to AuraMaster/.pkgmeta beside the media/logos rules. An upstream minimum-template line is optional and outside this cluster."},
+    {"id": "AM-A-10", "reality": "confirmed", "needs_addressing": "no", "severity_after": "info", "fix_home": "AuraMaster",
+     "assessment": "This is a ratified deviation (2026-09-12). The cited options-ui-§17 clause still exists, AM-03 resolves, CM.MustDefer() still holds applies, and neither re-open trigger has fired. It is correctly excluded from the tally.",
+     "remediation": ""}
+  ]
+}

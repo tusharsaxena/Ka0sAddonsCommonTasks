@@ -1,0 +1,34 @@
+{
+  "cluster": "C49",
+  "title": "WowAddonStandards - roster links and mechanical gate",
+  "cluster_summary": "All three findings are local to WowAddonStandards and need no upstream routing. The only one with a demonstrated recurring cost is WAS-R-04. It is an enhancement against a Known Limitation the repo already documents (no scripts/ dir exists; ARCHITECTURE.md lists 'No mechanical gate'), and a small scripts/check-standard.sh covering cheap, decidable checks would catch the class of drift this review found. WAS-A-17 (roster copied into README.md and line-endings.md) and WAS-R-11 (Folder links 404 on GitHub) are cosmetic or future-drift only. Do them as optional fixes in the same WowAddonStandards change; a roster-parity check in the gate would also make WAS-A-17 moot.",
+  "verdicts": [
+    {
+      "id": "WAS-R-04",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "medium",
+      "fix_home": "WowAddonStandards",
+      "assessment": "Confirmed: there is no scripts/ directory, and the DEPENDENCIES.md check looks only for CR bytes. But ARCHITECTURE.md Known Limitations already names 'No mechanical gate', so this is an enhancement against an accepted limitation, not a defect. It is still worth doing, because drift in the standard spreads to every addon audit and broken section citations are a documentation-§6 MUST-fix that nothing currently finds.",
+      "remediation": "Add a minimal scripts/check-standard.sh with only mechanically decidable checks: .gitattributes body matches the line-endings-§5 LF body, no CR bytes, internal relative links resolve (excluding ADDONS.md sibling-folder paths), filename-§N citations fall within each file's section range, version-stamp ripple across CLAUDE/README/EXECUTIVE_SUMMARY/NEW_ADDON_CONTEXT, and optionally a check that the roster matches ADDONS.md. It must exit 0 on the tree and nonzero on injected defects. Document it in DEPENDENCIES.md 'Verifying your setup' and, in the same change, update the ARCHITECTURE.md Known Limitations bullets (No mechanical gate, Cross-references are unenforced) to say what is now covered. Assign the version at implementation time under the changelog rules (current is v2.76.1; don't hard-wire v2.76.3)."
+    },
+    {
+      "id": "WAS-A-17",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "info",
+      "fix_home": "WowAddonStandards",
+      "assessment": "README.md:47-49 and standards/standards/line-endings.md:72-74 list all eleven addons, against WowAddonStandards/CLAUDE.md:78 ('Don't hard-code the addon list elsewhere'). Both match ADDONS.md today. That rule is a repo convention, not a MUST, and nothing is wrong yet; the only risk is future drift.",
+      "remediation": "Optional and cheap: replace both enumerations with a reference to standards/ADDONS.md (README can keep the link and drop the names and count). Alternatively, cover it with the roster-parity check in WAS-R-04's gate. Do not add a new rule."
+    },
+    {
+      "id": "WAS-R-11",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "WowAddonStandards",
+      "assessment": "The ../../<Repo>/ Folder links in standards/ADDONS.md climb above the repo root on GitHub and 404. ADDONS.md:16 says they are local sibling paths, they work on disk where agents read them, and the Repository column next to them carries working URLs. The problem is cosmetic.",
+      "remediation": "Optional: render the Folder column as plain code text (`../../AbsorbTracker/`) without the link wrapper for the 11 addon rows plus the LibKa0s and dev-copilot rows. Do it in the same commit as any other ADDONS.md touch, not as a standalone item."
+    }
+  ]
+}

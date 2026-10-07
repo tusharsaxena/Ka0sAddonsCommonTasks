@@ -1,0 +1,25 @@
+{
+  "cluster": "C42",
+  "title": "PanelMaster — sanitizer and enabled-state correctness",
+  "cluster_summary": "PanelMaster's REPAIR table in modules/Registry.lua drives both R.Sanitize and R.SanitizeField, but it has no rules for four template fields: accentColor, accentBorderColor, artBlend and artDesaturate. As a result, a missing key or a junk value in these fields survives sanitizing and R:CopyFrom copies it to other panels. The renderer already guards all four, so what the user can see is limited to the editor swatch, the panel dump and copied junk. The fix lives in PanelMaster alone. It is about four lines of rules plus a property test that every C.PANEL_TEMPLATE key either has a repair rule or is explicitly exempt. Separately, the enabled==nil display mismatch in the two list sites is cosmetic and optional.",
+  "verdicts": [
+    {
+      "id": "PM-R-04",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "PanelMaster",
+      "assessment": "I verified the gap in the code. ENUM_FIELDS has no artBlend, BOOL_FIELDS has no artDesaturate, and REPAIR lists only bgColor, borderColor and artColor among the colors. That breaks the table's own claim that the two sanitizers 'cannot diverge', and this is the second review to raise it. The renderer guards these fields, so severity drops to low. The white-swatch symptom applies only to accentBorderColor, whose template value is black; the accentColor template is already white.",
+      "remediation": "In modules/Registry.lua, add accentColor and accentBorderColor to the color REPAIR assignment, add artDesaturate to BOOL_FIELDS, and add artBlend to ENUM_FIELDS (or give it a REPAIR rule that checks C.ART_BLEND_SET and falls back to the template). Add a headless property test that every C.PANEL_TEMPLATE key has a REPAIR rule or appears on an explicit exempt list (name, frameName and any intentionally unrepaired keys). Optionally pass the template fallback to the editor's Util.Color reads at settings/PanelEditor.lua:334 and settings/PanelEditorTabs.lua:223."
+    },
+    {
+      "id": "PM-R-07",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "PanelMaster",
+      "assessment": "I verified the mismatch. settings/Slash.lua:156 and settings/PanelEditor.lua:601 test whether rec.enabled is truthy, while REPAIR.enabled and Canvas treat anything other than false as enabled. The mismatch shows up only for an unsanitized hand-edited or imported record before its first write, and the effect is a cosmetic gray label.",
+      "remediation": "If those files are being edited anyway, change both list sites to `rec.enabled ~= false`."
+    }
+  ]
+}

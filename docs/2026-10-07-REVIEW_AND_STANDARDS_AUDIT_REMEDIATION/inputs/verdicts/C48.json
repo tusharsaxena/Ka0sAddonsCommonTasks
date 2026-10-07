@@ -1,0 +1,25 @@
+{
+  "cluster": "C48",
+  "title": "LibKa0s — watch-list shelf life and red-under notes",
+  "cluster_summary": "Two LibKa0s-local hygiene gaps, both confirmed by direct check. First, five 1000-1500 band entries (OptionsWidgets 1444, OptionsIds 1359, OptionsIdList 1246, OptionsTabs 1349, Options 1288) still carry 'Accepted' dispositions dated 2026-09-26 or v1.65.0, well past the three-run shelf life, and three of them cite closed #32 and the finished LK-ATS-01 as their tracker. Second, the v1.69.0/v1.70.0 widget suites have no '-- red under:' notes. The standard's rules are correct, so both fixes belong in LibKa0s. The recommendation is one tracked low-severity issue covering all five files plus repointed RESULTS.md and CLAUDE.md rulings, with a peel of OptionsWidgets' flow-engine seam as an option because it is 6 lines from its trigger. The second item calls for a sampled mutation pass on the key negative cases once the C-01..C-03 suite changes land.",
+  "verdicts": [
+    {
+      "id": "LK-A-01",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "LibKa0s",
+      "assessment": "Verified. RESULTS.md:188-192 still reads 'Accepted 2026-09-26 (LK-ATS-01, #32)' or 'accepted at 1293/1261', and the release tags have moved well past three runs since then. #32 is closed, so the MUST shelf-life rule is breached. No file is over the cap, so players are unaffected, but the breach recurs every audit until it has a real open tracker.",
+      "remediation": "Open one state:triaged/severity:low LibKa0s issue that lists all five files, each with its named seam and re-check trigger (OptionsWidgets: flow-engine seam, trigger 1450, currently 1444). Rewrite the five RESULTS.md Disposition cells and the CLAUDE.md band rulings to 'already tracked as #NN' and drop the #32/LK-ATS-01 citations. Re-rule at the next release run instead of renewing. Peel OptionsWidgets now if a change in this run would push it past 1450."
+    },
+    {
+      "id": "LK-R-11",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "LibKa0s",
+      "assessment": "Verified: test_widgets_autocomplete, test_widgets_linechart and test_widgets_linechart_math have 0 '-- red under' notes, even though they contain negative assertions. testing-§12 makes the note a SHOULD and says an audit must not count a missing mutation as a deviation. This is a consistency and documentation gap, not a known vacuous test.",
+      "remediation": "After the C-01..C-03 suite changes land, mutate the key negative cases on a cp backup per testing-§12, starting with the boundary and math guards in linechart_math and autocomplete. Record '-- red under:' notes for those cases and fix any test that stays green. Notes for the remaining negatives can wait until someone next touches these suites."
+    }
+  ]
+}
