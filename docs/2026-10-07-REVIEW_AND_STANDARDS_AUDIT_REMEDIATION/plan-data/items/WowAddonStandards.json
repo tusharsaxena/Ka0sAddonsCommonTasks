@@ -1,0 +1,223 @@
+{
+ "repo": "WowAddonStandards",
+ "items": [
+  {
+   "id": "WS-01",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "Open v2.77.0: move the changelog history out of the index into standards/CHANGELOG.md; fix the changelog typos, the order and the footer stamp",
+   "depends_on": [],
+   "effort": "M",
+   "finding_ids": [
+    "WAS-R-03",
+    "WAS-A-18",
+    "WAS-R-12",
+    "WAS-R-07",
+    "WAS-A-13"
+   ],
+   "spec": "Owner ruling for this run (OWNER_SCOPE item 1 puts WAS-R-03 in scope; the session lead decides C-02): the changelog moves. Release number is v2.77.0 (minor: the amendment process changes), and this is the ONE standard version the whole run produces; every later WS item appends a bullet to the v2.77.0 entry instead of bumping again.\nEnd state:\n- New standards/CHANGELOG.md: a short header ('# Ka0s WoW Addon Standard: changelog', one sentence saying the index carries only the current entry and this file carries every earlier one, newest first), then the 99 entries currently at standards/STANDARDS.md:99-253 (v2.76.1 .. v1.0.0) moved verbatim, with exactly three edits: (a) the v2.19.0 entry sits above v2.18.0 (today it is at :218 between v2.17.1 and v2.17.0; WAS-A-18); (b) the v2.6x entry at old :120 reads 'preview-mode' not 'preview-mode-§' (WAS-R-12 / WAS-A-13); (c) old :168 reads 'automated-tests-§3' not 'automated-tests-§?' (WAS-A-13). The name is CHANGELOG.md: it is not at a repo root, so documentation-§1/§3's addon-root ban does not reach it (say so in one clause in CLAUDE.md).\n- standards/STANDARDS.md: title becomes '(v2.77.0, <landing date>)'. '## Changelog' keeps only the new v2.77.0 entry (lead sentence: the 2026-10-07 review-and-audit remediation; first bullet: the changelog moved and why, with the 418,659 -> ~36 KB index measurement) followed by the line 'Full history: [CHANGELOG.md](CHANGELOG.md).' CHANGELOG.md is listed under '## Related documents' and NOT under '## Sections' (tools follow Sections; history is not normative). The footer drops its date: '**End of index. The normative rules live in the section files linked above.**' (WAS-R-07: the header is the single authority).\n- Version stamps rolled to v2.77.0: README.md:160 Status, standards/EXECUTIVE_SUMMARY.md:11, standards/NEW_ADDON_CONTEXT.md:1, CLAUDE.md:143 ('As of v2.77.0').\n- Process wording rewritten to the new home: CLAUDE.md:82-84 (index carries front matter, reading guide, Sections, Related documents and the CURRENT changelog entry; on the next release the previous entry moves to the top of standards/CHANGELOG.md) and :135; standards/README.md:13 (drop 'at its top'), :32 and :63-64; README.md:82 (section A step 4); docs/ARCHITECTURE.md Module Map and Documentation map gain a standards/CHANGELOG.md row.\n- documentation.md:259 (Tier 1 data-flow row): 'documentation-§1 item 8' -> 'documentation-§1 item 6' (the live half of WAS-A-13; item 6 is '## How <it> works').\n- Cross-repo handoff H-01 (owned by the dev-copilot planner, not this item): dev-copilot commands/wow-harvest-standards.md:152 and agents/wow-standards-audit.md:108 must point at standards/CHANGELOG.md / the current-entry-in-index shape; that dev-copilot item depends on WS-01 and lands in the same merge, so no build ever sees one without the other.",
+   "steps": "1. Record the before size: wc -c standards/STANDARDS.md (expect 418659).\n2. Extract lines 99-253 into standards/CHANGELOG.md under the header; move the v2.19.0 line above v2.18.0; apply the two typo fixes.\n3. Replace STANDARDS.md ## Changelog with the v2.77.0 entry + 'Full history' pointer; add the Related-documents bullet; strip the footer date; bump the title.\n4. Roll the four other version stamps; rewrite the CLAUDE.md / standards/README.md / README.md / ARCHITECTURE.md process wording; fix documentation.md:259.\n5. Prove the move is lossless (verify block), then commit 'WS-01: open v2.77.0; changelog history moves to standards/CHANGELOG.md'.",
+   "verify": "cd ../WowAddonStandards\nwc -c standards/STANDARDS.md   # < 60000\ngrep -c '^- \\*\\*v' standards/CHANGELOG.md   # 99\ngrep -c '^- \\*\\*v' standards/STANDARDS.md   # 1 (v2.77.0)\ngit show HEAD~1:standards/STANDARDS.md | sed -n '99,253p' | grep '^- \\*\\*v' | sed 's/preview-mode-§/preview-mode/;s/automated-tests-§?/automated-tests-§3/' | sort > /tmp/a; grep '^- \\*\\*v' standards/CHANGELOG.md | sort > /tmp/b; diff /tmp/a /tmp/b   # empty\ngrep -n '^- \\*\\*v2\\.1[789]' standards/CHANGELOG.md   # order v2.19.0, v2.18.0, v2.17.1, v2.17.0\ngrep -n 'preview-mode-§\\|automated-tests-§?\\|Authoritative as of' standards/   -r   # nothing\ngit grep -n 'v2\\.76\\.1' -- CLAUDE.md README.md standards/EXECUTIVE_SUMMARY.md standards/NEW_ADDON_CONTEXT.md   # nothing\ngrep -n 'documentation-§1 item 8' standards/standards/documentation.md   # nothing\ntr -dc '\\r' < standards/CHANGELOG.md | wc -c   # 0",
+   "smoke": ""
+  },
+  {
+   "id": "WS-02",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "This repo keeps its own docs/audits/ and docs/reviews/ stores: rewrite the self-description, register both stores, drop the file count and single-source the roster",
+   "depends_on": [
+    "WS-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "WAS-A-01",
+    "WAS-A-02",
+    "WAS-A-03",
+    "WAS-A-17",
+    "WAS-R-11"
+   ],
+   "spec": "The 2026-10-07 audit and review bundles are already committed (RA-00, 63ccc5c). documentation-§8 applies audit-review-history unchanged to a documentation-and-tooling repo, so this repo's prose must stop forbidding them.\n- Rewrite CLAUDE.md:11-15 ('This repo does not run audits'), :61-62 ('Audit and review runs are not in this repo') and :107-110 ('Audits are per-repo and frozen ... never here'); docs/ARCHITECTURE.md:23-24; README.md:17-18 and :154-155. New sense everywhere: an addon audits itself in its own repo; this repo, being audited too (ADDONS.md documentation-and-tooling table, documentation-§8), keeps its OWN documentation-lane docs/audits/<YYYY-MM-DD>/ and docs/reviews/<YYYY-MM-DD>/ frozen stores (audit-review-history), never edited after the fact. AUDIT.md:3-6, standards/README.md:5-6 and ADDONS.md:5-7/:80-81 are accurate (they are about addon audits) and stay as they are apart from an optional one-clause qualifier.\n- CLAUDE.md Layout tree gains 'docs/audits/' and 'docs/reviews/' lines.\n- docs/ARCHITECTURE.md '## Documentation map' (:69): one directory row each for docs/audits/<date>/ and docs/reviews/<date>/ as frozen stores, modelled on the harvests/<date>/ row (documentation-§3 names frozen stores once as directories).\n- DEPENDENCIES.md:14: drop '67 tracked files: 63 Markdown'; restate by kind: 'Markdown only, plus LICENSE, .gitattributes and two logo images' (and, once WS-10 lands, that item adds the script).\n- WAS-A-17: README.md:47-49 drops the eleven names and the count and links standards/ADDONS.md; line-endings.md:72-74 replaces the enumeration with 'every addon in ADDONS.md, plus LibKa0s' (CLAUDE.md:78 convention).\n- WAS-R-11: standards/ADDONS.md Folder column becomes plain code text (`../../AbsorbTracker/`, no link wrapper) on all 11 addon rows plus the LibKa0s and dev-copilot rows; :16's 'local sibling paths' note stays.\n- Changelog: one bullet appended to the v2.77.0 entry.",
+   "steps": "1. grep the cited passages; rewrite each in place.\n2. Add the two map rows and the Layout lines; restate DEPENDENCIES.md:14.\n3. Replace the two roster enumerations with ADDONS.md pointers; unwrap the Folder links.\n4. Append the changelog bullet; commit 'WS-02: ...'.",
+   "verify": "cd ../WowAddonStandards\ngrep -n 'never here\\|not\\*\\* in this repo\\|does \\*\\*not\\*\\* run audits' CLAUDE.md README.md docs/ARCHITECTURE.md   # nothing\ngrep -n 'docs/audits/\\|docs/reviews/' docs/ARCHITECTURE.md   # both rows present in ## Documentation map\ngrep -n 'tracked files' DEPENDENCIES.md   # nothing\ngrep -n 'Absorb Tracker, Aura Master' README.md; grep -n 'AbsorbTracker`, `AuraMaster`' standards/standards/line-endings.md   # nothing\ngrep -c '](../../' standards/ADDONS.md   # 0",
+   "smoke": ""
+  },
+  {
+   "id": "WS-03",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "line-endings: the repo's own .gitattributes becomes the §5 LF body byte-for-byte; every restatement names both shebang carve-outs; check (e) passes paths positionally; the §7 EOL-gate MUST is scoped to repos that run a suite",
+   "depends_on": [
+    "WS-01"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "WAS-R-01",
+    "WAS-A-04",
+    "WAS-R-02",
+    "WAS-A-05",
+    "WAS-A-06",
+    "WAS-A-07",
+    "WAS-R-08",
+    "DC-A-14"
+   ],
+   "spec": "- /.gitattributes: replaced with line-endings-§5's non-client (LF) body verbatim — the second column-0 ```gitattributes fence in standards/standards/line-endings.md (~:254-339): the eight-line 'A file with a shebang is LF, ALWAYS' comment, '*.sh text eol=lf' AND '*.py text eol=lf'. Its line 6 'byte-identical' claim then holds. git add --renormalize . stages nothing.\n- The five whole-body restatements name both carve-outs, citing line-endings-§3 so the next widening cannot drift: documentation.md:675 (§8 line-endings row: 'both of line-endings-§3's shebang carve-outs (*.sh, *.py), mandatory in both kinds'), NEW_ADDON.md:20 (Step 0), standards/NEW_ADDON_CONTEXT.md:1622 (checklist), standards/EXECUTIVE_SUMMARY.md:52, CLAUDE.md:122-124 ('* text=auto eol=lf, the *.sh and *.py shebang carve-outs (line-endings-§3), binaries marked binary — byte-identical to line-endings-§5's non-client body'). library-stack.md:221 and automated-tests.md:60-64 cite *.sh only to protect run-automated-tests.sh and are accurate; leave them (optionally add the §3 pointer). The claims at CLAUDE.md:47, README.md:140, DEPENDENCIES.md:63-65 become true; re-read them, no edit unless they enumerate.\n- Check (e) hardened (WAS-R-08) at AUDIT.md:184-189 and line-endings.md:486-491: `git ls-files -z | xargs -0 -n1 sh -c '... \"$1\" ...' _` — the path is a positional argument, never spliced into the script text (no \"{}\" inside the sh -c body). The dev-copilot agent copy (agents/wow-standards-audit.md check (e), ~:347) is the dev-copilot planner's item.\n- line-endings-§7 (DC-A-14): 'Every repo MUST carry the vendored EOL gate' becomes 'Every repo that runs a suite (an addon, a Ka0s-owned library repo, or a documentation-and-tooling repo that has acquired one under documentation-§8) MUST carry ...'; a suite-less documentation-and-tooling repo runs the hand check (e) instead, which is what :478 already concedes. documentation-§8's line-endings row says the same in one clause.\n- Changelog bullet appended to v2.77.0.",
+   "steps": "1. Extract the §5 LF body with awk '/^```gitattributes/{n++;f=(n==2);next} /^```/{f=0} f' standards/standards/line-endings.md and write it to .gitattributes; diff must be empty; git add --renormalize . must stage nothing.\n2. Edit the five restatements; re-read the three 'canonical body' claims.\n3. Rewrite check (e) in both files; prove it in a scratch clone under the scratchpad that a file named a\";touch PWNED;\"b.md creates no PWNED and is counted correctly (the clone is deleted afterwards; nothing temporary lands in the repo).\n4. Scope the §7 MUST; append the changelog bullet; commit.",
+   "verify": "cd ../WowAddonStandards\ndiff <(awk '/^```gitattributes/{n++;f=(n==2);next} /^```/{f=0} f' standards/standards/line-endings.md) .gitattributes   # empty\ngit add --renormalize . && git status --porcelain   # nothing staged beyond the item's own edits\ngrep -n 'eol=lf' .gitattributes   # *.sh and *.py lines present\ngrep -n '\\*\\.sh text eol=lf' standards/standards/documentation.md NEW_ADDON.md standards/NEW_ADDON_CONTEXT.md standards/EXECUTIVE_SUMMARY.md CLAUDE.md   # every hit also names *.py or cites line-endings-§3\ngrep -n '\"{}\"' AUDIT.md standards/standards/line-endings.md   # nothing\ngrep -n 'Every repo \\*\\*MUST\\*\\* carry the vendored EOL gate' standards/standards/line-endings.md   # nothing (scoped wording instead)",
+   "smoke": ""
+  },
+  {
+   "id": "WS-04",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "toc-file-§5: the load-bearing denominator covers every position in the listing; AUDIT.md step 4 checks the whole TOC; the worked example is cited by heading",
+   "depends_on": [
+    "WS-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AT-A-15",
+    "AT-A-14"
+   ],
+   "spec": "Root cause of cluster C05 (AT-A-04/05, CM-A-03, LH-A-01/15..18 are addon items that cite this one).\n- standards/standards/toc-file.md denominator paragraph (~:154-157, 'The denominator this MUST is measured against'): load-bearing positions are established by reading EVERY listed file that binds, reads or writes an NS member (or a library major) at file scope — in modules\\ and settings\\ as much as *Setup.lua and core\\Constants.lua — not only the seam files. Keep the 'not by counting lines' point and the 2026-09-07 history paragraph.\n- Add one sentence: a load-bearing constraint may be 'below at least one of X/Y/Z' (LH-A-15 shape); the comment names what resolves, not a single file, when several satisfy it.\n- AUDIT.md step 4 'Check the TOC's position annotations (toc-file-§5)' (~:402): 'In the # Core block, every line' -> 'At every position in the listing (# Core, # Defaults, # Modules, # Settings and any other group), every line'; 'Read the seam files (*Setup.lua) and core/Constants.lua' -> 'Read every listed file for file-scope reads/writes of NS members and library majors'.\n- toc-file.md:171 worked example (AT-A-14): replace 'AbsorbTracker.toc:35-42' with the block's heading, '# Core (the LibKa0s-Env seam loads first)' in AbsorbTracker.toc (the block actually spans :37-44 today, which is why a line range is the wrong form).\n- Changelog bullet appended to v2.77.0 (a clarification of an existing MUST's denominator, no new obligation).",
+   "steps": "1. Edit toc-file.md denominator paragraph and worked-example citation.\n2. Edit AUDIT.md step 4 to match.\n3. Append changelog bullet; commit.",
+   "verify": "cd ../WowAddonStandards\ngrep -n 'In the `# Core` block, every line' AUDIT.md   # nothing\ngrep -n 'AbsorbTracker.toc:35-42' standards/standards/toc-file.md   # nothing\ngrep -n 'every listed file\\|every position in the listing' AUDIT.md standards/standards/toc-file.md   # hits in both",
+   "smoke": ""
+  },
+  {
+   "id": "WS-05",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "documentation-§3/§6/§8 and library-stack-§7 agree with themselves: §6 cites §3's frozen-store list, §8's arithmetic and single executable-content trigger, the documentation-§5/§6 row labels, ordinals and Tier 2 membership",
+   "depends_on": [
+    "WS-03"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "WAS-A-14",
+    "WAS-A-12",
+    "WAS-A-15",
+    "DC-A-15",
+    "LK-A-10",
+    "WAS-R-06",
+    "WAS-A-16"
+   ],
+   "spec": "All in standards/standards/documentation.md unless noted.\n- WAS-A-14 (§6 'Frozen bundles are exempt', ~:625-636): delete the private four-store list; cite documentation-§3's frozen/generated list by reference (docs/audits/, docs/reviews/, docs/automated-tests/<run>/, docs/perf-analysis/<run>/, docs/revendor/<date>-v<tag>/, docs/superpowers/, docs/investigations/). Narrow the automated-tests exemption to docs/automated-tests/<run>/ (README.md and RESULTS.md are live). Add a clause for a repo's own frozen stores (this repo's harvests/ and standards/_raw/; a library's equivalents). Replace the grep --exclude-dir sweep with a git ls-files pipeline that excludes every frozen store, e.g. git ls-files -z -- '*.md' ':!:docs/audits/**' ':!:docs/reviews/**' ':!:docs/automated-tests/*/**' ':!:docs/perf-analysis/*/**' ':!:docs/revendor/*/**' ':!:docs/superpowers/**' ':!:docs/investigations/**' ':!:libs/**' ':!:tests/_kit/**' ':!:harvests/**' ':!:standards/_raw/**' | xargs -0 grep -nE '§[0-9]+\\.[0-9]' (keeping the 'command, not enumeration' reporting rule).\n- WAS-A-12: drop the ordinals at :170 ('the ninth mandated section') and :347 ('the tenth ARCHITECTURE.md section'); refer to the sections by name.\n- WAS-A-15 + DC-A-15 (§8): fix the arithmetic at ~:698 so Module Map is counted once (five sections dropped, five kept, one of the five — Module Map — reinterpreted); reword the exhaustiveness claim as file-granular and state that any subsection not listed applies unchanged; place localization-§1-§4 under 'Does not apply' explicitly. The executable-content row (~:703) states ONE trigger: lint/testing/automated-tests are re-read when the repo tracks its first .lua file; any other executable content (a shell or Python script, a non-Lua test harness) MUST instead record in DEPENDENCIES.md how it is verified. Remove the three-trigger sentence. (Ruling: lint/testing/automated-tests presuppose Lua; this keeps dev-copilot's Python helpers and this repo's WS-10 shell script out of the Lua suites while still requiring a recorded verification.)\n- LK-A-10 + WAS-R-06 (library-stack.md:223): split the mislabeled row into 'documentation-§5 | Keeping docs in sync.' and 'documentation-§6 | The filename-§N citation scheme and its citation rules.' so the §4 row's 'already named' cross-reference (~:261) holds; add the same 'any subsection not listed applies unchanged; the lists are file-granular' sentence to library-stack-§7's exhaustiveness paragraph (~:205). AUDIT.md:994 'documentation-§5/§6' -> 'documentation-§6'.\n- WAS-A-16: in CLAUDE.md (~:155-156) and standards/EXECUTIVE_SUMMARY.md:38, the Tier 2 parenthetical notes that perf-analysis/README.md is also a Tier 2 member, its trigger stated under verification-and-record.\n- Changelog bullet appended to v2.77.0.",
+   "steps": "1. Rewrite §6's exemption paragraph and sweep command; run the new pipeline in two addons (e.g. ../AuraMaster, ../LootHistory) to confirm it excludes docs/superpowers/ and still sees docs/automated-tests/README.md.\n2. Ordinals; §8 arithmetic, exhaustiveness wording, localization placement, single trigger.\n3. library-stack-§7 rows and exhaustiveness sentence; AUDIT.md:994.\n4. Tier 2 notes in CLAUDE.md and EXECUTIVE_SUMMARY; changelog bullet; commit.",
+   "verify": "cd ../WowAddonStandards\ngrep -n 'ninth mandated\\|tenth `ARCHITECTURE.md` section' standards/standards/documentation.md   # nothing\ngrep -n 'exclude-dir=audits' standards/standards/documentation.md   # nothing (git ls-files pipeline instead)\ngrep -n 'the first `.lua`' standards/standards/documentation.md   # exactly the single trigger sentence\ngrep -n '| documentation-§5 |\\|| documentation-§6 |' standards/standards/library-stack.md   # two rows, correctly labeled\ngrep -n 'documentation-§5/§6' AUDIT.md   # nothing\ngrep -n 'perf-analysis/README.md' CLAUDE.md standards/EXECUTIVE_SUMMARY.md   # present in the Tier 2 notes",
+   "smoke": ""
+  },
+  {
+   "id": "WS-06",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "Retire the pre-adoption 'expect findings in every addon' wording for launcher and the disabled latch; correct the scaffold runner comment on missing suites",
+   "depends_on": [
+    "WS-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "WAS-A-08",
+    "WAS-R-05"
+   ],
+   "spec": "All 11 addons ship the launcher and the disabled latch on LibKa0s v1.70.0, so the stale wording primes false findings.\n- AUDIT.md ~:541-543 ('every addon in the collection is expected to be non-compliant until it adopts') and ~:652-657 ('As of the 2026-09-16 sweep, eleven of eleven addons fail this ... Expect findings here in every audit until the adoption pass lands'): delete the forward-looking sentences; keep the census only as dated history in past tense ('the 2026-09-16 pre-adoption sweep found ...'); state the post-adoption expectation: the audit verifies the latch / one-object launcher and files what it finds.\n- standards/standards/launcher.md:92 (§5 'Adopting it': 'Every addon ... is non-compliant with this section until it adopts'): past tense as history; keep the 'blocked rather than overdue' paragraph as history.\n- standards/standards/slash-commands.md:200 census: past tense, dated.\n- standards/NEW_ADDON_CONTEXT.md:1072 runner comment (WAS-R-05): 'A suite named here but missing from disk is SKIPPED, not failed.' -> move to the Kit.run{ suites = ... } line and state: 'A suite named in suites but missing from disk RAISES (testing-§9); declare one still being written as { name = ..., pending = \"why\" }.' (matches ../LibKa0s/testkit/framework.lua loadSuites).\n- Changelog bullet appended to v2.77.0.",
+   "steps": "1. Rewrite the four AUDIT/launcher/slash-commands passages.\n2. Fix the NEW_ADDON_CONTEXT comment; cross-check against LibKa0s testkit/framework.lua loadSuites.\n3. Changelog bullet; commit.",
+   "verify": "cd ../WowAddonStandards\ngrep -n 'Expect findings here in every audit\\|expected to be non-compliant until it adopts\\|non-compliant with this section until it adopts' AUDIT.md standards/standards/launcher.md   # nothing\ngrep -n 'SKIPPED, not failed' standards/NEW_ADDON_CONTEXT.md   # nothing\ngrep -n 'RAISES (testing-§9)' standards/NEW_ADDON_CONTEXT.md   # one hit",
+   "smoke": ""
+  },
+  {
+   "id": "WS-07",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "documentation-§6 gains a cross-repo citation SHOULD (symbol/heading for present tense, Repo@sha:path:line for history); convert the rotted citations and misleading counts to it",
+   "depends_on": [
+    "WS-05"
+   ],
+   "effort": "L",
+   "finding_ids": [
+    "WAS-A-09",
+    "WAS-A-10",
+    "WAS-A-11",
+    "WAS-R-09",
+    "LK-A-08"
+   ],
+   "spec": "- New SHOULD in documentation-§6 (after the citation-scheme rules): a claim about another repo's code cites, in present tense, `Repo path` plus a symbol or heading (never a bare line number); a historical claim pins the commit, `Repo@<sha>:path:line`. A present-tense count or inventory is written as a rule ('every addon ...') or dated ('as measured on 2026-10-07'). Rationale: 43 of 61 cross-repo citations had moved and 6 named missing files (docs/audits/2026-10-07/03_EVIDENCE.md E5).\n- Convert every citation in that E5 table that no longer matches (the 43 moved + 6 gone) — e.g. options-ui.md:410, standalone-windows.md:31/:34/:37, documentation.md:392-393/:416-418, library-stack.md:382-388 — to symbol/heading form or SHA-pin it; past-tense or delete the 6 gone claims (MultiMeters/settings/Schema.lua:1553-1566 in a 1392-line file; 'Five addons ship a private core/LSMPatch.lua' — none does).\n- WAS-A-10: AUDIT.md:522-523 and standalone-windows.md:34 cite BankLedger 'B:MakeCloseButton' (modules/Browser.lua) by symbol, not :98.\n- WAS-A-11 (no full recount): layout.md:93 PrettyChat splitter is tools/split_globalstrings.py — retire it as a known instance; EXECUTIVE_SUMMARY 'all eleven addons wrote' vs 'nine of nine' made consistent; EXECUTIVE_SUMMARY.md:52 'the eight addons' CRLF -> 'every addon in ADDONS.md'; other present-tense counts at audit-review-history.md:9/:11/:25/:51, AUDIT.md:145-146/:270/:343-348, documentation.md:150/:297-305/:359 ('Ten addons ship the re-vendor store'), library-stack.md:95, open-evolutions.md:71, options-ui.md:376/:408 reworded as rules or dated; history files get date stamps only.\n- WAS-R-09: testing.md:292 'revision 24 ships today' -> 'LibKa0s test-kit revision 24 and later ship this'; testing.md:20 and NEW_ADDON_CONTEXT.md:1019 describe tests/_kit/ as 'vendored whole from LibKa0s testkit/, never edited' instead of a 4-of-22 file list.\n- LK-A-08: library-stack.md:118 (Inter-module dependencies) cites the Options->Pool floor by symbol (the NEEDS_POOL floor) and names all three attach files: OptionsWidgets.lua, OptionsTabs.lua and OptionsNav.lua (no line numbers).\n- Changelog bullet appended to v2.77.0.",
+   "steps": "1. Write the SHOULD into documentation-§6.\n2. Walk docs/audits/2026-10-07/03_EVIDENCE.md E5 row by row; re-read each target on the sibling repo's master; convert each broken citation (symbol/heading, or @sha for history).\n3. Apply the WAS-A-10, WAS-A-11, WAS-R-09, LK-A-08 edits.\n4. Changelog bullet; commit (one commit).",
+   "verify": "cd ../WowAddonStandards\ngrep -rn 'Schema.lua:1553\\|LSMPatch.lua\\|Browser.lua:98\\|OptionsWidgets.lua:33\\|revision 24 ships today\\|AbsorbTracker.toc:35' AUDIT.md standards/standards standards/EXECUTIVE_SUMMARY.md standards/NEW_ADDON_CONTEXT.md   # nothing\ngrep -n 'OptionsNav.lua' standards/standards/library-stack.md   # present\ngrep -n 'GlobalStrings/' standards/standards/layout.md   # nothing present-tense\nFor each E5 row: the new citation resolves (symbol greps in the sibling repo, or git -C ../<Repo> cat-file -e <sha>:<path>).",
+   "smoke": ""
+  },
+  {
+   "id": "WS-08",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "versioning-git: default-branch work by default, owner-directed or multi-repo changesets on a same-named feat/<date>-<topic> branch merged --no-ff; ripple to the index blurb, context pack, anti-pattern #21, documentation-§8 and CLAUDE.md",
+   "depends_on": [
+    "WS-05"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-A-16"
+   ],
+   "spec": "Ruling (cluster C32): the trunk-based MUST is revised to match how the collection actually works; no per-repo deviation rows are filed (DC-A-12 becomes moot).\n- standards/standards/versioning-git.md:13 replaced by: work lands on the repo's default branch by default; a changeset the owner directs to be isolated, or one that spans several repos, goes on feat/<YYYY-MM-DD>-<topic>, the SAME name in every repo it touches, merged into the default branch with --no-ff and then deleted (branch, and any worktree or stash the run created). Merging, tagging, pushing and releasing keep their owner go-ahead gates (the existing 'MUST NOT push unless the human asks' stays, with 'push a feature branch at a checkpoint the owner authorized' as the sanctioned case). Use repo-kind-neutral wording ('the repo's default branch', not 'the addon's') because documentation-§8 and library-stack-§7 bind this section to all three kinds.\n- Ripple: STANDARDS.md:78 Sections blurb ('semver; default-branch work with owner-directed feature branches; commit only on green'); standards/standards/anti-patterns.md #21 -> 'Creating a feature/topic branch the owner did not direct, or one not shared by name across the repos of a multi-repo changeset' (number unchanged, range stays #1-#92); NEW_ADDON_CONTEXT.md:1520 git rule 23 and :1576 anti-pattern line; documentation.md:676 §8 versioning-git row; library-stack-§7 versioning-git row (:220) if it says trunk; CLAUDE.md:116-117 Git workflow aligned to the same wording.\n- Changelog bullet appended to v2.77.0.",
+   "steps": "1. Rewrite versioning-git §1 git-workflow bullet.\n2. Apply the ripple sites listed; grep -i trunk across live docs.\n3. Changelog bullet; commit.",
+   "verify": "cd ../WowAddonStandards\ngit grep -n -i 'trunk-based' -- . ':!harvests' ':!docs/audits' ':!docs/reviews' ':!standards/_raw' ':!standards/CHANGELOG.md'   # nothing, or only text that states the revised rule\ngrep -n 'feat/<YYYY-MM-DD>-<topic>' standards/standards/versioning-git.md CLAUDE.md   # both\ngrep -c '^[0-9]*\\. ' standards/standards/anti-patterns.md   # unchanged (92)",
+   "smoke": ""
+  },
+  {
+   "id": "WS-09",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "events-frames-taint-§8 names the spell-cooldown fields in its trigger set; open-evolutions records the library-absent stub-burden question (U-3)",
+   "depends_on": [
+    "WS-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "WG-R-08",
+    "PC-R-08"
+   ],
+   "spec": "- standards/standards/events-frames-taint.md §8 'The named APIs — the MUST's trigger set' (~:163-172): add a bullet 'C_Spell.GetSpellCooldown's startTime / duration / modRate fields, and C_Spell.GetSpellCooldownDuration's :GetRemainingDuration()' (documented as secret in combat by LibKa0s Compat.lua's cooldown reader and KickCD docs/compat-layer.md); add spell cooldowns to the §8 intro examples. Note in one sentence that the 'never compare a secret' MUST already covers comparison defects (WG F-001 class) independently of this list. Patch-level content inside v2.77.0; addons pick it up in this run's standards roll.\n- standards/standards/open-evolutions.md: new entry 'Whether an adopted major needs a full library-absent stub (recorded, not ruled)', cross-referencing library-stack 'Ship payload vs adoption', slash-commands-§1 and testing-§8: given a major goes absent through a load or floor failure rather than packaging (enable-nolib-creation: no), should it need a full member-answering stub plus a parity case (PrettyChat carries ~758 such lines), or a one-line refusal at the entry points? No rule changes.\n- testing.md:204 worked example: replace 'PanelMaster/settings/Slash.lua:316' with a symbol citation or PanelMaster@<sha>:settings/Slash.lua:316 (WS-07's citation form).\n- Changelog bullet appended to v2.77.0.",
+   "steps": "1. Extend the §8 list and intro.\n2. Add the open-evolutions entry in the file's existing bullet style.\n3. Fix testing.md:204; changelog bullet; commit.",
+   "verify": "cd ../WowAddonStandards\ngrep -n 'GetSpellCooldown' standards/standards/events-frames-taint.md   # present in the named list\ngrep -n 'library-absent stub' standards/standards/open-evolutions.md   # the new entry\ngrep -n 'Slash.lua:316' standards/standards/testing.md   # nothing, or an @sha-pinned form",
+   "smoke": ""
+  },
+  {
+   "id": "WS-10",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "scripts/check-standard.sh: an on-demand mechanical gate for the standard's own invariants (CR bytes, .gitattributes body, citation ranges, Sections list, anti-pattern contiguity, version stamps, roster pointers)",
+   "depends_on": [
+    "WS-02",
+    "WS-03",
+    "WS-04",
+    "WS-05",
+    "WS-06",
+    "WS-07",
+    "WS-08",
+    "WS-09"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "WAS-R-04"
+   ],
+   "spec": "New scripts/check-standard.sh (bash, LF via the *.sh carve-out, executable, set -u), run on demand and by sync-docs — NOT a commit hook (CLAUDE.md 'two checkpoints'). Each check prints its failures and the script exits non-zero if any fails; exit 0 on the tree:\n 1. No CR byte in any tracked file (git grep -Il $'\\r').\n 2. .gitattributes equals line-endings-§5's LF body (the second column-0 ```gitattributes fence in line-endings.md).\n 3. Every filename-§N in live docs names an existing standards/standards/<filename>.md and an existing '### N.' heading; any -§N against one of the eleven unnumbered files fails; a bare '-§' or '-§?' fails. Excluded: harvests/, standards/_raw/, docs/audits/, docs/reviews/, standards/CHANGELOG.md (history: numbers were right when written).\n 4. STANDARDS.md ## Sections links == git ls-files 'standards/standards/*.md'.\n 5. anti-patterns.md is numbered 1..N contiguously and the index blurb says (#1–#N).\n 6. The STANDARDS.md title version appears in README.md Status, EXECUTIVE_SUMMARY.md, NEW_ADDON_CONTEXT.md:1 and CLAUDE.md 'As of' line.\n 7. Internal relative .md links resolve (excluding ADDONS.md sibling-folder paths and frozen stores).\nDocs: DEPENDENCIES.md required list gains bash and coreutils/grep/awk with a Verify column; 'no test runner' becomes 'one on-demand check script'; 'Verifying your setup' runs bash scripts/check-standard.sh; the by-kind file line gains the script. docs/ARCHITECTURE.md: Module Map row; Known Limitations 'No mechanical gate' / 'Cross-references are unenforced' rewritten to what is now covered and what is not (semantic contradictions, wrong-but-in-range citations). CLAUDE.md Editing rules: run the script before committing a change to the standard; Layout tree gains scripts/. documentation-§8 (as ruled in WS-05) means a .sh does not pull in lint/testing; DEPENDENCIES.md records how the script is verified. Changelog bullet appended to v2.77.0.",
+   "steps": "Test-first, without temporary files in the repo:\n1. Write the injected-defect harness in the scratchpad: clone the repo (git clone ../WowAddonStandards <scratch>/ws), and for each check script one defect (add a CR to a .md; drop '*.py text eol=lf' from .gitattributes; write 'toc-file-§99' and 'compat-§1' into a live doc; remove a Sections link; renumber an anti-pattern; change README's version). Each must make the script exit non-zero, naming the check.\n2. Implement scripts/check-standard.sh until all seven injections go red and the clean tree goes green.\n3. Document in DEPENDENCIES.md, docs/ARCHITECTURE.md and CLAUDE.md; changelog bullet; commit; delete the scratch clone.",
+   "verify": "cd ../WowAddonStandards\nbash scripts/check-standard.sh; echo $?   # 0\ngit check-attr eol -- scripts/check-standard.sh   # lf\ntest -x scripts/check-standard.sh\nscratch clone: each of the seven injected defects -> exit != 0 with the named check\ngrep -n 'check-standard.sh' DEPENDENCIES.md docs/ARCHITECTURE.md CLAUDE.md   # all three",
+   "smoke": ""
+  },
+  {
+   "id": "WS-11",
+   "milestone": "M1",
+   "repo": "WowAddonStandards",
+   "title": "Close v2.77.0: ripple every change through the executive summary, context pack, playbooks, README and index blurbs; finish the changelog entry; gate on check-standard.sh",
+   "depends_on": [
+    "WS-10"
+   ],
+   "effort": "M",
+   "finding_ids": [],
+   "spec": "Pure ripple/release item (no finding of its own), per CLAUDE.md Editing rules ('a change to the standard usually ripples into EXECUTIVE_SUMMARY.md and NEW_ADDON_CONTEXT.md, and sometimes README.md / the playbooks').\n- standards/STANDARDS.md ## Sections blurbs re-read against WS-03 (line-endings: §7 scope), WS-04 (toc-file: whole-listing denominator), WS-05/WS-07 (documentation: citation SHOULD, §6 frozen stores by reference, §8 single trigger), WS-08 (versioning-git), WS-09 (events-frames-taint named list); anti-patterns range still (#1–#92).\n- standards/EXECUTIVE_SUMMARY.md and standards/NEW_ADDON_CONTEXT.md: every rule touched in WS-02..WS-09 restated consistently (git rule, carve-outs, kit tree, runner comment, citation form).\n- Playbooks AUDIT.md, NEW_ADDON.md, AUTOMATED_TESTS.md, PERF_ANALYSIS.md: any step restating a changed rule matches.\n- README.md and standards/README.md: changelog location, scripts/ in Layout, Status v2.77.0.\n- The v2.77.0 changelog entry finalized: lead paragraph, one bullet per WS item with finding ids, and the addon-side follow-ups this version licenses (toc-file-§5 annotations, versioning-git makes DC-A-12 moot, the standards reference roll to v2.77.0 in every addon).\n- Header date set to the landing date; all five stamps agree.\nThis version (v2.77.0) is the value every addon's TOC X-Standard / README badge / CLAUDE.md roll to in this run. Nothing is tagged or pushed beyond the M1 checkpoint push of the feature branch.",
+   "steps": "1. bash scripts/check-standard.sh (must be 0 before and after).\n2. Walk the ripple list; fix inconsistencies.\n3. Finalize the changelog entry; commit 'WS-11: close v2.77.0 ...'.",
+   "verify": "cd ../WowAddonStandards\nbash scripts/check-standard.sh; echo $?   # 0\nhead -1 standards/STANDARDS.md   # v2.77.0\ngit grep -n 'v2\\.76\\.1' -- . ':!harvests' ':!docs/audits' ':!docs/reviews' ':!standards/CHANGELOG.md'   # nothing\ngit grep -c $'\\r' -- . | grep -v ':0$'   # nothing\ngit log --oneline master..HEAD | grep -c '^[0-9a-f]* WS-'   # 11",
+   "smoke": ""
+  }
+ ]
+}

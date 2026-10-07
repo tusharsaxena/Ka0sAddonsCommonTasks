@@ -1,0 +1,213 @@
+{
+ "repo": "AuraMaster",
+ "items": [
+  {
+   "id": "RV-AM",
+   "milestone": "M2",
+   "repo": "AuraMaster",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 span",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "AM-A-01"
+   ],
+   "spec": "Mechanical re-vendor per dev-copilot commands/wow-revendor-libka0s.md, delta base read from AuraMaster's CLAUDE.md provenance line (v1.70.0), source = the LOCAL tag v1.71.0 in ../LibKa0s (never the feature-branch tip; the tag is not on origin). (1) Copy both payloads whole: `git -C ../LibKa0s archive v1.71.0 LibKa0s testkit` extracted into the scratchpad, then libs/LibKa0s/ replaced by LibKa0s/ and tests/_kit/ replaced by testkit/ (delete-then-copy so removed files go). No other edit under libs/ or tests/_kit/. (2) CLAUDE.md provenance line becomes `Bundles [LibKa0s](https://github.com/tusharsaxena/LibKa0s) v1.71.0 (MIT).`; live tag stamps that name the previous tag roll or, better, de-tag in favour of the provenance line: docs/module-map.md:293 (`LibKa0s v1.70.0` row), DEPENDENCIES.md:85 and :92 (`v1.70.0`), plus any `kit 37`/`revision 37` or `v1.68.1` stamp `grep -rn` finds in live docs (frozen docs/audits, docs/reviews, docs/automated-tests, docs/revendor, docs/perf-analysis bundles untouched). (3) Kit revision 38 changes the --list Totals semantics (LK-01: declared skips counted on their own Skipped row, Total = cases that run): regenerate docs/test-cases.md with `lua tests/run.lua --list > docs/test-cases.md` and roll the README Tests badge to the new Total in the same commit (badge equals Total, testing-§5). (4) Span bundle docs/revendor/2026-10-07-v1.69.0-v1.70.0/ holding ONLY 01_DELTA.md and 05_SUMMARY.md (shape of docs/revendor/2026-10-01-v1.64.0-v1.65.0/): 01_DELTA.md line 1 exactly `Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)`, the body states base v1.68.1 and lists per-file minor moves for each tag (read from ../LibKa0s CHANGELOG.md v1.69.0 and v1.70.0 blocks) with the vendoring commits 3656914 (v1.69.0) and c070393 (v1.70.0); 05_SUMMARY.md one line per tag: `carried by sweep, nothing adopted` (verify with `git log --oneline 3656914^..c070393` that no adoption commit exists; if one does, cite its sha instead). No back-filled per-tag bundles. (5) docs/revendor/2026-10-07-v1.71.0/ per the command: 01_DELTA.md (line 1 `Delta: LibKa0s v1.70.0 -> v1.71.0`; per-file LibStub minors: Env 2, Slash key 20.2, Widgets key 12.1.4.3.2 (LineChart 3, Autocomplete 2), Options key with OptionsIdList 4; kit 37 -> 38 with the pairing rule; which majors AuraMaster consumes; contract changes under unchanged signatures, e.g. ParseValue refusing nan/inf, flagged as blockers if any AuraMaster CLI path relies on them), 02_CANDIDATES.md (each new surface: Kit.secret, ChartMath.ClipSegment, etc., with file:line evidence from ../LibKa0s/docs/api/), 03_DECISIONS.md recording every candidate as `not adopted in this run` (OWNER_SCOPE 5: no interview, no GitHub issue), 05_SUMMARY.md. Register/index row wherever the prior bundles are registered (docs/ARCHITECTURE.md:373 documentation map names the store; add a row only if a register lists bundles).",
+   "steps": "1. `git -C ../LibKa0s tag -l v1.71.0` prints the tag; read its CHANGELOG v1.69.0..v1.71.0 blocks.\n2. Archive-extract to the scratchpad; replace libs/LibKa0s and tests/_kit whole; `diff -r` both against the extract.\n3. Roll the CLAUDE.md provenance line and de-tag/roll the live stamps.\n4. `lua tests/run.lua`; if a suite fails because a library contract moved, stop and record it as a blocker in 01_DELTA.md (do not edit payload).\n5. Regenerate docs/test-cases.md; roll the README badge.\n6. Write the span bundle, then the v1.71.0 bundle.\n7. Green gate; commit `RV-AM: re-vendor LibKa0s v1.71.0; record v1.69.0-v1.70.0 span (AM-A-01)`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); diff -r libs/LibKa0s <extract>/LibKa0s and diff -r tests/_kit <extract>/testkit print nothing; grep -n 'v1.71.0' CLAUDE.md; head -1 docs/revendor/2026-10-07-v1.69.0-v1.70.0/01_DELTA.md is exactly 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)'; ls docs/revendor/2026-10-07-v1.69.0-v1.70.0 shows only 01_DELTA.md 05_SUMMARY.md; test -f docs/revendor/2026-10-07-v1.71.0/01_DELTA.md; grep -n 'not adopted in this run' docs/revendor/2026-10-07-v1.71.0/03_DECISIONS.md; README Tests badge number equals docs/test-cases.md Total; grep -rn 'v1.70.0\\|v1.68.1\\|kit 37' docs/*.md DEPENDENCIES.md README.md returns only intended history.",
+   "smoke": "Owner: /reload with AuraMaster enabled; no Lua errors; /am help, /am containers and the settings panel open as before."
+  },
+  {
+   "id": "AM-01",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "/am select and /am delete resolve a bare number by exact name before id, refuse a cross-match, '#N' always means id",
+   "depends_on": [
+    "RV-AM"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-R-05"
+   ],
+   "spec": "settings/Slash.lua findContainer (about :166-:184), used by `select` and `delete`. New precedence: (a) arg trimmed; empty -> nil. (b) `#N` (N digits) always resolves as id N via NS.Database.FindContainer(N), never as a name. (c) Otherwise collect the exact case-insensitive name matches (as today; two or more -> the existing 'More than one container is called' refusal). (d) If arg is numeric (tonumber) AND a container named arg exists AND FindContainer(tonumber(arg)) is a DIFFERENT container, return nil plus a new enUS ambiguity sentence naming both, e.g. L[\"'%s' is both container #%s's name and container #%s's number — use #%s for the number\"] (exact wording the implementer's, one locale key, enUS.lua only, formatted by the caller like the existing refusal). (e) Name match found -> it. (f) Numeric with no name match -> FindContainer(id) as today. Same container answering both name and id -> that container. The validator keeps accepting numeric names (forbidding them was rejected). The destructive delete path therefore never removes a container other than the one the player named. docs/slash-dispatch.md rows 12 (`select`) and 14 (`delete`) document the precedence; the `/am delete` help row (Slash.lua:70) and 'No such container' text stay unless the new `#N` form needs mentioning (add '#id' to the delete/select help text only if it fits the row shape).",
+   "steps": "1. Red first in tests/test_slash_verbs.lua: four cases — container named '3' plus a different container with id 3: `/am delete 3` refuses with the ambiguity line and deletes nothing; `/am delete #3` deletes id 3; a container named '7' with no id 7: `/am select 7` selects it by name; a numeric arg matching only an id still resolves by id. Add `-- red under:` notes; run and see them fail.\n2. Implement the precedence in findContainer; add the enUS key.\n3. Update docs/slash-dispatch.md rows 12 and 14.\n4. regenerate docs/test-cases.md with `lua tests/run.lua --list > docs/test-cases.md` and roll the README Tests badge to the new Total in the same commit.\n5. Green gate; commit `AM-01: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); grep -n \"#\" settings/Slash.lua findContainer handles the '#N' form; the four new cases are listed in docs/test-cases.md; README badge equals Total; test_locale green (no orphan key).",
+   "smoke": "Owner: create two containers, rename the second to '1' (so container #1 and the container named '1' differ); `/am delete 1` is refused naming both and nothing is deleted; `/am delete #1` deletes container #1; `/am select 1` is refused the same way. Clean up the test containers afterwards."
+  },
+  {
+   "id": "AM-02",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Schema-migration summary lines reach the log through DebugAtEnable",
+   "depends_on": [
+    "AM-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-A-08"
+   ],
+   "spec": "core/Database.lua NS.RunMigrations ladder (about :1240-:1406): every ladder-level gated NS.Debug('Migrate', ...) call — each step's per-profile summary (:1252, :1260, :1274, :1290, :1298, :1306, :1314, :1322, :1330, :1338, :1346), the '[Migrate] v%s -> v%s' stamp line (:1377) and the starter-seed line (:1405) — goes through NS.DebugLog.DebugAtEnable('Migrate', fmt, ...) instead (same format strings and args, so the text is byte-identical once flushed). debug-logging-§8 Lifecycle coverage: schema migration when one runs is a MUST line, and the runner only runs from NS:InitDB at OnInitialize (:292) while State.debug is false. The library-absent stub at core/DebugLogSetup.lua:60 already supplies DebugAtEnable (returns false), so no new stub member. Per-container lines inside the MigrateVn step bodies (e.g. :153, :198, :688, :786, :792) stay gated NS.Debug: they are reached through the step test seams with logging on, and routing them would flood the 32-entry DebugAtEnable buffer on a large profile; the per-step summary already counts them. Failed steps keep printing to chat (:1373-1374).",
+   "steps": "1. Red first (tests/test_database.lua or the suite that already drives NS.RunMigrations with a pre-v12 profile): logging off, run migrations, then NS.DebugLog.SetEnabled(true) (via the harness's DebugLog) and assert the log holds the '[Migrate] vX -> vY' line after the [Init] lines; assert nothing was logged while off. `-- red under:` note.\n2. Swap the ladder-level calls to DebugAtEnable.\n3. regenerate docs/test-cases.md with `lua tests/run.lua --list > docs/test-cases.md` and roll the README Tests badge to the new Total in the same commit.\n4. Green gate; commit `AM-02: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); grep -c \"DebugAtEnable('Migrate'\\|DebugAtEnable(\\\"Migrate\\\"\" core/Database.lua >= 13; the new case passes and is listed in docs/test-cases.md.",
+   "smoke": "Optional, owner: on a character whose saved profile predates the current schema (or after restoring an older AuraMasterDB backup), /reload then `/am debug on`; the debug console shows the '[Migrate] vX -> vY' line after the [Init] lines."
+  },
+  {
+   "id": "AM-03",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Slash help rows: the library-absent stub stops copying FormatRow; debug row rekeyed; containers listing documented as printed",
+   "depends_on": [
+    "AM-02"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-A-07",
+    "AM-R-07"
+   ],
+   "spec": "settings/Slash.lua library-absent block (about :416-:445): SlashLib becomes `{}` (no FormatRow member); stub.LandingRows and stub.PrintHelp build each row inline as `\"/am \" .. e[1] .. \"  \" .. e[2]` (two spaces, no em dash, no |c colour code), per slash-commands-§1 ('MUST NOT copy FormatRow; a degraded help row prints cmd  desc plainly'). Update the block comment (:420-:422) to say the degraded row is plain. The live (library-present) path is unchanged. Debug help row (:87): rekey to L[\"Toggle the debug console — on/off enable/disable logging\"] (the standard's slash-commands.md:72 wording, em dash like every other AM row) and delete the old key 'Toggle the debug console - on/off enable or disable logging' from locales/enUS.lua (:464) in the same change. docs/slash-dispatch.md row 11 (:51) describes the listing the code actually prints (`#id - unit - type - style`, selected marked `>`; read the exact separators from the listing code at about :247-:260); the code's separators are kept.",
+   "steps": "1. Red first in the degraded-env suite (the one that loads settings/Slash.lua without LibKa0s-Slash): assert a landing/help row contains no '—' and no '|c' and equals '/am <verb>  <desc>'; assert SlashLib.FormatRow is nil in the stub. `-- red under:` notes.\n2. Drop the stub FormatRow; inline the row.\n3. Rekey the debug row; remove the old enUS key; fix any test asserting the old string.\n4. Fix docs/slash-dispatch.md:51.\n5. regenerate docs/test-cases.md with `lua tests/run.lua --list > docs/test-cases.md` and roll the README Tests badge to the new Total in the same commit.\n6. Green gate; commit `AM-03: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); grep -n 'FormatRow' settings/Slash.lua shows no stub definition; grep -n 'enable or disable logging' locales/enUS.lua settings/Slash.lua is empty; test_locale green.",
+   "smoke": "Owner: `/am help` and bare `/am` show the debug row as 'Toggle the debug console — on/off enable/disable logging'; `/am containers` output matches docs/slash-dispatch.md row 11."
+  },
+  {
+   "id": "AM-04",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Split tests/test_anchors_drag.lua along the lifecycle vs drop/attach seam",
+   "depends_on": [
+    "AM-03"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "AM-R-04"
+   ],
+   "spec": "tests/test_anchors_drag.lua is 1490 lines, 10 under the layout-§1 1500-line cap, and AM-05 needs to add a characterization case there. Split it verbatim along its existing seam: drag lifecycle (lift, move, release, leeway) stays in tests/test_anchors_drag.lua; drop/attach/detach outcome blocks move to a new tests/test_anchors_attach.lua (name the implementer's if a better seam name fits). Test blocks move with no renames and no edits beyond imports; shared helpers either go to a helper module under tests/ (two or more consumers) or are duplicated when only one other suite needs them (anti-pattern #55). The new suite is added to tests/run.lua's hand-declared list next to test_anchors_drag (:127). Both files end well under 1000 lines if possible (else each under 1500 with the band disposition noted in docs/testing.md if it keeps a band list). The Total in docs/test-cases.md is unchanged; only the grouping moves.",
+   "steps": "1. Record the Total and the drag-suite case names from docs/test-cases.md.\n2. Move the blocks verbatim; wire the new suite in tests/run.lua.\n3. `lua tests/run.lua --list > docs/test-cases.md`; diff case names: same set, same Total.\n4. Update any doc that names test_anchors_drag.lua as the home of attach cases (grep docs/).\n5. Green gate; commit `AM-04: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); wc -l tests/test_anchors_drag.lua tests/test_anchors_attach.lua each < 1500 (target < 1000); docs/test-cases.md Total unchanged from before the commit; sorted case-name sets before/after identical.",
+   "smoke": ""
+  },
+  {
+   "id": "AM-05",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "logCandidates below CCN 15: extract the per-target text helper (byte-identical [Anchor] line)",
+   "depends_on": [
+    "AM-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-R-01",
+    "AM-A-03"
+   ],
+   "spec": "modules/Anchors_Snap.lua logCandidates (about :892-:912) is CCN 18 from and/or defaulting and blocks the automated-tests-§3 release gate. Extract a file-local helper `targetText(dragged, t)` returning the per-target why/rect text (ineligibleWhy, else flowGrowth + Snap.ParentRect -> rectText(logRect) or 'no rect'), and hoist the outcome suffix (`what and (' ' .. what) or ''`) and the targets suffix (`#parts > 0 and concat or 'none'`) into named locals. Output stays byte-identical. No logCandidatesPart2 or if-ladder (anti-pattern #52). Expected: logCandidates <= 12, targetText ~5, the complexity suite 0 warnings, max CCN <= 15. AM-A-03 part (b) — a sighted four-suite release run with band dispositions for Anchors_Snap.lua and the drag suite — is a release-time duty under automated-tests-§6 and is NOT done in this run (no release is cut); this item closes part (a) and the commit body records that (b) is deferred to the next release run.",
+   "steps": "1. Characterization first (testing-§13) in tests/test_anchors_drag.lua (or the attach suite after AM-04): with logging on, a drag start and a drop with an outcome over two targets (one ineligible, one with a rect) and over zero targets; assert the exact [Anchor] lines. These pass before the refactor; `-- red under:` notes name the mutation that breaks them.\n2. Extract targetText, hoist the suffix locals.\n3. `lizard -l lua modules/Anchors_Snap.lua` shows logCandidates <= 12.\n4. regenerate docs/test-cases.md with `lua tests/run.lua --list > docs/test-cases.md` and roll the README Tests badge to the new Total in the same commit.\n5. Green gate; commit `AM-05: ...` with the deferral of AM-A-03(b) in the body.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); bash tests/_kit/run-automated-tests.sh --suite complexity reports 0 warnings; lizard -l lua modules/Anchors_Snap.lua | grep logCandidates shows CCN <= 12; the characterization cases are listed in docs/test-cases.md.",
+   "smoke": ""
+  },
+  {
+   "id": "AM-06",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Peel the frozen schema migrations out of core/Database.lua into core/Database_Migrations.lua",
+   "depends_on": [
+    "AM-05"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "AM-R-02"
+   ],
+   "spec": "core/Database.lua is 1406 lines (layout-§1 band; its own RESULTS.md trigger 'the migrations are the seam to peel' has fired). Move verbatim into new core/Database_Migrations.lua: Database.MigrateV2..MigrateV12 (about :463-:1209), their private helpers and frozen id tables (normalize/lift helpers, KNOWN_AURA_TYPES, etc.). Keep in core/Database.lua: SCHEMA_STEPS, climbLadder, NS.RunMigrations (with AM-02's DebugAtEnable lines), EachProfile, AceDB init, defaults, registry read helpers (savedvariables-§1 home). Helpers both files need: publish normalizeKeys as Database.NormalizeKeys (and any other shared private, e.g. DeepCopy, rebound as a local from NS in the new file) rather than duplicating. The new file binds `local Database = NS.Database` and only adds members; it loads right after core\\Database.lua in AuraMaster.toc with a `# Conventional:` note if the TOC carries per-line notes; tests/run.lua or the harness loader loads it in TOC order (test_loadorder enforces TOC paths). SCHEMA_STEPS must reference the step functions late (by Database.MigrateVn lookup at run time) or the ladder must be built after both files load — confirm which today and keep runtime order valid (RunMigrations runs at OnInitialize, after every file loads). Update docs/module-map.md, docs/ARCHITECTURE.md and every `core/Database.lua:<line>` citation in live docs and comments that pointed at moved code (grep). Result ~480 / ~920 lines.",
+   "steps": "1. Snapshot: `lua tests/run.lua` Total and all migration-suite results.\n2. Create the new file; move the bodies verbatim; publish NormalizeKeys; TOC line.\n3. grep -rn 'core/Database.lua:' docs/ modules/ core/ settings/ tests/ and repoint moved citations.\n4. `git diff --stat` shows a move (use `git diff -M --color-moved` to confirm verbatim).\n5. Green gate (same Total; test-cases.md regenerated only if a loadorder case lists the new path); commit `AM-06: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); wc -l core/Database.lua core/Database_Migrations.lua both < 1000; grep -n 'Database_Migrations' AuraMaster.toc docs/module-map.md; grep -rn 'core/Database.lua:[0-9]' docs/*.md resolves to existing lines; Total unchanged.",
+   "smoke": "Owner: /reload on an existing profile; containers draw as before, no Lua errors; `/am debug on` then /reload shows no migration error in chat."
+  },
+  {
+   "id": "AM-07",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Container picker labels stop lowercasing translated strings",
+   "depends_on": [
+    "AM-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-R-06"
+   ],
+   "spec": "settings/OptionsSetup.lua containerList (about :413-:424): drop the two `:lower()` calls on L[C.AURA_TYPE_LABELS[...]] and L[C.STYLE_LABELS[...]] (byte-wise string.lower breaks non-ASCII capitals and German nouns; locales-§ casing belongs to the translation). Chosen over new whole-phrase lowercase keys. The enUS picker entry therefore reads e.g. 'Name  (Player Buffs, Bars)' instead of '(Player buffs, bars)'. Any picker-label test expecting the lowercase text is updated as a spec change in the same commit; docs that quote the picker label (grep docs/settings-panel.md) follow.",
+   "steps": "1. Red first: update/add the picker-label case to expect the translated label unchanged (fails against :lower()).\n2. Drop both :lower() calls.\n3. Fix docs quoting the label.\n4. regenerate docs/test-cases.md with `lua tests/run.lua --list > docs/test-cases.md` and roll the README Tests badge to the new Total in the same commit if the case count moved.\n5. Green gate; commit `AM-07: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); grep -n ':lower()' settings/OptionsSetup.lua shows neither label site.",
+   "smoke": "Owner: open the settings panel's container picker; each entry shows the type and style labels with their translated capitalisation (e.g. 'Buffs, Bars'), and nothing else about the picker changed."
+  },
+  {
+   "id": "AM-08",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Launcher test-mode drift: docs and comments name the menu's Test mode entry; stale map row and test comment",
+   "depends_on": [
+    "AM-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-A-06"
+   ],
+   "spec": "Left-click on the launcher opens settings; test mode is the right-click menu's Test mode entry (docs/ARCHITECTURE.md:268, standard v2.67.0 / Launcher minor 4). Replace 'the launcher's left-click' (and equivalents) with 'the launcher menu's Test mode entry' at docs/ARCHITECTURE.md:216-218, docs/settings-panel.md:148-149, modules/Preview.lua:27, settings/General.lua:31-32 and :117 (comments only, no player-visible string changes). docs/ARCHITECTURE.md:384 documentation-map row 'Tab | Covers' becomes 'Page | Covers' (matching docs/settings-panel.md:12). tests/test_render_coverage.lua:24-25 comment repointed from the retired '#' scanner to test_lizard_sighted (per tests/test_lintconfig.lua:205). Line numbers are pre-AM-06; re-grep.",
+   "steps": "1. grep -rn \"left-click\\|left click\" docs/ modules/ settings/ core/ tests/*.lua (excluding frozen bundles) and fix each test-mode claim.\n2. Fix the map row and the test comment.\n3. Green gate; commit `AM-08: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); grep -rn \"left-click\" docs/ARCHITECTURE.md docs/settings-panel.md modules/Preview.lua settings/General.lua returns no test-mode claim; grep -n 'Tab | Covers' docs/ARCHITECTURE.md is empty; grep -n 'test_lizard_sighted' tests/test_render_coverage.lua.",
+   "smoke": ""
+  },
+  {
+   "id": "AM-09",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "docs/ARCHITECTURE.md Module Map spills its drag/snap/detach narrative into docs/data-flow.md",
+   "depends_on": [
+    "AM-08"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-A-02"
+   ],
+   "spec": "docs/ARCHITECTURE.md is 426 lines (hub SHOULD ~400) and ## Module Map runs 94 lines (:44-:137) against documentation's ~60-line MUST spill rule (documentation.md:339). Move the drag/snap/detach/tooltip data-flow narrative (about :73-:134 pre-AM-06; re-locate by heading) verbatim into docs/data-flow.md under a new section heading, leaving in the Module Map a few lines naming the engine-facing modules and one link to the new data-flow section (and docs/module-map.md for per-module rows). Fix inbound anchors: grep docs/ and code comments for links/citations into the moved text and repoint them. Module Map ends <= ~60 lines, hub <= ~400 lines; tests/test_docs.lua stays green (mandated sections still present).",
+   "steps": "1. Measure: awk the ## Module Map span and wc -l the hub.\n2. Move the narrative; add the link.\n3. grep -rn 'ARCHITECTURE.md#' docs/ modules/ core/ settings/ and repoint anchors into moved text.\n4. Green gate; commit `AM-09: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); wc -l docs/ARCHITECTURE.md <= ~400; the ## Module Map section <= 60 lines (awk '/^## Module Map/,/^## Settings Schema/' docs/ARCHITECTURE.md | wc -l); tests/test_docs.lua green.",
+   "smoke": ""
+  },
+  {
+   "id": "AM-10",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": ".pkgmeta ignores .claude and media/screenshots",
+   "depends_on": [
+    "AM-09"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-A-04",
+    "AM-A-09"
+   ],
+   "spec": ".pkgmeta ignore list: replace the commented-out `# - .claude` pair (:12-13) with the live line `  - .claude          # dev-only: agent tooling (.claude/commands/); never loaded by the client` (packaging.md:42: a commented-out line fails the strong form; .claude/commands/aura-spells-review.md is tracked). Add `  - media/screenshots # project-page images (README links the forgecdn copies); WoW cannot load PNG/JPG` beside the media/logos lines, matching the ten other Ka0s addons that already ignore it (26 MB per download today). No upstream template change in this run.",
+   "steps": "1. Edit .pkgmeta.\n2. Re-run packaging checks (a)-(c) from the packaging section (every top-level tracked entry accounted for; no NOT IGNORED / UNACCOUNTED for .claude).\n3. Green gate; commit `AM-10: ...`.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); grep -n '^  - .claude' .pkgmeta; grep -n '^  - media/screenshots' .pkgmeta; packaging check (b) prints no UNACCOUNTED line and (a) no NOT IGNORED line for .claude.",
+   "smoke": ""
+  },
+  {
+   "id": "AM-STD",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Roll the standards reference to the run's standard version; docs sync; close-out label on #22",
+   "depends_on": [
+    "WS-11",
+    "AM-10"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "AM-A-05"
+   ],
+   "spec": "Run /dev-copilot:wow-revendor-standards semantics against the WowAddonStandards feature branch (`head -1 ../WowAddonStandards/standards/STANDARDS.md`, expected v2.77.0): the three-place reference (AuraMaster.toc `## X-Standard`, README Standard badge, CLAUDE.md 'Standards compliance') rolls to that version wherever a version is carried (today all three are versionless URL/badge text, so they stay versionless unless the standard now requires a stamp); sweep retired notation, retired file names and unresolvable `filename-§N` references out of live docs and comments (excluding libs/, tests/_kit/ and frozen docs/audits, docs/reviews, docs/automated-tests, docs/revendor, docs/perf-analysis bundles), in particular any citation WS-04/WS-05/WS-07/WS-08 renumbered or reworded. Then a docs sync of everything AM-01..AM-10 touched: docs/slash-dispatch.md, docs/module-map.md (Database_Migrations, the split drag suite), docs/ARCHITECTURE.md documentation map, docs/testing.md suite list, docs/test-cases.md Total == README badge, DEPENDENCIES.md, CLAUDE.md. Issue store: GitHub issue #22 (closed, shipped 5cc04e5) still labelled state:untriaged -> `gh issue edit 22 --repo tusharsaxena/AuraMaster --remove-label state:untriaged --add-label state:done` (OWNER_SCOPE 5 permits writes on issues a finding names; single call, no batching). The label edit has no commit, so add an exceptions.tsv row for AM-A-05 in the bundle with the proof command `gh issue view 22 --repo tusharsaxena/AuraMaster --json state,labels`.",
+   "steps": "1. Read the standard's changelog between the version AuraMaster last cited and the new one.\n2. Apply the three-place roll and the citation sweep.\n3. Docs sync over AM-01..AM-10.\n4. Green gate; commit `AM-STD: ...`.\n5. Relabel #22; append the exceptions.tsv row in Ka0sAddonsCommonTasks.",
+   "verify": "cd ../AuraMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity (0 functions above CCN 15); no authored file over 1500 lines (wc -l); every `[a-z-]+-§[0-9]+` citation in live docs resolves against ../WowAddonStandards/standards/ on the feature branch; README badge equals docs/test-cases.md Total; gh issue view 22 --repo tusharsaxena/AuraMaster --json state,labels shows CLOSED with state:done and no state:untriaged.",
+   "smoke": ""
+  }
+ ]
+}

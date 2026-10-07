@@ -1,0 +1,250 @@
+{
+ "repo": "PanelMaster",
+ "items": [
+  {
+   "id": "RV-PM",
+   "milestone": "M2",
+   "repo": "PanelMaster",
+   "title": "Re-vendor LibKa0s v1.71.0 (kit revision 38) from the local tag; record the unrecorded v1.69.0-v1.70.0 span",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PM-A-11",
+    "PM-R-09"
+   ],
+   "spec": "Mechanical re-vendor per the wow-revendor-libka0s convention and OWNER_SCOPE ruling 5 (no interview, no issue filing). (a) Payloads: `libs/LibKa0s/` replaced whole from `../LibKa0s/LibKa0s/` at the LOCAL tag v1.71.0 (`git -C ../LibKa0s archive v1.71.0 LibKa0s testkit` or a checkout of the tag into a temp dir, never the working tree), and `tests/_kit/` replaced whole from the tag's `testkit/` (kit revision 38). Nothing else under libs/ moves. (b) CLAUDE.md provenance line `Bundles [LibKa0s](...) v1.70.0 (MIT).` -> `v1.71.0`, in the SAME commit (tests/test_vendor_sync.lua greps it and diffs both payloads against the tag in the sibling checkout). (c) docs/test-cases.md regenerated under kit 38: the Totals table counts only cases that run, the declared skip (diagnostics contract opt-out case, docs/test-cases.md:1143) moves to a `| Skipped | 1 |` row, and `| **Total** |` equals the README badge 1035 (today 1036 vs 1035/1035, PM-R-09; the inventory header wording is fixed upstream by LK-01 and arrives with the kit). (d) docs/revendor/<date>-v1.71.0/ with 01_DELTA.md (line 1 exactly `Delta: LibKa0s v1.70.0 -> v1.71.0`, base from the CLAUDE.md provenance line, per-file LibStub minors that moved: Env 2, Slash key 20.2, Widgets key with LineChart 3 / Autocomplete 2, Options key with OptionsIdList 4; kit 37 -> 38 pairing; which majors PanelMaster consumes - Core, Env, Media, DebugLog, Slash, Options, Launcher, Lifecycle, Schema, Bus(Catalog); contract changes under unchanged signatures: Slash ParseValue now refuses nan/inf, Env.GetAddOnMetadata no longer reads the bare global), 02_CANDIDATES.md listing every new surface (Kit.secret / Kit.installIssecretvalue, the Widgets fixes) as 'not adopted in this run' with reason, and 05_SUMMARY.md. (e) The consolidated span bundle docs/revendor/<date>-v1.69.0-v1.70.0/ for the two unrecorded re-vendors (commits 4e15691 and f61f2b7, PM-A-11): 01_DELTA.md whose line 1 is exactly `Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)` with base v1.68.1 in the body (shape copied from docs/revendor/2026-10-01-v1.64.0-v1.65.0/), and 05_SUMMARY.md with one line per tag: carried by the sweep, LineChart/Autocomplete not consumed, nothing adopted. (f) Any red the fresh payload causes (e.g. a test that pinned the old kit Totals or the v1.70.0 Env rung) is fixed in this commit only if it is a mechanical consequence of the copy; anything behavioural is recorded in 05_SUMMARY.md and fixed by the owning PM item. docs/testing.md:242 'kit 36' is NOT touched here (PM-11 makes it defer to the provenance line).",
+   "steps": "1. Confirm `git -C ../LibKa0s tag -l v1.71.0` exists locally and record its sha.\n2. Export the tag to a scratch dir; `rm -rf libs/LibKa0s tests/_kit`; copy `LibKa0s/` -> libs/LibKa0s and `testkit/` -> tests/_kit whole.\n3. Roll the CLAUDE.md provenance line to v1.71.0.\n4. Run the green gate and the vendor gate (docs/testing.md four diffs); fix mechanical reds only.\n5. `lua tests/run.lua --list > docs/test-cases.md`; confirm Total = README badge count and the Skipped row.\n6. Write docs/revendor/<date>-v1.71.0/ (01_DELTA, 02_CANDIDATES 'not adopted in this run', 05_SUMMARY) and docs/revendor/<date>-v1.69.0-v1.70.0/ (01_DELTA, 05_SUMMARY).\n7. Commit `RV-PM: re-vendor LibKa0s v1.71.0 ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); lua tests/test_vendor_sync.lua cases pass (in the run); diff -r tests/_kit <(git -C ../LibKa0s show v1.71.0:testkit) equivalent check via the vendor gate prints nothing; grep -n 'v1.71.0 (MIT)' CLAUDE.md; grep -n 'Kit.VERSION = 38' tests/_kit/framework.lua; grep -n '| Skipped | 1 |' docs/test-cases.md; the Total row equals the number in README.md's Tests badge; head -1 docs/revendor/*-v1.69.0-v1.70.0/01_DELTA.md is exactly 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)'; test -f docs/revendor/*-v1.71.0/05_SUMMARY.md.",
+   "smoke": ""
+  },
+  {
+   "id": "PM-01",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Delete-all popup names the active profile and says every character on it loses its panels",
+   "depends_on": [
+    "RV-PM"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PM-R-02"
+   ],
+   "spec": "settings/Slash.lua StaticPopupDialogs.KA0S_PANELMASTER_DELETEALL (:80-:89): text no longer says 'on this character'. It becomes a format string taking the profile name, e.g. `Delete ALL Ka0s Panel Master panels in the profile \"%s\"? Every character using this profile loses them. This cannot be undone.`, and doDeleteAll (:180-:186) passes `NS.db:GetCurrentProfile()` as StaticPopup_Show's text_arg1 (guarded: NS.db and NS.db.GetCurrentProfile, else the literal 'current'). The headless fallback branch is unchanged. The wow_mock StaticPopup_Show records its text args (extend tests/wow_mock.lua's __popupsShown recording if it does not already keep text_arg1). Any other surface with the same 'this character' wording for panels (grep settings/ and docs/ for 'this character') is corrected the same way; README FAQ already says profiles are shared and needs no change. Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first in tests/test_slash.lua beside the existing DELETEALL case (:546): with the profile set to 'Default', `/pm delete all` shows KA0S_PANELMASTER_DELETEALL; the formatted text (dialog.text:format(arg1)) contains 'Default' and does NOT contain 'this character'. Add `-- red under:` note. Run, see red.\n2. Change the dialog text and pass the profile name.\n3. grep -rn 'this character' settings modules core docs README.md and fix any panel-deletion wording.\n4. Regenerate docs/test-cases.md, bump the README Tests badge, update docs/smoke-tests.md's delete-all step to expect the profile name.\n5. Green gate; commit `PM-01: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); grep -n 'this character' settings/Slash.lua returns nothing; the new test_slash case is listed in docs/test-cases.md; Tests badge equals Total.",
+   "smoke": "`/pm delete all` (or the Panels page Delete all): the confirmation names your current profile (e.g. 'Default') and says every character using it loses its panels; No leaves the panels; Yes removes them, and an alt on the same profile has none after login."
+  },
+  {
+   "id": "PM-02",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Reset all settings sweeps the session-only rows: re-lock and hide the debug console, with a blast-radius test",
+   "depends_on": [
+    "PM-01"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PM-A-02",
+    "PM-A-01"
+   ],
+   "spec": "options-ui-§12 MUST: settings/Slash.lua Sl:DoResetAll (:36-:47), inside the existing S.BulkBegin('reset','all') bracket and after a successful db:ResetProfile(), restores every sessionOnly row to its default row by row: iterate the schema rows (settings/Schema.lua) whose `sessionOnly` is true or whose path is `state.debugConsole` (both rows at :668-:682), and drive each through its own `set` with its default (settings.locked -> locked: NS.Unlock:SetUnlocked(false), which also drops held unlocks; state.debugConsole -> hidden: NS.DebugLog:Hide()). Prefer a schema helper (NS.SchemaRuntime.ApplyDefault or the Schema module's applyDefault for one row) over hard-coded calls so a future session-only row is swept automatically; the sweep must not write the DB and must not add log lines inside the bracket. Locking is never combat-deferred (modules/Unlock.lua) so no deferral is needed. Rewrite the settings/OptionsSetup.lua:285-:294 comment to describe the sweep (it currently defends the omission, which the rule forbids) and the Sl:DoResetAll doc comment. Exactly one PanelsChanged is published per reset (existing behaviour, now proven). Keep settings/Slash.lua under 1000 lines (711 today). Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first (PM-A-02), tests/test_slash.lua next to the reset cases (:378-:409): create three panels, create and return from a second profile ('Alt'), unlock (settings.locked false), show the debug console, then drive /pm reset all and the KA0S_PANELMASTER_RESETALL OnAccept. Assert: zero panels; the profile list still holds both profiles and the current profile is unchanged; NS.State.unlocked == false and S:Get('settings.locked') == true; NS.DebugLog:IsShown() false; exactly one PanelsChanged published (count via the bus spy the suite already uses); a new panel created afterwards is drawn locked. `-- red under:` notes per assertion. Run; the session-row assertions are red.\n2. Implement the sweep in Sl:DoResetAll.\n3. Rewrite the OptionsSetup.lua and DoResetAll comments.\n4. Regenerate docs/test-cases.md, bump the badge; update docs/settings-panel.md / docs/schema.md wherever they say reset leaves session rows alone; add or adjust the docs/smoke-tests.md reset step.\n5. Green gate; commit `PM-02: ...` (PM-A-01 + PM-A-02).",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); the new blast-radius case passes and is listed in docs/test-cases.md; grep -n 'deliberate rather than an oversight' settings/OptionsSetup.lua returns nothing.",
+   "smoke": "Unlock the screen (untick Lock frame), open the debug console, then Reset all settings and accept: panels lock (no drag handles or labels), the console closes, the Profiles list is unchanged, and a panel created afterwards is locked."
+  },
+  {
+   "id": "PM-03",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Per-panel Delete and Reset in the editor ask first, naming the panel; the Registry comment becomes true",
+   "depends_on": [
+    "PM-02"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PM-R-05"
+   ],
+   "spec": "Two new StaticPopupDialogs defined where the existing ones are (settings/Slash.lua beside KA0S_PANELMASTER_DELETEALL): KA0S_PANELMASTER_DELETE (`Delete the panel \"%s\"? This cannot be undone.`) and KA0S_PANELMASTER_RESET (`Reset the panel \"%s\" to how a new panel starts? Its size, position, textures and colors are lost; its name is kept.`), both with Yes/No, timeout 0, whileDead, hideOnEscape, showAlert, preferredIndex 3. The panel id travels in the popup's `data` (StaticPopup_Show(name, rec.name, nil, rec.id)) and OnAccept(self, data) resolves it afresh with NS.Registry:Get(data) (a panel deleted while the popup was up is a no-op). settings/PanelEditor.lua pageAction.delete (:154-:157) and pageAction.reset (:161-:164) show the popup; the existing bodies move into the OnAccept paths (selectedID cleared before Delete, Reset's error print kept). Headless fallback when StaticPopup_Show is not a function: act immediately, as doDeleteAll does. The CLI `/pm panel <name> delete`/`reset` (if they exist) are unchanged unless they already confirm - the finding is about the editor buttons. Tooltips at settings/PanelEditorTabs.lua:390/:396 mention the confirmation. modules/Registry.lua:945-:946 comment ('R:Reset ... is confirmed on its own control') is now true; re-read it and tighten wording to name the KA0S_PANELMASTER_RESET popup. Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first in tests/test_panel.lua (or the editor suite that drives pageAction): clicking Delete shows KA0S_PANELMASTER_DELETE with the panel name as text arg and does NOT delete; calling the dialog's OnAccept with the recorded data deletes it. Same pair for Reset (a changed width survives the click, is reset after OnAccept). A case for OnAccept with a since-deleted id is a no-op. `-- red under:` notes.\n2. Add the two dialogs, route pageAction.delete/reset through them.\n3. Update tooltips and the Registry comment; update docs/settings-panel.md for the editor buttons and docs/smoke-tests.md PANEL rows.\n4. Regenerate docs/test-cases.md, bump the badge.\n5. Green gate; commit `PM-03: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); grep -n 'KA0S_PANELMASTER_DELETE\"\\|KA0S_PANELMASTER_RESET\"' settings/*.lua shows the definitions and the editor callers; new cases listed in docs/test-cases.md.",
+   "smoke": "Panels page editor: Delete asks 'Delete the panel \"<name>\"?' and No keeps it; Yes removes it. Reset asks naming the panel; No keeps your size/colors; Yes restores defaults and keeps the name and frame name."
+  },
+  {
+   "id": "PM-04",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Stand-down drops combat-held unlocks so a later combat exit cannot unlock every panel",
+   "depends_on": [
+    "RV-PM"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PM-R-06"
+   ],
+   "spec": "modules/Unlock.lua: a new U:DropPending(reason) clears both `pendingUnlock` and `pendingPanels` (reuse dropAllUnlocks' held-request half, :245-:253, without touching NS.State.unlockedPanels), returns the number dropped, and writes one `[Unlock]` debug line when n > 0 ('dropped %d held unlock(s): %s'). core/LifecycleSetup.lua NS.StandDown (:101-:110) calls `NS.Unlock:DropPending('stood down')` (guarded on NS.Unlock) before unregistering PLAYER_REGEN_ENABLED. While stood down, an unlock request is applied immediately instead of queued: U:SetUnlocked's combat branch is skipped when the addon is down (NS.IsAddonEnabled() false or the latch's down state), because there are no frames to hand the player and no REGEN event to replay it. Correct the core/LifecycleSetup.lua :65-:66 comment ('has nothing to defer while the addon is down') to say stand-down drops anything held. settings/Slash.lua:389 comment re-read for the same claim. U:ForgetPending is unchanged.",
+   "steps": "1. Red first in tests/test_disabled.lua (the conformance suite) or tests/test_unlock.lua: set InCombatLockdown true, SetUnlocked(true) (queued), plus SetPanelUnlocked(id,true) (queued); /pm disable; /pm enable; InCombatLockdown false; fire PLAYER_REGEN_ENABLED. Assert NS.State.unlocked == false and no panel unlocked. Second case: while disabled and in combat, SetUnlocked(true) applies at once (NS.State.unlocked true) and nothing is queued (U:PendingSnapshot().unlock false). `-- red under:` notes.\n2. Implement DropPending and call it from StandDown; skip the combat queue when down.\n3. Fix the comments; document in docs/data-flow.md / ARCHITECTURE taint notes where the queue is described.\n4. Regenerate docs/test-cases.md, bump badge.\n5. Green gate; commit `PM-04: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); the two new cases are listed in docs/test-cases.md; grep -n 'DropPending' core/LifecycleSetup.lua modules/Unlock.lua.",
+   "smoke": "In combat (target dummy): untick Lock frame (queued message), then `/pm disable`, `/pm enable`, leave combat: panels stay locked. Repeat without disabling: panels unlock on leaving combat (unchanged)."
+  },
+  {
+   "id": "PM-05",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Non-Latin and accented panel names get distinct frame names; duplicate-name check folds UTF-8 case",
+   "depends_on": [
+    "PM-03"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PM-R-01"
+   ],
+   "spec": "core/Util.lua Util.Slugify (:199-:203): ASCII alphanumerics are kept, runs of ASCII non-alphanumerics still collapse to one `_` (so 'Chat BG' and 'Chat-BG' still give 'Chat_BG' and every existing ASCII frame name is byte-identical), and every byte >= 0x80 is encoded as two upper-case hex digits (e.g. 'Ärger' -> 'C384rger', 'Обзор' -> 'D09ED0B1D0B7D0BED180'), so distinct UTF-8 names give distinct slugs. Encoded runs and ASCII text join without an extra separator; a name that is only ASCII punctuation still falls back to 'Panel'. Applies only where a frame name is derived for a NEW or re-stamped record (R:Create's Util.FrameName and the frameName backfill in R.Sanitize for records that have none); stored rec.frameName values are never rewritten, so existing anchors do not move. Duplicate-name guard independent of the slug: new Util.FoldName(name) = ASCII lower() plus a UTF-8 simple case fold for the Latin-1 Supplement (U+00C0-U+00DE except U+00D7 -> +0x20), Latin Extended-A even/odd pairs (U+0100-U+017F), Greek (U+0391-U+03A9 -> +0x20) and Cyrillic (U+0410-U+042F -> +0x20, U+0400-U+040F -> +0x50); R:FindByName (modules/Registry.lua:373-:381) compares FoldName on both sides, so 'Übersicht' and 'übersicht' are one name. Rewrite the Slugify comment (it relied on ASCII-only lower plus the slug collision). README.md:95-:99 ('anything that is not a letter or number turned into an underscore') gains one sentence: letters outside A-Z are written as hex codes, with an example. Keep modules/Registry.lua < 1000 lines (972 today) and core/Util.lua's functions <= CCN 15 (put the fold table in a local map). Reference PanelMaster#26 in the commit body. Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first in tests/test_util.lua: Slugify('Обзор') ~= Slugify('Список'); Slugify('概要') ~= Slugify('设置') and neither is 'Panel'; Slugify('Ärger') ~= Slugify('Örger'); Slugify('Chat  BG!') == 'Chat_BG' (unchanged); Slugify('!!!') == 'Panel'; FoldName('Übersicht') == FoldName('übersicht'), FoldName('ОБЗОР') == FoldName('обзор'). In tests/test_registry.lua: creating two Cyrillic-named panels and two CJK-named panels succeeds with distinct frame names; creating 'übersicht' after 'Übersicht' is refused as a duplicate; a stored record's frameName is unchanged by a profile reload. `-- red under:` notes.\n2. Implement Slugify encoding and Util.FoldName; switch FindByName to FoldName.\n3. Update comments, README paragraph, docs/schema.md / docs/data-flow.md where the slug rule is described, and docs/smoke-tests.md LOC-2/LOC-3 expected results (two distinct frame names; lower-case lookup now matches).\n4. Regenerate docs/test-cases.md, bump badge.\n5. Green gate; commit `PM-05: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); new Util and Registry cases listed in docs/test-cases.md; wc -l modules/Registry.lua < 1000; grep -n 'FoldName' modules/Registry.lua.",
+   "smoke": "LOC-1, LOC-2, LOC-3 and LOC-5 in docs/smoke-tests.md: `/pm new Übersicht` gets its own frame name; `/pm new Ärger` then `/pm new Örger` gives two panels; `/pm new übersicht` is refused as a duplicate and `/pm panel übersicht` finds Übersicht; a Cyrillic or CJK name (pasted) can be created twice with different names; all survive /reload and a profile round trip."
+  },
+  {
+   "id": "PM-06",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Panel number fields refuse NaN and infinity, and /pm recover repairs a non-finite position in one run",
+   "depends_on": [
+    "PM-05"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PM-R-03"
+   ],
+   "spec": "One finite test, Util.IsFinite(n) in core/Util.lua: `type(n) == 'number' and n == n and n ~= math.huge and n ~= -math.huge`. Used in: settings/PanelSchema.lua COERCE.number (:40-:44) -> a non-finite tonumber result returns nil, 'expected a number' (so `/pm panel X set width nan|inf|-inf|1e999` is refused with the existing message); core/Util.lua Util.Clamp (:16-:22) -> a non-finite n falls back to tonumber(fallback) if finite, else lo; modules/Registry.lua freeNumber (:241) -> non-finite returns the template value; R:SetPosition (:811-:822) -> a non-finite x or y is dropped (as a non-number is today). R.RecoveredOffsets / R.IsOffScreen / R:Recover (:897-:930): a record whose x or y is non-finite is recovered to the clamped template offsets (0,0 within range), and IsOffScreen compares with the repaired value so a second /pm recover reports 0 moved (today NaN ~= NaN reports 'moved 1 panel' forever). Width/height non-finite are covered by Clamp. This item does not depend on LK-05 (the library's ParseValue refusal); both guards stand. Registry.lua stays < 1000 lines. Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first: tests/test_util.lua - Clamp(0/0, 1, 10, 5) == 5, Clamp(math.huge, 1, 10) == 10 (or fallback per spec), IsFinite cases; tests/test_panel_schema.lua - setting width/x to 'nan', 'inf', '-inf', '1e999' is refused with 'expected a number' and the stored value is unchanged; tests/test_registry.lua - a record planted with x = 0/0 is repaired by one R:Recover() (returns 1) and a second call returns 0; SetPosition(id, 0/0, 5) leaves x unchanged. `-- red under:` notes.\n2. Add Util.IsFinite and apply it at the five sites.\n3. Update docs/schema.md (number coercion) and docs/smoke-tests.md NUM rows.\n4. Regenerate docs/test-cases.md, bump badge.\n5. Green gate; commit `PM-06: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); new cases listed in docs/test-cases.md; grep -n 'IsFinite' settings/PanelSchema.lua core/Util.lua modules/Registry.lua; wc -l modules/Registry.lua < 1000.",
+   "smoke": "NUM-3 (owner): `/pm panel <name> set x nan` and `set width 1e999` are refused with 'expected a number'; after /reload the panel is where it was. If an older SavedVariables already holds a non-finite value, one `/pm recover` fixes it and a second reports nothing moved."
+  },
+  {
+   "id": "PM-07",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "R.Sanitize repairs every template field (accent colors, artBlend, artDesaturate) with a coverage property test; lists treat enabled==nil as enabled",
+   "depends_on": [
+    "PM-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PM-R-04",
+    "PM-R-07"
+   ],
+   "spec": "modules/Registry.lua REPAIR table (:224-:300): `REPAIR.accentColor, REPAIR.accentBorderColor = color, color` beside bgColor/borderColor/artColor; 'artDesaturate' added to BOOL_FIELDS; 'artBlend' added to ENUM_FIELDS provided enumMatch knows its set (C.ART_BLEND_SET); otherwise a REPAIR.artBlend that accepts a member of C.ART_BLEND_SET (case-normalized) and falls back to the template. New exported read-only list R.UNREPAIRED_FIELDS (the template keys intentionally stored as given, e.g. name, frameName, id - decided by reading C.PANEL_TEMPLATE) so a property test can prove every C.PANEL_TEMPLATE key has a REPAIR rule or is on the exempt list (the table's own 'cannot diverge' claim). The editor reads at settings/PanelEditor.lua:334 and settings/PanelEditorTabs.lua:223 pass the template value as Util.Color's fallback so a junk accentBorderColor shows black, not white. PM-R-07: settings/Slash.lua:156 (`rec.enabled and ...`) and settings/PanelEditor.lua:601 test `rec.enabled ~= false`, matching REPAIR.enabled and Canvas. Registry.lua stays < 1000 lines; if the additions would cross it, move the REPAIR rule lists and table unchanged into a new modules/RegistryRepair.lua loaded immediately before Registry.lua in PanelMaster.toc (and docs/module-map.md). Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first, tests/test_registry.lua: (a) property case - for every key in C.PANEL_TEMPLATE, R.SanitizeField has a rule (probe by passing a junk table/string and expecting the template back or a valid value) unless the key is in R.UNREPAIRED_FIELDS; (b) Sanitize on a record missing accentColor/accentBorderColor/artBlend/artDesaturate fills them from the template; junk values ('x', 42) are repaired; artDesaturate = 'yes' becomes true. tests/test_slash.lua: /pm list renders a record with enabled = nil in the enabled color. `-- red under:` notes.\n2. Implement the REPAIR additions, R.UNREPAIRED_FIELDS, the editor fallbacks and the two `~= false` sites.\n3. Regenerate docs/test-cases.md, bump badge; docs/schema.md field table notes repair for the four fields.\n4. Green gate; commit `PM-07: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); property case listed in docs/test-cases.md; grep -n 'accentBorderColor' modules/Registry.lua shows the REPAIR assignment; grep -n 'enabled ~= false' settings/Slash.lua settings/PanelEditor.lua; wc -l modules/Registry.lua < 1000.",
+   "smoke": ""
+  },
+  {
+   "id": "PM-08",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Library-absent Slash stub stops copying the library's colored key = value format",
+   "depends_on": [
+    "PM-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PM-A-03"
+   ],
+   "spec": "slash-commands-§1 MUST NOT (only DISABLED_LINE_FORMAT may be carried): settings/Slash.lua degraded arm (:501-:510) keeps Sl.FormatKV assigned (the PANEL verbs call it) but renders plainly: `return tostring(path) .. ' = ' .. tostring(valueStr)`, no |c escapes. Rewrite the :501-:507 comment: why FormatKV must exist on the degraded arm, and that it is deliberately NOT the library's format (no copy to drift). tests/test_surface_parity.lua:193-:194 byte pin against lib.FormatKV is replaced with a degraded-env case asserting the output contains the path and the value, contains ' = ', and contains no '|c'. docs/ARCHITECTURE.md / docs/module-map.md text that says the stub reproduces FormatKV byte for byte is corrected. The stale upstream citation (WowAddonStandards testing.md citing PanelMaster/settings/Slash.lua:316) is the standard's to fix and is out of this item. Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first: change the surface-parity case to the new assertions (no '|c'); run in the degraded env; it is red against the colored stub.\n2. Change the stub and the comment.\n3. grep -rn 'byte-for-byte\\|byte for byte' docs settings tests for the FormatKV claim and correct it.\n4. Regenerate docs/test-cases.md if the case name changed; badge unchanged unless the count moves.\n5. Green gate; commit `PM-08: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); grep -n 'cFFFFFF00%s|r = ' settings/Slash.lua returns nothing; the degraded FormatKV case passes in tests/test_surface_parity.lua.",
+   "smoke": ""
+  },
+  {
+   "id": "PM-09",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Delete the dead bare-global AddOns fallbacks in EnvSetup and Compat.AddOnFolders",
+   "depends_on": [
+    "PM-08"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PM-A-04"
+   ],
+   "spec": "GetAddOnMetadata, GetNumAddOns and GetAddOnInfo were removed in the 11.0 AddOns purge and exist on no Interface 120100 client (compat worked case; LibKa0s drops its own rung in LK-06, which arrives via RV-PM). core/EnvSetup.lua NS.Meta (:50-:59): delete the bare GetAddOnMetadata rung (:55-:57); Env first, then C_AddOns, else nil. core/Compat.lua Compat.AddOnFolders (:27-:35): delete the global fallback (:30-:33); with no C_AddOns.GetNumAddOns/GetAddOnInfo it returns nil (the 'cannot tell' answer callers already handle). Compat.lua stays (other live shims). .luacheckrc:34: drop GetAddOnMetadata, GetNumAddOns, GetAddOnInfo from read_globals (luacheck then proves nothing reads them). tests/test_envsetup.lua:56-:59: remove the now-redundant mocks.GetAddOnMetadata save/restore; tests/wow_mock.lua drops the bare globals if it defines them only for these rungs. docs/compat-layer.md:47-:52 rewritten to drop the fallback description. If tests/test_lintconfig.lua pins the read_globals list, update it in the same commit. Every item that adds or renames cases regenerates docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and moves the README.md Tests badge to the new passing count in the SAME commit (docs/testing.md ▸ test-cases.md); after RV-PM the Totals row equals the badge.",
+   "steps": "1. Red first, tests/test_compat.lua: with C_AddOns absent and bare GetNumAddOns/GetAddOnInfo planted as functions, Compat.AddOnFolders() returns nil; same for NS.Meta('Version') with Env absent, C_AddOns absent and a bare GetAddOnMetadata planted -> nil. `-- red under:` notes. Run: red.\n2. Delete the rungs and the read_globals entries; clean the test mocks.\n3. Rewrite docs/compat-layer.md.\n4. Regenerate docs/test-cases.md, bump badge.\n5. Green gate (luacheck must stay 0/0 with the globals gone); commit `PM-09: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); grep -n 'GetAddOnMetadata\\|GetNumAddOns\\|GetAddOnInfo' core/EnvSetup.lua core/Compat.lua .luacheckrc shows only C_AddOns.* reads; new cases listed in docs/test-cases.md.",
+   "smoke": ""
+  },
+  {
+   "id": "PM-10",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Issue store: closed #47 relabelled state:done",
+   "depends_on": [
+    "RV-PM"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PM-A-12"
+   ],
+   "spec": "GitHub only, no commit: PanelMaster issue #47 was closed 2026-09-26 after 5119ae1 (PM-ATS-02) but still carries the open-only label state:triaged. `gh issue edit 47 --repo tusharsaxena/PanelMaster --remove-label state:triaged --add-label state:done` (the finding names the issue, so OWNER_SCOPE's issue-write ruling allows it; one call, spaced from any other run write). Optional comment citing 5119ae1. Recorded as an exceptions.tsv row in the Ka0sAddonsCommonTasks bundle (id PM-10, reason 'GitHub labels only, no commit', proof command below).",
+   "steps": "1. `gh issue view 47 --repo tusharsaxena/PanelMaster --json state,labels` to confirm CLOSED + state:triaged.\n2. Relabel.\n3. Append the exceptions.tsv row with the proof command.",
+   "verify": "gh issue list --repo tusharsaxena/PanelMaster --state closed --label state:triaged --json number returns []; gh issue view 47 --repo tusharsaxena/PanelMaster --json labels shows state:done.",
+   "smoke": ""
+  },
+  {
+   "id": "PM-11",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Doc-and-comment sweep against the tree: lifecycle/launcher comments, register row, census, sighted complexity runner, ARCHITECTURE trim",
+   "depends_on": [
+    "PM-09",
+    "PM-04"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PM-A-09",
+    "PM-R-08",
+    "PM-A-07",
+    "PM-A-10"
+   ],
+   "spec": "Runs after every code item so the figures are final. (a) PM-A-09 comments: core/LifecycleSetup.lua:53-:54 and :117-:118 (OnEnable does not register the events / Register timing - restate what core/PanelMaster.lua actually does), core/LauncherSetup.lua:226 (launcher left-click / refusal line as the code behaves), settings/Slash.lua:317-:318, :366-:367, :699-:701 (README command table - README has none; minimap left-click writer; the bare `§7` qualified as `slash-commands-§7`). Each comment is re-read against the code it describes, not just reworded. (b) docs/ARCHITECTURE.md:349 deviation-register row: re-run the trigger-set sweep (grep the authored tree for the API set the row lists) and restate its API list - UnitClass removed, UnitAffectingCombat added - WITHOUT re-dating the Decided column; docs/scope.md:39 and :59 drop the same UnitClass claim. (c) docs/ARCHITECTURE.md census (:384-:420): replace the hard figures (1160/987, today 1184/972) with the measuring command already at :386-:388 and a statement of what it shows without numbers that rot; PM-A-10: drop the perf-decline preamble (:333-:344, it lives in docs/performance.md and the register row), cut the census peel narrative and the 1000-1500 band prose to one sentence linking docs/automated-tests/RESULTS.md, keep the 'Files over the 1500-line cap' heading and its table (the kit gate reads it); target <= 400 lines. (d) docs/testing.md:242 stops naming a kit revision ('kit 36') and defers to the CLAUDE.md provenance line. (e) PM-R-08: core/Database.lua:86 cites `R.Sanitize` in modules/Registry.lua by name, no line numbers. (f) PM-A-07: docs/automated-tests/README.md:29 complexity row's command cell becomes `bash tests/_kit/run-automated-tests.sh --suite complexity` plus the sighted-shadow (-L 1500) note matching docs/testing.md. Docs-only and comment-only; no behaviour change. Prose gate (test_prose, US English) and test_docs stay green.",
+   "steps": "1. For each cited comment, read the code it describes and rewrite; record nothing else in code.\n2. Re-run the register row's trigger sweep: `grep -rn 'UnitClass\\|UnitAffectingCombat' core modules settings` and restate the row's API list; fix docs/scope.md:39/:59.\n3. Rework the ARCHITECTURE census sub-heading and drop the duplicated history; `wc -l docs/ARCHITECTURE.md`.\n4. Fix docs/testing.md:242, core/Database.lua:86, docs/automated-tests/README.md:29.\n5. Green gate (test_docs, test_prose, test_layout_cap read these files); commit `PM-11: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); grep -n 'UnitClass' docs/ARCHITECTURE.md docs/scope.md returns nothing; grep -n '1160\\|987' docs/ARCHITECTURE.md returns nothing; grep -n 'kit 36' docs/testing.md returns nothing; grep -n 'Registry.lua:218' core/Database.lua returns nothing; grep -n 'run-automated-tests.sh --suite complexity' docs/automated-tests/README.md; wc -l docs/ARCHITECTURE.md <= 400.",
+   "smoke": ""
+  },
+  {
+   "id": "PM-12",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "CLAUDE.md stub items in standard order; README drops angle-bracket placeholders and the 1.2.0 release-process line",
+   "depends_on": [
+    "PM-11"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PM-A-06",
+    "PM-A-08"
+   ],
+   "spec": "PM-A-06 (documentation-§2 'in this order'): in CLAUDE.md move the green-gate paragraph ('Green gate before every commit: ...', today :62-:65) up to sit directly after the docs pointer list (:28-:35), ahead of the LibKa0s paragraph and the provenance line; the Perf-decline paragraph and the release paragraph follow them. Pure move, text unchanged (the provenance line text is byte-identical so test_vendor_sync still finds it). PM-A-08 (documentation-§1, CurseForge strips <...>): README.md:65 and :229 write `/pm profile <name>` as a bare example, e.g. `/pm profile Raid`, with surrounding prose adjusted ('`/pm profile Raid` switches to a profile called Raid'); grep README.md for any other `<...>` placeholder in player prose and fix the same way. The 1.2.0 Version History row: delete the trailing contributor-facing `<br>Released on lint, tests and complexity only: ...` line (matches LH-A-07), leaving only '- ' prefixed highlights. Run the de-AI/US-English pass over the edited README sentences only.",
+   "steps": "1. Move the CLAUDE.md paragraph; diff shows a pure move.\n2. Fix README.md :65, :229 and any other `<...>` in prose (`grep -n '<[a-z]*>' README.md`, ignoring HTML like <br>).\n3. Delete the 1.2.0 tail line.\n4. Green gate (test_docs / test_vendor_sync read these files); commit `PM-12: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); grep -n '/pm profile <' README.md returns nothing; grep -n 'Released on lint' README.md returns nothing; in CLAUDE.md the 'Green gate before every commit' line number is lower than the 'Bundles [LibKa0s]' line number (awk check).",
+   "smoke": ""
+  },
+  {
+   "id": "PM-STD",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Roll the standards reference to WowAddonStandards v2.77.0 and sync the docs the earlier items changed",
+   "depends_on": [
+    "WS-11",
+    "PM-12"
+   ],
+   "effort": "S",
+   "finding_ids": [],
+   "spec": "Per the wow-revendor-standards convention, against WowAddonStandards' feature-branch v2.77.0 (WS-11). The three-place standards reference - PanelMaster.toc `## X-Standard:` (:12), the README.md Standard badge (:6) and CLAUDE.md 'Standards compliance' - carries no version number today; confirm each is in the form v2.77.0 prescribes and update if WS-01..WS-11 changed it. Sweep the repo (excluding libs/, tests/_kit/ and frozen docs/audits/, docs/reviews/, docs/automated-tests/<stamp>/, docs/revendor/<date>/ bundles) for retired notation, retired file names and section references that no longer resolve against v2.77.0 (in particular anything citing the old changelog location in STANDARDS.md moved by WS-01, the documentation-§6 citation SHOULD of WS-07 for any cross-repo citation, and the versioning-git branch wording of WS-08); a citation inside a code comment is corrected comment-only. Docs sync of everything PM-01..PM-12 changed: docs/ARCHITECTURE.md (Documentation map, deviation register, known limitations), docs/module-map.md (a new RegistryRepair.lua if PM-07 created it), docs/schema.md, docs/settings-panel.md, docs/data-flow.md, docs/smoke-tests.md index/rows and Pending sign-off table (rows for PM-01..PM-06 listed as pending owner sign-off, never marked passed), docs/testing.md, README.md (Tests badge equals docs/test-cases.md Total). No version bump, no README Version History row (release is the owner's go-ahead).",
+   "steps": "1. Read ../WowAddonStandards on feat/2026-10-07-review-audit-remediation (STANDARDS.md header v2.77.0, documentation-§1/§2/§6, versioning-git).\n2. Check and roll the three-place reference.\n3. Sweep for unresolvable `<file>-§N` references and retired notation outside the frozen stores; fix.\n4. Docs sync against the tree: re-derive every count claim with its command.\n5. Green gate + vendor gate; commit `PM-STD: ...`.",
+   "verify": "cd ../PanelMaster && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); grep -n 'X-Standard' PanelMaster.toc; grep -n 'Standard' README.md | head -1; every `[a-z-]*-§[0-9]*` reference outside libs/, tests/_kit/ and frozen bundles resolves to a section in ../WowAddonStandards/standards/ at v2.77.0; README Tests badge equals docs/test-cases.md Total; docs/smoke-tests.md lists the new rows as pending.",
+   "smoke": ""
+  }
+ ]
+}

@@ -1,0 +1,189 @@
+{
+ "repo": "ConsumableMaster",
+ "items": [
+  {
+   "id": "RV-CM",
+   "milestone": "M2",
+   "repo": "ConsumableMaster",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 re-vendors in one span bundle",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "CM-A-01"
+   ],
+   "spec": "Mechanical re-vendor per /dev-copilot:wow-revendor-libka0s conventions, non-interactive (OWNER_SCOPE 5). Source: the LOCAL tag v1.71.0 in ../LibKa0s (`git -C ../LibKa0s archive v1.71.0` or a temporary `git worktree add` of the tag, removed afterwards; never the LibKa0s working tree). (1) Replace libs/LibKa0s/ with the tag's LibKa0s/ payload whole and tests/_kit/ with the tag's testkit/ whole (delete-and-copy, never patch in place). (2) CLAUDE.md provenance line becomes exactly `Bundles [LibKa0s](https://github.com/tusharsaxena/LibKa0s) v1.71.0 (MIT).` in the same commit (tests/test_vendor_sync.lua reads it); the stale 'kit revision 35' in CLAUDE.md's Gate paragraph becomes 'kit revision 38'; the 'Fourteen of its majors are consumed' paragraph is re-checked against the tag (no major added in v1.71.0, so it should stand). (3) Kit 38 changes the --list Totals semantics (LK-01): regenerate docs/test-cases.md and make the README [Tests] badge equal the new Total. (4) docs/revendor/<date>-v1.71.0/ with 01_DELTA.md (line 1 exactly `Delta: LibKa0s v1.70.0 -> v1.71.0`; base taken from this repo's CLAUDE.md provenance line, v1.70.0; per-file LibStub minors: Env 2, Slash key 20.2, Widgets LineChart 3 / Autocomplete 2, OptionsIdList 4, kit 37 -> 38; which of the touched majors this addon consumes: Slash, Options/OptionsIdList and Env yes, WidgetsLineChart and WidgetsAutocomplete not called), 02_CANDIDATES.md (Kit.secret, ChartMath.ClipSegment and any other new surface listed as 'not adopted in this run' per OWNER_SCOPE 5; no interview, no GitHub issue), 05_SUMMARY.md. Note in 01_DELTA that Slash 20.2's ParseValue nan/inf refusal (LK-05) covers composed schema rows only; host parsing in core/SlashCommands.lua is CM-04's. (5) The span bundle for the two unrecorded re-vendors (CM-A-01, f8d2f3b and 74bcda1): docs/revendor/<date>-v1.69.0-v1.70.0/ with 01_DELTA.md whose line 1 is exactly `Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)`, base v1.68.1 stated in the body, naming the two commits and noting that WidgetsLineChart (new in v1.69.0) and WidgetsAutocomplete are not called by this addon; 05_SUMMARY.md with one line per tag: carried by the sweep, nothing adopted. Both bundles are frozen once committed. No addon code changes except what a red gate after the copy forces (if any red appears, stop and record it in the bundle; fix only if it is a mechanical consequence of the new payload).",
+   "steps": "1. Confirm `git -C ../LibKa0s tag -l v1.71.0` exists and the CM tree is clean on feat/2026-10-07-review-audit-remediation.\n2. Export the tag to the scratchpad; rm -rf libs/LibKa0s tests/_kit; copy LibKa0s/ -> libs/LibKa0s/ and testkit/ -> tests/_kit/.\n3. Roll the CLAUDE.md provenance line and the kit revision mention.\n4. Run the gate; regenerate docs/test-cases.md; update the [Tests] badge.\n5. Write docs/revendor/<date>-v1.71.0/ (01_DELTA, 02_CANDIDATES, 05_SUMMARY).\n6. Write docs/revendor/<date>-v1.69.0-v1.70.0/ (01_DELTA, 05_SUMMARY).\n7. Commit `RV-CM: re-vendor LibKa0s v1.71.0; record v1.69.0-v1.70.0 span (CM-A-01)`; remove any temporary worktree.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); tests/test_vendor_sync.lua passes (payload equals the v1.71.0 tag); grep -n 'v1.71.0 (MIT)' CLAUDE.md; head -1 docs/revendor/*-v1.71.0/01_DELTA.md = 'Delta: LibKa0s v1.70.0 -> v1.71.0'; head -1 docs/revendor/*-v1.69.0-v1.70.0/01_DELTA.md = 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)'; grep -c 'not adopted in this run' docs/revendor/*-v1.71.0/02_CANDIDATES.md >= 1; README [Tests] count equals the Total row of docs/test-cases.md; git -C ../LibKa0s worktree list shows no leftover worktree.",
+   "smoke": "Owner: /reload with ConsumableMaster enabled on the v1.71.0 payload; no Lua errors; /cm help, the settings panel (General, Macros, Stat Priority, Macro Bar) and the macro bar open and behave as before."
+  },
+  {
+   "id": "CM-01",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Macro fingerprint is trusted only when the live account-wide macro still holds that body; deleted or overwritten KCM_* macros are rewritten",
+   "depends_on": [
+    "RV-CM"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "CM-R-01"
+   ],
+   "spec": "modules/MacroManager.lua. New local `liveBody(macroName)`: `local idx = GetMacroIndexByName and GetMacroIndexByName(macroName)`; returns nil when idx is nil or 0, else the body from `GetMacroInfo(idx)` (third return); both are unprotected reads and are safe in combat. `alreadyApplied(state, pending, body, icon)` gains the macro name and returns true only when the fingerprint matches (state.lastBody == body and state.lastIcon == icon) AND `liveBody(macroName) == body` AND (pending == nil or pending.body == body). On a missing macro or a live body that differs (another profile/character wrote its own body to the account-wide macro, or the player deleted it), commitMacro falls through to the existing path: queueForCombat in combat, else doEdit (which creates a missing macro) and the macroState store. Do not compare the live icon (GetMacroInfo returns a texture, not the stored icon key). No change to macroState's shape, to InvalidateState or MarkAllStale. Mock: tests/wow_mock.lua must model GetMacroIndexByName/GetMacroInfo over its macro table (add if missing; it is at 1012 lines, so keep the addition small or put the helper in an existing support file). docs/macro-manager.md gains a paragraph: the fingerprint is a cache of the addon's own last write, macros are account-wide, so the live body is re-read before the 'unchanged' early-out; this is what makes README.md:127 and docs/scope.md:24 ('each character rewrites on arrival') true. ARCHITECTURE.md's macroState section names liveBody as a read (by function name, no line suffix).",
+   "steps": "1. Red first in tests/test_macromanager.lua (or tests/test_profiles.lua for the profile case): (a) profile A writes KCM_X with item 950001's body, the mock's account macro is overwritten with item 950002's body (simulating another character's profile), a pass with the same picks rewrites it to 950001; (b) the player deletes KCM_X, the next pass recreates it; (c) live body equal to the fingerprint still returns 'unchanged' and issues no EditMacro. Add '-- red under:' notes naming the removal of the liveBody comparison. Run `lua5.1 tests/run.lua`, see (a) and (b) fail.\n2. Add liveBody and thread macroName into alreadyApplied.\n3. Green gate. When the case count moves, regenerate docs/test-cases.md (`lua5.1 tests/run.lua --list > docs/test-cases.md`, CRLF) and bump the README [Tests] badge in the same commit (CLAUDE.md Static badges hard rule).\n4. docs/macro-manager.md paragraph; ARCHITECTURE.md mention.\n5. Commit `CM-01: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); the three new cases are listed in docs/test-cases.md; grep -n 'liveBody' modules/MacroManager.lua docs/macro-manager.md.",
+   "smoke": "Owner: with two characters on different per-character profiles that pick different items for the same KCM_ macro, log character A, then B: B's KCM_ macro body shows B's pick on arrival. Delete one KCM_ macro from the macro UI, then trigger a bag change or /cm resync: it is recreated. Also confirm a written body reads back byte-identical (the client does not normalize stored macro bodies), i.e. no rewrite every pass with /cm debug on."
+  },
+  {
+   "id": "CM-02",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Seed the Devourer Demon Hunter stat priority (12_1480, Intellect) and test per playable spec, not per class",
+   "depends_on": [
+    "RV-CM",
+    "CM-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "CM-R-02",
+    "CM-R-08"
+   ],
+   "spec": "defaults/Defaults_StatPriority.lua: add under '-- Demon Hunter' `[\"12_1480\"] = { primary = \"INT\", secondary = { ... } },      -- Devourer`. The secondary order MUST be sourced via the file header's archon.gg refresh procedure (the devourer/demon-hunter Mythic+ overview page); record the source and the date in the row comment. If the page cannot be reached or does not list Devourer, ship `secondary = {}` with a comment saying the order is unsourced and why; never guess. tests/test_defaults.lua:343 'stat priority covers all thirteen classes' is replaced by 'Defaults: stat priority seeds every playable spec', iterating a pinned local list of every playable <classID>_<specID> key (the 39 already seeded plus 12_1480; exclude the Initial/unspecced specs), asserting each has a seed row, with a '-- red under:' comment naming the removal of 12_1480. Confirm with the existing round-trip test that 12_1480 parses through SpecHelper.MakeKey. CLASS_PRIMARY_FALLBACK[12] = 'AGI' in core/SpecHelper.lua stays (it is the class fallback; Devourer now has its own row).",
+   "steps": "1. Red first: write the per-spec test with the pinned list including 12_1480; run, see it fail on 12_1480 only.\n2. Source the Devourer secondary order (WebFetch the archon.gg page per the header); add the row.\n3. Green gate. When the case count moves, regenerate docs/test-cases.md (`lua5.1 tests/run.lua --list > docs/test-cases.md`, CRLF) and bump the README [Tests] badge in the same commit (CLAUDE.md Static badges hard rule).\n4. If docs/schema.md or docs/scope.md enumerate seeded specs, update them.\n5. Commit `CM-02: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); grep -n '12_1480' defaults/Defaults_StatPriority.lua tests/test_defaults.lua; grep -n 'seeds every playable spec' docs/test-cases.md.",
+   "smoke": "Owner: on a Devourer Demon Hunter, the Stat Priority page shows Intellect as primary and the seeded secondary order, and /cm dump (or the flask/stat-food macro) prefers Intellect consumables."
+  },
+  {
+   "id": "CM-03",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "OnSpecChanged ignores groupmates' respecs and runs a discovery pass for the new spec before recomputing",
+   "depends_on": [
+    "RV-CM",
+    "CM-02"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "CM-R-04",
+    "CM-R-07"
+   ],
+   "spec": "core/ConsumableMaster.lua KCM:OnSpecChanged becomes `function KCM:OnSpecChanged(event, unit)`. First line: `if unit and unit ~= \"player\" then return end` (before traceEvent, requestRecompute and the SPEC_CHANGED SendMessage; a nil unit passes, as the existing tests call it with none). Then traceEvent, then `runAutoDiscovery(\"spec_changed\")` (the local defined above at :450, so no forward-declaration issue: confirm it is in scope at OnSpecChanged's definition), then requestRecompute(\"spec_changed\") and the SPEC_CHANGED message as today. Discovery is filed per spec (discoverySpecKey reads SpecHelper.GetCurrent), so this fills the new spec's buckets with unseeded bag items before the recompute. docs/data-flow.md's PLAYER_SPECIALIZATION_CHANGED event row names the discovery pass and the player-only filter; ARCHITECTURE.md's Event Subscriptions row (by handler name) likewise.",
+   "steps": "1. Red first in tests/test_events.lua: OnSpecChanged('PLAYER_SPECIALIZATION_CHANGED', 'party1') causes no recompute and no SPEC_CHANGED message; 'player' and nil each cause exactly one of each. In tests/test_pipeline.lua: an unseeded bag consumable discovered under spec A, switch the mock to spec B, OnSpecChanged('PLAYER_SPECIALIZATION_CHANGED', 'player') -> the item is discovered under B and picked (the 'expected 961701, got nil' scratch repro). '-- red under:' notes.\n2. Implement.\n3. Green gate. When the case count moves, regenerate docs/test-cases.md (`lua5.1 tests/run.lua --list > docs/test-cases.md`, CRLF) and bump the README [Tests] badge in the same commit (CLAUDE.md Static badges hard rule).\n4. docs/data-flow.md and ARCHITECTURE.md rows.\n5. Commit `CM-03: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); grep -n 'unit ~= \"player\"' core/ConsumableMaster.lua; grep -n 'spec_changed' core/ConsumableMaster.lua shows runAutoDiscovery before requestRecompute; the new cases appear in docs/test-cases.md.",
+   "smoke": "Owner: with an unseeded consumable in bags that only the other spec's bucket has seen, switch spec: the relevant macro picks it up without any bag change. In a group, a groupmate's respec produces no ConsumableMaster recompute line with /cm debug on."
+  },
+  {
+   "id": "CM-04",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "/cm priority accepts only a positive item ID or s:<positive spell ID>; everything else prints the usage line",
+   "depends_on": [
+    "RV-CM",
+    "CM-03",
+    "LK-05"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "CM-R-06"
+   ],
+   "spec": "core/SlashCommands.lua parsePriorityID(token): accept `^%d+$` with tonumber > 0 (an item ID) or `^[sS]:(%d+)$` with tonumber > 0 (a spell, returned through KCM.ID.AsSpell); return nil for anything else (0, 1.5, 0x10, 1e3, -20484, nan, inf, empty), so the existing usage line prints at all three callers (add, remove, move: the parsePriorityID call sites). This makes the slash door agree with the panel's Add-by-ID box (settings/CategoryAddByID.lua:213 already uses `text:match(\"^%d+$\")`); if a shared helper is natural, put one strict numeric-ID parser on KCM.ID and have both call it, otherwise keep them separate and cite each other by function name. No change to stored data shapes. LK-05 (Slash ParseValue refuses nan/inf) is the library-side analogue for composed rows; this item is the host grammar.",
+   "steps": "1. Red first in tests/test_slash.lua (or test_slash_store.lua): for each of '0', '1.5', '0x10', '1e3', '-20484', 'nan', 'inf', '/cm priority <cat> add <token>' writes nothing to added/blocked and prints the usage line; '12345' and 's:123' / 'S:123' still add. '-- red under:' note.\n2. Tighten parsePriorityID.\n3. Green gate. When the case count moves, regenerate docs/test-cases.md (`lua5.1 tests/run.lua --list > docs/test-cases.md`, CRLF) and bump the README [Tests] badge in the same commit (CLAUDE.md Static badges hard rule).\n4. If docs/common-tasks.md or README's slash table describes the accepted grammar, align it.\n5. Commit `CM-04: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); the new slash case is listed in docs/test-cases.md; grep -n 'parsePriorityID' core/SlashCommands.lua.",
+   "smoke": ""
+  },
+  {
+   "id": "CM-05",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "One composite-config rule: Selector.compositeRefs delegates to a published MacroManager.CompositeConfig",
+   "depends_on": [
+    "RV-CM",
+    "CM-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "CM-R-05"
+   ],
+   "spec": "modules/MacroManager.lua's local compositeConfig(cat) is published as `M.CompositeConfig(cat)` (keep the local alias for internal callers), returning enabled, orderIn, orderOut or nil when the saved bucket is absent. modules/Selector.lua compositeRefs(cat) calls KCM.MacroManager.CompositeConfig(cat) and walks the result; when it returns nil (missing bucket), compositeRefs takes MacroManager's answer and returns {} (today it falls back to all components; that branch is unreachable under AceDB defaults, and the characterization test pins the new missing-bucket behaviour explicitly). The `enabled[ref] ~= false` default-true semantics and the in-combat-then-out-of-combat order are unchanged. TOC order: MacroManager must be loaded before Selector is *called* (runtime lookup, not file scope) - confirm, do not reorder the TOC. compositeRefs' CCN drops below 15.",
+   "steps": "1. Characterization first in tests/test_selector.lua: compositeRefs via S.ListAvailable on a composite with (a) a saved bucket with a disabled ref and custom orders, (b) defaults; both pass before the change. Add the missing-bucket case asserting MacroManager's answer (red before).\n2. Publish M.CompositeConfig; delegate.\n3. Green gate; lizard shows compositeRefs below 15. When the case count moves, regenerate docs/test-cases.md (`lua5.1 tests/run.lua --list > docs/test-cases.md`, CRLF) and bump the README [Tests] badge in the same commit (CLAUDE.md Static badges hard rule).\n4. Commit `CM-05: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); grep -n 'CompositeConfig' modules/MacroManager.lua modules/Selector.lua; the complexity suite lists no function at CCN 15 in modules/Selector.lua.",
+   "smoke": ""
+  },
+  {
+   "id": "CM-06",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Out-of-combat bar refresh scores each flyout candidate once: one scoreCache per MacroBar.Refresh threaded to Selector.ListAvailable",
+   "depends_on": [
+    "RV-CM",
+    "CM-05"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "CM-R-03"
+   ],
+   "spec": "modules/MacroBar.lua MB.Refresh: when not in combat, build one `local scoreCache = { fields = {} }` per refresh and pass it to `KCM.MacroBarFlyout.Apply(btn, c, scoreCache)`. modules/MacroBarFlyout.lua: FO.Apply(button, cfg, scoreCache) passes it to FO.Candidates(catKey, cfg, scoreCache), which calls `KCM.Selector.ListAvailable(catKey, nil, scoreCache)` (today nil). Callers that pass no cache keep the uncached path (Ranker.itemFields' contract, modules/Ranker.lua:78-96). The cache lives only for the one refresh (never stored on a module, so a later bag change is never served stale data). Scope note in the commit and in docs/performance.md: the review's 226 KB figure is a mock artifact (tests/wow_mock.lua's GetItemByID returns nil, so TooltipCache refetches), so the claim is one scoring pass (one itemFields fill) per candidate per refresh, not a byte figure; no perf number is quoted unless a scenario uses a mock that returns real tooltip lines.",
+   "steps": "1. Red first in tests/test_macrobar_flyout.lua: with two shown buttons whose flyouts share candidate items, count Ranker field fills (spy on KCM.Compat.GetItemInfo or the itemFields seam) during one MB.Refresh out of combat; assert each candidate is filled once. Fails today (one fill per ListAvailable call). In-combat refresh still builds no flyout. '-- red under:' note.\n2. Thread the cache through Apply -> Candidates -> ListAvailable.\n3. Green gate. When the case count moves, regenerate docs/test-cases.md (`lua5.1 tests/run.lua --list > docs/test-cases.md`, CRLF) and bump the README [Tests] badge in the same commit (CLAUDE.md Static badges hard rule).\n4. docs/performance.md / docs/macro-bar doc line naming the per-refresh cache.\n5. Commit `CM-06: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); grep -n 'scoreCache' modules/MacroBar.lua modules/MacroBarFlyout.lua; the new flyout case is in docs/test-cases.md.",
+   "smoke": "Owner: out of combat, open several flyouts on the macro bar after a bag change: each lists the same ranked items as before (order and count unchanged)."
+  },
+  {
+   "id": "CM-07",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Authored-doc drift: cite handlers and writers by name in ARCHITECTURE.md, resolvable register evidence ids, the renamed perf-analysis command, and the sighted complexity command",
+   "depends_on": [
+    "RV-CM",
+    "CM-06",
+    "WS-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "CM-A-02",
+    "CM-A-04",
+    "CM-A-05"
+   ],
+   "spec": "Documentation only. (a) CM-A-02: docs/ARCHITECTURE.md's Event Subscriptions table (~:168-177) cites each handler by name with no line suffix; the macroState writer list (~:122-124: commitMacro, InvalidateState, MarkAllStale, the macroState store) and the RegisterProfileCallbacks / OnRestrictionChanged citations (~:102, :123, :124) cite functions by name, no :line (documentation-§6 as WS-07 rewrites it: symbol/heading for present tense). Re-read every remaining file:line in ARCHITECTURE.md that points into core/ConsumableMaster.lua or modules/MacroManager.lua after CM-01..CM-06 and fix or convert it. docs/perf-analysis/README.md:133 '/wow-addon:perf-analysis' -> '/dev-copilot:wow-perf-analysis'; grep authored .md/.lua/.toc (excluding libs/, tests/_kit/ and frozen docs/audits, docs/reviews, docs/automated-tests, docs/revendor bundles) for any other '/wow-addon:' and rename it. (b) CM-A-04: in the `compat` register row replace 'Review findings CM-R-10 and CM-R-05' with the ids that resolve here, docs/reviews/2026-08-05 F-010 and docs/reviews/2026-09-23 F-005 (keep the audit ids if they resolve; verify each); in the `options-ui-§1` row replace 'CM-18, WS-02 ruling' in Decided with the 2026-09-23 audit/review ids that resolve in this repo or issue #39, and 'the WS-02 route (b)' in What differs with 'route (b) of options-ui-§1'; any cross-repo plan item is named by full bundle path (Ka0sAddonsCommonTasks@<sha>:docs/2026-09-23-.../items.tsv per WS-07). Change only Why/Decided/What-differs citation text; reasoning stays. (c) CM-A-05: docs/testing.md:283 and docs/automated-tests/README.md:26 Command cells become `bash tests/_kit/run-automated-tests.sh --suite complexity`; the `lizard -l lua -L 1500 -x ...` line moves to a note saying it is what the runner executes inside the sighted shadow.",
+   "steps": "1. grep -n ':[0-9]' docs/ARCHITECTURE.md | grep -E 'ConsumableMaster.lua|MacroManager.lua' and the table rows; rewrite by name.\n2. Resolve each evidence id in the two register rows against docs/reviews/* and docs/audits/*; rewrite.\n3. Command rename; complexity cells.\n4. tests/test_docmap.lua and the gate stay green (doc tests may pin these files).\n5. Commit `CM-07: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); grep -nE '(ConsumableMaster|MacroManager)\\.lua:[0-9]' docs/ARCHITECTURE.md shows no Event Subscriptions or macroState-writer line suffix; grep -rn '/wow-addon:' --include='*.md' --include='*.lua' --include='*.toc' . | grep -vE '^\\./(libs|tests/_kit|docs/(audits|reviews|automated-tests|revendor))/' is empty; grep -nE 'CM-R-10|CM-18|WS-02' docs/ARCHITECTURE.md is empty in the register; grep -n 'run-automated-tests.sh --suite complexity' docs/testing.md docs/automated-tests/README.md.",
+   "smoke": ""
+  },
+  {
+   "id": "CM-08",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "TOC load-bearing notes: CoreSetup names both file-scope printer consumers, SlashDump cites the right seam, and the seed files are marked conventional",
+   "depends_on": [
+    "RV-CM",
+    "CM-07",
+    "WS-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "CM-A-03",
+    "CM-A-07"
+   ],
+   "spec": "Comment-only. ConsumableMaster.toc: the comment above core\\CoreSetup.lua (~:95-97) names core\\SlashDump.lua and core\\SlashCommands.lua as the file-scope consumers of KCM.Say (each takes `local say = KCM.Say` at file scope, so CoreSetup must precede both). core/SlashDump.lua:15 comment cites core/CoreSetup.lua (which builds KCM.Say), not core/Constants.lua. Under the defaults\\Profile.lua block in # Defaults add one comment line marking defaults\\Categories.lua and the Defaults_*.lua seed files as CONVENTIONAL order (each reaches only KCM.ID and its own KCM.SEED slot), after confirming with grep that no seed file reads KCM.Categories at file scope; if one does, mark that line load-bearing instead. Wording follows toc-file-§5 as WS-04 revises it (every position in the listing is either annotated load-bearing or covered by a conventional note). The TOC's CRLF endings are preserved.",
+   "steps": "1. grep -n 'KCM.Say' core/SlashDump.lua core/SlashCommands.lua (file-scope captures); grep -n 'KCM.Categories' defaults/*.lua.\n2. Edit the three comments.\n3. Gate (tests/test_load.lua / TOC tests stay green); check CRLF with tr -dc counts.\n4. Commit `CM-08: ...`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); grep -n 'SlashDump' ConsumableMaster.toc; grep -n 'CoreSetup' core/SlashDump.lua; grep -in 'conventional' ConsumableMaster.toc shows a note in # Defaults; tr -dc '\\r' < ConsumableMaster.toc | wc -c equals tr -dc '\\n' < ConsumableMaster.toc | wc -c.",
+   "smoke": ""
+  },
+  {
+   "id": "CM-STD",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Roll the standards reference to the version WowAddonStandards opens in this run, and sync the docs earlier items changed",
+   "depends_on": [
+    "WS-11",
+    "CM-08"
+   ],
+   "effort": "S",
+   "finding_ids": [],
+   "spec": "Run /dev-copilot:wow-revendor-standards semantics against the standard on WowAddonStandards' feature branch (`head -1 ../WowAddonStandards/standards/STANDARDS.md`, expected v2.77.0). The three-place reference (TOC `## X-Standard`, README Standard badge, CLAUDE.md 'Standards compliance') carries no version number today, so each is checked to point at the standard and gains a version only if v2.77.0's documentation/toc-file rules require one. Sweep authored files (excluding libs/, tests/_kit/ and the frozen docs/audits, docs/reviews, docs/automated-tests, docs/revendor bundles) for retired notation, retired file names and section references v2.77.0 no longer resolves (WS-03..WS-09 rewrote line-endings, toc-file-§5, documentation-§3/§6/§8, library-stack-§7, events-frames-taint-§8, versioning-git). .gitattributes: if WS-03 changed the shared body after the pin, make this repo's body byte-identical to line-endings-§5's client-bound variant. versioning-git (WS-08): if CLAUDE.md states a branch convention, align it. Then a /dev-copilot:sync-docs pass over README.md, CLAUDE.md, docs/ARCHITECTURE.md and the Tier 1 docs for anything CM-01..CM-08 changed (count claims, test totals, the [Tests] badge vs docs/test-cases.md, the macro-manager/data-flow/performance paragraphs). No version bump, no CHANGELOG release entry, no automated-test release bundle (the record is a release checkpoint, audit CM-95).",
+   "steps": "1. Read v2.77.0's changelog entry (standards/CHANGELOG.md after WS-01) for what changed since v2.76.1.\n2. Three-place check; sweep; .gitattributes body diff against line-endings-§5.\n3. sync-docs pass; regenerate docs/test-cases.md if stale; badge.\n4. Gate. Commit `CM-STD: standards reference to v2.77.0 and docs sync`.",
+   "verify": "cd ../ConsumableMaster && lua5.1 tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15; every authored file under 1500 lines); grep -n 'X-Standard' ConsumableMaster.toc; README [Tests] count equals docs/test-cases.md Total; diff of .gitattributes after the pin against the standard's line-endings §5 client-bound body is empty; grep -n '## Version: 1.7.0' ConsumableMaster.toc (unchanged, no bump); git diff master -- core/Namespace.lua shows no KCM.VERSION change.",
+   "smoke": ""
+  }
+ ]
+}

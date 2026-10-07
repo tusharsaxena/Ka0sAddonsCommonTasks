@@ -1,0 +1,25 @@
+{
+  "cluster": "C52",
+  "title": "dev-copilot — line-ending hook safety and tests",
+  "cluster_summary": "scripts/normalize-eol.sh rewrites files with perl -i (:68, :76). That unlinks the path and recreates it, so a symlinked file becomes a regular file and its target is never converted. The [[ -f ]] guard at :32 follows links and does not stop this. The hook also has no automated test. Both fixes go in dev-copilot alone. Land the test first: add scripts/test_normalize_eol.py with a symlink case that is red. Then fix the hook by resolving the path with readlink -f before repo_root, rel_path and check-attr are computed. Nothing in the Ka0s collection has a tracked symlink today, but the hook is registered globally, so the fix is worth doing.",
+  "verdicts": [
+    {
+      "id": "DC-R-03",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "dev-copilot",
+      "assessment": "The bug is real. perl -i at normalize-eol.sh:68/:76 replaces a symlink with a regular file and leaves the target unconverted, and the [[ -f ]] guard at :32 follows links. No Ka0s repo has a tracked symlink, so in the collection the bug is latent. The hook is global, though, and the fix is about three lines, so it should be done.",
+      "remediation": "In scripts/normalize-eol.sh, right after the empty and -f guards (:31-32) and before file_dir, repo_root, abs_file and rel_path are computed (:35-41), resolve the path with file_path=\"$(readlink -f -- \"$file_path\")\" || exit 0. Then re-check [[ -f \"$file_path\" ]] || exit 0. With this order, the target's own repo and .gitattributes decide the ending, and perl rewrites the real file. A target outside any repo already exits at the repo_root guard. Land it after the red symlink case in DC-R-06."
+    },
+    {
+      "id": "DC-R-06",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "medium",
+      "fix_home": "dev-copilot",
+      "assessment": "Confirmed. scripts/ has only three test files and none covers normalize-eol.sh, and CLAUDE.md:96 says there is no harness. The title overstates one point: the hook rewrites a file only when that file declares text plus eol crlf/lf and does not already match, not on every Write/Edit. A silent byte-rewriting hook with no regression test still deserves one, and the existing stdlib-unittest pattern (test_bounded_runs.py already drives a bash hook) makes the test cheap.",
+      "remediation": "Retitle to 'Line-ending hook (rewrites files in eol-declaring repos) has no automated test'. Add scripts/test_normalize_eol.py: stdlib unittest, tempdir git repos, the hook JSON piped to the script, LF endings, a shebang, and exec bit +x. Cover these cases: CRLF arm (LF to CRLF, and mixed to CRLF); LF arm (CRLF to LF); a file already correct stays byte-identical; no declared eol is untouched; binary/-text in a CRLF repo is untouched; a non-repo path is untouched; a symlinked file converts the target and keeps the link, which stays red until DC-R-03 lands. Docs: CLAUDE.md:9 ('Four unit-test files'), add the command to the list at :89-91, and rewrite :96 to point at the test and keep the manual-copy note only as a supplement. Update DEPENDENCIES.md as well, because it does list the test files: the test-command block at :29-31, the python3/unittest row at :66 ('four test files'), and the git and perl rows at :45-46 and :67 should cite the new test."
+    }
+  ]
+}

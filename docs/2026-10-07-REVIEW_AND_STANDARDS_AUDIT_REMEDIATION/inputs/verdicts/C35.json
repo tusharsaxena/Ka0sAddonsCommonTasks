@@ -1,0 +1,25 @@
+{
+  "cluster": "C35",
+  "title": "AbsorbTracker — perf test fidelity and UX",
+  "cluster_summary": "Two unrelated AbsorbTracker items, both fixed per repo. AT-R-01 is confirmed. tests/perf.lua scenarios 3 and 6 run a closure the test wrote, never the shipped file-local doRepaint (modules/Timer.lua:17-49), so the repaintPass bracket and doRepaint's own per-pass closure are never measured, and the 72 B dormant ceiling was calibrated on the wrong code. The fix is test-only and worth doing as a low-severity 'should': add the seam NS.Timer.__doRepaint, then re-derive the ceiling. AT-R-05 is real by code reading (offsets are saved in scaled space and restored unchanged under SetScale), but it is unverified in-client and a minor UX issue, so it is optional and waits on the owner's smoke check S-05.",
+  "verdicts": [
+    {
+      "id": "AT-R-01",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "AbsorbTracker",
+      "assessment": "Verified. paintPass (perf.lua:196-197) and probeOverheadOff/On (perf.lua:224-229) each wrap NS.UpdateAbsorbBar in a test closure, and doRepaint has no seam (grep finds only NS.Timer.__ev). The zero-overhead gate therefore never runs the outer repaintPass bracket, the parent derivation or doRepaint's closure, and a regression there cannot turn it red. Shipped behavior is unaffected and the paintBar bracket is still exercised, so this is a test-fidelity gap and should be graded low, not medium.",
+      "remediation": "Add a test-only seam, NS.Timer.__doRepaint = doRepaint, following the NS.Timer.__ev pattern. Add a repaintPass scenario and point probeOverheadOff/On at the seam, re-arming pending as needed. Re-derive PROBE_OFF_BYTES_CEILING from a fresh measurement using the documented measured/ceiling/margin triple, keeping the margin under the 64 B cost of one table. Do not reuse the reviewer's 144 B scratch figure. Update the scenario table in docs/performance.md (~lines 72-77). Keep the bar-level scenario, with its 12-API-call assertion. Renaming paintPass to paintBars is optional and only worth it to avoid confusion with the repaintPass label."
+    },
+    {
+      "id": "AT-R-05",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "AbsorbTracker",
+      "assessment": "The code matches the claim. savePosition (Bar.lua:21) stores raw GetPoint offsets, RestoreBarPosition (Display.lua:153-169) reapplies them unchanged, and UpdateBarAppearance calls bar:SetScale(NS.GetMasterScale()) (Display.lua:234), so a scale change should shift a dragged bar's distance from its anchor. It is still unverified in-client, it shows up only when the Master scale setting changes, it is common WoW frame behavior and it loses no data. Any work therefore waits on the owner's smoke check S-05.",
+      "remediation": "Wait for the owner to run S-05. If refuted, close with no change. If confirmed, start with the cheaper fix: in the Master scale setter, rescale each stored offset by oldScale/newScale, or re-anchor so the bar keeps its on-screen position. That needs no schema change. Use the savedvariables-§1 ladder step v6 (screen-unit positions, plus docs/schema.md and tests) only if offsets must also survive other scale sources, such as UI scale."
+    }
+  ]
+}

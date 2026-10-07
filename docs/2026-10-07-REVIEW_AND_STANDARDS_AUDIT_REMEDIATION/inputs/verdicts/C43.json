@@ -1,0 +1,34 @@
+{
+  "cluster": "C43",
+  "title": "PartyFrameEnhanced — secure-write queue robustness and profile rebuild",
+  "cluster_summary": "The root cause is in PartyFrameEnhanced's flushSecure (core/PartyFrameEnhanced.lua:92-106). It runs queued closures with no per-entry isolation and clears pending[key] lazily, so one raise orphans every later key for the rest of the session and skips the post-flush PublishVisibility. The defect is real but latent: no trigger is known. Fixing it per-entry with xpcall(fn, geterrorhandler()) also neutralises the queue-level impact of PFE-R-03. PFE-R-05 is a separate cheap cleanup, the redundant ResetProfileCounted after SetProfile in /pfe profile new. All three fixes belong in PartyFrameEnhanced and can share one work item. No upstream route applies.",
+  "verdicts": [
+    {
+      "id": "PFE-R-02",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "PartyFrameEnhanced",
+      "assessment": "Verified at :92-106. pendingOrder is swapped before the loop, but pending[key] is cleared only for the entries already reached. A raise therefore leaves the later keys stranded in pending, and RunSecure's `if not pending[key]` guard never re-appends them. Their in-combat writes are silently dropped until /reload, PublishVisibility is skipped, and PendingSecureCount reports 0. No trigger is known, so severity drops from medium to low. It is still worth fixing, because this queue carries every protected write the addon makes and the failure is silent for the whole session.",
+      "remediation": "In flushSecure, first snapshot and clear both pending and pendingOrder. Then run each closure through xpcall(fn, geterrorhandler()) so the error still reaches BugSack or the default handler, and continue with the remaining entries. OnLeaveCombat and StandUp must still reach PublishVisibility after the flush. Add a headless test in which a raising entry is followed by a normal one. It should assert that the second entry runs, the queue ends empty, and a later in-combat RunSecure on the raising key re-queues it."
+    },
+    {
+      "id": "PFE-R-03",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "PartyFrameEnhanced",
+      "assessment": "Confirmed at modules/SecureFollow.lua:194-201. The unwrap is pcall'ed but the restoring SecureHandlerWrapScript is not, which is inconsistent with Wrap's own guard at :173. A raise here is reachable only when another addon's OnAttributeChanged wrap is outermost on the same frame, and nothing in the collection does that. The PFE-R-02 fix removes the queue-orphaning consequence. What remains is a partial unwrap pass, which is minor.",
+      "remediation": "Fold this into the PFE-R-02 work item and do not give it its own item. If changed, wrap the re-wrap in xpcall(..., geterrorhandler()) so the unwrap loop continues and the failure stays visible. Do not pcall it and discard the error."
+    },
+    {
+      "id": "PFE-R-05",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "PartyFrameEnhanced",
+      "assessment": "Verified at settings/Slash.lua:309-317 and settings/Schema.lua:333-335. The exists() guard already refuses existing names, so SetProfile always lands on a default-only profile. The follow-up ResetProfileCounted does nothing beyond inst.ResetCounted wrapping db:ResetProfile. All it adds is a second adoptProfile pass and a misleading '(0 rows)' reset line. The issue is slash-only, rare, out of combat, and puts no data at risk.",
+      "remediation": "Remove NS.ResetProfileCounted(db) from the `new` verb and rewrite the comment above it, which still says 'SetProfile first, then the reset...'. Keep the exists() refusal. Adjust any headless test that expects the reset line. Fold this into the same PFE work item as PFE-R-02."
+    }
+  ]
+}

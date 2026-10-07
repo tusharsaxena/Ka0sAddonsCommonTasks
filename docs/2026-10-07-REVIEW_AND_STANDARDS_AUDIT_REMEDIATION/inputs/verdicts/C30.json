@@ -1,0 +1,34 @@
+{
+  "cluster": "C30",
+  "title": "NaN/inf and unvalidated numeric input",
+  "cluster_summary": "All three findings come from the same pattern: a bare tonumber() at a trust boundary. Lua 5.1 tonumber accepts 'nan', 'inf', '1e999', hex and exponent forms, and nothing downstream rejects them. The cluster names LibKa0s as the root-cause home, but only LK-R-06 actually goes through the LibKa0s SlashParse seam. PanelMaster's COERCE.number, Clamp and freeNumber are its own code, and ConsumableMaster's problem is ID grammar rather than finiteness. So the right plan is three small local fixes, not one upstream fix: LibKa0s parseNumber rejects non-finite values (C-04), PanelMaster adds finiteness guards and a non-finite branch in recover, and ConsumableMaster whitelists ^%d+$ / ^[sS]:%d+$. All three should be addressed. None is a must, because each needs deliberate unusual input, and WoW's tonumber('nan') behaviour is still unverified (smoke NUM-3).",
+  "verdicts": [
+    {
+      "id": "PM-R-03",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "medium",
+      "fix_home": "PanelMaster",
+      "assessment": "Verified: COERCE.number (settings/PanelSchema.lua:40-44) is a bare tonumber, and Util.Clamp (core/Util.lua:16-22) returns NaN unchanged because both comparisons are false. NaN then persists through freeNumber, R:SetPosition (Registry.lua:817) and Canvas, and /pm recover reports 'moved' on every run because NaN ~= NaN. Clamp does bound +/-inf on clamped fields, so the stuck-recover case needs NaN specifically, but corruption that keeps reporting itself and cannot be repaired justifies medium severity.",
+      "remediation": "Add a local isFinite(n) (n == n and n ~= math.huge and n ~= -math.huge) and use it in COERCE.number (reject with 'expected a number'), Util.Clamp (non-finite falls back to fallback, then lo), freeNumber and R:SetPosition. Make RecoveredOffsets/IsOffScreen/Recover treat a non-finite x/y/w/h as needing a reset, so one recover run repairs it and the next run reports nothing. Add tests for nan, inf, -inf and 1e999. Keep smoke NUM-3 (SV serialization of non-finite values) open for the owner. Does not depend on LK-R-06."
+    },
+    {
+      "id": "LK-R-06",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "LibKa0s",
+      "assessment": "Verified in LibKa0s/LibKa0s/SlashParse.lua: line 128 is a bare tonumber(args[1]). The clamp at :140-141 absorbs NaN only because n is the second argument to math.max/min, and nothing records that. An unbounded number row stores nan/inf through the shared write seam. Only an explicit '/<slash> set <path> nan' on such a row can trigger it, but the seam is shared by every addon, so a single cheap fix covers the whole collection.",
+      "remediation": "C-04: in parseNumber, reject n ~= n, n == math.huge and n == -math.huge with the existing ERR_NUMBER before the enum and clamp logic. Add a comment recording why the math.max(row.min, n) argument order matters. Add tests/test_slash_parse.lua cases for nan, inf, -inf and 1e400. Leave Schema.Set type-agnostic. Ship in the next minor bump and re-vendor through the normal flow; per-addon re-vendoring is not urgent for this fix alone."
+    },
+    {
+      "id": "CM-R-06",
+      "reality": "confirmed",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "ConsumableMaster",
+      "assessment": "Verified: parsePriorityID begins at core/SlashCommands.lua:197 and falls through to a bare tonumber(token) at :205 (so the cited line is the defect line). The add, remove and move paths (:378, :399, :416) all use it, so 0, 1.5, 0x10, 1e3 and raw negatives (which become spell sentinels without the s: prefix) end up in the persisted added/blocked lists. A NaN token would additionally raise 'table index is NaN'. The slash door also disagrees with the panel's IdInput validation. This is an ID-grammar fix that LibKa0s cannot make moot.",
+      "remediation": "C-06: accept only ^%d+$ with a value greater than 0, or ^[sS]:%d+$ with a value greater than 0; return nil for anything else so the existing usage line prints. Preferably share one validator with the panel's IdInput. Add a slash test covering 0, 1.5, 0x10, 1e3, -20484, nan and a valid s:123."
+    }
+  ]
+}

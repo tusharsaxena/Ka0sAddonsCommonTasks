@@ -1,0 +1,354 @@
+{
+ "repo": "LootHistory",
+ "items": [
+  {
+   "id": "RV-LH",
+   "milestone": "M2",
+   "repo": "LootHistory",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag: both payloads whole, provenance line, docs/revendor bundle, regenerated inventory",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "LH-A-13"
+   ],
+   "spec": "Mechanical re-vendor per /dev-copilot:wow-revendor-libka0s, from the LOCAL v1.71.0 tag in ../LibKa0s (not origin). libs/LibKa0s/ and tests/_kit/ are replaced whole from `git -C ../LibKa0s archive v1.71.0` (kit revision 38). CLAUDE.md '## Vendored LibKa0s' line rolls v1.70.0 -> v1.71.0 in the same commit (tests/test_vendor_sync.lua resolves the tag locally). Delta base is CLAUDE.md's v1.70.0, which LootHistory already recorded (docs/revendor/2026-10-06-v1.69.0/ and docs/revendor/2026-10-07-v1.70.0/ exist), so NO consolidated span bundle is needed; LootHistory is not in cluster C03 - state that in 01_DELTA.md. New frozen bundle docs/revendor/<YYYY-MM-DD>-v1.71.0/ with 01_DELTA.md (per-file LibStub minors: Env 2, Slash key 20.2, WidgetsLineChart 3, WidgetsAutocomplete 2, OptionsIdList 4, kit 38; which majors LootHistory consumes; contract changes under unchanged signatures - ParseValue now refuses nan/inf, chart segments clipped and hover re-synced on every render), 02_CANDIDATES.md (every candidate listed as 'not adopted in this run' per OWNER_SCOPE 5, e.g. Kit.secret; note that modules/Timeline.lua:308 still calling chart:ClearHover() before a repaint is allowed to stay per the v1.71.0 'What a consumer owes'), 05_SUMMARY.md. Kit revision 38's --list Totals counts only cases that run and gives declared skips their own row, so regenerating docs/test-cases.md fixes LH-A-13 (Totals 1477 incl. the skipped diagnostics opt-out case vs badge 1476/1476) by itself: the regenerated Totals pass count must equal the README badge. No addon code changes; core/EnvSetup.lua's two-rung GetAddOnMetadata (no bare-global rung) already matches LK-06. Commit subject `RV-LH: re-vendor LibKa0s v1.71.0 ...`.",
+   "steps": "1. Confirm `git -C ../LibKa0s tag -l v1.71.0` exists (local) and LootHistory is on feat/2026-10-07-review-audit-remediation with a clean tree.\n2. Replace libs/LibKa0s/ and tests/_kit/ whole from the tag; roll the CLAUDE.md provenance line.\n3. Run the green gate; if a re-vendor red appears, record it in 01_DELTA.md and fix it in this commit only if it is a pure consumer-owes item, else stop and report.\n4. `lua tests/run.lua --list > docs/test-cases.md`; check Totals pass row equals the README badge (move the badge if the pass count moved).\n5. Write docs/revendor/<date>-v1.71.0/{01_DELTA,02_CANDIDATES,05_SUMMARY}.md; commit.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; grep -n 'v1.71.0' CLAUDE.md; lua tests/run.lua tests/test_vendor_sync.lua passes; diff -r libs/LibKa0s <(git -C ../LibKa0s archive v1.71.0 ...) clean; grep -A6 '^## Totals' docs/test-cases.md shows a pass count equal to the README Tests badge and a separate skip row; ls docs/revendor/*-v1.71.0/ shows 01_DELTA.md 02_CANDIDATES.md 05_SUMMARY.md.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-01",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Self-loot, currency and roll-won patterns rebuild when the chat globals they were compiled from change (PrettyChat rewrites them mid-session)",
+   "depends_on": [
+    "RV-LH"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PC-R-01"
+   ],
+   "spec": "core/Util.lua: Util.BuildLootPatterns, Util.BuildCurrencyPatterns and Util.RollWonPattern record the exact source global strings they compiled from (a parallel array or a joined key of LOOT_ITEM_SELF_MULTIPLE ... LOOT_ITEM_REFUND, CURRENCY_GAINED_* , LOOT_ROLL_YOU_WON). Util.ParseSelfLoot, Util.ParseSelfCurrency and Util.ParseRollWon compare the current globals against the recorded sources on each parse (cheap rawequal string compares, no allocation on the hit path) and rebuild on any difference, including a global that appeared or disappeared (rollWonPattern's cached false must not survive LOOT_ROLL_YOU_WON appearing). Keep the parse hot path allocation-free when nothing changed (performance rules for CHAT_MSG_LOOT). Update the comments that say 'compiled once' to say 'compiled once per distinct set of globals' and name the reason (another addon such as PrettyChat rewrites these globals at runtime; PrettyChat docs call it handoff H-1). No PrettyChat change and no bus message. No GitHub issue is opened (OWNER_SCOPE 5: no issue writes beyond named issues). tests/test_util.lua gains cases: 'a rewritten LOOT_ITEM_SELF is honoured on the next parse without a reload', 'a rewritten CURRENCY_GAINED_MULTIPLE is honoured', 'LOOT_ROLL_YOU_WON appearing after a nil first parse is honoured', and 'an unchanged global set does not rebuild' (count Build calls). Each written red first.",
+   "steps": "1. Write the four test_util cases; run, confirm red (stale patterns).\n2. Implement source tracking + rebuild-on-change in core/Util.lua.\n3. Green gate; check no per-parse table allocation (tests/perf.lua scenario for loot lines unchanged within noise).\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-01: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; lua tests/run.lua tests/test_util.lua shows the four new cases passing; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/perf.lua runs clean.",
+   "smoke": "With PrettyChat enabled, loot an item and gain a currency (both recorded), then change any PrettyChat setting (or /pc disable then /pc enable, or enter and leave combat with an in/out-of-combat visibility rule), then loot another item and gain currency again without /reload: both new records appear in the /lh browser."
+  },
+  {
+   "id": "LH-02",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Util.Coalesce: a window canceled by the stand-down no longer wedges the trigger for the rest of the session",
+   "depends_on": [
+    "RV-LH",
+    "LH-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-R-04"
+   ],
+   "spec": "core/Util.lua Util.Coalesce (around :249-268): replace the `pending` boolean with the NS.After handle (or a generation counter) so a window canceled by NS.StandDown (core/LifecycleSetup.lua) is treated as not pending; the next trigger after stand-up arms a fresh window. Keep the existing guarantees: clear-before-body so a raising fn cannot wedge it, run-straight-through when C_Timer is absent, and at most one window in flight. Comment states why a canceled handle must clear the flag. tests/test_util.lua gains 'a window canceled by the stand-down does not wedge the trigger' (arm, StandDown before the delay elapses, StandUp, trigger again, advance the mock clock: fn runs exactly once), written red first. settings/Panel.lua's RECORD_ADDED coalescer (:152, :168-169) needs no change.",
+   "steps": "1. Add the test_util case; run; confirm red ('runs after stand-down + new trigger: 0').\n2. Fix Util.Coalesce.\n3. Green gate. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n4. Commit `LH-02: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; lua tests/run.lua tests/test_util.lua: new case passes.",
+   "smoke": "Open Settings -> AddOns -> Loot History (storage readout visible), loot something and immediately type /lh disable, then /lh enable, then loot again: the record-count readout updates."
+  },
+  {
+   "id": "LH-03",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Reconciler: the combat-exit LoginScan/Flush runs outside the ledgerEvent perf bracket",
+   "depends_on": [
+    "RV-LH",
+    "LH-02"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-R-05"
+   ],
+   "spec": "modules/Reconciler.lua: move the PLAYER_REGEN_ENABLED branch out of the local onEvent into an unbracketed handler (e.g. local function onRegenEnabled(self)) that R:OnEvent dispatches to BEFORE opening the Perf bracket, so the ledgerEvent bucket holds only dirty bits and debounces, as the comment above R:OnEvent and the bucket declaration in core/PerfSetup.lua (:68) say. If the flush needs its own measurement, it goes through the existing flush measurement, not ledgerEvent. tests/test_perf.lua gains 'PLAYER_REGEN_ENABLED records no ledgerEvent sample while BAG_UPDATE does' (Perf.on true, mock Perf.Note capture), red first. This also removes one branch from onEvent's CCN 21 ahead of LH-11.",
+   "steps": "1. Add the test_perf case; confirm red.\n2. Split the handler; keep the comment at R:OnEvent accurate.\n3. Green gate. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n4. Commit `LH-03: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; lua tests/run.lua tests/test_perf.lua: new case passes; grep -n 'PLAYER_REGEN_ENABLED' modules/Reconciler.lua shows it handled outside the bracketed onEvent.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-04",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Surface parity case for the Perf library-absent stub",
+   "depends_on": [
+    "RV-LH",
+    "LH-03"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-A-04"
+   ],
+   "spec": "tests/test_surface_parity.lua gains a Perf case beside Core/Widgets/Slash/DebugLog/Options/Bus/Compat/Schema/Item/Pool/Lifecycle/Env/Media: it loads core/PerfSetup.lua under the degraded arm from tests/degraded_env.lua (library absent) and asserts the stub exposes every member the addon reads from NS.Perf (on, suspended, BUCKET_ORDER, Note, Open, Close, Suspend, Resume, OnCommand), with the '-- members from: grep' comment giving the command that derived the list (grep -rhoE 'Perf[.:][A-Za-z_]+' core modules settings | sort -u). Test-only; the stub in core/PerfSetup.lua:27-39 changes only if the case finds a missing member (then add it, still in this commit).",
+   "steps": "1. Derive the member list by the grep; write the case.\n2. Run; if red, add the missing stub member.\n3. Green gate. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n4. Commit `LH-04: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; lua tests/run.lua tests/test_surface_parity.lua shows a Perf case passing.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-05",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "TOC: annotate the four unannotated load-bearing positions, mark the # Modules group's free positions, AnalyticsCharts publishes NS.Analytics idempotently",
+   "depends_on": [
+    "RV-LH",
+    "LH-04",
+    "WS-04",
+    "WS-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-A-01",
+    "LH-A-15",
+    "LH-A-16",
+    "LH-A-17",
+    "LH-A-18",
+    "LH-A-02"
+   ],
+   "spec": "LootHistory.toc: (a) above modules\\Escrow.lua a 'LOAD-BEARING POSITION: appends to NS.Reconciler.SCAN_STEPS/PLAN_STEPS at file load; modules\\Reconciler.lua must be above' comment (LH-A-01); (b) above modules\\AnalyticsCharts.lua a LOAD-BEARING comment saying it writes into NS.Analytics at load and needs one of AnalyticsFormat/Analytics/AnalyticsLedger above (LH-A-15); (c) above modules\\Timeline.lua: reads NS.TimelineModel TOTAL at file load, modules\\TimelineModel.lua must be above (LH-A-16); (d) above settings\\Panel.lua: reads NS.Schema.MASTER_GROUP/MasterAfterGroup at file load, settings\\Schema.lua must be above (LH-A-17); (e) the '# Modules (Attribution before Collector)' header drops the false parenthesis (Collector reaches NS.Attribution only inside functions) and gains one line saying every other modules\\ position is CONVENTIONAL (LH-A-18); (f) the Slash.lua comment cites LibKa0s-Slash :New's raise by symbol, not 'libs\\LibKa0s\\Slash.lua:487' (re-check after RV-LH; cite-by-symbol per WS-07), and settings/Panel.lua:7-8's 'OptionsSetup loads immediately before' claim is corrected (Schema.lua and Slash.lua load between) - items 6 and 7 of LH-A-06. modules/AnalyticsCharts.lua:2 gains `NS.Analytics = NS.Analytics or {}` before `local Analytics = NS.Analytics`, like every other Analytics* file (LH-A-02). Escrow's load-time step registration, Timeline's TM.TOTAL read and Panel's MASTER_GROUP read stay as they are (annotated, not refactored: assessment of LH-A-02, ledger step ordering at risk). Count the TOC's LOAD-BEARING annotations under WS-04's denominator (every position in the listing) and make the docs/module-map.md / ARCHITECTURE load-order bullets consistent if they restate the count (else leave counts to LH-16).",
+   "steps": "1. Add a test_harness (or test_doc_structure) case loading modules/AnalyticsCharts.lua with NS.Analytics nil: red (index nil), then add the idempotent publish.\n2. Edit the TOC comments and the Panel.lua header comment.\n3. Green gate (comment-only TOC lines; test_vendor_sync/test_harness TOC parsing unaffected). Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n4. Commit `LH-05: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; grep -c 'LOAD-BEARING' LootHistory.toc rises by 4; grep -n 'Attribution before Collector' LootHistory.toc empty; grep -n 'Slash.lua:[0-9]' LootHistory.toc empty; head -3 modules/AnalyticsCharts.lua shows the idempotent publish.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-06",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Timeline: one parser for the holder/container location string; the pane-resize double render pinned and recorded",
+   "depends_on": [
+    "RV-LH",
+    "LH-05"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-R-08",
+    "LK-R-04"
+   ],
+   "spec": "modules/TimelineModel.lua: delete the local sideOf (first '/') at :156 and use NS.Ledger.LocationHolder (core/Ledger.lua:401, last '/') at its call sites (:163); NS.Ledger loads earlier in the TOC, so it is a call-time read. Reconciler's unrelated local sideOf is left alone (different meaning) but gets a one-line comment distinguishing it, or a rename to avoid the name clash. tests/test_timeline.lua (or test_ledger) gains a case asserting TimelineModel splits a location whose container part contains '/' the same way Ledger.LocationHolder does. LK-R-04: no library seam; add a headless case in tests/test_timeline.lua counting chart Render calls for one pane resize (TL:Layout via the pane's OnSizeChanged) and pin the measured number (expected 2: the chart's own OnSizeChanged plus TL:Layout's explicit chart:Render at modules/Timeline.lua:332), with a comment and a docs/performance.md line recording it as an accepted, bounded cost (pooled regions, one extra LTTB pass, resize only) so a future change to the count is visible.",
+   "steps": "1. Write the parser-agreement case (red only if the parsers differ for the fixture) and the Render-count case.\n2. Swap TimelineModel to Ledger.LocationHolder.\n3. performance.md note.\n4. Green gate. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-06: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; grep -n 'local function sideOf' modules/TimelineModel.lua empty; lua tests/run.lua tests/test_timeline.lua passes with both new cases.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-07",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Five chat lines pass their arguments to the shared printer instead of pre-formatting",
+   "depends_on": [
+    "RV-LH",
+    "LH-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-A-12"
+   ],
+   "spec": "settings/Schema.lua:1098, settings/Slash.lua:239 and :243, modules/Browser.lua:919 and :933 (re-locate by content after RV-LH): replace NS.Print(string.format(fmt, ...)) / concatenation with the printer's own argument form (NS.Print(fmt, ...)), so formatting happens once inside the printer per chat-output rules. Output text must be byte-identical; existing tests that capture these lines stay green unchanged, and a case is added for any of the five not already covered by a chat-capture assertion.",
+   "steps": "1. grep the five sites; add capture cases for any uncovered line (green before and after).\n2. Convert.\n3. Green gate. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n4. Commit `LH-07: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; the five sites no longer wrap the printer argument in string.format or '..'.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-08",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Peel BrowserTable's grouping/holder-move layer into modules/BrowserTableGroup.lua and Browser's widget kit into modules/BrowserWidgets.lua",
+   "depends_on": [
+    "RV-LH",
+    "LH-07"
+   ],
+   "effort": "L",
+   "finding_ids": [
+    "LH-R-02"
+   ],
+   "spec": "modules/BrowserTable.lua (1476 lines, 24 under the 1500 cap, past its 'Re-check at 1300' trigger) loses its grouping and holder-move layer (holderMoves, BrowserTable:GroupRecords and their private helpers) to a new modules/BrowserTableGroup.lua that extends NS.BrowserTable (idempotent publish) and is listed in the TOC directly after modules\\BrowserTable.lua with a LOAD-BEARING or CONVENTIONAL annotation stating what it reads at load. modules/Browser.lua (1416, past 'Re-check at 1400, peel the widget kit then') loses its widget kit to modules/BrowserWidgets.lua, listed before/after Browser.lua as its load-time reads require, annotated. Pure move: no behaviour change, identical public members; luacheck globals/read_globals unchanged; upvalue hot paths preserved. docs/module-map.md and docs/ARCHITECTURE.md module rows, docs/browser.md and RESULTS.md watch-list rows (as text in the live docs, not the frozen bundles) updated in the same commit. Both parents end comfortably under their re-check triggers. tests/test_surface_parity or test_browsertable gains a case asserting the moved members still exist on NS.BrowserTable / NS.Browser after the TOC load order.",
+   "steps": "1. Characterize: run test_browser, test_browsertable, test_panel_* and the goldens green; add the member-presence case.\n2. Move code, add TOC lines with annotations, update module-map/ARCHITECTURE/browser.md.\n3. Green gate; wc -l both parents and both new files.\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-08: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; wc -l modules/BrowserTable.lua < 1300 and modules/Browser.lua < 1400; grep -n 'BrowserTableGroup\\|BrowserWidgets' LootHistory.toc docs/module-map.md; goldens (tests/golden.lua) unchanged.",
+   "smoke": "/lh: the browser opens; group-by and the holder-moves rows render as before; filter bar, sort, and the History/Holdings character dropdowns behave as before."
+  },
+  {
+   "id": "LH-09",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Complexity: core/Database.lua's four functions above CCN 15 (convertHolderMoves, compileFilter, accumulateLedger, Database:Stats)",
+   "depends_on": [
+    "RV-LH",
+    "LH-08"
+   ],
+   "effort": "M",
+   "finding_ids": [],
+   "spec": "Slice 1 of LH-R-01 (traced on LH-14). core/Database.lua:149 convertHolderMoves (24; the schema v13 migration - add a migration characterization case over a v12 fixture with holder moves BEFORE touching it), :690 compileFilter, :810 accumulateLedger (20), :1018 Database:Stats (23). Characterization test first for every function touched (pin its outputs over the branches it has), then reduce each to CCN <= 15 by removing decisions: file-scope ordered lists for guard ladders, named local helpers for real branching, no in-function dispatch tables (performance hot paths keep their upvalues). No behaviour change. Database.lua stays under 1500 lines (1218 now).",
+   "steps": "1. Characterization cases in test_database.lua / test_stats.lua (v13 migration fixture first).\n2. Refactor function by function, gate green after each.\n3. /home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle shows no core/Database.lua function above 15.\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-09: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle lists no core/Database.lua function above CCN 15.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-10",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Complexity: core/Ledger.lua (PairHolders, scopeReason, RecomputeFlows) and modules/AnalyticsLedger.lua (BackToBackRows)",
+   "depends_on": [
+    "RV-LH",
+    "LH-09"
+   ],
+   "effort": "M",
+   "finding_ids": [],
+   "spec": "Slice 2 of LH-R-01 (traced on LH-14). core/Ledger.lua:129 Ledger.PairHolders, :219 scopeReason, :365 Ledger.RecomputeFlows; modules/AnalyticsLedger.lua:33 AL.BackToBackRows. Characterization test first for every function touched (pin its outputs over the branches it has), then reduce each to CCN <= 15 by removing decisions: file-scope ordered lists for guard ladders, named local helpers for real branching, no in-function dispatch tables (performance hot paths keep their upvalues). No behaviour change. tests/analytics_golden.txt must stay byte-identical.",
+   "steps": "1. Characterization cases in test_ledger.lua / test_analytics.lua.\n2. Refactor; gate green after each.\n3. Complexity check.\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-10: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle lists none of these four above CCN 15.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-11",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Complexity: modules/Reconciler.lua (onEvent, planHolder, WriteRows) and modules/Escrow.lua (planMailMoney, planExits, commitExits)",
+   "depends_on": [
+    "RV-LH",
+    "LH-10",
+    "LH-03"
+   ],
+   "effort": "L",
+   "finding_ids": [],
+   "spec": "Slice 3 of LH-R-01 (traced on LH-14). modules/Reconciler.lua:88 onEvent (21 before LH-03; an ordered event->handler list at file scope is not allowed as an in-function dispatch table but a file-scope handler table is fine), :192 planHolder (19, missing from the finding's location list), :484 R:WriteRows (guard density); modules/Escrow.lua:95 planMailMoney, :136 planExits, :208 commitExits. Characterization test first for every function touched (pin its outputs over the branches it has), then reduce each to CCN <= 15 by removing decisions: file-scope ordered lists for guard ladders, named local helpers for real branching, no in-function dispatch tables (performance hot paths keep their upvalues). No behaviour change. Ledger step ordering (R.SCAN_STEPS/PLAN_STEPS, Escrow's load-time append) must not change; test_reconciler, test_reconciler_rows and test_escrow characterization cases cover hold/commit, mail money, auction exits (including the multi-auction partial-expiry shape LH-R-06 documents, pinned as current behaviour).",
+   "steps": "1. Characterization cases.\n2. Refactor Reconciler, gate; refactor Escrow, gate.\n3. Complexity check.\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-11: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle lists no Reconciler.lua or Escrow.lua function above CCN 15.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-12",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Complexity: core/LifecycleSetup.lua (NS.StandDown, NS.StandUp) and core/Compat.lua (ListedCurrencyID, ListCurrencies)",
+   "depends_on": [
+    "RV-LH",
+    "LH-11"
+   ],
+   "effort": "M",
+   "finding_ids": [],
+   "spec": "Slice 4 of LH-R-01 (traced on LH-14). core/LifecycleSetup.lua:116 NS.StandDown (18) and :143 NS.StandUp (24) are guard runs: express the per-surface stand-down/stand-up steps as a file-scope ordered list walked by one loop (each step keeps its own nil-guard inside a named helper). core/Compat.lua:445 Compat.ListedCurrencyID and :688 Compat.ListCurrencies: named helpers per API rung. Characterization test first for every function touched (pin its outputs over the branches it has), then reduce each to CCN <= 15 by removing decisions: file-scope ordered lists for guard ladders, named local helpers for real branching, no in-function dispatch tables (performance hot paths keep their upvalues). No behaviour change. test_disabled.lua and test_compat.lua pin order and effects (every surface stood down/up exactly once, in order).",
+   "steps": "1. Characterization cases (order of stand-down/up effects; Compat rungs with and without each API).\n2. Refactor; gate.\n3. Complexity check.\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-12: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle lists no LifecycleSetup.lua or Compat.lua function above CCN 15.",
+   "smoke": "/lh disable then /lh enable: the addon goes inert (no capture, launcher shows disabled) and comes back; loot recorded after enable."
+  },
+  {
+   "id": "LH-13",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Complexity: modules/Collector.lua currencyLine, modules/Holdings.lua Holdings:Search, modules/TestData.lua walk and DefaultTimelineThing",
+   "depends_on": [
+    "RV-LH",
+    "LH-12"
+   ],
+   "effort": "M",
+   "finding_ids": [],
+   "spec": "Slice 5 of LH-R-01 (traced on LH-14). modules/Collector.lua:217 currencyLine (CHAT_MSG_CURRENCY hot path: helpers stay file-local upvalues, no closures per call), modules/Holdings.lua:208 Holdings:Search (20), modules/TestData.lua:173 walk and :243 TD.DefaultTimelineThing (test-mode data; seeded RNG output must be identical). Characterization test first for every function touched (pin its outputs over the branches it has), then reduce each to CCN <= 15 by removing decisions: file-scope ordered lists for guard ladders, named local helpers for real branching, no in-function dispatch tables (performance hot paths keep their upvalues). No behaviour change. ",
+   "steps": "1. Characterization cases in test_collector, test_holdings, test_testdata (seeded output snapshot).\n2. Refactor; gate.\n3. Complexity check.\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit.\n5. Commit `LH-13: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle lists none of these four above CCN 15; tests/perf.lua currency-line scenario not slower beyond noise.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-14",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Complexity: Browser/BrowserTable (historyCharItems, holderCharItems, holderMoves, SetTestMode, GroupRecords) to zero warnings; fresh sighted automated-test bundle",
+   "depends_on": [
+    "RV-LH",
+    "LH-13",
+    "LH-08"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "LH-R-01",
+    "LH-A-11"
+   ],
+   "spec": "Last slice of LH-R-01 (slices LH-09..LH-13 precede it). modules/Browser.lua historyCharItems (:393) and holderCharItems (:420), BrowserTable:SetTestMode (:701), and holderMoves / BrowserTable:GroupRecords (moved to modules/BrowserTableGroup.lua by LH-08). Characterization test first for every function touched (pin its outputs over the branches it has), then reduce each to CCN <= 15 by removing decisions: file-scope ordered lists for guard ladders, named local helpers for real branching, no in-function dispatch tables (performance hot paths keep their upvalues). No behaviour change. After this item the sighted complexity suite reports 0 warnings (max CCN <= 15) across the whole addon, so the automated-tests-§3 tag gate is clear. LH-A-11: run the full battery `/home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh` (no --release: no version bump) to write a fresh sighted docs/automated-tests/<stamp>/ bundle with ANALYSIS.md per AUTOMATED_TESTS.md that dispositions every file in the 1000-1500 band (recorded with the new line counts after LH-08) and lets the runner write RESULTS.md (no hand edits to its preamble).",
+   "steps": "1. Characterization cases in test_browser / test_browsertable.\n2. Refactor; gate.\n3. Complexity suite: 0 warnings.\n4. Regenerate docs/test-cases.md (`lua tests/run.lua --list > docs/test-cases.md`) and move the README Tests badge to the new Totals pass count in the same commit. Commit `LH-14: ...` (code).\n5. Run the full battery on the clean tree, write ANALYSIS.md, commit `LH-14: automated-test record ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; /home/tushar/.claude/dev-copilot/bin/ka0s-bounded bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle prints '0 warnings' and max CCN <= 15; newest docs/automated-tests/<stamp>/manifest.json: .git.dirty false, .suites.complexity.warnings 0, ANALYSIS.md present.",
+   "smoke": "/lh: browser group-by, the History and Holdings character dropdowns and Test mode on/off behave as before."
+  },
+  {
+   "id": "LH-15",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "docs/ARCHITECTURE.md hub: spill the module map to module-map.md, complete the out-of-scope store list, record the auction-exit known limitation",
+   "depends_on": [
+    "RV-LH",
+    "LH-14",
+    "WS-05"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "LH-A-03",
+    "LH-A-09",
+    "LH-R-06"
+   ],
+   "spec": "docs/ARCHITECTURE.md ## Module map (78 lines, past the ~60-line spill threshold) becomes a summary paragraph plus exactly one link to docs/module-map.md; the per-file table and load-order bullets move there (merged, not duplicated; reflect LH-05's TOC annotations and LH-08's new files). Event subscriptions and Documented deviations stay (no named spill target / single home). The ## Documentation map out-of-scope line (:326-327) uses documentation-§3's frozen-store list as WS-05 words it: docs/audits/, docs/reviews/, docs/automated-tests/<run>/, docs/perf-analysis/<run>/, docs/revendor/<date>-v<tag>/, docs/superpowers/ (docs/investigations/ only if present), so docs/automated-tests/RESULTS.md and README.md stay registered in the table and docs/perf-analysis/<run>/ is out of scope. ## Known limitations (:437) gains an entry for the auction-exit effects (modules/Escrow.lua commitExits overwrites the shared exits ts so the TTL clock restarts on every new exit; one sale mail books every pending exit of the item as AH_SOLD, so expired auctions' returns land as plain IN MAIL; net counts correct, only reason labels wrong; fix needs an escrow.exits schema change + migration). Re-measure the hub (target <= ~400 lines). test_doc_structure.lua stays green.",
+   "steps": "1. Move the module table/bullets; leave summary + link.\n2. Fix the out-of-scope list; add the known limitation.\n3. wc -l docs/ARCHITECTURE.md; green gate (test_doc_structure).\n4. Commit `LH-15: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; awk section length of '## Module map' in docs/ARCHITECTURE.md <= 60 lines with one link to module-map.md; grep -n 'perf-analysis/<run>' docs/ARCHITECTURE.md; grep -n 'AH_SOLD' docs/ARCHITECTURE.md under Known limitations.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-16",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Doc-set drift: re-derived counts and citations, the complexity command, the holdings writer list, the suite count",
+   "depends_on": [
+    "RV-LH",
+    "LH-15",
+    "WS-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-A-06",
+    "LH-R-09",
+    "LH-A-08",
+    "LH-A-10"
+   ],
+   "spec": "Re-derive each figure from its command after LH-05..LH-15 (LH-A-06): LibKa0s vendored version (v1.71.0), shim count, BrowserTable/Browser line counts (or drop the hard number), the TOC load-bearing count (count every LOAD-BEARING annotation in LootHistory.toc, per WS-04), the 'one of the N files in core/' and 'N LibKa0s seams' figures (count majors wired from core/*Setup.lua) in docs/ARCHITECTURE.md and docs/module-map.md; items 6 and 7 (TOC Slash citation, Panel.lua load-order comment) were fixed in LH-05 - verify only. Prefer rewording to no hard count where a generated source owns it. docs/testing.md:65-66 drops the stale 'Forty-four suites' count and points at docs/test-cases.md Totals (LH-R-09). DEPENDENCIES.md:136,140 and docs/automated-tests/README.md:28 replace raw lizard with `bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle   # complexity (release gate)` and reword 'The lizard run' (LH-A-08). docs/schema.md:388 holdings Writers bullet names all three writers with the act that reaches each: Reconciler:Flush; Reconciler.ForgetHolder -> Holdings:ForgetHolder (Forget popup, settings/Slash.lua); R.MarkLoginGenesis -> Holdings:MarkGenesis (LoginScan) (LH-A-10). Cross-repo citations, if any, use WS-07's form.",
+   "steps": "1. Run each counting command; edit the docs.\n2. Green gate (doc-structure and prose tests).\n3. Commit `LH-16: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; grep -n 'Forty-four' docs/testing.md empty; grep -n 'lizard -l lua' DEPENDENCIES.md docs/automated-tests/README.md empty; grep -n 'MarkGenesis' docs/schema.md; grep -n 'v1.70.0' docs/ARCHITECTURE.md docs/module-map.md empty.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-17",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "README: one closing signpost sentence in Usage; drop the contributor-facing line from the 1.4.0 Version History row",
+   "depends_on": [
+    "RV-LH",
+    "LH-16"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-A-05",
+    "LH-A-07"
+   ],
+   "spec": "README.md:63 Usage closes on ONE sentence naming Settings -> AddOns and /lh help (documentation-§1 item 5), e.g. 'Everything else is on the addon's page under Settings → AddOns, and /lh help lists every command.' (keep the fact that /lh alone opens it if it is stated elsewhere in Usage). README.md:134 1.4.0 Version History row: delete the unprefixed '<br>Released on lint, tests and complexity only. Loot History holds a ratified no-combat-path exemption (performance-§12)…' line (contributor gate material in a player-facing table; every bullet in the row keeps its '- ' prefix). US-English, de-AI pass on the touched sentences only. No version bump.",
+   "steps": "1. Edit both lines.\n2. Green gate (test_doc_structure / prose waivers).\n3. Commit `LH-17: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; sed -n '/^## Usage/,/^## /p' README.md ends on one sentence; grep -n 'Released on lint, tests and complexity only' README.md empty.",
+   "smoke": ""
+  },
+  {
+   "id": "LH-STD",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Roll the standards reference to the version WowAddonStandards opens in this run; docs sync of everything earlier items changed; owner's LED-P2 in-client gate listed",
+   "depends_on": [
+    "WS-11",
+    "LH-17"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LH-R-03"
+   ],
+   "spec": "Read the target version with `head -1 ../WowAddonStandards/standards/STANDARDS.md` on its feature branch (v2.77.0 expected). Roll the three-place reference per /dev-copilot:wow-revendor-standards: LootHistory.toc ## X-Standard (and any version-bearing standard line), the README standard badge, CLAUDE.md 'Standards compliance'; sweep retired notation and unresolvable section references outside libs/, tests/_kit/ and frozen bundles (comment citations corrected comment-only). Then a sync-docs pass over README.md, CLAUDE.md, docs/ARCHITECTURE.md, docs/module-map.md, docs/testing.md, DEPENDENCIES.md for anything LH-01..LH-17 and RV-LH changed (new files BrowserTableGroup/BrowserWidgets, test counts, badge = test-cases.md Totals). No version bump, no CHANGELOG release entry, no tag. LH-R-03: the 24 LED-P2-01..LED-P2-24 Result fields in docs/smoke-tests.md (:1328 sign-off) are the owner's; the agent writes nothing into them and does not touch modules/AttributionOut.lua:64-65; the checks are listed in the bundle's 06_SMOKE_TESTS.md as a release gate for 1.4.0 (on an LED-P2-06 pass the owner, or a later session on his instruction, updates the AttributionOut comment to 'verified by smoke LED-P2-06 (owner, <date>)').",
+   "steps": "1. Read the target version; roll the three places; sweep.\n2. Sync docs; regenerate docs/test-cases.md if counts moved; badge.\n3. Green gate.\n4. Commit `LH-STD: ...`.",
+   "verify": "cd ../LootHistory && /home/tushar/.claude/dev-copilot/bin/ka0s-bounded lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors) && wc -l on every touched .lua <= 1500; grep -n 'X-Standard' LootHistory.toc and grep -n 'standard' README.md CLAUDE.md show the version from head -1 ../WowAddonStandards/standards/STANDARDS.md; README badge equals docs/test-cases.md Totals pass count; git diff --stat master..HEAD -- docs/smoke-tests.md shows no LED-P2 Result edits by the agent.",
+   "smoke": "Owner runs LED-P2-01..LED-P2-24 in docs/smoke-tests.md (Ledger Phase 2 sign-off) and records each Result; this gates the 1.4.0 release, not the merge. Agent never marks them."
+  }
+ ]
+}

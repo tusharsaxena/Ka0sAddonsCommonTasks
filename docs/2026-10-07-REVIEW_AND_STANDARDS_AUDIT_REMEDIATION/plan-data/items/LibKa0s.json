@@ -1,0 +1,223 @@
+{
+ "repo": "LibKa0s",
+ "items": [
+  {
+   "id": "LK-01",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Kit revision 38: --list Totals count only cases that run; declared skips get their own row",
+   "depends_on": [],
+   "effort": "S",
+   "finding_ids": [
+    "AM-R-03"
+   ],
+   "spec": "testkit/framework.lua renderTotals/renderInventory (about :555-:600). A case registered as a declared skip (Kit.test with a skipReason / Kit.skip, the test record's `skip` field) no longer counts toward any count row: each suite row and `the runner` row count registered NON-skipped cases (a row whose count is 0 is omitted, as now); when the registry holds N>0 declared skips a `| Skipped | N |` row is printed immediately before Total; `| **Total** | **%d** |` is the number of registered non-skipped cases, so Total equals the sum of the suite and runner rows (the Skipped row excluded) and equals the passing count a README badge carries (testing-§5: a skip MUST NOT be folded into passed or total). The renderInventory header (:576-:577) is reworded: the Total row counts the cases that run, declared skips are listed by name in their groups and counted on the Skipped row, and the README badge must equal Total. Skipped cases are still listed in their groups as today. Kit.VERSION 37 -> 38 (testkit/framework.lua:20). testkit/framework.lua stays under 1000 lines (994 today; the 1000-1500 band would need a disposition): if the change would reach 1000, move the three render helpers unchanged into testkit/inventory.lua (the inventory seam, 516 lines) in this commit. New docs/api/testkit/version-38-docs.md copied from version-37 (Status Current, Supersedes 37, What changed: the Totals semantics, what a consumer owes = re-vendor tests/_kit whole and regenerate docs/test-cases.md in the same commit); version-37 Superseded with *Moving to 38*; docs/api/README.md row; testkit/README.md if it describes the Totals table. `cp -r testkit/. tests/_kit/`. CHANGELOG.md: open `## v1.71.0 — unreleased` whose version block reads every file at its v1.70.0 minor and `test kit revision 38`, with an entry for this change. Regenerate docs/test-cases.md (this repo's own declared skip, the kit prose gate decline, moves from a count row to the Skipped row). No payload file under LibKa0s/ changes.",
+   "steps": "1. Red first: in tests/test_kit_inventory.lua add a case that registers two runnable cases and one declared skip in a scratch registry (reuse the suite's existing render harness), renders the inventory, and asserts Total = 2, a `| Skipped | 1 |` row is present, no count row includes the skip, and with zero skips no Skipped row is printed. Add `-- red under:` notes. Run `lua tests/run.lua` and see it fail against revision 37.\n2. Change renderTotals/renderInventory as specified; count skips once from the registry.\n3. Bump Kit.VERSION to 38; write version-38 doc, supersede 37, README row.\n4. `cp -r testkit/. tests/_kit/`; open the CHANGELOG v1.71.0 block.\n5. `lua tests/run.lua --list > docs/test-cases.md` (CRLF), check the Totals table by eye.\n6. Green gate, `wc -l testkit/framework.lua` < 1000, commit `LK-01: ...`.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); diff -r testkit tests/_kit prints nothing; grep -n 'Kit.VERSION = 38' testkit/framework.lua; grep -n '| Skipped |' docs/test-cases.md (one row); test -f docs/api/testkit/version-38-docs.md; wc -l testkit/framework.lua < 1000; the new inventory case is listed in docs/test-cases.md.",
+   "smoke": ""
+  },
+  {
+   "id": "LK-02",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Kit revision 38: Kit.secret, a shared secret-value simulator and an opt-in issecretvalue installer",
+   "depends_on": [
+    "LK-01"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "WG-R-09"
+   ],
+   "spec": "New testkit/secrets.lua returning function(Kit), loaded once from testkit/framework.lua beside asserts.lua/inventory.lua through kitFolder() (one load line; framework.lua stays under 1000 lines). Additive surface, all on Kit: Kit.secret(v) returns a wrapper table whose metatable raises an error whose message carries the fixed marker `secret value` (published as Kit.SECRET_ERROR) from __lt, __le, __add, __sub, __mul, __div, __mod, __pow, __unm, __concat, __len, __index, __newindex and __call, and from __eq when compared with another wrapper; Kit.isSecret(v) -> boolean; Kit.reveal(v) -> the plain value (identity for a non-secret); Kit.installSecretValue() sets the global issecretvalue to a function answering Kit.isSecret(v) and returns a restore function that puts back whatever global was there (nil included). The registry is one process-wide weak-keyed table so secrets minted under one mock build stay recognized under the next. Nothing installs issecretvalue by default: mock_base.lua's build is untouched, so no consumer's behaviour changes on re-vendor (fidelity: a client without the global stays modelled). The file header states plainly what Lua 5.1 cannot trap: a boolean test (`if s then`) and `==` against a non-table always succeed, and tostring(s) is not trapped; a test that needs those must assert them explicitly. No consumer local mock is migrated in this run (MultiMeters' tests/mock_secrets.lua models more); WhatGroup (WG-R-02) adopts it after the re-vendor. Kit stays at revision 38 (bumped by LK-01, unreleased): extend docs/api/testkit/version-38-docs.md with the new members (Since 38) and testkit/README.md's file inventory with secrets.lua. New suite tests/test_kit_secrets.lua added to tests/run.lua's SUITES (the suite inventory gate asserts it). CHANGELOG v1.71.0 entry. `cp -r testkit/. tests/_kit/`.",
+   "steps": "1. Red first: write tests/test_kit_secrets.lua and add it to SUITES: each forbidden operation on Kit.secret(5) raises with Kit.SECRET_ERROR (Kit.assertErrorMatches), arithmetic with the secret on either side raises, Kit.reveal returns 5, Kit.isSecret is false for 5/nil/plain tables, installSecretValue sets and the restore function restores an absent and a present global, a secret minted before a second mock build is still a secret after it. Each negative case carries a `-- red under:` note. Run: red (module missing).\n2. Write testkit/secrets.lua and its one load line in framework.lua.\n3. Extend version-38 doc and testkit/README.md; CHANGELOG entry.\n4. `cp -r testkit/. tests/_kit/`; regenerate docs/test-cases.md.\n5. Green gate; `bash tests/_kit/run-automated-tests.sh --suite complexity` shows no new function over CCN 15; commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); diff -r testkit tests/_kit prints nothing; wc -l testkit/framework.lua < 1000; grep -n 'test_kit_secrets' tests/run.lua docs/test-cases.md; grep -n 'Kit.secret' docs/api/testkit/version-38-docs.md; grep -c issecretvalue testkit/mock_base.lua equals its pre-item count (no default install).",
+   "smoke": ""
+  },
+  {
+   "id": "LK-03",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "WidgetsLineChart minor 3: segments clipped to the plot rect, hover re-syncs on every render, formatX locale note",
+   "depends_on": [
+    "LK-01"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "LK-R-01",
+    "LK-R-03",
+    "LK-R-10"
+   ],
+   "spec": "LibKa0s/WidgetsLineChart.lua, CHART_MINOR 2 -> 3 (Widgets key 12.1.4.2.1 -> 12.1.4.3.1). (a) Clip (LK-R-01): new pure Math.ClipSegment(x1, y1, x2, y2, left, bottom, right, top) -> x1, y1, x2, y2 or nil (Liang-Barsky), exposed on the ChartMath table beside Math.Dashes. drawSeries clips every segment to the plot rect (s.left, s.bottom, s.left + s.w, s.bottom + s.h) in ONE place before choosing seg or dashed, and skips a segment entirely outside; the single-point tick is drawn only when inside. So Dashes only ever runs over a clipped segment and the number of Line regions a dashed range can create is bounded by plot geometry (about plot diagonal / (DASH+GAP)). Input values are not clamped and markers are not touched. (b) Hover resync (LK-R-03): render() resets c.__hoverIndex to nil (without firing onHover) so the armed OnUpdate re-evaluates against the new scale and data on the next frame and re-fires onHover and the crosshair; when render leaves no scale (no data or zero size) it hides c.__cross. ClearHover keeps working and stays idempotent; a host's explicit ClearHover before repaint is no longer required. (c) Docs (LK-R-10): new docs/api/Widgets/version-12.1.4.3.1-docs.md; the formatX row (old doc :1079) gains one sentence: the default uses date('%d %b'), the C-runtime month abbreviation, so a localized host should pass formatX; the hover note (old :1125-:1129) says re-rendering re-syncs the hover and ClearHover before repaint is no longer needed; ChartMath.ClipSegment documented (Since 3). Release mechanics per docs/releasing.md steps 2-5 for every file minor this item moves: update the open `## v1.71.0 — unreleased` CHANGELOG.md version block (tests/test_versioning.lua compares it with lib.MODULES) and add an entry; write docs/api/<Major>/version-<new key>-docs.md copied from the current one (Status Current, Supersedes, *What changed at this version*, Since on every new/changed member), mark the old document Superseded with *Moving to ...*, add the docs/api/README.md row, then `lua tools/gen-api-members.lua`. A major already moved by an earlier item of THIS release has an unreleased document: `git mv` it (and delete its intermediate members-*.json) to the new key and extend it rather than writing a second one. Regenerate docs/test-cases.md with `lua tests/run.lua --list` (CRLF, per its banner).",
+   "steps": "1. Red first in tests/test_widgets_linechart_math.lua: ClipSegment cases (inside unchanged, fully outside nil, crossing each edge, vertical/horizontal, degenerate point) with `-- red under:` notes. In tests/test_widgets_linechart.lua: a dashed range with one point at y = 1e6 against host yMin/yMax 0..10 creates a number of Line regions bounded by the plot geometry (count CreateLine via the kit's mock_lines recorder) and no line endpoint lies outside the plot rect; the same for a solid series; hover at a pixel, Render at a new size, run the armed OnUpdate once, assert onHover re-fired and the crosshair moved; Render with no data hides the crosshair.\n2. Implement ClipSegment and the clip in drawSeries; reset hover in render().\n3. CHART_MINOR 3, Widgets doc at 12.1.4.3.1, supersede 12.1.4.2.1, README row, gen-api-members, CHANGELOG entry and version block, test-cases.md.\n4. Green gate; complexity suite shows drawSeries and ClipSegment at or under CCN 15; commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'CHART_MINOR = 3' LibKa0s/WidgetsLineChart.lua; test -f docs/api/Widgets/version-12.1.4.3.1-docs.md; grep -n 'ClipSegment' docs/api/Widgets/version-12.1.4.3.1-docs.md; `bash tests/_kit/run-automated-tests.sh --suite complexity` 0 over CCN 15.",
+   "smoke": "After re-vendor into LootHistory: open the Timeline tab, rest the cursor on the chart and resize the pane; the crosshair and tooltip re-snap to the point under the cursor instead of staying at the old pixel. A normal Timeline still draws its line and dashed ranges as before."
+  },
+  {
+   "id": "LK-04",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "WidgetsAutocomplete minor 2: generation-guarded re-hook, set-scripts-first precondition, integral maxRows, backdrop set once",
+   "depends_on": [
+    "LK-03"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "LK-R-02",
+    "LK-R-07",
+    "LK-R-08",
+    "LK-R-09"
+   ],
+   "spec": "LibKa0s/WidgetsAutocomplete.lua, AUTOCOMPLETE_MINOR 1 -> 2 (Widgets key 12.1.4.3.1 -> 12.1.4.3.2). (a) LK-R-02: replace the `hooked[box] = true` once-only guard (hookBox, :345-:349) with a per-box generation: a weak-keyed `generation` table; every lib.Autocomplete call increments generation[box] and installs a fresh set of HookScript wrappers that capture that generation and dispatch only while it is still current, so wrappers from older calls are inert. A re-call after a host SetScript dropped the hooks restores the list; a re-call without SetScript does not double-dispatch. (b) LK-R-07: correct the comment at :67-:68: `owners` entries persist until Release or replacement because the handle references its box (Lua 5.1 has no ephemerons), harmless because client frames live for the session; `generation` holds numbers, so its entries can be collected. (c) LK-R-08: maxRows is floored after the >0 check and falls back to AC.MAX_ROWS when the floored value is below 1 (a dedicated helper beside positive(); rowHeight/minChars unchanged). (d) LK-R-09: SetBackdrop is called once when ensureList creates the list; skin() keeps SetBackdropColor and SetBackdropBorderColor per show so a host restyle still carries over. (e) API doc: the 'Hooks, never scripts' bullet (old doc :1216-:1219) adds that the host should set the box's scripts before calling Autocomplete, that a later SetScript on a hooked script drops the hooks, and that calling lib.Autocomplete again re-installs them (Since 2); maxRows documented as an integer, a fraction is floored. The Widgets major was moved by LK-03 in this release: `git mv` docs/api/Widgets/version-12.1.4.3.1-docs.md to version-12.1.4.3.2-docs.md and extend it, delete the intermediate members json, regenerate. testkit/mock_base.lua already drops HookScript wrappers on SetScript (:155): no kit change. Release mechanics per docs/releasing.md steps 2-5 for every file minor this item moves: update the open `## v1.71.0 — unreleased` CHANGELOG.md version block (tests/test_versioning.lua compares it with lib.MODULES) and add an entry; write docs/api/<Major>/version-<new key>-docs.md copied from the current one (Status Current, Supersedes, *What changed at this version*, Since on every new/changed member), mark the old document Superseded with *Moving to ...*, add the docs/api/README.md row, then `lua tools/gen-api-members.lua`. A major already moved by an earlier item of THIS release has an unreleased document: `git mv` it (and delete its intermediate members-*.json) to the new key and extend it rather than writing a second one. Regenerate docs/test-cases.md with `lua tests/run.lua --list` (CRLF, per its banner).",
+   "steps": "1. Red first in tests/test_widgets_autocomplete.lua: hook a box, SetScript('OnTextChanged', f) over it, call lib.Autocomplete again, type, run timers: the list opens (red at minor 1); call lib.Autocomplete twice with no SetScript: one keystroke asks the provider once and one Enter picks once; maxRows = 2.5 with 8 items draws 2 rows and the list height is 2 rows + 2*PAD; maxRows = 0.5 falls back to MAX_ROWS; SetBackdrop is called once across three renders while SetBackdropColor follows a restyled box. `-- red under:` notes on each negative case.\n2. Implement (a)-(d).\n3. AUTOCOMPLETE_MINOR 2; git mv and extend the Widgets doc; gen-api-members; CHANGELOG; test-cases.md.\n4. Green gate; complexity suite clean; commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'AUTOCOMPLETE_MINOR = 2' LibKa0s/WidgetsAutocomplete.lua; ls docs/api/Widgets/ | grep -c '12.1.4.3.1' equals 0 and '12.1.4.3.2' present (doc + members); grep -n 'hooked\\[' LibKa0s/WidgetsAutocomplete.lua prints nothing.",
+   "smoke": "After re-vendor into LootHistory and BankLedger: type in each search box; the suggestion list opens under the box in the box's colors, arrows/Enter/Tab/Esc work, and focus loss closes it, exactly as before."
+  },
+  {
+   "id": "LK-05",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Slash key 20.2: ParseValue refuses nan/inf, and Slash.lua cites the standard by section (closes #43)",
+   "depends_on": [
+    "LK-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LK-R-06",
+    "LK-A-06"
+   ],
+   "spec": "(a) LK-R-06, LibKa0s/SlashParse.lua parseNumber (:127-:143), PARSE_MINOR 1 -> 2: after tonumber, refuse n ~= n, n == math.huge and n == -math.huge with the existing S('ERR_NUMBER') before the enum and clamp logic; add a comment at the clamp recording that math.max(row.min, n) / math.min(row.max, n) keep n as the SECOND argument on purpose (Lua 5.1 math.max(0/0, -100) answers nan, math.max(-100, 0/0) answers -100), even though non-finite input is now refused earlier. Schema.Set stays type-agnostic. (b) LK-A-06, LibKa0s/Slash.lua:267: `(slash-commands.md:34)` -> `(slash-commands-§1)` (confirm against ../WowAddonStandards/standards/slash-commands.md that §1 carries 'LibStub and LibKa0s-Core-1.0 and nothing else'); Slash MINOR 19 -> 20 (the payload changes, so the minor must move; SlashParse's pairing guard re-runs on the new shell minor by design). Slash key 19.1 -> 20.2: new docs/api/Slash/version-20.2-docs.md (What changed: non-finite numbers refused; comment-only shell bump). tests/majors.lua needs no row change. After the commit, close LibKa0s#43 as done: `gh issue edit 43 --remove-label state:triaged --add-label state:done` then `gh issue close 43 --comment '<commit sha>: Slash.lua now cites slash-commands-§1; ships in v1.71.0.'` (a finding names it explicitly, so the run's issue-write ruling allows it; space it from other gh writes). Release mechanics per docs/releasing.md steps 2-5 for every file minor this item moves: update the open `## v1.71.0 — unreleased` CHANGELOG.md version block (tests/test_versioning.lua compares it with lib.MODULES) and add an entry; write docs/api/<Major>/version-<new key>-docs.md copied from the current one (Status Current, Supersedes, *What changed at this version*, Since on every new/changed member), mark the old document Superseded with *Moving to ...*, add the docs/api/README.md row, then `lua tools/gen-api-members.lua`. A major already moved by an earlier item of THIS release has an unreleased document: `git mv` it (and delete its intermediate members-*.json) to the new key and extend it rather than writing a second one. Regenerate docs/test-cases.md with `lua tests/run.lua --list` (CRLF, per its banner).",
+   "steps": "1. Red first in tests/test_slash_parse.lua: ParseValue on a number row with no min/max for 'nan', 'inf', '-inf' and '1e400' answers nil plus the ERR_NUMBER text; the same on a bounded row; '12.5' still parses; `-- red under:` notes.\n2. Implement the guard and the argument-order comment; edit the Slash.lua citation.\n3. Bump PARSE_MINOR and Slash MINOR; doc at 20.2, supersede 19.1, README row, gen-api-members, CHANGELOG, test-cases.md.\n4. Green gate; commit `LK-05: ...`.\n5. Edit and close #43 as above.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'slash-commands.md:' LibKa0s/*.lua prints nothing; grep -n 'PARSE_MINOR = 2' LibKa0s/SlashParse.lua; test -f docs/api/Slash/version-20.2-docs.md; gh issue view 43 --json state,labels shows CLOSED with state:done.",
+   "smoke": "Optional in-client confirmation: `/<slash> set <an unbounded number row> nan` in any addon wired to Slash prints the not-a-number refusal and the setting is unchanged."
+  },
+  {
+   "id": "LK-06",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Env minor 2 and OptionsIdList minor 4: drop the dead bare-global GetAddOnMetadata and IsAddOnLoaded rungs",
+   "depends_on": [
+    "LK-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LK-A-04"
+   ],
+   "spec": "(a) LibKa0s/Env.lua lib.GetAddOnMetadata (:50-:68): delete the bare GetAddOnMetadata rung (:64-:66); the function answers C_AddOns.GetAddOnMetadata(addonName, field) when C_AddOns has it, else nil. Rewrite the doc comment (:50-:55): the reader lives under C_AddOns on every supported client; the bare global is gone (compat worked case) and is never read. Env MINOR 1 -> 2. (b) LibKa0s/OptionsIdList.lua hostLoaded (:483-:489): `local api = C_AddOns and C_AddOns.IsAddOnLoaded`; with no C_AddOns rung the guard trusts the name (answers true) exactly as it does today when neither exists; comment updated to drop 'else the deprecated global'. IDLIST_MINOR 3 -> 4 (Options key moves). (c) .luacheckrc:8-9: remove GetAddOnMetadata and IsAddOnLoaded from read_globals (luacheck then proves no payload reads them). (d) Docs: new Env document version-2-docs.md and the Options document at its new key; record the change in both. Release mechanics per docs/releasing.md steps 2-5 for every file minor this item moves: update the open `## v1.71.0 — unreleased` CHANGELOG.md version block (tests/test_versioning.lua compares it with lib.MODULES) and add an entry; write docs/api/<Major>/version-<new key>-docs.md copied from the current one (Status Current, Supersedes, *What changed at this version*, Since on every new/changed member), mark the old document Superseded with *Moving to ...*, add the docs/api/README.md row, then `lua tools/gen-api-members.lua`. A major already moved by an earlier item of THIS release has an unreleased document: `git mv` it (and delete its intermediate members-*.json) to the new key and extend it rather than writing a second one. Regenerate docs/test-cases.md with `lua tests/run.lua --list` (CRLF, per its banner).",
+   "steps": "1. Red first: replace tests/test_env.lua:31's bare-global case with one that plants a recording GetAddOnMetadata global with C_AddOns absent and asserts it is never called and the answer is nil; in tests/test_options_idlist_layout.lua (:585-:597) replace the bare IsAddOnLoaded case with one that plants a recording IsAddOnLoaded global with C_AddOns absent and asserts it is never called and the mark is trusted; drop withLoadedApi's `global` parameter. `-- red under:` notes. Run: red.\n2. Delete both rungs, rewrite the comments, edit .luacheckrc.\n3. Bump Env MINOR and IDLIST_MINOR; documents, README rows, gen-api-members, CHANGELOG, test-cases.md.\n4. Green gate; commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -nE '\\b(GetAddOnMetadata|IsAddOnLoaded)\\b' LibKa0s/*.lua shows only C_AddOns-qualified reads; grep -nE 'GetAddOnMetadata\"|IsAddOnLoaded\"' .luacheckrc prints nothing; test -f docs/api/Env/version-2-docs.md.",
+   "smoke": ""
+  },
+  {
+   "id": "LK-07",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Live-doc drift: resolvable evidence ids in CLAUDE.md, no derived headroom figure, Perf stub template comments",
+   "depends_on": [
+    "LK-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LK-A-05",
+    "LK-A-03",
+    "AT-R-08"
+   ],
+   "spec": "Documentation only; no payload or kit change, no minor moves. (a) LK-A-05, CLAUDE.md: register row 3 (:75) 'resolving the 2026-09-23 audit's `LibKa0s-A-07`' -> this repo's own id `LK-28` (docs/audits/2026-09-23/); row 5 (:77) `LibKa0s-A-10` -> `LK-37`; band prose (:335) `LibKa0s-A-03` -> `LK-17d`. Every cross-repo plan item cited in these rows and paragraphs (`LK-29`, `LK-30`, and any `LK-24`..`LK-33` used in the cross-repo sense) is qualified with its bundle, e.g. '(`LK-29` of Ka0sAddonsCommonTasks `docs/2026-09-23-REVIEW_AND_STANDARDS_AUDIT_REMEDIATION/`)', or replaced by the commit sha found with `git log --grep '^LK-29: '`; confirm each mapping against docs/audits/2026-09-23/ before editing. No frozen record is edited. (b) LK-A-03: delete the derived 'with 44 lines of room' from CLAUDE.md:219 and '44 lines from breach' from the testkit/mock_base.lua Disposition cell in docs/automated-tests/RESULTS.md:193, keeping the measured LOC and the 1490 trigger. (c) AT-R-08, docs/api/Perf/version-14.1.1.6-docs.md (the CURRENT Perf document; Perf does not move in this release, and the edit corrects host-example comments rather than describing new library behaviour): keep `suspended = false` in the stub template; reword the AbsorbTracker-specific comments at :352 and :386 so they say AT's show ladder asks the lifecycle latch (NS.IsStoodDown) rather than NS.Perf.suspended; add one sentence under host contract rule 2 that a latch-based host may ask its latch instead of perf.suspended. No consumer follow-up.",
+   "steps": "1. Map each LibKa0s-A-* id to this repo's audit id by reading docs/audits/2026-09-23/ and the 2026-09-23 bundle's 05_TRACEABILITY.md (:68,:72,:75); map LK-29/LK-30 to their commit shas.\n2. Edit CLAUDE.md and RESULTS.md as specified.\n3. Edit the Perf document comments.\n4. Green gate (tests/test_prose.lua reads CLAUDE.md and docs/api live docs); commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'LibKa0s-A-' CLAUDE.md prints nothing; grep -n 'lines of room\\|lines from breach' CLAUDE.md docs/automated-tests/RESULTS.md prints nothing; grep -n 'NS.Perf.suspended' docs/api/Perf/version-14.1.1.6-docs.md prints nothing; grep -c 'suspended = false' docs/api/Perf/version-14.1.1.6-docs.md unchanged.",
+   "smoke": ""
+  },
+  {
+   "id": "LK-08",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "US-English sweep of docs/adoption-prompt.md and docs/adoption-report.md, now gated as authored files",
+   "depends_on": [
+    "LK-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LK-A-02"
+   ],
+   "spec": "tests/test_prose.lua AUTHORED_FILES (:347) gains docs/adoption-prompt.md and docs/adoption-report.md, so both live pages (listed in CLAUDE.md's Documentation map) are held to localization-§5. Both files are swept to US English using testkit/prose_lists.lua's BRITISH/ALLOWED lists (colour, modelling, judgement, standardised, artefact, behaviour, summarise, renormalise, licence and the rest the gate reports; about 22 lines). Quoted third-party identifiers, if any, are left as-is and ratified in AUTHORED_RATIFIED only if the gate demands it (prefer rewording). CLAUDE.md register row 3 (:75): strike '21 in `docs/adoption-prompt.md`' from the list of records that must not be rewritten and adjust its arithmetic sentence to say the figure was measured on 2026-09-23 and the prompt has since been swept and gated (do not recompute the frozen 1121/147 measurement). docs/adoption/ (frozen per-run bundles) is not touched.",
+   "steps": "1. Red first: add both paths to AUTHORED_FILES and run `lua tests/run.lua`; the authored-prose case fails naming the British lines.\n2. Sweep both files until the case is green.\n3. Edit CLAUDE.md row 3.\n4. Regenerate docs/test-cases.md only if a case label changed; green gate; commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'adoption-prompt.md\\|adoption-report.md' tests/test_prose.lua shows both in AUTHORED_FILES; grep -niE 'colour|behaviour|judgement|summarise|licence|artefact|modelling|standardised|renormalise' docs/adoption-prompt.md docs/adoption-report.md prints nothing.",
+   "smoke": ""
+  },
+  {
+   "id": "LK-09",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Band watch list: the five over-shelf-life 'accepted' Options files become one tracked deviation row; dispositions point at it",
+   "depends_on": [
+    "LK-08",
+    "LK-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LK-A-01"
+   ],
+   "spec": "automated-tests-§4 / anti-pattern #53: an entry carried as accepted across three consecutive release runs must be fixed or converted to a tracked deviation with an ID and an owner. The run's derived ruling forbids opening new GitHub issues, so the tracker is a row in CLAUDE.md `## Documented deviations` (the repo's ratified register; owner Tushar Saxena, decided 2026-10-07 under the owner's standing autonomy). Row: Rule `automated-tests-§4`; What differs: five 1000-1500 band files carried as accepted past the three-run shelf life, each listed with its measured LOC (re-measure with the CLAUDE.md command after LK-06), its named seam and its re-check trigger: `LibKa0s/OptionsWidgets.lua` (flow engine: flowRows and the switched sections; trigger 1450 lines or the next maker), `LibKa0s/OptionsIds.lua` (suggestion half; 1450), `LibKa0s/OptionsIdList.lua` (1350), `LibKa0s/OptionsTabs.lua` (the tabbed page, O.RenderTabbedSchema and helpers; next member or 1400), `LibKa0s/Options.lua` (the reset walk; next member or 1400); Why: no file is over the cap, each has a named seam, and a peel is a release with a re-vendor into eleven consumers, so it is scheduled at its trigger rather than now; Decided: 2026-10-07; Re-check trigger: any file reaches its trigger (peel on the named seam in that change), or a GitHub tracker issue is opened for the band (then this row is retired in favour of it). Update the register's count prose ('Six rows' -> 'Seven rows', and one sentence for the seventh). docs/automated-tests/RESULTS.md: the five Disposition cells (:188-:192) drop the closed #32 and finished LK-ATS-01 tracker citations and read 'Tracked: CLAUDE.md § Documented deviations, the automated-tests-§4 row (2026-10-07)' with the trigger; CLAUDE.md band rulings (the id-peel rulings and *The band's terminal states*, :295-:390) carry one line each pointing at the row instead of re-arguing acceptance. Confirm tests/_kit/test_layout_cap.lua still passes (it reads only the census table under `### Files over the 1500-line cap`; the new row is in the register table above it). If LK-03..LK-06 pushed any of the five past its trigger, peel that file on its seam in this item instead (expected: none; OptionsWidgets is 1444, untouched).",
+   "steps": "1. Re-measure the five files with `git ls-files '*.lua' | grep -v '^tests/_kit/' | xargs wc -l | sort -rn`.\n2. Add the register row and the count prose.\n3. Rewrite the five RESULTS.md Disposition cells and the CLAUDE.md band rulings.\n4. Green gate (test_layout_cap, test_prose); commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); grep -n 'automated-tests-§4' CLAUDE.md shows the register row; grep -n 'LK-ATS-01\\|issues/32' docs/automated-tests/RESULTS.md prints nothing in the band rows; each of the five files' LOC is below its trigger.",
+   "smoke": ""
+  },
+  {
+   "id": "LK-10",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Sampled mutation pass on the widget suites: '-- red under:' notes for the key negative cases",
+   "depends_on": [
+    "LK-03",
+    "LK-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "LK-R-11"
+   ],
+   "spec": "testing-§12 SHOULD. tests/test_widgets_autocomplete.lua, tests/test_widgets_linechart.lua and tests/test_widgets_linechart_math.lua (0 notes before this run, beyond the ones LK-03/LK-04 added). For the key negative and boundary cases (math guards in linechart_math: Dashes zero length, NearestIndex ends, NiceTicks degenerate range, Budget fallback; linechart: no-data render, zero size, hover with no hoverXs; autocomplete: below minChars, disabled handle, Esc/focus-loss close, Release) mutate the guarded line on a `cp` backup of the payload file, confirm the case goes red, restore the file byte-identical, and record a `-- red under: <mutation>` note on the case. Any case that stays green under its mutation is fixed in this commit (strengthen the assertion). Test files only; no payload change, no minor moves. Notes for the remaining negatives can wait until the suites are next touched.",
+   "steps": "1. For each chosen case: cp LibKa0s/<file>.lua to the scratchpad, apply the mutation, run `lua tests/run.lua`, record red, restore with cp, `git diff --exit-code LibKa0s/` clean.\n2. Add the notes; strengthen any vacuous case.\n3. Green gate; commit.",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); git diff --stat HEAD~1 -- LibKa0s/ is empty; grep -c 'red under' on each of the three suites is > 0.",
+   "smoke": ""
+  },
+  {
+   "id": "LK-11",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Issue-store housekeeping: closed #32, #33, #37, #39 relabelled state:done",
+   "depends_on": [],
+   "effort": "S",
+   "finding_ids": [
+    "LK-A-07"
+   ],
+   "spec": "GitHub only, no commit: LibKa0s issues #32, #33, #37 and #39 are CLOSED with the open-only label state:triaged; each gets `gh issue edit <n> --remove-label state:triaged --add-label state:done`, run one at a time with a pause between calls (the finding names each issue, so the run's issue-write ruling allows it). Recorded as an exceptions.tsv row in the Ka0sAddonsCommonTasks bundle (id LK-11, reason 'GitHub labels only, no commit', proof command below).",
+   "steps": "1. `gh issue list --repo tusharsaxena/LibKa0s --state closed --label state:triaged --json number` to confirm the set is exactly 32, 33, 37, 39.\n2. Relabel each, spaced out.\n3. Append the exceptions.tsv row with the proof command.",
+   "verify": "gh issue list --repo tusharsaxena/LibKa0s --state closed --label state:triaged --json number returns []; gh issue view 32 --json labels shows state:done (same for 33, 37, 39).",
+   "smoke": ""
+  },
+  {
+   "id": "LK-12",
+   "milestone": "M1",
+   "repo": "LibKa0s",
+   "title": "Cut LibKa0s release v1.71.0: version block, release run with ANALYSIS.md, LOCAL tag only",
+   "depends_on": [
+    "LK-01",
+    "LK-02",
+    "LK-03",
+    "LK-04",
+    "LK-05",
+    "LK-06",
+    "LK-07",
+    "LK-08",
+    "LK-09",
+    "LK-10",
+    "LK-11"
+   ],
+   "effort": "M",
+   "finding_ids": [],
+   "spec": "docs/releasing.md steps 4-7 end to end. CHANGELOG.md: `## v1.71.0 — unreleased` becomes `## v1.71.0 — <date>` with the full version block (Env 2; Slash key 20.2; Widgets key 12.1.4.3.2; Options key with OptionsIdList 4; every other file unchanged from v1.70.0; test kit revision 38; no NEEDS_* floor rises, no major added, no member removed), a 'What a consumer owes' section (re-vendor both payloads whole, roll the provenance line, regenerate docs/test-cases.md in the same commit because kit 38 changes the Totals table; WhatGroup adopts Kit.secret; a host still calling ClearHover before a chart repaint may keep it) and the standards pointer: README.md's standard version moves to the version WowAddonStandards' feature branch carries (`head -1 ../WowAddonStandards/standards/STANDARDS.md`), reading the standard's changelog between the two. docs/releasing.md: the semver in the table and the provenance template move to v1.71.0. docs/api/README.md and docs/api/CONSUMERS.md stamp checked (re-run the census tool only if a surface was added: Kit.secret is kit-only, ChartMath.ClipSegment is new, so re-run it). First commit `LK-12: release v1.71.0 ...` on a clean tree; then `tests/_kit/run-automated-tests.sh --release 1.71.0`; write docs/automated-tests/<stamp>/ANALYSIS.md per AUTOMATED_TESTS.md; fill the release-notes line from the manifest; the band Disposition cells in the new RESULTS.md row carry LK-09's tracker wording; second commit `LK-12: v1.71.0 release record ...`; check the tag preconditions off the manifest (release 1.71.0, dirty false, lint/tests/complexity pass, complexity.warnings 0, ANALYSIS.md present); `git tag -a v1.71.0 -m 'LibKa0s v1.71.0'` on the second commit. NEVER push the tag; the feature branch is pushed at the M1 checkpoint, the tag and the merge wait on the owner's go-ahead. Addons re-vendor from this local tag.",
+   "steps": "1. Finalize the CHANGELOG block, README standards pointer, releasing.md table and template; gen-api-members; regenerate docs/test-cases.md.\n2. Green gate; `git status --porcelain` empty after commit 1.\n3. Release run; ANALYSIS.md; release-notes line; commit 2.\n4. Check the preconditions with jq on the manifest; annotated local tag.\n5. `git ls-remote --tags origin v1.71.0` prints nothing (not pushed).",
+   "verify": "cd ../LibKa0s && lua tests/run.lua (0 failed) && luacheck . (0 warnings / 0 errors); S=docs/automated-tests/<stamp>/manifest.json: jq -r .release = 1.71.0, .git.dirty = false, suites lint/tests/complexity pass, .suites.complexity.warnings = 0; test -f docs/automated-tests/<stamp>/ANALYSIS.md; git tag -l v1.71.0 points at HEAD; git ls-remote --tags origin v1.71.0 is empty; grep -n 'v1.71.0' docs/releasing.md CHANGELOG.md.",
+   "smoke": "Owner, after addons re-vendor v1.71.0: /reload with every Ka0s addon enabled; no Lua errors; each addon's settings panel and slash help open as before."
+  }
+ ]
+}

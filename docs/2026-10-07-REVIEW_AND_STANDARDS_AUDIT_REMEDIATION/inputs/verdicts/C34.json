@@ -1,0 +1,25 @@
+{
+  "cluster": "C34",
+  "title": "Combat-time preview/profile edge cases",
+  "cluster_summary": "In both addons the combat re-lock lives only in the PLAYER_REGEN_DISABLED / OnEnterCombat handler, so any path that puts an unlocked state in front of the frames after combat has started leaves preview on for the rest of the fight. The fixes are per-repo and small. PFE-R-01 is real but reached by a different route than the review cites: '/pfe profile use' (LibKa0s Slash.lua:776) and the Profiles page (Options combat cover) are already gated, but '/pfe profile copy <unlocked profile>' (settings/Slash.lua PROFILE_VERBS.copy) has no combat check. It copies locked=false, fires OnProfileCopied, then adoptProfile publishes PROFILE and Preview.lua:198-204 calls applyLock(true) mid-fight. Recommendation: guard in the PFE PROFILE receiver, which covers every path, and include the AbsorbTracker RelockForCombat extraction in the same batch as an optional consistency fix.",
+  "verdicts": [
+    {
+      "id": "PFE-R-01",
+      "reality": "corrected",
+      "needs_addressing": "should",
+      "severity_after": "low",
+      "fix_home": "PartyFrameEnhanced",
+      "assessment": "The PROFILE receiver (modules/Preview.lua:198-204) does skip NS.AcceptLock's combat refusal, but both cited triggers are already gated. '/pfe profile use' goes through LibKa0s ProfileSwitch, which refuses in combat (Slash.lua:776-778), and the Profiles page is behind the Options combat cover. One route is still open: '/pfe profile copy <name>' has no combat check, so copying an unlocked profile mid-fight runs CopyProfile, then OnProfileCopied, then adoptProfile, then PROFILE, then applyLock(true), and preview turns on for the rest of the fight. A third-party SetProfile can also reach the receiver. The trigger is rare, so the severity is low, but the fix is one cheap branch that makes the combat guard hold on every path.",
+      "remediation": "In the PROFILE receiver (modules/Preview.lua), when enabled and stored locked==false and InCombatLockdown(), write NS.SetByPath('locked', true) and print the existing combat re-lock line. Otherwise call applyLock as today. Add 2 cases to tests/test_profile_switch.lua that drive the receiver through OnProfileCopied (the '/pfe profile copy' path) in combat: one with an unlocked source, one with a locked source. Each case gets a red-under note."
+    },
+    {
+      "id": "AT-R-04",
+      "reality": "confirmed",
+      "needs_addressing": "optional",
+      "severity_after": "low",
+      "fix_home": "AbsorbTracker",
+      "assessment": "Confirmed: the only re-lock is in addon:OnEnterCombat (core/AbsorbTracker.lua:318-321), and neither StandUp nor OnEnable in core/Lifecycle.lua touches `locked`. A mid-combat stand-up, or a /reload on an unlocked profile, therefore shows the placeholder and suppresses repaints (Display.lua:437) until the next combat. Reaching it is narrow (the profile must have been unlocked out of combat with no fight since), it fixes itself at the next pull, and no standard rule requires the fix. Worth batching with PFE-R-01 for consistency, but not required.",
+      "remediation": "Extract the re-lock body from OnEnterCombat into NS.RelockForCombat(), which returns whether it re-locked. Call it from OnEnterCombat, keeping the either/or that publishes VISIBILITY/REPAINT only when it did not re-lock. Also call it at the end of StandUp and OnEnable when UnitAffectingCombat('player') is true. Add 2 test cases with red-under notes."
+    }
+  ]
+}

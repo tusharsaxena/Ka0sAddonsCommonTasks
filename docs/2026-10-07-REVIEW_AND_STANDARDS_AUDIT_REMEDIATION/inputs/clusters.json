@@ -1,0 +1,718 @@
+{
+  "clusters": [
+    {
+      "id": "C01",
+      "title": "Doc and comment drift against the tree (documentation-\u00a75), addon and library sites",
+      "theme": "Per-repo prose, counts, file:line citations and comments that no longer match the tree; one sync-docs pass per repo with citation check",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-A-02",
+        "AT-A-11",
+        "AM-A-06",
+        "BL-A-04",
+        "BL-R-05",
+        "CM-A-02",
+        "KC-A-02",
+        "LH-A-06",
+        "LH-R-09",
+        "MM-A-04",
+        "PM-A-09",
+        "PM-R-08",
+        "PFE-A-03",
+        "PC-A-02",
+        "PC-R-10",
+        "WG-A-03",
+        "WG-R-06",
+        "LK-A-03"
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "Stale or unsighted automated-test record and complexity runs",
+      "theme": "Newest docs/automated-tests bundle is many commits behind HEAD and predates the sighted complexity suite; re-run /dev-copilot:wow-automated-tests per repo",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-A-10",
+        "AM-A-03",
+        "BL-A-07",
+        "BL-R-07",
+        "CM-A-08",
+        "KC-A-05",
+        "LH-A-11",
+        "MM-A-10",
+        "PC-A-04",
+        "PFE-A-10",
+        "WG-A-04",
+        "PM-A-13"
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "LibKa0s v1.69.0/v1.70.0 re-vendors left unrecorded",
+      "theme": "Same two LibKa0s re-vendors landed in every addon without a docs/revendor/ bundle or register row, leaving docs naming the old tag; one span bundle per addon",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-A-01",
+        "AM-A-01",
+        "BL-A-01",
+        "CM-A-01",
+        "KC-A-01",
+        "MM-A-01",
+        "PM-A-11",
+        "PFE-A-02",
+        "PC-A-01",
+        "WG-A-02",
+        "MM-A-02",
+        "PFE-A-11"
+      ]
+    },
+    {
+      "id": "C04",
+      "title": "Documentation-repo doc set and register (WowAddonStandards, dev-copilot)",
+      "theme": "The two documentation-and-tooling repos: whether audit/review bundles live in the repo, Documentation map, ARCHITECTURE hub/register substitutes, and the audit agent prompt that encodes the wrong assumption",
+      "root_cause_home": "mixed",
+      "finding_ids": [
+        "WAS-A-01",
+        "WAS-A-02",
+        "WAS-A-03",
+        "WAS-A-19",
+        "WAS-A-20",
+        "DC-A-01",
+        "DC-A-02",
+        "DC-A-03",
+        "DC-A-04",
+        "DC-A-05"
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "toc-file-\u00a75 load-bearing TOC lines unannotated",
+      "theme": "Load-bearing TOC positions carry no annotation and conventional groups are unmarked; the AUDIT.md check is scoped narrower than the rule",
+      "root_cause_home": "mixed",
+      "finding_ids": [
+        "AT-A-04",
+        "AT-A-05",
+        "CM-A-03",
+        "CM-A-07",
+        "LH-A-01",
+        "LH-A-15",
+        "LH-A-16",
+        "LH-A-17",
+        "LH-A-18",
+        "AT-A-15"
+      ]
+    },
+    {
+      "id": "C06",
+      "title": "Line-ending *.py carve-out and .gitattributes drift in the standard and tooling",
+      "theme": "The standard's own .gitattributes and seven restatements of the shebang carve-out name only *.sh; dev-copilot audit check mirrors it; EOL gate scope and check (e) quoting",
+      "root_cause_home": "WowAddonStandards",
+      "finding_ids": [
+        "WAS-A-04",
+        "WAS-A-05",
+        "WAS-A-06",
+        "WAS-A-07",
+        "WAS-R-01",
+        "WAS-R-02",
+        "WAS-R-08",
+        "DC-A-10",
+        "DC-A-14"
+      ]
+    },
+    {
+      "id": "C07",
+      "title": "Test-kit --list Totals count declared skips, contradicting the badge",
+      "theme": "LibKa0s test kit inventory Total folds skipped cases while its preamble and testing-\u00a75 say the badge must agree; one kit fix plus re-vendor clears every addon",
+      "root_cause_home": "LibKa0s",
+      "finding_ids": [
+        "AT-A-13",
+        "AT-R-07",
+        "AM-R-03",
+        "BL-A-03",
+        "KC-A-07",
+        "LH-A-13",
+        "PC-R-07",
+        "PM-R-09"
+      ]
+    },
+    {
+      "id": "C08",
+      "title": "Standard internal contradictions and section-coverage claims",
+      "theme": "Sections of the standard and its playbooks disagree with each other or overclaim coverage (doc-\u00a73/\u00a76/\u00a78, library-stack-\u00a77, launcher playbook, scaffold runner comment)",
+      "root_cause_home": "WowAddonStandards",
+      "finding_ids": [
+        "WAS-A-08",
+        "WAS-A-12",
+        "WAS-A-14",
+        "WAS-A-15",
+        "WAS-A-16",
+        "WAS-R-05",
+        "LK-A-10",
+        "DC-A-15"
+      ]
+    },
+    {
+      "id": "C09",
+      "title": "Addon doc-set structure (documentation-\u00a71/\u00a72/\u00a73) and release notes",
+      "theme": "README/CLAUDE.md stub shape, Documentation map coverage, settings-panel shape, Version History lines",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "LH-A-05",
+        "LH-A-07",
+        "LH-A-09",
+        "PFE-A-04",
+        "PFE-A-07",
+        "PM-A-06",
+        "PM-A-08",
+        "MM-A-06"
+      ]
+    },
+    {
+      "id": "C10",
+      "title": "Hub ARCHITECTURE.md past the ~400-line spill guideline",
+      "theme": "docs/ARCHITECTURE.md hubs and Module Maps exceed documentation-\u00a73 spill thresholds; spill sections into Tier 2 files",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AM-A-02",
+        "BL-A-08",
+        "LH-A-03",
+        "MM-A-09",
+        "PM-A-10",
+        "PFE-A-05",
+        "PC-A-03"
+      ]
+    },
+    {
+      "id": "C11",
+      "title": "Rotted cross-repo citations and worked examples in the standard and specs",
+      "theme": "file:line citations and worked examples in WowAddonStandards, its playbooks and dev-copilot specs point at moved or gone lines; present-tense inventories stale",
+      "root_cause_home": "WowAddonStandards",
+      "finding_ids": [
+        "WAS-A-09",
+        "WAS-A-10",
+        "WAS-A-11",
+        "WAS-R-09",
+        "AT-A-14",
+        "LK-A-08",
+        "DC-A-09"
+      ]
+    },
+    {
+      "id": "C12",
+      "title": "Standard changelog, index and citation hygiene",
+      "theme": "Changelog ordering and malformed references, index footer date, mis-cited section numbers, oversized index/TL;DR",
+      "root_cause_home": "WowAddonStandards",
+      "finding_ids": [
+        "WAS-A-13",
+        "WAS-A-18",
+        "WAS-R-03",
+        "WAS-R-06",
+        "WAS-R-07",
+        "WAS-R-10",
+        "WAS-R-12"
+      ]
+    },
+    {
+      "id": "C13",
+      "title": "Issue-store housekeeping: stale labels and contradicted declines",
+      "theme": "Closed issues still carrying open-state labels, and closed decline issues the tree now contradicts",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AM-A-05",
+        "PM-A-12",
+        "LK-A-07",
+        "KC-A-06",
+        "PC-A-05",
+        "AT-A-12",
+        "AT-A-17"
+      ]
+    },
+    {
+      "id": "C14",
+      "title": "Slash command argument parsing and output shape",
+      "theme": "Slash verbs that mis-parse names, mis-route unknown words or print inconsistent rows across addons",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AM-R-05",
+        "AM-R-07",
+        "MM-R-05",
+        "KC-R-03",
+        "KC-R-04",
+        "PC-R-11",
+        "PFE-R-04"
+      ]
+    },
+    {
+      "id": "C15",
+      "title": "Library-absent stubs and unreachable fallbacks",
+      "theme": "Library-missing degradation stubs that copy library formatting, lack stub-parity cases, or guard states packaging cannot produce; standards question whether they are needed at all",
+      "root_cause_home": "mixed",
+      "finding_ids": [
+        "AM-A-07",
+        "PM-A-03",
+        "PC-R-08",
+        "AT-A-16",
+        "LH-A-04",
+        "AT-A-07"
+      ]
+    },
+    {
+      "id": "C16",
+      "title": "Release gate: functions above CCN 15",
+      "theme": "Functions crossed the CCN 15 release gate (or sit at the cap); split before the next tag",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AM-R-01",
+        "BL-A-02",
+        "BL-R-01",
+        "LH-R-01",
+        "PC-R-09"
+      ]
+    },
+    {
+      "id": "C17",
+      "title": "Files approaching the 1500-line cap",
+      "theme": "Source/test files close to the hard cap with peel seams never cut",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AM-R-02",
+        "AM-R-04",
+        "BL-A-06",
+        "BL-R-02",
+        "LH-R-02"
+      ]
+    },
+    {
+      "id": "C18",
+      "title": "Bare or malformed standard citations (documentation-\u00a76)",
+      "theme": "Bare \u00a7N references and file:line citations of the standard in authored files",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "CM-A-06",
+        "KC-A-03",
+        "MM-A-03",
+        "PFE-A-09",
+        "LK-A-06"
+      ]
+    },
+    {
+      "id": "C19",
+      "title": "Perf stand-down lifecycle edge cases",
+      "theme": "Timers, coalesced repaints and combat-held actions mishandled across a perf stand-down; Perf.suspended contract drift between LibKa0s stub template and addons",
+      "root_cause_home": "mixed",
+      "finding_ids": [
+        "AT-R-03",
+        "AT-R-06",
+        "AT-R-08",
+        "LH-R-04",
+        "PM-R-06"
+      ]
+    },
+    {
+      "id": "C20",
+      "title": "Secret-value handling and test support",
+      "theme": "Secret (combat-restricted) values compared without guards; no kit mock for secrets; standard's \u00a78 trigger list incomplete",
+      "root_cause_home": "mixed",
+      "finding_ids": [
+        "WG-R-01",
+        "WG-R-02",
+        "WG-R-08",
+        "WG-R-09",
+        "MM-R-07"
+      ]
+    },
+    {
+      "id": "C21",
+      "title": "Hot-path allocation and over-broad event registration",
+      "theme": "Per-pass closure/table allocation and unit events registered for every unit then filtered in Lua",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-R-02",
+        "KC-R-09",
+        "PFE-R-06",
+        "CM-R-07",
+        "MM-R-09"
+      ]
+    },
+    {
+      "id": "C22",
+      "title": "Raw lizard quoted as the complexity check",
+      "theme": "Docs quote the blind raw lizard command instead of the sighted runner (automated-tests-\u00a73, anti-pattern #92)",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-A-03",
+        "CM-A-05",
+        "LH-A-08",
+        "MM-A-07",
+        "PM-A-07"
+      ]
+    },
+    {
+      "id": "C23",
+      "title": "Destructive/reset actions: scope and confirmation",
+      "theme": "Reset and delete actions that skip confirmation, misstate their blast radius, or miss session-only rows",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "PC-R-03",
+        "PM-R-05",
+        "PM-R-02",
+        "PM-A-01",
+        "PM-A-02"
+      ]
+    },
+    {
+      "id": "C24",
+      "title": "Debug-logging change gates and load-time logging",
+      "theme": "Hand-rolled log-on-change memos, hand-routed debug verbs, and load-time lines written while logging is off",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-A-09",
+        "CM-A-09",
+        "PFE-A-08",
+        "AM-A-08"
+      ]
+    },
+    {
+      "id": "C25",
+      "title": "Deviation register rows and unresolvable evidence ids",
+      "theme": "Register rows citing evidence ids that do not resolve, stale rows the standard now sanctions, and wording nits",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-A-06",
+        "CM-A-04",
+        "LK-A-05",
+        "PFE-A-06"
+      ]
+    },
+    {
+      "id": "C26",
+      "title": "Byte-wise string handling breaks non-Latin locales",
+      "theme": "Byte-wise lower/truncate/name derivation and C-runtime month names misbehave outside Latin/English clients",
+      "root_cause_home": "mixed",
+      "finding_ids": [
+        "AM-R-06",
+        "KC-R-02",
+        "PM-R-01",
+        "LK-R-10"
+      ]
+    },
+    {
+      "id": "C27",
+      "title": "Dead compat fallback rungs on removed AddOns globals",
+      "theme": "Inline addon-API ladders end on deprecated globals no admitted client reaches; LibKa0s payload comment contradicts the standard's worked case",
+      "root_cause_home": "mixed",
+      "finding_ids": [
+        "MM-A-05",
+        "PM-A-04",
+        "LK-A-04",
+        "LK-A-09"
+      ]
+    },
+    {
+      "id": "C28",
+      "title": "Event-frame discipline (events-frames-taint-\u00a71)",
+      "theme": "Private CreateFrame event frames, bare RegisterEvent outside the pcalled helper, and named global frames",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "PFE-A-01",
+        "WG-A-01",
+        "PC-R-12"
+      ]
+    },
+    {
+      "id": "C29",
+      "title": "Pre-formatted chat lines (events-frames-taint-\u00a78)",
+      "theme": "Printer calls pre-format with :format/.. instead of passing arguments to the shared printer",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-A-08",
+        "BL-A-05",
+        "LH-A-12"
+      ]
+    },
+    {
+      "id": "C30",
+      "title": "NaN/inf and unvalidated numeric input",
+      "theme": "tonumber/ParseValue accept NaN, inf, hex, exponent; sanitizers and clamps do not reject them",
+      "root_cause_home": "LibKa0s",
+      "finding_ids": [
+        "PM-R-03",
+        "LK-R-06",
+        "CM-R-06"
+      ]
+    },
+    {
+      "id": "C31",
+      "title": "Named non-setting state and schema version targets",
+      "theme": "Settings Schema / schema.md omit named state or writers; migration target constant differs from the standard's",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "LH-A-10",
+        "PM-A-05",
+        "KC-A-04"
+      ]
+    },
+    {
+      "id": "C32",
+      "title": "versioning-git trunk-based MUST vs feature-branch practice",
+      "theme": "Standard's trunk-based MUST matches neither collection practice nor dev-copilot's workflow",
+      "root_cause_home": "WowAddonStandards",
+      "finding_ids": [
+        "DC-A-12",
+        "DC-A-16"
+      ]
+    },
+    {
+      "id": "C33",
+      "title": "British spellings in live docs (localization-\u00a75)",
+      "theme": "US-English rule violated in live specs and docs of LibKa0s and dev-copilot",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "LK-A-02",
+        "DC-A-11"
+      ]
+    },
+    {
+      "id": "C34",
+      "title": "Combat-time preview/profile edge cases",
+      "theme": "Profile switches or stand-up during combat put frames into preview mid-fight",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-R-04",
+        "PFE-R-01"
+      ]
+    },
+    {
+      "id": "C35",
+      "title": "AbsorbTracker \u2014 perf test fidelity and UX",
+      "theme": "perf test fidelity and UX",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AT-R-01",
+        "AT-R-05"
+      ]
+    },
+    {
+      "id": "C36",
+      "title": "AuraMaster \u2014 packaging and recorded deviation",
+      "theme": "packaging and recorded deviation",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "AM-A-04",
+        "AM-A-09",
+        "AM-A-10"
+      ]
+    },
+    {
+      "id": "C37",
+      "title": "BankLedger \u2014 browser perf, search and backfill",
+      "theme": "browser perf, search and backfill",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "BL-R-03",
+        "BL-R-04",
+        "BL-R-06"
+      ]
+    },
+    {
+      "id": "C38",
+      "title": "ConsumableMaster \u2014 correctness, data seeds and recompute cost",
+      "theme": "correctness, data seeds and recompute cost",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "CM-R-01",
+        "CM-R-02",
+        "CM-R-03",
+        "CM-R-04",
+        "CM-R-05",
+        "CM-R-08"
+      ]
+    },
+    {
+      "id": "C39",
+      "title": "KickCD \u2014 cast bar, glow gate, defaults and lint",
+      "theme": "cast bar, glow gate, defaults and lint",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "KC-R-01",
+        "KC-R-05",
+        "KC-R-06",
+        "KC-R-07",
+        "KC-R-08"
+      ]
+    },
+    {
+      "id": "C40",
+      "title": "LootHistory \u2014 ledger correctness, perf and architecture",
+      "theme": "ledger correctness, perf and architecture",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "LH-A-02",
+        "LH-A-14",
+        "LH-R-03",
+        "LH-R-05",
+        "LH-R-06",
+        "LH-R-07",
+        "LH-R-08"
+      ]
+    },
+    {
+      "id": "C41",
+      "title": "MultiMeters \u2014 pet merge correctness, roster perf and dead code",
+      "theme": "pet merge correctness, roster perf and dead code",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "MM-A-08",
+        "MM-R-01",
+        "MM-R-02",
+        "MM-R-03",
+        "MM-R-04",
+        "MM-R-06",
+        "MM-R-08"
+      ]
+    },
+    {
+      "id": "C42",
+      "title": "PanelMaster \u2014 sanitizer and enabled-state correctness",
+      "theme": "sanitizer and enabled-state correctness",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "PM-R-04",
+        "PM-R-07"
+      ]
+    },
+    {
+      "id": "C43",
+      "title": "PartyFrameEnhanced \u2014 secure-write queue robustness and profile rebuild",
+      "theme": "secure-write queue robustness and profile rebuild",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "PFE-R-02",
+        "PFE-R-03",
+        "PFE-R-05"
+      ]
+    },
+    {
+      "id": "C44",
+      "title": "PrettyChat \u2014 cross-addon globals, settings validation, savedvars and comments",
+      "theme": "cross-addon globals, settings validation, savedvars and comments",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "PC-R-01",
+        "PC-R-02",
+        "PC-R-04",
+        "PC-R-05",
+        "PC-R-06",
+        "PC-R-13"
+      ]
+    },
+    {
+      "id": "C45",
+      "title": "WhatGroup \u2014 test buttons clobber state, tooltip and comment drift",
+      "theme": "test buttons clobber state, tooltip and comment drift",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "WG-R-03",
+        "WG-R-04",
+        "WG-R-05",
+        "WG-R-07"
+      ]
+    },
+    {
+      "id": "C46",
+      "title": "LibKa0s \u2014 Chart widget rendering and hover",
+      "theme": "Chart widget rendering and hover",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "LK-R-01",
+        "LK-R-03",
+        "LK-R-04"
+      ]
+    },
+    {
+      "id": "C47",
+      "title": "LibKa0s \u2014 Autocomplete hooks, callbacks and options",
+      "theme": "Autocomplete hooks, callbacks and options",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "LK-R-02",
+        "LK-R-05",
+        "LK-R-07",
+        "LK-R-08",
+        "LK-R-09"
+      ]
+    },
+    {
+      "id": "C48",
+      "title": "LibKa0s \u2014 watch-list shelf life and red-under notes",
+      "theme": "watch-list shelf life and red-under notes",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "LK-A-01",
+        "LK-R-11"
+      ]
+    },
+    {
+      "id": "C49",
+      "title": "WowAddonStandards \u2014 roster links and mechanical gate",
+      "theme": "roster links and mechanical gate",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "WAS-A-17",
+        "WAS-R-11",
+        "WAS-R-04"
+      ]
+    },
+    {
+      "id": "C50",
+      "title": "dev-copilot \u2014 ka0s-bounded runner and bounded-runs hook",
+      "theme": "ka0s-bounded runner and bounded-runs hook",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "DC-A-06",
+        "DC-R-02",
+        "DC-R-13",
+        "DC-R-14",
+        "DC-R-01",
+        "DC-R-08"
+      ]
+    },
+    {
+      "id": "C51",
+      "title": "dev-copilot \u2014 stale docs after the rename",
+      "theme": "stale docs after the rename",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "DC-A-07",
+        "DC-A-08",
+        "DC-R-09",
+        "DC-R-10",
+        "DC-R-11",
+        "DC-R-15"
+      ]
+    },
+    {
+      "id": "C52",
+      "title": "dev-copilot \u2014 line-ending hook safety and tests",
+      "theme": "line-ending hook safety and tests",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "DC-R-03",
+        "DC-R-06"
+      ]
+    },
+    {
+      "id": "C53",
+      "title": "dev-copilot \u2014 command correctness (issues, cross-addon, new-addon, finalize)",
+      "theme": "command correctness (issues, cross-addon, new-addon, finalize)",
+      "root_cause_home": "per-repo",
+      "finding_ids": [
+        "DC-R-04",
+        "DC-R-05",
+        "DC-R-07",
+        "DC-R-12",
+        "DC-A-13"
+      ]
+    }
+  ]
+}

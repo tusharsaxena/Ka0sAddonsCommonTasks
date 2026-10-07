@@ -1,0 +1,6 @@
+id	reason
+DC-14	remote-only: owner approved 2026-10-07; origin/main (d2ed30d, ancestor of master) deleted; proof: git -C ../../../dev-copilot ls-remote --heads origin main prints nothing
+LK-11	GitHub-only relabel, no commit: closed LibKa0s #32 #33 #37 #39 moved state:triaged -> state:done; proof: gh issue list --repo tusharsaxena/LibKa0s --state closed --label state:triaged prints nothing
+PC-08	GitHub-only comment, no commit: PrettyChat #8 commented (issuecomment-6040653241) that SP-PC-01's Profiles page superseded the per-character profile decline; state:will-not-do kept; proof: gh issue view 8 --repo tusharsaxena/PrettyChat --json comments --jq '.comments[].body' | grep -q SP-PC-01
+KC-10	GitHub-only comment, no commit: closed KickCD #11 records that #10 (e0da04c) superseded the RenderGrid decline (issuecomment-6040889650); state:will-not-do kept; proof: gh issue view 11 --repo tusharsaxena/KickCD --json comments --jq '.comments[].body' | grep -q e0da04c
+PM-10	GitHub-only relabel, no commit: closed PanelMaster #47 moved state:triaged -> state:done; proof: gh issue list --repo tusharsaxena/PanelMaster --state closed --label state:triaged --json number prints []

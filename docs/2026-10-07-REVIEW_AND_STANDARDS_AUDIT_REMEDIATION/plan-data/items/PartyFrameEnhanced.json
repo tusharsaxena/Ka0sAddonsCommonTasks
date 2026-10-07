@@ -1,0 +1,135 @@
+{
+ "repo": "PartyFrameEnhanced",
+ "items": [
+  {
+   "id": "RV-PF",
+   "milestone": "M2",
+   "repo": "PartyFrameEnhanced",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 span; de-tag live docs",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PFE-A-02",
+    "PFE-A-11",
+    "PFE-A-05"
+   ],
+   "spec": "Mechanical re-vendor per the revendor convention (no adoption interview, no GitHub issue filing). (1) Copy LibKa0s at the LOCAL tag v1.71.0 whole: ../LibKa0s LibKa0s/ -> libs/LibKa0s/ and testkit/ -> tests/_kit/ (rm then copy, so deleted files go too). Kit revision 37 -> 38 (LK-01: --list Totals count only cases that run, a '| Skipped | N |' row for declared skips). (2) CLAUDE.md provenance line 'Bundles [LibKa0s](...) v1.70.0 (MIT).' -> v1.71.0, same commit. (3) Span bundle for the two unrecorded re-vendors (547ac68 v1.69.0, 735a111 v1.70.0): docs/revendor/<date>-v1.69.0-v1.70.0/ with 01_DELTA.md whose line 1 is exactly 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)' and whose body names base v1.68.1 (the provenance at the time) and the per-file minor moves (WidgetsLineChart / WidgetsAutocomplete arrived), and 05_SUMMARY.md with one line per tag: carried by a plain chore re-vendor commit (sha), nothing adopted. (4) docs/revendor/<date>-v1.71.0/ bundle: delta base v1.70.0 (from the CLAUDE.md provenance line, not the library's previous tag), per-file LibStub minors, kit 37 -> 38 pairing, which majors PFE consumes, contract changes (Slash ParseValue refuses nan/inf, Env/OptionsIdList dead rungs dropped, LineChart/Autocomplete minors), and a 'Not adopted in this run' list (Kit.secret simulator, WidgetsLineChart, WidgetsAutocomplete and any other new surface) per OWNER_SCOPE. (5) Regenerate docs/test-cases.md with `lua tests/run.lua --list` (kit 38 semantics: declared skip moves to the Skipped row) and set the README Tests badge to the new Total (passing/Total, equal to the Totals row). (6) De-tag live docs that restate the vendored version (PFE-A-11): docs/ARCHITECTURE.md:23 and :43, DEPENDENCIES.md:32 ('kit 36'), docs/debug.md:16 ('from LibKa0s v1.68.1') point at the CLAUDE.md provenance line instead of naming a tag/kit; docs/smoke-tests.md:55 update only the INSTALL-4 step text, never its Result and never the :645 owner results row. (7) PFE-A-05: cut the docs/ARCHITECTURE.md Overview re-vendor narrative (line 55, v1.64.0..v1.68.1, ~1600 chars) to one sentence pointing at docs/revendor/; do not move '## The disabled state is total'. Hub ends below its 435 lines.",
+   "steps": "1. Confirm `git -C ../LibKa0s tag -l v1.71.0` exists locally (LK-12 done). 2. rm -rf libs/LibKa0s tests/_kit; copy both payloads from `git -C ../LibKa0s archive v1.71.0` (or a checkout of the tag in a temp worktree, removed afterwards). 3. Roll the CLAUDE.md provenance line. 4. Run the green gate; test_vendor_sync must pass; fix nothing in the payload. 5. Regenerate docs/test-cases.md, update the README badge. 6. Write both docs/revendor bundles (span bundle first). 7. De-tag the four live docs and the INSTALL-4 step text; cut the Overview narrative. 8. Gate again; commit 'RV-PF: re-vendor LibKa0s v1.71.0; record v1.69.0-v1.70.0 span (PFE-A-02, PFE-A-11, PFE-A-05)'.",
+   "verify": "lua tests/run.lua (all green, 0 failures); luacheck . (0 warnings / 0 errors); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); no authored file over 1500 lines; grep -n 'v1.71.0' CLAUDE.md; diff -r libs/LibKa0s <(LibKa0s v1.71.0 LibKa0s/) and tests/_kit vs testkit/ empty; head -1 docs/revendor/*-v1.69.0-v1.70.0/01_DELTA.md equals the exact line; grep -n 'Kit.VERSION = 38' tests/_kit/framework.lua; README Tests badge equals the docs/test-cases.md Total row; grep -nE 'v1\\.68\\.1|kit 3[67]' docs/ARCHITECTURE.md DEPENDENCIES.md docs/debug.md docs/automated-tests/README.md returns only historical rows; wc -l docs/ARCHITECTURE.md < 435",
+   "smoke": "INSTALL-4 (docs/smoke-tests.md): addon loads clean on v1.71.0 with no Lua errors; /pfe status and /pfe unlock work."
+  },
+  {
+   "id": "PF-01",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Secure-write queue: one raising deferred write no longer orphans the rest; unwrapFrame re-wrap guarded",
+   "depends_on": [
+    "RV-PF"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "PFE-R-02",
+    "PFE-R-03",
+    "PFE-R-05"
+   ],
+   "spec": "core/PartyFrameEnhanced.lua flushSecure (:92-106): snapshot both `pending` and `pendingOrder` and replace them with fresh empty tables BEFORE running anything; then for each key in the snapshot order run its closure through xpcall(fn, geterrorhandler()) so an error still reaches BugSack/the default handler and the loop continues; count successes and failures and debug-log 'flushed %d deferred write(s), %d raised'. Consequences that must hold: after a raise the queue is empty (PendingSecureCount()==0, PendingSecureKeys() empty), a later in-combat RunSecure on the raising key re-queues it (the `if not pending[key]` guard sees nil), and OnLeaveCombat (:264-267) and the stand-down path still reach NS.PublishVisibility() after the flush. PFE-R-03: modules/SecureFollow.lua unwrapFrame (:193-201): the restoring SecureHandlerWrapScript(frame, SCRIPT, h, pre, post) runs through xpcall(..., geterrorhandler()) (never a bare pcall that discards the error) so the unwrap pass continues, consistent with Wrap's own guard (~:173); return false either way. PFE-R-05: settings/Slash.lua PROFILE_VERBS.new (:309-317): remove NS.ResetProfileCounted(db) after db:SetProfile(name) (the exists() refusal already guarantees a default-only profile) and rewrite the comment above it, which says 'SetProfile first, then the reset'; keep the exists() refusal and the 'Created and switched' line. Update docs/ARCHITECTURE.md (secure queue notes) and docs/slash-dispatch.md/docs/profiles.md wherever they describe the reset step.",
+   "steps": "1. Red first, tests/test_lifecycle.lua (or a new tests/test_secure_queue.lua registered in tests/run.lua): in combat (stub InCombatLockdown true) queue key 'a' whose fn errors, then key 'b' that records it ran; leave combat via addon:OnLeaveCombat(); assert 'b' ran, the captured geterrorhandler saw the error, PendingSecureCount()==0, PublishVisibility was called; re-enter combat, RunSecure('a', ok) re-queues it (count 1). '-- red under:' notes naming the unguarded loop. 2. Red first, tests/test_securefollow.lua: SecureHandlerUnwrapScript returns a foreign header, SecureHandlerWrapScript raises; assert unwrapAll continues to the next frame and the error reaches geterrorhandler. 3. Red first, tests/test_slash.lua: '/pfe profile new X' broadcasts PROFILE once and prints no '[Set] reset profile' line (adjust any test expecting the reset). 4. Implement; green gate; regenerate docs/test-cases.md and the README badge. 5. Docs; commit 'PF-01: ...'.",
+   "verify": "lua tests/run.lua (all green, 0 failures); luacheck . (0 warnings / 0 errors); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); no authored file over 1500 lines; the new cases fail on the parent commit (git stash the code change and rerun) and pass after; grep -n 'ResetProfileCounted' settings/Slash.lua shows no call in the new verb; docs/test-cases.md Total equals README badge",
+   "smoke": "'/pfe profile new <fresh name>' out of combat: one 'Created and switched to new profile' line, no reset line, frames rebuild once."
+  },
+  {
+   "id": "PF-02",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Profile change in combat cannot turn preview on: PROFILE receiver honours the combat refusal",
+   "depends_on": [
+    "RV-PF",
+    "PF-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PFE-R-01"
+   ],
+   "spec": "modules/Preview.lua PROFILE receiver (:198-204): when NS.GetSetting('enabled')==true and the incoming profile stores locked==false and InCombatLockdown() is true, write NS.SetByPath('locked', true) (so the stored profile is relocked, matching the PLAYER_REGEN_DISABLED re-lock) and print the existing combat re-lock line (reuse the same L[] string AcceptLock/combat re-lock already prints, no new locale key unless none exists); do NOT call applyLock(true). Otherwise behaviour is unchanged (disabled -> applyLock(false); else applyLock(locked==false)). This closes the '/pfe profile copy <name>' route (settings/Slash.lua copy verb has no combat check: CopyProfile -> OnProfileCopied -> adoptProfile -> PROFILE) and any third-party SetProfile. Update the receiver's comment and docs/ARCHITECTURE.md / docs/profiles.md where the combat guard is described.",
+   "steps": "1. Red first: two cases in tests/test_profile_switch.lua that drive the receiver through OnProfileCopied (the '/pfe profile copy' path) with InCombatLockdown stubbed true: (a) source profile stored unlocked -> NS.State.preview stays false, stored locked becomes true, the re-lock line printed, no cast-bar placeholder; (b) source locked -> nothing changes, no line. '-- red under:' notes. 2. Implement the branch. 3. Green gate; regenerate docs/test-cases.md and the README badge. 4. Commit 'PF-02: ...'.",
+   "verify": "lua tests/run.lua (all green, 0 failures); luacheck . (0 warnings / 0 errors); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); no authored file over 1500 lines; the two new cases fail on the parent commit and pass after",
+   "smoke": "In combat, '/pfe profile copy <a profile saved unlocked>': elements stay locked, the combat re-lock line prints, no 'Preview cast' placeholders appear for the rest of the fight; after combat '/pfe unlock' works."
+  },
+  {
+   "id": "PF-03",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Pending-secure listener moves from a private CreateFrame to a dedicated AceEvent target (events-frames-taint-§1)",
+   "depends_on": [
+    "RV-PF",
+    "PF-02"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PFE-A-01"
+   ],
+   "spec": "core/PartyFrameEnhanced.lua :107-138: replace `regenWatch = CreateFrame('Frame')` with a dedicated AceEvent target that is not the addon object and not NS.bus (e.g. `local regenWatch = {}; LibStub('AceEvent-3.0'):Embed(regenWatch)`, the pattern core/Bus.lua:56 uses), created once. armPendingRegen: return if #pendingOrder==0; if not armed, NS.SafeRegisterEvent(regenWatch, 'PLAYER_REGEN_ENABLED', handler, NS.RejectedEvents) (check SafeRegisterEvent's AceEvent-target signature in core and use it as Bus does) and set a local `regenArmed=true` only on success. Handler: unregister PLAYER_REGEN_ENABLED, regenArmed=false, then flushSecure(). disarmPendingRegen: if armed, regenWatch:UnregisterEvent('PLAYER_REGEN_ENABLED'), regenArmed=false. NS.PendingRegenArmed() returns regenArmed (truthful; diagnostics unchanged). The (event,target) collision with addon:OnLeaveCombat is avoided because the target differs. Rewrite the block comment (:107-116) to say 'its own AceEvent target' and why; update docs/ARCHITECTURE.md:199 ('its own frame' -> 'its own AceEvent target') and :269. Still the only registration a stood-down addon keeps (slash-commands-§7), released on fire.",
+   "steps": "1. Characterization first: tests/test_disabled.lua or test_lifecycle.lua case: stand down in combat with a queued write -> PendingRegenArmed() true and exactly one PLAYER_REGEN_ENABLED registration exists on a non-addon target; fire PLAYER_REGEN_ENABLED -> write ran, PendingRegenArmed() false, no registration left; addon's own OnLeaveCombat registration untouched; and an assertion that no CreateFrame call is made for the watcher. Run green on the old code except the CreateFrame/target assertion (red under: a CreateFrame watcher). 2. Implement. 3. Green gate (incl. test_diagnostics). 4. Docs; commit 'PF-03: ...'.",
+   "verify": "lua tests/run.lua (all green, 0 failures); luacheck . (0 warnings / 0 errors); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); no authored file over 1500 lines; grep -n 'CreateFrame' core/PartyFrameEnhanced.lua shows no regen watcher; grep -n 'own frame' docs/ARCHITECTURE.md no longer describes the regen listener",
+   "smoke": "Disable the addon (/pfe disable or the Enabled toggle) while in combat in a party, then leave combat: party frames return to their default positions/visibility within a second, no Lua error; '/pfe diag' (diagnostics) shows no pending writes and the listener not armed."
+  },
+  {
+   "id": "PF-04",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "/pfe status prints one unlocked flag",
+   "depends_on": [
+    "RV-PF",
+    "PF-03"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PFE-R-04"
+   ],
+   "spec": "settings/Slash.lua statusFlags (:195-208): add the bare L['unlocked'] flag only when NS.Anchor.IsUnlocked() is true AND NS.State.preview is false (the case where setPreview refused still reports the unlock); the preview branch already names the view ('unlocked (stand-in)' / 'unlocked (your party frames)'). No locale key changes.",
+   "steps": "1. Red first in tests/test_slash.lua: unlocked with preview on -> status output contains exactly one 'unlocked' flag; Anchor unlocked with preview false -> bare 'unlocked' present. '-- red under:' note. 2. Implement. 3. Green gate; regenerate docs/test-cases.md and README badge. 4. Commit 'PF-04: ...'.",
+   "verify": "lua tests/run.lua (all green, 0 failures); luacheck . (0 warnings / 0 errors); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); no authored file over 1500 lines; new case red on parent, green after",
+   "smoke": "'/pfe unlock' then '/pfe status': the Note line shows 'unlocked (stand-in)' or 'unlocked (your party frames)' once and no second bare 'unlocked'."
+  },
+  {
+   "id": "PF-05",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Doc-set drift: kit/command/shim-count fixes, fourth Documentation-map table, settings-panel shape, register row text",
+   "depends_on": [
+    "RV-PF",
+    "PF-04",
+    "WS-05"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "PFE-A-03",
+    "PFE-A-04",
+    "PFE-A-07",
+    "PFE-A-06"
+   ],
+   "spec": "Docs only. PFE-A-03: docs/automated-tests/README.md:29 stops stating a kit revision and defers to the CLAUDE.md provenance line; docs/perf-analysis/README.md:70 '/wow-addon:perf-analysis' -> '/dev-copilot:wow-perf-analysis'; docs/ARCHITECTURE.md Documentation-map row (~:404) says '14 shims (the standard's grep over core/Compat.lua), plus IsSecret routed from LibKa0s-Compat-1.0' (re-run the documentation.md grep to confirm 14); docs/compat-layer.md:17 IsSecret row cut to a one-line pointer to LibKa0s-Compat-1.0 (library shims are neither counted nor re-documented). Never hand-edit docs/automated-tests/RESULTS.md:15 (runner-generated). PFE-A-04: restore '### Addon-specific (documentation-§3, Tier 3)' after '### Verification and record' in the Documentation map with a '| Doc | Covers |' header and 'None.'. PFE-A-07: reshape docs/settings-panel.md to a 'Page | Covers' table with one row per subcategory page (five), then one '## <Page>' heading per page with '### <Tab>' sub-headings in group declaration order; content unchanged and still agreeing with settings/Schema.lua. PFE-A-06: Documented deviations row 2 (library-stack-§6, ~:428) Why cell cites the 2026-09-23 audit PFE-15 and commit 79cd225 (PF-22); row 1 (slash-commands-§7, ~:427) drops 'pending the owner's ratification' only if the owner has confirmed default D9 (ask once in the M3 checkpoint summary); if not confirmed by the time this item runs, leave the qualifier and record the open question in the bundle's execution record. Use WS-05/WS-07 wording (row labels, citation form) where they apply.",
+   "steps": "1. Grep-confirm each cited line. 2. Edit the five docs. 3. Check every docs/*.md is registered in the map (four tables). 4. Green gate (doc-only, but the EOL test and luacheck still run). 5. Commit 'PF-05: ...'.",
+   "verify": "lua tests/run.lua (all green, 0 failures); luacheck . (0 warnings / 0 errors); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); no authored file over 1500 lines; grep -n 'wow-addon:perf-analysis' docs/ returns nothing outside frozen bundles; grep -n '### Addon-specific' docs/ARCHITECTURE.md; grep -c '^## ' docs/settings-panel.md matches the page count; git diff --stat HEAD~1 touches no RESULTS.md",
+   "smoke": ""
+  },
+  {
+   "id": "PF-STD",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Roll the standards reference to WowAddonStandards v2.77.0 and sync docs",
+   "depends_on": [
+    "WS-11",
+    "PF-05"
+   ],
+   "effort": "S",
+   "finding_ids": [],
+   "spec": "Run the /dev-copilot:wow-revendor-standards procedure against WowAddonStandards' feature branch (v2.77.0, opened by WS-01, closed by WS-11): the three-place reference (PartyFrameEnhanced.toc '## X-Standard', README Standard badge, CLAUDE.md 'Standards compliance') carries the v2.77.0 reference in the form the standard prescribes (today the TOC and badge carry no version: add one only if the standard's toc-file/documentation rules require it, otherwise confirm the URL form is current); sweep retired notation, retired file names and unresolvable section references (e.g. ripples of WS-03 line-endings, WS-04 toc-file-§5, WS-05 documentation-§3/§6/§8 row labels, WS-07 citation form, WS-08 versioning-git branch wording) out of the repo, excluding libs/, tests/_kit/ and frozen docs/audits/, docs/reviews/, docs/automated-tests/, docs/revendor/ bundles; code-comment citations corrected comment-only. Then a sync-docs pass over README.md, CLAUDE.md, DEPENDENCIES.md, docs/ARCHITECTURE.md and topic docs for anything RV-PF and PF-01..PF-05 changed (test totals equal README badge, Event Subscriptions row, profile/slash docs, doc-map counts). No version bump, no CHANGELOG release heading.",
+   "steps": "1. Read WowAddonStandards CHANGELOG v2.77.0 entry on the feature branch. 2. Roll the three-place reference. 3. Sweep citations (grep for every changed section id). 4. Sync docs; regenerate docs/test-cases.md if anything changed. 5. Green gate; commit 'PF-STD: ...'.",
+   "verify": "lua tests/run.lua (all green, 0 failures); luacheck . (0 warnings / 0 errors); lizard -l lua -x \"./libs/*\" -x \"./tests/_kit/*\" . (no function above CCN 15); no authored file over 1500 lines; grep -rn 'WowAddonStandards' PartyFrameEnhanced.toc README.md CLAUDE.md consistent; every '<file>-§N' citation outside libs/ tests/_kit/ and frozen bundles resolves in the v2.77.0 standard; README badge equals docs/test-cases.md Total",
+   "smoke": ""
+  }
+ ]
+}

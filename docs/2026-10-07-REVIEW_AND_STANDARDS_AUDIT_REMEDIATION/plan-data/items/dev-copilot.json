@@ -1,0 +1,255 @@
+{
+ "repo": "dev-copilot",
+ "items": [
+  {
+   "id": "DC-01",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Bounded-runs hook: stop denying 'command -v' tool probes; clean up test tempdirs",
+   "depends_on": [],
+   "effort": "S",
+   "finding_ids": [
+    "DC-A-06",
+    "DC-R-02",
+    "DC-R-14"
+   ],
+   "spec": "scripts/bounded_runs.py: in strip_prefix (the transparent-wrapper loop that treats `command` as TRANSPARENT, ~:37 and ~:231-237), when the word is `command` and the next word is `-v` or `-V`, return no command (None/empty) so `command -v luacheck`, `command -V lizard`, `command -v luacheck lua` and `command -v luacheck lizard` produce check()==[] and the hook stays silent. Plain `command luacheck .` must still be denied (command stays a transparent wrapper otherwise). Update the module docstring wrapper sentence to note the -v/-V exception. scripts/test_bounded_runs.py: add pass cases ('command -v lizard', 'command -V luacheck', 'command -v luacheck lua') to test_mentions_are_not_runs (or a new test_command_v_probe_is_not_a_run), and a deny case 'command luacheck .' to test_plain_runs_are_refused; add a HookScript case asserting the hook JSON for 'command -v luacheck lizard' is empty (no permissionDecision). Replace every bare tempfile.mkdtemp() (repo() helper ~:17, XDG_CACHE_HOME ~:136, HOME ~:155 and ~:184) with a shared helper that creates the dir and registers self.addCleanup(shutil.rmtree, d, True). CLAUDE.md Build/test bullet for test_bounded_runs.py (':91', '20 cases') and any DEPENDENCIES.md case count: update to the count the runner actually reports. No plugin.json version bump (CLAUDE.md:107 asks for one only when a command/agent is added or removed).",
+   "steps": "1. Add the new pass/deny cases and the hook JSON case; run python3 scripts/test_bounded_runs.py and confirm the command -v cases FAIL (red). 2. Add the tempdir cleanup helper and convert all mkdtemp call sites. 3. Implement the -v/-V exit in strip_prefix; rerun until green. 4. Update the case count in CLAUDE.md (and DEPENDENCIES.md if it states one) and the docstring. 5. Commit 'DC-01: Stop the bounded-runs hook denying command -v probes'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; python3 -c \"import sys; sys.path.insert(0,'scripts'); import bounded_runs as b; assert b.check('command -v luacheck','/tmp')==[]; assert b.check('command -V lizard','/tmp')==[]; assert b.check('command luacheck .','/tmp')==['luacheck']\"; echo '{\"tool_input\":{\"command\":\"command -v luacheck lizard\"}}' | CLAUDE_PLUGIN_ROOT=$PWD bash scripts/bounded-runs-hook.sh (no deny output); before/after count of /tmp/tmp* dirs is unchanged by a test run",
+   "smoke": ""
+  },
+  {
+   "id": "DC-02",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Bounded-runs matcher: close the 'ulimit -v unlimited' and 'sh -c' false negatives",
+   "depends_on": [
+    "DC-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-R-13"
+   ],
+   "spec": "scripts/bounded_runs.py check(): the bounded-by-hand regex (~:307) requires a numeric limit: r\"\\bulimit\\s+(-[A-Za-z]*v|-v)\\s+\\d+\" so 'ulimit -v unlimited; lua tests/run.lua' (old kit) is no longer treated as bounded. heavy() shell branch (~:273-277): when a shell in SHELLS is invoked with -c (any short-option cluster containing c, e.g. -c, -lc), take the next argument as a script string and run it through the same segments()/strip_prefix/heavy pipeline (recursion depth bounded, e.g. 1-2 levels), returning the first heavy kind found; the existing run-automated-tests.sh script-argument branch is kept. Pass cases that must stay silent: bash -c 'grep lizard x', sh -c 'echo luacheck', bash -c 'command -v lizard', bash -c 'ka0s-bounded lua tests/run.lua'. Deny cases: bash -c \"lua tests/run.lua\" (no kit), sh -c \"luacheck .\", 'ulimit -v unlimited; luacheck .'. Pass: 'ulimit -v 2097152; luacheck .'. Update CLAUDE.md/DEPENDENCIES.md case counts to the runner's figure.",
+   "steps": "1. Add the deny and pass cases to scripts/test_bounded_runs.py; confirm the deny cases fail. 2. Tighten the ulimit regex. 3. Add -c script scanning in the shell branch. 4. Rerun until green, update counts. 5. Commit 'DC-02: Close bounded-runs false negatives on sh -c and ulimit -v unlimited'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; python3 -c \"import sys; sys.path.insert(0,'scripts'); import bounded_runs as b; assert b.check('sh -c \\\"luacheck .\\\"','/tmp')==['luacheck']; assert b.check(\\\"bash -c 'grep lizard x'\\\",'/tmp')==[]; assert b.check('ulimit -v unlimited; luacheck .','/tmp')==['luacheck']\"",
+   "smoke": ""
+  },
+  {
+   "id": "DC-03",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "ka0s-bounded: kill the whole tree on timeout when non-interactive; recompute slots while waiting",
+   "depends_on": [],
+   "effort": "M",
+   "finding_ids": [
+    "DC-R-01",
+    "DC-R-08"
+   ],
+   "spec": "scripts/ka0s-bounded: (a) timeout (~:98-100): build cmd=(timeout -k 10 \"$secs\" ...) and add --foreground only when [ -t 0 ] (interactive terminal, keeps Ctrl-C working); non-interactive runs (Claude's Bash tool) then let timeout signal the whole process group so forked children (and the slot-pool lock fd they inherit from :78) die with the run. Rewrite the CLOCK header comment (:18-19) to say --foreground is used only on a terminal and why. (b) slot pool (~:66-93): when KA0S_KIT_SLOTS is unset/invalid, recompute slots from MemAvailable inside the outer wait loop on every pass (same formula max(1, floor(avail*0.6/slot_mb))), so a run started under memory pressure can take slot.2+ once memory frees; the 'waiting for a slot' message still prints once (it may report the slot count at first wait). Factor MemAvailable reading into a small function used both at startup and in the loop. scripts/test_bounded_runs.py BinWrapper: add test_timeout_kills_children: run bin/ka0s-bounded bash -c 'sleep 47 & sleep 47; echo done' (use a unique sleep length to grep for, e.g. 'sleep 4711') with KA0S_KIT_TIMEOUT_S=2, KA0S_KIT_CGROUP=off, stdin=subprocess.DEVNULL and a cleaned-up XDG_CACHE_HOME; assert rc==124 and, after a short poll, `pgrep -f 'sleep 4711'` finds nothing (kill any survivor in cleanup so a red run leaves no process). DEPENDENCIES.md:47 coreutils row: reword the 'timeout --foreground -k 10' evidence to the conditional form. README Hooks section: if it describes --foreground or the slot count as fixed at start, align it. CLAUDE.md test_bounded_runs case count updated to the runner's figure.",
+   "steps": "1. Write test_timeout_kills_children; run it and confirm it fails (survivor present). 2. Make --foreground conditional on [ -t 0 ]; rerun green. 3. Refactor MemAvailable read and move the slot recompute into the wait loop (guarded by KA0S_KIT_SLOTS unset); hand-check with KA0S_KIT_SLOTS unset and set (exact count honoured). 4. Update header comment, DEPENDENCIES.md:47, README, CLAUDE.md count. 5. Commit 'DC-03: Kill the whole run on ka0s-bounded timeout and recompute slots while waiting'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; KA0S_KIT_TIMEOUT_S=2 KA0S_KIT_CGROUP=off bin/ka0s-bounded bash -c 'sleep 4712; echo done' </dev/null; echo rc=$? (124) then pgrep -f 'sleep 4712' returns nothing; bash -n scripts/ka0s-bounded",
+   "smoke": ""
+  },
+  {
+   "id": "DC-04",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Line-ending hook: add an automated test suite (symlink case expected-red)",
+   "depends_on": [],
+   "effort": "M",
+   "finding_ids": [
+    "DC-R-06"
+   ],
+   "spec": "New scripts/test_normalize_eol.py: stdlib unittest, LF endings, '#!/usr/bin/env python3' shebang, git mode 100755 (git add --chmod=+x). Each case builds a tempdir git repo (TemporaryDirectory/addCleanup) with a .gitattributes, writes a file, pipes the hook JSON {\"tool_input\":{\"file_path\":<path>}} into bash scripts/normalize-eol.sh, and asserts bytes. Cases: CRLF arm (`* text=auto eol=crlf`): LF file -> CRLF, mixed file -> all CRLF; LF arm (`* text=auto eol=lf`): CRLF file -> LF; already-correct file stays byte-identical (both arms); no eol declared -> untouched; `*.png binary` (or -text) file in a CRLF repo containing \\n bytes -> untouched; file outside any repo -> untouched; empty/missing file_path -> exit 0, nothing written; symlinked file (alias.lua -> target.lua in a CRLF repo) -> target converted AND alias still a symlink — this case is decorated @unittest.expectedFailure with a comment naming DC-05, so the suite stays green until the fix lands. Docs: CLAUDE.md:9 test-file count (three -> four unit-test files, covering the hook too); add 'python3 scripts/test_normalize_eol.py — the line-ending hook (N cases)' to the Build/test list (:89-91); rewrite :96 to point at the test as the harness, keeping the manual /reload-plugins Write|Edit trigger only as a supplementary check on the installed copy. DEPENDENCIES.md: add the command to the test block (:29-31), update the python3/unittest row (:66 'three test files' -> four, cite scripts/test_normalize_eol.py:1), and cite the new test in the git (:45, :67) and perl (:46) rows' evidence.",
+   "steps": "1. Write scripts/test_normalize_eol.py with all cases; run it: every case passes except the symlink one, which fails (then mark it expectedFailure). 2. chmod +x and stage with mode 100755. 3. Update CLAUDE.md :9, :89-91, :96 and DEPENDENCIES.md rows. 4. Commit 'DC-04: Add an automated test for the line-ending hook'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; python3 scripts/test_normalize_eol.py (OK, expected failures=1); git ls-files -s scripts/test_normalize_eol.py shows 100755; grep -c $'\\r' scripts/test_normalize_eol.py == 0",
+   "smoke": ""
+  },
+  {
+   "id": "DC-05",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Line-ending hook: resolve symlinks so the target is converted and the link survives",
+   "depends_on": [
+    "DC-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-R-03"
+   ],
+   "spec": "scripts/normalize-eol.sh: immediately after the empty and -f guards (:31-32) and before file_dir/repo_root/abs_file/rel_path (:35-41), add file_path=\"$(readlink -f -- \"$file_path\")\" || exit 0 then [[ -f \"$file_path\" ]] || exit 0, with a one-line comment: perl -i on a link path replaces the link with a regular file and leaves the target unconverted; resolving first lets the target's own repo and .gitattributes decide. scripts/test_normalize_eol.py: remove @unittest.expectedFailure from the symlink case; add a case where the link lives in one repo and the target outside any repo (untouched, link kept). Update the CLAUDE.md :36 hook bullet and the test case count if stated.",
+   "steps": "1. Remove expectedFailure from the symlink case and add the cross-repo link case; run: red. 2. Add the readlink -f resolution. 3. Rerun green. 4. Update CLAUDE.md wording/count. 5. Commit 'DC-05: Resolve symlinks in the line-ending hook before rewriting'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; python3 scripts/test_normalize_eol.py (OK, no expected failures); bash -n scripts/normalize-eol.sh; grep -n 'readlink -f' scripts/normalize-eol.sh",
+   "smoke": ""
+  },
+  {
+   "id": "DC-06",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Author docs/ARCHITECTURE.md hub and fix the audit agent's documentation-lane prompt",
+   "depends_on": [
+    "DC-01",
+    "DC-03",
+    "DC-05"
+   ],
+   "effort": "L",
+   "finding_ids": [
+    "DC-A-01",
+    "DC-A-02",
+    "DC-A-03",
+    "DC-A-05",
+    "WAS-A-20",
+    "DC-A-10"
+   ],
+   "spec": "New docs/ARCHITECTURE.md (documentation-§8 Substitutes #3) with exactly five sections in order: Overview; Module Map (the file-and-path map moved out of CLAUDE.md:21-40 'Module/package map', updated for DC-01..DC-05, with one subsection or callout naming the path-addressed surfaces whose rename breaks callers: bin/dev-copilot-profile and bin/ka0s-bounded names, the script paths in hooks/hooks.json, profiles/wow/<name>.md overlay names, the ~/.claude/dev-copilot/bin/ka0s-bounded symlink path, commands/agents names = slash/agent names); Known Limitations (bounded-runs matcher is a tokenizer not a parser, plugin cache is a separate installed copy, line-ending hook only acts where .gitattributes declares eol, etc. — only real limitations from CLAUDE.md/README); '## Documentation map' registering README.md, CLAUDE.md, DEPENDENCIES.md, docs/ARCHITECTURE.md, LICENSE as rows, the commands/, agents/ and profiles/wow/ .md trees as directory rows (executable specs, not docs), and docs/superpowers/, docs/audits/<date>/ and docs/reviews/<date>/ once each as frozen stores; '## Documented deviations' reading 'None.' (no decline ratified in this run; DC-A-12 trunk-based is resolved upstream in WAS). CLAUDE.md: replace the Module/package map body with a short pointer to docs/ARCHITECTURE.md § Module Map (keep the version-SSOT and keep-LF/+x footguns as one-liners if they are load-bearing), update the docs/ bullet (:38) and the doc-set bullet (:119) to say a tooling repo carries the reduced hub; README.md: link the hub where docs are listed. agents/wow-standards-audit.md: (a) rewrite :80-86 so the documentation-lane register read is docs/ARCHITECTURE.md § ## Documented deviations in both WowAddonStandards and dev-copilot, a missing hub is itself a documentation-§8 finding, and the repo's GitHub issue store (via gh) remains the second input — the phrase 'neither repo has a' must be gone; (b) :216-220 drop 'it is expected to fail' and the '11 of 11 addons failing it ... 107 survivors ...' census, keeping the check itself; (c) :278 replace 'The launcher's left-click on rungs (a) and (b)' with the current launcher-§2 behaviour read from ../WowAddonStandards standards/standards/launcher.md on the feature branch (left-click while disabled prints the refusal line and writes nothing; right-click opens the panel) without rung letters; (d) check (c) at :343: name both mandatory carve-outs '*.sh text eol=lf' and '*.py text eol=lf' (line-endings-§3), or defer to 'the line-endings-§3 carve-outs per AUDIT.md (c)'. If WowAddonStandards' WAS-R-08 quoting fix for check (e) has landed on its feature branch, mirror it into the copy at :345-350 in this same commit; otherwise leave (e) alone.",
+   "steps": "1. Read documentation-§8 (Substitutes #3) and launcher-§2 from ../WowAddonStandards on feat/2026-10-07-review-audit-remediation. 2. Write docs/ARCHITECTURE.md with the five sections, moving the CLAUDE.md map. 3. Shrink CLAUDE.md:21-40 to a pointer; fix :38 and :119; link from README. 4. Edit agents/wow-standards-audit.md (a)-(d). 5. Run the gate and the greps. 6. Commit 'DC-06: Add the docs/ARCHITECTURE.md hub and fix the audit agent's documentation-lane prompt'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; test -f docs/ARCHITECTURE.md && grep -c '^## ' docs/ARCHITECTURE.md == 5 with headings Overview, Module Map, Known Limitations, Documentation map, Documented deviations; ! grep -rn 'neither repo has a' agents/; ! grep -n 'expected to fail\\|11 of 11\\|rungs (a) and (b)' agents/wow-standards-audit.md; grep -n '\\*.py text eol=lf\\|line-endings-§3 carve-outs' agents/wow-standards-audit.md; every .md in git ls-files is covered by exactly one Documentation map row or directory row",
+   "smoke": ""
+  },
+  {
+   "id": "DC-07",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Finish the wow-addon rename sweep and add the tooling kind to user-facing descriptions",
+   "depends_on": [
+    "DC-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-A-07",
+    "DC-R-10",
+    "DC-R-15"
+   ],
+   "spec": "Replace '(WowAddonStandards, wow-addon)' with '(WowAddonStandards, dev-copilot)' in agents/wow-standards-audit.md:3 frontmatter description, commands/wow-standards-audit.md:2 description and README.md:73 documentation-lane line. CLAUDE.md:110: trim the 'only intentional live mentions of wow-addon' list to what still exists (the README migration note and frozen dated bundles; plus the CLAUDE.md history sentences :5/:11/:82/:152 if counted) and drop 'unchanged until phase 2'. CLAUDE.md:91 'including both symlinks' -> 'including the runner symlink' (preserve whatever case count DC-01..DC-03 left). CLAUDE.md:139 audit-rotation bullet: 'WowAddonStandards and wow-addon (now this repo ...)' -> 'WowAddonStandards and dev-copilot (via its .dev-copilot kind=tooling)'. Add 'tooling repos' to the kind list in README.md:5 (keep the retired-plugin link) and README.md:51 ('### WoW-only — WoW addon, LibKa0s, WowAddonStandards and tooling repos'), and to plugins[0].description in both .claude-plugin/plugin.json and .claude-plugin/marketplace.json, the two strings byte-identical; marketplace top-level description unchanged; no version bump. The wow-addon clauses in profiles/wow/issue-details.md:9 / issue-summary.md:9 are removed by DC-08, not here.",
+   "steps": "1. grep -rn 'wow-addon' --exclude-dir=docs . to list live mentions. 2. Apply the edits above. 3. Confirm the two manifest descriptions are identical. 4. Commit 'DC-07: Finish the wow-addon rename sweep and name the tooling kind'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; ! grep -rn 'WowAddonStandards, wow-addon' agents commands README.md; python3 -c \"import json;a=json.load(open('.claude-plugin/plugin.json'))['description'];b=json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['description'];assert a==b and 'tooling' in a\"; grep -rn 'wow-addon' --exclude-dir=docs . lists only the CLAUDE.md:110 allowlisted mentions, the README migration note and issue overlays pending DC-08",
+   "smoke": ""
+  },
+  {
+   "id": "DC-08",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Issue commands: one shared meaning of 'all' in a WoW repo",
+   "depends_on": [
+    "DC-07"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "DC-R-04"
+   ],
+   "spec": "Use one identical '- **`all`** → ...' bullet in profiles/wow/issue-audit.md (~:22), profiles/wow/issue-triage.md (~:18), profiles/wow/issue-summary.md (~:9) and profiles/wow/issue-details.md (~:9): every row of WowAddonStandards/standards/ADDONS.md — the addon table, the library table (LibKa0s) and the docs/tooling table (WowAddonStandards, dev-copilot) — each repo tagged with its kind (addon|library|standards|tooling); if ADDONS.md is unreachable, fall back to sibling directories with a .toc plus the three known upstreams and say the roster was inferred. Drop the 'plus wow-addon for as long as that legacy repo still holds issues' clause everywhere and remove wow-addon from issue-summary's scan list (deliberately drops the archived repo's closed issues from done/all views). In issue-audit and issue-triage, state that upstream rows (library/standards/tooling) get the base sweep only, while addon-specific checks (the Lua TODO/stub sweep, the addon-only checks the overlay adds) run on addon rows only; repo-name matching for a '<repo>' argument uses the same roster. README.md:42-49 and the paragraph after the table ('all in the issue commands means...'): align so audit/triage/details/summary all describe 'all' as the ADDONS.md roster including upstreams. scripts/check_overlays.py must still pass (no marker/section changes).",
+   "steps": "1. Read ../WowAddonStandards/standards/ADDONS.md to confirm the three tables and their headings. 2. Write the shared bullet once and paste it identically into the four overlays; add the kind-gating sentence to issue-audit and issue-triage. 3. Align README. 4. Verify the bullets are byte-identical with a diff. 5. Commit 'DC-08: Give the issue commands one meaning of all in a WoW repo'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; for f in issue-audit issue-triage issue-summary issue-details; do grep -m1 '^- \\*\\*`all`\\*\\*' profiles/wow/$f.md; done | sort -u | wc -l == 1; ! grep -rn 'wow-addon' profiles/wow/",
+   "smoke": ""
+  },
+  {
+   "id": "DC-09",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Replace rotted worked examples in specs with durable citations",
+   "depends_on": [
+    "DC-06"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "DC-A-09"
+   ],
+   "spec": "commands/wow-revendor-libka0s.md:322: '.luacheckrc's exclude_files, which in a consumer usually excludes libs/ and tests/' -> 'libs/ and tests/_kit/'. commands/wow-revendor-libka0s.md:214 and commands/wow-new-addon.md:155,157,161-162: convert the LootHistory Compat.lua:194-201/:213-214/:237, OptionsCompose.lua:182 and PrettyChat '4957 lines ... 120-line enUS.lua' examples to symbol/heading citations (Repo file `FunctionName`) or pin them as 'as of <Repo>@<sha>'; do not re-derive line numbers. Replace the dead MultiMeters settings/Schema.lua:670 C.LSMValues example with its current home by symbol (it moved to OptionsSetup.lua; confirm with grep in ../MultiMeters). 'seven of the eleven repos' -> drop the count or say 'every addon' if 11/11 (verify). The '359 hits ... all in GlobalStrings.lua' SLASH_ figure: either give the exact grep command and scope that produced it, or drop the figure. profiles/wow/agent-review.md:313-321 and profiles/wow/bump-version.md:298: fix the 'five addons are permanent perf-skippers' claim — replace the count with the rule (an addon without tests/perf.lua or PerfSetup.lua records perf as a skip with its reason) or the measured set named by repo with a command to re-measure. Keep spec instructions otherwise unchanged; check_overlays.py must pass.",
+   "steps": "1. For each cited example, grep the sibling repo to find the symbol/current home. 2. Edit the four files. 3. grep the edited files for remaining '<File>.lua:<n>' examples pointing into sibling addons and convert any that rotted. 4. Commit 'DC-09: Replace rotted worked examples with durable citations'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; ! grep -n 'excludes `libs/` and `tests/`' commands/wow-revendor-libka0s.md; ! grep -rn 'C.LSMValues' commands profiles; ! grep -rn 'five addons are permanent perf-skippers\\|seven of the eleven' commands profiles agents",
+   "smoke": ""
+  },
+  {
+   "id": "DC-10",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Cross-addon pass: mktemp roots file and drop the frozen v1.56.0 baseline",
+   "depends_on": [
+    "DC-09"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-R-05",
+    "DC-R-11"
+   ],
+   "spec": "profiles/wow/agent-review.md cross-addon pass: create the roots file with roots=$(mktemp) before the loop and use \"$roots\" in place of /tmp/roots.txt in the tee (:354), the cut -f1 | uniq -d collision check (:355) and the evidence-table count (:440, wc -l < \"$roots\"), with rm -f \"$roots\" afterwards and a one-line citation of the shared-path rule in commands/wow-automated-tests.md (~:97-100). Baseline table (:421-456): keep the measurement commands, drop the frozen 'Recorded' figures and every 'v1.56.0' baseline mention (:421, :429, :432, :448, :456), and say to measure at review time against the LibKa0s tag the addons currently vendor; remove the 'tag moved -> stale brief' branch that the frozen figures made permanent.",
+   "steps": "1. Edit the cross-addon block to use mktemp. 2. Rework the baseline table into commands-only. 3. Run check_overlays.py. 4. Commit 'DC-10: Use a private roots file and measure the cross-addon baseline at review time'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; ! grep -n '/tmp/roots.txt' profiles/wow/agent-review.md; ! grep -n 'v1\\.56\\.0' profiles/wow/agent-review.md; grep -n 'mktemp' profiles/wow/agent-review.md",
+   "smoke": ""
+  },
+  {
+   "id": "DC-11",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Push-safety wording: wow-new-addon roster step and finalize push rejection",
+   "depends_on": [
+    "DC-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-R-07",
+    "DC-R-12"
+   ],
+   "spec": "commands/wow-new-addon.md: add Edit to allowed-tools (:4 -> [Read, Glob, Grep, Bash, Edit, Write, WebFetch]); rewrite step 10 (~:246): add the addon's row to standards/ADDONS.md in the sibling ../WowAddonStandards checkout with Edit, on a feature branch (feat/<date>-add-<addon>), and commit there; never push (only /dev-copilot:finalize pushes, CLAUDE.md:147); if the checkout is absent or has a dirty tree, do not touch it and tell the user the row still needs adding. commands/finalize.md 3e (~:114): replace the git pull --ff-only recovery with: on push rejection, stop that repo; optionally git fetch origin and report how far origin/<default> moved (git rev-list --left-right --count); paste the push output verbatim; leave the reconciliation to the user; never --force, rebase or merge origin in. Check profiles/wow/finalize.md for any 3e override that repeats the pull and align it.",
+   "steps": "1. Edit wow-new-addon.md frontmatter and step 10. 2. Edit finalize.md 3e (and the overlay if it repeats it). 3. Run check_overlays.py. 4. Commit 'DC-11: Tighten push wording in wow-new-addon and finalize'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; grep -n '^allowed-tools:.*Edit' commands/wow-new-addon.md; ! grep -n \"can't push there\" commands/wow-new-addon.md; ! grep -rn 'pull --ff-only' commands/finalize.md profiles/wow/finalize.md",
+   "smoke": ""
+  },
+  {
+   "id": "DC-12",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "US-English sweep over live specs and root docs",
+   "depends_on": [
+    "DC-06",
+    "DC-07",
+    "DC-08",
+    "DC-09",
+    "DC-10",
+    "DC-11"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-A-11"
+   ],
+   "spec": "Run one sweep with the canonical BRITISH and ALLOWED lists copied whole from ../WowAddonStandards standards/standards/localization.md (localization-§5, the Lua block at ~:189-197) over CLAUDE.md, README.md, DEPENDENCIES.md, docs/ARCHITECTURE.md, agents/, commands/, profiles/ and comments in scripts/; fix every hit to US spelling (labelled->labeled, catalogue->catalog, honour->honor, cancelled->canceled, generalis->generaliz, summaris->summariz incl. the commands/wow-revendor-libka0s.md 'Step 8 — Summarise' heading -> 'Summarize', judgement->judgment), step headings and output-file instructions first. Do not touch docs/superpowers/, docs/audits/, docs/reviews/ (frozen). Do not change identifiers, file names or quoted upstream text (e.g. a quoted standard heading) — if a British form is quoted from another repo, leave it and note it. No new prose-check script in this run.",
+   "steps": "1. Write the sweep as a throwaway command in the session scratchpad (not in the repo), using the canonical lists. 2. Fix hits. 3. Re-run: remaining hits only under docs/superpowers/ (expected TOTAL 5). 4. Commit 'DC-12: Sweep live specs and docs to US English'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; the scratchpad sweep over the repo reports TOTAL 5, all under docs/superpowers/ (frozen bundles under docs/audits and docs/reviews excluded)",
+   "smoke": ""
+  },
+  {
+   "id": "DC-13",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "DEPENDENCIES.md: command-based inventory, fresh citations and reasoned version floors",
+   "depends_on": [
+    "DC-12"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "DC-A-08",
+    "DC-R-09"
+   ],
+   "spec": "DEPENDENCIES.md:12-16: replace the fixed '61 tracked files: 43 Markdown ... 3 design/plan notes' inventory with the git ls-files commands that produce it (e.g. git ls-files | wc -l; git ls-files '*.md' | wc -l) and describe docs/ by role (docs/ARCHITECTURE.md hub plus frozen stores docs/superpowers/, docs/audits/, docs/reviews/) with no count; describe the Python files as the modules plus one test each (detector, checker, matcher, line-ending hook) without hard counts where possible. Re-cite against the final tree: scripts/bounded-runs-hook.sh call line (was :33, ~:30), profiles/wow/finalize.md gate commands (was :28-29, ~:32-33), commands/wow-revendor-libka0s.md luacheck command (was :316, ~:317), and every other file:line in the Evidence columns that DC-01..DC-12 moved (scripts/ka0s-bounded, scripts/normalize-eol.sh, hooks/hooks.json, CLAUDE.md:95 etc.) — check each with sed -n. Version floors (:44-47): give python3 >=3.8, git >=2.34, perl >=5.10 and coreutils >=8.30 a one-clause reason or replace with 'any recent' (no research into true minimums). CLAUDE.md/hub docs/ inventory: make sure docs/superpowers/plans/2026-10-04-phase2-rename-ripple.md is covered (by the hub's frozen-store row after DC-06, or listed where the CLAUDE.md docs/ pointer remains).",
+   "steps": "1. For every file:line in DEPENDENCIES.md, print the cited line and fix any that moved. 2. Replace the inventory paragraph. 3. Annotate the floors. 4. Commit 'DC-13: Make DEPENDENCIES.md inventory command-based and re-cite its evidence'.",
+   "verify": "python3 scripts/test_detect_profile.py && python3 scripts/test_check_overlays.py && python3 scripts/test_bounded_runs.py && python3 scripts/check_overlays.py (prints 'OK: 13 overlays') && python3 -c \"import json; [json.load(open(f)) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json')]\"; python3 scripts/test_normalize_eol.py; ! grep -n '61 tracked\\|62 tracked\\|43 Markdown\\|44 Markdown' DEPENDENCIES.md; every `path:N` cite in DEPENDENCIES.md resolves (scripted: extract path:line pairs, check line <= wc -l and the line is non-blank); sed -n 30p scripts/bounded-runs-hook.sh shows the python call",
+   "smoke": ""
+  },
+  {
+   "id": "DC-14",
+   "milestone": "M1",
+   "repo": "dev-copilot",
+   "title": "Delete the stale origin/main branch (owner go-ahead only)",
+   "depends_on": [],
+   "effort": "S",
+   "finding_ids": [
+    "DC-A-13"
+   ],
+   "spec": "Remote-only housekeeping, no commit: origin/main points at d2ed30d (initial commit, ancestor of master); default branch is master. Gated: only after the owner explicitly approves, run git push origin --delete main in ../dev-copilot. Until then (and if declined) record the item in exceptions.tsv as 'awaiting owner go-ahead' / 'declined'. Proof when done: git ls-remote --heads origin main prints nothing. Never touch master or any other ref.",
+   "steps": "1. Confirm git merge-base --is-ancestor origin/main master. 2. Ask the owner at the final go-ahead (bundle it with the merge approval). 3. On yes: git push origin --delete main; add an exceptions.tsv row with the proof command. On no: exceptions.tsv row 'declined by owner'.",
+   "verify": "git ls-remote --heads origin main (empty after deletion); exceptions.tsv row DC-14 present with that command",
+   "smoke": ""
+  }
+ ]
+}

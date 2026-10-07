@@ -1,0 +1,224 @@
+{
+ "repo": "MultiMeters",
+ "items": [
+  {
+   "id": "RV-MM",
+   "milestone": "M2",
+   "title": "Re-vendor LibKa0s v1.71.0 from the local tag; record the unrecorded v1.69.0/v1.70.0 re-vendors as a span bundle and de-tag the stale library/kit stamps",
+   "depends_on": [
+    "LK-12"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "MM-A-01",
+    "MM-A-02"
+   ],
+   "spec": "Mechanical re-vendor per the dev-copilot wow-revendor-libka0s convention, from the LOCAL LibKa0s tag v1.71.0 (../LibKa0s, tag not pushed; OWNER_SCOPE 5).\nEnd state:\n- libs/LibKa0s/ is byte-identical to ../LibKa0s's LibKa0s/ payload at v1.71.0 and tests/_kit/ byte-identical to its testkit/ (copy both whole; delete files the tag dropped). Nothing else under libs/ or tests/_kit/ changes.\n- CLAUDE.md last line rolls to 'Bundles [LibKa0s](https://github.com/tusharsaxena/LibKa0s) v1.71.0 (MIT).' (the provenance line is the one place a tag is owed).\n- MM-A-01 (cluster C03, third firing): new span bundle docs/revendor/<date>-v1.69.0-v1.70.0/ for the bare re-vendor commits 824999b (v1.69.0, kit 37, adds WidgetsLineChart) and 1ee53cf (v1.70.0): 01_DELTA.md whose line 1 is exactly 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)', with the base (v1.68.1, the provenance line before 824999b) and the per-file LibStub minors/kit revision stated in the body; 05_SUMMARY.md with one line per tag: carried by the sweep, nothing adopted, WidgetsLineChart and WidgetsAutocomplete unused by MultiMeters. Match the file set and shape of the newest existing bundle docs/revendor/2026-10-04-v1.68.1/ for anything the convention also requires.\n- New docs/revendor/<date>-v1.71.0/ bundle (delta base v1.70.0 from the CLAUDE.md provenance line, never the library's previous tag): per-file minor deltas (WidgetsLineChart 3, WidgetsAutocomplete 2, Slash key 20.2, Env minor 2, OptionsIdList minor 4, kit revision 38 with Kit.secret), which majors MultiMeters consumes, contract changes under unchanged signatures, and a section 'Not adopted in this run' listing every adoption candidate (Kit.secret / the opt-in issecretvalue installer, LineChart and Autocomplete changes as unused surfaces, anything else the delta surfaces) with one line each. No interview, no GitHub issue filing (OWNER_SCOPE 5). Effects the fresh payload brings by itself are recorded there: kit rev 38 '--list' Totals count only cases that run and declared skips get a '| Skipped | N |' row (LK-01); Slash ParseValue now refuses nan/inf (LK-05) for /mm set; Env minor 2 drops the library's own bare-global rung (LK-06; MultiMeters' own library-absent stub rung is MM-07's job).\n- MM-A-02: remove the stale tag/kit stamps rather than bumping them (a bumped stamp goes stale on the next re-vendor): docs/settings-panel.md:29 drops 'v1.68.1' (or points at the CLAUDE.md provenance line); docs/testing.md:597 and DEPENDENCIES.md:35 drop '(kit 36)'/'kit 36'. Leave the rest of DEPENDENCIES.md:35 (the lizard pin) for MM-09. tests/_kit/framework.lua is payload: never edit it.\n- docs/test-cases.md regenerated with the new kit (lua tests/run.lua --list > docs/test-cases.md) and the README Tests badge set to the new Total if it moved.\n- If the new payload turns any test red, adapt THIS addon's stubs/fixtures/tests to the v1.71.0 contract in the same commit (never edit libs/ or tests/_kit/, never weaken an assertion) and say so in the commit body; the commit must end green.\nCommit subject: 'RV-MM: re-vendor LibKa0s v1.71.0; record the v1.69.0-v1.70.0 span'.",
+   "steps": "1. Confirm ../LibKa0s has the local tag v1.71.0 (git -C ../LibKa0s tag -l v1.71.0) and read its CHANGELOG v1.71.0 block.\n2. rsync --delete ../LibKa0s/LibKa0s/ libs/LibKa0s/ and ../LibKa0s/testkit/ tests/_kit/ from a checkout of the tag (git -C ../LibKa0s worktree or git archive v1.71.0 into the scratchpad; remove the temp worktree afterwards).\n3. Roll the CLAUDE.md provenance line.\n4. Run lua tests/run.lua; fix any red in addon-side code/tests only.\n5. Write docs/revendor/<date>-v1.69.0-v1.70.0/ (01_DELTA.md, 05_SUMMARY.md, plus whatever else the existing bundle shape holds) from git show 824999b / 1ee53cf and ../LibKa0s's CHANGELOG.\n6. Write docs/revendor/<date>-v1.71.0/ with the 'Not adopted in this run' section.\n7. De-tag docs/settings-panel.md:29, docs/testing.md:597, DEPENDENCIES.md:35 (kit part only).\n8. Regenerate docs/test-cases.md; update the README badge.\n9. Green gate, then commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; S=$(mktemp -d) && git -C ../LibKa0s archive v1.71.0 LibKa0s testkit | tar -x -C $S && diff -r $S/LibKa0s libs/LibKa0s && diff -r $S/testkit tests/_kit (no differences); tail -1 CLAUDE.md names v1.71.0; head -1 docs/revendor/*-v1.69.0-v1.70.0/01_DELTA.md is exactly 'Delta: LibKa0s v1.69.0 -> v1.70.0 (span: v1.69.0 v1.70.0)'; grep -n 'v1.68.1\\|kit 36' docs/settings-panel.md docs/testing.md DEPENDENCIES.md prints nothing; the AUDIT.md vendored-tag walk (every tag between the first recorded and v1.71.0 has a docs/revendor bundle) reports no unrecorded tag",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-01",
+   "milestone": "M3",
+   "title": "Merge pets: an owner's own figures add to a cell its pet created earlier in the column instead of replacing it",
+   "depends_on": [
+    "RV-MM"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "MM-R-01",
+    "MM-R-02"
+   ],
+   "spec": "Bug (high, must). modules/Aggregator.lua: with Merge pets on (settings/Schema.lua:1247), foldPet's absent-cell branch (~:265-273) creates the owner's cell from the pet's figures via setCell; when the owner's own source arrives later in the same column, placeSource's own path (~:927-928) calls setCell, which replaces row.values[statKey] outright (~:240), losing the pet's numbers. Wrong total, rate, percent and /mm export (modules/Export.lua:292) whenever the pet out-ranks its owner in a column.\nEnd state:\n- foldPet's absent-cell branch marks the cell it creates as pet-seeded (e.g. cell.petSeeded = true).\n- The own-source write, when it finds a pet-seeded cell for that statKey, adds instead of replacing: total = own + pet, and rate summed when both are numbers, under exactly foldPet's guards (Secrets.CanCompare2(cell.total, src.totalAmount) and both type()=='number'). The owner's maxAmount, deathRecapID and deathTime take the owner's values (and row.deathRecapID promotion is unchanged); the pet-seeded mark is cleared. If the guards refuse (secret operand), the owner's own figures replace the cell as before and the refusal is counted in the same per-pass refusal tally foldPet's refusals use, so it is reported, never approximated.\n- The counted-stat (isCount) and deaths paths are unchanged. Owner-before-pet order behaves exactly as today.\n- setCell/placeSource stay at or below CCN 15 (extract a small mergeOwnIntoPetSeeded helper if needed); Aggregator.lua stays at or below its current 1308 lines + the helper, under the 1500 cap.\n- tests/test_aggregator.lua: NEW case (MM-R-02; do not rewrite the existing order-only case at :341) 'A pet ahead of its owner in a column still sums into the owner' with sources PET 400 -> BETA 200 -> ALPHA 100 (PET owned by ALPHA), mergePets on, out of combat: ALPHA DamageDone.total == 500 and rate == pet rate + owner rate; plus a case where the guard refuses (secret owner total via tests/mock_secrets.lua) asserting the owner's own value is shown and one refusal is counted. '-- red under:' comments (testing-§12) naming the replace-in-setCell behaviour.\n- docs/data-flow.md (or wherever the pet fold is described) states the order-independence.\nCommit subject: 'MM-01: ...' (finding ids MM-R-01 + MM-R-02 in the body).",
+   "steps": "1. Red first: add the pet-first case to tests/test_aggregator.lua next to the :305/:320 pet cases; run lua tests/run.lua and see 'expected 500, got 100'.\n2. Add the refusal case; see it red or note why it is already green.\n3. Implement the pet-seeded mark and the summing own-source write in modules/Aggregator.lua.\n4. Check complexity of setCell/placeSource with the kit complexity suite; split if above 15.\n5. Update the pet-fold paragraph in docs/data-flow.md / docs/ARCHITECTURE.md if it describes the order.\n6. Regenerate docs/test-cases.md and the README badge.\n7. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; lua tests/run.lua --list lists and the run passes the new 'pet ahead of its owner' case passing; git stash the Aggregator.lua change and confirm the new case fails (red-first evidence noted in the commit body)",
+   "smoke": "With Merge pets ticked, on a pet class (hunter/warlock) whose pet out-damages you in a fight, check after combat that your row's Damage Done total equals your own plus your pet's damage (compare against Blizzard's meter with Merge pets equivalents) on Current and Overall, and that /mm export shows the same number.",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-02",
+   "milestone": "M3",
+   "title": "Secrets.PlainTruth is the one boolean probe; Aggregator, Tooltip and the Provider diagnostics use it and the field census no longer short-circuits on booleans",
+   "depends_on": [
+    "RV-MM",
+    "MM-01"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "MM-R-06",
+    "MM-R-07"
+   ],
+   "spec": "Invariant tidy (CLAUDE.md: core/Secrets.lua is the only file that inspects a value).\nEnd state:\n- core/Secrets.lua exports Secrets.PlainTruth(v): returns false when not Secrets.CanAccess(v), else (v and true or false). Doc comment carries the rationale now on modules/Aggregator.lua:440-449.\n- The file-local plainTruth copies at modules/Aggregator.lua:446 and modules/Tooltip.lua:224 are deleted and every call site uses Secrets.PlainTruth (Tooltip keeps its NS.Secrets-absent tolerance by resolving NS.Secrets at call time and returning false when absent, or by relying on Secrets loading first per the TOC; pick the one tests/test_loadorder.lua proves). Any seam re-export used by Aggregator_Identity / Tooltip_Lines is repointed.\n- MM-R-07: modules/Provider.lua:551 ('src.isLocalPlayer == true') and :649 ('isLocal == true') go through Secrets.PlainTruth; noteValue at ~:676 checks 'not Secrets.IsSecret(value)' BEFORE the type(value)=='boolean' short-circuit so a secret boolean never reaches tostring/table keying (core/Diagnostics_Identity.lua:159/:208 checked for the same pattern and fixed alike if present).\n- tests/test_secrets.lua: cases for PlainTruth (plain true/false/nil/non-boolean truthy, secret value -> false) and a Provider diagnostics case with a secret isLocalPlayer (tests/mock_secrets.lua; or Kit.secret if the v1.71.0 kit makes it simpler) asserting no raise and no secret key in the census. '-- red under:' notes.\n- grep finds no 'local function plainTruth' outside core/Secrets.lua.",
+   "steps": "1. Red first: add the test_secrets PlainTruth cases (fail: function missing) and the secret-isLocalPlayer diagnostics case.\n2. Add Secrets.PlainTruth; replace both local copies and their call sites.\n3. Route Provider.lua's two probes through it; reorder noteValue's guard.\n4. Regenerate docs/test-cases.md and README badge.\n5. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; grep -rn 'local function plainTruth' modules core settings prints nothing; grep -n 'isLocalPlayer == true\\|isLocal == true' modules/Provider.lua prints nothing",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-03",
+   "milestone": "M3",
+   "title": "A partial roster is rebuilt at most once per aggregate pass, not on every lookup",
+   "depends_on": [
+    "RV-MM",
+    "MM-02"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "MM-R-03"
+   ],
+   "spec": "modules/Roster.lua ensure() (~:537-541) returns build() whenever cache.partial is set, and Roster.Get / IsGroupMember / OwnerOf / LocalGUID all call ensure(), so one 7-column Aggregator.Build over a 3-member group with one unresolved unit costs ~60 UnitGUID calls instead of 3, every 0.25 s while the roster stays partial. The comments at :405 and :535 claim one walk per refresh.\nEnd state:\n- New public Roster.BeginPass(): arms exactly one retry of a partial roster (e.g. cache.retryArmed = true). ensure() rebuilds when there is no cache.group, or when cache.partial AND the retry is armed; build() disarms. A complete roster is never rebuilt by ensure() (unchanged). Invalidation paths (Roster.Refresh, Roster.Forget, GROUP_ROSTER_UPDATE handling) keep their current behaviour.\n- modules/Aggregator.lua Build calls Roster.BeginPass() once at the start of the pass, before any lookup, so every later lookup in that pass answers from cache. Callers outside a pass (tooltip, drill-down) read the cache.\n- The comments at Roster.lua:405 and :535 say what the code now does (one retry per aggregate pass); the DebugSteady partial-line gating is unchanged.\n- tests/test_roster.lua (or test_aggregator.lua): a case that counts UnitGUID calls (or build() runs) during one multi-column Aggregator.Build over a partial roster and asserts one rebuild for the pass (red: today it rebuilds per lookup); a case that a second pass retries again and a completed roster stops retrying. '-- red under:' notes.\n- Optional (do it if cheap): an offline 'rosterPartial' scenario in tests/perf.lua beside rosterBurst (performance-§9) and its measured figures in docs/performance.md.",
+   "steps": "1. Red first: the rebuild-count case; confirm it fails with the per-lookup rebuild count.\n2. Add Roster.BeginPass and the armed retry in ensure()/build().\n3. Call it at the top of Aggregator.Build.\n4. Fix the two comments; optionally add the perf scenario and figures.\n5. Regenerate docs/test-cases.md and README badge; update docs/module-map.md's Roster exports.\n6. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; grep -n 'BeginPass' modules/Roster.lua modules/Aggregator.lua docs/module-map.md shows the definition, the one call and the doc row",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-04",
+   "milestone": "M3",
+   "title": "Renaming a window to a different case of its own name keeps the name instead of appending ' 2'",
+   "depends_on": [
+    "RV-MM",
+    "MM-03"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "MM-R-04"
+   ],
+   "spec": "modules/WindowManager.lua: uniqueName(base) (~:187-194) asks M.Resolve, which matches names case-insensitively (~:120-127) and therefore counts the window being renamed as a collision, so Rename 'Raid' -> 'raid' stores 'raid 2' (the panel guard at settings/Windows.lua:290 only catches exact matches).\nEnd state: uniqueName(base, selfId) takes an optional id; a Resolve hit whose cfg.id == selfId is not a collision (both for base and for every 'base N' probe). M:Rename (~:318-330) passes cfg.id; create/duplicate/new callers pass nothing and behave as today. tests/test_windowmanager.lua gains 'Rename to a different case of its own name keeps that name' (Raid -> raid stores 'raid'; renaming to another window's name in a different case still gets ' 2'). '-- red under:' note. docs/slash-dispatch.md or docs/ARCHITECTURE.md only if they describe the uniquing rule.",
+   "steps": "1. Red first: the Raid -> raid case in tests/test_windowmanager.lua.\n2. Add the selfId parameter and pass it from Rename.\n3. Regenerate docs/test-cases.md and README badge.\n4. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines",
+   "smoke": "Rename a window 'Raid' to 'raid' from the Windows page and with /mm window rename (or the panel name field): the title shows 'raid', not 'raid 2'.",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-05",
+   "milestone": "M3",
+   "title": "Conformance 'Disabled 8' also drives the launcher right-click menu: only Enabled clickable, nothing written, nothing shown",
+   "depends_on": [
+    "RV-MM",
+    "MM-04"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "MM-A-08"
+   ],
+   "spec": "tests/test_disabled.lua 'Disabled 8' (~:479-:498) drives only obj.OnClick(obj,'LeftButton'); slash-commands §7 step 8 also needs the RightButton half, which the other ten addons already drive. End state: the case (or a sibling 'Disabled 8b' in the same section) sets enabled=false, resets __svWrites, calls obj.OnClick(obj,'RightButton') and opens the menu through the addon-local tests/mock_menu.lua (lift the openMenu helper from tests/test_launchersetup.lua:264 into a shared test helper or copy the pattern), then asserts: 'Enabled' is clickable, Locked / Test mode / Show window are grayed, #__svWrites()==0, #shownFrames(inst)==0, no chat line. Falsification comment (testing-§12): '-- red under: a menu builder that ignored isEnabled' or similar. No production code changes (the behaviour is library-owned and correct). Regenerate docs/test-cases.md and the README badge if the count moves.",
+   "steps": "1. Add the RightButton half; confirm it passes and temporarily break the isEnabled gate in a scratch copy of the descriptor to confirm it can go red (do not commit the break).\n2. Regenerate docs/test-cases.md/README badge.\n3. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; grep -n 'RightButton' tests/test_disabled.lua shows the new drive",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-06",
+   "milestone": "M3",
+   "title": "Remove the retired drill-down Back button machinery and its three tests",
+   "depends_on": [
+    "RV-MM",
+    "MM-05"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "MM-R-08"
+   ],
+   "spec": "Right-click replaced the drill-down Back button (Row.lua records it), but modules/DrillDown.lua still carries the backButtons table (:115), BACK_BUTTON_WIDTH/HEIGHT (:144-145), the lookups in Exit/ExitAll (:356, :372), AcquireBackButton (:802) and ReleaseBackButton (:826), and modules/Window.lua:1296-1297 calls ReleaseBackButton on every Render. End state: all of that is deleted; Exit/ExitAll keep every other effect; Window:Render no longer calls into DrillDown for a button. tests/test_drilldown.lua's three AcquireBackButton cases (~:376, :393, :405) are deleted. docs/module-map.md:338 drops AcquireBackButton/ReleaseBackButton from the exports; any other doc naming them (grep docs/) is corrected. Regenerate docs/test-cases.md and the README badge (count drops by three).",
+   "steps": "1. grep -rn 'BackButton\\|BACK_BUTTON\\|backButtons' to list every site.\n2. Delete the machinery, the Window.lua call and the three tests.\n3. Fix docs/module-map.md and any other doc hit.\n4. Regenerate docs/test-cases.md and README badge.\n5. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; grep -rn 'BackButton\\|BACK_BUTTON\\|backButtons' modules settings core tests/*.lua docs --include=*.lua --include=*.md (excluding frozen docs/audits, docs/reviews, docs/automated-tests, docs/revendor bundles) prints nothing",
+   "smoke": "Open a drill-down on a window, right-click to go back, switch views a few times: no stray Back button appears and the window renders normally.",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-07",
+   "milestone": "M3",
+   "title": "Library-absent NS.Meta drops the dead bare-global GetAddOnMetadata rung; its defending comments reworded",
+   "depends_on": [
+    "RV-MM",
+    "MM-06",
+    "LK-06"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "MM-A-05"
+   ],
+   "spec": "core/EnvSetup.lua NS.Meta (~:89-96): the LibKa0s-Env-absent branch keeps an '_G.GetAddOnMetadata' rung below the C_AddOns rung that no admitted client (## Interface 120100) can reach; the standard names this exact site as its worked case, and LK-06 drops the library's equivalent rung. End state: lines 93-95 deleted (NS.Meta = Env first, then C_AddOns.GetAddOnMetadata, then nil). No Compat shim. tests/test_envsetup.lua:146-160 case replaced (not weakened) by one that plants a bare _G.GetAddOnMetadata spy with C_AddOns and Env absent and asserts zero spy calls and a nil result; '-- red under:' note. Comments that defend the 'pre-11.x rung' are reworded to describe the two-rung ladder: core/EnvSetup.lua:84, tests/test_envsetup.lua:4, settings/Slash.lua:62-64 and core/PerfSetup.lua:92-94. .luacheckrc: drop GetAddOnMetadata from read_globals if nothing else reads it.",
+   "steps": "1. Red first: replace the test case; it fails while the rung exists.\n2. Delete the rung; reword the four comments; tidy .luacheckrc.\n3. Regenerate docs/test-cases.md/README badge if the count moved.\n4. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; grep -rn 'GetAddOnMetadata' core settings modules | grep -v C_AddOns | grep -v 'Env.GetAddOnMetadata' prints nothing; grep -rn 'pre-11.x' core settings tests/*.lua prints nothing",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-08",
+   "milestone": "M3",
+   "title": "1.1.0 Version History row tells players the minimap CLI path moved to global.minimap.shown",
+   "depends_on": [
+    "RV-MM",
+    "MM-07"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "MM-A-06"
+   ],
+   "spec": "launcher.md:78 makes a release-note sentence a MUST when a CLI path is renamed; e979ef0 (MM-16 of the previous run) renamed the minimap row's CLI path before 1.1.0, and README.md:97 (the 1.1.0 row) never said so, so an old macro hits the unknown-setting refusal with no notice. The finding's 'global.minimap.hide' is wrong: at 1.0.1 the row was profile-root minimap.hide with invert=true (settings/Schema.lua:1168 at that tag) through settings/Schema_Paths.lua's toDisplay/toStored seam. End state: the 1.1.0 row in README.md ## Version History gains one concrete sentence with no placeholders, e.g. 'The minimap setting moved: `/mm set minimap.hide true` is now `/mm set global.minimap.shown true`', with the value mapping verified from git (git show <1.0.1 release commit>:settings/Schema.lua and :settings/Schema_Paths.lua: if the 1.0.1 CLI took the display (shown) sense, true maps to true; if stored (hide) sense, true maps to false). Write the sentence in the README's player voice (de-AI pass). No version bump, no new row.",
+   "steps": "1. Find the 1.0.1 release commit (git log --oneline -- MultiMeters.toc / README Version History) and read how /mm set minimap.hide reached storage then.\n2. Write the one sentence into the 1.1.0 row.\n3. Green gate (doc tests), commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; grep -n 'global.minimap.shown' README.md shows the 1.1.0 row; tests/test_doc_structure.lua passes",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-09",
+   "milestone": "M3",
+   "title": "Docs quote the kit's sighted complexity suite, not raw lizard; un-pin lizard per documentation-§7",
+   "depends_on": [
+    "RV-MM",
+    "MM-08"
+   ],
+   "effort": "S",
+   "finding_ids": [
+    "MM-A-07"
+   ],
+   "spec": "Raw (blind) lizard without -L 1500 is quoted as the complexity check (anti-pattern #92) at DEPENDENCIES.md:98, docs/automated-tests/README.md:38 and docs/performance.md:393 (§4 Complexity code block); DEPENDENCIES.md pins lizard==1.24.0, which documentation-§7 rejects (parity, not a pinned version). End state: DEPENDENCIES.md:98 reads 'bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle'; docs/automated-tests/README.md:38 and docs/performance.md:393 read 'bash tests/_kit/run-automated-tests.sh --suite complexity'; DEPENDENCIES.md:35 version cell 'any recent (verified with 1.24.0)' and its notes drop the 1.24.0-blind-spot rationale; :58 'pipx install lizard'; :68-70 replaced by the documentation-§7 parity sentence (the kit's sighted shadow checks function-count parity, so a reader change shows up as a parity failure rather than needing a pin). No register row (raise one only if the owner asks to keep the pin).",
+   "steps": "1. Edit the three command sites and the DEPENDENCIES.md pin rows.\n2. Run the complexity suite once with the installed lizard to confirm parity holds.\n3. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; grep -rn 'lizard -l lua' DEPENDENCIES.md docs/automated-tests/README.md docs/performance.md prints nothing; grep -n '1.24.0' DEPENDENCIES.md shows only the 'verified with' note",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-10",
+   "milestone": "M3",
+   "title": "Hub and comment truth: ARCHITECTURE.md counts and retired-row headings, hub slimmed toward ~400 lines, two false Slash.lua comments, the architecture-§4 citation, and window-copy by id documented",
+   "depends_on": [
+    "RV-MM",
+    "MM-09"
+   ],
+   "effort": "M",
+   "finding_ids": [
+    "MM-A-04",
+    "MM-A-09",
+    "MM-A-03",
+    "MM-R-05"
+   ],
+   "spec": "Documentation and comments only; no behaviour change.\n- MM-A-04: docs/ARCHITECTURE.md:45 drops the spelled-out 'all fifty-eight' count (the tree has sixty-three; :14 and module-map.md:6 carry the count the doc-structure gate reads); :511-512 'three library-stack-§8 declines' -> 'two' (register rows :409, :410); the two '**One row is ratified.**' lead-ins at :444 and :454 over retired rows become 'Retired on <date>' headings with their real dates. settings/Slash.lua:82-83 stops citing a README command table that does not exist and points at docs/slash-dispatch.md (the generated help index and settings landing page remain); settings/Slash.lua:857 says the diagnostics run turns logging on for the report (core/DebugLogDiagnostics.lua:395-399), not that it lands with logging off. Do NOT widen tests/test_doc_structure.lua to police spelled-out counts (declined).\n- MM-A-09 (optional, batched here): docs/ARCHITECTURE.md (578 lines) toward ~400: each retired-row paragraph in ## Documented deviations (:413-458) becomes a one-line pointer to the frozen bundle it cites; the conditional-row measurement prose in ## Documentation map (:317-390) is trimmed to counts. No live register row or required section is removed; test_doc_structure, test_docmap and test_deviation_register stay green.\n- MM-A-03 (owner override: should): core/LifecycleSetup.lua:117 '(architecture-4)' -> '(architecture-§4)'.\n- MM-R-05 (documentation only, no parser change): docs/slash-dispatch.md:75 and the WINDOW_USAGE text / the comment above WINDOW_VERBS.copy (settings/Slash.lua:610-614) say the source may be given as its window id (M.Resolve falls back to tonumber), which covers default names with spaces such as 'Multi Meters #1' (/mm window copy 1 Second). If WINDOW_USAGE is a locale string, change it through the locale and keep test_locale green.",
+   "steps": "1. Edit ARCHITECTURE.md counts/headings and slim the two sections.\n2. Fix the two Slash.lua comments, the LifecycleSetup citation and the copy-by-id wording (doc + usage).\n3. Regenerate docs/test-cases.md if any test text moved; run tests/test_doc_structure.lua via the full suite.\n4. Green gate, commit.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; wc -l docs/ARCHITECTURE.md reports clearly under 578 (target ~400); grep -n 'fifty-eight\\|One row is ratified' docs/ARCHITECTURE.md prints nothing; grep -rn 'architecture-4' core settings modules prints nothing; grep -n 'window id' docs/slash-dispatch.md shows the copy note",
+   "smoke": "",
+   "repo": "MultiMeters"
+  },
+  {
+   "id": "MM-STD",
+   "milestone": "M3",
+   "title": "Roll the standards reference to WowAddonStandards v2.77.0 and sync the docs earlier items changed",
+   "depends_on": [
+    "WS-11",
+    "MM-10"
+   ],
+   "effort": "S",
+   "finding_ids": [],
+   "spec": "Read the standard from ../WowAddonStandards on branch feat/2026-10-07-review-audit-remediation (v2.77.0, closed by WS-11). End state:\n- The three-place standards reference conforms to the v2.77.0 shape: MultiMeters.toc '## X-Standard', the README Standard badge, and the CLAUDE.md 'Standards compliance' block (today all three are versionless; carry a version only where v2.77.0's documentation/toc rules require one, and match the form the other addons use in this run). Same sweep as /dev-copilot:wow-revendor-standards: retired notation, retired file names and unresolvable filename-§N references swept out of the authored repo (excluding libs/, tests/_kit/ and the frozen docs/audits/, docs/reviews/, docs/automated-tests/, docs/revendor/ bundles); a citation in a code comment is corrected comment-only. Pick up the v2.77.0 rule changes that touch this addon's docs (WS-03 line-endings restatements, WS-07 cross-repo citation form for any Repo@sha:path:line history citations, WS-08 branch wording in CLAUDE.md if it restates versioning-git).\n- Docs sync of everything MM-01..MM-10 and RV-MM changed: docs/ARCHITECTURE.md, docs/module-map.md (Secrets.PlainTruth, Roster.BeginPass, DrillDown exports), docs/data-flow.md (order-independent pet fold), docs/testing.md and DEPENDENCIES.md, the README Tests badge == '--list' Total, docs/test-cases.md in sync. No version bump, no Version History row.",
+   "steps": "1. git -C ../WowAddonStandards log -1 on the feature branch; read STANDARDS.md v2.77.0 entry and the changed sections.\n2. Run the wow-revendor-standards sweep logic on this repo (no commit from the skill; review its edits).\n3. Sync docs against MM-01..MM-10's changes.\n4. Regenerate docs/test-cases.md and the README badge.\n5. Green gate, commit 'MM-STD: ...'.",
+   "verify": "lua tests/run.lua (all pass, 0 failed) && luacheck . (0 warnings / 0 errors) && bash tests/_kit/run-automated-tests.sh --suite complexity --no-bundle (no function above CCN 15) && diff <(lua tests/run.lua --list) docs/test-cases.md (no output) && README Tests badge equals the --list Total; no authored file over 1500 lines; every filename-§N citation in authored files resolves against ../WowAddonStandards/standards/ at v2.77.0 (the sweep reports none unresolvable); grep -n 'X-Standard' MultiMeters.toc and the README badge match the v2.77.0 form",
+   "smoke": "",
+   "repo": "MultiMeters"
+  }
+ ]
+}
