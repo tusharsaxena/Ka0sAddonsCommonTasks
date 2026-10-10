@@ -14,7 +14,7 @@ them as `../<Repo>`.
   are in scope. Never copy that list into this repo, because a copy goes stale.
 - Other directories under `GIT/` (for example `steamdb` or `weakaura_sounds`) are not part of the
   collection. Leave them alone.
-- Every collection repo's default branch is `master`. This repo's default branch is `main`.
+- Every collection repo's default branch is `master`. This repo's default branch is `master` too.
 
 Each repo has its own `CLAUDE.md`, and that file governs work inside the repo: its green gate, its
 standards-compliance rules and its conventions. When you work in `../<Repo>`, follow that repo's
@@ -49,6 +49,19 @@ Decide first whether the work belongs to one repo or to several.
   `checkpoints.tsv`, or in a new bundle. Never edit the plan.
 - Inputs that planning drew on, such as review and audit findings or owner scope notes, go in `inputs/`.
   Machine-readable plan data and executor scripts go in `plan-data/`.
+
+## Journals
+
+`journal/` holds living, collection-wide datasets. Today that is `journal/curseforge/`, which a dev-copilot
+command fills with each addon's CurseForge files, download counts and classified comments. Its README is
+the schema.
+
+- Journal data is written **only** under `journal/`. Never write it into an addon repo or into
+  `dev-copilot`; the plugin holds the command, script, rubric and schema, never data.
+- A journal is not a bundle and is never frozen. Append-only files are only appended to; keyed files are
+  rewritten sorted.
+- One journal run is one commit, directly on `master`, with no feature branch. Pushing it still needs the
+  owner's authorization.
 
 ## Resumable, checkpointed plans
 

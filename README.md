@@ -21,6 +21,8 @@ Only things that are genuinely cross-repo and genuinely homeless:
 - **Cross-repo docs, specs and plans** — consolidated findings, remediation specs, execution plans, anything
   that reasons about the collection as a whole rather than about one addon.
 - **Reusable tools and scripts** that operate across repos and would be arbitrary to park in any one of them.
+- **Collection-wide journals** — living datasets about the whole collection, such as the CurseForge journal
+  of releases, download counts and comments.
 
 Everything else has somewhere better to live.
 
@@ -29,10 +31,15 @@ Everything else has somewhere better to live.
 ```
 docs/
   <YYYY-MM-DD>-<TOPIC>/     one dated bundle per cross-repo exercise
+journal/
+  curseforge/               living CurseForge journal: files, downloads, classified comments
 ```
 
 Bundles are dated at creation and treated as frozen once the work they describe has been executed — the
 plan is the record of what was intended, and rewriting it after the fact destroys that.
+
+`journal/` is the exception: it is updated on every run and is never frozen. Its data is written only here,
+never into an addon repo or `dev-copilot`. See [`journal/curseforge/README.md`](journal/curseforge/README.md).
 
 ## The collection
 

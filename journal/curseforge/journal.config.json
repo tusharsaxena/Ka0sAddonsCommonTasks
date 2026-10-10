@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "source": "curseforge",
+  "pathsRelativeTo": "repository root",
+  "roster": "../WowAddonStandards/standards/ADDONS.md",
+  "projectIdFrom": "## X-Curse-Project-ID line in each addon's TOC",
+  "ownerAuthor": "add1kted2ka0s",
+  "membersPage": "https://www.curseforge.com/members/add1kted2ka0s/projects"
+}

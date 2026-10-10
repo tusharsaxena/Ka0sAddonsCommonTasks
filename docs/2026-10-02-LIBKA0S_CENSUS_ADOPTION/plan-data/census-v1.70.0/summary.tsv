@@ -1,0 +1,423 @@
+major	kind	member	call	namecall	duplicate	stub	other	test	callHosts	namecallHosts
+LibKa0s-Core-1.0	lib	ApplySkin	6	17	2	9	44	14	AuraMaster,BankLedger,LootHistory,MultiMeters,PartyFrameEnhanced,WhatGroup	BankLedger,LootHistory,MultiMeters,WhatGroup
+LibKa0s-Core-1.0	lib	ClassColor	2	5	1	3	4	14	AuraMaster,MultiMeters	AuraMaster,BankLedger,MultiMeters
+LibKa0s-Core-1.0	lib	IsConcatSafe	10	10	0	21	15	78	AbsorbTracker,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,MultiMeters
+LibKa0s-Core-1.0	lib	MakeCloseButton	9	12	11	19	24	109	AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,LootHistory,MultiMeters
+LibKa0s-Core-1.0	lib	MakeResizable	3	4	0	4	12	39	BankLedger,LootHistory,MultiMeters	BankLedger,LootHistory,MultiMeters
+LibKa0s-Core-1.0	lib	New	11	124	16	16	357	723	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Core-1.0	lib	RGBA	2	8	0	2	44	35	ConsumableMaster,MultiMeters	MultiMeters
+LibKa0s-Core-1.0	lib	ResolveColor	7	30	1	4	14	17	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,PanelMaster,PartyFrameEnhanced	AbsorbTracker,AuraMaster,KickCD,PanelMaster,PartyFrameEnhanced
+LibKa0s-Core-1.0	lib	SECRET	3	3	0	10	67	297	AbsorbTracker,KickCD,MultiMeters	AbsorbTracker,KickCD,MultiMeters
+LibKa0s-Core-1.0	lib	SKIN	4	7	0	16	62	28	AuraMaster,MultiMeters,PartyFrameEnhanced,WhatGroup	BankLedger,LootHistory,MultiMeters
+LibKa0s-Core-1.0	lib	SafeRegisterEvent	11	39	1	15	16	41	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup
+LibKa0s-Core-1.0	lib	SafeRegisterEvents	7	2	1	8	3	10	AbsorbTracker,AuraMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat	PartyFrameEnhanced,PrettyChat
+LibKa0s-Core-1.0	lib	SafeRegisterUnitEvent	7	14	1	8	3	10	AbsorbTracker,AuraMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat	AbsorbTracker,AuraMaster,KickCD,LootHistory,PartyFrameEnhanced
+LibKa0s-Core-1.0	lib	SafeToString	11	57	0	42	37	161	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Core-1.0	descriptor	prefix	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Core-1.0	descriptor	sep	1	0	0	0	0	0	PrettyChat	
+LibKa0s-Core-1.0	descriptor	sink	2	0	0	0	0	0	ConsumableMaster,WhatGroup	
+LibKa0s-Env-1.0	lib	GetAddOnMetadata	11	24	0	0	20	96	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Env-1.0	lib	GetPlayerMapID	2	0	0	0	0	2	BankLedger,LootHistory	
+LibKa0s-Env-1.0	lib	GetZone	2	0	0	0	0	2	BankLedger,LootHistory	
+LibKa0s-Env-1.0	lib	Version	11	35	13	5	71	248	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Compat-1.0	lib	CanAccess	2	31	0	0	12	55	AuraMaster,MultiMeters	AuraMaster,MultiMeters
+LibKa0s-Compat-1.0	lib	GetSpecialization	3	4	0	0	5	43	ConsumableMaster,KickCD,MultiMeters	ConsumableMaster,KickCD,MultiMeters
+LibKa0s-Compat-1.0	lib	GetSpecializationInfo	3	2	0	0	8	51	ConsumableMaster,KickCD,MultiMeters	ConsumableMaster,KickCD
+LibKa0s-Compat-1.0	lib	GetSpellCooldown	2	5	0	0	7	72	KickCD,WhatGroup	ConsumableMaster,KickCD
+LibKa0s-Compat-1.0	lib	GetSpellInfo	3	23	1	0	18	129	AuraMaster,KickCD,MultiMeters	AuraMaster,ConsumableMaster,KickCD,MultiMeters
+LibKa0s-Compat-1.0	lib	GetSpellName	3	14	0	0	8	116	ConsumableMaster,LootHistory,WhatGroup	ConsumableMaster,LootHistory,WhatGroup
+LibKa0s-Compat-1.0	lib	GetSpellTexture	3	10	0	0	2	62	KickCD,MultiMeters,WhatGroup	ConsumableMaster,KickCD,MultiMeters,WhatGroup
+LibKa0s-Compat-1.0	lib	IsSafeKey	2	30	0	0	8	33	AuraMaster,MultiMeters	AuraMaster,MultiMeters
+LibKa0s-Compat-1.0	lib	IsSecret	5	47	0	0	15	70	AuraMaster,ConsumableMaster,KickCD,MultiMeters,PartyFrameEnhanced	AuraMaster,ConsumableMaster,KickCD,MultiMeters,PartyFrameEnhanced
+LibKa0s-Lifecycle-1.0	lib	HOLD_DISABLED	13	18	0	6	3	23	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,LootHistory,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Lifecycle-1.0	lib	HOLD_PERF	5	0	0	6	1	48	AuraMaster,LootHistory,PanelMaster,PrettyChat,WhatGroup	
+LibKa0s-Lifecycle-1.0	lib	New	9	126	16	16	357	723	AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Lifecycle-1.0	instance	Hold	0	0	0	18	54	48		
+LibKa0s-Lifecycle-1.0	instance	Holds	21	0	0	9	1	21	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Lifecycle-1.0	instance	IsDown	22	10	1	9	5	48	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	KickCD
+LibKa0s-Lifecycle-1.0	instance	IsHeld	4	0	0	9	1	23	AuraMaster,BankLedger,ConsumableMaster,MultiMeters	
+LibKa0s-Lifecycle-1.0	instance	PrintHolds	0	0	0	9	3	5		
+LibKa0s-Lifecycle-1.0	instance	Reevaluate	9	11	2	9	16	12	AuraMaster,BankLedger,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AuraMaster,KickCD
+LibKa0s-Lifecycle-1.0	instance	Release	0	7	2	17	48	80		AbsorbTracker,KickCD,MultiMeters,PartyFrameEnhanced
+LibKa0s-Lifecycle-1.0	instance	Set	18	77	10	29	631	1852	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Lifecycle-1.0	instance	name	0	228	3	84	4096	5441		AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Lifecycle-1.0	descriptor	debug	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	name	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	print	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	standDown	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	standUp	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Bus-1.0	lib	Catalog	10	6	1	7	35	65	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced	PanelMaster
+LibKa0s-Bus-1.0	lib	New	4	131	16	16	357	723	AbsorbTracker,ConsumableMaster,MultiMeters,PartyFrameEnhanced	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Bus-1.0	instance	NewTarget	2	2	0	5	1	8	ConsumableMaster,PartyFrameEnhanced	AbsorbTracker,MultiMeters
+LibKa0s-Bus-1.0	instance	StandDown	2	18	13	12	57	64	ConsumableMaster,PartyFrameEnhanced	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Bus-1.0	instance	StandUp	2	21	13	14	43	52	ConsumableMaster,PartyFrameEnhanced	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Bus-1.0	descriptor	isDown	4	0	0	0	0	0	AbsorbTracker,ConsumableMaster,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Bus-1.0	descriptor	name	4	0	0	0	0	0	AbsorbTracker,ConsumableMaster,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Schema-1.0	lib	New	11	124	16	16	357	723	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Schema-1.0	lib	Read	9	9	8	7	163	88	AbsorbTracker,AuraMaster,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced	AbsorbTracker,ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Schema-1.0	lib	STRINGS	0	1	0	4	11	147		LootHistory
+LibKa0s-Schema-1.0	lib	SameValue	2	9	8	4	6	16	AuraMaster,BankLedger	AbsorbTracker,BankLedger,ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Schema-1.0	lib	SplitPath	3	22	10	6	3	11	AuraMaster,KickCD,MultiMeters	AbsorbTracker,ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Schema-1.0	lib	Write	6	16	9	4	52	17	AbsorbTracker,AuraMaster,KickCD,PanelMaster,PartyFrameEnhanced	AbsorbTracker,ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Schema-1.0	instance	AddRows	13	4	9	2	5	16	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	ConsumableMaster,PanelMaster,WhatGroup
+LibKa0s-Schema-1.0	instance	AllRows	7	6	8	3	2	23	AbsorbTracker,BankLedger,PrettyChat	ConsumableMaster,KickCD,PanelMaster,PrettyChat
+LibKa0s-Schema-1.0	instance	ApplyDefault	12	21	10	8	42	101	AbsorbTracker,BankLedger,KickCD,MultiMeters,PartyFrameEnhanced,PrettyChat	AbsorbTracker,AuraMaster,ConsumableMaster,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup
+LibKa0s-Schema-1.0	instance	BulkAdd	2	1	8	2	5	5	AuraMaster,PrettyChat	PanelMaster
+LibKa0s-Schema-1.0	instance	BulkBegin	15	12	8	4	7	24	AbsorbTracker,AuraMaster,BankLedger,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,WhatGroup
+LibKa0s-Schema-1.0	instance	BulkEnd	15	12	8	4	10	31	AbsorbTracker,AuraMaster,BankLedger,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,WhatGroup
+LibKa0s-Schema-1.0	instance	BulkRun	9	4	8	6	6	10	AbsorbTracker,AuraMaster,ConsumableMaster,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	LootHistory,PanelMaster,WhatGroup
+LibKa0s-Schema-1.0	instance	ConsumeResetCount	3	6	8	2	6	6	AbsorbTracker,KickCD,PartyFrameEnhanced	AbsorbTracker,ConsumableMaster,LootHistory,PartyFrameEnhanced,WhatGroup
+LibKa0s-Schema-1.0	instance	CountOffDefault	3	0	8	2	2	4	AbsorbTracker,PartyFrameEnhanced,PrettyChat	
+LibKa0s-Schema-1.0	instance	Default	2	4	8	2	123	625	BankLedger,PanelMaster	BankLedger,LootHistory
+LibKa0s-Schema-1.0	instance	FindRow	28	26	8	8	18	147	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	BankLedger,ConsumableMaster,KickCD,LootHistory,PanelMaster,PartyFrameEnhanced,WhatGroup
+LibKa0s-Schema-1.0	instance	Get	15	127	15	11	69	847	AbsorbTracker,BankLedger,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	AbsorbTracker,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat,WhatGroup
+LibKa0s-Schema-1.0	instance	InBulk	1	1	8	2	3	15	AuraMaster	PartyFrameEnhanced
+LibKa0s-Schema-1.0	instance	Reindex	1	0	8	2	5	13	AuraMaster	
+LibKa0s-Schema-1.0	instance	ResetCounted	3	3	8	2	8	4	AbsorbTracker,KickCD,PartyFrameEnhanced	ConsumableMaster,LootHistory,WhatGroup
+LibKa0s-Schema-1.0	instance	Set	21	74	10	29	631	1852	AbsorbTracker,BankLedger,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Schema-1.0	instance	SetMany	4	5	8	5	29	93	ConsumableMaster,MultiMeters,PanelMaster,PrettyChat	ConsumableMaster,KickCD,PanelMaster
+LibKa0s-Schema-1.0	instance	Validate	6	3	9	2	16	23	AbsorbTracker,AuraMaster,BankLedger,KickCD,PanelMaster,PartyFrameEnhanced	AuraMaster,LootHistory,WhatGroup
+LibKa0s-Schema-1.0	descriptor	L	4	0	0	0	0	0	BankLedger,LootHistory,MultiMeters,PanelMaster	
+LibKa0s-Schema-1.0	descriptor	resetExempt	8	0	0	0	0	0	AbsorbTracker,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced,WhatGroup	
+LibKa0s-Schema-1.0	descriptor	rows	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Schema-1.0	descriptor	writeThrough	8	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced	
+LibKa0s-Pool-1.0	lib	Acquire	16	9	5	0	24	39	AuraMaster,BankLedger,LootHistory,MultiMeters	BankLedger,MultiMeters
+LibKa0s-Pool-1.0	lib	AcquireKeyed	1	0	1	0	1	2	KickCD	
+LibKa0s-Pool-1.0	lib	Counts	2	0	4	0	3	36	LootHistory	
+LibKa0s-Pool-1.0	lib	CountsKeyed	1	0	1	0	0	2	KickCD	
+LibKa0s-Pool-1.0	lib	New	31	104	16	16	357	723	AuraMaster,BankLedger,LootHistory,MultiMeters	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Pool-1.0	lib	NewKeyed	1	0	1	0	0	1	KickCD	
+LibKa0s-Pool-1.0	lib	ReleaseAll	15	2	5	0	7	23	AuraMaster,BankLedger,LootHistory,MultiMeters	BankLedger,KickCD
+LibKa0s-Pool-1.0	lib	ReleaseAllKeyed	1	0	1	0	0	1	KickCD	
+LibKa0s-Item-1.0	lib	ItemIDFromLink	3	0	3	0	5	29	BankLedger,ConsumableMaster,LootHistory	
+LibKa0s-Item-1.0	lib	LoadItem	3	0	2	0	5	19	BankLedger,LootHistory	
+LibKa0s-Item-1.0	lib	QualityFromLink	1	0	2	0	6	9	LootHistory	
+LibKa0s-Item-1.0	lib	QualityLabel	20	0	2	0	5	26	BankLedger,LootHistory	
+LibKa0s-Media-1.0	lib	FONTS	0	0	0	0	13	29		
+LibKa0s-Media-1.0	lib	Font	11	3	1	0	97	63	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	PartyFrameEnhanced
+LibKa0s-Media-1.0	lib	ICONS	0	0	0	0	23	30		
+LibKa0s-Media-1.0	lib	Icon	11	39	11	0	255	239	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters
+LibKa0s-Media-1.0	lib	RegisterLSM	11	0	0	0	7	9	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Media-1.0	lib	TEXTURES	0	0	0	0	0	3		
+LibKa0s-Media-1.0	lib	Texture	0	2	1	0	21	41		ConsumableMaster
+LibKa0s-Media-1.0	lib	VENDOR_PATH	0	0	0	0	0	1		
+LibKa0s-Widgets-1.0	lib	AUTOCOMPLETE	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	lib	Autocomplete	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	lib	ChartMath	0	0	0	0	0	1		
+LibKa0s-Widgets-1.0	lib	CloseMenu	5	5	1	0	9	22	BankLedger,LootHistory,MultiMeters	LootHistory
+LibKa0s-Widgets-1.0	lib	CopyWindow	5	2	1	0	3	9	BankLedger,LootHistory,MultiMeters	LootHistory
+LibKa0s-Widgets-1.0	lib	DRAG_HANDLE	5	0	0	0	5	7	AbsorbTracker,AuraMaster,KickCD	
+LibKa0s-Widgets-1.0	lib	DragHandle	9	0	0	0	9	15	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD	
+LibKa0s-Widgets-1.0	lib	Dropdown	3	1	0	0	44	133	BankLedger,LootHistory,MultiMeters	AuraMaster
+LibKa0s-Widgets-1.0	lib	LINE_CHART	1	0	0	0	1	1	LootHistory	
+LibKa0s-Widgets-1.0	lib	LineChart	3	0	0	0	2	3	LootHistory	
+LibKa0s-Widgets-1.0	lib	ROW_BOX	5	0	0	0	5	11	ConsumableMaster,KickCD,LootHistory	
+LibKa0s-Widgets-1.0	lib	ReorderList	10	1	0	0	9	40	ConsumableMaster,KickCD,LootHistory	MultiMeters
+LibKa0s-Widgets-1.0	descriptor	addonName	3	0	0	0	0	0	BankLedger,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	anchorTo	3	0	0	0	0	0	BankLedger,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	applySkin	3	0	0	0	0	0	BankLedger,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	backdrop	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	editWidth	1	0	0	0	0	0	MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	font	3	0	0	0	0	0	BankLedger,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	fontSize	2	0	0	0	0	0	LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	height	1	0	0	0	0	0	MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	hoverXs	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	integer	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	makeCloseButton	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	markers	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	name	3	0	0	0	0	0	BankLedger,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	scrollName	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	series	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	title	3	0	0	0	0	0	BankLedger,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	width	1	0	0	0	0	0	MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	xMax	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	xMin	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	yMax	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	yMin	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	lib	AT_ENABLE_MAX	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	lib	BUFFER_SLACK	0	0	0	0	0	1		
+LibKa0s-DebugLog-1.0	lib	DIAG_MAX_LINES	0	0	0	0	1	1		
+LibKa0s-DebugLog-1.0	lib	DIAG_MAX_PER_LIST	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	lib	FormatColored	1	0	0	6	0	49	ConsumableMaster	
+LibKa0s-DebugLog-1.0	lib	FormatPlain	1	0	0	8	0	62	ConsumableMaster	
+LibKa0s-DebugLog-1.0	lib	GATE_MAX_KEYS	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	lib	MAX_BUFFER	0	0	0	0	1	8		
+LibKa0s-DebugLog-1.0	lib	MakeCloseButton	0	21	11	19	24	109		AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-DebugLog-1.0	lib	New	11	124	16	16	357	723	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-DebugLog-1.0	lib	STRINGS	0	1	0	4	11	147		LootHistory
+LibKa0s-DebugLog-1.0	lib	TIME_COPY	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	instance	Add	25	5	2	14	223	169	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat	BankLedger,LootHistory
+LibKa0s-DebugLog-1.0	instance	BufferSize	0	0	0	9	1	62		
+LibKa0s-DebugLog-1.0	instance	BuildDiagnostics	0	0	0	15	0	31		
+LibKa0s-DebugLog-1.0	instance	Clear	1	13	2	11	125	304	ConsumableMaster	AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters
+LibKa0s-DebugLog-1.0	instance	ConsoleCheckbox	5	0	0	8	7	31	AbsorbTracker,AuraMaster,PartyFrameEnhanced,WhatGroup	
+LibKa0s-DebugLog-1.0	instance	CopyText	0	0	0	3	1	22		
+LibKa0s-DebugLog-1.0	instance	Debug	11	602	0	40	177	520	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-DebugLog-1.0	instance	DebugAtEnable	14	14	1	16	7	9	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,ConsumableMaster,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced
+LibKa0s-DebugLog-1.0	instance	DebugChanged	16	16	1	12	18	21	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,ConsumableMaster,LootHistory,PartyFrameEnhanced
+LibKa0s-DebugLog-1.0	instance	DebugForget	10	7	1	12	2	2	AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,PartyFrameEnhanced,WhatGroup	BankLedger,ConsumableMaster,LootHistory,PartyFrameEnhanced
+LibKa0s-DebugLog-1.0	instance	DebugOnce	14	22	3	14	13	42	AbsorbTracker,AuraMaster,ConsumableMaster,LootHistory,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AuraMaster,ConsumableMaster,LootHistory,PanelMaster,PartyFrameEnhanced
+LibKa0s-DebugLog-1.0	instance	DebugVerb	1	0	0	15	1	28	PanelMaster	
+LibKa0s-DebugLog-1.0	instance	FindLine	0	0	0	9	1	88		
+LibKa0s-DebugLog-1.0	instance	Hide	9	397	9	14	358	576	BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup
+LibKa0s-DebugLog-1.0	instance	IsEnabled	3	27	3	12	17	95	AuraMaster,ConsumableMaster,PrettyChat	AbsorbTracker,ConsumableMaster,KickCD,MultiMeters
+LibKa0s-DebugLog-1.0	instance	IsShown	23	78	3	23	23	914	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-DebugLog-1.0	instance	LastLine	0	0	0	9	0	50		
+LibKa0s-DebugLog-1.0	instance	MakeCloseButton	0	21	11	19	24	109		AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-DebugLog-1.0	instance	RefreshHeader	1	0	0	11	1	9	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	RunDiagnostics	17	4	0	17	9	68	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	ConsumableMaster,KickCD
+LibKa0s-DebugLog-1.0	instance	SetEnabled	14	16	4	20	40	335	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat,WhatGroup	AuraMaster,ConsumableMaster,KickCD,LootHistory,PartyFrameEnhanced
+LibKa0s-DebugLog-1.0	instance	Show	27	247	5	13	914	798	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-DebugLog-1.0	instance	ShowCopy	1	0	1	11	4	16	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	Text	0	15	0	6	332	209		AuraMaster,LootHistory,PanelMaster,PrettyChat
+LibKa0s-DebugLog-1.0	instance	Toggle	12	5	7	12	260	78	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	KickCD,LootHistory,MultiMeters
+LibKa0s-DebugLog-1.0	instance	UpdateScrollBar	1	0	0	11	1	20	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	UpdateStatus	1	0	0	11	1	15	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	buffer	0	0	0	13	28	479		
+LibKa0s-DebugLog-1.0	descriptor	L	4	0	0	0	0	0	AbsorbTracker,AuraMaster,PartyFrameEnhanced,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	addonName	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	applySkin	2	0	0	0	0	0	BankLedger,LootHistory	
+LibKa0s-DebugLog-1.0	descriptor	brandName	10	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	diagnostics	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	diagnosticsEnablesLogging	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	font	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	fontSize	1	0	0	0	0	0	ConsumableMaster	
+LibKa0s-DebugLog-1.0	descriptor	initSummary	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	isEnabled	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	makeCloseButton	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	name	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	onClear	3	0	0	0	0	0	AuraMaster,ConsumableMaster,MultiMeters	
+LibKa0s-DebugLog-1.0	descriptor	onVisibilityChanged	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	print	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	safeToString	8	0	0	0	0	0	AbsorbTracker,AuraMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	setEnabled	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	skin	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	slash	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	title	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	lib	CommandRows	2	6	0	5	2	13	ConsumableMaster,KickCD	ConsumableMaster,KickCD
+LibKa0s-Slash-1.0	lib	DISABLED_LINE_FORMAT	2	0	0	23	16	47	LootHistory,PanelMaster	
+LibKa0s-Slash-1.0	lib	FindCommand	2	6	0	3	2	12	ConsumableMaster,KickCD	ConsumableMaster,KickCD
+LibKa0s-Slash-1.0	lib	FormatKV	6	6	0	8	1	47	AbsorbTracker,AuraMaster,LootHistory,PanelMaster,PrettyChat,WhatGroup	PanelMaster
+LibKa0s-Slash-1.0	lib	FormatRow	2	0	0	5	6	23	AbsorbTracker,PartyFrameEnhanced	
+LibKa0s-Slash-1.0	lib	FormatValue	11	10	3	2	8	21	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat,WhatGroup	AuraMaster,LootHistory,PanelMaster,PrettyChat
+LibKa0s-Slash-1.0	lib	LIVE_VERBS	9	0	0	4	42	36	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	lib	New	11	124	16	16	357	723	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Slash-1.0	lib	ParseBool	2	1	1	1	1	12	ConsumableMaster,MultiMeters	PanelMaster
+LibKa0s-Slash-1.0	lib	ParseValue	5	0	0	6	2	6	AuraMaster,BankLedger,ConsumableMaster,KickCD,PanelMaster	
+LibKa0s-Slash-1.0	lib	ProfileNames	2	0	0	0	0	2	AbsorbTracker	
+LibKa0s-Slash-1.0	lib	STRINGS	1	0	0	4	11	147	LootHistory	
+LibKa0s-Slash-1.0	lib	SplitVerb	6	8	0	5	4	16	AbsorbTracker,ConsumableMaster,KickCD	ConsumableMaster,KickCD
+LibKa0s-Slash-1.0	instance	BuildListLines	3	2	1	5	1	46	BankLedger,LootHistory,PanelMaster	MultiMeters
+LibKa0s-Slash-1.0	instance	CliGet	14	3	0	5	6	40	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliList	11	3	0	5	3	13	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliProfile	15	3	1	10	15	48	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliReset	11	3	0	5	7	39	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliResetAll	0	6	3	6	24	64		BankLedger,LootHistory
+LibKa0s-Slash-1.0	instance	CliSet	14	8	0	11	33	99	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliVersion	6	3	0	7	0	14	BankLedger,LootHistory,MultiMeters,PanelMaster,PrettyChat,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	DisabledLine	8	5	1	22	14	72	AbsorbTracker,AuraMaster,BankLedger,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced	AbsorbTracker,AuraMaster,LootHistory,PartyFrameEnhanced
+LibKa0s-Slash-1.0	instance	HelpHeader	1	0	0	3	0	19	LootHistory	
+LibKa0s-Slash-1.0	instance	HelpRows	3	0	0	10	3	20	LootHistory,MultiMeters,PanelMaster	
+LibKa0s-Slash-1.0	instance	LandingRows	11	9	0	16	11	37	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced
+LibKa0s-Slash-1.0	instance	OnSlash	11	15	2	15	11	480	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced
+LibKa0s-Slash-1.0	instance	PrintHelp	12	3	0	31	3	31	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	ProfileSwitch	6	0	1	12	6	36	AbsorbTracker,BankLedger,ConsumableMaster,LootHistory,PanelMaster,PartyFrameEnhanced	
+LibKa0s-Slash-1.0	instance	SetRowAnnotator	2	0	0	7	0	0	AbsorbTracker,AuraMaster	
+LibKa0s-Slash-1.0	instance	Text	3	12	0	6	332	209	LootHistory,PanelMaster,PrettyChat	AuraMaster
+LibKa0s-Slash-1.0	descriptor	L	4	0	0	0	0	0	ConsumableMaster,KickCD,PanelMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	aliases	6	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Slash-1.0	descriptor	allRows	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	applyDefault	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	brandName	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	bulkBegin	5	0	0	0	0	0	AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters	
+LibKa0s-Slash-1.0	descriptor	bulkEnd	5	0	0	0	0	0	AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters	
+LibKa0s-Slash-1.0	descriptor	colorDecode	2	0	0	0	0	0	AuraMaster,ConsumableMaster	
+LibKa0s-Slash-1.0	descriptor	colorEncode	2	0	0	0	0	0	AuraMaster,ConsumableMaster	
+LibKa0s-Slash-1.0	descriptor	commands	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	debug	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	findRow	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	format	6	0	0	0	0	0	AuraMaster,BankLedger,ConsumableMaster,LootHistory,MultiMeters,PrettyChat	
+LibKa0s-Slash-1.0	descriptor	get	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	groupKey	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	isEnabled	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	liveVerbs	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	parse	7	0	0	0	0	0	AuraMaster,BankLedger,ConsumableMaster,KickCD,PanelMaster,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	print	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	profiles	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	set	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	slash	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	slashAliases	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	version	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	lib	New	11	124	16	16	357	723	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Launcher-1.0	lib	STRINGS	0	1	0	4	11	147		LootHistory
+LibKa0s-Launcher-1.0	instance	IsRegistered	3	1	0	7	0	51	AbsorbTracker,PrettyChat,WhatGroup	BankLedger
+LibKa0s-Launcher-1.0	instance	IsShown	3	98	3	23	23	914	AbsorbTracker,BankLedger,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Launcher-1.0	instance	Object	0	0	0	7	8	110		
+LibKa0s-Launcher-1.0	instance	Register	11	30	15	18	107	335	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup
+LibKa0s-Launcher-1.0	instance	SetShown	11	61	0	16	21	59	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster
+LibKa0s-Launcher-1.0	descriptor	L	0	0	0	0	0	0		
+LibKa0s-Launcher-1.0	descriptor	debug	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	debugAtEnable	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	icon	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	isEnabled	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	isLocked	10	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	isTestMode	5	0	0	0	0	0	AuraMaster,BankLedger,LootHistory,MultiMeters,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	label	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	minimap	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	name	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	onTooltipShow	2	0	0	0	0	0	BankLedger,LootHistory	
+LibKa0s-Launcher-1.0	descriptor	openSettings	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	print	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	setEnabled	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	version	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	lib	LAYOUT	0	7	0	0	29	86		PartyFrameEnhanced
+LibKa0s-Options-1.0	lib	New	11	124	16	16	357	723	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Options-1.0	lib	PatchAlwaysShowScrollbar	0	0	0	8	3	20		
+LibKa0s-Options-1.0	lib	STRINGS	0	1	0	4	11	147		LootHistory
+LibKa0s-Options-1.0	instance	AceGUI	19	41	0	12	518	589	BankLedger,KickCD,PanelMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced
+LibKa0s-Options-1.0	instance	AddSpacer	42	13	0	11	6	11	AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	AttachTooltip	29	5	0	10	6	18	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PrettyChat,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	BANNER_H	5	0	0	5	2	18	AbsorbTracker,PanelMaster	
+LibKa0s-Options-1.0	instance	BUTTON_PAIR_REL	7	3	0	6	17	27	AuraMaster,LootHistory,PanelMaster	ConsumableMaster,PanelMaster
+LibKa0s-Options-1.0	instance	BarGroup	7	0	0	8	3	17	AbsorbTracker,AuraMaster,KickCD,PanelMaster,PartyFrameEnhanced	
+LibKa0s-Options-1.0	instance	BorderGroup	11	2	1	8	5	17	AbsorbTracker,AuraMaster,KickCD,PanelMaster,PartyFrameEnhanced	ConsumableMaster
+LibKa0s-Options-1.0	instance	BuildLandingPage	4	2	0	3	8	11	AbsorbTracker,AuraMaster,PartyFrameEnhanced,PrettyChat	MultiMeters
+LibKa0s-Options-1.0	instance	CHROME_GAP	0	0	0	6	0	14		
+LibKa0s-Options-1.0	instance	CLASS_COLOR_NOTE	3	1	0	3	2	19	AuraMaster,PanelMaster	ConsumableMaster
+LibKa0s-Options-1.0	instance	ChoiceGrid	2	0	0	12	6	3	AuraMaster	
+LibKa0s-Options-1.0	instance	ClearScroll	21	0	0	13	32	55	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	instance	ColorPair	10	4	1	8	7	13	AbsorbTracker,AuraMaster,KickCD,PartyFrameEnhanced	ConsumableMaster
+LibKa0s-Options-1.0	instance	CreateOptionsPanel	11	5	0	20	15	45	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,KickCD,MultiMeters,PartyFrameEnhanced
+LibKa0s-Options-1.0	instance	CreatePanel	36	6	1	12	21	88	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	EnsureDefaultsButton	1	0	1	10	11	21	WhatGroup	
+LibKa0s-Options-1.0	instance	EnsureScroll	38	6	1	18	15	22	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	FONT_FLAGS	0	0	0	4	3	11		
+LibKa0s-Options-1.0	instance	FONT_FLAGS_SORT	0	0	0	3	0	9		
+LibKa0s-Options-1.0	instance	FontGroup	9	1	1	8	8	12	AbsorbTracker,AuraMaster,KickCD,PartyFrameEnhanced	ConsumableMaster
+LibKa0s-Options-1.0	instance	ID_NAME_HINT	0	0	0	14	2	3		
+LibKa0s-Options-1.0	instance	IdInput	1	1	0	12	7	18	KickCD	ConsumableMaster
+LibKa0s-Options-1.0	instance	IdList	4	0	0	15	36	58	AuraMaster,BankLedger,LootHistory	
+LibKa0s-Options-1.0	instance	InlineButtonPair	9	0	1	11	11	9	AuraMaster,BankLedger,MultiMeters,PanelMaster	
+LibKa0s-Options-1.0	instance	LSMValues	2	1	1	8	25	36	AbsorbTracker,MultiMeters	MultiMeters
+LibKa0s-Options-1.0	instance	MASTER_GROUP	8	1	0	9	4	31	AbsorbTracker,AuraMaster,KickCD,LootHistory,PartyFrameEnhanced,PrettyChat,WhatGroup	LootHistory
+LibKa0s-Options-1.0	instance	MasterControls	6	6	1	16	35	44	AbsorbTracker,AuraMaster,KickCD,LootHistory,PartyFrameEnhanced,WhatGroup	BankLedger,ConsumableMaster,PanelMaster,PrettyChat
+LibKa0s-Options-1.0	instance	NavRail	3	0	0	18	7	20	AuraMaster,KickCD,MultiMeters	
+LibKa0s-Options-1.0	instance	OpenOptionsPanel	13	13	0	12	24	145	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat	AbsorbTracker,AuraMaster,KickCD,MultiMeters,PartyFrameEnhanced,WhatGroup
+LibKa0s-Options-1.0	instance	PADDING_X	2	0	0	2	8	24	PanelMaster	
+LibKa0s-Options-1.0	instance	PageBanner	4	1	0	12	15	33	AuraMaster,KickCD,MultiMeters	ConsumableMaster
+LibKa0s-Options-1.0	instance	PageHeader	4	0	0	14	12	20	AbsorbTracker,KickCD,PanelMaster	
+LibKa0s-Options-1.0	instance	PatchAlwaysShowScrollbar	0	0	0	8	3	20		
+LibKa0s-Options-1.0	instance	ROW_VSPACER	10	0	0	7	19	35	AbsorbTracker,AuraMaster,BankLedger,PanelMaster,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	instance	RefreshAllPanels	22	12	1	10	21	129	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	ConsumableMaster,KickCD
+LibKa0s-Options-1.0	instance	RefreshPanel	23	2	0	8	12	24	AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	RefreshScalars	13	3	1	9	12	29	AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PrettyChat,WhatGroup	ConsumableMaster,KickCD
+LibKa0s-Options-1.0	instance	RegisterOptionsPage	19	33	3	13	7	15	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	AbsorbTracker,AuraMaster,KickCD,MultiMeters,PartyFrameEnhanced
+LibKa0s-Options-1.0	instance	RenderField	4	0	1	10	16	32	PanelMaster,PrettyChat	
+LibKa0s-Options-1.0	instance	RenderGrid	16	0	0	10	21	20	AuraMaster,ConsumableMaster,KickCD,MultiMeters	
+LibKa0s-Options-1.0	instance	RenderRows	16	1	0	10	24	46	AuraMaster,KickCD,LootHistory,MultiMeters	ConsumableMaster
+LibKa0s-Options-1.0	instance	RenderSchema	0	0	0	13	16	24		
+LibKa0s-Options-1.0	instance	RenderTabbedSchema	13	1	0	18	60	46	AbsorbTracker,AuraMaster,BankLedger,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	ResolveId	1	1	0	14	3	8	AuraMaster	ConsumableMaster
+LibKa0s-Options-1.0	instance	RestoreAllDefaults	16	2	1	12	47	137	AbsorbTracker,AuraMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced,WhatGroup	WhatGroup
+LibKa0s-Options-1.0	instance	RestoreDefaults	10	3	3	8	37	145	AbsorbTracker,AuraMaster,KickCD,MultiMeters,PartyFrameEnhanced	BankLedger,LootHistory,PanelMaster
+LibKa0s-Options-1.0	instance	SECTION_HEADING_H	3	2	0	6	13	21	BankLedger,LootHistory,PanelMaster	ConsumableMaster,PanelMaster
+LibKa0s-Options-1.0	instance	Section	15	4	1	10	38	34	AuraMaster,ConsumableMaster,MultiMeters,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	SelectTab	4	6	5	18	4	44	AuraMaster,KickCD,MultiMeters	BankLedger,LootHistory
+LibKa0s-Options-1.0	instance	SessionCheckbox	2	0	0	10	8	18	ConsumableMaster,KickCD	
+LibKa0s-Options-1.0	instance	SetChromeHeight	0	0	0	12	1	3		
+LibKa0s-Options-1.0	instance	SetRenderer	29	6	1	13	46	39	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	SubTabStrip	2	0	0	10	2	5	BankLedger,LootHistory	
+LibKa0s-Options-1.0	instance	TAB_H	0	0	0	5	0	16		
+LibKa0s-Options-1.0	instance	TabStrip	8	3	0	15	16	67	KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat	ConsumableMaster
+LibKa0s-Options-1.0	instance	TextRow	41	0	0	5	6	20	AuraMaster,BankLedger,MultiMeters,PrettyChat	
+LibKa0s-Options-1.0	instance	UnnamedCandidates	0	0	0	13	0	1		
+LibKa0s-Options-1.0	instance	VISIBILITY_SORT	0	0	0	3	0	9		
+LibKa0s-Options-1.0	instance	VISIBILITY_VALUES	0	0	0	3	0	9		
+LibKa0s-Options-1.0	descriptor	addonName	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	afterRestoreAll	0	0	0	0	0	0		
+LibKa0s-Options-1.0	descriptor	allRows	10	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	applyDefault	10	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	buildMain	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	bulkBegin	9	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup	
+LibKa0s-Options-1.0	descriptor	bulkEnd	9	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup	
+LibKa0s-Options-1.0	descriptor	colorDecode	6	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Options-1.0	descriptor	colorEncode	6	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Options-1.0	descriptor	debug	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	get	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	getLSM	6	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Options-1.0	descriptor	mainPanelName	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	onAceGUI	7	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Options-1.0	descriptor	parentTitle	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	print	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	resetProfile	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	rowsForPage	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	scheduleTimer	8	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced	
+LibKa0s-Options-1.0	descriptor	set	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	skipRestoreAll	10	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat,WhatGroup	
+LibKa0s-Options-1.0	descriptor	sliderCommit	1	0	0	0	0	0	ConsumableMaster	
+LibKa0s-Options-1.0	descriptor	validate	9	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PartyFrameEnhanced,WhatGroup	
+LibKa0s-Perf-1.0	lib	DEFAULT_RING	0	0	0	0	0	2		
+LibKa0s-Perf-1.0	lib	EncodeJSON	0	0	0	0	0	12		
+LibKa0s-Perf-1.0	lib	New	7	128	16	16	357	723	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Perf-1.0	lib	SCHEMA	0	0	0	1	25	24		
+LibKa0s-Perf-1.0	lib	STRINGS	0	1	0	4	11	147		LootHistory
+LibKa0s-Perf-1.0	instance	Announce	0	3	1	0	19	4		AuraMaster
+LibKa0s-Perf-1.0	instance	BuildRecord	0	1	1	0	0	14		LootHistory
+LibKa0s-Perf-1.0	instance	Cancel	0	24	0	0	82	30		AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters
+LibKa0s-Perf-1.0	instance	Close	0	4	1	2	60	62		AuraMaster,ConsumableMaster,PanelMaster
+LibKa0s-Perf-1.0	instance	Context	0	10	0	0	6	6		BankLedger
+LibKa0s-Perf-1.0	instance	ContextLines	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	EXPERIMENTS	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	EncodeJSON	0	0	0	0	0	12		
+LibKa0s-Perf-1.0	instance	FormatReport	0	0	0	0	0	3		
+LibKa0s-Perf-1.0	instance	HidePanel	0	0	0	0	1	17		
+LibKa0s-Perf-1.0	instance	IsPanelShown	0	0	0	0	0	6		
+LibKa0s-Perf-1.0	instance	LABELS	0	0	0	0	3	10		
+LibKa0s-Perf-1.0	instance	Log	0	0	0	0	105	4		
+LibKa0s-Perf-1.0	instance	MarkReviewed	0	0	0	0	0	1		
+LibKa0s-Perf-1.0	instance	Measure	0	1	0	0	11	6		AuraMaster
+LibKa0s-Perf-1.0	instance	Note	63	9	2	9	98	117	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	AuraMaster,MultiMeters
+LibKa0s-Perf-1.0	instance	OnCommand	9	0	1	10	0	26	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	instance	Open	0	25	7	3	237	209		AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Perf-1.0	instance	PanelIsActionable	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	PanelStateOf	0	0	0	0	0	2		
+LibKa0s-Perf-1.0	instance	Progress	0	0	0	0	78	0		
+LibKa0s-Perf-1.0	instance	RefreshPanel	0	25	0	8	12	24		AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat,WhatGroup
+LibKa0s-Perf-1.0	instance	Reset	0	4	3	8	448	376		ConsumableMaster,MultiMeters,PanelMaster
+LibKa0s-Perf-1.0	instance	Resume	0	8	14	0	29	70		KickCD,MultiMeters
+LibKa0s-Perf-1.0	instance	SCHEMA	0	0	0	1	25	24		
+LibKa0s-Perf-1.0	instance	STEPS	0	0	0	0	1	13		
+LibKa0s-Perf-1.0	instance	Save	0	1	1	0	67	24		WhatGroup
+LibKa0s-Perf-1.0	instance	ShowPanel	0	0	0	0	0	5		
+LibKa0s-Perf-1.0	instance	Start	0	4	2	0	85	77		AuraMaster,KickCD
+LibKa0s-Perf-1.0	instance	StatusLines	0	0	0	0	0	1		
+LibKa0s-Perf-1.0	instance	Stop	0	21	5	0	64	32		AuraMaster,KickCD
+LibKa0s-Perf-1.0	instance	Suspend	0	4	15	0	27	93		KickCD,MultiMeters
+LibKa0s-Perf-1.0	instance	TogglePanel	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	Usage	0	0	0	0	53	46		
+LibKa0s-Perf-1.0	instance	armed	1	5	1	1	134	378	ConsumableMaster	KickCD
+LibKa0s-Perf-1.0	instance	context	0	2	1	0	200	167		BankLedger
+LibKa0s-Perf-1.0	instance	descriptor	0	0	0	10	272	733		
+LibKa0s-Perf-1.0	instance	label	1	283	0	10	1990	2005	ConsumableMaster	AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Perf-1.0	instance	name	0	228	3	84	4096	5441		AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PrettyChat,WhatGroup
+LibKa0s-Perf-1.0	instance	on	59	3	1	264	8090	7959	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	MultiMeters
+LibKa0s-Perf-1.0	instance	recording	1	0	0	3	59	131	ConsumableMaster	
+LibKa0s-Perf-1.0	instance	ringMax	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	run	1	7	6	14	669	1152	ConsumableMaster	ConsumableMaster,MultiMeters,PrettyChat
+LibKa0s-Perf-1.0	instance	slash	0	0	0	63	599	1216		
+LibKa0s-Perf-1.0	instance	title	0	38	2	2	408	383		BankLedger,LootHistory,MultiMeters,WhatGroup
+LibKa0s-Perf-1.0	descriptor	L	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	addonName	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	buckets	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	decorate	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	lifecycle	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	log	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	name	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	onChange	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	print	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	ring	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	showLog	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	slash	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	sv	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	title	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
+LibKa0s-Perf-1.0	descriptor	version	7	0	0	0	0	0	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,LootHistory,MultiMeters,PartyFrameEnhanced	
