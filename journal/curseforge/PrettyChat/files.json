@@ -1,0 +1,166 @@
+{
+  "4783288": {
+    "changelog": "- Tagging for initial release (705c392)",
+    "changelogCommits": 1,
+    "displayName": "0.0.3-release",
+    "fileDate": "2023-10-05T14:31:48.053Z",
+    "fileId": 4783288,
+    "fileName": "PrettyChat-0.0.3-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "10.1.7"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7622742": {
+    "changelog": "- Updated the TOC to 120000 (b0847d2)\n- Updated changelog (67e6541)",
+    "changelogCommits": 2,
+    "displayName": "1.0.0-release",
+    "fileDate": "2026-02-14T08:02:01.533Z",
+    "fileId": 7622742,
+    "fileName": "PrettyChat-1.0.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7623169": {
+    "changelog": "- - Added Ace3 (bf32e89)\n- Added GlobalString.lua from [https://www.townlong-yak.com/framexml/live/Helix/GlobalStrings.lua](/linkout?remoteUrl=https%253a%252f%252fwww.townlong-yak.com%252fframexml%252flive%252fHelix%252fGlobalStrings.lua) (31100c6)\n- Updating .gitignore (77d668b)\n- Updated the README (3036faa)",
+    "changelogCommits": 4,
+    "displayName": "1.1.0-release",
+    "fileDate": "2026-02-14T10:53:37.187Z",
+    "fileId": 7623169,
+    "fileName": "PrettyChat-1.1.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7975950": {
+    "changelog": "- TOC version bump (e471ec0)\n- Code optimization and modularization (cfe9f30)\n- Added GlobalStrings lookup in Settings panel (8c11666)\n- Added GlobalStrings database (014496a)\n- Updated README (3b42832)",
+    "changelogCommits": 5,
+    "displayName": "1.2.0-release",
+    "fileDate": "2026-04-24T05:03:20.26Z",
+    "fileId": 7975950,
+    "fileName": "PrettyChat-1.2.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8033634": {
+    "changelog": "- README: standardize Version History from git release tags (c1b1921)\n- Bump to 1.3.0 (9b026ea)\n- Sync docs to atlas-chevron breadcrumb and OpenConfig combat guard (81ea931)\n- Settings: replace pipe breadcrumb separator with atlas chevron (8f80d9b)\n- Move combat lockdown guard into OpenConfig itself (88e1511)\n- Filter /pc test and /pc list by category or format string (f200220)\n- Restructure /pc test output as per-category Original vs Formatted diff (5c6c1cd)\n- Reorganize 2026-05-02 review folder + sync addon docs (b9f898f)\n- Apply 2026-05-02 review milestones M0–M8 (8326ad3)\n- Add 2026-05-02 review artifacts (b559cd0)\n- Drop dead exports (AllRows, GlobalStringSearch, subFrames) (b5f3fa8)\n- Add smoke-test suite in docs/smoke-tests.md (1332424)\n- Restyle per-string row, auto-expand /pc config left tree (823a9a2)\n- Sync docs to current settings panel state (f4575f2)\n- Rebuild settings panel on canvas-layout framework (cd62241)\n- Rebuild parent settings page as logo+commands landing (c0df552)\n- Drop README Contributing section, note shared-globals quirk (619245c)\n- Split CLAUDE.md and ARCHITECTURE.md into docs/ chunks (8fa6a93)\n- Allow /wow-addon:commit as explicit commit instruction (e2c19b2)\n- Sync docs to current state, add ARCHITECTURE.md (af61086)\n- Replace %20 with underscore in WoW badge URL (cadcf3b)\n- Add .gitattributes (CRLF on disk), normalize repo to LF (d784c43)\n- Add General sub-page with master toggle, Test button, /pc test (e8eb8ca)\n- Add schema-driven slash commands (KickCD parity), bump 1.4.0 (bbba3c3)\n- Restructure settings panel into Blizzard sub-pages, bump 1.3.0 (308fd05)\n- Refresh CLAUDE.md and README for slash dispatcher and [PC] prefix (872e6b0)\n- Add /pc help dispatcher and shared [PC] chat prefix (6ee7fe5)\n- Display \"Ka0s Pretty Chat\" in settings panel (fc336bf)\n- Bump to 1.2.0, add MIT LICENSE, refresh README (340de36)",
+    "changelogCommits": 29,
+    "displayName": "1.3.0-release",
+    "fileDate": "2026-05-03T17:32:42.63Z",
+    "fileId": 8033634,
+    "fileName": "PrettyChat-1.3.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8472642": {
+    "changelog": "- chore: prep for 1.4.0 release (8c1b7f2)\n- feat: add scrollbar + line counter to the debug console (15a3caf)\n- docs: expand README FAQ + Troubleshooting for the debug console (93f6a85)\n- docs: refresh README screenshots and add Test Mode + Settings shots (95bb313)\n- fix: create Settings panels anonymous to keep 10 frames off _G (42088dc)\n- docs: add What's-new-in-1.4.0 section per Ka0s Standard documentation-§1 (cdcd920)\n- fix: close standards-audit MUST/SHOULD deviations (1c0248a)\n- fix: wire the per-category Defaults button (was never receiving OnClick) (3f537dd)\n- change: make General Debug console checkbox toggle window visibility only (39fad5b)\n- feat: add session-only Debug console toggle to the General page (9a6b6b1)\n- docs: add reset-standardization (R) and media (M) smoke-test groups (f5216bb)\n- docs: reframe debug-console font as an accepted, deliberate deviation (0822c1a)\n- fix: make per-string Reset button restore enable state too (d00e31b)\n- docs: correct smoke-tests intro to acknowledge headless harness (0c52a79)\n- docs: make README player-facing for Ka0s Standard v2.1.0 (5a1217b)\n- docs: remap stale standard section citations to filename-§N scheme (c0f73ca)\n- docs: de-tier repo docs for Ka0s Standard v2.0.0 (single modular layout) (9a292e0)\n- docs: align README badge row with Ka0s Standard v1.14.0 badge spec (91e5559)\n- docs: fix stale sub-page count, sync ARCHITECTURE testing section (048b4ea)\n- docs: make inventory+badge sync a hard rule (testing-§5) (ec56c00)\n- docs: point testing status at the generated inventory + add tests badge (testing-§5) (053c201)\n- docs: add generated test-case inventory (testing-§5) (5928cad)\n- tests: introduce test(name, fn) registration + runner --list mode (testing-§5) (82d8b43)\n- Colour-code the debug ack and add an [Init] session summary (debug-logging-§5) (c6ff23b)\n- Trace main functional flows in the debug console (debug-logging-§8/§9/§10) (84835e6)\n- Promote to Tier 2; add on-screen debug console + slash-§5 output (3b6de8b)\n- Move audit/ and reviews/ under docs/ (58d0623)\n- CLAUDE.md: require flagging any standards deviation (256c2ea)\n- Bump to 1.4.0 and document /pc debug (43eb378)\n- Remediate 2026-07-12 standards audit (29 PC deviations) (8a6d38c)\n- Add 2026-07-12 standards-audit bundle (standard v1.0.0) (b662ac4)\n- Bump Interface to 120007 and sync docs (4d5a686)",
+    "changelogCommits": 32,
+    "displayName": "1.4.0-release",
+    "fileDate": "2026-07-20T16:33:27.67Z",
+    "fileId": 8472642,
+    "fileName": "PrettyChat-1.4.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.7"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8472643": {
+    "changelog": "- chore: prep for 1.4.0 release (8c1b7f2)\n- feat: add scrollbar + line counter to the debug console (15a3caf)\n- docs: expand README FAQ + Troubleshooting for the debug console (93f6a85)\n- docs: refresh README screenshots and add Test Mode + Settings shots (95bb313)\n- fix: create Settings panels anonymous to keep 10 frames off _G (42088dc)\n- docs: add What's-new-in-1.4.0 section per Ka0s Standard documentation-§1 (cdcd920)\n- fix: close standards-audit MUST/SHOULD deviations (1c0248a)\n- fix: wire the per-category Defaults button (was never receiving OnClick) (3f537dd)\n- change: make General Debug console checkbox toggle window visibility only (39fad5b)\n- feat: add session-only Debug console toggle to the General page (9a6b6b1)\n- docs: add reset-standardization (R) and media (M) smoke-test groups (f5216bb)\n- docs: reframe debug-console font as an accepted, deliberate deviation (0822c1a)\n- fix: make per-string Reset button restore enable state too (d00e31b)\n- docs: correct smoke-tests intro to acknowledge headless harness (0c52a79)\n- docs: make README player-facing for Ka0s Standard v2.1.0 (5a1217b)\n- docs: remap stale standard section citations to filename-§N scheme (c0f73ca)\n- docs: de-tier repo docs for Ka0s Standard v2.0.0 (single modular layout) (9a292e0)\n- docs: align README badge row with Ka0s Standard v1.14.0 badge spec (91e5559)\n- docs: fix stale sub-page count, sync ARCHITECTURE testing section (048b4ea)\n- docs: make inventory+badge sync a hard rule (testing-§5) (ec56c00)\n- docs: point testing status at the generated inventory + add tests badge (testing-§5) (053c201)\n- docs: add generated test-case inventory (testing-§5) (5928cad)\n- tests: introduce test(name, fn) registration + runner --list mode (testing-§5) (82d8b43)\n- Colour-code the debug ack and add an [Init] session summary (debug-logging-§5) (c6ff23b)\n- Trace main functional flows in the debug console (debug-logging-§8/§9/§10) (84835e6)\n- Promote to Tier 2; add on-screen debug console + slash-§5 output (3b6de8b)\n- Move audit/ and reviews/ under docs/ (58d0623)\n- CLAUDE.md: require flagging any standards deviation (256c2ea)\n- Bump to 1.4.0 and document /pc debug (43eb378)\n- Remediate 2026-07-12 standards audit (29 PC deviations) (8a6d38c)\n- Add 2026-07-12 standards-audit bundle (standard v1.0.0) (b662ac4)\n- Bump Interface to 120007 and sync docs (4d5a686)",
+    "changelogCommits": 32,
+    "displayName": "1.4.0-release",
+    "fileDate": "2026-07-20T16:33:27.867Z",
+    "fileId": 8472643,
+    "fileName": "PrettyChat-1.4.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.7"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8853255": {
+    "changelog": "- sync-docs: the second doc index goes (c9f425c)\n- Release 1.5.0 (73c0040)\n- Target patch 12.1.0 — the TOC interface becomes 120100 (e91c32f)\n- README: the before-and-after pair is the whole argument (b0f1426)\n- media: refresh the screenshot set (086c2e0)\n- docs: the What's new references follow the section out (v2.42.0) (92ae2db)\n- README: drop `## What's new` (standard v2.42.0) (c9ed434)\n- README: adopt the standard's prose Usage section (v2.41.0) (8b95780)\n- README: the Troubleshooting table takes the header the standard names (5b43a29)\n- re-vendor LibKa0s v1.29.0 — the JSON dump folds into the report step (7880df2)\n- re-vendor LibKa0s v1.28.0 — the perf usage block renders correctly (6176f29)\n- M5-06-C1: the lint citations name a section that does not exist (939e64e)\n- M5-06: the amended rules audited against the repository they govern (60cb507)\n- M4c-06: the blanket ignore goes, and eleven of the sixteen were real (0d3edac)\n- M5-08: section N, for the addon whose whole job is localized strings (3631488)\n- M5-01: the record is regenerated, and a 23,842 that is not growth (cb1a80c)\n- M5-02: two rows for collisions that were never this addon's, and a shorthand explained (4feceda)\n- M5-03: the per-tab table moves to docs/, and CLAUDE.md says what it adheres to (35ae16f)\n- M5-05: a version quoted as an example, and a path the rule forgot to mention (aa52a83)\n- M4-24: the exemption sweep prints what its own grep prints (8f00325)\n- M4-21: the locale coverage case stops measuring the strings it already found (598dfbe)\n- M4-20: the three seams with no caller get written down (bbdea7f)\n- M4-14: the one file over the cap stops being unremarked, and stays that way (a59a200)\n- M4-12: annotate the two load-bearing TOC positions that were bare (cf3defa)\n- M4-11: the test tree comes into lint scope (a58612f)\n- M4-09: the stub-parity gate gets its own file, and names the surface (1ed4ee6)\n- M4-01: adopt LibKa0s v1.27.0, and wire the gate that came with it (b302d0e)\n- M4-C1: say when the vendored-copy diff is supposed to be non-empty (94b146a)\n- M3-05: re-vendor LibKa0s v1.26.0 (8adad23)\n- M2-19: .claude and .pkgmeta join a list that was already doing the hard part (d742b36)\n- M2-03: nil is an answer here, and three places were reading it as silence (2315344)\n- M2-02: the landing page is the library's renderer, not a copy of it (b42578f)\n- M2-01: the write seam refuses a format Blizzard cannot serve (5a7e63f)\n- docs: commit the frozen 2026-09-07 review and standards-audit bundles (fb03c21)\n- docs: the README still calls the string picker a strip of tabs (63155d9)\n- fix(settings): the string list is AceGUI's TreeGroup, sized to the page (92c43f5)\n- feat(settings): a string LIST beside the editor, and Test beside the reset (7603ca3)\n- docs(comments): correct citations the revamp left pointing at nothing (d70fc27)\n- docs: sync the doc set to the revamped settings panel (a5f3663)\n- feat(settings): a nested strip per rewritten string, and Test to the debug console (8ee771a)\n- The eight category pages become eight tabs on one Categories page (696dbc2)\n- Re-vendor LibKa0s v1.23.0: the tabbed page and the page banner (050403e)\n- Point the architecture's vendored-library line at v1.19.0 (86d6dad)\n- Carry LibKa0s v1.19.0 (6910b7d)\n- Re-vendor LibKa0s v1.18.1: the landing logo stops pooling its texture (e9ef943)\n- Adopt options-ui-§12: ResetAll is a profile reset, and wire the profile (942f254)\n- feat(media): new logo art, and one uniform name for every render (7f211ca)\n- docs: repoint the Panel.lua citations and correct the NS.COMMANDS claim (dac39a5)\n- docs: fix the drift a sync found in the architecture and module map (a8c3799)\n- Re-vendor LibKa0s v1.16.0 (e6daef5)\n- Record the 2026-08-25 LibKa0s re-vendor (988e65a)\n- docs: record run 20260825-103457, and re-count the adopted LibKa0s majors (7de1655)\n- refactor(env): read the TOC through LibKa0s-Env-1.0 (9844419)\n- chore(libs): re-vendor LibKa0s v1.15.0 (f625c57)\n- Take the console's font and its title-bar marks from the library (de35363)\n- docs: name the perf capture store perf-analysis, not perf-runs (d4ebaab)\n- automated-tests: record run 20260807-114404 — green (14c1957)\n- chore(gitattributes): re-sync to the canonical body updated in v2.28.1 (836beb5)\n- libs+tests: re-vendor LibKa0s v1.8.2, so bundles land CRLF as declared (b7b9180)\n- tests: name debug-logging-§5 in full in the header-label case (6782003)\n- docs: re-point the deviation register and resolve stale standard citations (764d390)\n- tests+docs: record run 20260807-022707, and fix three stale Config.lua citations (719be7c)\n- docs: clear drift in the LibKa0s tag, the audit pointers and the GlobalStrings note (ae436c9)\n- docs: retire docs/pending/LEDGER.md; the pending store is GitHub issues (b9b31c0)\n- docs: follow the prettychat -> PrettyChat folder rename (afb33be)\n- Move the LibKa0s provenance line to CLAUDE.md; adopt testkit revision 9 (35bb516)\n- Pin line endings with the canonical .gitattributes (line-endings-§2) (1f767bf)\n- docs: adopt the documentation tier model (standard v2.23.0) (0b8f893)\n- docs: the two files M4-23 and M3-01 left behind (9524733)\n- perf(toc): stop loading the 22,879-entry dump; one reader for Blizzard's original  [M4-23] (69714e1)\n- i18n: route the four concatenated strings, and record the English-only decision  [M4-17] (0860706)\n- test(defaults): assert the positional-prefix rule against the shipped signature  [M4-06] (c766c0d)\n- docs(architecture): the mandated ## Message Bus section  [M4-09] (56d7091)\n- docs(readme,claude): the twelve README sections, and compliance as CLAUDE item 3  [M4-08] (79bfd96)\n- fix(panel): parenthesize every gsub whose result is passed on  [M4-10] (8f3bea2)\n- test(loader): shrink tests/loader.lua to the isolation need  [M3-10] (19ae6a4)\n- docs(perf): claim the performance-§12 no-combat-path exemption  [M3-09] (ed9192d)\n- docs(architecture): one register for every ratified deviation  [M3-08] (5bbcf94)\n- docs(refs): every section reference resolves  [M3-07] (ccfc0b9)\n- docs(gates): every gate statement names its checkpoint  [M3-06] (1de8453)\n- chore(tests): record the vendored runner as executable in the index  [M3-05] (4c68d26)\n- test(libka0s): assert each LibKa0s stub surface as a set  [M3-04] (fc97d0d)\n- chore(vendor): re-vendor LibKa0s v1.8.0 and move the gate into tests/_kit  [M3-01][M3-02] (9b4ca11)\n- fix(defaults): align two reputation overrides with Blizzard's argument list  [M2-01] (0dd56dc)\n- docs: commit frozen 2026-08-05 review and standards-audit bundles (942d91d)\n- docs: an ANALYSIS.md is MUST at release and SHOULD otherwise, not every bundle (a2ba8f8)\n- automated-tests: the 233338 bundle gets its ANALYSIS.md, and RESULTS.md names the Max CCN 0 fault (53b2121)\n- docs: sync the vendored-library version and two evidence citations (e7be923)\n- re-vendor LibKa0s v1.7.0 (testkit rev 6) (f5ebb36)\n- automated-tests: fresh bundle, and the watch list's functions table is None (9bb28db)\n- refactor: bring PrettyChat:Test and the test loader build under CCN 15 (ab30a70)\n- docs: CCN elimination plan (e8a39c3)\n- automated-tests: the watch list is two real tables, with a Band column (6b2fcc6)\n- automated-tests: RESULTS.md gains size + averages, and prose for all four suites (80bc915)\n- automated-tests: ANALYSIS.md links every artifact and reports complexity in full (f0958eb)\n- automated-tests: kit rev 3 — ANSI-clean artifacts, local-time YYYYMMDD-HHMMSS, ANALYSIS.md (9357139)\n- Adopt automated-tests: consolidated test records, retire docs/complexity.md (058c5b1)",
+    "changelogCommits": 97,
+    "displayName": "1.5.0-release",
+    "fileDate": "2026-09-10T20:41:07.653Z",
+    "fileId": 8853255,
+    "fileName": "PrettyChat-1.5.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8985125": {
+    "changelog": "- Automated tests after the test_panel split (20260927-031723) (4eaa7e1)\n- Split tests/test_panel.lua: the Categories page cases move to tests/test_panel_categories.lua (a663bc6)\n- Release 1.6.0: version bump, release notes and the gated release run (0e030b5)\n- README: Usage as the four-step rewording flow (c2faa0c)\n- README: credit the third-party font and icons the addon ships (b715ebf)\n- README: plain-language pass for readers (7e5939e)\n- PC-ATS-SD: Sync docs to the tree after the automated-tests sweep (bab847f)\n- PC-ATS-99: Final automated-tests sweep run (20260926-193107) (0fafacc)\n- PC-ATS-RV: Re-vendor LibKa0s v1.62.0 (kit revision 31) from the local tag (d6e8d76)\n- PC-ATS-00: Record the 2026-09-26 automated-tests sweep run (20260926-160432) (18ea2dc)\n- NR-PC-01: Re-vendor LibKa0s v1.61.0 and stub NavRail (f2b0ce8)\n- DR-PC-07: Standards refresh to v2.68.0, sync-docs, AUD-01 passes (48d3e1f)\n- DR-PC-05: docs/debug.md documents the diagnostics report (STD-20) (b9a40a8)\n- DR-PC-04: README gains ## Reporting a bug (documentation-§1 item 9) (60d992b)\n- DR-PC-03: Ship the diagnostics report (/pc diagnostics, DX-PC) (5745775)\n- PC-DOCS: Sync docs to LibKa0s v1.60.0 (Slash 16, DebugLog 14) (ec67486)\n- DR-PC-01: Re-vendor LibKa0s v1.60.0 (DebugLog 14.1, Slash 16), kit 27 (85ef053)\n- PC-DOCS: Point the doc map's audit/review history at the 2026-09-23 bundles (0b4e992)\n- M6-PC: Right-click menu offers Enabled via the /pc enable|disable handler (657ad1c)\n- M6-PC: Re-vendor LibKa0s v1.58.0 (Launcher minor 4), kit 26 unchanged (59e1a76)\n- M5-PC: Answer the launcher tooltip's version and Enabled status (eb3f9e2)\n- M5-PC: Re-vendor LibKa0s v1.57.0 (Launcher minor 3), kit 26 unchanged (e7829c7)\n- PC-26: Record the v2.65.0 standards-reference sweep: already current (e40f1f7)\n- PC-DOCS: Sync docs to v1.56.0/kit 26 and record a fresh test bundle (f8f907d)\n- PC-25: Record the 29 unrecorded LibKa0s tags in one span bundle (f85e6d1)\n- PC-24: Name Pillow for the logo recipe; reword 1.5.0 row for players (7f128b6)\n- PC-23: Cut performance.md to one screen, move the sweep to its own page (7439a2d)\n- PC-22: Document that loot/currency chat globals are rewritten for all (7a0cbaa)\n- PC-21: Narrow toc-file-§1 row, retire debug-logging-§2, re-point L trap (47254c4)\n- PC-20: Fix General-page, Slash minor, 40/60 and .pkgmeta doc drift (1464e9b)\n- PC-19: Move the GlobalStrings splitter to tools/, repo-root relative (6487134)\n- PC-18: Annotate the TOC's load-bearing lines and align the load order (969da8e)\n- PC-17: Delete the 12 unused globals from .luacheckrc (0508a7f)\n- PC-16: Self-naming file headers and an idempotent NS.Schema publish (0afd6b9)\n- PC-15: Delete the dead legacy GetAddOnMetadata rung from NS.Meta (7f7dcdc)\n- PC-14: Declare every default once in defaults/Profile.lua (0ef7f35)\n- PC-13: Rename the minimap row's path to global.minimap.shown (WS-06) (23816df)\n- PC-12: Register the combat watcher through SafeRegisterEvents (5c9a634)\n- PC-11: Memoize one sorted name list per category (NS.SortedStringNames) (58f4710)\n- PC-10: Say where /pc test writes, and that resetall resets everything (9ebae79)\n- PC-09: Parenthesize the New box gsub so its count never reaches Set (d9e1b0c)\n- PC-08: Fall back to chat for /pc test when DebugLog is absent (ba701aa)\n- PC-07: Answer the snapshot's nil from NS.OriginalFormat, not _G (d34b675)\n- PC-06: address review — retire the per-category Defaults button from docs and comments (89a7668)\n- PC-06: Make both Defaults buttons page-wide per options-ui-§13 and §12 (50574a7)\n- PC-05: Move Schema.ResetRows onto the runtime's BulkRun/BulkAdd bracket (122f895)\n- PC-04: address review — ARCHITECTURE §5 load pass names the v2 migration (e06d0fa)\n- PC-04: Drop the dead Loot copies of LOOT_ITEM_CREATED_SELF[_MULTIPLE] (e62907c)\n- PC-03: Lift every stored profile and stamp only past a completed step (aaa533f)\n- PC-02: Build the degraded DisabledLine from the library's verbatim format (7a46946)\n- PC-01: Carry the v1.56.0 Core SafeRegister* and Schema id forwarding (af38352)\n- PC-00: Clear the three v1.56.0 re-vendor reds RV-PC recorded (ab7079f)\n- RV-PC: Re-vendor LibKa0s v1.56.0 and kit revision 26 (18b3e2e)\n- Record the 2026-09-23 review and standards audit (e561b79)\n- Re-point the docs' file:line citations at the lines they name (c55ac2f)\n- Name the v1.55.0 re-vendor bundle for its tag (1d0c226)\n- Record the v1.55.0 adoption decisions, and bring the test inventory to 438 (4f4a63d)\n- Adopt LibKa0s-Schema-1.0 as the settings write seam, keeping every host name (e741973)\n- Re-vendor LibKa0s v1.55.0, and let the kit's cap and prose gates replace this repo's own (365e3be)\n- Bring .gitattributes to line-endings-§5's canonical client-bound body (bc9669c)\n- Adopt the kit's US-English gate, and delete the copy this repo was keeping (8421342)\n- Gate the prose, then sweep what the gate found (68b3135)\n- Close out the documentation drift the sync pass reported but could not act on (6853211)\n- Sync the docs to what the code actually does (c5525bc)\n- Re-vendor LibKa0s v1.53.0 (5e6ff6c)\n- Re-vendor LibKa0s v1.52.0 (2fe86c9)\n- Re-vendor LibKa0s v1.51.0 (cf1d93f)\n- Say v1.50.0 where the docs still said v1.47.0 (2ffdc93)\n- Re-vendor LibKa0s v1.50.0 (0e3ec45)\n- Re-vendor LibKa0s v1.47.0 (94fbc7d)\n- CLAUDE.md is the documentation-§2 stub again (196e0d0)\n- The docs say where /pc test's report goes, and that a disabled addon refuses it (0afa275)\n- Re-vendor LibKa0s v1.46.1 (5bbe28e)\n- Re-vendor LibKa0s v1.45.0 (b1bd810)\n- The README's reset example drops its angle-bracket placeholder (e0eef57)\n- Re-vendor LibKa0s v1.44.0 (f9b811a)\n- Re-vendor LibKa0s v1.43.0: kit revision 23 bounds every run and stops holding built instances (511c10a)\n- Disabling the addon stands it down, and a perf run takes the same latch (5232c3d)\n- Record the four-suite run of 2026-09-16 (80c932f)\n- The host owns five verbs, not four, and `/pc reset` takes a path (093305b)\n- Two verbs and a file the docs had not counted yet (5c2e6b0)\n- A disabled addon refuses a feature verb, and the gate is the table (a6ddce1)\n- The minimap button survives a reset, and now something says so (36b4660)\n- Pin the broker label as the brand name, which is what the rule now says (dfe079f)\n- Name the broker pair in OptionalDeps, as the rest of the collection does (61443d4)\n- Keep the schema's backing-default check under CCN 15 (228fb5d)\n- Adopt the launcher: a minimap button, a broker plugin, and two reserved verbs (4821b7b)\n- Vendor the broker pair and give the addon its own 128x128 face (4e11432)\n- Re-vendor LibKa0s v1.39.0: the Launcher major and the minimap seam (ed46f80)\n- /pc test writes to the debug console, like the Test button always did (8be34c6)\n- Record the 20260916-094245 run; ARCHITECTURE names the vendored LibKa0s v1.38.0 (81c493e)",
+    "changelogCommits": 91,
+    "displayName": "1.6.0-release",
+    "fileDate": "2026-09-26T22:17:47.507Z",
+    "fileId": 8985125,
+    "fileName": "PrettyChat-1.6.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "9110180": {
+    "changelog": "- Release 1.7.0: version bump, release notes and the gated release run (ec21316)\n- SD-FIN-03: remove dead export PrettyChat.ResetCategory (3c40352)\n- SD-FIN-02: sync docs to code (collection sync-docs pass 2026-10-09) (edfc286)\n- PC-STD: roll standards reference to v2.77.0; sync docs (1febeb5)\n- PC-07: spill the census exemption prose out of the hub (acacd9b)\n- PC-06: sync hub, sweep page, luacheckrc and finding ids with the tree (2302d7d)\n- PC-05: correct the taint sentence and the contradictory report-size figures (72f3bf4)\n- PC-04: address review — make the General no-preview check able to fail (83217b5)\n- PC-04: /pc test category no longer offers General (873e099)\n- PC-03: confirm the Categories header Defaults before resetting every tab (8ceb091)\n- PC-02: do not prune or restamp a profile written by a newer build (76600d7)\n- PC-01: refuse blank formats in the schema (panel stored \"\") (2068c10)\n- RV-PC: re-vendor LibKa0s v1.71.0 (kit 38); record the v1.69.0/v1.70.0 span (85dcb84)\n- RA-00: record 2026-10-07 standards audit and review bundles (caa366b)\n- chore: re-vendor LibKa0s v1.70.0 (7a1aabf)\n- chore: re-vendor LibKa0s v1.69.0 (kit 37; adds the line chart widget) (136cf54)\n- DC-REV-01: re-vendor LibKa0s v1.68.1 (kit revision 36; rename-only) (3c2560f)\n- DC-REN-02: automated-tests README names /dev-copilot:bump-version as the release-gate evaluator (5eb0c2e)\n- DC-REN-01: point slash-command references at the dev-copilot plugin (8f146f3)\n- SD-FIN-01: sync docs (lint file count; .pkgmeta ignores; current LibKa0s API doc versions) (21ffead)\n- TP-PC-01: re-vendor LibKa0s v1.68.0 (WidgetsDragHandle 4; kit revision 35) (3670b81)\n- CA-PC-NM: Options descriptor passes addonName (LibKa0s#42) (59938e4)\n- CA-PC-RV: re-vendor LibKa0s v1.67.0 (Core 10, Options 28, OptionsIdList 3; kit revision 35) (19b37be)\n- GI-PC-RV: re-vendor LibKa0s v1.66.0 (kit revision 35), wire test_lizard_sighted, record sighted complexity (7acf9c0)\n- DG-PC-01: adopt docs: debug.md Coverage names the library's lines, DIAG-23 to DIAG-25 smoke rows, moved citations re-pointed (36b73c2)\n- DG-PC-01: adopt the at-enable queue for the launcher's state lines (Launcher 5 debugAtEnable) (735bfae)\n- DG-PC-01: adopt the console's change gates for the watcher trace and TraceCaught; delete the hand-rolled memos (9e9ef82)\n- DG-PC-01: adopt Slash 18 and Lifecycle 3 debug sinks; drop the arms' own edge lines (f6e409c)\n- DG-PC-01: re-vendor LibKa0s v1.65.0 (Slash 18, DebugLog 18.2.1 with DebugLogGates 1, Options 27, Launcher 5, Lifecycle 3; kit revision 34) (7548ece)\n- DL-PC-SYNC: smoke-tests owed table names DebugLog 17, the vendored minor (ebd8aa0)\n- DL-PC-04: README uses bullets, never numbered lists (documentation-§1, standard v2.72.0) (a343243)\n- DL-PC-03R: assert the end marker so `debug diagnostics` is told apart from `on` (0ebd9ca)\n- DL-PC-03: re-vendor the final LibKa0s v1.64.0 (DebugLog 17, DebugLogDiagnostics 2, kit revision 34); diagnostics turns logging on (49edc8b)\n- DL-PC-02: debug coverage audit and fill (debug-logging §8 Diagnosis, §9 quiet steady state) (1d7cdb5)\n- DL-PC-01: re-vendor LibKa0s v1.64.0 (kit revision 33), resize smoke checks (fa4f9fd)\n- SP-FIN-01: re-vendor the test kit at revision 32 (LibKa0s v1.63.0, re-cut) (544e60f)\n- SP-FIN-01: renumber the mock header's _G override to 17 (two items were 16) (ea56280)\n- SP-FIN-01: sync docs (Lifecycle seam and Profiles load position mapped, stale counts and a citation fixed) (cea1ed4)\n- SP-PC-03R: apply the clarified Pending sign-off policy; fix three expected strings (697aeed)\n- SP-PC-03R: LOC-4 fails on the missing-original placeholder; PANEL-16 ticks Enable (ed4ad53)\n- SP-PC-03R: restore smoke routing and correct six check texts (cd39f6a)\n- SP-PC-03: rewrite smoke tests as one evergreen, theme-grouped suite (a2447f5)\n- SP-PC-02R: name profile, liveVerbs and profiles in the Tier-1 docs (54e4bdb)\n- SP-PC-02R: dispatch every live verb in disabled/7 while actually disabled (2ad9c08)\n- SP-PC-02R: re-take the performance sweep; make the disabled profile case catch a narrowed liveVerbs (22c53fc)\n- SP-PC-02: /pc profile via CliProfile (08ea57d)\n- SP-PC-02: re-vendor LibKa0s v1.63.0 (40a2b5f)\n- SP-PC-01R: redraw the shown Profiles page a frame later, never under its own control's callback (4f26883)\n- SP-PC-01R: pin the Profiles page's silent opt-out with a chat survey (5cf4702)\n- SP-PC-01R: regenerate docs/test-cases.md after the Defaults-button case rename (e545f38)\n- SP-PC-01R: pin the Profiles page's missing Defaults button and the veto wiring; fix stale docs (43fc1b1)\n- SP-PC-01R: name Profiles -> Reset Profile in the reset tooltip; fix shifted wow_mock citations (f6dcc4a)\n- SP-PC-01: Profiles page, profile-event redraw and docs/profiles.md (644178e)",
+    "changelogCommits": 53,
+    "displayName": "1.7.0-release",
+    "fileDate": "2026-10-09T17:30:39.383Z",
+    "fileId": 9110180,
+    "fileName": "PrettyChat-1.7.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  }
+}

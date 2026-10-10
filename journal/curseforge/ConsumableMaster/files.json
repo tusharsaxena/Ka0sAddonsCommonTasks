@@ -1,0 +1,188 @@
+{
+  "7976918": {
+    "changelog": "- Add fallback macro icon and reorder category panel (cb06b4c)\n- Update top-level docs for v1.1.0 and the icon/reorder changes (4da1f6e)\n- Doc updates for v1.1.0 (fe475fb)\n- Ship v1.1.0 correctness, performance, and GC fixes (60ce1b6)\n- Plan v1.1.0 post-1.0 hardening from PE review (e808aa4)\n- Add principal-engineer code review (3b0f539)",
+    "changelogCommits": 6,
+    "displayName": "1.1.0-release",
+    "fileDate": "2026-04-24T11:14:04.933Z",
+    "fileId": 7976918,
+    "fileName": "ConsumableMaster-1.1.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7978711": {
+    "changelog": "- Ship v1.2.0 action-bar icon fix and forced-rewrite path (0504923)",
+    "changelogCommits": 1,
+    "displayName": "1.2.0-release",
+    "fileDate": "2026-04-24T18:31:38.943Z",
+    "fileId": 7978711,
+    "fileName": "ConsumableMaster-1.2.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7980948": {
+    "changelog": "- Ship v1.2.1 fix for LEARNED_SPELL_IN_TAB removal in retail (7092dbf)",
+    "changelogCommits": 1,
+    "displayName": "1.2.1-release",
+    "fileDate": "2026-04-25T05:54:06.1Z",
+    "fileId": 7980948,
+    "fileName": "ConsumableMaster-1.2.1-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7982037": {
+    "changelog": "- Ship v1.3.0 AIO Health and Mana composite macros (3ecb7c7)",
+    "changelogCommits": 1,
+    "displayName": "1.3.0-release",
+    "fileDate": "2026-04-25T11:51:42.483Z",
+    "fileId": 7982037,
+    "fileName": "ConsumableMaster-1.3.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8033631": {
+    "changelog": "- Standardize Version History table with dated, single-line entries (4a13162)\n- Ship v1.4.0 — Settings rework, /cm CLI, and review hardening (3780b6e)\n- Document panel OnShow combat guard alongside O.Open guard (fe2e358)\n- Render breadcrumb separator as inline atlas chevron (bbf1ed4)\n- Tighten settings row layout and block panel open in combat (af3cba0)\n- Widen category row name area and AIO Enabled label (205b36a)\n- Sync docs after review execution and renumber review artifacts (efe840d)\n- Refresh panel while addon off; auto-track viewed spec; dedupe stats (fef0acd)\n- Surface cleanup, CLI clarity, and Helpers.Set simplification (c38f452)\n- Add 2026-05-02 principal-engineer review artifacts (577fd0f)\n- Sync docs after master enable + General layout changes (a9db280)\n- Add comprehensive smoke-test playbook in docs/smoke-tests.md (09b8fcb)\n- Add master enable toggle and rework General page layout (0252d18)\n- Sync docs after Settings migration and prune dead exports (e5f1eaa)\n- Migrate Settings UI to KickCD-style canvas framework (f844f78)\n- Add About landing page to top-level Settings panel (c6c0fe9)\n- Fix doc API drift and remove README Contributing section (b8cdd63)\n- Carve out /wow-addon:commit exception to auto-commit rule (cccb043)\n- Consolidate docs into lean indexes and on-demand topic chunks (54d4376)\n- Tighten WoW version badge URL (f1e2586)\n- Enforce CRLF line endings via .gitattributes (bdadec3)\n- Add KickCD-style schema layer and list/get/set slash UX (65658f5)\n- Split Options panel into Blizzard sub-categories (fdad3f0)\n- Refresh top-level docs for /cm and cyan [CM] chat prefix (5e8efd5)\n- Rebrand slash UX to /cm with cyan [CM] chat prefix (11de4cb)\n- Prefix settings-panel title with \"Ka0s\" (cbaa252)\n- Add LICENSE, vendor screenshots, polish README and TOC metadata (a9f4a0c)",
+    "changelogCommits": 27,
+    "displayName": "1.4.0-release",
+    "fileDate": "2026-05-03T17:32:36.117Z",
+    "fileId": 8033631,
+    "fileName": "ConsumableMaster-1.4.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8472638": {
+    "changelog": "- Prep for next release (451301f)\n- Add scrollbar + line counter to the debug console (d4eef3f)\n- Refresh FAQ/Troubleshooting for spec-aware weapon enchant + new macros (616d827)\n- Refresh README screenshots; add AIO-health, flask, weapon-enchant shots (6584167)\n- Drop stale globals from .luacheckrc; dedupe read_globals (92dfb39)\n- Add What's-new §1.5.0 section; sync stale Version History row (ba894ab)\n- Conform chat output, slash UX, and TOC to the Ka0s standard (f469433)\n- Sync README Debug console toggle with its window-only behavior (d39ab53)\n- Refresh scalar settings in place instead of rebuilding the page (71e2154)\n- Make Debug console checkbox toggle window visibility, not the flag (48bad00)\n- Add §7a smoke tests for panel-refresh perf and Defaults button styling (b06ab9f)\n- Fix settings-panel freeze and red Defaults button (ec74454)\n- Reframe debug-console font as standard-compliant, not a deviation (1be0f90)\n- Fix reset mechanisms across settings, slash, and DB (dad29d5)\n- Add smoke tests for class-based classification (localization) (84230dd)\n- Record the English-only tracked deviation; sync classification docs (eb57403)\n- Classify by numeric item class, not localized subType strings (dc8289f)\n- Remove dead exports (PrintHelp, DiscoverOne, Debug.Log) (25a1bbe)\n- Sync docs: document WeaponSlots + the newer seed files (69a59fd)\n- Reorder settings sub-pages: AIO pages after Healthstone, Vantus last (f609fc3)\n- Inline vendored libraries in the TOC; drop embeds.xml (1e98b0c)\n- Seed augment runes Legion..Midnight; expand reusable set (4d3be80)\n- Fix augment-rune mis-ranking from a partial-tooltip cache race (6608c15)\n- Fix stale category count in Classifier header comment (02b81da)\n- Document the Augment Rune category; sync counts + badge (85d592e)\n- Guard: PRIMARY token leaves FLASK/STAT_FOOD ranking unmoved (38dcb47)\n- Wire up the Augment Rune category (a98889c)\n- Score augment runes by primary stat, reusable breaks ties (78d3996)\n- Classify augment runes; add reusable-rune helper (90ba05c)\n- Parse \"Primary Stat\" and flag augment-rune tooltips (936bc39)\n- Plan the Augment Rune category implementation (5f2a169)\n- Design the Augment Rune category (7ad65e9)\n- Fix stale scope claim that weapon oils have no managed macro (281e984)\n- Track the weapon-enchant / Vantus design specs + plans (5212d3a)\n- Fix inert weapon-enchant dimming; harden per-hand feature (8df20a2)\n- Document the weapon-aware, per-hand Weapon Enchant behaviour (9eef488)\n- Show per-hand pick markers + weapon-affinity dimming on the Weapon Enchant page (e2d59a3)\n- Route WPN_ENCH through the per-hand pipeline + recompute on weapon swap (037a8dc)\n- Build per-hand weapon-enchant macro; factor commitMacro tail (17c1e15)\n- Add Selector.PickBestForSlot for per-weapon enchant picks (0d688d2)\n- Add weapon-affinity detection: tooltip flag + WeaponSlots module (f956605)\n- Score weapon-enchant Attack Power / Spell Power by spec role (addba2f)\n- Add Vantus Rune and Weapon Enchant macro categories (#2) (8f7d238)\n- Make README player-facing per standard v2.1.0; add docs/testing.md (22636af)\n- Scrub tier references for standard v2.0.0; sync test-coverage docs (6a92adc)\n- Overhaul test suite to fleet test() model + fill coverage gaps (484b39b)\n- Conform README badge row to standard v1.14.0 documentation-§1 (4ae9ec2)\n- De-drift test-count docs, add tests badge + sync Hard rule (1b2af7d)\n- Add generated test-case inventory (docs/test-cases.md) (42df5da)\n- Add non-executing --list inventory mode to the test runner (09cbce3)\n- Point X-Standard at the standard repo URL, not a version string (a615cf3)\n- Track debug-logging design spec + plan; gitignore .superpowers scratch (803753e)\n- Conform debug logging to standard debug-logging §3–§10 + v1.12.0 §5 (d817d5e)\n- Detect combined \"health and mana\" food/drink as both Food and Drink (7b60a7b)\n- Sync module-map to new DiscoverOne signature + discovery summary line (013a768)\n- Collapse per-item discovery spam into one summary line per pass (eab4d50)\n- Sync docs to remediated debug console + toggle semantics (8df90a6)\n- Remediate debug console to standard debug-logging + fix dead toggle (f221c4b)\n- Move audit/ and reviews/ bundles under docs/ (a7b3b2d)\n- Anchor the Ka0s WoW Addon Standard + deviation rule in instructions (b2e1be8)\n- Sync docs to Tier-2 architecture and bump to 1.5.0 (81b09df)\n- Remediate to Ka0s WoW Addon Standard v1.0.0 (Tier 2) (bab4319)\n- Add standards audit bundle (2026-07-12, v1.0.0) (5d24628)\n- Bump Interface to 120007 and sync interface refs in docs (1869ee6)",
+    "changelogCommits": 64,
+    "displayName": "1.5.0-release",
+    "fileDate": "2026-07-20T16:33:15.887Z",
+    "fileId": 8472638,
+    "fileName": "ConsumableMaster-1.5.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.7"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8853250": {
+    "changelog": "- fix(wpn_ench): a bow is a weapon, so an oil applies to it (a4c7968)\n- sync-docs: 12.1.0, and the Maintenance tab's comments catch up (e989e21)\n- Release 1.6.0 (c856b35)\n- Target patch 12.1.0 — the TOC interface becomes 120100 (7bb3e06)\n- README: name the addon in the opening line, refresh the shots (f367098)\n- media: refresh the screenshot set (f83d353)\n- docs: the What's new references follow the section out (v2.42.0) (4578cab)\n- README: drop `## What's new` (standard v2.42.0) (7b6fd3d)\n- README: adopt the standard's prose Usage section (v2.41.0) (bba9b06)\n- perf: the 2026-09-09 capture — the +61% total is drive rate, not code (575634c)\n- re-vendor LibKa0s v1.29.0 — the JSON dump folds into the report step (e496a9e)\n- re-vendor LibKa0s v1.28.0 — the perf usage block renders correctly (869dd43)\n- feat(settings): Maintenance gets its own tab on the General page again (b6bbf26)\n- fix(widgets): the info glyph matches LootHistory's, and stops lighting a panel (c8340f8)\n- M5-06-C1: the lint citations name a section that does not exist (afa0bc1)\n- M5-06: the amended rules meet the repository, and three of them find something (8e56ab0)\n- M4c-05: two smoke steps pointed at sessions nobody scheduled (1986bf3)\n- M5-01: the record is regenerated, and the band table stops being empty (cdb1ec3)\n- M5-02: a row for a rule that stopped existing, and three ids that never did (48a31f5)\n- M5-05: the citations name symbols, and the section numbers name their file (a605567)\n- M5-04: compat-layer.md and slash-dispatch.md, plus the gate the rows needed (8c6dc6d)\n- M4c-03: the blanket ignore goes, and the four registrations stay (88270be)\n- M4c-02: the spelling sweep gets the gate it should have had (6fd75e9)\n- M4c-01: the locale lexer answers one question per function (81a3fc1)\n- M4-22: the refresh burst armed a hundred and fifty timers to perform one rebuild (c6475e9)\n- M4-21: the settings surface stops growing bare English unnoticed (2f5876b)\n- M4-20: the Core parity list covers the whole seam, and says it once (4493a40)\n- M4-18: one decoder for the stored colour, and it invents nothing (8241a20)\n- M4-17: the debug sink's placeholders are %s, and a gate says so (4b53bcd)\n- M4-14: the two files over the cap stop being unremarked (0457b44)\n- M4-11: the test tree comes into lint scope (49e87f3)\n- M4-09: the parity seams take the half of the factory they can use (91de5f0)\n- M4-13: the British spellings go, against the published list (a703a8a)\n- M4-06: the third of the five private Border patches goes (393102f)\n- M4-01: adopt LibKa0s v1.27.0, and wire the gate that came with it (44f8757)\n- M4-C1: say when the vendored-copy diff is supposed to be non-empty (2cf6e6f)\n- M4-C1: the doc set stops calling LSMValues host-owned (8e5b35f)\n- M4-C1: the dead LSMValues wrapper comes out, and EnumValues' comment names its real caller (b4b1774)\n- M4-C1: the vendored-library row names no version, because it named the wrong one (9f8aced)\n- M3-04: ConsumableMaster takes LibKa0s v1.26.0, and the media workaround comes out (ac37b2a)\n- M3-C1: gate the v3 label-flags conversion on the key that marks an unmigrated profile (a5e6bd1)\n- M2-19: _dev, two dev documents, and comments that say which half is bytes (21aaecb)\n- M2-08: refuse the category registration in combat and replay it on regen (5645c4d)\n- M2-07: gate the profile-writing migrations on the profile's own stamp (cb33774)\n- M2-06: name the migration test for what it asserts, and cover a second profile (7d118ab)\n- docs: commit the frozen 2026-09-07 review and standards-audit bundles (10d3167)\n- docs: two stale facts the v1.25.0 re-vendor left behind (402a16c)\n- Carry LibKa0s v1.25.0 (1d8b249)\n- feat(settings): one General tab, a key on every Macros tab, boxed rows (e15fb59)\n- docs: sync the doc set to the revamped settings panel (fa8d9f2)\n- feat(settings): tabbed General, drag-reorder on the AIO tabs, stat priority by drag (ab4c564)\n- Eighteen sidebar entries become four: the settings panel is tabbed (a256a2e)\n- Re-vendor LibKa0s v1.23.0: the tabbed page and the page banner arrive (988139d)\n- Say that the drag handle is the library's, and count the tests again (55c1196)\n- Carry LibKa0s v1.19.0 (c2f369a)\n- Keep your place in the list when the page repaints (dd7f920)\n- Cancel the drag before clearing the page, not after (0925734)\n- Put the drag handle at the head of a priority row (2013d96)\n- Drag a priority row where you want it, instead of clicking it there (65e5a87)\n- Re-vendor LibKa0s v1.18.1: the landing logo stops pooling its texture (ad086c9)\n- Adopt options-ui-§12: the reset is a profile reset, and wire the profile (f8cdd15)\n- feat(media): new logo art, and one uniform name for every render (2f0f70e)\n- docs: sync the doc set to the v1.16.0 re-vendor and the Item seam (5f98f56)\n- Re-vendor LibKa0s v1.16.0 (0dd978e)\n- Accept a shift-clicked link in the Add-by-ID box (db0a69c)\n- Record the 2026-08-25 LibKa0s re-vendor (68704da)\n- perf(tests): memoise resolve() — the gate drops 25.59s to 3.85s (731b1a3)\n- refactor(env): read the TOC through LibKa0s-Env-1.0 (e510ffc)\n- chore(libs): re-vendor LibKa0s v1.15.0, and the test kit it is bound to (295def5)\n- Re-vendor LibKa0s v1.10.2: the perf panel's close button gets the addon name (dde856c)\n- Draw the console's font and the collection's marks from the shared payload (2d79841)\n- docs(perf): record in-game capture 20260807-132029 — first baseline (f304efa)\n- docs(perf): move the in-game capture store to docs/perf-analysis/ bundles (13c7402)\n- automated-tests: record run 20260807-114612 — green (4400bc5)\n- chore(gitattributes): re-sync to the canonical body updated in v2.28.1 (648e142)\n- test(vendor): re-vendor LibKa0s v1.8.2 (testkit rev 10) — CRLF-correct bundles (d1b94d8)\n- docs: resolve the last retired §N citations and refresh the standards prose (9cb3af8)\n- docs: re-anchor two stale path citations; record run 20260807-022923 (33019c0)\n- docs: re-anchor stale file:line citations to where the code actually is (d69c4fa)\n- fix: refuse a macro drag in combat instead of erroring (44fed34)\n- docs: retire docs/pending/LEDGER.md; the pending store is GitHub issues (8c03de9)\n- docs+tests: move the LibKa0s provenance line to CLAUDE.md, re-vendor test kit at v1.8.1 (518152d)\n- Pin line endings with the canonical .gitattributes (line-endings-§2) (f6e260e)\n- docs: adopt the documentation tier model (standard v2.23.0) (6716ddf)\n- docs: point the prose at where this branch actually moved things (0e85b52)\n- test(settings-ui): walk the library's whole published surface instead of a hand-listed eight  [fixes M2-03 test] (8976da6)\n- test(macrobar): observe the bar frame and the rendered checkbox, not the shape of the onChange  [fixes M4-20 test] (99911c8)\n- perf(harness): ship tests/perf.lua, docs/performance.md and docs/perf-runs/  [M4-25] (e5e3b22)\n- refactor(bar,debug): one write path for /cm bar; DebugLog setup moves to core/  [M4-20] (0d34fb2)\n- docs(deviations): record the macro bar's preview-mode deviation  [M4-15] (adaac10)\n- test(settings): make the degraded-schema case exercise a write  [M4-06] (3a66d19)\n- refactor(defaults): move KCM.dbDefaults into defaults/Profile.lua  [M4-02] (ca02dfe)\n- refactor(settings): extract the Options seam into settings/OptionsSetup.lua  [M4-01] (1bed056)\n- build(packaging): ignore .claude/ and .superpowers/ at package time  [M4-13] (c5be541)\n- docs(architecture): complete the eight mandated sections  [M4-09] (9ff445b)\n- docs(claude): name the addon in the CLAUDE.md H1  [M4-08] (7c4b1b3)\n- docs(comments): correct the four stale citations in CM's own source  [M4-10] (ac38826)",
+    "changelogCommits": 97,
+    "displayName": "1.6.0-release",
+    "fileDate": "2026-09-10T20:40:47.35Z",
+    "fileId": 8853250,
+    "fileName": "ConsumableMaster-1.6.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8858664": {
+    "changelog": "- sync-docs: the bar's click pin reaches the docs (6e32aa1)\n- Release 1.6.1 (eb1829f)\n- fix(bar): honour mouse clicks when ActionButtonUseKeyDown is on (0e050cb)",
+    "changelogCommits": 3,
+    "displayName": "1.6.1-release",
+    "fileDate": "2026-09-11T15:50:40.09Z",
+    "fileId": 8858664,
+    "fileName": "ConsumableMaster-1.6.1-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8859008": {
+    "changelog": "- Release 1.6.2 (1639fde)\n- fix(bar): show the AIO macro's real step in its tooltip, not its body (e911907)",
+    "changelogCommits": 2,
+    "displayName": "1.6.2-release",
+    "fileDate": "2026-09-11T16:40:28.71Z",
+    "fileId": 8859008,
+    "fileName": "ConsumableMaster-1.6.2-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8985122": {
+    "changelog": "- Release 1.7.0: version bump, release notes and the gated release run (f068e65)\n- README: Usage as the four-step setup flow; correct the macro count comment (86660df)\n- README: plain-language pass for readers (fe25f75)\n- CM-ATS-SDR: Correct stale comment citations (owner-approved sync-docs follow-up) (3f0e4c2)\n- CM-ATS-SD: Sync docs to the tree after the automated-tests sweep (fda94fc)\n- CM-ATS-99: Final automated-tests sweep run (20260926-193121) (0315796)\n- CM-ATS-02R: slash-dispatch.md points the disabled-state refusal cases at test_slash_store.lua (76bdd69)\n- CM-ATS-02: Peel test_slash, test_macrobar and test_settingsui below 1000 on their own section seams (1717d98)\n- CM-ATS-RVR: The Options descriptor-L tripwire scans every file lib.MODULES registers (b4ecfdf)\n- CM-ATS-RV: Re-vendor LibKa0s v1.62.0 (kit revision 31); the Options inventory names the four peeled files (9f3beb9)\n- CM-ATS-01: Record the recompute bytes/iter rise as GC residue, bisected to b19e9bb (dffb7fe)\n- CM-ATS-00: Record the 2026-09-26 automated-tests sweep run (20260926-160431) (e4a42cd)\n- NR-CM-01: Re-vendor LibKa0s v1.61.0; the Options inventory names OptionsNav (4a15a89)\n- DR-CM-07R: Correct the allRows line cite the sync-docs pass missed (03d5ade)\n- DR-CM-07: Standards refresh to v2.68.0, sync-docs line cites, AUD-01 passes (541742b)\n- DR-CM-06: Close mark (X) on the macro bar's drag handle hides the bar (d04de19)\n- DR-CM-05R: Correct the report's format claim and the ambiguous §7b ref (4fa7a0e)\n- DR-CM-05: Document the diagnostics report (debug.md, live set, smoke steps) (0aba378)\n- DR-CM-04: README ## Reporting a bug, Troubleshooting rows point at it (894b88b)\n- DR-CM-03R: Read the tooltip cache before the categories rank anything (0dbf877)\n- DR-CM-03: Ship the diagnostics report (/cm diagnostics, DX-CM) (b19e9bb)\n- DR-CM-02: Read-only accessors for the combat queue, write tracking and tooltip cache (986c51f)\n- CM-DOCS: Name DebugLog.RunDiagnostics in the debug surface listings (46d39b9)\n- DR-CM-01: Re-vendor LibKa0s v1.60.0; stub RunDiagnostics, 3000-line buffer pin (e71fd43)\n- CM-DOCS: Re-point eight settings/Slash.lua cites shifted by M6 (7f3675d)\n- M6-CM: Re-vendor LibKa0s v1.58.0; launcher menu Enabled + Locked (e2b1c61)\n- M5-CM: Re-vendor LibKa0s v1.57.0 and answer the launcher status tooltip (033a695)\n- CM-31: Re-sweep the standards reference against v2.65.0 (no drift) (b0a3dbd)\n- CM-DOCS: address review — re-point 16 drifted file:line cites to HEAD (d321538)\n- CM-DOCS: Record the 20260924-120622 automated-test bundle (c2ce3e9)\n- CM-DOCS: Sync docs and comment citations to HEAD after M3 (f8729fa)\n- CM-30: File peel issues for settings/Panel.lua and settings/Category.lua (3050cd7)\n- CM-29: Record the v1.56.0 ReorderList in-client checks in smoke-tests (55b540d)\n- CM-28: Record the lapsed v1.16.0-v1.54.2 re-vendors in one span bundle (ff0f73b)\n- CM-27: Expand bare §N citations to filename-§N and respell dash forms (d656463)\n- CM-26: Retire the preview-mode row; trim the ARCHITECTURE.md hub to 420 (4cc6dca)\n- CM-25: Remove the retired \"What's new in 1.6.2\" README section (1b25d61)\n- CM-24: address review — PerfSetup comments name the Lifecycle load read (9381805)\n- CM-24: Correct TOC and doc load-order statements after LifecycleSetup (f832a2a)\n- CM-23: Correct stale comments and docs that describe removed behavior (4fc2995)\n- CM-22: Declare the harness-ping bus literal once in its test case (bc084e8)\n- CM-21: Derive the About logo path from the addon folder name (254e7ac)\n- CM-20: Draw the General page through RenderTabbedSchema, drop GENERAL_TABS (bac6600)\n- CM-19: Rename the minimap row's CLI path to global.minimap.shown (9bdebad)\n- CM-18: address review — library-absent comment names only the composed rows (92ac73e)\n- CM-18: Refuse library-absent composed-row verbs on one line, no false ack (77254dd)\n- CM-17: address review — reset-count doc ripple and stale seam names (11c62bc)\n- CM-17: Adopt LibKa0s-Schema-1.0 as the settings write seam (01a5c94)\n- CM-17: Pin the settings seam's behavior before the Schema adoption (a1d0122)\n- CM-16: Ship schemaVersion 0 and let the runner own the stamp (7f46eb7)\n- CM-15: Register every event through SafeRegisterEvent, list rejects (a19bb96)\n- CM-14: Tell the truth about panel hydration while the addon is disabled (c18ca0c)\n- CM-13: Route GetItemInfo through KCM.Compat, drop the unread subType (e054844)\n- CM-12: Make the disabled suite's two unfalsifiable assertions able to fail (02c789f)\n- CM-11: One global reset act behind one popup, refused in combat (8664d9d)\n- CM-10: Print one line for /cm enable and /cm disable (6294158)\n- CM-09: Say the bar is off on unlock; launcher reuses RunLock and gate (50e092e)\n- CM-08: Toggle bare /cm bar on the stored flag, not the latched IsEnabled (5beabc7)\n- CM-07: address review — re-point RegisterProfileCallbacks cites in ARCHITECTURE.md (adf6e84)\n- CM-07: Run login's discovery pass and stale sweep on the stand-up (2e4453b)\n- CM-06: Stand flyout attribute drivers down with the bar, re-arm on enable (4e86d0e)\n- CM-05: Hand panel registration and open to LibKa0s-Options CreateOptionsPanel (da5fc69)\n- CM-04: address review — correct MacroManager cites, pin both main-hand items (70c328e)\n- CM-04: Replay the queued body on flush so WPN_ENCH keeps /use 16 and 17 (ee8eed8)\n- CM-03: Store a copy from the color validator so a reset cannot alias (2b5136b)\n- CM-02: Bring the local AceDB fake to the kit-26 fidelity, not delete it (7142550)\n- RV-CM: address review — correct the moved-minor count to fifteen (906c250)\n- RV-CM: Re-vendor LibKa0s v1.56.0 and roll the provenance line (389e0f0)\n- CM-01: US-spell three prose words ahead of the v1.56.0 re-vendor (c95b4c6)\n- Record the 2026-09-23 review and standards audit (38f3901)\n- Name the v1.55.0 re-vendor bundle for its tag (4552b85)\n- Cite the chat-tag rule as slash-commands-§4 (610c33d)\n- Record the v1.55.0 adoption decisions and refresh the counts (c44da07)\n- Track every bus target with the LibKa0s-Bus-1.0 stand-down record (e3c13b7)\n- Move the spec pair, IsSecret and GetSpellName onto LibKa0s-Compat-1.0 (c14db97)\n- Re-vendor LibKa0s v1.55.0 and wire the kit's cap and prose gates (34813a4)\n- Move the over-cap census under the deviations register (c0a5faf)\n- Refresh the standards reference against standard v2.63.0 (189e2e5)\n- Adopt the kit's US-English gate, and delete the copy this repo was keeping (1f86d4e)\n- Close out the documentation drift the sync pass reported but could not act on (e8947be)\n- Sync the docs to what the code actually does (a8d6935)\n- Re-vendor LibKa0s v1.53.0 (b1c9d5c)\n- Ask the selector whether a spell can be picked, in both places that guess (5d69177)\n- Re-vendor LibKa0s v1.52.0 (fb73652)\n- Re-vendor LibKa0s v1.51.0 (62d95a8)\n- Re-vendor LibKa0s v1.50.0 (b039f27)\n- Re-vendor LibKa0s v1.48.1, and cover the tooltips the adoption was for (2794e3f)\n- Re-vendor LibKa0s v1.48.0 and hand the drag handle to the library (82e0dc0)\n- Re-vendor LibKa0s v1.47.0 (db60c5d)\n- The docs count lock and unlock, and their line citations land again (fc62762)\n- Re-vendor LibKa0s v1.46.1 (ff0832d)\n- Re-vendor LibKa0s v1.45.0 (390fb40)",
+    "changelogCommits": 92,
+    "displayName": "1.7.0-release",
+    "fileDate": "2026-09-26T22:17:42.483Z",
+    "fileId": 8985122,
+    "fileName": "ConsumableMaster-1.7.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "9110178": {
+    "changelog": "- Release 1.8.0: version bump, release notes and the gated release run (59fcc7a)\n- SD-FIN-02: sync docs to code (collection sync-docs pass 2026-10-09) (944e16b)\n- CM-STD: standards reference to v2.77.0 and docs sync (3bc2f79)\n- CM-09: Drop the dead bare-global GetAddOnMetadata rung (025ad9d)\n- CM-08: Annotate load-bearing printer consumers and conventional seeds (787b7e3)\n- CM-07: Cite handlers by name, resolvable ids, current commands in docs (8b49364)\n- CM-06: address review — module-map flyout signatures carry scoreCache? (52eebcb)\n- CM-06: Share one scoreCache across a bar refresh's flyouts (1824054)\n- CM-05: Delegate Selector.compositeRefs to MacroManager.CompositeConfig (743021c)\n- CM-04: address review — resolveAddByID cites parsePriorityID back (3a68d79)\n- CM-04: Accept only positive item IDs or s:<spell ID> in /cm priority (2ffb530)\n- CM-03: Filter groupmates' respecs and discover bags on a spec change (d25e872)\n- CM-02: seed Devourer stat priority and test seeds per playable spec (68d798a)\n- CM-01: trust the macro fingerprint only while the live macro holds it (38326c3)\n- RV-CM: re-vendor LibKa0s v1.71.0; record v1.69.0-v1.70.0 span (CM-A-01) (b4060c3)\n- RA-00: record 2026-10-07 standards audit and review bundles (9b056f6)\n- chore: re-vendor LibKa0s v1.70.0 (74bcda1)\n- chore: re-vendor LibKa0s v1.69.0 (kit 37; adds the line chart widget) (f8d2f3b)\n- DC-REV-01: re-vendor LibKa0s v1.68.1 (kit revision 36; no library minor moved) (c50b41b)\n- DC-REN-02: automated-tests README names /dev-copilot:bump-version as the release-gate evaluator (e75e475)\n- DC-REN-01: CLAUDE.md and docs name /dev-copilot commands (wow-addon plugin merged into dev-copilot) (4ddd3f3)\n- SD-FIN-01: sync docs (DEPENDENCIES citations and find; drifted comment line refs) (5eba999)\n- TP-CM-02: the macro bar's strip tooltips open beside the strip (tooltipPlace) (d9c788a)\n- TP-CM-01: re-vendor LibKa0s v1.68.0 (WidgetsDragHandle 4; kit revision 35) (ce15409)\n- CA-FIN-02: doc sync before merge (a83f01c)\n- CA-CM-01: adopt Slash.SplitVerb, FindCommand and CommandRows (#44) (aaabf34)\n- CA-CM-01: characterize the sub-command help rows, verb split and lookup (#44) (3c932d3)\n- CA-CM-NM: the Options descriptor passes addonName (LibKa0s#42) (baa6453)\n- CA-CM-RV: re-vendor LibKa0s v1.67.0 (Core 10, Options 28, OptionsIdList 3; kit revision 35) (326aa2e)\n- GI-FIN-02: record the 2026-10-02 smoke passes; doc sync (c910771)\n- GI-CM-02: mergePins and renderSlotList under CCN 15, behavior identical (a13229f)\n- GI-CM-02: the slot-sequence probe's SetHeight names its widget, not a second self (luacheck W432) (2c4d9ad)\n- GI-CM-02: characterization cases for mergePins and renderSlotList before their split (937240b)\n- GI-CM-01: the three Slash L overrides reach chat now that Slash minor 19 hands parse its resolver (aacc43b)\n- GI-CM-RV: re-vendor LibKa0s v1.66.0 (kit revision 35), wire test_lizard_sighted, record sighted complexity (e7dd55f)\n- DG-CM-01R: band census says settings/Panel.lua is 1196 lines, as measured after round 3 (b63453a)\n- DG-CM-01R: a page's Defaults in combat is the library's [Cfg] line alone; drop the unreachable host guard (129bbc5)\n- DG-CM-01R: the settings panel's in-combat refusal is the library's [Cfg] line alone (b1ea5f7)\n- DG-CM-01: adopt the at-enable queue: the launcher's registration state lands when logging is first turned on (51fb720)\n- DG-CM-01: adopt the console's change gates: DebugOnce and DebugChanged replace KCM.DebugQuiet's copies, onClear re-arms the one kept (16a9422)\n- DG-CM-01: adopt the library's own lines: Slash, Options and Lifecycle take the gated sink as debug (498b0e2)\n- DG-CM-01: re-vendor LibKa0s v1.65.0 (kit revision 34), DebugLogGates joins the DebugLog major (21cee68)\n- DL-CM-FIN: sync docs (1000-1500 band re-measured after the debug coverage fill) (52c68e1)\n- DL-CM-04: README uses bullets, never numbered lists (standard v2.72.0 documentation-§1) (ba1ecf7)\n- DL-CM-03: re-vendor the final LibKa0s v1.64.0 (kit revision 34), diagnostics turns logging on (bf8afd9)\n- DL-CM-02R: quiet the refused-write and oversize [Macro] lines, count failed writes apart in [Calc] (a98d3bb)\n- DL-CM-02: debug coverage audit and fill (debug-logging-§8 diagnosis, §9 quiet steady state) (c528b87)\n- DL-CM-01: re-vendor LibKa0s v1.64.0 (kit revision 33), resize smoke checks (5100d9b)\n- SP-FIN-01: re-vendor the test kit at revision 32 (LibKa0s v1.63.0, re-cut) (7a67b8d)\n- SP-FIN-01: sync docs (profile verb in scope and CLAUDE.md, kit tag, 1000-line band) (eff8eb9)\n- SP-CM-03R: list INSTALL-1 under Pending sign-off (677eeda)\n- SP-CM-03R: drop PROFILE-9's impossible confirm and name PANEL-12's No button (2ef3be3)\n- SP-CM-03R: add the owed Session CM and 2026-09-07 checks to Pending (48c5ee4)\n- SP-CM-03R: correct the in-combat and degraded /cm config lines and the rewrite button label (664e56d)\n- SP-CM-03R: close the smoke review defects and re-check strings against the code (7306d58)\n- SP-CM-03R: PRIO-4 names a potion you carry for the add-by-name step (5eb35ea)\n- SP-CM-03R: Restore lost smoke checks and fix wrong expectations (ebe138a)\n- SP-CM-03: Rewrite the smoke suite as one theme-grouped, evergreen doc (7516a18)\n- SP-CM-02: /cm profile via CliProfile (7c56826)\n- SP-CM-02: re-vendor LibKa0s v1.63.0 (7068c84)\n- Docs: finish the cut-off [Event] sentence in debug.md (ab767a4)\n- Docs: sync the restriction-lift rewrite into data-flow, macro-manager and module-map (b1dae1a)\n- Fire the restriction-lift rewrite on state 0, not a falsy flag (6719600)\n- Rewrite every macro when a restriction lifts; trace state-changing events (13010ef)",
+    "changelogCommits": 64,
+    "displayName": "1.8.0-release",
+    "fileDate": "2026-10-09T17:30:34.497Z",
+    "fileId": 9110178,
+    "fileName": "ConsumableMaster-1.8.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  }
+}

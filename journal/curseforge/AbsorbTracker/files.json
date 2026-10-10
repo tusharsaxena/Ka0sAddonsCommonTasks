@@ -1,0 +1,166 @@
+{
+  "7556334": {
+    "changelog": "tag 3d9ddfd55bb9f0adca49538496c0ec772e3bb061 1.3.0-release\nAuthor:\tTushar Saxena [tushar.saxena@gmail.com](mailto:tushar.saxena@gmail.com)\nDate:\tSat Jan 31 23:10:13 2026 +0530\n\nInitial Release ... yay!",
+    "changelogCommits": null,
+    "displayName": "1.3.0-release",
+    "fileDate": "2026-01-31T17:40:13.997Z",
+    "fileId": 7556334,
+    "fileName": "AbsorbTracker-1.3.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7580660": {
+    "changelog": "- `Updated README (6fc20a6)\n- `Updated .gitignore (4bf051e)\n- `Version bump to 1.3.0 (2165364)\n- `Untrack .claude folder (73972c0)\n- `Updated README.md with screenshots (434e102)",
+    "changelogCommits": 5,
+    "displayName": "1.4.0-release",
+    "fileDate": "2026-02-05T18:17:03.077Z",
+    "fileId": 7580660,
+    "fileName": "AbsorbTracker-1.4.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7622457": {
+    "changelog": "- `- Added a \"class color\" option for bar color, bckground color and border color (0c51788)\n- `Updated all libs (a85366e)",
+    "changelogCommits": 2,
+    "displayName": "1.5.0-release",
+    "fileDate": "2026-02-14T05:40:24.217Z",
+    "fileId": 7622457,
+    "fileName": "AbsorbTracker-1.5.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7622534": {
+    "changelog": "- `Bumped README Changelog to v1.6.0 (357c461)\n- `- Updated slash commands for class color options added in v1.5.0 (bb9cf46)",
+    "changelogCommits": 2,
+    "displayName": "1.6.0-release",
+    "fileDate": "2026-02-14T06:08:53.567Z",
+    "fileId": 7622534,
+    "fileName": "AbsorbTracker-1.6.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "7975949": {
+    "changelog": "- TOC version bump (ff389d7)\n- Updating .gitignore (52868c1)\n- Updated README.md and CLAUDE.md (8da7762)",
+    "changelogCommits": 3,
+    "displayName": "1.7.0-release",
+    "fileDate": "2026-04-24T05:03:14Z",
+    "fileId": 7975949,
+    "fileName": "AbsorbTracker-1.7.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8033630": {
+    "changelog": "- README: rewrite Version History with dates and accurate per-release notes (107e4a4)\n- Bump version to 1.8.0 (2bcb907)\n- Sync docs to atlas-chevron breadcrumb and group-stable schema sort (ac9418b)\n- Settings: replace pipe breadcrumb separator with atlas chevron (4d90201)\n- Fix multi-group panel layout; reshuffle Bar and Border rows (401eba2)\n- Sync docs; rename review artifacts to 0N_ prefix; drop three dead exports (e4a20f2)\n- Capture 2026-05-02 review smoke-test recipe and final summary (61f05ad)\n- README: document /at test [hold-secs] argument (dabad81)\n- Smoke-test recipe: cover /at test [hold-secs] and hidden-bar warning (c145ccd)\n- M3 review polish sweep: dead code, hot-path guards, throttle, chat punctuation (db43379)\n- M2 review refactor: split OptionsPanel.lua into Panel/ toolkit slices (91db404)\n- M1 review fixes: API order, fallback deep-copy, SetByPath seam, /at test hold (a0a0a34)\n- Capture 2026-05-02 wow-addon:review findings, proposals, execution plan (3415c29)\n- Sync docs to vendored LSM lib + parent-opening config; drop dead exports (97cc777)\n- Promote smoke-test recipe to docs/smoke-tests.md; expand and cross-link (7b1277a)\n- Vendor upstream AceGUI-3.0-SharedMediaWidgets; suppress border displayButton (5336301)\n- Polish settings layout; /at config opens parent unfolded (bb86f94)\n- Sync docs to overhauled settings panel; drop dead AddonTable exports (f32fa6f)\n- Overhaul settings panel: canvas + AceGUI stack with breadcrumb headers (1ce53ac)\n- Add about page to top-level Settings (logo, TOC notes, slash commands) (8a44f37)\n- Sync docs to actual code; drop Contributing section from README (aa3328e)\n- Split CLAUDE.md / ARCHITECTURE.md into chunked docs/ (97c281b)\n- Allow /wow-addon:commit as explicit commit instruction (677ed08)\n- Sync docs to current code; drop dead Utils exports (7561730)\n- Tidy README: badge URL space encoding + trailing newline (469ffd1)\n- Normalize line endings to CRLF on disk via .gitattributes (06a65ee)\n- Make settings schema-driven; rewrite slash dispatcher around it (1978aaf)\n- Split settings into multi-page Blizzard subcategories (73e266f)\n- Document slash-command and chat-output changes; add ARCHITECTURE.md (4bee307)\n- Centralize chat output through a cyan [AT] prefix helper (3052f64)\n- Prefix settings panel name and heading with \"Ka0s\" (a63920f)\n- Bump to v1.7.0 with new branding, LICENSE, and media assets (d358d56)",
+    "changelogCommits": 32,
+    "displayName": "1.8.0-release",
+    "fileDate": "2026-05-03T17:32:31.737Z",
+    "fileId": 8033630,
+    "fileName": "AbsorbTracker-1.8.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.0",
+      "12.0.1",
+      "12.0.5"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8472637": {
+    "changelog": "- Chore: prep for next release (6023f5c)\n- Feat: add scrollbar + line counter to debug console (§11) (db6ee29)\n- Docs: refresh README FAQ and Troubleshooting for 1.9.0 behavior (09209a6)\n- Docs: add high-CPU FAQ and refresh README screenshots (e2e9f4a)\n- Docs: add \"What's new in 1.9.0\" section above screenshots (42e8e46)\n- Fix: remediate standards MUST deviations (message bus, /at version) (a341dc5)\n- Docs: add 2026-07-18 Ka0s standards audit bundle (cb7f635)\n- Docs: note General-page Debug console checkbox in README settings table (78d53bb)\n- Feat: add General-page Debug console checkbox (window show/hide) (4595630)\n- Docs: add reset/media smoke tests, align resetall description (ee1e077)\n- Docs: record fixed non-Blizzard media (debug font, logo) as accepted deviations (1c2e5f7)\n- Fix: unify Reset All so the button and /at resetall never diverge (ee2436d)\n- Docs: sync ARCHITECTURE.md — flag NS.format dead export, Profiles no-schema (fd4e5d9)\n- Docs: correct NS.format claim — dead export, not a paint-path cache (48d066e)\n- README: player-facing rewrite + add How-it-works (documentation-§1) (4b3a0b1)\n- Docs: scrub tier language for standard v2.0.0 single layout (5aebe6a)\n- README: adopt v1.14.0 badge row (order, colours, casing) (6ce5976)\n- Docs: sync doc drift with current code (schema v2, counts, API index) (0ad69fb)\n- Docs: add inventory/badge sync as a Hard rule (testing-§5) (486618b)\n- README: add static tests badge + de-drift ## Testing (testing-§5) (7b61ca7)\n- Docs: de-drift test counts; point at generated inventory (testing-§5) (0248487)\n- Docs: add generated test-case inventory (testing-§5) (8d35c2d)\n- Tests: add runner --list mode + per-suite attribution (testing-§5) (94d3e95)\n- Debug-logging: conform to debug-logging §5/§8/§9/§10 (7ebb366)\n- Docs: debug-logging overhaul implementation plan (§8/§9/§10) (f4693f2)\n- Docs: design spec for debug-logging overhaul (debug-logging §8/§9/§10) (04b41c0)\n- Conform to options-ui-§2: refuse /at config in combat (no defer-replay) (8373c58)\n- Docs: fix broken /wow-addon:bump-interface link in common-tasks (fdc5863)\n- Docs: sync combat-deferred /at config wiring + test-suite list to code (bba4ad6)\n- Perf: reuse repaint callback + document Addon Profiler attribution finding (e23c979)\n- Perf: unit-filter UNIT_ABSORB/UNIT_MAXHEALTH via private RegisterUnitEvent frame (dc2a00f)\n- Fix show-only-in-combat bar never appearing in combat (8f2f7eb)\n- Fix NS.Print clobbered by AceConsole embed; restyle /at output (861e7b1)\n- Docs: sync ARCHITECTURE.md event list + taint notes for combat visibility (0dc050a)\n- Fix stale General.lua layout comment (combat toggle + throttle rename) (b8cfdaa)\n- Docs: document the show-only-in-combat visibility toggle (eda7a56)\n- Wire combat transitions to bar visibility; centralize deferred config (21b6c52)\n- Add showOnlyInCombat setting + bar visibility resolution (d005f32)\n- Add implementation plan: show-only-in-combat visibility (#13) (e38585b)\n- Add design spec: show-only-in-combat bar visibility (#13) (37eaf15)\n- Docs: sync README to the event-driven repaint state (e8287a5)\n- Debug console: tag lines by source event/fn instead of a flat [AT] (bc1f98e)\n- Add OnEnterWorld repaint test + document the pending-clear ordering (4280c1b)\n- Docs: complete the test-suite lists (add test_timer.lua, test_util.lua) (0b69185)\n- Sync docs to the event-driven repaint model (d6e8572)\n- Make absorb-bar repaint event-driven with a coalescing throttle (0f3cb09)\n- Retire updateInterval for throttleWindow (schema v2 migration) (9a04a2d)\n- Add implementation plan: event-driven coalesced repaint (ef58232)\n- Add design spec: event-driven coalesced absorb-bar repaint (572927a)\n- Fix combat secret-value crash; defer settings panel; sync to standard §6.2/§9.8 (b5ff05a)\n- Move audit/ + reviews/ under docs/; fix refs + doc version sync (a822400)\n- Add standards-compliance rule to project instructions (cf63b2d)\n- Bump to 1.9.0; sync docs/ topic files to Tier-2 architecture (3611a66)\n- Remediate to Ka0s Tier-2 standard: Ace substrate, tests, docs (b656018)\n- Add 2026-07-12 standards audit (v1.0.0): 21 MUST, 4 SHOULD gaps (dba28aa)\n- Bump Interface to 120007; sync docs to single-value Interface line (c151cca)",
+    "changelogCommits": 56,
+    "displayName": "1.9.0-release",
+    "fileDate": "2026-07-20T16:33:11.773Z",
+    "fileId": 8472637,
+    "fileName": "AbsorbTracker-1.9.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.0.7"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8853244": {
+    "changelog": "- sync-docs: the 12.1.0 target, and the close-button seam comes out (f445da8)\n- Release 1.10.0 (eae987a)\n- Target patch 12.1.0 — the TOC interface becomes 120100 (3d559c9)\n- README: drop the logo, keep one screenshot of the addon (2d2e63b)\n- media: refresh the screenshot set (381ed16)\n- README: drop `## What's new` (standard v2.42.0) (dabf420)\n- README: adopt the standard's prose Usage section (v2.41.0) (871ac91)\n- README: the Troubleshooting table takes the header the standard names (efa2a92)\n- perf: the 2026-09-09 capture — 0.014% of a frame, and paintBar observed (ad19345)\n- re-vendor LibKa0s v1.29.0 — the JSON dump folds into the report step (5249065)\n- re-vendor LibKa0s v1.28.0 — the perf usage block renders correctly (86df02a)\n- M5-06-C1: the lint citations name a section that does not exist (c1e5dcd)\n- M5-06: the amended rules, measured against the repository they govern (db3ad3b)\n- M4c-06: the blanket ignore goes, and nineteen of the thirty-two were real (9f38773)\n- M5-08: the locale pass this addon never had, and the gate that keeps it (5a98730)\n- M5-01: the record is regenerated, and the watch list has a producer at last (e758433)\n- M5-02: the register's three dead citations, and the gate that would have caught them (697dc55)\n- M5-05: the comments name symbols, and stop naming lines that moved (55dad52)\n- M5-04: docs/slash-dispatch.md, and a gate that keeps the map honest (3b3bfd8)\n- M4-18: the throttle is clamped and the copy goes through the write seam (25e2b63)\n- M4-22: the ceiling that bounded nothing, and two rows that restyled for no reason (f761969)\n- M4-16: the perf panel's close button goes back to the library (cc99ab4)\n- M4-11: the test tree comes into lint scope (9f41152)\n- M4-20: a dead export and a hand-copied store walk go (8f9ddd2)\n- M4-17: the vendored LibStub is only what the TOC loads (5659bc8)\n- M4-08: the last of the five private Border patches goes (b55f9ec)\n- M4-09: the parity cases name the surface instead of rebuilding it (a66079d)\n- M4-02: the Border widget fixup becomes a library call (2fd2b8a)\n- M4-01: adopt LibKa0s v1.27.0, and wire the gate that came with it (40cb76e)\n- M4-C1: say when the vendored-copy diff is supposed to be non-empty (a8e12ad)\n- M3-03: adopt LibKa0s v1.26.0 and delete the media-values workaround (6fb0a70)\n- M2-19: the ignore list separates the 2.0M it ships from the dotfiles it never did (27d7b11)\n- M2-16: the settings pages adopt SetRenderer, and inherit its combat refusal (5c03fb8)\n- docs: commit the frozen 2026-09-07 review and standards-audit bundles (958c36e)\n- Correct the load-order entry: the payload carries fourteen files (78b65f9)\n- Carry LibKa0s v1.25.0 (d7f2ab5)\n- fix(display): the unlocked placeholder survives a repaint (1e5d422)\n- docs: sync the doc set to the revamped settings panel (c9bd21b)\n- feat(settings): master controls, composed appearance groups, unit-scoped class colour (7646029)\n- The settings panel becomes three pages with tab strips (156077c)\n- Re-vendor LibKa0s v1.23.0: the tabbed page and the page banner (689d5c8)\n- Correct the module map: Widgets is bound, indirectly (146efc4)\n- Carry LibKa0s v1.19.0 (2829eb6)\n- Re-vendor LibKa0s v1.18.1: the landing logo stops pooling its texture (1ece01d)\n- Re-vendor LibKa0s v1.18.0 and take the library's resetProfile field (e4977c8)\n- Adopt options-ui-§12: Reset All is a profile reset, with the house wording (9626299)\n- feat(media): new logo art, and one uniform name for every render (3e98943)\n- docs: sync the doc set to the v1.16.0 payload and kit revision 13 (dc9faf0)\n- Re-vendor LibKa0s v1.16.0 (6c3af3d)\n- Record the 2026-08-25 LibKa0s re-vendor (2225716)\n- automated-tests: record run 20260825-103352 — green on the fast gate (16bc027)\n- refactor(env): read the TOC through LibKa0s-Env-1.0 (bebb43f)\n- chore(libs): re-vendor LibKa0s v1.15.0 (9278248)\n- Re-vendor LibKa0s v1.10.2: the perf panel's close button gets the addon name (7ace137)\n- The about page stops drawing itself and starts declaring itself (f906fbf)\n- Draw from the collection's art rather than from our own copy of it (7ff6cff)\n- docs(perf): record the first in-game capture, 20260807-125002 (800e88b)\n- docs(perf): replace the flat perf-runs store with dated capture bundles (1064526)\n- automated-tests: record run 20260807-114413 — green (2622af8)\n- chore(gitattributes): re-sync to the canonical body updated in v2.28.1 (3efc3d6)\n- build(libka0s): re-vendor libs/ and tests/_kit from v1.8.2 (c3f8a35)\n- test(slash): use the filename-§N form for the [Set] logging citation (788fb06)\n- docs: resolve the retired bare-§ citations to the filename-§N form (30c00b4)\n- docs(module-map): use the filename-§N form for the debug-logging citation (cd2fa3b)\n- docs(automated-tests): record run 20260807-022551 (green, 489 cases) (924238d)\n- docs: re-point the counts, line-ending claims and PARENT_TITLE facts that drifted (087140f)\n- docs: retire docs/pending/LEDGER.md; the pending store is GitHub issues (109f1da)\n- Fix an off-by-one line citation in DEPENDENCIES.md (bc0fd72)\n- Move the LibKa0s provenance line to CLAUDE.md; adopt testkit revision 9 (d22e301)\n- Pin line endings with the canonical .gitattributes (line-endings-§2) (8279b70)\n- docs: adopt the documentation tier model (standard v2.23.0) (119cc2b)\n- docs: re-point the counts and file:line citations this changeset moved (ff2d412)\n- test(loadorder): observe the library list the runner actually loaded, and that the lib registered  [fixes M3-03 test] (af8f5db)\n- test(database): the fresh-global case observes the ladder reaching the profile, not the default's literal  [fixes M4-18 test] (6ae117e)\n- docs(architecture): re-grade the 18 pre-formatting sites under scoped §8  [M4-27] (592422f)\n- fix(general,db,docs): four one-offs — repaint guard, popup ack, perf headline, schema default  [M4-18] (ba5fbe3)\n- docs(architecture): English-only is a recorded decision, not an open SHOULD  [M4-17] (8bdffe9)\n- feat(preview): /at test honors its announced duration, and the lock ends the preview  [M4-15] (1d40f9f)\n- test(perf): the dormant probe arm carries an absolute byte ceiling  [M4-06] (4da427e)\n- refactor(options): the Profiles SimpleGroup is created on first OnShow  [M4-01] (c28c531)\n- docs(readme): What's new and Version History carry the same highlights  [M4-08] (542360a)\n- docs(automated-tests): the complexity watch list is two tables, not one  [M4-11] (ee4e743)\n- docs(bar): the alias comments name files and callers that exist  [M4-10] (130e03c)\n- chore(lint): exclude the frozen bundles, not all of docs/  [M4-12] (a92f3b1)\n- refactor(units): one deep copy, and every claim about Units.Set is true  [M4-07] (bdae3ad)\n- perf(buckets): declare the containment the call graph has, and observe it  [M3-12] (3378f29)\n- docs(architecture): the deviation register, in the mandated shape  [M3-08] (f5a843d)\n- docs(refs): sweep the retired global section notation  [M3-07] (0b6281a)\n- docs(testing): every gate statement names its checkpoint  [M3-06] (4fc4d1b)\n- chore(tests): record the runner's executable bit in the git index  [M3-05] (9470db0)\n- test(degraded): assert each LibKa0s stub's surface as a set  [M3-04] (6e238da)\n- test(harness): derive the vendored-library load list from LibKa0s.xml  [M3-03] (7e3ce3b)\n- chore(vendor): re-vendor LibKa0s v1.8.0 and adopt the shared vendor-sync gate  [M3-01][M3-02] (4c6ac8e)\n- docs: commit frozen 2026-08-05 review and standards-audit bundles (374f3fe)\n- docs: write the missing ANALYSIS.md and re-anchor the RESULTS.md prose (e31b79d)\n- docs: point the complexity watch list at the run it describes (3b25306)\n- re-vendor LibKa0s v1.7.0 (testkit rev 6) (2a50784)",
+    "changelogCommits": 97,
+    "displayName": "1.10.0-release",
+    "fileDate": "2026-09-10T20:40:42.02Z",
+    "fileId": 8853244,
+    "fileName": "AbsorbTracker-1.10.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "8985131": {
+    "changelog": "- Release 1.11.0: version bump, release notes and the gated release run (3b7e1fd)\n- README: Usage as the primary setup flow, and sync-docs (9b5a369)\n- README: credit the third-party font and icons the addon ships (b2b4bb7)\n- README: plain-language pass for readers (fc1a82d)\n- AT-ATS-SDR: Repoint the Sl colon-call citation in .luacheckrc to core/AbsorbTracker.lua:52 (4a1178f)\n- AT-ATS-SDR: Correct stale comment citations (owner-approved sync-docs follow-up) (917014b)\n- AT-ATS-SD: Sync docs to the tree after the automated-tests sweep (58c04ec)\n- AT-ATS-99: Final automated-tests sweep run (20260926-193105) (0479a09)\n- AT-ATS-01: Peel the rendered-page cases out of test_helpers into test_panelpages (fb55f44)\n- AT-ATS-RVR: Roll the module-map census rows for the LibKa0s v1.62.0 re-vendor (0aceec7)\n- AT-ATS-RV: Re-vendor LibKa0s v1.62.0 and read the Options tripwire off the XML (5042c6b)\n- AT-ATS-00: Record the 2026-09-26 automated-tests sweep run (20260926-160433) (7f4fa5a)\n- NR-AT-01: Re-vendor LibKa0s v1.61.0 and stub NavRail (1c27f7a)\n- DR-AT-07: Standards refresh to v2.68.0, docs synced, AUD-01 self-check passes (13f1e23)\n- DR-AT-06R: Rewrap the enUS header comment DR-AT-06 left at 125 columns (d15ba41)\n- DR-AT-06: Put a close mark (X) on every bar's drag strip, the player bar included (d1cbdfb)\n- DR-AT-05R: debug.md's trace-tag table names every tag the console gets (9f6d52e)\n- DR-AT-05: docs/debug.md documents /at diagnostics; the Tier-2 row flips to Present (0ddccec)\n- DR-AT-04: README gains ## Reporting a bug; Troubleshooting and FAQ point at it (0ede784)\n- DR-AT-03R: Read the diagnostics media rung off LSM, not off the resolved path (a2c89b3)\n- DR-AT-03: Add /at diagnostics on the LibKa0s helper (DX-AT), /at debug events folded in (33e302b)\n- DR-AT-02: Read-only diagnostics seams for the visibility ladder, the repaint throttle and the combat counters (a553c55)\n- docs: sync-docs pass for the LibKa0s v1.60.0 payload (a53a4b2)\n- DR-AT-01: Re-vendor LibKa0s v1.60.0; the DebugLog stub answers RunDiagnostics (8152b9d)\n- M6-AT: address review — retire the stale left-click lock/refusal claims (257d210)\n- M6-AT: Re-vendor LibKa0s v1.58.0; launcher menu is Enabled and Locked (4fa2f0f)\n- M5-AT: Feed the launcher's status tooltip: version, lock, left label (a45c975)\n- M5-AT: Re-vendor LibKa0s v1.57.0 and record its delta bundle (310112c)\n- AT-26: Revendor standards reference against v2.65.0 (no drift found) (8a7818a)\n- AT-DOCS: address review — drop the retired `test` verb from schema, scope and smoke docs (31ce2b0)\n- AT-DOCS: Record the 20260924-112145 automated-test bundle (a99cfe7)\n- AT-DOCS: Sync the docs to the v1.56.0 payload and the M3 changes (e84b6d8)\n- AT-25: Record the lapsed re-vendors v1.16.0..v1.54.2 in one span bundle (4cd2ffa)\n- AT-24: Spill the ARCHITECTURE hub back under documentation-§3's rule (5176809)\n- AT-23: Retire the per-unit frames register row as the §1 carve-out (2e94199)\n- AT-22: address review — PerfSetup rows name the latch, not suspend/resume (146f2b4)\n- AT-22: Sweep comment and doc drift against the code (5d8bde7)\n- AT-21: Use canonical standard citations in the addon's own files (72dad39)\n- AT-20: Annotate the load-bearing TOC lines and the conventional group (42291e1)\n- AT-19: Hand three chat lines' parts to the printer; re-measure §8 row (de4dac3)\n- AT-18: Read PARENT_TITLE from C.BRAND; drop schema printer's [AT] arm (c15d28c)\n- AT-17: Prune the eight read_globals no authored file reads (070d56a)\n- AT-16: address review — module-map EnvSetup inventory row matches the two-rung ladder (44c6fdf)\n- AT-16: Delete the dead GetAddOnMetadata global rung from NS.Meta (34e21fa)\n- AT-15: Decline RenderTabbedSchema opts; pin the Appearance strip (19761b8)\n- AT-14: address review — module-map and comment ripple for the Perf and Lifecycle cases (a9de87e)\n- AT-14: Add stub-surface parity cases for Perf and Lifecycle (dc477fc)\n- AT-13: address review — module-map test_data.lua row to 544 lines (c32be69)\n- AT-13: Delete the test-only player aliases from the production namespace (05c0be3)\n- AT-12: Rename the minimap row's CLI path to global.minimap.shown (6e4f220)\n- AT-11: address review — reword the last `/at test` comment in test_debughold.lua (ae0c7ba)\n- AT-11: Move /at test to /at debug hold with a validated duration (0e089ae)\n- AT-10: address review — module-map LauncherSetup row: 155 LOC, library-owned disabled gate (4e938b1)\n- AT-10: Move the launcher's disabled gate into Launcher minor 2's isEnabled (e35e134)\n- AT-09: address review — key the library-absent line by its English text; fix stale Slash.lua refs (0850145)\n- AT-09: Give the Slash stub the LK-18 shape: pinned disabled line, plain rows (bdd4ecf)\n- AT-08: Adopt Schema writeThrough; hollow the Options stub's composers (3ebbfc1)\n- AT-07: address review — module-map and data-flow ripples for the SafeRegister helpers (94bed8c)\n- AT-07: Route every event registration through the SafeRegister helpers (5b6e2cf)\n- AT-06: Stamp schemaVersion per WS-03: floor 0, runner-owned, v2 per profile (be520a5)\n- AT-05: Publish the bar passes once on a profile adopt's enable edge (7e67f75)\n- AT-04: Echo the stored value for lock, unlock and enable; fix the comment (53c1c7e)\n- AT-03: address review — move smoke step 36a before 37 so the tester is on SmokeTest (32b60e4)\n- AT-03: Refuse /at profile new on an existing name; pre-check copy/delete (0e5478b)\n- AT-02: Make slash/profile tests assert real values and clean up per-unit (e3d14b1)\n- RV-AT: Re-vendor LibKa0s v1.56.0 and record its delta bundle (aa4c783)\n- AT-01: Catch the Schema degradation stub up to Schema minor 2 (460c51d)\n- Record the 2026-09-23 review and standards audit (f4b61a6)\n- Bring the module map in line with the v1.55.0 payload (98b4f72)\n- Give each unlocked bar the LibKa0s drag handle strip (7c43ab4)\n- Pin the bar body's drag before the strip lands (6416d11)\n- Make the stand-down prose match the guarded UNITS receiver (1a410cb)\n- Name the v1.55.0 re-vendor bundle for its tag (7b2aef3)\n- Keep the UNITS receiver from re-registering on a stood-down addon (9e6a4a6)\n- Record the v1.55.0 adoption run in the revendor bundle (368e82f)\n- Adopt LibKa0s-Schema-1.0 as the settings schema runtime (0e72839)\n- Adopt LibKa0s-Bus-1.0 for the bus record and the message catalog (92c48d8)\n- Move the README test badge to the 674 the inventory now reports (d5e37d6)\n- Re-vendor LibKa0s v1.55.0 (27ccce6)\n- Add the layout-§1 census heading under the deviations register (b6360c9)\n- Re-vendor the standard reference to v2.63.0: .gitattributes to the canonical body (35f92ea)\n- Adopt the kit's US-English gate, and delete the copy this repo was keeping (7cfb347)\n- Close out the documentation drift the sync pass reported but could not act on (5e66164)\n- Sync the docs to what the code actually does (a5d3e22)\n- Re-vendor LibKa0s v1.53.0 (ca833c4)\n- Re-vendor LibKa0s v1.52.0 (a39a540)\n- Re-vendor LibKa0s v1.51.0 (ee09708)\n- Re-vendor LibKa0s v1.50.0 (5ce09cb)\n- Re-vendor LibKa0s v1.47.0 (9d9dfde)\n- CLAUDE.md is the documentation-§2 stub; what only it said moves into docs/ (34a8120)\n- Comments follow the v1.46.1 combat lock and stop citing TOC line numbers (cc6af60)\n- Docs catch up with the Lifecycle and Launcher majors and the v5 ladder step (22e9754)\n- Re-vendor LibKa0s v1.46.1 (e510db6)",
+    "changelogCommits": 93,
+    "displayName": "1.11.0-release",
+    "fileDate": "2026-09-26T22:17:56.01Z",
+    "fileId": 8985131,
+    "fileName": "AbsorbTracker-1.11.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  },
+  "9110166": {
+    "changelog": "- Release 1.12.0: version bump, release notes and the gated release run (3c7e6cb)\n- SD-FIN-02: sync docs to code (collection sync-docs pass 2026-10-09) (7c83d8c)\n- AT-STD: Sweep to standard v2.77.0; roll drifted in-repo line cites (14dd725)\n- AT-09: Sweep doc drift against the tree; quote the runner; add BAR-18 (abfd2cf)\n- AT-08: address review — roll docs/module-map.md line counts for the eight files 3846e6c changed (1454fbf)\n- AT-08: Route the debug memos through DebugChanged; format the ladder line (3846e6c)\n- AT-07: Re-lock unlocked bars when standing up or enabling mid-combat (9c4ea24)\n- AT-06: Refuse /at debug hold while stood down; retarget the degraded test (3908b92)\n- AT-05: Loop NS.Units.LIST in doRepaint instead of a per-pass closure (e690062)\n- AT-04: Retire the savedvariables-§1 per-profile-stamp register row (86ab7ca)\n- AT-03: Annotate the load-bearing settings TOC lines and walk the rest (2ace072)\n- AT-02: address review — count core/WidgetsSetup.lua among the self-naming headers (cde238c)\n- AT-02: Give LibKa0s-Widgets-1.0 a setup seam publishing NS.Widgets (d094da6)\n- AT-01: Measure the shipped doRepaint in the offline perf runner (fde43d7)\n- RV-AT: re-vendor LibKa0s v1.71.0; span bundle v1.69.0-v1.70.0 (7db2f36)\n- RA-00: record 2026-10-07 standards audit and review bundles (e83325b)\n- chore: re-vendor LibKa0s v1.70.0 (4c16982)\n- chore: re-vendor LibKa0s v1.69.0 (kit 37; adds the line chart widget) (5075fd5)\n- DC-REV-01: re-vendor LibKa0s v1.68.1 (kit 36; library bytes unchanged) (8030ac1)\n- DC-REN-02: automated-tests README names /dev-copilot:bump-version as the release-gate evaluator (880442d)\n- DC-REN-01: docs name /dev-copilot commands (wow-addon plugin merged into dev-copilot) (3215549)\n- SD-FIN-01: sync docs; peel /at profile cases into tests/test_slashprofile.lua (test_slashcmds 1472 -> 1079 lines) (05f1f8c)\n- TP-AT-02: strip, ? and X tooltips open beside the strip (tooltipPlace) (ac3f009)\n- TP-AT-01: re-vendor LibKa0s v1.68.0 (WidgetsDragHandle 4; kit 35 unchanged) (63b0795)\n- CA-AT-01: adopt Slash.SplitVerb, Slash.ProfileNames and Core.SECRET (#33) (1120cca)\n- CA-AT-01: characterize the /at sub-verb split and the degraded profile list (3f6df55)\n- CA-AT-NM: the Options descriptor passes addonName (LibKa0s#42) (d2d9df8)\n- CA-AT-RV: re-vendor LibKa0s v1.67.0 (Core 10, Options 28, OptionsIdList 3; kit 35 unchanged) (7ed3af6)\n- GI-FIN-02: record the 2026-10-02 smoke passes; doc sync (f921770)\n- GI-AT-02R: point the #20 citation at test_panelmirror and list it in scope.md (eccf766)\n- GI-AT-RVR: DEPENDENCIES.md names the sighted complexity suite, not raw lizard (e284e8f)\n- GI-AT-02R: peel the Appearance mirror half out to tests/test_panelmirror.lua (cc72830)\n- GI-AT-02R: docs and the AT-15 comment name untabbedSkipRender, not the deleted partitionTabs (ef895a4)\n- GI-AT-RVR: ARCHITECTURE counts the thirty-two files LibKa0s v1.66.0 vendors (ff226db)\n- GI-AT-02: the Appearance strip renders through RenderTabbedSchema with OptionsTabs minor 8 (#32) (ac2ff82)\n- GI-AT-02: characterization cases for the Appearance strip before RenderTabbedSchema adoption (c1d8492)\n- GI-AT-01: pin the hidden Appearance page's lazy rebuild (#20) (45cf8cc)\n- GI-AT-RV: re-vendor LibKa0s v1.66.0 (kit 35), wire test_lizard_sighted, sighted complexity recorded (79f83d6)\n- DG-AT-01S: sync-docs: docs/testing.md lint-gate row counts the 67 files luacheck checks (0fb7c79)\n- DG-AT-01R: pin the Options combat lock's [Cfg] refusal line, re-point the stale render-gate comment (fb069bc)\n- DG-AT-01: adopt the console's change gates and at-enable queue (refused events, unit panel render errors, launcher state lines) (23de7ee)\n- DG-AT-01: adopt the library's Slash refusal and Lifecycle edge lines (pass debug, drop the DisabledLine match and the host edge lines) (7d43b9c)\n- DG-AT-01: re-vendor LibKa0s v1.65.0 (Slash 18, DebugLog 18 + DebugLogGates 1, Options 27, Launcher 5, Lifecycle 3; kit 34) (1469a8b)\n- DL-AT-04: README uses bullets, never numbered lists (standard v2.72.0) (7e1e3b0)\n- DL-AT-03R: module-map row 55a says a diagnostics run turns session logging on, and counts 330 lines (e89cb7d)\n- DL-AT-03R: rename the diagnostics no-change case, and say a run turns logging on in common-tasks, scope and slash-dispatch (a0a84a9)\n- DL-AT-03: re-vendor the final LibKa0s v1.64.0 (DebugLog 17, DebugLogDiagnostics 2, kit 34); diagnostics turns logging on (39c86f9)\n- DL-AT-02: debug coverage audit and fill (debug-logging-§8 diagnosis, §9 quiet steady state) (7f4ed1e)\n- DL-AT-01: re-vendor LibKa0s v1.64.0 (kit revision 33), resize smoke checks (9cabbb5)\n- SP-FIN-01: re-vendor the test kit at revision 32 (LibKa0s v1.63.0, re-cut) (c111a20)\n- SP-FIN-01: say tests/prose_waivers.lua is optional and absent today (f11a3d7)\n- SP-FIN-01: sync docs (re-point two stale core/AbsorbTracker.lua line citations) (144204e)\n- SP-AT-03R: match LOOK-1 and LOOK-5 to the Appearance labels in the code (9931e6b)\n- SP-AT-03R: drop COMBAT-6's impossible in-combat Lock frame untick (f59026e)\n- SP-AT-03R: list the checks the 2026-09-24 remediation rewrote as pending (b2f9e6d)\n- SP-AT-03R: check that an inactive pre-v3 profile's color and position are lifted and used (36a63fe)\n- SP-AT-03R: fix the combat code pointer, correct perf and migrate checks, widen Pending (2417eab)\n- SP-AT-03R: correct DIAG-40's perf strings and list the unrun O/P/C checks as pending (1891517)\n- SP-AT-03R: restore lock-refuses-drag, fix perf strings and a code pointer (c15abe6)\n- SP-AT-03: rewrite the smoke suite as one evergreen, theme-grouped doc (2a16960)\n- SP-AT-02R: name every NS.L-routed string in the localization-§1 row (7508ff0)\n- SP-AT-02: /at profile via CliProfile (dcbaebb)\n- SP-AT-02: re-vendor LibKa0s v1.63.0 (7f49f77)",
+    "changelogCommits": 63,
+    "displayName": "1.12.0-release",
+    "fileDate": "2026-10-09T17:30:06.03Z",
+    "fileId": 9110166,
+    "fileName": "AbsorbTracker-1.12.0-release.zip",
+    "fileStatus": 4,
+    "firstSeen": "2026-10-10T07:13:41Z",
+    "gameVersions": [
+      "12.1.0"
+    ],
+    "isAvailable": true,
+    "releaseType": "release",
+    "removed": false
+  }
+}
