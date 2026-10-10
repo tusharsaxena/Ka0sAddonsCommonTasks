@@ -17,7 +17,7 @@ rubric and the schema; this folder holds only data.
 
 ```
 journal/curseforge/
-  journal.config.json        roster source, owner, schema version
+  journal.config.json        roster source, owner, report timezone, schema version
   runs.jsonl                 append-only: one line per run of either command
   <Addon>/                   created by the first run that covers the addon
     project.jsonl            append-only: project totals per releases run
@@ -25,7 +25,8 @@ journal/curseforge/
     downloads.jsonl          append-only: per-file download counts per releases run
     comments.json            keyed by commentId: one record per comment or reply
   reports/<YYYYMMDD-HHMMSS>-<releases|comments>.md
-                             generated: what changed in that run
+                             generated: what changed in that run, named and dated
+                             in local time
 ```
 
 The addon folders are named exactly as the Folder column of `../WowAddonStandards/standards/ADDONS.md`,
@@ -38,6 +39,18 @@ addon's TOC. No list of addons or ids is kept here. An addon with no comments ha
 - **Comments** come from the CurseForge site's own endpoint (`www.curseforge.com/api/v1/mods/<id>/comments`).
   It is undocumented and needs no key. It exposes no edit date, which is why `editedAt` below is the
   run that first saw a change.
+
+## Times
+
+Every timestamp in the data files is UTC (`2026-10-10T09:18:02Z`). Every time a person reads is local:
+the report titles, release and comment dates, the report file names, and what the commands show in
+chat. Local means `timezone` in `journal.config.json` (`Asia/Kolkata`), or the machine's own timezone
+when that is unset.
+
+The releases report is one table for the run, with the addons ordered by total downloads. Each addon
+has a `Total` row followed by one row per file, newest release first, with the columns Addon, Version,
+Release Date, Downloads, and Changes since the previous run. Every report is derived from the journal
+alone. Rebuild one with `ka0s-curseforge report-releases <run-ts> all` or `report-comments <run-ts> all`.
 
 ## Records
 

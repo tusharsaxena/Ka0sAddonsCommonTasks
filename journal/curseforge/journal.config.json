@@ -5,5 +5,6 @@
   "roster": "../WowAddonStandards/standards/ADDONS.md",
   "projectIdFrom": "## X-Curse-Project-ID line in each addon's TOC",
   "ownerAuthor": "add1kted2ka0s",
-  "membersPage": "https://www.curseforge.com/members/add1kted2ka0s/projects"
+  "membersPage": "https://www.curseforge.com/members/add1kted2ka0s/projects",
+  "timezone": "Asia/Kolkata"
 }
