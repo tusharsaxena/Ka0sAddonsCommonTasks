@@ -1,0 +1,3 @@
+# Generated query database, rebuilt from the JSON/JSONL files on demand.
+*.db
+*.db-journal
