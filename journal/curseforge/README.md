@@ -48,10 +48,13 @@ addon's TOC. No list of addons or ids is kept here. An addon with no comments ha
 `{ts, projectId, totalDownloads, websiteUrl}`
 
 `<Addon>/files.json` (object keyed by `fileId`):
-`{fileId, fileName, displayName, fileDate, releaseType, fileStatus, isAvailable, gameVersions:[...], changelog, firstSeen, removed}`
+`{fileId, fileName, displayName, fileDate, releaseType, fileStatus, isAvailable, gameVersions:[...], changelog, changelogCommits, firstSeen, removed}`
 - `releaseType` is `release`, `beta` or `alpha`.
-- `changelog` is markdown converted from the API's HTML. It is fetched once, when the file is first
-  seen.
+- `changelog` is fetched once, when the file is first seen. The packager's changelog is the full
+  `git log` since the previous tag, bodies included. That ran to about 200 KB per release, and the
+  bodies are already in the addon's public history, so the journal keeps one `- subject (sha7)` line
+  per commit, and `changelogCommits` counts them. A hand-written changelog with no commit lines is kept
+  as written, up to 4000 characters, and its `changelogCommits` is `null`.
 - `removed` is `true` once the file is no longer listed. The record is kept.
 
 `<Addon>/downloads.jsonl`:
