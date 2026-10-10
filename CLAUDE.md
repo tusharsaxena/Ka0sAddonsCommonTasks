@@ -12,8 +12,8 @@ them as `../<Repo>`.
   kit, vendored into every addon) and `dev-copilot` (the Claude Code plugin behind `/dev-copilot:*`).
 - **Addons:** `../WowAddonStandards/standards/ADDONS.md` is the single source of truth for which addons
   are in scope. Never copy that list into this repo, because a copy goes stale.
-- Other directories under `GIT/` (for example `steamdb` or `weakaura_sounds`) are not part of the
-  collection. Leave them alone.
+- Other directories under `GIT/` (for example `cultchampionssportsclub` or `ed-blackbox`) are not part of
+  the collection. Leave them alone.
 - Every collection repo's default branch is `master`. This repo's default branch is `master` too.
 
 Each repo has its own `CLAUDE.md`, and that file governs work inside the repo: its green gate, its
@@ -52,9 +52,9 @@ Decide first whether the work belongs to one repo or to several.
 
 ## Journals
 
-`journal/` holds living, collection-wide datasets. Today that is `journal/curseforge/`, which a dev-copilot
-command fills with each addon's CurseForge files, download counts and classified comments. Its README is
-the schema.
+`journal/` holds living, collection-wide datasets. Today that is `journal/curseforge/`, which
+`/dev-copilot:wow-curseforge-releases` (files and download counts) and
+`/dev-copilot:wow-curseforge-comments` (classified comments) fill. Its README is the schema.
 
 - Journal data is written **only** under `journal/`. Never write it into an addon repo or into
   `dev-copilot`; the plugin holds the command, script, rubric and schema, never data.
@@ -96,9 +96,10 @@ For long multi-repo runs, follow the pattern in `docs/2026-09-23-REVIEW_AND_STAN
 
 ## Verification
 
-- Every addon's green gate is in its own `CLAUDE.md`. It is typically `lua tests/run.lua`, `luacheck .`
-  (0 warnings / 0 errors) and `lizard -l lua -x "./libs/*" -x "./tests/_kit/*" .` (no function above
-  CCN 15), plus the 1500-line file cap.
+- Every addon's green gate is in its own `CLAUDE.md`. It is typically `lua tests/run.lua` and
+  `luacheck .` (0 warnings / 0 errors), plus the 1500-line file cap. Complexity (no function above CCN 15)
+  is a release check, measured through the vendored runner's complexity suite by
+  `/dev-copilot:bump-version`. Never run raw `lizard` over a tree, because it is blind in Lua.
 - For long batteries, use the bounded runner at `/home/tushar/.claude/dev-copilot/bin/ka0s-bounded`.
 - In-client smoke tests are the owner's to run. Record their results in the bundle's smoke-test file and
   never mark a smoke check as passed yourself.
@@ -113,3 +114,5 @@ For long multi-repo runs, follow the pattern in `docs/2026-09-23-REVIEW_AND_STAN
 - `/dev-copilot:execution-status`: where a planned run stands.
 - `/dev-copilot:wow-revendor-libka0s`, `/dev-copilot:wow-revendor-standards`: push upstream changes into
   addons.
+- `/dev-copilot:wow-curseforge-releases`, `/dev-copilot:wow-curseforge-comments`: fill the CurseForge
+  journal. Pass `all` for every roster addon.

@@ -1,8 +1,9 @@
 # CurseForge journal
 
 A running record of every Ka0s addon's CurseForge page: the files released, their download counts over
-time, and the comments, each classified as a bug report, feature request, feedback or general. A
-dev-copilot command fills it. Nothing here is written by hand except the `override` field on a comment.
+time, and the comments, each classified as a bug report, feature request, feedback or general.
+`/dev-copilot:wow-curseforge-releases` and `/dev-copilot:wow-curseforge-comments` fill it. Nothing
+here is written by hand except the `override` field on a comment.
 
 This is a **living** dataset, not a dated bundle. The frozen-bundle rule does not apply to it.
 
