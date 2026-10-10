@@ -24,7 +24,9 @@ journal/curseforge/
     files.json               keyed by fileId: one record per file
     downloads.jsonl          append-only: per-file download counts per releases run
     comments.json            keyed by commentId: one record per comment or reply
-  reports/<YYYYMMDD-HHMMSS>-<releases|comments>.md
+  reports/
+    releases/<YYYYMMDD-HHMMSS>-releases.md
+    comments/<YYYYMMDD-HHMMSS>-comments.md
                              generated: what changed in that run, named and dated
                              in local time
 ```
