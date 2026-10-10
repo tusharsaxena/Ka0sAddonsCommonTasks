@@ -20,5 +20,27 @@
     "reason": "Reports a working WoW:Forever beta workaround (Interface 16001, newer Ace3); an implied support wish, not a direct ask.",
     "text": "I got this working with the October patch of WoW:forever beta by changing the version in the .toc file (## Interface: 16001) and updated the Ace3 Libraries. If you are looking for something to simply give you party target frames, this is it!",
     "url": "https://www.curseforge.com/wow/addons/ka0s-party-frame-enhanced/comments"
+  },
+  "8524823": {
+    "author": "add1kted2ka0s",
+    "authorDisplay": "aDd1kTeD2Ka0s",
+    "class": null,
+    "classifiedBy": null,
+    "commentId": 8524823,
+    "confidence": null,
+    "deleted": false,
+    "deletedAt": null,
+    "editedAt": null,
+    "firstSeen": "2026-10-10T14:06:51Z",
+    "isOwner": true,
+    "issueAt": null,
+    "issueRef": null,
+    "override": null,
+    "parentId": 8493119,
+    "pinned": false,
+    "postedAt": "2026-10-10T13:09:23Z",
+    "reason": null,
+    "text": "@user_my9bnzm29bleio17 Fantastic! I was planning to port this to Forever soon anyways, good to know its that easy =)",
+    "url": "https://www.curseforge.com/wow/addons/ka0s-party-frame-enhanced/comments"
   }
 }
