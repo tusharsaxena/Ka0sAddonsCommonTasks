@@ -16,53 +16,69 @@ rubric and the schema; this folder holds only data.
 
 ```
 journal/curseforge/
-  journal.config.json        roster source, project-id source, owner, schema version
-  runs.jsonl                 append-only: one line per run
+  journal.config.json        roster source, owner, schema version
+  runs.jsonl                 append-only: one line per run of either command
   <Addon>/                   created by the first run that covers the addon
-    project.jsonl            append-only: project totals per run
-    files.json               keyed by fileId: written once per file
-    downloads.jsonl          append-only: per-file download counts per run
-    comments.json            keyed by commentId, rewritten sorted on every run
-  reports/<YYYY-MM-DD>.md    generated: what changed since the previous run
+    project.jsonl            append-only: project totals per releases run
+    files.json               keyed by fileId: one record per file
+    downloads.jsonl          append-only: per-file download counts per releases run
+    comments.json            keyed by commentId: one record per comment or reply
+  reports/<YYYYMMDD-HHMMSS>-<releases|comments>.md
+                             generated: what changed in that run
 ```
 
-The addon folders are named exactly as in `../WowAddonStandards/standards/ADDONS.md`, which is the
-roster. The CurseForge project id comes from the `## X-Curse-Project-ID` line in each addon's TOC. No
-list of addons or ids is kept here.
+The addon folders are named exactly as the Folder column of `../WowAddonStandards/standards/ADDONS.md`,
+which is the roster. The CurseForge project id comes from the `## X-Curse-Project-ID` line in each
+addon's TOC. No list of addons or ids is kept here. An addon with no comments has no `comments.json`.
+
+## Sources
+
+- **Releases** come from the CurseForge Core API (`api.curseforge.com`), which needs the owner's API key.
+- **Comments** come from the CurseForge site's own endpoint (`www.curseforge.com/api/v1/mods/<id>/comments`).
+  It is undocumented and needs no key. It exposes no edit date, which is why `editedAt` below is the
+  run that first saw a change.
 
 ## Records
 
 `runs.jsonl`:
-`{ts, schemaVersion, addons:[...], filesSource:"api", commentsSource:"browser", newFiles, newComments, editedComments, deletedComments, issuesFiled, errors:[...]}`
+`{ts, command, addons:[...], skipped:[...], errors:[{addon, error}], newFiles}` for `releases`, or
+`{..., newComments, editedComments, deletedComments}` for `comments`.
 
 `<Addon>/project.jsonl`:
-`{ts, projectId, totalDownloads}`
+`{ts, projectId, totalDownloads, websiteUrl}`
 
 `<Addon>/files.json` (object keyed by `fileId`):
-`{fileId, displayName, fileName, releaseType, fileDate, gameVersions:[...], changelog}`. `changelog` is
-markdown converted from the API's HTML.
+`{fileId, fileName, displayName, fileDate, releaseType, fileStatus, isAvailable, gameVersions:[...], changelog, firstSeen, removed}`
+- `releaseType` is `release`, `beta` or `alpha`.
+- `changelog` is markdown converted from the API's HTML. It is fetched once, when the file is first
+  seen.
+- `removed` is `true` once the file is no longer listed. The record is kept.
 
 `<Addon>/downloads.jsonl`:
 `{ts, fileId, downloadCount}`
 
 `<Addon>/comments.json` (object keyed by `commentId`):
-`{commentId, parentId, author, isOwner, postedAt, editedAt, text, firstSeen, lastSeen, deleted, class, confidence, reason, classifiedBy, override, issueRef}`
+`{commentId, parentId, author, authorDisplay, isOwner, postedAt, text, pinned, url, firstSeen, editedAt, deleted, deletedAt, class, confidence, reason, classifiedBy, override, issueRef, issueAt}`
 
-- `class` is one of `bug`, `feature`, `feedback` or `general`. `confidence` is 0 to 1, and `reason` is
-  one line.
-- `override` is the owner's correction. When it is set, it wins, and a run never reclassifies the comment.
-- `issueRef` is the GitHub issue filed from the comment (`<repo>#<n>`). When it is set, the comment is
-  never offered for filing again.
-- A comment that disappears from the page is kept and gets `deleted: true`. Rows are never removed.
-- `parentId` threads replies, and `isOwner` marks the owner's own comments, so "reported, then answered"
-  can be computed.
+- `parentId` threads replies. `isOwner` marks the owner's own comments, which are never classified, so
+  "reported, then answered" can be computed.
+- `editedAt` is the run that first saw changed text. An edit clears `class`, so the comment is
+  classified again.
+- A comment that disappears from the page is kept with `deleted: true` and `deletedAt`. Rows are never
+  removed.
+- `class` is one of `bug`, `feature`, `feedback` or `general`. `confidence` is 0 to 1, `reason` is one
+  line, and `classifiedBy` says who classified it.
+- `override` is the owner's correction and the only field edited by hand. When it is set, it wins, and a
+  run never reclassifies the comment.
+- `issueRef` is either the GitHub issue filed from the comment (`owner/repo#n`) or `declined`. Once set,
+  the comment is never offered for filing again. `issueAt` is when it was set.
 
 ## Rules
 
 - Append-only files are only ever appended to. Keyed files are rewritten with their keys sorted, so a
   run's diff shows exactly what changed.
 - One run is one commit, made directly on the default branch, with the subject
-  `curseforge: run <ts>: <n> new comments, <m> new files`. Journal runs are data and do not use a
+  `curseforge: <releases|comments> run <ts>: <summary>`. Journal runs are data and do not use a
   feature branch.
 - `*.db` files are local query caches, rebuilt from these files and never committed.
 - A schema change bumps `schemaVersion` in `journal.config.json` and is described here.
