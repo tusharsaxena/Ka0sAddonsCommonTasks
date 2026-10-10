@@ -47,7 +47,7 @@ the report titles, release and comment dates, the report file names, and what th
 chat. Local means `timezone` in `journal.config.json` (`Asia/Kolkata`), or the machine's own timezone
 when that is unset.
 
-The releases report is one table for the run, with the addons ordered by total downloads. Each addon
+The releases report is one table for the run, with the addons in name order (A to Z). Each addon
 has a `Total` row followed by one row per file, newest release first, with the columns Addon, Version,
 Release Date, Downloads, and Changes since the previous run. Every report is derived from the journal
 alone. Rebuild one with `ka0s-curseforge report-releases <run-ts> all` or `report-comments <run-ts> all`.
