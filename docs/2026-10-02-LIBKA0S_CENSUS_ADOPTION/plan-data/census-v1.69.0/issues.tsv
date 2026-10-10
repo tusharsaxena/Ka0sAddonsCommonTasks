@@ -1,0 +1,10 @@
+major	member	ref
+Core	MakeResizable	BankLedger#21, LootHistory#33, MultiMeters#58; contract: LibKa0s#41
+Core	SECRET	AbsorbTracker#33, KickCD#36, MultiMeters#58
+Slash	CommandRows	ConsumableMaster#44, KickCD#36
+Slash	FindCommand	ConsumableMaster#44, KickCD#36
+Slash	SplitVerb	AbsorbTracker#33, ConsumableMaster#44, KickCD#36
+Slash	ProfileNames	AbsorbTracker#33
+Options	LAYOUT	KickCD#36
+Options	PADDING_X	PanelMaster#56
+Options	addonName	LibKa0s#42
