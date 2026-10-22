@@ -219,3 +219,18 @@ Grouped by repo and item, in plan order. Checks marked *outcome A only* apply on
 | check | item | what to verify | result |
 |---|---|---|---|
 | SM-AM-1 | AM-01 | AuraMaster test mode shows a visible TEST marker in every layout (only if AM-01 found a gap) | owed |
+
+## Execution notes (CT-01, 2026-10-23)
+
+These notes do not change any result; every check above stays `owed` until the owner reports.
+
+- **SM-LK-1, SM-LK-2, SM-LK-3** are "outcome A only". LK-11 took outcome B (`99_EXECUTION_RECORD.md`), so
+  the perf panel was not rebuilt and these three do not apply. The owner strikes them.
+- **SM-LK-4:** the local tag moved twice after this file was written (LK-26, LK-27). At the final tag
+  `9e5c4e2` the header should list Glow 1, Sim 2, SimTimeline 2 and SimPanel 2, not Sim 1 / SimTimeline 1 /
+  SimPanel 1.
+- **SM-AM-1 appears twice.** The second one, in the last AuraMaster section, is AM-01's check. AM-01 found
+  the gap (a locked test mode showed no TEST marker) and fixed it in `ffe08ae`, so that check applies.
+- The addendum items (LK-26, LK-27 and every `-RV2`/`-RV3` refresh) add no smoke check of their own. The
+  Sim minor 2 and SimPanel minor 2 behaviour is exercised by SM-DW-4..10, SM-LH-20..26 (LH-14) and
+  SM-BL-18..26.

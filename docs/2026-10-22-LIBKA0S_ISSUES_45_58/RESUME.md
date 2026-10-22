@@ -74,3 +74,13 @@ When an addon item returns `blocked` with `library_gap`:
 `/dev-copilot:finalize` in dependency order: WowAddonStandards → LibKa0s (then `git push origin v1.75.0`) → dev-copilot →
 the 14 addons → Ka0sAddonsCommonTasks. Merge `--no-ff`, push, and delete the branch locally and on origin. Then, in every repo,
 check `git stash list` and `git worktree list` and remove anything this run created. Record it all, then run the M4 GitHub items.
+
+## 7. State at CT-01 (2026-10-23)
+
+- M1 38/38, M2 14/14 and M3 78/78 have landed, the M3 count including the 19 items of addenda 01-03. M4 has LK-23
+  and CT-01; WS-12, LK-24, the addon closure items and CT-02 remain.
+- LibKa0s v1.75.0 is a **local** tag at `9e5c4e2`, its final position. Every roster addon vendors that payload.
+- The owner's merge go-ahead for this plan is recorded in `99_EXECUTION_RECORD.md`, so CT-02 follows without a stop.
+  Pushing the v1.75.0 tag is part of CT-02.
+- The M3 checkpoint (push the M3 heads and notes, add the `checkpoints.tsv` row) is run by the lead.
+- Every smoke check in `06_SMOKE_TESTS.md` is still `owed`.
