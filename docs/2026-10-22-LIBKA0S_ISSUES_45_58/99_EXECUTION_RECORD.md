@@ -53,3 +53,22 @@ Following RESUME §5, `plan-data/addendum-01.json` (and `.tsv`) adds:
 
 The other eleven addons refresh once at the end of M3, after the tag stops moving. `resume-state.sh`,
 `next_args.py` and `execute_milestone.js` now read `plan-data/addendum-*`.
+
+## M3 second pass: a SimPanel gap from DW-04 (addendum 02)
+
+The second M3 run (`wf_f6fb71d2-bd9`) landed DW-RV2, LH-RV2, BL-RV2, DW-02 (`58b84d3`, `a6d88f3`) and DW-03
+(`fb2ddbe`). DW-04 returned `library_gap`: SimPanel minor 1 reads the picker's first scenario once, at
+`Sim:New`, so a host that fills its scenarios after `New` gets "Start: nil". DW-04's finished work waits in
+DropWatcher's `stash@{0}` ("DW-04 partial ..."). Its 12 dependants were skipped.
+
+`plan-data/addendum-02.json` (and `.tsv`) adds:
+- **LK-27**, SimPanel minor 2, together with a required audit of every Sim-1.0 value captured at `New`;
+- **DW-RV3, LH-RV3 and BL-RV3**, which refresh the three simulator hosts again.
+
+The other eleven addons now refresh in addendum 03.
+
+## Owner go-ahead to merge (2026-10-22)
+
+The owner wrote: "go ahead with whatever commits, merges and pushes you need to do - dont wait for my
+approval for this conversation. Treat this message as approval to merge for this plan". CT-02 therefore
+proceeds without a further stop. Addon version bumps stay out, since the plan has none.

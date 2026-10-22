@@ -1,0 +1,5 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+LK-27	M3	LibKa0s	SimPanel minor 2: the picker reads its first scenario at draw time; audit every Sim-1.0 read of d.scenarios for snapshots taken at New (DW-04 library gap)	LK-26	M		LibKa0s#54,OWNER_SCOPE B
+DW-RV3	M3	DropWatcher	Refresh LibKa0s v1.75.0 payload from the moved local tag (SimPanel minor 2)	LK-27,DW-RV2	S		OWNER_SCOPE B
+LH-RV3	M3	LootHistory	Refresh LibKa0s v1.75.0 payload from the moved local tag (SimPanel minor 2)	LK-27,LH-RV2	S		OWNER_SCOPE B
+BL-RV3	M3	BankLedger	Refresh LibKa0s v1.75.0 payload from the moved local tag (SimPanel minor 2)	LK-27,BL-RV2	S		OWNER_SCOPE B
