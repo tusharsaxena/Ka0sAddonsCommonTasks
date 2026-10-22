@@ -1,0 +1,182 @@
+{
+ "addendum": "03",
+ "why": "End of M3 (2026-10-23): the tag stopped moving at 9e5c4e2 (LK-23 is docs-only and lands after the tag without moving it). The eleven addons that are not Sim hosts refresh once, from 265a89e straight to 9e5c4e2.",
+ "items": [
+  {
+   "id": "AT-RV2",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "AT-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `AT-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy AT-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "AM-RV2",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "AM-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `AM-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy AM-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "CM-RV2",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "CM-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `CM-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy CM-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "KC-RV2",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "KC-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `KC-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy KC-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "MM-RV2",
+   "milestone": "M3",
+   "repo": "MultiMeters",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "MM-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `MM-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy MM-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "PM-RV2",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "PM-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `PM-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy PM-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "PF-RV2",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "PF-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `PF-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy PF-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "PG-RV2",
+   "milestone": "M3",
+   "repo": "PremadeGroupsFilterExtension",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "PG-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `PG-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy PG-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "PC-RV2",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "PC-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `PC-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy PC-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "QC-RV2",
+   "milestone": "M3",
+   "repo": "QuickComms",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "QC-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `QC-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy QC-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  },
+  {
+   "id": "WG-RV2",
+   "milestone": "M3",
+   "repo": "WhatGroup",
+   "title": "Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "WG-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED twice (OWNER_SCOPE B, RESUME section 5): 265a89e -> 6bf5f3e (LK-26, Sim minor 2, SimTimeline minor 2) -> 9e5c4e2 (LK-27, SimPanel minor 2). This is the final position of the tag. 99_EXECUTION_RECORD.md's 'The local tag v1.75.0' table holds every sha. END STATE (one commit `WG-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy WG-RV made (cp whole from `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit`, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED CLAUDE.md `LibKa0s icons:` line. The provenance line stays v1.75.0 (no edit). Add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (a new file; never edit the frozen files before it; match their line endings) naming the old sha (265a89e) and the new sha (9e5c4e2), the files that changed (expected: libs/LibKa0s/Sim.lua, SimTimeline.lua and SimPanel.lua only) and the new minors. If the addon's own tests or docs pin a Sim, SimTimeline or SimPanel minor or the Sim docs key, update them. Gate green: lua tests/run.lua through ka0s-bounded (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit."
+  }
+ ]
+}

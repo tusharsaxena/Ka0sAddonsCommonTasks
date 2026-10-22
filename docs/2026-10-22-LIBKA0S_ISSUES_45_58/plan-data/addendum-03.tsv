@@ -1,0 +1,12 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+AT-RV2	M3	AbsorbTracker	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,AT-RV	S		OWNER_SCOPE B
+AM-RV2	M3	AuraMaster	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,AM-RV	S		OWNER_SCOPE B
+CM-RV2	M3	ConsumableMaster	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,CM-RV	S		OWNER_SCOPE B
+KC-RV2	M3	KickCD	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,KC-RV	S		OWNER_SCOPE B
+MM-RV2	M3	MultiMeters	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,MM-RV	S		OWNER_SCOPE B
+PM-RV2	M3	PanelMaster	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,PM-RV	S		OWNER_SCOPE B
+PF-RV2	M3	PartyFrameEnhanced	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,PF-RV	S		OWNER_SCOPE B
+PG-RV2	M3	PremadeGroupsFilterExtension	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,PG-RV	S		OWNER_SCOPE B
+PC-RV2	M3	PrettyChat	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,PC-RV	S		OWNER_SCOPE B
+QC-RV2	M3	QuickComms	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,QC-RV	S		OWNER_SCOPE B
+WG-RV2	M3	WhatGroup	Refresh LibKa0s v1.75.0 payload from the final local tag (Sim minor 2, SimPanel minor 2)	LK-27,WG-RV	S		OWNER_SCOPE B
