@@ -21,6 +21,12 @@ def git(repo, *a):
 
 
 def default_branch(repo):
+    # bases.tsv pins a repo whose run branch was merged early to its pre-merge default-branch sha.
+    if os.path.exists(f'{BUNDLE}/bases.tsv'):
+        for line in open(f'{BUNDLE}/bases.tsv').read().splitlines()[1:]:
+            f = line.split('\t')
+            if len(f) > 1 and f[0] == repo:
+                return f[1]
     r = git(repo, 'symbolic-ref', '--short', 'refs/remotes/origin/HEAD')
     return r.stdout.strip().split('/', 1)[1] if r.returncode == 0 and '/' in r.stdout else 'master'
 

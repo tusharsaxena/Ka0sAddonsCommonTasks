@@ -28,7 +28,8 @@ for a in "$@"; do
   esac
 done
 
-defbr() { local b; b=$(git -C $BASE/$1 symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null); print -- ${${b#*/}:-master} }
+# bases.tsv pins a repo whose run branch was merged early to its pre-merge default-branch sha.
+defbr() { local b; b=$(awk -F'\t' -v r=$1 'NR>1 && $1==r {print $2}' ${0:A:h}/bases.tsv 2>/dev/null); [[ -n $b ]] && { print -- $b; return }; b=$(git -C $BASE/$1 symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null); print -- ${${b#*/}:-master} }
 
 typeset -A landed
 for r in $(tail -n +2 $MANIFEST | cut -f3 | sort -u); do
