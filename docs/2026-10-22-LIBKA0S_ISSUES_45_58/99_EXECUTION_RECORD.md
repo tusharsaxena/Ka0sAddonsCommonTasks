@@ -184,3 +184,40 @@ checkpoint, whose evidence row in `checkpoints.tsv` holds their gate results.
 ## Smoke tests
 
 Every SM-* check in `06_SMOKE_TESTS.md` is `owed`. The owner runs them in game; no agent marks one passed.
+
+## CT-02: finalize (2026-10-23)
+
+The merges ran on the owner's go-ahead. Order:
+1. WowAddonStandards (`db00f05`).
+2. LibKa0s (`3b22193`). The `v1.75.0` tag was then pushed: tag object `d0ad7d8`, peeling to `9e5c4e2`.
+3. dev-copilot, which was already merged as `43dd69b`; only its branch was deleted.
+4. The fourteen addons:
+
+| Addon | Default branch | Merge |
+|---|---|---|
+| AbsorbTracker | master | `b8d2763` |
+| AuraMaster | master | `397cd77` |
+| BankLedger | master | `6ba6c64` |
+| ConsumableMaster | master | `d416cce` |
+| DropWatcher | master | `53f6670` |
+| KickCD | master | `e6000ec` |
+| LootHistory | master | `09567b2` |
+| MultiMeters | master | `eeb9d05` |
+| PanelMaster | master | `78251cf` |
+| PartyFrameEnhanced | master | `2a76b7d` |
+| PremadeGroupsFilterExtension | main | `9a47ba7` |
+| PrettyChat | master | `de96776` |
+| QuickComms | master (as detected) | `f44d9a1` |
+| WhatGroup | master | `fc24af3` |
+
+5. This repo, last.
+
+Every merge was `--no-ff` and was gated again on the merge result: tests 0 failed and luacheck 0/0 in every repo. WowAddonStandards was gated with `check-standard.sh`, all checks passing.
+
+Before merging, a content-only `/dev-copilot:sync-docs` ran in each repo. It committed in five of them: LibKa0s `ba14d7e`, AbsorbTracker `19f6b65`, MultiMeters `570ab08`, BankLedger `d77a0c6` and LootHistory `02cbdae`. Proposals it left for the owner:
+- `testkit/README.md` still says "eleven consumers". Changing it needs a kit revision and a re-vendor.
+- Historical comment citations in AbsorbTracker were left for confirmation.
+
+The workflow agents' permission classifier refused merges and pushes, so the lead ran every git write. Every run branch is deleted locally and on origin. No run stash or extra worktree remains; DropWatcher's DW-04 stash was dropped by DW-04 after its commit.
+
+The GitHub closure items (WS-12, LK-24, BL-15, DW-11, KC-02, MM-03, WG-02, LH-16, PG-02) are recorded in `exceptions.tsv`. Addon versions were not bumped. Every in-game smoke check in `06_SMOKE_TESTS.md` is still owed by the owner.
