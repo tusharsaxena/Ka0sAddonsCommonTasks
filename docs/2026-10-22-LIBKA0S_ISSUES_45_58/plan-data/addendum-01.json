@@ -1,0 +1,70 @@
+{
+ "addendum": "01",
+ "why": "DW-02 returned library_gap (2026-10-22): Sim-1.0 froze scenario names at New and dropped host start options. Only DW/LH/BL refresh now; the other 11 addons refresh once at the end of M3 (addendum 02) after the tag stops moving.",
+ "items": [
+  {
+   "id": "LK-26",
+   "milestone": "M3",
+   "repo": "LibKa0s",
+   "title": "Sim minor 2: Start reads scenarios live; prepare receives the host's extra start options (DW-02 library gap)",
+   "depends_on": [
+    "LK-22"
+   ],
+   "effort": "M",
+   "issue_refs": [
+    "LibKa0s#54",
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "ADDITIVE library fix for two LibKa0s-Sim-1.0 contract gaps found by DW-02 (OWNER_SCOPE B; RESUME section 5). Sim minor 1 -> 2 (LibKa0s/Sim.lua MINOR), version key, a new docs/api/Sim version doc + members manifest via `lua tools/gen-api-members.lua` (previous marked Superseded with a 'Moving to' section), docs/api/README.md row, CHANGELOG `## v1.75.0` block updated (the release is not public yet; the tag is local and moves), docs/test-cases.md regenerated, README MODULES/majors rows if they name the Sim minor. Test first (see each case fail for the right reason).\nGAP 1 (scenario names frozen at New): Sim.lua checkScenarios (:330-350) builds `known` inside New and :670 stores S.known; startRefusal (:469-472) refuses `not S.known[name]`. FIX: Start decides 'known' at call time from d.scenarios.names / d.scenarios.defs (as SimTimeline :469-473 and SimPanel already read them live). New still validates whatever entries exist when it runs and still accepts an empty names list. A def added after New is validated on its first Start with the same errors New would raise (missing def / missing timeline / bad sizes) -- raise, as New does, since that is a host programming error. UNKNOWN_SCENARIO lists the live names. FAILING CASE: Sim:New with scenarios={names={},defs={}}, then fill names/defs in place with a valid def 'dungeon', then sim:Start{scenario='dungeon'} -> must start (today: 'Unknown scenario' and false).\nGAP 2 (Start drops host start options): Sim.lua:524 calls prepare with a fresh { scenario, size, seed }. FIX: prepare receives a shallow copy of the caller's opts with scenario/size/seed overwritten by the resolved values, so extra host fields reach prepare (DropWatcher's band and classFilter). The library reads no extra field and the timeline's opts stay { scenario, size, seed }. If the library has a Restart/replay path (RunVerb 'restart' or the panel's start-again), it carries the extra fields except seed. FAILING CASE: sim:Start{scenario='raid', size=18, band={low=25,high=35}, classFilter='any'} -> prepare's opts.band and opts.classFilter arrive (today nil); refusal(opts) already gets the caller's opts (keep that).\nDocs: docs/api/Sim (the descriptor table's `scenarios` and `prepare` rows, and sim:Start's opts) state both. The stub/parity suite (test_sim_stub) and the mini-host contract suite stay green; add the two cases to the Sim session suite. No new public member (the bar is very high): this changes behaviour of existing members only, widening what Start accepts. Gate: lua tests/run.lua through ka0s-bounded, luacheck 0/0, test_versioning green, 1500-line cap. Do NOT move or create the tag (the lead re-runs the release gate and moves it)."
+  },
+  {
+   "id": "DW-RV2",
+   "milestone": "M3",
+   "repo": "DropWatcher",
+   "title": "Refresh LibKa0s v1.75.0 payload from the moved local tag (Sim minor 2)",
+   "depends_on": [
+    "LK-26",
+    "DW-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED (OWNER_SCOPE B, RESUME section 5). It moved because LK-26 added Sim minor 2; 99_EXECUTION_RECORD.md 'The local tag v1.75.0' table holds the old and new sha. END STATE (one commit `DW-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit` exactly as DW-RV left them, i.e. the same copy as DW-RV (cp whole, delete 'Only in' files) then the tag's tools/prune-icons.lua against the UNCHANGED CLAUDE.md `LibKa0s icons:` line; the provenance line stays v1.75.0 (no edit). Record the refresh in the frozen-bundle-safe way: add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (new file; never edit 01..05) naming the old and new tag sha, the files that changed (expected: libs/LibKa0s/Sim.lua plus any docs-only kit change), and the new Sim minor. If the addon's own tests pin a LibKa0s minor or key (e.g. INSTALL smoke lists, a minors test, docs/test-cases.md), update them. Gate green: lua tests/run.lua (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit (it is an RV-family item)."
+  },
+  {
+   "id": "LH-RV2",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Refresh LibKa0s v1.75.0 payload from the moved local tag (Sim minor 2)",
+   "depends_on": [
+    "LK-26",
+    "LH-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED (OWNER_SCOPE B, RESUME section 5). It moved because LK-26 added Sim minor 2; 99_EXECUTION_RECORD.md 'The local tag v1.75.0' table holds the old and new sha. END STATE (one commit `LH-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit` exactly as LH-RV left them, i.e. the same copy as LH-RV (cp whole, delete 'Only in' files) then the tag's tools/prune-icons.lua against the UNCHANGED CLAUDE.md `LibKa0s icons:` line; the provenance line stays v1.75.0 (no edit). Record the refresh in the frozen-bundle-safe way: add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (new file; never edit 01..05) naming the old and new tag sha, the files that changed (expected: libs/LibKa0s/Sim.lua plus any docs-only kit change), and the new Sim minor. If the addon's own tests pin a LibKa0s minor or key (e.g. INSTALL smoke lists, a minors test, docs/test-cases.md), update them. Gate green: lua tests/run.lua (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit (it is an RV-family item)."
+  },
+  {
+   "id": "BL-RV2",
+   "milestone": "M3",
+   "repo": "BankLedger",
+   "title": "Refresh LibKa0s v1.75.0 payload from the moved local tag (Sim minor 2)",
+   "depends_on": [
+    "LK-26",
+    "BL-RV"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Refresh this addon's vendored LibKa0s after the local tag v1.75.0 MOVED (OWNER_SCOPE B, RESUME section 5). It moved because LK-26 added Sim minor 2; 99_EXECUTION_RECORD.md 'The local tag v1.75.0' table holds the old and new sha. END STATE (one commit `BL-RV2: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal `git -C ../LibKa0s archive v1.75.0 LibKa0s testkit` exactly as BL-RV left them, i.e. the same copy as BL-RV (cp whole, delete 'Only in' files) then the tag's tools/prune-icons.lua against the UNCHANGED CLAUDE.md `LibKa0s icons:` line; the provenance line stays v1.75.0 (no edit). Record the refresh in the frozen-bundle-safe way: add docs/revendor/2026-10-22-v1.75.0/06_REFRESH.md (new file; never edit 01..05) naming the old and new tag sha, the files that changed (expected: libs/LibKa0s/Sim.lua plus any docs-only kit change), and the new Sim minor. If the addon's own tests pin a LibKa0s minor or key (e.g. INSTALL smoke lists, a minors test, docs/test-cases.md), update them. Gate green: lua tests/run.lua (test_vendor_sync green against the moved tag), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit (it is an RV-family item)."
+  }
+ ]
+}

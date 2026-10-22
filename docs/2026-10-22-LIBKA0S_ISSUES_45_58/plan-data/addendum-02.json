@@ -1,0 +1,70 @@
+{
+ "addendum": "02",
+ "why": "DW-04 returned library_gap (2026-10-22): SimPanel's picker snapshotted the first scenario at New. LK-27 fixes it and audits for other New-time snapshots; DW/LH/BL refresh again. The other 11 addons refresh once at the end of M3 (addendum 03).",
+ "items": [
+  {
+   "id": "LK-27",
+   "milestone": "M3",
+   "repo": "LibKa0s",
+   "title": "SimPanel minor 2: the picker reads its first scenario at draw time; audit every Sim-1.0 read of d.scenarios for snapshots taken at New (DW-04 library gap)",
+   "depends_on": [
+    "LK-26"
+   ],
+   "effort": "M",
+   "issue_refs": [
+    "LibKa0s#54",
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "ADDITIVE library fix for a LibKa0s-Sim-1.0 contract gap that DW-04 found (OWNER_SCOPE B; RESUME section 5). GAP: LibKa0s/SimPanel.lua (SIM_PANEL_MINOR 1) reads `ctx.d.scenarios.names[1]` once, in lib.__AttachPanel inside Sim:New (`choice = { scenario = first, size = 0 }`). A host that fills d.scenarios after New, which LK-26 (Sim minor 2) made legal, gets a nil choice for good. PanelRows() idle then gives { 'Start: nil', 'Stop simulation' }, and the picker's Start runs `start nil`. FIX: add `local function chosen(P)`, which returns P.choice.scenario when defOf(P, it) resolves and otherwise ctx.d.scenarios.names[1] read live. Use it everywhere P.choice.scenario is read: model's idle branch, act's Start, the picker's typed() and Start onClick, and paintPicker's SelectValue and def lookup. __AttachPanel keeps `first` as the initial value but allows nil. SIM_PANEL_MINOR 1 -> 2, paired on the shell, with the Sim docs key, version doc and members manifest (`lua tools/gen-api-members.lua`; previous marked Superseded with 'Moving to'), docs/api/README row, the CHANGELOG `## v1.75.0` block (not public yet; the tag is local), docs/test-cases.md and README majors rows if they name the minor. Test first (watch it fail for the right reason): New with scenarios={names={},defs={}}, then fill names/defs in place; PanelRows()[1].label == 'Start: <first def label>' with the preview step rows present; clicking the picker's Start starts the first scenario. AUDIT (mandatory, so no third gap surfaces in LH-10/BL-08): grep Sim.lua, SimPanel.lua, SimTimeline.lua, SimVerbs and any other Sim*.lua for any value derived from d.scenarios, d.panel, d.L, d.verbs/usage/why/statusLine or other descriptor tables that is captured at New rather than read at use. Fix each one the same additive way, with a failing case each, or list it in the commit body as deliberately New-time with the reason. Also check that a descriptor table filled in place after New (DropWatcher fills scenarios, verbs, usage and why after New) works for every documented field. No new public member. Gate: lua tests/run.lua through ka0s-bounded, luacheck 0/0, test_versioning green, 1500-line cap. Do NOT move or create the tag; the lead re-gates and moves it."
+  },
+  {
+   "id": "DW-RV3",
+   "milestone": "M3",
+   "repo": "DropWatcher",
+   "title": "Refresh LibKa0s v1.75.0 payload from the moved local tag (SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "DW-RV2"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Same as DW-RV2 (addendum-01), for the second tag move: LK-27 (SimPanel minor 2, plus any audit fixes) moved the local tag v1.75.0 again. 99_EXECUTION_RECORD.md 'The local tag v1.75.0' table holds every sha. END STATE (one commit `DW-RV3: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy (cp whole, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED `LibKa0s icons:` line. The provenance line stays v1.75.0. Add docs/revendor/2026-10-22-v1.75.0/07_REFRESH.md (new file; never edit 01..06) naming the old and new sha, the changed files and the new minors. Update any addon test that pins a Sim/SimPanel minor. Gate green: lua tests/run.lua (test_vendor_sync green), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit. Never drop or pop a stash you did not create (DropWatcher holds the DW-04 stash; leave it)."
+  },
+  {
+   "id": "LH-RV3",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Refresh LibKa0s v1.75.0 payload from the moved local tag (SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "LH-RV2"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Same as LH-RV2 (addendum-01), for the second tag move: LK-27 (SimPanel minor 2, plus any audit fixes) moved the local tag v1.75.0 again. 99_EXECUTION_RECORD.md 'The local tag v1.75.0' table holds every sha. END STATE (one commit `LH-RV3: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy (cp whole, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED `LibKa0s icons:` line. The provenance line stays v1.75.0. Add docs/revendor/2026-10-22-v1.75.0/07_REFRESH.md (new file; never edit 01..06) naming the old and new sha, the changed files and the new minors. Update any addon test that pins a Sim/SimPanel minor. Gate green: lua tests/run.lua (test_vendor_sync green), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit. Never drop or pop a stash you did not create (DropWatcher holds the DW-04 stash; leave it)."
+  },
+  {
+   "id": "BL-RV3",
+   "milestone": "M3",
+   "repo": "BankLedger",
+   "title": "Refresh LibKa0s v1.75.0 payload from the moved local tag (SimPanel minor 2)",
+   "depends_on": [
+    "LK-27",
+    "BL-RV2"
+   ],
+   "effort": "S",
+   "issue_refs": [
+    "OWNER_SCOPE B"
+   ],
+   "smoke": [],
+   "spec": "Same as BL-RV2 (addendum-01), for the second tag move: LK-27 (SimPanel minor 2, plus any audit fixes) moved the local tag v1.75.0 again. 99_EXECUTION_RECORD.md 'The local tag v1.75.0' table holds every sha. END STATE (one commit `BL-RV3: refresh LibKa0s v1.75.0 payload from the moved local tag`): libs/LibKa0s/ and tests/_kit/ equal the tag's payload after the same copy (cp whole, delete 'Only in' files) and the tag's tools/prune-icons.lua run against the UNCHANGED `LibKa0s icons:` line. The provenance line stays v1.75.0. Add docs/revendor/2026-10-22-v1.75.0/07_REFRESH.md (new file; never edit 01..06) naming the old and new sha, the changed files and the new minors. Update any addon test that pins a Sim/SimPanel minor. Gate green: lua tests/run.lua (test_vendor_sync green), luacheck 0/0, 1500-line cap. This item IS allowed to replace libs/LibKa0s and tests/_kit. Never drop or pop a stash you did not create (DropWatcher holds the DW-04 stash; leave it)."
+  }
+ ]
+}
