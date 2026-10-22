@@ -38,3 +38,17 @@ to re-run the spike. All 20 landed.
 The installed plugin updates from GitHub `master`, so 2.4.0 had to reach master before M2. On the owner's
 explicit go-ahead, dev-copilot's run branch alone was merged `--no-ff` into master as `43dd69b` and pushed,
 with no tag. The run branch stays until CT-02 cleans up. CT-02 finds dev-copilot already merged.
+
+## M3 first pass: a Sim-1.0 gap from DW-02 (addendum 01)
+
+The first M3 run (`wf_63c70dcf-91d`) landed 37 items. DW-02, DropWatcher's move onto Sim-1.0, returned
+`library_gap`, and its 21 dependants were skipped. Sim minor 1 had two gaps:
+- it froze the scenario names at `New`, while DropWatcher fills them after `New` at load;
+- `Start` handed `prepare` a fresh `{ scenario, size, seed }`, dropping the host's `band` and `classFilter`.
+
+Following RESUME §5, `plan-data/addendum-01.json` (and `.tsv`) adds:
+- **LK-26**, Sim minor 2, the additive fix;
+- **DW-RV2, LH-RV2 and BL-RV2**, which refresh the three simulator hosts from the moved tag.
+
+The other eleven addons refresh once at the end of M3, after the tag stops moving. `resume-state.sh`,
+`next_args.py` and `execute_milestone.js` now read `plan-data/addendum-*`.

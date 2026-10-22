@@ -32,7 +32,7 @@ const RESULT = { type: 'object', properties: {
   required: ['id', 'status', 'commits', 'summary', 'reviewed', 'deviations', 'library_gap', 'suite'] }
 const REVIEW = { type: 'object', properties: { ok: { type: 'boolean' }, issues: { type: 'array', items: { type: 'string' } } }, required: ['ok', 'issues'] }
 
-const itemCmd = (id) => `python3 -c "import json;print(json.dumps([i for i in json.load(open('${BUNDLE}/plan-data/items.json'))['items'] if i['id']=='${id}'][0],indent=1,ensure_ascii=False))"`
+const itemCmd = (id) => `python3 -c "import json;print(json.dumps([i for i in sum([json.load(open(f))['items'] for f in ['${BUNDLE}/plan-data/items.json']+sorted(__import__('glob').glob('${BUNDLE}/plan-data/addendum-*.json'))],[]) if i['id']=='${id}'][0],indent=1,ensure_ascii=False))"`
 
 const COMMON = (it) => `You are executing one work item of the Ka0s 2026-10-22 run "LibKa0s issues #45-#58". Item ${it.id}, repo ${it.repo} at ${BASE}/${it.repo} (cd there; your shell starts elsewhere).
 - Read the item spec: \`${itemCmd(it.id)}\` (any 'PLAN-REVIEW RESOLUTION' paragraph in it binds over the text above it). Binding rulings: ${BUNDLE}/inputs/OWNER_SCOPE.md. The end state: ${BUNDLE}/03_SPEC.md. Designs: ${BUNDLE}/inputs/design-*.md and req-*-sim.md (OWNER_SCOPE and the item spec override them). Read ${BASE}/${it.repo}/CLAUDE.md and follow that repo's conventions (LibKa0s: also docs/releasing.md and the docs/api conventions; WowAddonStandards: its changelog/version ripple rules). The owner has explicitly instructed per-item commits on the run branch; that overrides any repo rule requiring a slash command to commit.

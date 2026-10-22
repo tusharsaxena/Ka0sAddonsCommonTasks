@@ -38,6 +38,10 @@ unreviewed = '--unreviewed' in args
 order = '--order' in args
 
 items = json.load(open(f'{BUNDLE}/plan-data/items.json'))['items']
+# Addenda (RESUME section 5) append items without editing the frozen plan.
+import glob
+for _a in sorted(glob.glob(f'{BUNDLE}/plan-data/addendum-*.json')):
+    items += json.load(open(_a))['items']
 excepted = set()
 if os.path.exists(f'{BUNDLE}/exceptions.tsv'):
     for line in open(f'{BUNDLE}/exceptions.tsv').read().splitlines()[1:]:

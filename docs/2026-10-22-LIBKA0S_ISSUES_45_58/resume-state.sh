@@ -19,6 +19,8 @@ MANIFEST=$HERE/items.tsv
 IDRE='^[A-Z]{2}-[A-Z0-9]+$'
 
 [[ -r $MANIFEST ]] || { echo "missing $MANIFEST"; exit 0 }
+# Addenda (RESUME section 5) append rows without editing the frozen manifest.
+manifest_rows() { tail -q -n +2 $MANIFEST $HERE/plan-data/addendum-*.tsv(N) }
 
 verbose=0; only=""
 for a in "$@"; do
@@ -32,7 +34,7 @@ done
 defbr() { local b; b=$(awk -F'\t' -v r=$1 'NR>1 && $1==r {print $2}' ${0:A:h}/bases.tsv 2>/dev/null); [[ -n $b ]] && { print -- $b; return }; b=$(git -C $BASE/$1 symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null); print -- ${${b#*/}:-master} }
 
 typeset -A landed
-for r in $(tail -n +2 $MANIFEST | cut -f3 | sort -u); do
+for r in $(manifest_rows | cut -f3 | sort -u); do
   [[ -d $BASE/$r/.git ]] || continue
   git -C $BASE/$r rev-parse --verify -q $BR >/dev/null 2>&1 || continue
   subjects=$(git -C $BASE/$r log --format='%s' $(defbr $r)..$BR 2>/dev/null)
@@ -60,7 +62,7 @@ for m in M1 M2 M3 M4; do
   while IFS=$'\t' read -r id mi repo title; do
     [[ $mi == $m ]] || continue
     if [[ -n ${landed[$repo/$id]} || -n ${excepted[$id]} ]]; then done_ids+=$id; else todo+=$id; fi
-  done < <(tail -n +2 $MANIFEST)
+  done < <(manifest_rows)
   n=$(( ${#done_ids} + ${#todo} ))
   (( n == 0 )) && continue
   total_done=$(( total_done + ${#done_ids} )); total_all=$(( total_all + n ))
@@ -92,7 +94,7 @@ echo
 echo "-- LibKa0s tag v1.75.0: $(git -C $BASE/LibKa0s rev-parse -q --short 'v1.75.0^{commit}' 2>/dev/null || echo absent) (local; pushed: $(git -C $BASE/LibKa0s ls-remote --tags origin v1.75.0 2>/dev/null | grep -q . && echo YES || echo no))"
 echo "-- installed dev-copilot: $(ls ~/.claude/plugins/cache/dev-copilot/dev-copilot 2>/dev/null | sort -V | tail -1) (M2+ needs 2.4.0)"
 dirty=""; offbranch=""
-for r in $(tail -n +2 $MANIFEST | cut -f3 | sort -u); do
+for r in $(manifest_rows | cut -f3 | sort -u); do
   [[ -d $BASE/$r/.git ]] || continue
   n=$(git -C $BASE/$r status --porcelain | wc -l | tr -d ' ')
   [[ $n != 0 ]] && dirty="$dirty $r($n)"
