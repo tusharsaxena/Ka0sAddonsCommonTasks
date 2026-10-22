@@ -32,6 +32,7 @@ to re-run the spike. All 20 landed.
 | When | Event | Commit |
 |---|---|---|
 | 2026-10-22 (LK-22) | created, local annotated tag, not pushed | `265a89e` |
+| 2026-10-22 21:31 (LK-26) | moved `265a89e` -> `6bf5f3e` (Sim minor 2, SimTimeline minor 2; key 2.2.1). Re-gated with `run-automated-tests.sh --no-bundle`: lint 0/0 in 180 files, 2538 passed/0 failed/2 skipped, complexity pass with max CCN 15, verdict green. As with v1.56.0's re-cut, no new release bundle: the frozen 20261022-155222 record describes `2df9193`. Not pushed. | `6bf5f3e` |
 
 ## dev-copilot merged early (owner go-ahead, 2026-10-22)
 
