@@ -32,3 +32,9 @@ to re-run the spike. All 20 landed.
 | When | Event | Commit |
 |---|---|---|
 | 2026-10-22 (LK-22) | created, local annotated tag, not pushed | `265a89e` |
+
+## dev-copilot merged early (owner go-ahead, 2026-10-22)
+
+The installed plugin updates from GitHub `master`, so 2.4.0 had to reach master before M2. On the owner's
+explicit go-ahead, dev-copilot's run branch alone was merged `--no-ff` into master as `43dd69b` and pushed,
+with no tag. The run branch stays until CT-02 cleans up. CT-02 finds dev-copilot already merged.
