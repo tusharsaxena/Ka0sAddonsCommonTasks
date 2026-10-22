@@ -73,3 +73,19 @@ The other eleven addons now refresh in addendum 03.
 The owner wrote: "go ahead with whatever commits, merges and pushes you need to do - dont wait for my
 approval for this conversation. Treat this message as approval to merge for this plan". CT-02 therefore
 proceeds without a further stop. Addon version bumps stay out, since the plan has none.
+
+## LH-11 deviation: hook order in the drivers (review, 2026-10-23)
+
+The LH-11 item text (req-lh-sim §2.3, "Hooks") says a hook is played "after applying the hooked function's
+effect to the world". LootHistory's drivers (`modules/SimDrivers.lua`, commit `c98eb56`) do not follow
+that uniformly, and the item commit did not list it as a deviation:
+- **Hook first, then the effect** (the post-hook sees the pre-call world, as the client's own post-hook
+  does): `D.UseItem`, `D.Destroy`, `D.TakeMailItem`, `D.AutoLootMail`, `D.TakeMailMoney`, `D.Send`,
+  `D.Post`, `D.Craft` and `D.QuestReward`. This order is required: OnPost's `ItemLocationID` and
+  OnContainerItemUse's `ContainerItemHasLoot` read the slot as it was before the call. Pinned by
+  `tests/test_sim_drivers.lua` ("a hook driver shows the client's pre-call world to the post-hook").
+- **Effect first, then the hook**: `D.Buy`, `D.Buyback`, `D.Repair` and `D.AuctionBuy`, the order the
+  binding text names. Pinned by the `MUTATES` table in the same file.
+
+The binding text is wrong for the first group: applying the effect first would break the capture the
+simulator exists to drive. Recorded here rather than changed; the LH-11 review commit cites it.
