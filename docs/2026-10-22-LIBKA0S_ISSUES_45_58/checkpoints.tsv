@@ -1,3 +1,4 @@
 when	checkpoint	evidence
 2026-10-22	M0 plan committed (123 items)	Ka0sAddonsCommonTasks 689597d pushed
 2026-10-22	M1 upstream complete (38/38 landed and reviewed)	LibKa0s 265a89e (2534 passed/0 failed/2 skipped, luacheck 0/0 in 180 files; local tag v1.75.0 = 265a89e, NOT pushed); WowAddonStandards bb4e378 (check-standard all pass, v2.86.0); dev-copilot 8c562da (2.4.0; 5 suites OK); feature branches + refs/notes/ka0s-review pushed
+2026-10-22	M2 re-vendor complete (14/14 landed and reviewed)	all 14 addons green (tests 0 failed; luacheck 0/0): AT aee2459 885p, AM 99623f7 2124p, BL 3f13a03 1266p, CM 4ad0b25 1217p, DW fd4818d 1660p, KC 6445d94 1330p, LH 7d2a6be 1526p, MM 7305974 2196p, PM 8beece7 1064p, PF 0a988f6 469p, PG f71ef3c 422p, PC 6ef60f5 574p, QC 06276e7 1095p, WG 08dd668 935p; branches + refs/notes/ka0s-review pushed; tag v1.75.0 still local
