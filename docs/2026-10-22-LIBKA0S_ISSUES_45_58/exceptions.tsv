@@ -1,1 +1,2 @@
 id	reason
+LK-10	landed as 07dfb7c, then its payload was withdrawn by LK-11 outcome B (git revert of 07dfb7c folded into the LK-11 commit): W.StepPanel is not public, the renderer moves Sim-private into SimPanel.lua (LK-16). Proof: test ! -f ../LibKa0s/LibKa0s/WidgetsStepPanel.lua (run from GIT/)

@@ -1,1 +1,3 @@
 when	checkpoint	evidence
+2026-10-22	M0 plan committed (123 items)	Ka0sAddonsCommonTasks 689597d pushed
+2026-10-22	M1 upstream complete (38/38 landed and reviewed)	LibKa0s 265a89e (2534 passed/0 failed/2 skipped, luacheck 0/0 in 180 files; local tag v1.75.0 = 265a89e, NOT pushed); WowAddonStandards bb4e378 (check-standard all pass, v2.86.0); dev-copilot 8c562da (2.4.0; 5 suites OK); feature branches + refs/notes/ka0s-review pushed
