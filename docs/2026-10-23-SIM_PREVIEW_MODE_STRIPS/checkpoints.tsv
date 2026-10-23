@@ -1,1 +1,2 @@
 date	milestone	evidence
+2026-10-23	M1	13/13 reviewed; LibKa0s 2573 pass/0 fail, luacheck 0/0 (181 files); check-standard.sh exit 0; dev-copilot py suites + 13 overlays OK; pushed WS a72d35a, LK 9949368, DC 6d45079 + review notes; local tag v1.76.0 -> 9949368 (not pushed)
