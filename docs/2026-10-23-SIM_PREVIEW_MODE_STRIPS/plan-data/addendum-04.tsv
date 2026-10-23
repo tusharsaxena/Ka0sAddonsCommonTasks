@@ -1,0 +1,3 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+BL-12	M3	BankLedger	Idle sim panel names the real items the run will move, not item A / item B	BL-11	M	SM-BL-15	owner report 2026-10-23 (inputs/addendum-04-19.png, -20.png)
+QC-07	M3	QuickComms	In preview and test mode, clicking a pad button or a dial slice prints a preview of what it would send: "[QC] /p Hello world!", tokens filled or mocked	QC-RV2	M	SM-QC-10	owner request 2026-10-23 (inputs/addendum-04-21.png)

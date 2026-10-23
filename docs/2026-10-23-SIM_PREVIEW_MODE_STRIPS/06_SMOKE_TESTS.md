@@ -69,3 +69,5 @@ The owner runs these. Nobody marks one passed but the owner. Each row: id, the i
 | SM-QC-9 | QC-06 | with the preview dial open, open New callout over it, then Choose icon...: the dial hub dot and pointer stay behind the dialog, the icon browser sits above the dialog, and the settings window sits below both | pending |
 | SM-LK-1 | LK-91 | /bl sim start bank: every step label fits its row; a long one ends in an ellipsis before the /bl sim step column, never under it; hovering the row shows the full label; widening the panel shows more of the label | pending |
 | SM-BL-14 | BL-11 | in a freshly started client, /bl sim start bank: every step, including step 4 (the flask deposit), follows the previous one about 1 s later with no multi-second stall | pending |
+| SM-BL-15 | BL-12 | /bl sim, pick Personal bank, before Start: the rows name the same real items the run then shows; Start: the labels do not change | pending |
+| SM-QC-10 | QC-07 | preview/test mode: clicking a pad button or dial slice prints `[QC] /p <text>` with tokens filled or mocked; nothing is sent; live mode unchanged | pending |

@@ -1,0 +1,40 @@
+{
+ "items": [
+  {
+   "id": "BL-12",
+   "milestone": "M3",
+   "repo": "BankLedger",
+   "title": "Idle sim panel names the real items the run will move, not item A / item B",
+   "depends_on": [
+    "BL-11"
+   ],
+   "effort": "M",
+   "spec": "Owner report 2026-10-23. Screenshots: inputs/addendum-04-20.png shows the idle panel before Start, inputs/addendum-04-19.png shows the same run while it plays. Idle, the step panel previews the picked scenario's rows as \"Deposit 20 x item A to Character Bank\", \"Deposit 1 x item B ...\". Once the run starts, the rows name the real items (\"Deposit 20 x Hearthstone ...\", \"Deposit 1 x Dawn Crystal ...\"). The owner wants the idle preview to match what the run will show.\nWhere it comes from: modules/Sim.lua:246 renders an item ref as L[\"item %s\"] with a letter whenever there is no simulated world. The pool of real bag items (modules/SimWorld.lua, POOL_MIN, drawn from the player's bags and sorted by id per BL-11's finding) only exists after Start.\nFIX (tests first):\n1. Find out whether the pool draw is deterministic for a given set of bags, or seed-dependent. Read SimWorld's pool builder.\n2. If it is deterministic: while idle, resolve item refs for the preview against a pool built by the SAME function from the live bags (pure: no world installed, no seam bound, nothing fired). Rebuild it when the panel refreshes, so a bag change shows up. Same labels as a running session would print, including the bonus-link item B and the (n recorded) suffix only where a running row has it.\n3. If it is seed-dependent: the idle preview must use the seed the Start will use. Check whether LibKa0s-Sim-1.0 already lets a host fix the seed the panel's Start passes (startOpts / def options). If it does not, return blocked with library_gap describing the minimal additive fix (for example the panel carrying its preview seed into Start). Never fork the library.\n4. Pool too small (fewer than POOL_MIN eligible items): keep today's refusal path, and let the idle preview fall back to the letters.\nTests: an idle-panel case where the rows equal the first running rows for the same bags, red before the fix. The pool-too-small fallback case.\nAlso look at LootHistory's and DropWatcher's idle previews. If either shows placeholders that the run then replaces, say so in deviations (report only, no change there).\nRipple: docs/smoke-tests.md (a check mirroring SM-BL-15), CHANGELOG/Unreleased per the repo's convention, the test inventory.",
+   "verify": "idle-vs-running label equality case; gates green",
+   "smoke": [
+    "SM-BL-15: /bl sim, pick Personal bank, before Start: the rows name the same real items (Hearthstone, ...) that the run then shows; Start: the labels do not change"
+   ],
+   "issue_refs": [
+    "owner report 2026-10-23 (inputs/addendum-04-19.png, -20.png)"
+   ]
+  },
+  {
+   "id": "QC-07",
+   "milestone": "M3",
+   "repo": "QuickComms",
+   "title": "In preview and test mode, clicking a pad button or a dial slice prints a preview of what it would send: \"[QC] /p Hello world!\", tokens filled or mocked",
+   "depends_on": [
+    "QC-RV2"
+   ],
+   "effort": "M",
+   "spec": "Owner request 2026-10-23 (inputs/addendum-04-21.png shows the preview looking right now). In Preview as... (any situation, Current included), the Groups edit preview and Test mode (placeholders), clicking a pad button or a dial slice must print to the user's own chat frame a preview of the callout it would send. Format: `[QC] /p Hello world!`: the addon's chat tag (NS.Print's), then the slash form of the channel the send would use under the previewed situation (the Resolver's choice: /s, /y, /p, /i, /raid, /rw, /g, /o, /e, or a whisper target; reuse the existing channel-to-slash mapping if one exists, otherwise add one in one place), then the text with every token resolved as the real send would. Where a token has no real value right now (for example {target} with no target, or a group token while solo in a preview of a raid), substitute a clear mock from one table (for example <target>, a sample player name, a sample spell link) so the line reads naturally. NOTHING is sent: no SendChatMessage, no C_ChatInfo, no SendAddonMessage, no throttle or cooldown consumed, no 'sent' flash state beyond what the preview already draws.\n- Test mode placeholders: if a placeholder has no callout, print the placeholder's label with a note that it is a placeholder (one line). Decide the exact wording and keep it localized.\n- Disarmed buttons: previewed and test buttons are disarmed secure buttons (SendEngine.Disarm, Pad.ArmSlot). Find the safe, taint-free way to take the click there: an insecure OnClick or PostClick on the disarmed button, or an overlay, and say why. Preview and test mode are both ended by combat, so no click handler may run protected code. Keep live (armed) behavior byte-for-byte unchanged.\n- A callout that would send nothing (no text, refused channel, resolver says nothing) prints `[QC] (nothing sent: <reason>)` using the same reason strings the Groups page and Callouts preview already show.\nTests first: preview and test-mode click cases on a pad button and a dial wedge: the exact printed line, a token mocked, the nothing-sent case, and a spy proving no send API was called; plus a live-mode case proving armed clicks are unchanged.\nRipple: locales, README (preview section), ARCHITECTURE, docs/smoke-tests.md (mirror SM-QC-10), the test inventory, CHANGELOG/Unreleased per the repo's convention.",
+   "verify": "click-preview cases + no-send spy; gates green",
+   "smoke": [
+    "SM-QC-10: /qc preview, pick In Group: click the Hello pad button -> chat shows `[QC] /p Hello world!`-style line with tokens filled (a {target} with no target shows the mock); click a dial slice -> same; nothing appears in party chat; /qc test and click a placeholder -> its one-line placeholder note; /qc preview off and click Hello -> it really sends as before"
+   ],
+   "issue_refs": [
+    "owner request 2026-10-23 (inputs/addendum-04-21.png)"
+   ]
+  }
+ ]
+}

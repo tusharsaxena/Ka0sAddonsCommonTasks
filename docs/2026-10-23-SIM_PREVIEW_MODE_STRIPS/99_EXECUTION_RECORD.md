@@ -70,3 +70,12 @@
 - **Lead slip, caught before it did damage.** Saving the run's results as `plan-data/addendum-02-results.json`
   matched the `addendum-*.json` glob that next_args.py and the executor's item lookup read. It was renamed to
   `results-addendum-02.json`.
+
+## Owner smoke and requests (2026-10-23, evening), addendum 04
+
+- **Passed:** BankLedger sim ("works fine"), and the QuickComms preview, which now looks right
+  (`inputs/addendum-04-21.png`), so QC-05 is confirmed.
+- **BL-12:** the idle sim panel shows the placeholder "item A/B" names; the run shows the real items. The idle view
+  should match the run.
+- **QC-07 (owner feature request):** in preview and test mode, a click prints `[QC] /p <text>` with tokens filled or
+  mocked, and nothing is sent.
