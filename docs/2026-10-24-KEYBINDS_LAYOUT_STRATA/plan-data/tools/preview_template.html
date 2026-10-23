@@ -1,0 +1,285 @@
+<title>Ka0s Settings Layout Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Cormorant+Garamond:wght@600;700&display=swap">
+<style>
+/* Layout: a review console — addon rail on the left, one addon's change ledger on the right; phone: rail becomes a picker. */
+:root {
+  --bg: #f5f6f8; --panel: #ffffff; --ink: #1c2230; --muted: #5d6677; --line: #dde1e8; --soft: #eef0f4;
+  --accent: #8a5a0b; --accent-soft: #f6ecd8;
+  --ok: #1f7a4d; --ok-soft: #e1f2e8; --no: #b3261e; --no-soft: #fbe5e3; --skip: #6b7280; --skip-soft: #eceef1;
+  --f-display: "Cormorant Garamond", Georgia, serif;
+  --f-body: "Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12151c; --panel: #1a1e27; --ink: #e6e9ef; --muted: #9aa3b4; --line: #2b313d; --soft: #222733;
+  --accent: #e2b55c; --accent-soft: #33291a;
+  --ok: #5cc28d; --ok-soft: #173326; --no: #f08a80; --no-soft: #3a1c1a; --skip: #9aa3b4; --skip-soft: #262b36; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12151c; --panel: #1a1e27; --ink: #e6e9ef; --muted: #9aa3b4; --line: #2b313d; --soft: #222733;
+  --accent: #e2b55c; --accent-soft: #33291a;
+  --ok: #5cc28d; --ok-soft: #173326; --no: #f08a80; --no-soft: #3a1c1a; --skip: #9aa3b4; --skip-soft: #262b36; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.5 }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel) }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--panel); border-bottom: 1px solid var(--line);
+  padding-block: 12px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+.top-in { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: 26px; margin: 0; letter-spacing: .2px; text-wrap: balance }
+h1 small { font-family: var(--f-body); font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: .6px; text-transform: uppercase; margin-left: 8px }
+.tally { display: flex; gap: 8px; flex-wrap: wrap; font-variant-numeric: tabular-nums }
+.pill { border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600; white-space: nowrap }
+.p-ok { background: var(--ok-soft); color: var(--ok) } .p-no { background: var(--no-soft); color: var(--no) } .p-skip { background: var(--skip-soft); color: var(--skip) }
+.p-acc { background: var(--accent-soft); color: var(--accent) }
+.controls { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--muted) }
+.controls label { display: flex; gap: 6px; align-items: center }
+input[type=range] { accent-color: var(--accent); width: 120px }
+.wrap { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 24px;
+  padding-block: 20px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+nav.rail { position: sticky; top: 90px; align-self: start; display: flex; flex-direction: column; gap: 2px; max-height: calc(100vh - 110px); overflow-y: auto }
+nav.rail .grp { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin: 12px 8px 4px }
+nav.rail button { all: unset; cursor: pointer; padding: 6px 10px; border-radius: 6px; display: flex; justify-content: space-between; gap: 8px; font-size: 13.5px }
+nav.rail button:hover { background: var(--soft) }
+nav.rail button[aria-current=true] { background: var(--accent-soft); color: var(--accent); font-weight: 600 }
+nav.rail button:focus-visible, .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px }
+nav.rail .n { font-family: var(--f-mono); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums }
+#picker { display: none; width: 100%; padding: 8px; font: inherit; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 6px }
+main { min-width: 0 }
+.intro { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; margin-bottom: 18px }
+.intro p { margin: 6px 0; max-width: 75ch }
+h2 { font-family: var(--f-display); font-size: 30px; margin: 4px 0 2px; text-wrap: balance }
+h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .9px; color: var(--muted); margin: 26px 0 10px; display: flex; gap: 10px; align-items: baseline }
+.lede { font-size: 15.5px; max-width: 80ch; margin: 4px 0 12px }
+.stats { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums }
+.stats b { color: var(--ink) }
+.list { display: flex; flex-direction: column; gap: 8px }
+.ch { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: 8px; padding: 12px 14px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px }
+.ch.s-ok { border-left-color: var(--ok) } .ch.s-no { border-left-color: var(--no); opacity: .8 } .ch.s-skip { border-left-color: var(--skip); opacity: .78 }
+.ch .meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline }
+.id { font-family: var(--f-mono); font-size: 12px; font-weight: 600; color: var(--accent) }
+.area { font-size: 12px; color: var(--muted) }
+.what { margin: 2px 0 0; font-size: 14px }
+.why { margin: 2px 0 0; color: var(--muted); font-size: 13px }
+.note { font-size: 12px; background: var(--soft); border-radius: 6px; padding: 4px 8px; margin-top: 4px }
+.side { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-width: 150px }
+.conf { display: flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 12px; font-variant-numeric: tabular-nums }
+.bar { width: 70px; height: 6px; border-radius: 3px; background: var(--soft); overflow: hidden }
+.bar i { display: block; height: 100% }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden }
+.seg button { all: unset; cursor: pointer; padding: 3px 9px; font-size: 12px; color: var(--muted) }
+.seg button + button { border-left: 1px solid var(--line) }
+.seg button[aria-pressed=true].a { background: var(--ok-soft); color: var(--ok); font-weight: 600 }
+.seg button[aria-pressed=true].r { background: var(--no-soft); color: var(--no); font-weight: 600 }
+.seg button[aria-pressed=true].d { background: var(--soft); color: var(--ink); font-weight: 600 }
+.seg button:disabled { cursor: default; opacity: .5 }
+.state { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px }
+details.trees { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin-top: 12px }
+details.trees summary { cursor: pointer; font-weight: 600 }
+.tw { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 10px }
+pre { font-family: var(--f-mono); font-size: 12px; background: var(--soft); border-radius: 6px; padding: 10px; overflow-x: auto; margin: 4px 0 0; white-space: pre }
+.tbl { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 8px }
+table { border-collapse: collapse; width: 100%; font-size: 13px }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-size: 11px; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); background: var(--soft) }
+td.mono { font-family: var(--f-mono); font-size: 12px; white-space: nowrap; color: var(--accent) }
+.banner { border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; font-size: 13px; background: var(--accent-soft); color: var(--ink) }
+.empty { color: var(--muted); font-style: italic }
+@media (max-width: 860px) {
+  .wrap { grid-template-columns: minmax(0, 1fr) }
+  nav.rail { display: none } #picker { display: block; margin-bottom: 14px }
+  .ch { grid-template-columns: minmax(0, 1fr) } .side { align-items: flex-start; flex-direction: row; flex-wrap: wrap; min-width: 0 }
+  .tw { grid-template-columns: minmax(0, 1fr) }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+</style>
+
+<header class="top"><div class="top-in">
+  <h1>Ka0s Settings Layout Review <small>items 015 · 020 · 030</small></h1>
+  <div class="tally" id="tally"></div>
+  <div class="controls">
+    <label for="minc">Min confidence <input type="range" id="minc" min="0" max="100" step="5" value="0"> <span id="mincv">0%</span></label>
+    <label for="showrej"><input type="checkbox" id="showrej"> Show review-rejected ideas</label>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <nav class="rail" id="rail" aria-label="Sections"></nav>
+  <main>
+    <select id="picker" aria-label="Section"></select>
+    <div id="dbbanner" class="banner" hidden></div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const T = D.threshold;
+const dec = {};           // key -> 'accept' | 'reject'   (absent = default)
+let db = null, coll = null, minConf = 0, showRej = false;
+let cur = (location.hash || '#calls').slice(1);
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const confColor = c => c >= 75 ? 'var(--ok)' : c >= T ? 'var(--accent)' : 'var(--skip)';
+function defaultLands(c) { return c.status === 'proposed' && !c.superseded && c.conf >= T }
+function outcome(c) {
+  const v = dec[c.key];
+  if (v === 'accept') return 'ok';
+  if (v === 'reject') return 'no';
+  return defaultLands(c) ? 'ok' : 'skip';
+}
+const allChanges = () => D.addons.flatMap(a => a.layout.concat(a.strata));
+
+function tally() {
+  let ok = 0, no = 0, skip = 0, touched = 0;
+  for (const c of allChanges()) {
+    if (c.status === 'rejected' && !dec[c.key]) continue;
+    const o = outcome(c); if (o === 'ok') ok++; else if (o === 'no') no++; else skip++;
+    if (dec[c.key]) touched++;
+  }
+  const calls = D.calls.filter(c => dec[c.key]).length;
+  document.getElementById('tally').innerHTML =
+    `<span class="pill p-ok">${ok} land</span><span class="pill p-skip">${skip} skipped</span><span class="pill p-no">${no} rejected</span>` +
+    `<span class="pill p-acc">${touched} changes and ${calls}/${D.calls.length} calls decided</span>`;
+}
+
+function nav() {
+  const items = [['calls', 'Your calls', D.calls.length], ['keys', '015 · Keybindings', ''], ['collection', 'Collection conventions', D.xc.length],
+    ['strata', 'Strata model', D.xs.length], ['upstream', 'Upstream changes', D.up.length]];
+  let h = '<div class="grp">Overview</div>' + items.map(([k, l, n]) => `<button data-v="${k}" aria-current="${cur === k}">${esc(l)}<span class="n">${n}</span></button>`).join('');
+  h += '<div class="grp">Addons</div>' + D.addons.map(a => {
+    const n = a.layout.concat(a.strata).filter(c => c.status === 'proposed').length;
+    return `<button data-v="${a.addon}" aria-current="${cur === a.addon}">${esc(a.addon)}<span class="n">${n}</span></button>`;
+  }).join('');
+  const rail = document.getElementById('rail'); rail.innerHTML = h;
+  rail.querySelectorAll('button').forEach(b => b.onclick = () => go(b.dataset.v));
+  const p = document.getElementById('picker');
+  p.innerHTML = items.map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('') +
+    D.addons.map(a => `<option value="${a.addon}">${esc(a.addon)}</option>`).join('');
+  p.value = cur; p.onchange = () => go(p.value);
+}
+function go(v) { cur = v; try { history.replaceState(null, '', '#' + v) } catch (e) {} nav(); render(); window.scrollTo(0, 0) }
+
+function seg(key, lands) {
+  const v = dec[key] || '';
+  const dis = db ? '' : ' disabled';
+  return `<div class="seg" role="group" aria-label="Decision for ${esc(key)}">` +
+    `<button class="a" data-k="${esc(key)}" data-d="accept" aria-pressed="${v === 'accept'}"${dis}>Accept</button>` +
+    `<button class="r" data-k="${esc(key)}" data-d="reject" aria-pressed="${v === 'reject'}"${dis}>Reject</button>` +
+    `<button class="d" data-k="${esc(key)}" data-d="" aria-pressed="${!v}"${dis} title="Use the default: ${lands ? 'lands' : 'skipped'}">Default</button></div>`;
+}
+function card(c) {
+  const o = outcome(c);
+  const label = { ok: 'Lands', no: 'Rejected', skip: c.superseded ? 'Superseded' : c.status === 'rejected' ? 'Not proposed' : 'Skipped' }[o];
+  const col = { ok: 'var(--ok)', no: 'var(--no)', skip: 'var(--skip)' }[o];
+  return `<div class="ch s-${o}">
+    <div><div class="meta"><span class="id">${esc(c.id)}</span><span class="area">${esc(c.area)}</span></div>
+      <p class="what">${esc(c.change)}</p><p class="why">${esc(c.reason)}</p>
+      ${c.notes.map(n => `<div class="note">${esc(n)}</div>`).join('')}</div>
+    <div class="side"><span class="conf"><span class="bar"><i style="width:${c.conf}%;background:${confColor(c.conf)}"></i></span>${c.conf}%</span>
+      <span class="state" style="color:${col}">${label}</span>${seg(c.key, defaultLands(c))}</div></div>`;
+}
+function changeList(arr) {
+  const vis = arr.filter(c => c.conf >= minConf && (showRej || c.status === 'proposed' || dec[c.key]));
+  return vis.length ? `<div class="list">${vis.map(card).join('')}</div>` : '<p class="empty">Nothing at this filter.</p>';
+}
+
+function viewAddon(a) {
+  const lp = a.layout.filter(c => c.status === 'proposed').length, sp = a.strata.filter(c => c.status === 'proposed').length;
+  return `<h2>${esc(a.addon)}</h2><p class="lede">${esc(a.headline)}</p>
+  <div class="stats"><span>Pages <b>${a.before.pages} → ${a.after.pages}</b></span><span>Tabs <b>${a.before.tabs} → ${a.after.tabs}</b></span>
+    <span>Rows <b>${a.before.rows} → ${a.after.rows}</b></span><span>Layout changes <b>${lp}</b></span><span>Strata changes <b>${sp}</b></span></div>
+  <details class="trees"><summary>Settings tree, before and after</summary><div class="tw">
+    <div><b>Today</b><pre>${esc(a.currentTree)}</pre></div><div><b>Proposed</b><pre>${esc(a.proposedTree)}</pre></div></div></details>
+  <h3>020 · Settings layout</h3>${changeList(a.layout)}
+  <h3>030 · Frame strata</h3><p class="lede">${esc(a.strataHeadline)}</p>
+  <details class="trees"><summary>Proposed layering for this addon</summary><pre>${esc(a.strataMap)}</pre></details>
+  <div style="height:10px"></div>${changeList(a.strata)}`;
+}
+function viewCalls() {
+  return `<div class="intro"><h2>Your calls</h2>
+    <p>The analysis read every settings page and every frame in all 15 addons, then a second agent checked each addon's proposal against the code. A cross-addon pass lined up naming and placement across the collection.</p>
+    <p><b>How this page works.</b> Every proposed change at ${T}% confidence or above <b>lands unless you reject it</b>. Changes below ${T}% are skipped unless you accept them.
+    Superseded changes have been replaced by a collection convention. Your clicks are saved and I read them back before building anything. Nothing changes in the addons until you say go.</p>
+    <p>The six calls below need you. Each shows what I'd do; <b>Accept</b> takes my recommendation and <b>Reject</b> takes the opposite.</p></div>
+    <div class="list">${D.calls.map(c => {
+      const v = dec[c.key]; const o = v === 'reject' ? 'no' : 'ok';
+      return `<div class="ch s-${o}"><div><div class="meta"><span class="id">${c.key}</span></div><p class="what"><b>${esc(c.title)}</b></p>
+        <p class="why">${esc(c.text)}</p><div class="note">My recommendation: ${esc(c.rec)}</div></div>
+        <div class="side"><span class="state" style="color:${o === 'no' ? 'var(--no)' : 'var(--ok)'}">${v === 'reject' ? 'Opposite' : v === 'accept' ? 'Accepted' : 'Recommended'}</span>${seg(c.key, true)}</div></div>`;
+    }).join('')}</div>`;
+}
+function viewKeys() {
+  return `<h2>015 · Keybindings</h2>
+  <p class="lede">Seven addons with a window. Each gets its own category in Settings &gt; Keybindings, named after the addon, and a Keybindings tab as the last tab of its General page. Both read and write the same game bindings, so they stay in sync.</p>
+  <div class="tbl"><table><thead><tr><th>Part</th><th>What changes</th></tr></thead><tbody>
+  <tr><td>Category</td><td>Every <code>&lt;Binding&gt;</code> gets <code>category="BINDING_HEADER_&lt;ADDON&gt;"</code> and loses <code>header=</code>. Blizzard titles a section from the global the category names, which is already the addon's brand (for example "Ka0s Bank Ledger"). Today all Ka0s bindings share one untitled block under AddOns, because a header row draws as a blank spacer.</td></tr>
+  <tr><td>Saved keys</td><td>Binding names do not change, so nobody loses a key they set.</td></tr>
+  <tr><td>Labels</td><td>Logical, short and without the brand: see CALL-03.</td></tr>
+  <tr><td>The tab</td><td>A new LibKa0s surface draws the same rows in every addon: label, two key slots and Clear. Click a slot and press a key; Escape cancels and right-click clears. If the key was bound to something else, it says so. The change is saved to whichever set is in force, character or account, and a line on the tab says which.</td></tr>
+  <tr><td>Sync</td><td>The tab re-reads the game's bindings whenever they change and whenever the tab is shown. A key set in either place shows up in the other at once.</td></tr>
+  <tr><td>Combat</td><td>Key changes are refused in combat, as in Blizzard's own menu, and a key capture in progress is cancelled when combat starts.</td></tr>
+  <tr><td>Placement</td><td>Last tab of General, named "Keybindings", with one line saying the keys are stored by the game, not your profile (XC-01, XC-02).</td></tr>
+  </tbody></table></div>`;
+}
+function tableConv(rows, idk) {
+  return `<div class="tbl"><table><thead><tr><th>Id</th><th>Rule</th><th>Why</th><th>Conf.</th><th>Addons</th></tr></thead><tbody>${rows.filter(r => r.confidence >= minConf).map(r =>
+    `<tr><td class="mono">${esc(r.id)}</td><td>${esc(r.rule)}</td><td style="color:var(--muted)">${esc(r.reason)}</td><td class="mono">${r.confidence}%</td><td style="font-size:12px">${esc((r.addons || []).join(', '))}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function viewCollection() {
+  return `<h2>Collection conventions</h2><p class="lede">One name and one place for the same thing in every addon. Where a convention changes an addon's own proposal, the addon page shows it as "supersede" or "modify", and conventions an addon was missing appear there as added changes.</p>${tableConv(D.xc)}
+  <h3>LibKa0s, for layout</h3><p class="lede">${esc(D.libLayout)}</p>`;
+}
+function viewStrata() {
+  return `<h2>Strata model</h2><p class="lede">The layering every addon follows. Strata separates roles: displays, edit handles, windows, alerts, dialogs, popups and the cursor. Frame level orders frames inside one role, always relative to the parent. Each addon keeps one table of its layers.</p>${tableConv(D.xs)}
+  <h3>LibKa0s, for strata</h3><p class="lede">${esc(D.libStrata)}</p>`;
+}
+function viewUp() {
+  return `<h2>Upstream changes</h2><p class="lede">What lands in WowAddonStandards, LibKa0s and dev-copilot, so the conventions and the strata model stay true for new work.</p>
+  <div class="tbl"><table><thead><tr><th>Id</th><th>For</th><th>Where</th><th>Change</th><th>Why</th><th>Conf.</th></tr></thead><tbody>${D.up.map(u =>
+    `<tr><td class="mono">${esc(u.id)}</td><td>${u.kind}</td><td style="font-size:12px">${esc(u.target)}</td><td>${esc(u.proposal)}</td><td style="color:var(--muted)">${esc(u.reason)}</td><td class="mono">${u.confidence}%</td></tr>`).join('')}</tbody></table></div>`;
+}
+
+function render() {
+  const v = document.getElementById('view');
+  const a = D.addons.find(x => x.addon === cur);
+  v.innerHTML = a ? viewAddon(a) : cur === 'keys' ? viewKeys() : cur === 'collection' ? viewCollection() : cur === 'strata' ? viewStrata() : cur === 'upstream' ? viewUp() : viewCalls();
+  v.querySelectorAll('.seg button').forEach(b => b.onclick = () => decide(b.dataset.k, b.dataset.d));
+  tally();
+}
+
+async function decide(key, d) {
+  const prev = dec[key];
+  if (d) dec[key] = d; else delete dec[key];
+  render();
+  if (!coll) return;
+  try {
+    if (d) await coll.doc(key).set({ d, at: new Date().toISOString() });
+    else await coll.doc(key).delete();
+  } catch (e) {
+    if (prev) dec[key] = prev; else delete dec[key];
+    render(); showBanner('That choice was not saved (' + (e && e.code || 'error') + '). Try again in a moment.');
+  }
+}
+function showBanner(t) { const b = document.getElementById('dbbanner'); b.textContent = t; b.hidden = !t }
+
+document.getElementById('minc').oninput = e => { minConf = +e.target.value; document.getElementById('mincv').textContent = minConf + '%'; render() };
+document.getElementById('showrej').onchange = e => { showRej = e.target.checked; render() };
+if (!D.addons.find(x => x.addon === cur) && !['calls', 'keys', 'collection', 'strata', 'upstream'].includes(cur)) cur = 'calls';
+nav(); render();
+showBanner('Connecting so your choices can be saved…');
+
+(async () => {
+  try { db = window.claude && await window.claude.use('db') } catch (e) { db = null }
+  if (!db) { showBanner('Choices cannot be saved in this view. Open the page signed in on claude.ai to record decisions.'); render(); return }
+  coll = db.collection('decisions');
+  showBanner('');
+  coll.onSnapshot(snap => {
+    for (const k of Object.keys(dec)) delete dec[k];
+    snap.docs.forEach(doc => { const x = doc.data(); if (x && x.d) dec[doc.id] = x.d });
+    render();
+  }, err => showBanner('Saved choices could not be loaded (' + (err && err.code || 'error') + ').'));
+  render();
+})();
+</script>
