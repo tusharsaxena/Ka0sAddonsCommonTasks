@@ -23,3 +23,16 @@
 - **QC-06**, from an owner bug report (`inputs/qc-06-callout-strata.png`): the preview dial's hub dot and pointer
   draw over the New callout dialog. Probable cause, from reading the code: the dial header and the popup share the
   DIALOG strata, and the hub's front frame sits at header level + 20. Queued after QC-05. Smoke check SM-QC-9.
+
+## M2 (2026-10-23)
+
+- 21/21 items landed and reviewed (`plan-data/m2-results.json`). Fix rounds:
+  - PC-RV: the working tree was restored from the index, with no new commit.
+  - MM-01: the test was made to really pin the minimized title.
+  - BL-10: smoke checks whose procedure changed were reset to pending.
+- **Standard reference.** The installed wow-revendor-standards contract forbids writing the standard's version into
+  an addon. So the RV items' `grep v2.87.0` verify finds nothing by design. The three-place references were
+  confirmed current against the local v2.87.0.
+- **Span bundles.** Several RV items also wrote span bundles, `docs/revendor/2026-10-23-v1.75.1-v1.75.2/`, for the
+  earlier unrecorded patch re-vendors.
+- The lead re-ran the gates; all green. Pushed all 14 addon branches with their notes.
