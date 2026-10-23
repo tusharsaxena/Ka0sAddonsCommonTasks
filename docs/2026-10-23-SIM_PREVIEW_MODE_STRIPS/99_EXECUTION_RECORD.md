@@ -136,3 +136,16 @@
   smoke record) was never pushed to the branch, so the branch was checked to be contained in master first.
 - No stashes or extra worktrees remain anywhere. MultiMeters#60 and KickCD#38 are CLOSED.
 - No addon version was bumped. dev-copilot 2.5.0 is merged; the owner updates the installed plugin.
+
+## Post-finalize owner smoke (2026-10-23)
+
+- **Passed:** SM-DC-21, SM-DC-22, BankLedger DEGRADED-13, LootHistory DEGRADED-13, and PartyFrameEnhanced FADE-5 (an
+  older check). They are recorded as master commits: BankLedger 642a2d2, LootHistory 82e1921, PartyFrameEnhanced
+  f303138.
+- **SM-QC-10 (QuickComms PREVIEW-10): passes in part.** It works from `/qc preview`: the chat line prints and the
+  window shows. Neither appears in the Groups page's "preview while editing".
+- **Follow-up work is single-repo**, so it goes in QuickComms' own docs/superpowers (CLAUDE.md, single-repo rule):
+  - the edit preview gets the window and the click echo;
+  - a dial slice click in preview keeps the dial open;
+  - a `{coordinates}` token;
+  - Solo prebuilt callouts send to General (/1).
