@@ -105,3 +105,34 @@
   - PartyFrameEnhanced FADE-5: it predates this run (2026-10-13) and was never signed off.
 - The owner's merge go-ahead was given in chat on 2026-10-23: "After the current workflow completes, go ahead and
   commit, merge and push all changes".
+
+## CT-02 — finalized (2026-10-23)
+
+- Merged `--no-ff` and pushed, in this order:
+
+  | Repo | Merge commit |
+  |---|---|
+  | WowAddonStandards | a7064a8 |
+  | LibKa0s | 9df6df8 |
+  | dev-copilot | bf93ff7 |
+  | AbsorbTracker | 1839b80 |
+  | AuraMaster | c77c7fc |
+  | BankLedger | 7bb8fb0 |
+  | ConsumableMaster | 80943b2 |
+  | DropWatcher | 847e2ad |
+  | KickCD | 367e275 |
+  | LootHistory | 716859a |
+  | MultiMeters | d7d6a1f |
+  | PanelMaster | e0a9ee3 |
+  | PartyFrameEnhanced | 32ad3d5 |
+  | PGFE (main) | e5b741a |
+  | PrettyChat | b08c579 |
+  | QuickComms | 0487489 |
+  | WhatGroup | f31794f |
+  | Ka0sAddonsCommonTasks | 206131e |
+
+- Tag `v1.76.0` was pushed: tag object 600303b, commit e692491.
+- **The run branch is deleted locally and on origin in every repo.** BankLedger's needed `-D`: its last commit (the
+  smoke record) was never pushed to the branch, so the branch was checked to be contained in master first.
+- No stashes or extra worktrees remain anywhere. MultiMeters#60 and KickCD#38 are CLOSED.
+- No addon version was bumped. dev-copilot 2.5.0 is merged; the owner updates the installed plugin.
