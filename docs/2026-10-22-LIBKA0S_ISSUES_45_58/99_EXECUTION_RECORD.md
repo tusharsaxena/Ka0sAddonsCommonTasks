@@ -274,3 +274,35 @@ No addon version was bumped. These in-game checks are owed by the owner:
 - Every played step shows its tooltip, the loot step listing each drop and where it went.
 - A real loot line with PrettyChat on is recorded, not refused.
 - The `/lh sim` and `/bl sim` panels show their played steps' tips.
+
+## Post-run feedback: the simulators (2026-10-23)
+
+The owner confirmed that the DropWatcher, LootHistory and BankLedger simulators work, and asked for three changes:
+
+- **The picker's scenario dropdown fits its label.** LibKa0s SimPanel minor 4 (Sim key 2.2.4, `154599c`, merged as `99fb662`). The tag `v1.75.2` was pushed. The dropdown now takes the width the bar leaves: 270, or 174 beside the 90-wide size dropdown. Its label never wraps.
+- **Run all waits 1 s by default, and the delay is configurable.**
+  - DropWatcher: `sim.stepDelay` default moves from 2 to 1.
+  - LootHistory and BankLedger: each gets a new `settings.sim.stepDelay` slider, 0.5 to 10 in steps of 0.5, default 1. BankLedger keeps its per-step `settle` floor.
+- **A LootHistory sim start opens its window.** The window opens in the shared `prepare` path.
+
+`v1.75.2` was re-vendored into all fourteen addons. Every repo was gated green and merged `--no-ff` on `fix/2026-10-23-sim-picker-step-delay`, with each merge tree identical to its gated branch. Merges:
+
+| Repo | Merge |
+|---|---|
+| LibKa0s | `99fb662` |
+| AbsorbTracker | `57df570` |
+| AuraMaster | `4b24ee9` |
+| BankLedger | `704df98` |
+| ConsumableMaster | `7ab97a0` |
+| DropWatcher | `7afd700` |
+| KickCD | `01c1688` |
+| LootHistory | `1a03ff7` |
+| MultiMeters | `341d406` |
+| PanelMaster | `f500bc7` |
+| PartyFrameEnhanced | `652aaba` |
+| PremadeGroupsFilterExtension (main) | `c996863` |
+| PrettyChat | `ec43442` |
+| QuickComms | `445cd81` |
+| WhatGroup | `baec457` |
+
+No addon version was bumped. The smoke checks for these changes are owed: DropWatcher SIM-11, LootHistory SIM-8 to SIM-10, and BankLedger's new step-delay check.
