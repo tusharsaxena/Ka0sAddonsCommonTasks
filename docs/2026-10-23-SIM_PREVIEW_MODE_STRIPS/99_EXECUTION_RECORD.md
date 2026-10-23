@@ -36,3 +36,18 @@
 - **Span bundles.** Several RV items also wrote span bundles, `docs/revendor/2026-10-23-v1.75.1-v1.75.2/`, for the
   earlier unrecorded patch re-vendors.
 - The lead re-ran the gates; all green. Pushed all 14 addon branches with their notes.
+
+## Owner smoke, M2 (2026-10-23)
+
+- **Passed:** every M2 check the owner ran, apart from the two findings below. The rows in `06_SMOKE_TESTS.md` are
+  updated at CT-01, once the per-addon Result lines are filled in.
+- **KickCD "Error loading modules/Sim.lua"** is not a defect. KC-05 created the file while the client was running,
+  and WoW loads only files that existed at launch. A full client restart is needed once `/kcd sim` lands.
+
+## Addendum 02 (2026-10-23, during M3)
+
+- **LK-91**, from an owner report (`inputs/addendum-02-simpanel-overlap.png`): a long step label runs under the
+  command column, because the label has a LEFT anchor only. The fix is in SimPanel and in PerfPanel's twin renderer.
+  The local tag then moves (old and new sha recorded below by LK-91), and every addon re-vendors it as
+  `<PFX>-RV2`. KC, MM and QC do so after their M3 chains.
+- **BL-11**, from an owner report: `/bl sim` stalls a few seconds on step 4 (the flask deposit). Debug-first.

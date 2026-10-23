@@ -1,0 +1,17 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+LK-91	M3	LibKa0s	Step-panel rows: the label truncates before the command column instead of running under it (SimPanel; PerfPanel's twin renderer too); move the local v1.76.0 tag	LK-90	S	SM-LK-1	owner report 2026-10-23 (inputs/addendum-02-simpanel-overlap.png)
+AT-RV2	M3	AbsorbTracker	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+AM-RV2	M3	AuraMaster	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+BL-RV2	M3	BankLedger	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+CM-RV2	M3	ConsumableMaster	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+DW-RV2	M3	DropWatcher	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+KC-RV2	M3	KickCD	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91,KC-10	S		LK-91
+LH-RV2	M3	LootHistory	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+MM-RV2	M3	MultiMeters	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91,MM-20	S		LK-91
+PM-RV2	M3	PanelMaster	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+PF-RV2	M3	PartyFrameEnhanced	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+PG-RV2	M3	PremadeGroupsFilterExtension	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+PC-RV2	M3	PrettyChat	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+QC-RV2	M3	QuickComms	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91,QC-06	S		LK-91
+WG-RV2	M3	WhatGroup	Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)	LK-91	S		LK-91
+BL-11	M3	BankLedger	Simulation stalls a few seconds on step 4 (Deposit 1 x Flask...) before it plays on: find why and remove the stall	BL-RV2	M	SM-BL-14	owner report 2026-10-23
