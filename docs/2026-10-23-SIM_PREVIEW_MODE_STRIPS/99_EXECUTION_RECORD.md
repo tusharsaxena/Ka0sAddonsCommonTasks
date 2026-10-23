@@ -13,3 +13,10 @@
   - LK-90 landed as two commits (`LK-90 (1/2):`, then `LK-90:`), per releasing.md step 7. Its CONSUMERS rows for
     MM/KC are planned; the census is re-run after M3.
 - Pushed: WowAddonStandards a72d35a, LibKa0s 9949368, dev-copilot 6d45079, plus review notes. Tag not pushed.
+
+## Addendum 01 (2026-10-23, during M2)
+
+- **QC-05**, from an owner bug report (`inputs/qc-05-groups-preview.png`). The owner first said DropWatcher, then
+  corrected it to QuickComms. In the Groups page's edit preview, the icons look faded and a dark circle sits over
+  the dial icons; the preview should look exactly like live mode plus the PREVIEW tag.
+- Queued as the last item of M3's QuickComms chain, debug-first. Smoke check SM-QC-8.
