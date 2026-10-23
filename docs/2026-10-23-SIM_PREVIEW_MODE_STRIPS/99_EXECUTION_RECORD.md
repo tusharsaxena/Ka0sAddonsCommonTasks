@@ -153,6 +153,6 @@
 ## SM-QC-10 closed (2026-10-24)
 
 - The owner reported SM-QC-10 (QuickComms PREVIEW-10) passed on 2026-10-24, with the QuickComms follow-up
-  (QF-00..QF-07 on ) in place: the edit preview now has the window and the
+  (QF-00..QF-07 on `feat/2026-10-23-qc-preview-followups`) in place: the edit preview now has the window and the
   click echo. QuickComms' own smoke file records it with PREVIEW-11, PREVIEW-12, TOKEN-1, SEND-6, STATE-6 and
   EDIT-18; its pending list is empty. The QuickComms merge waits on the owner's go-ahead.
