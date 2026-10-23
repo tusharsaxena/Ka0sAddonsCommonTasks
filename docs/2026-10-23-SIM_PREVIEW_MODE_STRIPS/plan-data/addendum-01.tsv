@@ -1,0 +1,3 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+QC-05	M3	QuickComms	Preview draws faded icons and a dark circle over the dial icons (Groups page edit preview); make every preview look exactly like live plus the PREVIEW tag	QC-04	M	SM-QC-8	owner report 2026-10-23 (inputs/qc-05-groups-preview.png)
+QC-06	M3	QuickComms	Callout dialog draws under the preview dial hub (dot and pointer on top): modal windows above the dial by strata	QC-05	S	SM-QC-9	owner report 2026-10-23 (inputs/qc-06-callout-strata.png)

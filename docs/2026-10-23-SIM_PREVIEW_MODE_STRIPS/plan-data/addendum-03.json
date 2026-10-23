@@ -1,0 +1,20 @@
+{
+ "items": [
+  {
+   "id": "LK-92",
+   "milestone": "M3",
+   "repo": "LibKa0s",
+   "title": "README's Sim row links the current 2.3.5 document (lead, from LK-91's review)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Lead-run docs fix; payload unchanged; local tag moved to it.",
+   "verify": "git diff v1.76.0~0 -- LibKa0s testkit empty vs 7e81ff7",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91 review note"
+   ]
+  }
+ ]
+}

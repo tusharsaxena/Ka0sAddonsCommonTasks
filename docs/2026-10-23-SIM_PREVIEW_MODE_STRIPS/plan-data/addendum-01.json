@@ -1,0 +1,40 @@
+{
+ "items": [
+  {
+   "id": "QC-05",
+   "milestone": "M3",
+   "repo": "QuickComms",
+   "title": "Preview draws faded icons and a dark circle over the dial icons (Groups page edit preview); make every preview look exactly like live plus the PREVIEW tag",
+   "depends_on": [
+    "QC-04"
+   ],
+   "effort": "M",
+   "spec": "Owner bug report 2026-10-23 (inputs/qc-05-groups-preview.png; the owner first said DropWatcher, then corrected it to QuickComms). Opening the settings' Groups page, which starts the edit preview, draws the dial and pads wrong:\n- every icon looks faded;\n- a dark circle sits on top of the dial's wedge icons.\nExpected: the preview looks EXACTLY like live mode, with only the PREVIEW tag (the hub label, the pad drag-strip marker) added. The buttons stay disarmed, because nothing sends in a preview, but disarming must not change how they look.\n\nMETHOD (superpowers:systematic-debugging; bisect before theorizing).\n1. Reproduce headlessly. Build the same group in live mode and in the edit preview (and in Preview as..., and plain Test mode, for comparison), then diff every visual property the render path sets on each wedge and pad button: alpha, desaturation, vertex color, shown overlays/plates/rings/cooldown/flash/dim textures, and IconStyle results.\n2. Find where the preview/disarmed/placeholder path diverges from live. Candidates to check, not conclusions: Pad.ArmSlot / SendEngine.Disarm side effects; a 'refused' or 'unavailable' dim state applied to disarmed slots; Dial_Render's DIM path; an IconStyle ring/plate drawn for not-armed slots; the slices' fill drawn over the icon layer (draw layer / sublevel order).\n3. If it is a regression, git bisect it on master history with a headless repro, and record the culprit commit.\n4. Fix it so that every preview flavor (edit preview, Preview as..., and Test mode if it shares the cause) renders identically to live apart from the PREVIEW / TEST MODE labels, and stays disarmed. Do not change live rendering.\nTests first: a suite case asserting live == preview for the visual properties of a wedge and a pad button, red before the fix.\nIf you need the owner's settings, read their SavedVariables (QuickComms.lua under the WoW WTF account folder; the repo's docs or CLAUDE.md name where it lives). Never add a temporary harness to the repo.\nRipple: CHANGELOG/Unreleased per the repo's convention, docs/smoke-tests.md (a check mirroring SM-QC-8), test inventory.\nDepends on QC-04 only for serial order in this repo; it does not depend on the preview window.",
+   "verify": "a headless live-vs-preview visual-equality case; luacheck 0/0; lua tests/run.lua green",
+   "smoke": [
+    "SM-QC-8: open Settings -> Groups (edit preview), then Preview as -> Dungeon: dial and pad icons look exactly as in live mode (no fading, no dark circle on the dial icons), only the PREVIEW labels added; buttons do not send"
+   ],
+   "issue_refs": [
+    "owner report 2026-10-23 (inputs/qc-05-groups-preview.png)"
+   ]
+  },
+  {
+   "id": "QC-06",
+   "milestone": "M3",
+   "repo": "QuickComms",
+   "title": "Callout dialog draws under the preview dial hub (dot and pointer on top): modal windows above the dial by strata",
+   "depends_on": [
+    "QC-05"
+   ],
+   "effort": "S",
+   "spec": "Owner bug report 2026-10-23 (inputs/qc-06-callout-strata.png). With the preview dial open, the settings' New callout / Edit callout dialog shows the dial hub's yellow dot and pointer ON TOP of the dialog. The owner wants the dialog above the dial, at a higher strata.\n\nLEAD'S READING OF THE CODE (verify it, don't take it as given):\n- The dial's header is created at DIALOG strata (modules/SendEngine.lua:173, h:SetFrameStrata(\"DIALOG\")).\n- The callout popup is also DIALOG (settings/CalloutPopup.lua:453, via settings/ModalWindow.lua's LEVEL scheme: catcher LEVEL, window LEVEL+2, panel LEVEL+3, close LEVEL+5).\n- The hub's front frame (qcPointer) is raised to header level + 20 (modules/Dial_Render.lua:211, R.RaiseFront). Inside one strata the higher level wins, so the dot and pointer beat the popup.\n\nFIX. Put every QuickComms modal window strictly above the dial by STRATA, not by a level race. Plan: the callout popup moves to FULLSCREEN, and the icon browser, which must stay above the popup, moves to FULLSCREEN_DIALOG. The ModalWindow STACKING comment (:17-18) is rewritten to say why. Before choosing, check every ModalWindow / popup / share / confirm window QuickComms opens, plus this run's QC-02 preview window. Check them against the dial (DIALOG), the pads (MEDIUM), the SendEngine HIGH frame (:213) and the settings window, so the full stacking is right:\n  settings < popup < browser,\n  any modal above the dial and pads,\n  the preview window (QC-02) above the dial too.\nDo not move the dial's own strata: it is a secure header, and changing it in combat is protected. If you find a cleaner fix (for example the dial at HIGH, out of combat only), argue it in the commit body, and make sure it can never run in combat.\nTests first: assert the popup's and the browser's strata are above the dial header's strata (a strata-order table in the test), and the same for the preview window.\nRipple: the ModalWindow comment, CHANGELOG/Unreleased per the repo's convention, docs/smoke-tests.md (mirror SM-QC-9), the test inventory.",
+   "verify": "strata-order test; luacheck 0/0; lua tests/run.lua green",
+   "smoke": [
+    "SM-QC-9: with the preview dial open, open New callout over it, then Choose icon...: the dial hub dot and pointer stay behind the dialog, the icon browser sits above the dialog, and the settings window sits below both"
+   ],
+   "issue_refs": [
+    "owner report 2026-10-23 (inputs/qc-06-callout-strata.png)"
+   ]
+  }
+ ]
+}

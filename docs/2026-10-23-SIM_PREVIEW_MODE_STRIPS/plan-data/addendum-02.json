@@ -1,0 +1,267 @@
+{
+ "items": [
+  {
+   "id": "LK-91",
+   "milestone": "M3",
+   "repo": "LibKa0s",
+   "title": "Step-panel rows: the label truncates before the command column instead of running under it (SimPanel; PerfPanel's twin renderer too); move the local v1.76.0 tag",
+   "depends_on": [
+    "LK-90"
+   ],
+   "effort": "S",
+   "spec": "Owner report 2026-10-23 (inputs/addendum-02-simpanel-overlap.png, BankLedger's sim panel). A long step label (\"Deposit 1 x Flask of the Shattered Sun to Character Bank (1 recorded)\") runs under the right-hand command column (/bl sim step) and the two texts overlap. Cause: LibKa0s/SimPanel.lua's row builder (~:296-306) anchors b.text only LEFT (LABEL_X) and b.cmd only RIGHT (-CMD_PAD), so nothing bounds the label.\nFIX (tests first):\n- In SimPanel.lua's row renderer, anchor the label's RIGHT to the command's LEFT with a gap (e.g. -8), give it SetJustifyH(\"LEFT\") and SetWordWrap(false), so a long label truncates with an ellipsis. The command keeps its natural width (right column). A row with no command lets the label run to the row's right inset. The full label stays reachable: the row's tooltip already opens with row.label (showTip); keep it, and assert it.\n- Re-measure on resize: the panel is resizable (MakeResizable), so the anchors (not a fixed width) must do it.\n- PerfPanel.lua has the deliberately duplicated renderer (its header names the duplication). Apply the same fix there, at the same geometry.\n- Headless tests in tests/test_sim_panel.lua and the PerfPanel suite: the label has two horizontal anchors (LEFT at LABEL_X, RIGHT at cmd LEFT - gap), word wrap is off, the tooltip's first line is the full label, and a row with an empty command anchors to the row's right inset.\nVERSIONS: v1.76.0 is unreleased (local tag only). Follow docs/releasing.md on whether SimPanel/PerfPanel take a further minor within the same release or keep the one already bumped this release (SimPanel 5); in either case the payload changes, so add a CHANGELOG bullet to the v1.76.0 section and update docs/api if it describes the row layout. Regenerate docs/test-cases.md.\nTAG: after the gates are green, move the LOCAL tag to this item's last commit: `git tag -f -a v1.76.0 -m 'LibKa0s v1.76.0'`, and append the old and new sha to ../Ka0sAddonsCommonTasks/docs/2026-10-23-SIM_PREVIEW_MODE_STRIPS/99_EXECUTION_RECORD.md (no commit there). Never push the tag.",
+   "verify": "test_sim_panel + perf panel suites; luacheck 0/0; lua tests/run.lua; git rev-parse v1.76.0^{commit} == HEAD",
+   "smoke": [
+    "SM-LK-1: /bl sim start bank: every step label fits its row; a long one ends in an ellipsis before the /bl sim step column, never under it; hovering the row shows the full label; resize the panel wider and the label shows more"
+   ],
+   "issue_refs": [
+    "owner report 2026-10-23 (inputs/addendum-02-simpanel-overlap.png)"
+   ]
+  },
+  {
+   "id": "AT-RV2",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as AT-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'AT-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "AM-RV2",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as AM-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'AM-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "BL-RV2",
+   "milestone": "M3",
+   "repo": "BankLedger",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as BL-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'BL-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "CM-RV2",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as CM-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'CM-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "DW-RV2",
+   "milestone": "M3",
+   "repo": "DropWatcher",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as DW-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'DW-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "KC-RV2",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91",
+    "KC-10"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as KC-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'KC-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "LH-RV2",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as LH-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'LH-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "MM-RV2",
+   "milestone": "M3",
+   "repo": "MultiMeters",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91",
+    "MM-20"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as MM-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'MM-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "PM-RV2",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as PM-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'PM-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "PF-RV2",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as PF-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'PF-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "PG-RV2",
+   "milestone": "M3",
+   "repo": "PremadeGroupsFilterExtension",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as PG-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'PG-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "PC-RV2",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as PC-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'PC-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "QC-RV2",
+   "milestone": "M3",
+   "repo": "QuickComms",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91",
+    "QC-06"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as QC-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'QC-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "WG-RV2",
+   "milestone": "M3",
+   "repo": "WhatGroup",
+   "title": "Refresh the vendored LibKa0s from the moved local tag v1.76.0 (LK-91 step-panel label fix)",
+   "depends_on": [
+    "LK-91"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor libs/LibKa0s and tests/_kit WHOLE from the moved LOCAL tag v1.76.0 (git -C ../LibKa0s archive v1.76.0 LibKa0s testkit | tar -x into a mktemp dir; never check the tag out), prune media/icons to the CLAUDE.md 'LibKa0s icons:' line with the tag's tools/prune-icons.lua, exactly as WG-RV did. The provenance line already reads v1.76.0; keep it. Amend this repo's docs/revendor/2026-10-23-v1.76.0/ bundle with a short note (the tag moved for LK-91, old -> new sha, the files that changed) rather than a new bundle. No standard change. Gates green: luacheck 0/0, lua tests/run.lua (test_vendor_sync against the moved tag), 1500-line cap. Commit subject 'WG-RV2: ...'.",
+   "verify": "diff -r against the tag copy shows only pruned icons; gates green",
+   "smoke": [],
+   "issue_refs": [
+    "LK-91"
+   ]
+  },
+  {
+   "id": "BL-11",
+   "milestone": "M3",
+   "repo": "BankLedger",
+   "title": "Simulation stalls a few seconds on step 4 (Deposit 1 x Flask...) before it plays on: find why and remove the stall",
+   "depends_on": [
+    "BL-RV2"
+   ],
+   "effort": "M",
+   "spec": "Owner report 2026-10-23: /bl sim start bank works, but the run sits on step 4 (\"Deposit 1 x Flask of the Shattered Sun to Character Bank (1 recorded)\") for a few seconds before it moves on. The other steps pace at about 1 s.\nMETHOD (superpowers:systematic-debugging; no fix before a cause):\n1. Reproduce headlessly. Run the bank scenario through RunVerb('start bank') with the kit clock, and log for each step the time between its play and the next tick. Show where step 4's extra wait comes from. Candidates to check, not conclusions: the host gate (closed while the ledger settles: a debounce, a bucket, a deferred write, a GetItemInfo / Item:ContinueOnItemLoad wait for an uncached item); this step's own play doing async work; the step delay function returning more for this step kind; SimTimeline's GATE_POLL re-polls.\n2. If it comes from an item-info load (the flask is not cached in a fresh client), decide the right behavior. Either the scenario's items are primed at prepare (before ready()), so no step waits mid-run, or the gate's wait is legitimate and the step panel should say why (its busy row's tip). Prefer priming at prepare, the BL-08 / DW pool precedent.\n3. If it comes from BankLedger's settle or debounce timing, make the gate open as soon as the write it waits for has landed.\nTests first: a case asserting that every step of the bank scenario plays within stepDelay + one GATE_POLL of the previous one, with item info answered late for the flask, red before the fix.\nRipple: docs/smoke-tests.md (a check mirroring SM-BL-14, pending), CHANGELOG/Unreleased per the repo's convention, the test inventory.",
+   "verify": "the pacing case; luacheck 0/0; lua tests/run.lua",
+   "smoke": [
+    "SM-BL-14: in a freshly started client, /bl sim start bank: every step, including step 4 (the flask deposit), follows the previous one about 1 s later with no multi-second stall"
+   ],
+   "issue_refs": [
+    "owner report 2026-10-23"
+   ]
+  }
+ ]
+}
