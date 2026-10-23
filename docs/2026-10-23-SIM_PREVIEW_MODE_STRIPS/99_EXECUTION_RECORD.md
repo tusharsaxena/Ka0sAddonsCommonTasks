@@ -88,3 +88,20 @@
   AbsorbTracker 13c0a4b, AuraMaster bcaec7e, BankLedger 4c665cf, ConsumableMaster e05733d, DropWatcher 6f69e6e,
   KickCD 58f1a9e, LootHistory 06d6a6c, MultiMeters e8771f8, PanelMaster 9c950c3, PartyFrameEnhanced a24e064,
   PGFE eccfe7b, PrettyChat e644ada, WhatGroup ec996a4.
+
+## M3 and closeout (CT-01, 2026-10-23)
+
+- M3: 45/45 items landed and reviewed, including addenda 01–04 (QC-05, QC-06, LK-91, LK-92, 14 × RV2, BL-11, BL-12,
+  QC-07). Fix rounds: MM-10, MM-12, MM-16, MM-17, QC-02, QC-06, KC-02, KC-08, plus the eol-only RV2 rounds.
+- **QC-07** finished a raw preview echo that had existed since 2026-10-20. It now fills tokens and mocks missing
+  ones as bracketed names (`<target>`, `<key>`), which avoids fake player names or links that look real. It also
+  echoes the nothing-sent reason and the test placeholders. The click is caught by the existing insecure OnClick hook,
+  and live clicks are unchanged.
+- **Owner smoke:** M2 and M3 all passed, recorded on each repo's own smoke file (the run branch commits "Record the
+  owner's 2026-10-23 smoke pass…") and in `06_SMOKE_TESTS.md`. Still pending:
+  - SM-QC-10 / QuickComms PREVIEW-10 (QC-07; it landed after the owner's pass).
+  - SM-DC-21 and SM-DC-22: dev-copilot 2.5.0 bump-version Step 1b. They need the plugin updated after the merge.
+  - BankLedger DEGRADED-13 and LootHistory DEGRADED-13: they need LibKa0s removed; the owner was told to skip them.
+  - PartyFrameEnhanced FADE-5: it predates this run (2026-10-13) and was never signed off.
+- The owner's merge go-ahead was given in chat on 2026-10-23: "After the current workflow completes, go ahead and
+  commit, merge and push all changes".
