@@ -79,3 +79,12 @@
   should match the run.
 - **QC-07 (owner feature request):** in preview and test mode, a click prints `[QC] /p <text>` with tokens filled or
   mocked, and nothing is sent.
+
+## Owner smoke, M3 (2026-10-23, late evening)
+
+- **Owner: "All 4 working as expected".** That covers `/kcd sim`, `/mm sim`, the step-panel label fix (SM-LK-1) and
+  BankLedger's idle panel naming the real items (SM-BL-15). It came after a full client restart.
+- Pushed so far for M3: every run repo except QuickComms, which waits for QC-07. Heads: LibKa0s e692491,
+  AbsorbTracker 13c0a4b, AuraMaster bcaec7e, BankLedger 4c665cf, ConsumableMaster e05733d, DropWatcher 6f69e6e,
+  KickCD 58f1a9e, LootHistory 06d6a6c, MultiMeters e8771f8, PanelMaster 9c950c3, PartyFrameEnhanced a24e064,
+  PGFE eccfe7b, PrettyChat e644ada, WhatGroup ec996a4.
