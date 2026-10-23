@@ -306,3 +306,10 @@ The owner confirmed that the DropWatcher, LootHistory and BankLedger simulators 
 | WhatGroup | `baec457` |
 
 No addon version was bumped. The smoke checks for these changes are owed: DropWatcher SIM-11, LootHistory SIM-8 to SIM-10, and BankLedger's new step-delay check.
+
+## Smoke results (2026-10-23)
+
+The owner reported that every change was verified in game and all passed. That covers the run's checks in
+`06_SMOKE_TESTS.md` and the post-run fixes above: LibKa0s v1.75.1 and v1.75.2, DropWatcher SIM-11,
+LootHistory SIM-8 to SIM-10, and BankLedger SIM-11. `06_SMOKE_TESTS.md` now records the results:
+145 passed, and SM-LK-1..3 n/a (outcome B). Nothing is owed.
