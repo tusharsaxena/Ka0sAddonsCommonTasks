@@ -51,3 +51,22 @@
   The local tag then moves (old and new sha recorded below by LK-91), and every addon re-vendors it as
   `<PFX>-RV2`. KC, MM and QC do so after their M3 chains.
 - **BL-11**, from an owner report: `/bl sim` stalls a few seconds on step 4 (the flask deposit). Debug-first.
+- **LK-91 landed** (LibKa0s `7e81ff7`): the step label is bounded LEFT at 26 and RIGHT 8 short of the command, word
+  wrap off, in SimPanel (minor 5 kept) and PerfPanel (7 → 8, Perf key 15.1.1.8). Gates: luacheck 0/0 in 181 files,
+  2578 passed / 0 failed / 2 skipped. **Local tag v1.76.0 moved** `9949368df8db12e51c9c51e403738989c87709a5` →
+  `7e81ff7e989aacef8063bfd56e4fcc5742157667` (annotated, not pushed).
+- **BL-11, cause found and fixed.** It was not the item-info load the spec led with. BankLedger settled a reconcile pass
+  only when it RECORDED a movement. A movement the capture gate refused (blacklist, quality threshold, excluded store)
+  held the baseline for the full 6 s SETTLE_TIMEOUT, and the sim gate stayed closed meanwhile. The owner's
+  SavedVariables blacklist Hearthstone 6948, which the bank scenario moves; that link is inferred, and SIM-13 checks
+  it in game. The ledger now settles once every movement found is accounted for. Pacing tests are red before the fix
+  (6.50 s) and green after.
+- **RV2 review flags.** AT-, PC- and PM-RV2 reviews flagged an on-disk LF/CRLF mix in a doc the agent appended to.
+  The committed blobs were right, and the fix rounds restored the files. The lead re-ran all 11 RV2 addons plus
+  BankLedger: clean trees, every gate green.
+- **Addendum 03, LK-92 (lead).** The README's Sim row pointed at 2.2.4. It now links 2.3.5, a note from LK-91's
+  review. The payload is unchanged (`git diff 7e81ff7 HEAD -- LibKa0s testkit` is empty), so no re-vendor is needed.
+  **Local tag v1.76.0 moved** `7e81ff7` → `e692491`.
+- **Lead slip, caught before it did damage.** Saving the run's results as `plan-data/addendum-02-results.json`
+  matched the `addendum-*.json` glob that next_args.py and the executor's item lookup read. It was renamed to
+  `results-addendum-02.json`.
