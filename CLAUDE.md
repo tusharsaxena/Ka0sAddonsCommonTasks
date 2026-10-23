@@ -14,8 +14,8 @@ them as `../<Repo>`.
   are in scope. Never copy that list into this repo, because a copy goes stale.
 - Other directories under `GIT/` (for example `cultchampionssportsclub` or `ed-blackbox`) are not part of
   the collection. Leave them alone.
-- Every collection repo's default branch is `master`, except `PremadeGroupsFilterExtension` and `QuickComms`,
-  whose default is `main`. Detect it per repo rather than assuming. This repo's default branch is `master`.
+- Every collection repo's default branch is `master` (PremadeGroupsFilterExtension and DpsRace were renamed
+  from `main` on 2026-10-24). Still detect it per repo rather than assuming. This repo's default branch is `master`.
 
 Each repo has its own `CLAUDE.md`, and that file governs work inside the repo: its green gate, its
 standards-compliance rules and its conventions. When you work in `../<Repo>`, follow that repo's
