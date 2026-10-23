@@ -20,3 +20,6 @@
   corrected it to QuickComms. In the Groups page's edit preview, the icons look faded and a dark circle sits over
   the dial icons; the preview should look exactly like live mode plus the PREVIEW tag.
 - Queued as the last item of M3's QuickComms chain, debug-first. Smoke check SM-QC-8.
+- **QC-06**, from an owner bug report (`inputs/qc-06-callout-strata.png`): the preview dial's hub dot and pointer
+  draw over the New callout dialog. Probable cause, from reading the code: the dial header and the popup share the
+  DIALOG strata, and the hub's front frame sits at header level + 20. Queued after QC-05. Smoke check SM-QC-9.
