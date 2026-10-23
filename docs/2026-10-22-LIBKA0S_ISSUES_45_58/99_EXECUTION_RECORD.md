@@ -221,3 +221,56 @@ Before merging, a content-only `/dev-copilot:sync-docs` ran in each repo. It com
 The workflow agents' permission classifier refused merges and pushes, so the lead ran every git write. Every run branch is deleted locally and on origin. No run stash or extra worktree remains; DropWatcher's DW-04 stash was dropped by DW-04 after its commit.
 
 The GitHub closure items (WS-12, LK-24, BL-15, DW-11, KC-02, MM-03, WG-02, LH-16, PG-02) are recorded in `exceptions.tsv`. Addon versions were not bumped. Every in-game smoke check in `06_SMOKE_TESTS.md` is still owed by the owner.
+
+## Post-run fix: `/dw sim` showed no drops and no step tips (2026-10-23)
+
+The owner's first in-game `/dw sim` after the merge played every step, and the loot step read
+`Loot: 2 drops (1 hidden, 1 refused)`. The window stayed empty, and no played step showed a
+tooltip. The owner supplied the debug log and the strings below. There were three causes.
+
+1. **PrettyChat spells pushed loot as loot.** `/dump LOOT_ITEM_SELF, LOOT_ITEM_PUSHED_SELF` answered
+   `"Loot | You | + %s"` for both: PrettyChat's defaults give `LOOT_ITEM_PUSHED*` the same text as
+   `LOOT_ITEM*`. DropWatcher's parser tries the pushed shapes first, so every loot line, real or
+   simulated, read as pushed, and the feed refused your own drops. This predates the run. The fix:
+   any pushed, bonus or rejected shape whose pattern is identical to a loot shape's is left out of
+   the parser's set, and the line reads as loot (DropWatcher `9f270d8`). LootHistory reads pushed
+   and looted lines alike, so it is unaffected.
+2. **The simulator drew non-gear.** The Encounter Journal now lists recipes and consumables, which
+   the feed hides as not gear. The loot driver now draws from `NS.SimPool.LootDrops`, the pool's
+   gear, or every drop when there is none (DropWatcher `9f270d8`).
+3. **Disabled panel rows ran no OnEnter.** A disabled WoW Button runs no `OnEnter` unless
+   `SetMotionScriptsWhileDisabled(true)` is set, and the step panel disables every row and control
+   it will not act on. LibKa0s SimPanel minor 3 sets it (Sim key 2.2.3, `39dfb98`, merged
+   `54e2bcb`). The tag `v1.75.1` was pushed. The headless kit fires `OnEnter` on disabled buttons,
+   which is why no suite caught it; `tests/fixture_sim_panel.lua`'s `F.hover` now hovers as the
+   client does.
+
+All three fixes were written test first. `v1.75.1` was re-vendored into all fourteen addons:
+`SimPanel.lua` and the `CLAUDE.md` provenance line. LootHistory gained a `v1.75.1` minors case,
+and DropWatcher's README badge moved to 1680. Every repo was gated green: tests 0 failed and
+luacheck 0/0. Each was merged `--no-ff` on branch `fix/2026-10-23-sim-tooltips-pushed-loot`,
+whose tree is identical to the merge result, then pushed, and the branch deleted:
+
+| Repo | Merge |
+|---|---|
+| LibKa0s | `54e2bcb` (tag `v1.75.1` pushed) |
+| AbsorbTracker | `d851f9b` |
+| AuraMaster | `172fdc7` |
+| BankLedger | `7455747` |
+| ConsumableMaster | `703a4f0` |
+| DropWatcher | `380a9c8` |
+| KickCD | `baf8fe2` |
+| LootHistory | `2429f0a` |
+| MultiMeters | `566c730` |
+| PanelMaster | `171e2de` |
+| PartyFrameEnhanced | `d887184` |
+| PremadeGroupsFilterExtension (main) | `6d27dc6` |
+| PrettyChat | `fdf8565` |
+| QuickComms | `edb1958` |
+| WhatGroup | `bf6494b` |
+
+No addon version was bumped. These in-game checks are owed by the owner:
+- `/dw sim`'s key run puts drops on Drops.
+- Every played step shows its tooltip, the loot step listing each drop and where it went.
+- A real loot line with PrettyChat on is recorded, not refused.
+- The `/lh sim` and `/bl sim` panels show their played steps' tips.
