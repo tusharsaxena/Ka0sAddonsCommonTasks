@@ -1,0 +1,61 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+LK-00	M1	LibKa0s	Open v1.76.0: a CHANGELOG section per docs/releasing.md		S		
+LK-01	M1	LibKa0s	Sim auto-run: a verb or panel start plays on its own; Run all removed; a manual step or click holds the run (SimTimeline 3, SimPanel 5, Sim key 2.3.5)	LK-00	L		OWNER_SCOPE A.1,OWNER_SCOPE C.1
+LK-10	M1	LibKa0s	Widgets minor 14: W.TestStrip gains opts.kind = "sim" (cyan simulation flavor) and a read-only strip.kind; no new member	LK-00	S	SM-LK-10	OWNER_SCOPE A (simulation strip, make it generic in libka0s),OWNER_SCOPE C (generic strip = W.TestStrip with a sim flavor)
+LK-25	M1	LibKa0s	docs/releasing.md: the preview and simulation re-look (step 5 paragraph, step 7 fixed CHANGELOG line, step 8 host hand-off); CHANGELOG v1.76.0 bullet	LK-00,WS-25	S		OWNER_SCOPE A (upstream note),OWNER_SCOPE B3 (line in LibKa0s's release checklist),design-upstream-note §2.2, D6, D7
+LK-90	M1	LibKa0s	Close v1.76.0: version key, members manifest, docs/api, CONSUMERS.md, test-cases; LOCAL annotated tag v1.76.0	LK-01,LK-10,LK-25	M		MultiMeters#60,KickCD#38
+WS-00	M1	WowAddonStandards	Open v2.87.0: version and date in every place the repo mirrors them; a CHANGELOG section for this run		S		
+WS-01	M1	WowAddonStandards	preview-mode and library-stack-§7: a simulation started from the verb or the panel plays on its own	WS-00,LK-01	S		OWNER_SCOPE A.1
+WS-05	M1	WowAddonStandards	preview-mode / standalone-windows / library-stack-§7 / #97: the strip's simulation flavor, and no header mode word beside a shown strip	WS-00,LK-10	M		OWNER_SCOPE A (remove TEST MODE / SIMULATION from headers where the strip exists; add a simulation strip),OWNER_SCOPE C (window headers = title bar mode word)
+WS-25	M1	WowAddonStandards	preview-mode: test-mode data and simulator scenarios kept current at every release (MUST), evidenced by a release-only ANALYSIS.md section; versioning-git pointer, automated-tests-§5, AUTOMATED_TESTS.md template, index blurbs, changelog ruling	WS-00	M		OWNER_SCOPE A (upstream note),OWNER_SCOPE B3,design-upstream-note §2.1, D1, D2, D5
+WS-26	M1	WowAddonStandards	Release re-look ripple into the playbooks and pack: AUDIT.md check after the simulator check; NEW_ADDON_CONTEXT.md hard rule 18 and the Definition-of-done preview checkbox	WS-00,WS-25	S		OWNER_SCOPE A (upstream note),OWNER_SCOPE B3,design-upstream-note §2.1 ripple
+WS-90	M1	WowAddonStandards	Close v2.87.0: regenerate the context pack and index blurbs, cross-check every citation this run added	WS-01,WS-05,WS-25,WS-26	S		
+DC-00	M1	dev-copilot	Open 2.5.0: plugin.json, marketplace entry and CHANGELOG section		S		
+DC-01	M1	dev-copilot	WoW bump-version: gated Step 1b asks whether test-mode data and simulator scenarios are still current, lists what it found, records the answer (ANALYSIS.md section / library CHANGELOG line); report, hard rule, README row, 2.5.0 history clause	DC-00,WS-25,LK-25	M	SM-DC-21,SM-DC-22	OWNER_SCOPE A (upstream note: devcopilot for wow addons in version bump),OWNER_SCOPE B3,design-upstream-note §2.3, D3, D4, D8, D9
+AT-RV	M2	AbsorbTracker	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+AM-RV	M2	AuraMaster	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+BL-RV	M2	BankLedger	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+BL-01	M2	BankLedger	BankLedger on auto-run: the step-delay tooltip, comments, README and docs; a typed-start suite case	BL-RV	S	SM-BL-11,SM-BL-12	OWNER_SCOPE A.1,OWNER_SCOPE C.1
+BL-10	M2	BankLedger	Browser: a sim-flavor strip beside the test strip, and the TEST MODE badge only when no strip exists; SessionWindow strip becomes kind sim (simStrip)	BL-RV,LK-10	S	SM-BL-10,SM-BL-11,SM-BL-12	OWNER_SCOPE A (remove TEST MODE from bankledger header; simulation strip)
+CM-RV	M2	ConsumableMaster	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+DW-RV	M2	DropWatcher	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+DW-01	M2	DropWatcher	DropWatcher on auto-run: the ready line, the step-delay tooltip, the typed-start suites and the docs	DW-RV	M	SM-DW-11,SM-DW-12,SM-DW-13,SM-DW-14	OWNER_SCOPE A.1,OWNER_SCOPE C.1
+DW-10	M2	DropWatcher	Window: a sim-flavor banner (f.simBanner, SimTip) beside the test banner; TEST MODE / SIMULATION title words only when minimized or no strip	DW-RV,LK-10	M	SM-DW-10,SM-DW-11,SM-DW-12,SM-DW-13	OWNER_SCOPE A (remove TEST MODE from dropwatcher header; remove SIMULATION from the header; simulation strip)
+KC-RV	M2	KickCD	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+LH-RV	M2	LootHistory	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+LH-01	M2	LootHistory	LootHistory on auto-run: the panel controls case, the step-delay tooltip, comments, README and docs	LH-RV	M	SM-LH-11,SM-LH-12	OWNER_SCOPE A.1,OWNER_SCOPE C.1
+LH-10	M2	LootHistory	Browser: a sim-flavor strip beside the test strip; the TEST MODE / SIMULATION badge only when no strip exists	LH-RV,LK-10	S	SM-LH-10,SM-LH-11,SM-LH-12	OWNER_SCOPE A (remove TEST MODE from loothistory header; remove SIMULATION from the header; simulation strip)
+MM-RV	M2	MultiMeters	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+MM-01	M2	MultiMeters	Window title: the red TEST MODE word only while the test strip is not on screen (minimized or no Widgets)	MM-RV	S	SM-MM-01,SM-MM-02	OWNER_SCOPE A (remove TEST MODE from multimeters header)
+PM-RV	M2	PanelMaster	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+PF-RV	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+PG-RV	M2	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+PC-RV	M2	PrettyChat	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+QC-RV	M2	QuickComms	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+WG-RV	M2	WhatGroup	Re-vendor LibKa0s v1.76.0 and refresh the standard reference to v2.87.0	LK-90,WS-90	S		
+KC-01	M3	KickCD	Compat gaps: unit and cast readers behind NS.Compat, read at call time, plus a pure duration constructor (simulator prerequisite, H1)		M	SM-KC-1,SM-KC-2	KickCD#38,OWNER_SCOPE B4,Sim-1.0 H1,compat-§1
+KC-02	M3	KickCD	One dispatch table: a route registry fed by RegisterEventList and NewUnitCastFilter, and NS.DeliverEvent replaying exactly the client's handlers (simulator prerequisite, H3)	KC-01	M		KickCD#38,Sim-1.0 H3,events-frames-taint-§1
+KC-03	M3	KickCD	Sim-1.0 seam (core/SimSetup.lua) and degradation stubs, the /kcd sim feature verb, and the confirm/info icon declaration	KC-RV,KC-01,KC-02	M	SM-KC-3	KickCD#38,OWNER_SCOPE A,Sim-1.0 H2,Sim-1.0 H7,Sim-1.0 H9
+KC-04	M3	KickCD	modules/SimWorld.lua: the simulated world (player cooldowns, GCD, charges, target/focus enemies and their casts) and its seam providers	KC-03	L		KickCD#38,Sim-1.0 H1,OWNER_SCOPE B4
+KC-05	M3	KickCD	modules/Sim.lua: the session host on Sim-1.0 (descriptor, refusals, prepare, deliver, two-phase stop that re-syncs the real engine, panel presentation)	KC-04	L	SM-KC-4,SM-KC-5	KickCD#38,OWNER_SCOPE B4,Sim-1.0 H4,Sim-1.0 H5,Sim-1.0 H10,preview-mode (simulator MUSTs)
+KC-06	M3	KickCD	Real-world interference and destructive surfaces: auto-stop on combat/loading screen/group/profile/unlock, stand-down stops first, resetall and unlock refuse, diagnostics sim section	KC-05	M	SM-KC-6,SM-KC-7,SM-KC-8,SM-KC-9	KickCD#38,Sim-1.0 H5,Sim-1.0 H6,Sim-1.0 H8
+KC-07	M3	KickCD	modules/SimDrivers.lua: one state-driven driver per step kind, firing the client's events in client order	KC-06	M		KickCD#38
+KC-08	M3	KickCD	modules/SimScenario.lua: the made-up party and KickCD#38's four scenarios, with a headless end-to-end suite per scenario	KC-07	L	SM-KC-10,SM-KC-11,SM-KC-12	KickCD#38,OWNER_SCOPE B4,Sim-1.0 H4
+KC-09	M3	KickCD	modules/SimStrip.lua: the LibKa0s sim-flavor strip on top of the icon grid while a simulation runs (OWNER_SCOPE B2)	KC-08	M	SM-KC-13,SM-KC-14	KickCD#38,OWNER_SCOPE B2,OWNER_SCOPE C (generic strip),Sim-1.0 H8,preview-mode marker rule
+KC-10	M3	KickCD	Docs ripple for /kcd sim: README, ARCHITECTURE, topic docs, docs/smoke-tests.md SIM section, test-cases regeneration; KickCD#38 closes on merge	KC-09	M	SM-KC-15	KickCD#38,OWNER_SCOPE B4
+MM-10	M3	MultiMeters	Route the world reads the simulator answers through NS.Compat (unit, group, instance, combat, death-recap UI)		M	SM-MM-21,SM-MM-22	MultiMeters#60
+MM-11	M3	MultiMeters	One dispatch entry for game events: NS:OnGameEvent, NS.DeliverEvent and the real-event filter hook		M	SM-MM-23	MultiMeters#60
+MM-12	M3	MultiMeters	core/SimSetup.lua: the LibKa0s-Sim-1.0 seam over NS.Compat (pure, guarded, stubs)	MM-10,MM-RV	M	SM-MM-24	MultiMeters#60
+MM-13	M3	MultiMeters	modules/SimWorld.lua: the invented group, zones, segments and every provider	MM-12	L		MultiMeters#60
+MM-14	M3	MultiMeters	modules/SimDrivers.lua: drivers that edit the world and fire the client's events, with ticked fights	MM-13,MM-11	M		MultiMeters#60
+MM-15	M3	MultiMeters	modules/Sim.lua: the /mm sim host (descriptor, refusals, gate, real-event auto-stop, session-only stores, stop and resync, slash row)	MM-14	L	SM-MM-25,SM-MM-26,SM-MM-27,SM-MM-28	MultiMeters#60
+MM-16	M3	MultiMeters	modules/SimScenario.lua: the four #60 scenarios, step labels and tips, and the headless end-to-end suite	MM-15	L	SM-MM-29,SM-MM-30,SM-MM-31,SM-MM-32,SM-MM-33	MultiMeters#60
+MM-17	M3	MultiMeters	Sim strip on every MultiMeters window while a simulation runs (no SIMULATION header word)	MM-15,MM-RV,MM-01	M	SM-MM-34	MultiMeters#60
+MM-19	M3	MultiMeters	Diagnostics sim section and the Sim debug tag (H8)	MM-15	S	SM-MM-36	MultiMeters#60
+MM-20	M3	MultiMeters	Docs for /mm sim: README, ARCHITECTURE, data-flow, CLAUDE.md rule note, smoke-tests SIM section, in-repo spec	MM-16,MM-17,MM-19	M		MultiMeters#60
+QC-01	M3	QuickComms	Preview as: 'current' becomes a live preview of where you are, 'off' is the off value; closing the settings window no longer ends Preview as	QC-RV	M		OWNER_SCOPE B1,OWNER_SCOPE A (qc preview),OWNER_SCOPE C (QC selector shown exactly while previewing),design-qc-preview §2.1
+QC-02	M3	QuickComms	modules/PreviewWindow.lua: the preview selector window (situation dropdown, End preview, close mark), shown exactly while Preview as is on, from every entry point	QC-01	L	SM-QC-1,SM-QC-2,SM-QC-3,SM-QC-4,SM-QC-5,SM-QC-6,SM-QC-7	OWNER_SCOPE A (qc preview window, dropdown, End preview, active while previewing, any entry point),OWNER_SCOPE B1,OWNER_SCOPE C (shown exactly while previewing; close ends the preview; Perf/Sim-panel look),design-qc-preview §2.2
+QC-03	M3	QuickComms	/qc preview: bare opens the window on the current situation, `list` prints the menu, unknown names point at `list`; help text	QC-02	S	SM-QC-8	OWNER_SCOPE A (/qc preview xxx still works and moves the selector),OWNER_SCOPE B1 (bare opens the window and previews the current situation),design-qc-preview §2.3
+QC-04	M3	QuickComms	Preview window doc ripple: README, ARCHITECTURE, module-map, slash-dispatch, settings-panel, scope, test-cases inventory, smoke-tests PREVIEW theme and amended EDIT-3/EDIT-27/DIAL-9	QC-03	M		OWNER_SCOPE A (qc preview),OWNER_SCOPE B1,design-qc-preview §2.4
+CT-01	M4	Ka0sAddonsCommonTasks	Closeout record: 99_EXECUTION_RECORD.md, 06_SMOKE_TESTS.md final, checkpoints, memory	LK-90,WS-90,DC-01	S		
+CT-02	M4	Ka0sAddonsCommonTasks	Finalize on the owner go-ahead: merge --no-ff in dependency order, push, push tag v1.76.0, delete branches/stashes/worktrees; confirm MultiMeters#60 and KickCD#38 closed	CT-01	M		MultiMeters#60,KickCD#38
