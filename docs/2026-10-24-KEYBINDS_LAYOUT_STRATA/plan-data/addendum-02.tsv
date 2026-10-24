@@ -1,0 +1,21 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+WS-40	M3	WowAddonStandards	options-ui-§20: one key button and Clear per row (owner follow-up to 015)		S		015
+LK-40	M3	LibKa0s	OptionsKeybinds minor 4: one key button and Clear per row	WS-40	M	SM-LK-40a	015
+LK-96	M3	LibKa0s	Re-close v1.77.0 with the one-button keybindings row (moves the local tag)	LK-40	S		015
+WS-41	M3	WowAddonStandards	library-stack-§7: OptionsKeybinds minor 4	LK-96,WS-40	S		015
+AT-RV3	M3	AbsorbTracker	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,AT-LY	S		015
+AM-RV3	M3	AuraMaster	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,AM-LY	S		015
+BL-RV3	M3	BankLedger	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs	LK-96,WS-41,BL-LY	S	SM-BL-RV3	015
+CM-RV3	M3	ConsumableMaster	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,CM-LY	S		015
+DR-RV3	M3	DpsRace	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs	LK-96,WS-41,DR-LY	S	SM-DR-RV3	015
+DW-RV3	M3	DropWatcher	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs	LK-96,WS-41,DW-LY	S	SM-DW-RV3	015
+KC-RV3	M3	KickCD	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,KC-LY	S		015
+LH-RV3	M3	LootHistory	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs	LK-96,WS-41,LH-LY	S	SM-LH-RV3	015
+MM-RV3	M3	MultiMeters	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs	LK-96,WS-41,MM-LY	S	SM-MM-RV3	015
+PM-RV3	M3	PanelMaster	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,PM-LY	S		015
+PF-RV3	M3	PartyFrameEnhanced	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,PF-LY	S		015
+PG-RV3	M3	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,PG-LY	S		015
+PC-RV3	M3	PrettyChat	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)	LK-96,WS-41,PC-LY	S		015
+QC-RV3	M3	QuickComms	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs	LK-96,WS-41,QC-LY	S	SM-QC-RV3	015
+WG-RV3	M3	WhatGroup	Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs	LK-96,WS-41,WG-LY	S	SM-WG-RV3	015
+CT-04	M3	Ka0sAddonsCommonTasks	Record the one-key-button follow-up (addendum-02)		S		015

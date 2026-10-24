@@ -1,0 +1,2411 @@
+{
+ "AbsorbTracker": [
+  {
+   "id": "ABS-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Draw the selected unit's enable checkbox bespoke in the Appearance band, on row 1 beside the Unit picker (picker LEFT half, checkbox RIGHT half; target/focus keep row 2 for Link/Copy because L11 is not accepted). Keep `page = \"general\"` (add skipRender only), so General's Defaults still resets the enables and `/at list` still prints them under [general] as today. This is the cross-page stamp WS-33 allows: re-stamping is only a SHOULD, and the MUST (both pages' Defaults tooltips disclose it) is met by ABS-L14's two sentences, which land in the same commit. Write through NS.SetByPath so the onChange fires, and re-sync the checkbox in the band's refresher."
+  },
+  {
+   "id": "ABS-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Size rows move to group \"Bar\", subgroup \"Size\", ahead of `H.BarGroup{ group=\"Bar\", subgroup=\"Fill\" }`. Change groups only, not schema order (it is already Size, Fill). Rewrite the Appearance.lua:48-63 rationale and the sketch."
+  },
+  {
+   "id": "ABS-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Put bgTexture and the bg ColorPair in group \"Bar\", subgroup \"Background\", after Fill. Groups change, order does not."
+  },
+  {
+   "id": "ABS-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Labels \"Bar width (px)\" / \"Bar height (px)\". Tooltips: \"Width of this bar, in pixels. Multiplied by Master scale on General > Master controls.\" and the same for height (XC-11; AbsorbTracker has no other General tab or entry, so the bare location is correct under WS-30). Keep the `%d px` fmt."
+  },
+  {
+   "id": "ABS-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Only the L01-taken string half lands (ABS-L-new1 names the tab). Change the way-back strings to \"Re-enable it on the Appearance page or with /at toggle %s.\" and \"%s bar hidden. Re-enable it on the Appearance page or with /at toggle %s.\". Locale key and value change together (enUS.lua:58-61, Bar.lua:35/127 and the :25 comment), along with README FAQ, smoke PANEL-3/BAR-4/BAR-13 and the pinned tests."
+  },
+  {
+   "id": "ABS-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Background texture\"; tooltip \"Texture drawn behind the fill, across the whole bar.\""
+  },
+  {
+   "id": "ABS-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per the XC-16 override, the band checkbox and the schema label read \"Enable this unit\". Tooltips come from ABS-L13 and keep naming the bar."
+  },
+  {
+   "id": "ABS-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label \"Update throttle (seconds)\" (XC-08, not \"(sec)\"). Tooltip \"Fastest the bars repaint during a burst of changes. Applies to every bar. Lower = snappier but more CPU.\" Keep the `%.2f sec` fmt."
+  },
+  {
+   "id": "ABS-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Checkbox \"Link to Player\", button \"Copy from Player\", and the L10 tooltips. The mirror schema row's label and desc follow. disabledNotice becomes \"Linked to Player. Untick Link to Player above to give this unit its own look.\" (XC-15). The Unit picker tooltip is unchanged."
+  },
+  {
+   "id": "ABS-L12",
+   "needs": [
+    "U-02",
+    "U-09"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Through BarGroup's `tooltips` override (U-02, LK-31, this run), set barAlpha's tooltip to \"Opacity of this whole bar (fill, background, border, text). Multiplied by Master opacity on General > Master controls.\" The words \"Master opacity\" follow CALL-02 (U-09a, LK-30). Keep the label canonical."
+  },
+  {
+   "id": "ABS-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Write each unit's enable tooltip separately. Player: \"Show the Player bar and track absorbs on yourself.\" Target: \"Show the Target bar and track absorbs on your target. It appears only while you have a target.\" Focus: the same with focus."
+  },
+  {
+   "id": "ABS-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "These two sentences are the WS-33 disclosure that makes ABS-L01's cross-page stamp legal; land them in the same commit as ABS-L01. Appearance reads \"Restore every Appearance setting on this profile to its addon default, on every unit. Which bars are shown is reset by the General page's Defaults.\" General reads \"Restore every General setting on this profile to its addon default, including which bars are shown.\""
+  },
+  {
+   "id": "ABS-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename group \"Bars\" to \"Behavior\". It holds Update throttle (seconds) plus the three skipRender enable rows, which stay on General per ABS-L01. Drop the one-row \"Updates\" subgroup (XC-22). Clear `subgroup` on the skipRender enables too, because the flow engine still opens a subgroup heading for skipRender rows and would draw an empty \"Tracked units\". Rewrite the General.lua header and rationale comments."
+  },
+  {
+   "id": "ABS-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "`H.BorderGroup{ group = \"Bar\", subgroup = \"Border\" }` becomes the fourth subsection after Background. The strip is [Bar][Text], and the page opens on Bar. Update the docs, the sketches and the test_panelpages tab expectations."
+  },
+  {
+   "id": "ABS-L-new3",
+   "needs": [
+    "U-01"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Pass `lockIsPreview = true` to H.MasterControls (LK-30, this run). Write no host tooltip text. The canonical lockIsPreview tooltip has no combat clause; add one through notes.locked only after verifying in code that AbsorbTracker's lock really changes in combat behaviour."
+  }
+ ],
+ "AuraMaster": [
+  {
+   "id": "AUR-L01",
+   "needs": [],
+   "veto": true,
+   "veto_reason": "Conflicts with accepted AUR-L01b (85%) for the same Display tab: one retires the tab into a Master controls extra, the other renames it. L01 is the lower-confidence one (65%), so it is vetoed and L01b lands.",
+   "note": "If ever revisited, the General.lua:93-94 effect-overwrite trap must be fixed first."
+  },
+  {
+   "id": "AUR-L01b",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename group L[\"Display\"] to \"Blizzard frames\" and drop the `subgroup = L[\"Blizzard frames\"]` on both hideBlizzard rows, which now repeats the tab. General keeps 4 tabs. Update the locale keys and docs."
+  },
+  {
+   "id": "AUR-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Sorting rows take group General, subgroup \"Order and cap\". Cast by, Duration, Max duration and Preset take subgroup \"What to show\". Change groups, not schema order. Overrides' `before = G_SORT` becomes after Categories, and test_optionssetup.lua:136-144 moves with it."
+  },
+  {
+   "id": "AUR-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move the 'Where spell lists don't apply' block from renderSituations to the top of renderCategories (same Filters rail entry, so Defaults and Copy are unchanged). The NOTE texts become \"(see above)\" in Spell categories and \"(see Categories)\" in Overrides. Lands with AUR-L29."
+  },
+  {
+   "id": "AUR-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Situations' first heading changes from \"Unit type\" to \"Which units\". The row keeps the label Unit type, and the tab name stays Situations and stays last."
+  },
+  {
+   "id": "AUR-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Cut the three Sort by / Direction / Max auras tooltips to one sentence each ending \"see the note below\". Draw the engine-group paragraph once at the head of the General tab's existing afterGroup tail, before the Filter priority logic block. Order and cap is the tab's last subsection, so no new seam is needed."
+  },
+  {
+   "id": "AUR-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label \"Maximum duration (seconds, 0 = no limit)\" (override XC-08/XC-09)."
+  },
+  {
+   "id": "AUR-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Screen mode lines: \"Screen anchor point\" (position.relativePoint) | \"This container anchor point\" (position.point), then \"X position\" | \"Y position\". Update both tooltips (\"…measured from the screen anchor point\"). /am list order within [layout] follows the swap (same rows and values)."
+  },
+  {
+   "id": "AUR-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tab name \"Position and growth\" (XC-07). Growth becomes a subsection with the inherited-flow note above it, and the facing-growth hint reads \"…Set Grow vertically to X below\". growH and growV gain a UI-only panel-refresh onChange, which the commit must name. Reword Layout.lua:386/:435/:669/:674 and Anchors.lua:511 (with L28)."
+  },
+  {
+   "id": "AUR-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "G_FRAME label changes from \"Frame\" to \"Scale and strata\" (XC-07)."
+  },
+  {
+   "id": "AUR-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Mouse: Click-through first and unheaded, then subsection \"Tooltips\" (Show tooltips, Tooltips in combat, Tooltip position), then \"Clicks\" (Right-click to cancel)."
+  },
+  {
+   "id": "AUR-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In Bars Name/Time/Stack text and Icons Time/Stack text, the Show row is declared first, alone on its line and unheaded, ahead of the composed Font block. The Font block stays contiguous (§16)."
+  },
+  {
+   "id": "AUR-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Placement \"Anchor\" becomes \"Anchor point\" in Bars and Icons. Label only."
+  },
+  {
+   "id": "AUR-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Icons: rename group Size to \"General\" with subsection \"Size\", and move the Cooldown rows into it under subsection \"Cooldown\". This is a group change: the flow engine partitions by group, so declaration order can stay. Rewrite the Icons.lua:12-15 S-1 note."
+  },
+  {
+   "id": "AUR-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tooltip only: \"Also show the game's own countdown on the icon, as well as the time text. Needs Show cooldown swipe.\" Add no disabledIf."
+  },
+  {
+   "id": "AUR-L17",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Time format moves from the Font group to Text style > General, drawn by renderGeneral under \"Text template\" after Custom template and before Preview. It stays on page text."
+  },
+  {
+   "id": "AUR-L19",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "renderGeneral order: Size (+ fit note), \"Text template\" (Template, Custom template, Time format, Preview), Placement (+ notes), then the Tokens/Rules cheat sheet under a last subsection \"Template reference\". Sentence case, per L21."
+  },
+  {
+   "id": "AUR-L20",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Glow \"Offset X\" / \"Offset Y\" become \"X offset\" / \"Y offset\"."
+  },
+  {
+   "id": "AUR-L21",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Sentence case for Spell categories, Dispel colors, Text template, Blizzard categories, Dispel types and Who cast it. Every quoting string and pinned test follows, written with \" > \" per L24/XC-12."
+  },
+  {
+   "id": "AUR-L22",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rail labels \"Bar style\" / \"Icon style\" / \"Text style\". SECTION_ORDER keys stay. The Style dropdown's tooltip reads \"…each has its own style section on this page's rail.\""
+  },
+  {
+   "id": "AUR-L24",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Write \"the General page > Dispel colors\" / \"the General page > Spell categories\" (XC-12 \" > \", not \"->\"). GeneralSpells/GeneralDispel point at \"Filters > Categories\" and \"Text style > Font\" (L18 is not accepted, so Dispel type stays on Font)."
+  },
+  {
+   "id": "AUR-L25",
+   "needs": [
+    "U-09"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Layout tooltips: \"This container's scale. Multiplied by Master scale on the General page > Master controls.\" and \"This container's opacity. Multiplied by Master opacity on the General page > Master controls.\" The location is 'the General page' because the Containers rail has its own General entry (WS-30 location-strings bullet); \"Master opacity\" follows CALL-02's rename of the composed row (LK-30)."
+  },
+  {
+   "id": "AUR-L26",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Doc parity for everything that lands: settings-panel.md counts and tables, README :70/:119, known-limitations :300, smoke-tests, test-cases, module-map, debug.md."
+  },
+  {
+   "id": "AUR-L27",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The hint opens \"This container anchor point is %s and Grow…\" (Layout.lua:669/:674)."
+  },
+  {
+   "id": "AUR-L28",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Anchors.lua:511 reads \"Change the anchor points on Layout > Position and growth.\" Build it, and the growth-hint tab reference, from the group constants."
+  },
+  {
+   "id": "AUR-L29",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "With L03: FilterCompiler.lua:181-183, SPELL_LIST_DEBUFF_NOTE and README :70/:119 say \"Where spell lists don't apply, at the top of the Categories tab, picks what draws there\". Move the pinned test strings with them."
+  },
+  {
+   "id": "AUR-L30",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The 'What to copy' display text \"Layout\" becomes \"Layout: scale, strata and growth\". The `layout` key and what it copies are unchanged."
+  },
+  {
+   "id": "AUR-L31",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Filters: \"Which auras this container shows, in what order, and where it shows at all.\" Layout: \"Its scale and strata, where it sits and what it attaches to, which way it grows, how it answers the mouse, and its name label.\""
+  },
+  {
+   "id": "AUR-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Maximum auras per group (0 = no limit)\"."
+  },
+  {
+   "id": "AUR-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Bar style tab G_BG \"Background & border\" becomes \"Background and border\"."
+  },
+  {
+   "id": "AUR-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label \"Frame strata\" and tooltip O.StrataTooltip(...), which is already in v1.77.0 (U-12 landed by M1). AuraMaster's strata ZS item has uncommitted work in the tree, so coordinate and do not wire the tooltip twice."
+  },
+  {
+   "id": "AUR-L-new4",
+   "needs": [
+    "U-09"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Layout Scale / Opacity labels become \"Container scale\" / \"Container opacity\". Tooltips are AUR-L25's (\"...on the General page > Master controls.\", Master opacity per CALL-02); land them together."
+  },
+  {
+   "id": "AUR-L-new5",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rail General: \"Enabled\" becomes \"Enable this container\", and the buttons become \"Duplicate container\" / \"Delete container\" (Delete stays last on its line)."
+  },
+  {
+   "id": "AUR-L-new6",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Containers Defaults tooltip: \"Restore every tab of the entry selected on the left, for the container in the band, to its defaults. On General: Enable this container, Unit, Aura type and Style; its name is kept.\" It quotes AUR-L-new5's on-screen label (§21), so land it with or after AUR-L-new5. Keep the existing true detail."
+  }
+ ],
+ "BankLedger": [
+  {
+   "id": "BAN-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Both tint rows take subgroup \"Windows\" and the session row takes `solo = true`, so the tints still pair. Drop the \"Table rows\" heading and update the Schema.lua:78-80 comment."
+  },
+  {
+   "id": "BAN-L02b",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Keep the heading \"Simulator\" (XC-24). Label \"Simulation step delay (seconds)\". Tooltip opens \"Paces /bl sim: how many seconds the simulator waits between steps as it plays.\" and the rest is unchanged. Keep the `%.1f s` fmt."
+  },
+  {
+   "id": "BAN-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Show session window\". Tooltip: \"Opens the Current Banking Session window at a bank, listing what you move. Turning this off never stops capture, only the window.\""
+  },
+  {
+   "id": "BAN-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Record items\" / \"Record gold\" (XC-26). README and docs follow."
+  },
+  {
+   "id": "BAN-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Keep the label \"Minimum quality\" (override). Tooltip: \"Only record items at or above this quality. Gold is not affected. Items on General > Filters > Whitelist are always recorded.\""
+  },
+  {
+   "id": "BAN-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Reorder only the panel copy in S:PageRows (trackItems, qualityThreshold, trackMoney) and leave S.Schema's order, so `/bl list` prints exactly as today. Line 1 is Record items | Minimum quality; line 2 is Record gold | —."
+  },
+  {
+   "id": "BAN-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Give the skipRender excludedStores row `subgroup = \"Banks to record\"`; the flow engine opens the heading for skipRender rows. makeMultiCheck draws a title-less SimpleGroup instead of the InlineGroup. The row label stays. The tooltip's \"RECORD\" becomes \"record\". README :138 follows."
+  },
+  {
+   "id": "BAN-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Button \"Purge history…\". Tooltip \"Delete every recorded movement on this account. Your settings are left alone. Asks first.\" The read-out line becomes \"Database size: ≈ X\". The confirm popup is unchanged."
+  },
+  {
+   "id": "BAN-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "No label suffix (override). The tooltip opens \"Account-wide: shared by every profile.\", then \"Automatically drop movements older than this. 'Always' keeps everything.\". Drop the old account-wide sentence."
+  },
+  {
+   "id": "BAN-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In makeFilterSection, draw Clear all after the IdList, on its own line. The label becomes \"Clear all…\" per BAN-L-new2."
+  },
+  {
+   "id": "BAN-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Blurbs close with the shared XC-26 sentences, word for word as in LOO-L16: \"Applies to future movements only; rows already recorded stay.\" then \"An item can be on one list only; adding it here takes it off the other.\" Blacklist leads \"Never recorded.\" Whitelist leads \"Always recorded, even below your Minimum quality (Capture).\""
+  },
+  {
+   "id": "BAN-L13",
+   "needs": [
+    "U-01"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append \"To place the session window, use /bl session.\" through `MasterControls{ notes }` (LK-30, this run), and move the existing MASTER_DECOR Test mode override onto `notes.testMode` in the same commit."
+  },
+  {
+   "id": "BAN-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Already landed by BL-KB c235a48 (M2): the Keybindings tab is last via O.KeybindingsTab with no `before`, the label is \"Toggle ledger window\", and the category is BINDING_HEADER_BANKLEDGER. Nothing is left to change, so record it in exceptions.tsv with a grep proof instead of a new commit."
+  },
+  {
+   "id": "BAN-L16",
+   "needs": [
+    "U-01"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Lock frame note goes through `notes.locked` (U-01, LK-30), as a sentence appended after the canonical text: \"Covers the ledger, session and export windows.\" Write no MASTER_DECOR tooltip rewrite."
+  },
+  {
+   "id": "BAN-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Strip order: Master controls, Capture, Filters, Interface, History, Keybindings. Do it by inserting S.BespokeRows after the Capture rows in S:PageRows. S.Schema is untouched, so `/bl list` is unchanged (Filters is not in it). GENERAL_TABS (tests/panel_support.lua), the Schema.lua shared-order comment and the docs follow. It must land with LootHistory's LOO-L08, which is accepted."
+  },
+  {
+   "id": "BAN-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Clear all\" becomes \"Clear all…\" (it opens a confirm, Panel.lua:252)."
+  },
+  {
+   "id": "BAN-L-new3",
+   "needs": [
+    "U-04"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The General header Defaults is the global reset (Panel.lua:729), so per WS-36 set defaultsTooltip = H.ResetAllTooltip(H.KEYBINDS_UNCHANGED) (LK-32, this run) and drop the host string \"Reset the current profile to Bank Ledger's defaults: ...\" entirely; write no wording around the member. Add ResetAllTooltip to the Options degradation stub at RV2."
+  }
+ ],
+ "ConsumableMaster": [
+  {
+   "id": "CON-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "settings/Category.lua:438: \"Spec-aware. Viewing: %s.\" -> \"Spec-aware. Showing the list for %s. Change the spec in the Stat Priority page's banner.\" Add a new locale key."
+  },
+  {
+   "id": "CON-L02",
+   "needs": [],
+   "veto": true,
+   "veto_reason": "Conflicts with higher-confidence accepted ids: CON-L01 (85%), CON-L03 (90%) and CON-L25 (55%) each tell the player to change the spec in the Stat Priority page's banner, and folding that page into Macros (50%) would make all three false. A Defaults scope following the moved row would be an allowed consequence, but the text conflict alone decides it.",
+   "note": "Not landed. Record it as an owner alternative or a follow-up issue together with the options-ui-§14 banner-reach question."
+  },
+  {
+   "id": "CON-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "settings/StatPriority.lua:704 banner tooltip: list the tabs in strip order, \"…the Macros page's Flask, Combat Potion, Stat Food and Weapon Enchant tabs.\""
+  },
+  {
+   "id": "CON-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move macroBar.tooltips to group \"General\", right cell of the first line beside Enable macro bar. It stays on the Macro Bar page, so the same Defaults still resets it. Re-pin the per-tab counts in tests/test_schema.lua:511-518."
+  },
+  {
+   "id": "CON-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move combatMode, fadeUnlessHover and fadeAlpha to group \"General\", subgroup \"Visibility\", after the Enable/Show tooltips line. Remove the Visibility tab from MACROBAR_TABS, and update the suite's tab list (test_settingsui.lua:774,:783) and docs/settings-panel.md. Same page, so the Defaults scope does not change."
+  },
+  {
+   "id": "CON-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move macroBar.alpha to General > Visibility as [Bar opacity][Faded opacity] on the line after Combat visibility/Fade unless hovered. Drop the \"Opacity\" subgroup and its stale comment at MacroBar.lua:198-201."
+  },
+  {
+   "id": "CON-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move the Reset slot order button from drawGeneral to drawButtons, below the list. The click handler stays the same, and the MacroBar.lua:34 comment follows."
+  },
+  {
+   "id": "CON-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Layout tab: subgroups \"Arrangement\" (orientation, perRow, growthH, growthV) then \"Size and spacing\" (buttonSize, spacing, padding, scale), in that declaration order. Keep the group's rows contiguous."
+  },
+  {
+   "id": "CON-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Labels: \"Button size (px)\", \"Button spacing (px)\", \"Bar padding (px)\". Add new locale keys."
+  },
+  {
+   "id": "CON-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Labels tab: rename subgroup \"Layout\" -> \"Position\" (MacroBar.lua:377 ff.)."
+  },
+  {
+   "id": "CON-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Flyout: subgroup \"Behavior\" [Enable flyout][Auto-close after (seconds)] / [Maximum flyout entries][Reverse flyout order], then \"Placement\" [Flyout side][Gap from button (px)] / [Flyout button size (% of button)][Flyout spacing (px)] / [Flyout padding (px)][ ]. Only declaration order and startsLine change."
+  },
+  {
+   "id": "CON-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Flyout: rename subgroup \"Icon\" -> \"Indicator\" (MacroBar.lua:535 ff.)."
+  },
+  {
+   "id": "CON-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to the Enable flyout tooltip: \"Flyout entries look like the bar's buttons: everything on the Button appearance tab applies to them. The flyout panel's border is the Bar appearance tab's border.\" In the Flyout background color tooltip, replace the border sentence with \"Its border is the Bar appearance tab's border.\""
+  },
+  {
+   "id": "CON-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "No-behaviour variant: change only the value texts, to ALWAYS=\"Always\", HIDE_IN_COMBAT=\"Only out of combat\", ONLY_IN_COMBAT=\"Only in combat\". Keep the enum's declared order, because SlashParse's allowedText prints the allowed values in that order and reordering would change /cm set's error output. Stored values do not change."
+  },
+  {
+   "id": "CON-L15",
+   "needs": [
+    "U-01",
+    "U-09"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per the §2 override, write no host tooltip decorations. Lock frame takes `lockIsPreview = true` (LK-30); add a combat clause through notes.locked only after verifying the lock's combat behaviour in code. Master scale and Master opacity (CALL-02) get MasterControls{ notes }: scale \"Multiplies the Macro Bar page's Bar scale.\"; alpha leaf \"Multiplies the Macro Bar page's Bar opacity and Faded opacity.\" These notes sit on the Master controls rows themselves, so they name the Macro Bar rows; the reverse sentences on those rows say \"the General page > Master controls\" (CON-L30), because CON-L04 gives Macro Bar its own General tab."
+  },
+  {
+   "id": "CON-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Category.lua:1045, tab tooltip by type. Single: \"Add-by-ID and the priority list for the %s macro.\" Composite: \"Which categories the %s macro uses, in and out of combat, and their order.\""
+  },
+  {
+   "id": "CON-L17",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "CategoryAddByID.lua:359 section \"Add item or spell by ID\" -> \"Add an item or spell\". Land it with CON-L31."
+  },
+  {
+   "id": "CON-L18",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Add a bespoke-editor Section heading \"Macro\" at the top of renderCategoryHeader, covering the drag icon, spec line and Battle Rez mouseover. On composite tabs it covers the drag icon, description and legend. No row or control changes."
+  },
+  {
+   "id": "CON-L21",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Category.lua:930-931 headings \"In Combat\"/\"Out of Combat\" -> \"In combat\"/\"Out of combat\"."
+  },
+  {
+   "id": "CON-L22",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Category.lua:894: the composite row checkbox label \"Enabled\" -> \"In macro\". The tooltip and the categories.<K>.enabled write path stay."
+  },
+  {
+   "id": "CON-L24",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "StatPriority.lua:683 button \"Reset stat priority\" -> \"Reset this spec's stat priority\". It raises no popup, so it gets no ellipsis."
+  },
+  {
+   "id": "CON-L25",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Category.lua:700 -> \"No active spec. Pick one in the Stat Priority page's banner to see this list.\" (keep the orange markup). Picker placeholder (StatPriority.lua:155) -> \"(no spec)\". The Stat Priority body text stays."
+  },
+  {
+   "id": "CON-L26",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "MacroBar.lua:352 Show GCD swipe tooltip -> \"Off hides the global-cooldown swipe that flashes over every button whenever you cast. A real cooldown still shows, but its last second or so is hidden too.\""
+  },
+  {
+   "id": "CON-L29",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "MacroBar.lua:1099 Reset slot order tooltip -> \"Put the buttons back in the shipped order, undoing any drag-and-drop rearranging.\""
+  },
+  {
+   "id": "CON-L30",
+   "needs": [
+    "U-09"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to the Faded opacity tooltip: \"Multiplied by Master opacity on the General page > Master controls.\" ('the General page' because CON-L04 creates a General tab on Macro Bar; Master opacity per CALL-02). Give Bar opacity's existing \"Master alpha on the General page\" sentence the same shared form in the same commit."
+  },
+  {
+   "id": "CON-L31",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Category.lua:703 empty list -> \"(empty) — no candidates yet. Add an item or spell above, or pick up a matching item to trigger auto-discovery.\" (keep the orange markup). Land it with CON-L17."
+  },
+  {
+   "id": "CON-L32",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Category.lua:1004 composite Reset category tooltip -> \"Put back the shipped In macro ticks and the order of both sections.\" It depends on CON-L22's label."
+  },
+  {
+   "id": "CON-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "MacroBar.lua:400,:406 \"Label offset X (px)\"/\"Label offset Y (px)\" -> \"Label X offset (px)\"/\"Label Y offset (px)\"."
+  },
+  {
+   "id": "CON-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Drop the BorderGroup labels override borderShow (MacroBar.lua:242,:300) so the canonical \"Show border\" shows. Relabel the host rows Bar/Button/Flyout background (:211,:269,:515) -> \"Show background\". Grep the tooltips that quote the old labels and update them."
+  },
+  {
+   "id": "CON-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Add an ellipsis only to buttons that raise a StaticPopup: \"Reset all priorities…\" (General.lua:403) and \"Reset category…\" (Category.lua:848,:1003). Reset slot order and Reset stat priority raise none, so they are unchanged. The canonical Reset all settings is exempt (U-09f keeps its name)."
+  }
+ ],
+ "DpsRace": [
+  {
+   "id": "DPS-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Re-stamp the four live.* rows page='general', group=L[\"Race HUD\"] (paths, defaults, ranges and onChange=redraw unchanged). Delete the Live page registration and drop 'live' from VALID_PAGES. This is an owner-allowed page merge, so General Defaults now also resets them and /dr list lists them under general › Race HUD; say both in the commit. Verified 2026-10-24: DpsRace's General Defaults is a PAGE reset (settings/General.lua:148-151 calls H.RestoreDefaults(PAGE, ctx)), not the global reset, so WS-36's H.ResetAllTooltip does not apply. Rewrite it as a page-scoped host string, e.g. \"Restore every General setting on this profile to its addon default, including the Race HUD's live breakdown.\" .. \" \" .. H.KEYBINDS_UNCHANGED (keep the tail, XC-28)."
+  },
+  {
+   "id": "DPS-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Race HUD tab subgroups: \"Display\" (hud.showMode, hud.clock), then \"Live breakdown\" (the four live.* rows). The Display locale key already exists."
+  },
+  {
+   "id": "DPS-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Declaration order: live.rows, live.icons, live.showDps, live.hz. Move startsLine from live.icons to live.showDps."
+  },
+  {
+   "id": "DPS-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "live.rows label \"Rows shown\" -> \"Spell rows shown\". The tooltip stays."
+  },
+  {
+   "id": "DPS-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to the hud.showMode tooltip: \"General visibility on Master controls still applies: while it hides the addon, the HUD stays hidden whatever this says.\""
+  },
+  {
+   "id": "DPS-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Race tab subgroups Length -> Countdown -> At the buzzer -> Scoring rules. \"Final countdown\" becomes \"Countdown\". countdownCue goes first, alone on its line, then [Center-screen countdown][Center countdown from (seconds)]."
+  },
+  {
+   "id": "DPS-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "race.buzzer -> subgroup \"At the buzzer\". The Sounds subgroup and its locale key go."
+  },
+  {
+   "id": "DPS-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "race.hintDelay -> group Race, subgroup \"At the buzzer\", paired right of race.buzzer. It stays on the same page, so the Race Defaults scope does not change."
+  },
+  {
+   "id": "DPS-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "race.grace and race.restartGap -> group Race, subgroup \"Scoring rules\", last. The Scoring rules tab goes, and Race becomes a one-tab page."
+  },
+  {
+   "id": "DPS-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per the §2 override, the label is \"Center countdown from (seconds)\", not \"(s)\"."
+  },
+  {
+   "id": "DPS-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append \"5 to 60 seconds.\" to the race.hintDelay tooltip."
+  },
+  {
+   "id": "DPS-L13",
+   "needs": [
+    "U-03"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Already landed in M2 (DR-KB 44d577a: H.KeybindingsTab with no `before`, last on General). Record it as landed-by-M2 and do not redo it."
+  },
+  {
+   "id": "DPS-L14",
+   "needs": [],
+   "veto": true,
+   "veto_reason": "Conflicts with owner-accepted CALL-03, which fixes the DpsRace binding labels as \"Toggle race HUD\", \"Toggle results window\" and \"Arm or cancel race\" (lower-case 'results'). DR-KB ships those strings.",
+   "note": "Leave LauncherSetup.lua:56 as \"Toggle results window\"."
+  },
+  {
+   "id": "DPS-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Doc, comment, locale and test ripple as listed. Drop the \"Toggle Results window\" locale add (DPS-L14 vetoed). Add the \"(seconds)\" labels (DPS-L10, DPS-L-new1) and \"Purge history…\" (DPS-L-new2). Re-pin the page and row order in tests/test_settings.lua."
+  },
+  {
+   "id": "DPS-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Already landed in M2 (DR-KB: the General defaultsTooltip appends H.KEYBINDS_UNCHANGED). Keep the tail when DPS-L01 rewrites the tooltip."
+  },
+  {
+   "id": "DPS-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Labels: \"Late-cast grace (seconds)\", \"Damage-restart gap (seconds)\", \"Sticky-combat hint after (seconds)\". Leave the slider value fmt as it is."
+  },
+  {
+   "id": "DPS-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "History.lua:80-81: remove the H.Section(\"Danger zone\") call and relabel the button \"Purge history…\". It stays last, after the stored-count line, and keeps the same popup/DeleteAll. Reword the tooltip so it no longer leans on the old label, e.g. \"Deletes every stored run. Asks for confirmation. Personal bests go with them.\""
+  },
+  {
+   "id": "DPS-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "global.history.keep tooltip opens with \"Account-wide: shared by every profile. \" before the existing text. The label stays."
+  }
+ ],
+ "DropWatcher": [
+  {
+   "id": "DRO-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Re-stamp autoOpen and the 40 skipRender situation rows page='feed' (group Situations unchanged, so it lands first). Move afterGroup[Situations] and beforeClear onto the feed entry in Pages.lua and delete the situations entry. This is an owner-allowed page merge, so Drops Defaults now resets the table and /dw list's situations section merges into feed. State both in the commit, and re-pin tests/test_settings_pages.lua and test_schema_rows.lua."
+  },
+  {
+   "id": "DRO-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "PageEditors.lua:64 and the locale: \"…the Quality column on the Situations page.\" -> \"…the Quality column on the Situations tab.\" Lands with DRO-L01."
+  },
+  {
+   "id": "DRO-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Drops tip -> \"Reset the Drops page's settings (situations, quality, items and how long drops are kept) to their defaults.\" Drop the Situations tip and its locale key. Lands with DRO-L01."
+  },
+  {
+   "id": "DRO-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "sim.stepDelay label -> \"Simulation step delay (seconds)\". The General > Simulator tab name stays (XC-24)."
+  },
+  {
+   "id": "DRO-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "window.compactInRuns label -> \"Compact view when it auto-opens in a run\". It stays on Window > Layout beside Window layout."
+  },
+  {
+   "id": "DRO-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Window > Layout subgroups \"Mode\" (window.mode, window.compactInRuns) and \"Tables\" (window.rowHeight, window.fontSize). Row order unchanged."
+  },
+  {
+   "id": "DRO-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Messages > Sending declaration order: Ask once, Edit before sending, Announce channel, Offer transmog asks (two lines)."
+  },
+  {
+   "id": "DRO-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "feed.includeTokens label \"Tier tokens\" -> \"Include tier tokens\"."
+  },
+  {
+   "id": "DRO-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "feed.clearOnBossKill label -> \"Clear this session's drops on boss kill\". It stays under Retention > Session."
+  },
+  {
+   "id": "DRO-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append \"With none ticked, a fresh tab lists every drop.\" to each of the four feed.view.* tooltips."
+  },
+  {
+   "id": "DRO-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "sim.stepDelay tooltip -> \"Paces /dw sim: how many seconds the simulator waits between steps as it plays. A change takes effect from the next step.\""
+  },
+  {
+   "id": "DRO-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Keep history for tooltip (SchemaRows.lua:251) opens with \"Account-wide: shared by every profile. \" before the existing text. The label stays. DRO-L-new2 does not land, so the tab is still Retention."
+  },
+  {
+   "id": "DRO-L-new4",
+   "needs": [
+    "U-04"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The General header Defaults is the global reset (Panel.lua:95-97, showResetPopup; DW passes resetProfile). Replace generalDefaultsTooltip()'s body (Panel.lua:82-89) with H.ResetAllTooltip(H.KEYBINDS_UNCHANGED) (LK-32, this run), dropping the host lead \"Reset every %s setting to its default. Asks for confirmation.\" and writing no wording around the member. Add ResetAllTooltip to the Options degradation stub at RV2."
+  }
+ ],
+ "KickCD": [
+  {
+   "id": "KIC-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Build the Grid band as one O.PageHeader block (exists in v1.77.0; this is the only form, since PageBanner acts (U-08d) do not land in this run): [Unit] [Enable this unit] [Link to Target]* [Copy from Target]* (* Focus only). Keep units.<u>.enabled and units.focus.link at panel=\"general\", section=\"units\", skipRender, so General's Defaults, Reset all and /kcd list (grouped by panel) behave exactly as today. This is the cross-page stamp WS-33 allows (re-stamp is a SHOULD); its MUST is met by both Defaults tooltips disclosing it (KIC-L02 for General, KIC-L31 for Grid), which land in the same commit."
+  },
+  {
+   "id": "KIC-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Remove the General > Units tab and its afterGroup draw. Make sure the now-skipRender rows produce no empty tab. Because the stamp stays (KIC-L01), give General's Defaults tooltip a sentence saying it also resets both units' Enable this unit and Focus's Link to Target (Units band, per KIC-L06's relabel)."
+  },
+  {
+   "id": "KIC-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label \"Enable this unit\" (XC-16 override). Tooltip: \"Track this unit: its icon grid, cast bar and label. Off hides all three.\""
+  },
+  {
+   "id": "KIC-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Replace the LinkRow at Panel_Render.lua:250-255 with plain text, no cross-page link: \"Linked to Target. Untick Link to Target above to give this unit its own look.\""
+  },
+  {
+   "id": "KIC-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Verified safe: Units.CopyStyling copies by path prefix (COPIED leaves out label.text) and only PartitionUnitRows reads alwaysPerUnit, so the flag changes the UI only. Mark u.label.text alwaysPerUnit, keep the Text label entry's strip live when one of its tabs has alwaysPerUnit rows, and update the 'no row is alwaysPerUnit' comment and the test_options_panel_degraded pin."
+  },
+  {
+   "id": "KIC-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Change the label only: page \"Grid\" becomes \"Units\", and pageKey \"grid\", panel stamps and deep links stay. Grep modules/, core/ and locales/ for \"Grid page\" location strings (XC-12)."
+  },
+  {
+   "id": "KIC-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rail entry \"Text Label\" becomes \"Text label\" (Label.lua:212, Panel_Render.lua:280, and every tooltip that quotes it)."
+  },
+  {
+   "id": "KIC-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge Icons Sizing and Layout into the tab \"Size and layout\", with subsections \"Size\" and \"Secondary block\". The group rename stays within panel \"icons\"."
+  },
+  {
+   "id": "KIC-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Follow the §2 override (XC-32): u.icons.anchor becomes \"Primary icon anchor point\" and secondaryGrow becomes \"Growth direction\". Cast bar keeps \"Anchor on primary icon\" because KIC-L-new5 did not land."
+  },
+  {
+   "id": "KIC-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Secondary size (fraction of primary)\", ASCII only."
+  },
+  {
+   "id": "KIC-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Override form: \"Y offset (px, positive = down)\" on the Icons secondary block only. Tooltips stay as they are."
+  },
+  {
+   "id": "KIC-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge Visual states and Border into the tab \"Appearance\", with subsections \"States\" and \"Border\" (the composed block, unchanged). Move the tab from TAB_SINGLE_SUBJECT to TAB_MIXED in tests/test_schema.lua."
+  },
+  {
+   "id": "KIC-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Suppress GCD swipe and text\"."
+  },
+  {
+   "id": "KIC-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Annotations subsections become \"Cooldown text\" (Show cooldown text alone on its line, then the font block), \"Charges\" and \"Tooltip\". The tab stays named \"Annotations\" because KIC-L15 did not land."
+  },
+  {
+   "id": "KIC-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move u.castbar.autoSize alone to the head of Size and position > Size. Keep its onChange and disabledIf links as they are."
+  },
+  {
+   "id": "KIC-L17",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Fold the Icon tab into Size and position as a third subsection, \"Spell icon\" (same panel, castbar)."
+  },
+  {
+   "id": "KIC-L18",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge Font, Spell name and Cast time into one tab \"Text\", with subsections in the order Spell name, Cast time, \"Font (both texts)\". \"Cast time color\" keeps its label (the XC-19 exception)."
+  },
+  {
+   "id": "KIC-L19",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Interruptible and Non-interruptible subsection \"Text\" becomes \"Spell name\"."
+  },
+  {
+   "id": "KIC-L20",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Enable cast bar tooltip: \"Show this unit's cast bar.\""
+  },
+  {
+   "id": "KIC-L21",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append \"(positive = right)\" and \"(positive = up)\" to the anchorOffsetX and anchorOffsetY tooltips. First confirm that Castbar_Frame.lua:159-160 passes Y unflipped."
+  },
+  {
+   "id": "KIC-L22",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Value labels become \"When the tracked unit is casting\" and \"When the tracked unit is casting an interruptible spell\" (General.lua:107-108, Icons.lua:343-344, locales). Keys stay unchanged. Update the docs that quote the list (ARCHITECTURE Documented deviations, settings-panel.md)."
+  },
+  {
+   "id": "KIC-L23",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Text label > Placement gets subsections \"Position\" (Attach to; anchor pair; X | Y offset) and \"Alignment\" (Horizontal | Vertical alignment; Rotation (degrees))."
+  },
+  {
+   "id": "KIC-L24",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Follow the §2 override (XC-32): pair the controls as \"Attached widget anchor point\" (relPoint, first) | \"Label anchor point\" (point). In the tooltip, \"the target widget\" becomes \"the widget chosen in Attach to\"."
+  },
+  {
+   "id": "KIC-L25",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Horizontal alignment\" / \"Vertical alignment\"."
+  },
+  {
+   "id": "KIC-L26",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Spells picker caption becomes \"Class and specialization\" (Spells_Header.lua:161)."
+  },
+  {
+   "id": "KIC-L28",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to the iconPosition tooltip: \"Off hides the icon; so does Icon size 0.\""
+  },
+  {
+   "id": "KIC-L29",
+   "needs": [],
+   "veto": true,
+   "veto_reason": "The §2 override makes it all-or-none with DropWatcher (XC-33), and DRO-L-new5 (45%) did not land. Renaming the glow extent to \"reach\" in KickCD alone would split the shared GLOW_KNOBS vocabulary.",
+   "note": "The rows stay \"Offset\". KIC-L-new2 still changes their \"(in px)\" to \"(px)\". QUI-L14 follows this veto."
+  },
+  {
+   "id": "KIC-L30",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "General visibility tooltip: \"When KickCD's displays (icon grids, cast bars and labels) are shown. Enable KickCD still wins: off hides everything.\" This overrides General.lua:113."
+  },
+  {
+   "id": "KIC-L31",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Units (formerly Grid) Defaults tooltip: \"Restore every tab of the entry selected on the left, for the unit in the band, to its defaults. The other unit keeps its own. The band's Enable this unit and Link to Target are reset by the General page's Defaults.\" The last sentence is mandatory: it is this page's half of the WS-33 disclosure for KIC-L01's kept stamp."
+  },
+  {
+   "id": "KIC-L32",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Reword the rail tooltips with the tab names as they land. Icons: \"The interrupt icons: size and layout, appearance, annotations and ready glow.\" (L15 did not land). Cast bar: \"The cast bar: size and position, text, and the colors for casts you can and cannot interrupt.\""
+  },
+  {
+   "id": "KIC-L33",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Override form. Append to the Unit picker tooltip: \"Focus follows Target while Link to Target, beside this picker, is ticked.\""
+  },
+  {
+   "id": "KIC-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Use same styling as Target\" becomes \"Link to Target\" and \"Copy styling from Target\" becomes \"Copy from Target\": row label, band cell, button text, button tooltip title and every tooltip or locale string that quotes them. units.focus.link stays the same row."
+  },
+  {
+   "id": "KIC-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Sweep all 21 \"(in px)\"/\"(in seconds)\" labels to \"(px)\"/\"(seconds)\" (Icons, Cast bar, Text label, Ready glow, Charges). Slider fmt readouts stay as they are."
+  },
+  {
+   "id": "KIC-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Ready alpha\" / \"Cooldown alpha\" become \"Ready opacity\" / \"Cooldown opacity\" (Icons.lua:162,169, locales). The paths stay u.icons.readyAlpha/cooldownAlpha."
+  },
+  {
+   "id": "KIC-L-new4",
+   "needs": [
+    "U-01"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Pass lockIsPreview = true to MasterControls (LK-30, this run). Write no host-side tooltip text. The canonical text has no combat clause; add one through notes.locked only after verifying KickCD's lock behaviour in combat."
+  }
+ ],
+ "LootHistory": [
+  {
+   "id": "LOO-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In the retentionDays tooltip (Schema.lua:441), \"'Never' keeps everything\" becomes \"'Always' keeps everything\". Fix the Constants.lua:182 comment to match."
+  },
+  {
+   "id": "LOO-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move settings.showTransfers to Interface > History window, directly after Timeline lines (same page, so the General Defaults is unchanged). /lh list groups by `group` (Slash.lua:458), so the row will list under Interface. That is the same consequence as any tab move; record it in the commit."
+  },
+  {
+   "id": "LOO-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Interface subgroup \"Window\" becomes \"History window\" on all four rows. Move the test_panel.lua:333 pin."
+  },
+  {
+   "id": "LOO-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Capture gets subsections \"Loot\" (Minimum quality | Exclude quest items; Record currency; then the Record data from picker) and \"Ledger\" (Track holdings and losses | Record gold). Draw the picker between them with two O.RenderRows slices around it, extending the hand call already at settings/Panel.lua:1062 (U-14's afterSubgroup is deferred and not available). Keep every onChange."
+  },
+  {
+   "id": "LOO-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to the recordGold tooltip: \"Needs Track holdings and losses.\" (XC-13 form)."
+  },
+  {
+   "id": "LOO-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Drop \"(from the next update)\" from the trackLedger tooltip."
+  },
+  {
+   "id": "LOO-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "recordCurrency tooltip: \"Obeys Record data from; ignores Minimum quality.\" Whitelist description: \"...fall below Minimum quality, come from a source unticked under Capture > Record data from...\" (ASCII ' > ')."
+  },
+  {
+   "id": "LOO-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "GENERAL_TABS order: Master controls, Capture, Filters, AH price (label per LOO-L10), Interface, History, with Keybindings last (appended by kb). This lands with BAN-L-new1 in BankLedger. Rewrite the Panel.lua:963-968 and Schema.lua:422 comments and move the test_panel strip index pins."
+  },
+  {
+   "id": "LOO-L10",
+   "needs": [
+    "U-05"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Remove subgroup=\"Pricing\" from settings.auction.enabled, so the switch leads the tab without a heading and \"Price sources\" stays the one heading (U-05(b), WS-31). In the same commit relabel the tab \"AH Price\" -> \"AH price\" (WS-30/§21 sentence case; label only): the tab key at Panel.lua:977 doubles as the lookup key at Panel.lua:945 (buildAuctionTable), so rename both together; also the HoldingsTab.lua:36 column header \"AH Price\" -> \"AH price\", the Panel.lua comments, docs and pinned tests. No stored path or SavedVariables key is involved."
+  },
+  {
+   "id": "LOO-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The price-table header \"Price Module\" becomes \"Price module\" (Panel.lua:826). Lands with LOO-L10's AH price relabel on the same tab."
+  },
+  {
+   "id": "LOO-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Override wording for the windowScale tooltip: \"Scale of the History window. Multiplied by Master scale on General > Master controls.\" (LootHistory has no other General tab or entry, so the bare location is correct.)"
+  },
+  {
+   "id": "LOO-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Keep Timeline days for\" becomes \"Keep Timeline history for\". Grep the prune-confirm and refusal strings (Schema.lua:842-900), docs and tests for the old label."
+  },
+  {
+   "id": "LOO-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Minimum quality (detailed records)\" becomes \"Minimum quality\". Land it with LOO-L04's Loot heading. The tooltip stays as it is. Move the six test_panel label pins."
+  },
+  {
+   "id": "LOO-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Clear all\" becomes \"Clear all…\" (Panel.lua:279). The StaticPopup stays unchanged."
+  },
+  {
+   "id": "LOO-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "End each list description with the XC-26 sentences, word for word as in BAN-L12: \"Applies to future loots only; rows already recorded stay.\" Add \"An item can be on one list only; adding it here takes it off the other.\" only where the add path really enforces it (Blacklist/Whitelist)."
+  },
+  {
+   "id": "LOO-L17",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The sub-tab \"Currencies\" becomes \"Currency blacklist\". Blacklist and Whitelist stay. The BrowserTable chat hint becomes \"Manage in Settings > General > Filters > Currency blacklist.\" (ASCII ' > ', XC-12)."
+  },
+  {
+   "id": "LOO-L18",
+   "needs": [
+    "U-03"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Already landed by LH-KB 395bb9b: the Keybindings tab is last, from O.KeybindingsTab. Verify it and record it as landed by M2 (exceptions.tsv) rather than redo it."
+  },
+  {
+   "id": "LOO-L19",
+   "needs": [
+    "U-01"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Override: drop the host Test mode tooltip override (Schema.lua:248) and pass MasterControls notes = { testMode = \"It fills every tab of the History window: History, Insights, Holdings and Timeline.\" } (LK-30, this run)."
+  },
+  {
+   "id": "LOO-L20",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rewrite the Schema.lua:277-279 pairing comment to describe the LOO-L04 lines."
+  },
+  {
+   "id": "LOO-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Simulation step delay\" becomes \"Simulation step delay (seconds)\". The tooltip opens \"Paces /lh sim: ...\". The heading stays \"Simulator\" and fmt stays \"%.1fs\"."
+  },
+  {
+   "id": "LOO-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In each filter sub-tab, draw Clear all… after the IdList (description, IdList, Clear all…), matching BAN-L11."
+  },
+  {
+   "id": "LOO-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Keep history for and Keep Timeline history for tooltips open with \"Account-wide: shared by every profile.\" The labels get no suffix."
+  },
+  {
+   "id": "LOO-L-new4",
+   "needs": [
+    "U-04"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The General header Defaults is the global reset (Panel.lua:1118 -> P:RestoreDefaults -> CliResetAll). Set defaultsTooltip = O.ResetAllTooltip(O.KEYBINDS_UNCHANGED) (LK-32, this run; LootHistory's options handle is O), replacing the host lead \"Puts every setting in the active profile back to its default, as Reset all settings does.\" and writing no wording around the member. Add ResetAllTooltip to the Options degradation stub at RV2."
+  }
+ ],
+ "MultiMeters": [
+  {
+   "id": "MUL-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "MUL-L30 did not land (45%), so the override's 'lock goes to Windows > General' home does not exist, and leaving the lock behind would put it on Quick style (L03). Take the addon file's form: Size and position > \"Placement\" = Lock window | Keep on screen, then Frame strata. All three keep page=\"frame\", so Defaults and Copy stay unchanged."
+  },
+  {
+   "id": "MUL-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Size and position > \"Geometry\": Width | Height; Scale | Opacity; Padding."
+  },
+  {
+   "id": "MUL-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Frame first tab \"General\" becomes \"Quick style\" and moves second, after Size and position. It holds only the \"All surfaces\" subgroup (§16 heading kept). Update the Schema.lua:190-203 comment."
+  },
+  {
+   "id": "MUL-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tab \"Row\" becomes \"Rows\", with subsections \"Grid\" (Row height | Row spacing; Maximum rows | Growth direction; Always show yourself) and \"Highlighting\"."
+  },
+  {
+   "id": "MUL-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The tab is named \"Bar\" (MUL-L10 override), so the Alternating background tooltip points to \"(Windows > Bars > Bar)\". Fix the Bars.lua:3-13 header."
+  },
+  {
+   "id": "MUL-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move window.header.align to the end of Title text, after the font block (startsLine), and relabel it \"Text alignment\". Same page, header."
+  },
+  {
+   "id": "MUL-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Title text Font tooltip: \"Font for the window's title and the fight name beside it.\" Color tooltip: \"Color of the window's title and the fight name beside it.\""
+  },
+  {
+   "id": "MUL-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge Controls and Button style into \"Controls\", with subsections Shown, Icon (Size after L28), Color and Opacity. The hidden rows stay in the group. \"Show segment\" becomes \"Show fight name\"."
+  },
+  {
+   "id": "MUL-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Un-vetoed under the page-move rule (resolution 2): verified 2026-10-24 that the stored path stays window.text.deathTimeFormat (Schema.lua:855) and WindowManager.COPY_GROUPS (modules/WindowManager.lua:64-67) is keyed by stored group, so the row stays in Copy group \"text\" and no COPY_GROUPS member moves. Move Death timestamps from Bars > Text content to Tooltip > Contents > Sub \"Deaths\", first, on its own line; page changes bars -> tooltip. Append to its tooltip: \"Also used by the death list in the window's breakdown.\" Consequences, stated in the commit: Tooltip's Defaults now resets it, /mm list groups it under tooltip, and the CONFIG_CHANGED section changes (no reactor reads section). MUL-L19's \"Bar text and death timestamps\" label discloses the Copy split."
+  },
+  {
+   "id": "MUL-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge Bars' Bar, Background and Border into one tab named \"Bar\" (override), with subsections Fill, Background and Border. Composed order stays; only group and subgroup change."
+  },
+  {
+   "id": "MUL-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge Text content and Text style into \"Text\", with subsections \"Content\" and \"Style\" (font block, then Text opacity). Death timestamps leaves Content per MUL-L09."
+  },
+  {
+   "id": "MUL-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge the Tooltip bar tabs into one tab named \"Bar\" (override): Fill, Background, Border. Border rows become Border style/thickness/color/color mode, background rows become Background color/color mode/opacity, and \"Bar spacing\" becomes \"Line spacing\"."
+  },
+  {
+   "id": "MUL-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Contents goes second, with subsections Breakdown, \"Deaths\" (Death timestamps from MUL-L09, alone; then Name the killer | Name the killing spell) and \"Player name\" (\"Show all statistics on name hover\"). Land with or after MUL-L09."
+  },
+  {
+   "id": "MUL-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge the three Visibility tabs into \"Rules\", with subsections \"Show in\", \"Hide when\" and \"Combat\". Order is kept."
+  },
+  {
+   "id": "MUL-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge Columns' Header text and Header background into \"Column header\", with subsections Text and Background (bespoke strip, Columns.lua:309-344). Move the tests/test_columns.lua pins."
+  },
+  {
+   "id": "MUL-L17",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move New window into the band through PageBanner{ action = { text, tooltip, onClick } } (OptionsTabs minor 4, in v1.77.0). The General entry becomes Window name, then Duplicate window | Delete window."
+  },
+  {
+   "id": "MUL-L18",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Source tooltip: \"The window to copy from. Pick what to copy beside it, then press Copy.\" Copy button tooltip: \"Copy the chosen settings from the source window onto this one.\""
+  },
+  {
+   "id": "MUL-L19",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Change the display list only (Windows.lua:153-164). WindowManager.COPY_GROUPS and its keys stay. Use the labels as proposed, with the death-timestamps variant \"Bar text and death timestamps\" because MUL-L09 lands."
+  },
+  {
+   "id": "MUL-L21",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to each Per-statistic color-mode tooltip: \"Per-statistic colors are set on General > Statistic colors.\" In the footnote (General.lua:243) the paths become Windows > Bars > Bar, Windows > Bars > Text and Windows > Columns > Column header."
+  },
+  {
+   "id": "MUL-L22",
+   "needs": [
+    "U-12"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Override: the Frame strata row uses O.StrataTooltip (landed in M1, LK-20), with no MultiMeters tier sentences. Keep Dialog in the values, with the library warning (CALL-04). If the MM strata item has already set it, record it as landed by M2."
+  },
+  {
+   "id": "MUL-L23",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rewrite docs/settings-panel.md, the rail tooltips, the file headers and the path-naming tooltips to the tab names that actually landed (Bar, Text, Rules, Column header, Quick style), including Death timestamps' new home under Tooltip > Contents > Deaths (MUL-L09)."
+  },
+  {
+   "id": "MUL-L25",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Header height\" becomes \"Title bar height\" and \"Header background\" becomes \"Title bar background\". Keys stay unchanged."
+  },
+  {
+   "id": "MUL-L26",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "labels.borderShow \"Bar border\" becomes \"Show border\" (Schema_Compose.lua:1034)."
+  },
+  {
+   "id": "MUL-L27",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Max name length\" becomes \"Maximum name length\"."
+  },
+  {
+   "id": "MUL-L28",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "After MUL-L08: Reveal controls on hover moves to the head of Opacity (startsLine), and the subsection \"Icon\" becomes \"Size\"."
+  },
+  {
+   "id": "MUL-L29",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Show segment picker tooltip: \"Choose which fight this window shows. The fight name beside the buttons is turned on and off by Show fight name.\""
+  },
+  {
+   "id": "MUL-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Return the font-block labels to the §16 canonical ones (Text color -> Font color, Text color mode -> Font color mode, Font outline -> Font flags, Text shadow -> Font shadow) on Title text, Bars > Text, Tooltip > Text and Column header > Text. Do this by dropping the label overrides; the paths stay the same."
+  },
+  {
+   "id": "MUL-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tooltip > General: \"Horizontal offset\" / \"Vertical offset\" become \"X offset\" / \"Y offset\"."
+  },
+  {
+   "id": "MUL-L-new3",
+   "needs": [
+    "U-09"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Frame Scale / Opacity become \"Window scale\" / \"Window opacity\". Their tooltips end \"Multiplied by Master scale on the General page > Master controls.\" / \"Multiplied by Master opacity on the General page > Master controls.\" ('the General page' because the Windows rail has its own General entry; Master opacity per CALL-02, LK-30)."
+  },
+  {
+   "id": "MUL-L-new4",
+   "needs": [
+    "U-03"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The KB tail already landed in MM-KB d33deab (settings/General.lua:202-203). Verified 2026-10-24 that MultiMeters' General header Defaults is a PAGE reset (defaultsOnClick = H.RestoreDefaults(PAGE, ctx), General.lua:205; tooltip \"Restore the settings on this page to their shipped values.\"), not the global reset, so WS-36's MUST does not reach it and H.ResetAllTooltip(H.KEYBINDS_UNCHANGED) would describe a reset the button does not do. Record this item as landed by M2 (exceptions.tsv, grep proof) with no 020 commit, and have LK-95 correct its CONSUMERS row so MultiMeters is not listed as an O.ResetAllTooltip adopter (it still owes the stub at RV2 for surface parity)."
+  },
+  {
+   "id": "MUL-L-new5",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "RestoreActiveSection resets the whole rail entry (verified). The Windows Defaults tooltip becomes: \"Restore every tab of the entry selected on the left, for the window in the band, to its defaults. On Columns that includes the shipped column list. General has nothing to restore: the window's name is kept.\""
+  }
+ ],
+ "PanelMaster": [
+  {
+   "id": "PAN-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "settings/Schema.lua: reorder the four rows to showLabels, unlockOutlineSize, snapToGrid, gridSize, so the lines read [Show names while unlocked][Unlock outline thickness] / [Snap to grid][Grid size]. Keep every onChange as it is. /pm list order follows the new row order, and the pin in tests/test_schema.lua moves with it."
+  },
+  {
+   "id": "PAN-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Change the group string \"Editing\" to \"Moving panels\" on the four rows (Schema.lua:53,62,76,90). Update the pins in tests/test_schema.lua:279 and tests/test_libka0s.lua:347, which keeps asserting that no /pm reset <group> form exists. The /pm list heading follows the tab label, so this is a relabel and not a behaviour change. The Panel.lua:396 [\"Editing\"] afterGroup key goes away with L03."
+  },
+  {
+   "id": "PAN-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Pass Recover panels as MasterControls{ leadButton = ... }, which v1.77.0 supports (alone on its own row, above Reset position | Reset all settings), and delete the Panel.lua:396-408 afterGroup. Keep its onClick exactly as it is. Append to its tooltip: \"Unlike Reset position below, panels that are on screen stay where they are.\""
+  },
+  {
+   "id": "PAN-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to the tooltips of the four Moving panels rows: \"These only matter while panels are unlocked: untick Lock frame on the General page > Master controls, or tick Unlock this panel on Panels > General.\" Use ASCII \" > \" (XC-12), and write \"the General page\" because Panels has a General tab."
+  },
+  {
+   "id": "PAN-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "PanelEditorTabs.lua:368/:382: label and tooltip title \"Unlock\" -> \"Unlock this panel\". The session per-panel unlock behaves exactly as today."
+  },
+  {
+   "id": "PAN-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "PanelEditorTabs.lua:351/:358: \"Enabled\" -> \"Enable this panel\" (XC-16). Label and tooltip title only."
+  },
+  {
+   "id": "PAN-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Keep the label \"Copy settings from panel\". Rewrite the tooltip (PanelEditorTabs.lua:344-345) to the analysis text: \"Copy everything from another panel except its name and its position (anchor and offsets): size and scale, layer, opacity and fade, background, border, accent bar, artwork, and whether it is enabled. This panel stays where it is.\" Before shipping, check that Registry.CopyFrom still skips only id, name, frameName, point, relPoint, x and y."
+  },
+  {
+   "id": "PAN-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Add editorHeading Size, Position and Layer, in that order (XC-18), to the position tab. Drop the optional \"Position, size and layer\" rename (§2 override). PAN-L-new1 names the tab."
+  },
+  {
+   "id": "PAN-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Under Size: [Width][Height], then Panel scale full width directly below it."
+  },
+  {
+   "id": "PAN-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Under Position: the anchor dropdown alone on its line (relabelled Screen anchor point by PAN-L-new3), then [X offset][Y offset]."
+  },
+  {
+   "id": "PAN-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Under Layer: [Frame strata][Frame level] on one line. Fix the comment at PanelEditorTabs.lua:421."
+  },
+  {
+   "id": "PAN-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Artwork > Layout order: [Fill][Artwork scale] / [Artwork position][Draw layer] (L14 fills the right cell) / [Artwork X offset][Artwork Y offset]."
+  },
+  {
+   "id": "PAN-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "New heading Orientation after Layout: [Rotation][-] / [Flip horizontal][Flip vertical]."
+  },
+  {
+   "id": "PAN-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename the heading \"Appearance\" -> \"Color and blending\" and move Draw layer into Layout beside Artwork position. Color and blending reads [Artwork opacity][Blend mode] / [Artwork color][Use class color] / [Desaturate][-]."
+  },
+  {
+   "id": "PAN-L15",
+   "needs": [
+    "U-05"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Reorder so the enable comes first and Edges follows it, ahead of the styling. Set the headings by XC-22, XC-19 and U-05(b)/(d) (WS-31, this run): Enable accent bar sits unheaded as the tab's lead switch, then Edges, then Fill (the composed BarGroup, unchanged inside), then Border (the composed BorderGroup). This drops \"Bar\", \"Bar style\" and \"Bar border\", which restate the tab's stem."
+  },
+  {
+   "id": "PAN-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Enable accent bar tooltip gains: \"Everything below on this tab applies only while this is ticked.\" Tooltip only, with no disabledIf (XC-34)."
+  },
+  {
+   "id": "PAN-L18",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Add \"New panels start at the size, layer and opacity set on the General page > New panels.\" to the band create box tooltip (now labelled New panel) and to the editor's Reset panel tooltip. Use XC-12 wording."
+  },
+  {
+   "id": "PAN-L19",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Each of the four New panels tooltips gains \"Panels are made on the Panels page.\""
+  },
+  {
+   "id": "PAN-L20",
+   "needs": [
+    "U-12"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per the §2 override this is O.StrataTooltip (LibKa0s v1.77.0, LK-20), not a PanelMaster C.STRATA_TIP, and PM-ZS lands it as PAN-Z06. The LY commit only checks that both strata rows (Schema.lua defaultStrata and the editor Frame strata) use it, and does not implement it twice."
+  },
+  {
+   "id": "PAN-L21",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Fit to artwork tooltip opens: \"Overwrites this panel's Width and Height (Size and position tab) with ...\". Use the tab name from L-new1."
+  },
+  {
+   "id": "PAN-L22",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In the same commit, fix the stale comments (Schema.lua:42-43,65-72; Panel.lua:382-388; PanelEditorTabs.lua:421). Update docs/settings-panel.md (tab count 8, plus the new tab and heading names) and README.md:52,54,80 to the final names: Moving panels, Size and position, Orientation, Color and blending, Fill/Border, Fade unless hovered, and the relabelled buttons."
+  },
+  {
+   "id": "PAN-L23",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Panel opacity tooltip opens: \"How visible the whole panel is: background, border, accent bars and artwork together.\" The rest is unchanged. Also update the Faded opacity tooltip's quote of the old \"Show on mouseover only\" label to \"Fade unless hovered\" (L-new4)."
+  },
+  {
+   "id": "PAN-L24",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tooltips only: Bar thickness \"screen units\" -> \"UI units\", and the same in docs/settings-panel.md:49. The composed \"(px)\" labels (XC-08) and the slash fmt \"%d px\" stay."
+  },
+  {
+   "id": "PAN-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "TAB_POSITION \"Position and size\" -> \"Size and position\" (PanelEditorTabs.lua:65). The editor tab key is session-only ctx.activeTab, and a stale value heals to the first tab, so nothing stored moves. Grep README, docs and tooltips for the old name."
+  },
+  {
+   "id": "PAN-L-new2",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Editor buttons \"Reset\" -> \"Reset panel\" and \"Delete\" -> \"Delete panel\" (label and tooltip titles). Delete panel stays last on the line. Band edit box \"Create new panel\" -> \"New panel\". The acts and their confirms are unchanged."
+  },
+  {
+   "id": "PAN-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Position dropdown label \"Anchor\" -> \"Screen anchor point\". Its values and the stored point are unchanged."
+  },
+  {
+   "id": "PAN-L-new4",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Show on mouseover only\" -> \"Fade unless hovered\" (PanelEditorTabs.lua:777). Also change the quote of the old label in the Faded opacity tooltip (:773). The mouseover field and its behaviour are unchanged."
+  }
+ ],
+ "PartyFrameEnhanced": [
+  {
+   "id": "PAR-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge the Party frames and Health updates groups into L[\"All elements\"], with subgroups L[\"Party frames\"] (provider, includePlayer, rangeFade, strata, same order and pairs) and L[\"Health updates\"] (updateHealth, tickInterval, orders moved to sort after). Both stay on page general, so the General Defaults resets them as today. Move tests/test_optionssetup.lua:176-180 from group to subgroup."
+  },
+  {
+   "id": "PAR-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per the §2 override the merged tab is \"Bar\" (the existing tab name), not \"Bar and border\". ElementRows.Border passes group = L[\"Bar\"], subgroup = L[\"Border\"], order = 120, so it sorts after Background on Cast/Target (100/110) and on Pet (50/60). The border rows stay on their own page, so that page's Defaults reset them as before."
+  },
+  {
+   "id": "PAR-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "On all three Text tabs, the content toggles (castbar showName/showTime; target and pet showName/showPercent) move into a new subgroup L[\"Shown text\"] at orders 10/20 before Font. ElementRows.Font moves to order 30. showPercent keeps its disabledIf."
+  },
+  {
+   "id": "PAR-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append to the Target and Pet Show health percent tooltip, per the §2 override: \"Needs Update health (General > All elements).\" The existing dim is unchanged."
+  },
+  {
+   "id": "PAR-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Width tooltip appends \"Dimmed while attached with Match party frame width on.\" The Match party frame width tooltip becomes \"Attached only (dimmed in free placement): stretch each element across its party frame, edge to edge. Width is then ignored.\" Tooltips only. Size stays first, because PAR-L06 is superseded."
+  },
+  {
+   "id": "PAR-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tab \"Size & Position\" -> \"Size and position\" on all three pages (ElementRows.lua:37 group plus its locale entry). Update tests/test_optionssetup.lua:83-135. The Size, Placement order stays (XC-18)."
+  },
+  {
+   "id": "PAR-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per the binding §2 modify (XC-32), relabel Target and Pet Marker markerPoint \"Anchor point\" -> \"Bar anchor point\" (not \"Point on bar\"). The offsets keep X offset / Y offset. The values and solo stay."
+  },
+  {
+   "id": "PAR-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Cast Bars > General \"Fade out\" -> \"Fade out when a cast ends\". Tooltip: \"Fade the bar out when a cast ends, including after an interrupted cast's hold, instead of hiding it at once.\""
+  },
+  {
+   "id": "PAR-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename the Cast Bars > Bar subgroup \"Cast colors\" -> \"Cast state colors\". barColor label \"Cast color\" -> \"Normal cast color\" through the existing BarGroup labels arg (CastBars.lua:43)."
+  },
+  {
+   "id": "PAR-L11",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "\"Health refresh (seconds)\" -> \"Target health refresh (seconds)\". Label only; the tooltip already scopes it to target frames."
+  },
+  {
+   "id": "PAR-L14",
+   "needs": [
+    "U-01"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per the §2 override, pass MasterControls{ lockIsPreview = true } (LK-30, this run) and drop the host-side tooltip fallback entirely. The canonical text has no combat clause; add one through notes.locked only after verifying the lock's combat behaviour in code."
+  },
+  {
+   "id": "PAR-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Append \"Needs Color NPCs by reaction.\" (§2 override) to the Hostile, Neutral and Friendly color tooltips (TargetFrames.lua:54-56). Same tab, so no location suffix. Add no disabledIf (§17, XC-34)."
+  },
+  {
+   "id": "PAR-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move castbar.showSpark from Icon to the Bar > Fill subgroup, after the composed block. Pass it through BarGroup{ extra = ... }, which v1.77.0 supports, via an extra pass-through on ElementRows.Bar used only by Cast Bars. Path, default and onChange are unchanged, and Icon becomes [Show spell icon][Icon side] / [Show shield]."
+  },
+  {
+   "id": "PAR-L18",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In the same commit, update the file-header diagrams, docs/settings-panel.md (add Frame strata), docs/schema.md:24, docs/test-cases.md:518-522, the smoke-test steps, README.md:50-52 and the modules/RangeFade.lua:36 comment (\"General > All elements > Frame strata\") to the final names: All elements, Bar (merged), Size and position, Shown text, Bar anchor point. Update the pinned tests too."
+  }
+ ],
+ "PremadeGroupsFilterExtension": [
+  {
+   "id": "PRE-L01",
+   "needs": [
+    "U-05"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move showRegionTags to the Region tags tab as its first row, unheaded (§2 override, XC-22 and U-05(b)), with no \"Display\" heading. Two traps are mandatory. (a) Keep it in its own row list added before REGION_ROWS and never inside it, so Reset region tag colors still resets only the 12 colors. (b) renderRegionTab must pick the row out (path == \"showRegionTags\") and draw it with Helpers.RenderField before the first portal section, because byKey[nil] crashes. Its place in the /pgfe list order is unchanged."
+  },
+  {
+   "id": "PRE-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tab \"Region colors\" -> \"Region tags\" (L[] key and value). Update tests/test_regiontags.lua:104,137-143 and the tab-order string in tests/test_euisettings.lua:56-65."
+  },
+  {
+   "id": "PRE-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label -> \"Show region tags in the Group Finder\". In the tooltip, change only the noun to \"region tag\"; the PremadeRegions sentence stays. The attached panel's \"Server regions\" filter keeps its name."
+  },
+  {
+   "id": "PRE-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "filtersActive stays solo on Filters, followed by the static line \"The filter options are on the panel under Premade Groups Filter's window: open the Group Finder, choose Dungeons, and it appears below PGF's filters.\" Draw it with the existing TextRow from AFTER_GROUP[FILTER_GROUP], beside MASTER_TAIL (U-14's schema note row is deferred and not available). It is drawn, not a schema row, so /pgfe list does not change. It is static, not a state notice (XC-34)."
+  },
+  {
+   "id": "PRE-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "filtersActive label \"Toggle PGF Extension Filters\" -> \"Use the extension's filters\" (the locale string is shared with modules/Panel.lua:276). L.MSG_INACTIVE -> \"The extension's filters are off; tick Use the extension's filters first.\" Update the test titles that quote the old label."
+  },
+  {
+   "id": "PRE-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Reword L.FILTERS_ACTIVE_TOOLTIP to the analysis text with the L04 path: \"... The same switch is on the filter panel and in Settings (General > Filters). Separate from Enable, which turns the whole addon off.\" PRE-L09 does not land, so the path stays General > Filters."
+  },
+  {
+   "id": "PRE-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "euiSkin tooltip \"listed above\" -> \"listed below\" (Panel.lua:188 and the locale key/value at enUS.lua:219-220)."
+  },
+  {
+   "id": "PRE-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "renderEuiTab order becomes: switch, gap, conditions 1-4, the PGF skin link box (still only when missing), 8px gap, state line. Widget order only; the render-time condition is unchanged."
+  },
+  {
+   "id": "PRE-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Portal headings \"US realms (by data center)\" -> \"Americas and Oceania (US realms)\" and \"EU realms (by language)\" -> \"Europe (EU realms)\". The portal keys and their order are unchanged."
+  },
+  {
+   "id": "PRE-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Settings-page picker labels come from a new locale table (\"OCE — Oceanic\" ... \"RUS — Russian\", per the analysis list). NS.Regions.LABELS (the tag text in the Group Finder and the panel) and the 3-per-line packing stay."
+  },
+  {
+   "id": "PRE-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Button \"Reset region colors\" -> \"Reset region tag colors\". It still resets only the 12 regionColors rows (REGION_ROWS)."
+  },
+  {
+   "id": "PRE-L17",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In the same commit, update the Panel.lua:2-13 header, docs/settings-panel.md, schema.md, profiles.md, scope.md, data-flow.md, module-map.md, ARCHITECTURE.md, smoke-tests.md, README.md:53,73,87 and the pinned tests to the final map. The map has no Display heading and no L09, L11, L12 or L18 changes."
+  },
+  {
+   "id": "PRE-L-new1",
+   "needs": [
+    "U-04"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The General header Defaults is the global reset (Panel.lua:352-355, showResetPopup). Set defaultsTooltip = Helpers.ResetAllTooltip() (LK-32, this run; no tail, because PGFE has no Keybindings tab), replacing the host string \"Reset every %s setting to its default. Asks for confirmation.\" and writing no wording around it. Add ResetAllTooltip to the Options degradation stub at RV2, and update PGFE's frameless line-layout tests for LK-30's packing at RV2."
+  }
+ ],
+ "PrettyChat": [
+  {
+   "id": "PRC-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Add data-only `order = n` to each NS.Defaults[cat].strings[G] entry (not an SV key) and sort NS.SortedStringNames by (order, GLOBALNAME), with unranked entries after the ranked ones; use the curated orders in PrettyChat.md 'Proposed map' (with the L03/L04 labels). This keeps PRETTYCHAT-R-09's single order. The bare /pc list and /pc test then print the same lines in a new order, which is the same /list-follows-layout consequence every row move has (LAYOUT_CROSS_ADDON §2). Update the tests that pin alphabetical order in the same commit."
+  },
+  {
+   "id": "PRC-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Change only the Defaults.lua `label` fields: Generic Money Gained -> Money Gained (Generic), Quest Reward Money -> Money Gained (Quest Reward), Item Refund Multiple -> Item Refund (Multiple). Paths are unchanged, and grep shows these labels are used nowhere else."
+  },
+  {
+   "id": "PRC-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Labels: XP Gain (First Person[, Group|, Raid]) -> XP Gain (Kill, No Bonus[, Group|, Raid]); XP Gain (Unnamed)x3 -> XP Gain (No Source)x3; XP Loss (Unnamed) -> XP Loss. Tooltip: tree:EnableButtonTooltips(false), then OnButtonEnter/Leave draws the label as title, the GLOBALNAME in gray and NS.RenderSample(NS.OriginalFormat(...)) as the body, through one tooltip only (AceGUI.tooltip or GameTooltip)."
+  },
+  {
+   "id": "PRC-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "As modified by §2 (PRC-L06 is superseded): keep the footnote static and always drawn, and only change its text (Panel.lua:656, enUS) to \"Messages are rewritten only while Enable PrettyChat is on and General visibility allows it (General page > Master controls).\" Keep the gray color, and add no conditional drawing or refresh plumbing."
+  },
+  {
+   "id": "PRC-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Category tooltip (Schema.lua:410): \"Rewrite %s messages. When off, every %s message uses Blizzard's original wording, whatever the switches below say.\" It has two %s, so format(category, category). Per-string tooltip: \"Rewrite this message. When off, Blizzard's original wording is used.\" New box: \"Your rewritten format. Type `||` for a literal `|` (color codes use this).\" Drop the list-legend sentence, because PRC-L02 is superseded."
+  },
+  {
+   "id": "PRC-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename the per-string checkbox Enable -> Rewrite this message, and make its tooltip title the same string. Set TICK_W/CAPTION_W (Panel.lua:228-229) to 0.5/0.5 and record an in-client wrap check of COMBATLOG_XPGAIN_FIRSTPERSON_UNNAMED_GROUP as a smoke check. Tooltip titles: Original Format String -> Original, New Format String -> New."
+  },
+  {
+   "id": "PRC-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Set tabs[i].tooltip at Panel.lua:637 (H.TabStrip already takes tab.tooltip). Use the eight sentences from the PRC-L09 row verbatim through L[]. Tab labels stay the raw category keys."
+  },
+  {
+   "id": "PRC-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tooltip only, with no reorder and no relabel. The Preview box tooltip (Panel.lua:304) becomes \"Your rewritten format, rendered with sample values. Hover the entry in the list to see Blizzard's original rendered the same way.\" That second sentence is true only once PRC-L04's hover tooltip lands, so land it after or with L04."
+  },
+  {
+   "id": "PRC-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per §2: Reset -> Reset message, as both the button text and the tooltip title, keeping the 40% width. In the same commit, change the blank-format refusal (Schema.lua:354, enUS) to \"... a format can't be blank. Use Reset message to restore it.\""
+  },
+  {
+   "id": "PRC-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Route the General page title (Panel.lua:737) and the sidebar name (:751) through L[\"General\"], and add the key to the enUS manifest. The page key passed to RegisterOptionsPage stays the literal \"General\"."
+  },
+  {
+   "id": "PRC-L-new1",
+   "needs": [
+    "U-04"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The General header Defaults is the global reset (Panel.lua:749, ConfirmResetAll). Set defaultsTooltip (Panel.lua:740) = H.ResetAllTooltip() (LK-32, this run; no tail, PrettyChat has no bindings), replacing \"Reset every setting to its default.\" and writing no wording around it. Add ResetAllTooltip to the Options degradation stub at RV2, and update PrettyChat's frameless line-layout tests for LK-30's packing at RV2."
+  }
+ ],
+ "QuickComms": [
+  {
+   "id": "QUI-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "In SchemaRows.lua, reorder the rows and add subgroups. » Sending: soloFallback | spamGuard, then sounds | dropNotes. » Pads and dials: autoPromote | lockdownChip, then whyTooltips. Paths, defaults and onChange are unchanged; /qc list order follows the declaration, which is accepted."
+  },
+  {
+   "id": "QUI-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Labels only, with tooltips unchanged: Promote specific groups -> Put instance-specific groups first; Explain why groups show -> Explain why groups show (tooltips); Show the lockdown tag -> Show the LOCKDOWN tag."
+  },
+  {
+   "id": "QUI-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move inheritItem to the top of the When tab, after the active-now line and above the gray hint, and keep it grayed while Parent group is None. The row's group becomes When, and its schema position stays before group.when, so the tab order is unchanged. Tooltip: add \"Set the parent on the General tab.\" Groups_When.lua:681 becomes \"Uses %s's conditions. Untick Inherit when conditions above to set this group's own.\" The Groups Defaults still resets it."
+  },
+  {
+   "id": "QUI-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Groups > General order: Name | Enabled (relabelled by QUI-L-new3), then the Icon chooser, then Parent group alone, then Duplicate | Delete group (relabel L[\"Delete\"] at Groups.lua:364). This depends on QUI-L03 having moved Inherit off the tab."
+  },
+  {
+   "id": "QUI-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "No heading. Draw a spacer, then a gray TextRow \"Adds back the built-in groups and callouts you deleted. Changes nothing you have.\", then the Restore built-in groups button. It stays last on Groups > General."
+  },
+  {
+   "id": "QUI-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Groups Defaults tooltip (Groups.lua:767): \"Turn the selected group back on, turn Inherit when conditions back on, and turn Preview while editing back on. Its name, icon, parent, callouts and own When are kept.\" The icon and the parent are kept because they are resetExempt (Schema.lua:193-195)."
+  },
+  {
+   "id": "QUI-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "On Pad > Groups and Dial > Groups, render the ActionDropdown directly after Show groups as and above the hint and the list, and relabel it \"Add group\". The hints (Pads.lua:179, Dials.lua:201) change to \"... Add one above.\""
+  },
+  {
+   "id": "QUI-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename the Groups page Preview tab (Groups.lua:736) to \"What it sends\". The callout popup heading (CalloutPopup.lua:386) becomes \"What it sends\". QUI-L33 was not accepted, so the Dial Preview tab (Dials.lua:315) becomes \"Ring map\". Preview as and Preview while editing keep their names."
+  },
+  {
+   "id": "QUI-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Pad tab order: General, Groups, Layout, Window, Header, Section titles, Buttons, Icons. Move the pad.look.* window rows ahead of pad.header.* in windowRows(). Tabs follow each group's first row, so check the strip order in tests."
+  },
+  {
+   "id": "QUI-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Tab labels: Pad header -> Header, Section header -> Section titles (Pads.lua:49-50). The row label Section header height (0 = automatic) becomes Section title height (0 = automatic). Keys are unchanged; also grep modules/ and docs for the old tab names (XC-12)."
+  },
+  {
+   "id": "QUI-L12",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Buttons blocks go in the order Size, Font, Background, Border, Glow, Shine, and the heading Color becomes Background. Label the background swatch \"Background color\" on Header, Section titles, Window and Buttons. Only the row order and labels change."
+  },
+  {
+   "id": "QUI-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Headings: the Buttons Glow becomes \"Button glow\", and the Icons Glow (SchemaIcons.lua GLOW, both editors) becomes \"Icon glow\". The Buttons Glow style tooltip appends \"Drawn at the Icons tab's default knobs.\""
+  },
+  {
+   "id": "QUI-L14",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Point KNOB_TEXT xOffset/yOffset text[1] at the Icon glow heading instead of \"Offset\", so the rows follow Glow color under one heading (Pad and Dial). KIC-L29 is VETOED in this mapping (XC-33 all-or-none; DRO-L-new5 at 45% did not land), so the §2 'reach' relabel has no basis: the knob rows keep their 'Offset' wording and the shared GLOW_KNOBS vocabulary stays whole. Only the heading placement and the unit form (XC-08 \"(px)\" where a label carries a unit) change; tooltips are unchanged. No gap to record."
+  },
+  {
+   "id": "QUI-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Pads.lua:159: Unlock pads / Lock pads -> Unlock all pads / Lock all pads. The tooltip appends \"The same switch as Lock frame on the General page > Master controls.\" ('the General page' because Groups/Pad/Dial have General tabs, WS-30)."
+  },
+  {
+   "id": "QUI-L18",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Pad Defaults tooltip (Pads.lua:282): \"Put the selected pad's visibility, groups-as, layout, header, section titles, window, buttons and icons back to their defaults, and turn it on. Its name, groups and position are kept.\" Use the post-L10 tab names."
+  },
+  {
+   "id": "QUI-L19",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Merge the Slice labels and Group labels tabs into one \"Labels\" tab: dial.title rows take group LABELS, and the TITLES tab entry leaves the Dials.lua strip. Headings come from subgroup: » Slice labels (Show slice labels, relabelled from Show labels, | Label offset, then FONT6 with subgroup Slice labels), » Group labels (Show group labels, then FONT6). QUI-L20 was not accepted, so » Tooltip (Tooltip side | Tooltip offset, unrenamed) stays on Labels; put it last, after Group labels. The disabledIf gates are unchanged."
+  },
+  {
+   "id": "QUI-L21",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Move dial.slice.gap's group from Slices to the Wheel/Layout group, after Wedges/Slices per ring | Ring radius, alone; the Gap heading goes. In renderWheel, take dial.openAt out of the scalar rows and render it after h.Section(Position), above X | Y and the reset button, keeping the host-drawn Position block (U-14 does not land). All of these stay on the dials page, so Defaults is unchanged."
+  },
+  {
+   "id": "QUI-L22",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename the Dial tab Wheel -> Layout (L[\"Wheel\"] at Dials.lua:49 and the group of the wheel rows). Also update the strip comment at Dials.lua:5 and the docs."
+  },
+  {
+   "id": "QUI-L23",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Slices: the Background and Highlight subgroups become one » Colors subgroup, holding Slice color | UCC, then Highlight color | UCC; Shine follows unchanged."
+  },
+  {
+   "id": "QUI-L24",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Reorder the Hub rows within the tab. » Hub: Hub style | Hub size, then Backdrop color. » Hub border: Hub border size, then Hub border color. » Hub circle: Circle size | Line width, then Circle color. » Pointer is unchanged; keep each row's disabledIf as is."
+  },
+  {
+   "id": "QUI-L25",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Paging: the heading Position becomes Page row, and the label Offset becomes Distance below labels (dial.page.offset). The tooltip already says \"How far under the dial's labels...\"."
+  },
+  {
+   "id": "QUI-L26",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Split Page indicator into » Page indicator (Dot size | Current page width, Dot spacing, Current page color, Other pages color), » Indicator border (Dot border (0 = none), Dot border color) and » Indicator background (Show indicator background | Background padding, Indicator background). The rows are reordered only; the gates are unchanged."
+  },
+  {
+   "id": "QUI-L27",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "On Dial Icons, rename the heading to \"Size, offset and crop\" (dial only; the Pad Icons heading stays Size and crop). Splice dial.iconOffset after Icon size: Icon size (0 = automatic) | Icon offset (0 = automatic), then Zoom."
+  },
+  {
+   "id": "QUI-L28",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Dial Defaults tooltip (Dials.lua:321): \"Put the selected dial's groups-as, layout, slices, hub, paging, labels, tooltip placement and icons back to their defaults, and turn it on. Its name, groups, position and key are kept.\""
+  },
+  {
+   "id": "QUI-L29",
+   "needs": [
+    "U-03"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "No-behaviour variant: a live \"Key: <bound key>\" readout is a data-driven state marker (XC-34). Under Name | Enabled on Dial > General, draw one static gray line instead: \"Set this dial's key on the General page > Keybindings. A dial's key follows its place in the dial order.\" ('the General page' because Dial has its own General tab.) There is no key box and no readout."
+  },
+  {
+   "id": "QUI-L32",
+   "needs": [
+    "U-03",
+    "U-16"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Landed by M2 QC-KB (31f7221): the Keybindings tab is last, and Bindings.xml and NS.BINDINGS put Toggle Comms Pads first, then Open Comms Dial 1-4. Record it in exceptions.tsv with a proof command, so no 020 commit is needed. The dial-name label suffix is not taken: CALL-03 fixed the labels, and a data-driven label falls under XC-34."
+  },
+  {
+   "id": "QUI-L34",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Groups band on one row: [Group picker] [New group] [Preview while editing]. bandToggle drops its 0.5 width, and G.BAND_H becomes the one-row height used by Pads and Dials. If the label does not fit at minimum width, use \"Preview group\" with the full text in the tooltip. The row keeps page = groups."
+  },
+  {
+   "id": "QUI-L35",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Relabel Wedges per ring -> Slices per ring, and change wedge -> slice in the Dial page tooltips only: SchemaMembers.lua:290, 708, 724, the dial size tooltip at SchemaIcons.lua:81 and Dials.lua:321 (which L28 rewrites anyway). Leave the slash help and Test mode chat strings alone."
+  },
+  {
+   "id": "QUI-L36",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Pad > Layout: Scale -> Pad scale, Spacing -> Button spacing. By XC-11 and WS-30's location rule, the Pad scale tooltip becomes \"This pad's size. Multiplied by Master scale on the General page > Master controls.\""
+  },
+  {
+   "id": "QUI-L-new1",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Relabel Faded alpha (SchemaMembers.lua:240) to Faded opacity. Add no disabledIf (QUI-L16 is superseded)."
+  },
+  {
+   "id": "QUI-L-new2",
+   "needs": [
+    "U-04"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The General header Defaults is the global reset (Panel.lua:110-113, showResetPopup). Set defaultsTooltip = Helpers.ResetAllTooltip(Helpers.KEYBINDS_UNCHANGED) (LK-32, this run), replacing the host lead \"Reset every %s setting to its default. Asks for confirmation.\" and the hand-appended suffix; write no wording around the member. Add ResetAllTooltip to the Options degradation stub at RV2."
+  },
+  {
+   "id": "QUI-L-new3",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Relabel the editor checkboxes Enabled -> Enable this group (SchemaMembers.lua:198), Enable this pad (:226) and Enable this dial (the dial.enabled row). The labels are the only change."
+  }
+ ],
+ "WhatGroup": [
+  {
+   "id": "WHA-L01",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Every declared row's group changes from Chat/Popup to Notifications, and the AFTER_GROUP key from \"Chat\" to \"Notifications\" (Panel.lua:260). The `section` values (notify/frame, /wg list's grouping) are unchanged. The strip becomes Master controls · Notifications · Keybindings. Update the selectTab cases in tests/test_panel.lua, the map at Schema.lua:78-104 and docs/settings-panel.md."
+  },
+  {
+   "id": "WHA-L02",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Rename the subgroup \"Text\" to \"Chat summary\" on the 8 notify rows."
+  },
+  {
+   "id": "WHA-L03",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Reorder the declarations: showRole right after showLeader, and showClickLink after showTeleport. Lines become Instance|Type, Leader|Role, Playstyle|Teleport spell, Details link alone. Replace the comment at Schema.lua:234."
+  },
+  {
+   "id": "WHA-L04",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Behavior and Layout become one subgroup \"Popup window\" on frame.autoShow, frame.width and frame.height. autoShow stays solo, then Width | Height."
+  },
+  {
+   "id": "WHA-L05",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label Print to Chat -> Print to chat (Schema.lua:180)."
+  },
+  {
+   "id": "WHA-L06",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label Notification Delay -> Delay after joining (Schema.lua:156). The tooltip now opens with \"Applies to both the chat summary and the popup.\" and keeps its existing text."
+  },
+  {
+   "id": "WHA-L07",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Label Open Automatically -> Open on join (Schema.lua:250)."
+  },
+  {
+   "id": "WHA-L08",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Panel.lua:264: Test -> Test notification (still 160 px, still in AFTER_GROUP, not leadButton). The tooltip becomes \"Run the join notification once with sample group info: the chat summary, then the popup. Same as /wg test notify. For a popup that stays up while you adjust it, use Test mode on General > Master controls.\""
+  },
+  {
+   "id": "WHA-L09",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Print to chat tooltip appends \"The popup always shows every line; these choose the chat summary only.\" Drop \"The popup always shows it.\" from Role's tooltip (Schema.lua:239)."
+  },
+  {
+   "id": "WHA-L10",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The Width and Height tooltips (Schema.lua:273, 283) append \"Tick Test mode on General > Master controls to see the popup while you size it.\" This assumes the popup stays above Settings, which strata WHA-Z02 keeps at DIALOG."
+  },
+  {
+   "id": "WHA-L11",
+   "needs": [
+    "U-01",
+    "U-09"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per §2 and XC-04, these go through MasterControls{ notes } (LK-30, this run), appended after the canonical text, not as replacements of it. Notes: visibility \"Here, that is the group info popup.\"; scale \"Scales the group info popup; not changed in combat, applied on the next open.\"; alpha \"Opacity of the group info popup.\" (the row is labelled Master opacity per CALL-02; the notes key stays the canonical leaf alpha); locked \"Stops the group info popup being dragged by its title bar.\" Don't stamp row.tooltip in the host."
+  },
+  {
+   "id": "WHA-L12",
+   "needs": [
+    "U-04"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The General header Defaults is the global reset (Panel.lua:316-319, WHATGROUP_RESET_ALL popup). Set defaultsTooltip (Panel.lua:310) = Helpers.ResetAllTooltip(Helpers.KEYBINDS_UNCHANGED) (LK-32, this run), replacing \"Reset every WhatGroup setting to its default. Asks for confirmation.\"; write no wording around the member. This also adds the KB tail WG-KB did not append. Add ResetAllTooltip to the Options degradation stub at RV2."
+  },
+  {
+   "id": "WHA-L13",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Slash.lua:43 becomes \"Show the group info popup again\", and :47 becomes \"Open the Ka0s WhatGroup settings\" (the enUS keys move with them; /wg help shows the same text, a wording change only). Drop the hyphen from the three \"group-info popup\" tooltips (Schema.lua:251, 273, 283). The window title stays, and so does the binding label \"Toggle group popup\", which CALL-03 kept."
+  },
+  {
+   "id": "WHA-L14",
+   "needs": [
+    "U-03",
+    "U-16"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Landed by M2 WG-KB (a736bfc/466e65c): the Keybindings tab is last and uses the library's default intro (XC-02 modify). Record it in exceptions.tsv. Leave out the rename to \"Toggle group info popup\": CALL-03's accepted label table keeps \"Toggle group popup\"."
+  },
+  {
+   "id": "WHA-L15",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The seven line-toggle tooltips say \"in the chat summary\" instead of \"in the chat notification\" (Schema.lua:190-239), and Open on join's tooltip (:251) says \"the chat summary still prints\". Tooltip text only."
+  },
+  {
+   "id": "WHA-L16",
+   "needs": [],
+   "veto": false,
+   "veto_reason": "",
+   "note": "The resetall COMMANDS description (Slash.lua:66, enUS.lua:122) changes from \"Reset every setting to defaults\" to \"Reset this profile to defaults\", on the landing page and in /wg help. The command and what it resets are unchanged."
+  },
+  {
+   "id": "WHA-L17",
+   "needs": [
+    "U-01"
+   ],
+   "veto": false,
+   "veto_reason": "",
+   "note": "Per §2 and XC-04: the existing host Test mode override (Panel.lua:221-231) moves onto notes.testMode (LK-30, this run), together with the added sentence \"Untick Lock frame first if you want to move it.\" Don't keep any host-side copy."
+  }
+ ]
+}
