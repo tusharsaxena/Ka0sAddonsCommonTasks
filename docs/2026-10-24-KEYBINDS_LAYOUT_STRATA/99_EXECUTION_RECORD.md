@@ -26,3 +26,13 @@
   version is recorded in each addon's `docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md`.
 - RV: each addon's Options degradation stub gained the four new no-op members (`KeybindingsTab`, `KeybindRows`,
   `KEYBINDS_UNCHANGED`, `StrataTooltip`), as kit 42's surface-parity case requires.
+
+## Owner decisions (2026-10-24)
+
+- The owner accepted all six calls on the preview page (CALL-01..CALL-06) and said: "in general, go ahead with all
+  changes you are confident about". `accepted.json` (1ddc875) applies the page defaults to everything else: 438
+  changes land. Read as the M3 go-ahead too, at the same >= 50 bar.
+- ZS (strata) launched as run `wf_bf619483-f06`. M3 design launched as run `wf_0f27c45a-4b1`.
+- Issues filed for the ideas the review moved out of item 020 (XC-34) and for CALL-05 (U-13):
+  QuickComms#10 (QUI-L16), QuickComms#11 (QUI-L30), PartyFrameEnhanced#16 (PAR-L17), PrettyChat#19..#22
+  (PRC-L02, L06, L11, L12), WowAddonStandards#13 (U-13). All `state:untriaged`, `severity:low`.
