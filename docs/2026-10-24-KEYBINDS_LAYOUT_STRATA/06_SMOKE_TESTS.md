@@ -56,3 +56,24 @@ Status is **pending** until the owner reports. Never mark one passed on the owne
 | SM-WG-KB2 | binding a key in General > Keybindings shows it in Options -> Keybindings and vice versa, in both account and character-specific modes | pending |
 | SM-WG-KB3 | the bound key toggles the window; Escape during capture cancels without closing Settings; in combat the tab refuses | pending |
 | SM-WG-ZS | every visible strata change listed in docs/smoke-tests.md behaves as described (popups over their windows, handles reachable, overlays over their hosts) | pending |
+| SM-AT-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-AM-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-BL-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-CM-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-DR-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-DW-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-KC-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-LH-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-MM-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-PM-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-PF-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-PG-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-PC-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-QC-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-WG-LY | every settings page this addon's LY item touched reads as its docs/smoke-tests.md describes; no setting lost, no moved key, no changed default; values survive a /reload | pending |
+| SM-WG-POPUP-10 | WhatGroup's in-game probe POPUP-10 (docs/smoke-tests.md): during the popup's soft hide, clicks on the visible body behave as recorded; the residual in ARCHITECTURE stands or the body may go mouse-dead | pending |
+| SM-LK-30a | in any framed addon after its RV2, General > Master controls: the second line reads Master scale / Master opacity, and moving the slider still changes the whole display's opacity (no setting reset) | pending |
+| SM-LK-30b | in PrettyChat or PremadeGroupsFilterExtension (frameless) after its RV2: Debug console and Minimap button sit on one line, and both still work | pending |
+| SM-LK-30c | in an addon whose LY item passes lockIsPreview: hover Lock frame and read the preview sentence; in an addon whose LY item passes notes, hover the noted row and read the canonical tooltip followed by the addon's sentence | pending |
+| SM-LK-31a | in AbsorbTracker after its LY item: hover Bar opacity; the tooltip is the addon's wording, the label is still Bar opacity, and color swatches still end with the class-color sentence | pending |
+| SM-LK-32a | in a windowed addon after its LY item, hover the General page's header Defaults: the text equals Reset all settings' tooltip followed by 'Key bindings are not changed.' | pending |

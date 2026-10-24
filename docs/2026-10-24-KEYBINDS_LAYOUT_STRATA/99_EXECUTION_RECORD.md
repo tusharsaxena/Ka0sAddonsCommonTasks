@@ -61,3 +61,51 @@
 - 4 layout ids were vetoed for conflicts: AUR-L01, CON-L02, DPS-L14 (CALL-03 labels) and KIC-L29 (XC-33 is
   all-or-none). That leaves 326 to make.
 - addendum-01: 45 items (7b60430).
+
+## M3 — Upstream layout (2026-10-24)
+
+- LK-95 moved the local tag v1.77.0: commit 78240f7b2d69df27b74fc9280cbfbf7b95dd4f1f (tag object
+  7380d3662be0568acf9a0d224a6aef8ac6df93ce) -> afae2f75cb7ff61c57156d9a3d8a6b2b9f4c5e10 (tag object
+  b2b8ee25c5f9fa26db146254bf786b366dec986b); not pushed. Release bundle 20261024-121210: lint 0/0 in
+  197 files, 2749 tests 0 failed, complexity 0 over CCN 15.
+- LK-95 filed the deferred-surface issue (U-14 flow-engine seams, the `note` row, the Position-block
+  composer; U-08d `PageBanner{ acts }`): https://github.com/tusharsaxena/LibKa0s/issues/59
+- WS-95 closed the v2.88.0 settings-layout rulings: rulings (1)-(16) contiguous, ripples match the
+  897fbd3..HEAD diff, cross-surface names and the LOCK_PREVIEW_TIP sentence match LibKa0s's
+  version-30.2.34.3.5.9.2.11.4.2.1.3 Options doc and OptionsCompose.lua, check-standard green.
+  U-13 (CALL-05) was not filed again: the lead had filed
+  https://github.com/tusharsaxena/WowAddonStandards/issues/13 (deduped by title search), and
+  open-evolutions entry (b) now links it. options-ui-§16's `tooltips` bullet now names #106, so the
+  anti-pattern's group clause cites a section that states it.
+
+## M3 — settings layout, outcomes (CT-03)
+
+- Run `wf_281e9cd3-534`: 44 of 44 landed and reviewed, none failed, no library gap. 107 agents.
+- Upstream: WS-30..WS-38 and WS-95 close standard v2.88.0 (options-ui-§21, §7, §12-§16, the ripple). LK-30..LK-32
+  add OptionsCompose minors 9-11. LK-31 and LK-32 each took a review fix round.
+- RV2: all 15 addons re-vendored the moved tag. Fix rounds on AT, BL, PC, PG, QC and WG, all doc or alignment fixes.
+- LY: all 15 landed with the stored-path/default guard test. Every accepted id was made except the four vetoes
+  (AUR-L01, CON-L02, DPS-L14, KIC-L29). Ids already delivered in M2 are recorded in `exceptions.tsv`
+  (BL-LY:BAN-L14, WG-LY:WHA-L14, LH-LY:LOO-L18, MM-LY:MUL-L-new4, MM-LY:MUL-L22, QC-LY:QUI-L32).
+- LY fix rounds (one each, all resolved): AT, AM, BL, CM, DW, KC, LH, PC, PF, PM, QC. Mostly missed doc or smoke
+  ripples. Two were code:
+  - **KC-LY 213ae29:** a real regression. After a tab click, the Units band's Enable this unit and Link to Target
+    checkboxes, and a linked Focus strip, stopped refreshing. Fixed, with a test.
+  - **DW-LY 429d7f4:** the footer's not-tracking tooltip still pointed at the retired Settings > Situations page.
+    It now reads Settings > Drops > Situations.
+- LH-LY: a docs sweep (a0574aa) briefly rewrote 42 files in frozen bundles. 0f6d75b restored them byte for byte;
+  `git diff 5fe49a4 HEAD -- docs/audits docs/automated-tests docs/reviews docs/revendor docs/superpowers` is empty.
+- §21 location strings: AT, CM, MM and PF write "the General page > …" where the item text said "General > …",
+  because §21 requires that form when an addon also has a General tab.
+- Open, for the owner:
+  - **AuraMaster ellipsis.** Delete container, Delete this category and Forget unreadable categories cannot carry
+    §21's "…" under owner ruling T-1 (ASCII locale). The row in ARCHITECTURE.md > Documented deviations is pending
+    the owner's call: either ratify it, or widen T-1.
+  - **AbsorbTracker band height.** The Target/Focus band is one row taller than Player's, against §14's new MUST,
+    because ABS-L11 was not accepted. This predates the run and is not registered.
+  - **WhatGroup units.** §21 units are not applied to Delay after joining, Width or Height (not among WG's ids).
+  - **LibKa0s docs/api/CONSUMERS.md:750** lists MultiMeters as a planned ResetAllTooltip adopter. MultiMeters'
+    General Defaults is a page reset, so it does not adopt it. The next census corrects the planned row.
+- Smoke handling varies. Some addons rewrote the existing checks that name old labels and reset them to pending
+  (AT, BL, PC, PF, PM, CM). Others kept the owner's passes and added new LAYOUT/PANEL checks that govern where
+  they differ (DW, KC, MM, QC, PG, WG; WG reset PANEL-2).
