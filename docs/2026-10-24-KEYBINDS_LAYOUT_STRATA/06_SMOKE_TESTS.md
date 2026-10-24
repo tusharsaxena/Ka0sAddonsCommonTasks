@@ -85,3 +85,5 @@ Status is **pending** until the owner reports. Never mark one passed on the owne
 | SM-MM-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
 | SM-QC-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
 | SM-WG-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
+| SM-AM-OC1 | AuraMaster: the three confirm buttons read Delete container…, Delete this category…, Forget unreadable categories…, and the … draws as an ellipsis, not a box (addon check SETLAYOUT-9) | pending |
+| SM-AT-OC2 | AbsorbTracker General unit band: switching Player / Target / Focus never moves the strip below; the four controls sit on one row; Enable this unit and Copy from Player are not truncated (addon check LOOK-19) | pending |

@@ -166,3 +166,21 @@
   this run created. No addon version was bumped and no release was cut. The dev-copilot release (2.6.0 is in its
   manifest) and the standard's version stamps are unchanged.
 - Smoke: every row in `06_SMOKE_TESTS.md` is pending, for the owner.
+
+## The owner's four calls (addendum-03, CT-05)
+
+- The owner answered the four open calls: "1. Widen T1  2. Accept ABS-L11  3. Ok  4. Correct it". Planned as
+  addendum-03 (c1fda62) and run as `wf_5f4fb756-6ff`: 4 of 4 landed and reviewed. The run branch was recreated from
+  master in the four repos and here.
+  - **AM-OC1 (1797f1e):** T-1 now allows U+2026 as well as the em dash. "Delete container…", "Delete this category…"
+    and "Forget unreadable categories…" carry the ellipsis. The §21 deviation row is removed. Smoke check
+    SETLAYOUT-9 (SM-AM-OC1) is pending.
+  - **AT-OC2 (ae944df, review fix 90bf891):** ABS-L11 is made. The unit band is one four-cell row for every unit, so
+    the band height no longer depends on the unit. The fallback was not taken, because the mocks cannot measure text
+    width. The owner's LOOK-19 (SM-AT-OC2) settles truncation in the client. The enable cell keeps the shipped label
+    "Enable this unit" (AT-LY).
+  - **WG-OC3 (8ce9b7a):** the labels are "Delay after joining (seconds)", "Width (px)" and "Height (px)".
+  - **LK-OC4 (2c0396a):** CONSUMERS lists the seven real O.ResetAllTooltip adopters with file:line. MultiMeters is
+    out (it uses a page reset). This is docs only; the pushed v1.77.0 tag and its CHANGELOG entry are unchanged.
+- Gate: LibKa0s 0/0, 2753 passed; AuraMaster 0/0, 2150; AbsorbTracker 0/0, 906; WhatGroup 0/0, 967. No authored .lua
+  file is over 1500 lines, and vendor drift is 0.

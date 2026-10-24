@@ -1,0 +1,6 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+AM-OC1	M3	AuraMaster	Widen owner ruling T-1 to allow the ellipsis; three confirm buttons gain it		S	SM-AM-OC1	020
+AT-OC2	M3	AbsorbTracker	ABS-L11: one band row for every unit		S	SM-AT-OC2	020
+WG-OC3	M3	WhatGroup	options-ui-§21 units on Delay after joining, Width and Height		S		020
+LK-OC4	M3	LibKa0s	CONSUMERS: correct the planned ResetAllTooltip adopters		S		020
+CT-05	M3	Ka0sAddonsCommonTasks	Record the owner calls (addendum-03)		S		020
