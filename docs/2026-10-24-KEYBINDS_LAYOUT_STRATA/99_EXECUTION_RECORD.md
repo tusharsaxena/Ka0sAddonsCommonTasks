@@ -150,3 +150,19 @@
   be done that way. Blizzard's page does not sort: `Blizzard_SettingsDefinitions_Frame/Keybindings.lua` orders sections
   by first appearance in GetBinding order, which is addon load order (folder names). Only renaming the addon folders
   would group them, and that would break saved variables and installs. Reported to the owner.
+
+## CT-02 — finalize (owner go-ahead, 2026-10-24)
+
+- Merged `--no-ff` into master and pushed, in this order. Each merge tree equals the gated branch tree, because master
+  had not moved during the run.
+  - WowAddonStandards 36da4ef, then LibKa0s 3331f63, then the v1.77.0 tag push (tag object e9b126d, commit 2f2b2e2).
+  - dev-copilot 226150a.
+  - AbsorbTracker afbbda3, AuraMaster 74e9b0f, BankLedger a021130, ConsumableMaster 23a93ad, DpsRace ae39e77,
+    DropWatcher 5227a11, KickCD fe640c4, LootHistory c7cf49c, MultiMeters c20a105, PanelMaster 88f0c46,
+    PartyFrameEnhanced 573482c, PremadeGroupsFilterExtension 278affe, PrettyChat 96b2a55, QuickComms 3b98df7,
+    WhatGroup a2a9949.
+  - Then this repo.
+- The run branch is deleted locally and on origin in every repo. `git stash list` and `git worktree list` show nothing
+  this run created. No addon version was bumped and no release was cut. The dev-copilot release (2.6.0 is in its
+  manifest) and the standard's version stamps are unchanged.
+- Smoke: every row in `06_SMOKE_TESTS.md` is pending, for the owner.
