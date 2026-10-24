@@ -1,0 +1,46 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+WS-30	M3	WowAddonStandards	options-ui-§21 (new): the settings label and tooltip conventions (U-11; XC-06, XC-08..XC-13, XC-16, XC-17, XC-24, XC-25, XC-27, XC-29, XC-30); naming-cheatsheet row; the v2.88.0 entry's intro takes item 020 and CALL-02/CALL-05	WS-90	L		U-11,XC-06,XC-08,XC-09,XC-10,XC-11,XC-12,XC-13,XC-16,XC-17,XC-24,XC-25,XC-27,XC-29,XC-30,U-09f,CALL-02,CALL-05,OWNER_SCOPE 020
+WS-31	M3	WowAddonStandards	options-ui-§7: subjects not control types, the unheaded lead switch, one-row subsections, no stem restated, no heading over an act, bespoke editors' headings (U-05a-e, XC-22); §13's mirror bullet	WS-30	S		U-05,XC-22,C12,OWNER_SCOPE 020
+WS-32	M3	WowAddonStandards	options-ui-§13: thin-tab SHOULD with its exemptions (Keybindings tab included), the strip budget (8, or 6 on a rail page), sentence-case tab labels, tab names under a rail (U-06, U-07, XC-22, XC-28, XC-31); Defaults tooltips list what they reset	WS-31	M		U-06,U-07,U-03,XC-07,XC-22,XC-28,XC-31,C17,OWNER_SCOPE 020
+WS-33	M3	WowAddonStandards	options-ui-§14: the band's height never depends on the selection, a row is stamped to the page that draws it unless both Defaults tooltips say otherwise, one link vocabulary, a stored per-instance lock is an act, PageBanner acts recorded not ruled (U-08a-e, XC-14, XC-15)	WS-32	M		U-08,XC-14,XC-15,XC-16,C3,C4,ABS-L01,KIC-L01,KIC-L02,ABS-L14,OWNER_SCOPE 020
+WS-34	M3	WowAddonStandards	options-ui-§15: Master opacity (CALL-02), composed words extended only through notes / resetPositionTooltip / lockIsPreview, the frameless packing (Minimap beside Debug console when Lock frame is omitted; Minimap and Test mode bullets amended), the omitted-row hole intended, Lock frame singular, the extras test and the Behavior tab, Reset all settings keeps its name (U-01, U-09a-f, XC-04, XC-05, XC-23); anti-pattern #106; Master alpha swept from the live docs	WS-33	L		U-01,U-09,XC-04,XC-05,XC-23,CALL-02,C2,C21,OWNER_SCOPE 020
+WS-35	M3	WowAddonStandards	options-ui-§16: one tab per styled surface (Bar: Fill, Background, Border), block order, canonical font labels bind, show toggle leads, Text tab, Size and position / Layout, Frame strata label, broadcast-tab scope, the group composers' tooltips override (U-10a-e, U-02, XC-18..XC-21); #106 gains the group clause	WS-34	M		U-10,U-02,XC-18,XC-19,XC-20,XC-21,C10,OWNER_SCOPE 020
+WS-36	M3	WowAddonStandards	options-ui-§12 (+ §5, §20 pointers): the General page's header Defaults tooltip is the global reset's own text, O.ResetAllTooltip(...) (U-04, XC-02 wording half)	WS-35	S		U-04,XC-02,OWNER_SCOPE 020
+WS-37	M3	WowAddonStandards	The settings-layout ripple: AUDIT.md (b) composed-words and packing read and new check (l), 'Twelve checks'; NEW_ADDON_CONTEXT 8b bullets (frameless Minimap exception), definition-of-done box; NEW_ADDON.md; the options-ui index blurb; EXECUTIVE_SUMMARY; open-evolutions records U-08d, U-13, U-14, U-15	WS-36	M		U-08,U-09c,U-13,U-14,U-15,U-01,U-11,CALL-05,OWNER_SCOPE 020
+WS-38	M3	WowAddonStandards	library-stack-§7: the LibKa0s v1.77.0 layout surfaces (MasterControls notes / resetPositionTooltip / lockIsPreview, Master opacity, frameless packing, group tooltips, O.ResetAllTooltip), minors read off the closed library branch	WS-37,LK-95	S		U-01,U-02,U-04,U-09,CALL-02
+WS-95	M3	WowAddonStandards	Close the v2.88.0 settings-layout rulings: entry re-read against the M3 diff (rulings (1)-(16) contiguous), index and pack agreement, cross-surface names vs LibKa0s docs/api, Master alpha sweep, US English, gate; file the U-13 issue (CALL-05)	WS-30,WS-31,WS-32,WS-33,WS-34,WS-35,WS-36,WS-37,WS-38,LK-95	S		U-13,CALL-05,WowAddonStandards CLAUDE.md (check-standard, ripple, US English)
+LK-30	M3	LibKa0s	OptionsCompose minor 9: MasterControls notes, resetPositionTooltip and lockIsPreview (U-01, XC-04, XC-05); the alpha row labeled Master opacity (CALL-02, U-09a); the frameless packing (U-09c); test-first; only the framed golden moves; Options doc moved to 30.2.34.3.5.9.2.9.4.2.1.3	LK-90,WS-34	L	SM-LK-30a,SM-LK-30b,SM-LK-30c	U-01,U-09,XC-04,XC-05,CALL-02,options-ui-§15 (WS-34)
+LK-31	M3	LibKa0s	OptionsCompose minor 10: spec.tooltips beside spec.labels on ColorPair, FontGroup, BorderGroup and BarGroup, a swatch keeping its class-color sentence, MasterControls ignoring it (U-02); Options doc moved to 30.2.34.3.5.9.2.10.4.2.1.3	LK-30,WS-35	M	SM-LK-31a	U-02,ABS-P15,ABS-L12,options-ui-§16 (WS-35)
+LK-32	M3	LibKa0s	OptionsCompose minor 11: O.ResetAllTooltip(tail), the Reset all settings tooltip for the General page's header Defaults (U-04); surface parity and the stub owed; Options doc moved to 30.2.34.3.5.9.2.11.4.2.1.3	LK-31,WS-36	M	SM-LK-32a	U-04,XC-02,options-ui-§12 (WS-36)
+LK-95	M3	LibKa0s	Re-close v1.77.0 after the layout extension: versions block and intro, the one Options doc at 30.2.34.3.5.9.2.11.4.2.1.3, key-history lines, test-cases, CONSUMERS and releasing Consumers rows, band re-measure, release battery (0 over CCN 15), MOVE the local annotated tag (never pushed) recording old and new sha; file the deferred-surface issue	LK-30,LK-31,LK-32	M		U-14,U-08,RESUME §5 (tag move),docs/releasing.md order of operations
+AT-RV2	M3	AbsorbTracker	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,AT-ZS	S		
+AT-LY	M3	AbsorbTracker	Item 020: the accepted settings-layout changes (15)	AT-RV2	L	SM-AT-LY	020
+AM-RV2	M3	AuraMaster	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,AM-ZS	S		
+AM-LY	M3	AuraMaster	Item 020: the accepted settings-layout changes (33)	AM-RV2	L	SM-AM-LY	020
+BL-RV2	M3	BankLedger	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,BL-ZS	S		
+BL-LY	M3	BankLedger	Item 020: the accepted settings-layout changes (17)	BL-RV2	L	SM-BL-LY	020
+CM-RV2	M3	ConsumableMaster	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,CM-ZS	S		
+CM-LY	M3	ConsumableMaster	Item 020: the accepted settings-layout changes (29)	CM-RV2	L	SM-CM-LY	020
+DR-RV2	M3	DpsRace	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,DR-ZS	S		
+DR-LY	M3	DpsRace	Item 020: the accepted settings-layout changes (17)	DR-RV2	L	SM-DR-LY	020
+DW-RV2	M3	DropWatcher	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,DW-ZS	S		
+DW-LY	M3	DropWatcher	Item 020: the accepted settings-layout changes (13)	DW-RV2	L	SM-DW-LY	020
+KC-RV2	M3	KickCD	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,KC-ZS	S		
+KC-LY	M3	KickCD	Item 020: the accepted settings-layout changes (34)	KC-RV2	L	SM-KC-LY	020
+LH-RV2	M3	LootHistory	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,LH-ZS	S		
+LH-LY	M3	LootHistory	Item 020: the accepted settings-layout changes (23)	LH-RV2	L	SM-LH-LY	020
+MM-RV2	M3	MultiMeters	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,MM-ZS	S		
+MM-LY	M3	MultiMeters	Item 020: the accepted settings-layout changes (31)	MM-RV2	L	SM-MM-LY	020
+PM-RV2	M3	PanelMaster	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,PM-ZS	S		
+PM-LY	M3	PanelMaster	Item 020: the accepted settings-layout changes (27)	PM-RV2	L	SM-PM-LY	020
+PF-RV2	M3	PartyFrameEnhanced	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,PF-ZS	S		
+PF-LY	M3	PartyFrameEnhanced	Item 020: the accepted settings-layout changes (14)	PF-RV2	L	SM-PF-LY	020
+PG-RV2	M3	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,PG-ZS	S		
+PG-LY	M3	PremadeGroupsFilterExtension	Item 020: the accepted settings-layout changes (13)	PG-RV2	L	SM-PG-LY	020
+PC-RV2	M3	PrettyChat	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,PC-ZS	S		
+PC-LY	M3	PrettyChat	Item 020: the accepted settings-layout changes (11)	PC-RV2	L	SM-PC-LY	020
+QC-RV2	M3	QuickComms	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,QC-ZS	S		
+QC-LY	M3	QuickComms	Item 020: the accepted settings-layout changes (32)	QC-RV2	L	SM-QC-LY	020
+WG-RV2	M3	WhatGroup	Re-vendor LibKa0s v1.77.0 again after the tag moved (LK-95)	LK-95,WS-95,WG-ZS	S		
+WG-LY	M3	WhatGroup	Item 020: the accepted settings-layout changes (17)	WG-RV2	L	SM-WG-LY	020
+CT-03	M3	Ka0sAddonsCommonTasks	Record M3 in 99_EXECUTION_RECORD.md and 06_SMOKE_TESTS.md		S		
