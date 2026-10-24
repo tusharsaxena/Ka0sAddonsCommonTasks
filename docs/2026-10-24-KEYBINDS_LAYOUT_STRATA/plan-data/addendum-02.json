@@ -1,0 +1,367 @@
+{
+ "items": [
+  {
+   "id": "WS-40",
+   "milestone": "M3",
+   "repo": "WowAddonStandards",
+   "title": "options-ui-§20: one key button and Clear per row (owner follow-up to 015)",
+   "depends_on": [],
+   "effort": "S",
+   "spec": "OWNER REQUEST (2026-10-24, binding): 'For all the keybindings in the individual addon > General > Keybindings, just have a single keybinding button and clear button. In the Settings > Game > Keybindings, leave it as is.' THE ROW (lead's design): the binding label, ONE key button, and Clear. The key button shows the action's FIRST key (GetBindingKey's first return) or 'Not Bound'. Left-click listens; a key binds into slot 1 with the client's own slot semantics (the existing lib.__keybindSet(command, 1, key)), so a second key the player set on the game's page is kept. Nothing may be hidden: when the action also holds a second key, the button reads '<KEY1> +1' and its tooltip names every key and says the others were set on the game's Key Bindings page (Options -> Keybindings). Right-click on the button clears the key it shows (slot 1; a second key then moves up and shows). Clear removes every key of the action (unchanged). Escape cancels, combat refuses, the Saved for line, the outcome line and the UPDATE_BINDINGS sync are unchanged. Options -> Keybindings is NOT touched. Rewrite options-ui-§20's 'A row.' bullet: ONE key button, not two; keep the reason a second key must not be hidden by stating the '+1' and tooltip rule instead (the old text said a single slot would hide a key the player set on the client's page; the new rule answers that). Update the 'Behaves as the client's page' bullet (right-click clears the key shown) and the Testing bullet only where it names a slot number. Ripple every live mention of two slots / Key 1 / Key 2 for the keybindings tab: launcher.md, STANDARDS.md (Sections map blurb and the v2.88.0 entry: add the next ruling number naming the owner's follow-up), EXECUTIVE_SUMMARY.md, NEW_ADDON_CONTEXT.md, AUDIT.md if it checks slots. v2.88.0 is unreleased: no version or date change. bash scripts/check-standard.sh must pass.",
+   "verify": "bash scripts/check-standard.sh all passed; `git grep -nE 'Key 2|two (key )?slots' -- standards` finds no live keybindings-tab rule",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "LK-40",
+   "milestone": "M3",
+   "repo": "LibKa0s",
+   "title": "OptionsKeybinds minor 4: one key button and Clear per row",
+   "depends_on": [
+    "WS-40"
+   ],
+   "effort": "M",
+   "spec": "OWNER REQUEST (2026-10-24, binding): 'For all the keybindings in the individual addon > General > Keybindings, just have a single keybinding button and clear button. In the Settings > Game > Keybindings, leave it as is.' THE ROW (lead's design): the binding label, ONE key button, and Clear. The key button shows the action's FIRST key (GetBindingKey's first return) or 'Not Bound'. Left-click listens; a key binds into slot 1 with the client's own slot semantics (the existing lib.__keybindSet(command, 1, key)), so a second key the player set on the game's page is kept. Nothing may be hidden: when the action also holds a second key, the button reads '<KEY1> +1' and its tooltip names every key and says the others were set on the game's Key Bindings page (Options -> Keybindings). Right-click on the button clears the key it shows (slot 1; a second key then moves up and shows). Clear removes every key of the action (unchanged). Escape cancels, combat refuses, the Saved for line, the outcome line and the UPDATE_BINDINGS sync are unchanged. Options -> Keybindings is NOT touched. Implement in LibKa0s/OptionsKeybinds.lua (bump KEYBINDS_MINOR 3 -> 4, keep the upgrade guard pattern). Remove the second slot widget and the 'Key 2' word (rename 'Key 1' if it is a visible word that no longer fits; the button needs no label of its own beyond its key text). Row width and alignment as before minus one button. TESTS FIRST in the library's suite: one key widget per row; the '+1' text and the tooltip listing both keys when a second key exists; binding through the button keeps key 2; right-click clears key 1 and key 2 moves up; Clear removes both; the existing capture/combat/sync cases stay green. Test kit: Kit.keybindThroughTab(row, slot, key) must keep working for slot 1 (and for slot 2 bind through the model, documented as setting the game-page key); if its behaviour changes, bump the kit revision and say so in testkit's changelog. Update docs/api for OptionsKeybinds, the CHANGELOG's v1.77.0 entry (still unreleased locally), and any README/doc line naming two slots. Do not touch the tag (LK-96 moves it).",
+   "verify": "luacheck 0/0; lua tests/run.lua 0 failed; `git grep -n 'Key 2' -- LibKa0s` empty",
+   "smoke": [
+    "SM-LK-40a: in a windowed addon, General > Keybindings shows one key button and Clear per action; bind a key: Options -> Keybindings shows it in the first column; bind a second key on Options -> Keybindings: the tab's button reads '<key> +1' and its tooltip names both keys; Clear on the tab removes both"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "LK-96",
+   "milestone": "M3",
+   "repo": "LibKa0s",
+   "title": "Re-close v1.77.0 with the one-button keybindings row (moves the local tag)",
+   "depends_on": [
+    "LK-40"
+   ],
+   "effort": "S",
+   "spec": "Re-run the library's full release battery exactly as LK-95 did (four suites, zero CCN > 15, blindFiles 0, crashedFiles 0) into a fresh docs/automated-tests bundle, commit it with subject 'LK-96: ', then move the LOCAL annotated tag: `git tag -f -a v1.77.0 -m <same message style as LK-95>` on that commit. NEVER push the tag. Append to Ka0sAddonsCommonTasks/docs/2026-10-24-KEYBINDS_LAYOUT_STRATA/99_EXECUTION_RECORD.md (do not commit there) a line with the old and new commit and tag-object sha, as LK-95 did. If the CCN gate fails, split the function in a further 'LK-96: ' commit.",
+   "verify": "git -C ../LibKa0s rev-parse v1.77.0^{} equals the LK-96 commit; release battery green",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "WS-41",
+   "milestone": "M3",
+   "repo": "WowAddonStandards",
+   "title": "library-stack-§7: OptionsKeybinds minor 4",
+   "depends_on": [
+    "LK-96",
+    "WS-40"
+   ],
+   "effort": "S",
+   "spec": "Update library-stack-§7's OptionsKeybinds row (and any other place that names OptionsKeybinds minor 3) to minor 4, one key button per row, citing the v1.77.0 tag as now moved by LK-96. check-standard.sh must pass. v2.88.0 stays unreleased.",
+   "verify": "bash scripts/check-standard.sh all passed",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "AT-RV3",
+   "milestone": "M3",
+   "repo": "AbsorbTracker",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "AT-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as AT-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "AM-RV3",
+   "milestone": "M3",
+   "repo": "AuraMaster",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "AM-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as AM-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "BL-RV3",
+   "milestone": "M3",
+   "repo": "BankLedger",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "BL-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as BL-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite. This addon has a General > Keybindings tab: rewrite every live description of the row (docs/settings-panel.md or the addon's settings doc, docs/smoke-tests.md, README, comments in settings/ that name Key 1 / Key 2 / two slots) to: one key button and Clear, '<key> +1' with a tooltip when the game's page holds a second key. A smoke check whose steps change is rewritten and set back to pending (its old owner mark cleared) and listed under Pending sign-off. Adjust any addon test that drove slot 2 through the tab. Do not touch Bindings.xml, NS.BINDINGS or the labels.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty; `git grep -nE 'Key 2' -- docs settings README.md` finds no live keybindings-tab text",
+   "smoke": [
+    "SM-BL-RV3: General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "CM-RV3",
+   "milestone": "M3",
+   "repo": "ConsumableMaster",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "CM-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as CM-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "DR-RV3",
+   "milestone": "M3",
+   "repo": "DpsRace",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "DR-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as DR-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite. This addon has a General > Keybindings tab: rewrite every live description of the row (docs/settings-panel.md or the addon's settings doc, docs/smoke-tests.md, README, comments in settings/ that name Key 1 / Key 2 / two slots) to: one key button and Clear, '<key> +1' with a tooltip when the game's page holds a second key. A smoke check whose steps change is rewritten and set back to pending (its old owner mark cleared) and listed under Pending sign-off. Adjust any addon test that drove slot 2 through the tab. Do not touch Bindings.xml, NS.BINDINGS or the labels.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty; `git grep -nE 'Key 2' -- docs settings README.md` finds no live keybindings-tab text",
+   "smoke": [
+    "SM-DR-RV3: General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "DW-RV3",
+   "milestone": "M3",
+   "repo": "DropWatcher",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "DW-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as DW-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite. This addon has a General > Keybindings tab: rewrite every live description of the row (docs/settings-panel.md or the addon's settings doc, docs/smoke-tests.md, README, comments in settings/ that name Key 1 / Key 2 / two slots) to: one key button and Clear, '<key> +1' with a tooltip when the game's page holds a second key. A smoke check whose steps change is rewritten and set back to pending (its old owner mark cleared) and listed under Pending sign-off. Adjust any addon test that drove slot 2 through the tab. Do not touch Bindings.xml, NS.BINDINGS or the labels.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty; `git grep -nE 'Key 2' -- docs settings README.md` finds no live keybindings-tab text",
+   "smoke": [
+    "SM-DW-RV3: General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "KC-RV3",
+   "milestone": "M3",
+   "repo": "KickCD",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "KC-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as KC-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "LH-RV3",
+   "milestone": "M3",
+   "repo": "LootHistory",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "LH-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as LH-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite. This addon has a General > Keybindings tab: rewrite every live description of the row (docs/settings-panel.md or the addon's settings doc, docs/smoke-tests.md, README, comments in settings/ that name Key 1 / Key 2 / two slots) to: one key button and Clear, '<key> +1' with a tooltip when the game's page holds a second key. A smoke check whose steps change is rewritten and set back to pending (its old owner mark cleared) and listed under Pending sign-off. Adjust any addon test that drove slot 2 through the tab. Do not touch Bindings.xml, NS.BINDINGS or the labels.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty; `git grep -nE 'Key 2' -- docs settings README.md` finds no live keybindings-tab text",
+   "smoke": [
+    "SM-LH-RV3: General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "MM-RV3",
+   "milestone": "M3",
+   "repo": "MultiMeters",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "MM-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as MM-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite. This addon has a General > Keybindings tab: rewrite every live description of the row (docs/settings-panel.md or the addon's settings doc, docs/smoke-tests.md, README, comments in settings/ that name Key 1 / Key 2 / two slots) to: one key button and Clear, '<key> +1' with a tooltip when the game's page holds a second key. A smoke check whose steps change is rewritten and set back to pending (its old owner mark cleared) and listed under Pending sign-off. Adjust any addon test that drove slot 2 through the tab. Do not touch Bindings.xml, NS.BINDINGS or the labels.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty; `git grep -nE 'Key 2' -- docs settings README.md` finds no live keybindings-tab text",
+   "smoke": [
+    "SM-MM-RV3: General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "PM-RV3",
+   "milestone": "M3",
+   "repo": "PanelMaster",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "PM-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as PM-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "PF-RV3",
+   "milestone": "M3",
+   "repo": "PartyFrameEnhanced",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "PF-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as PF-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "PG-RV3",
+   "milestone": "M3",
+   "repo": "PremadeGroupsFilterExtension",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "PG-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as PG-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "PC-RV3",
+   "milestone": "M3",
+   "repo": "PrettyChat",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button)",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "PC-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as PC-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "QC-RV3",
+   "milestone": "M3",
+   "repo": "QuickComms",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "QC-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as QC-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite. This addon has a General > Keybindings tab: rewrite every live description of the row (docs/settings-panel.md or the addon's settings doc, docs/smoke-tests.md, README, comments in settings/ that name Key 1 / Key 2 / two slots) to: one key button and Clear, '<key> +1' with a tooltip when the game's page holds a second key. A smoke check whose steps change is rewritten and set back to pending (its old owner mark cleared) and listed under Pending sign-off. Adjust any addon test that drove slot 2 through the tab. Do not touch Bindings.xml, NS.BINDINGS or the labels.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty; `git grep -nE 'Key 2' -- docs settings README.md` finds no live keybindings-tab text",
+   "smoke": [
+    "SM-QC-RV3: General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "WG-RV3",
+   "milestone": "M3",
+   "repo": "WhatGroup",
+   "title": "Re-vendor LibKa0s v1.77.0 after LK-96 (one key button) + keybindings docs",
+   "depends_on": [
+    "LK-96",
+    "WS-41",
+    "WG-LY"
+   ],
+   "effort": "S",
+   "spec": "Re-vendor the LibKa0s v1.77.0 LOCAL tag again: LK-96 moved it (OptionsKeybinds minor 4, the owner's one-key-button follow-up). Do exactly as WG-RV2 did, following the INSTALLED /dev-copilot:wow-revendor-libka0s procedure (copy libs/LibKa0s and tests/_kit whole from `git -C ../LibKa0s archive v1.77.0 LibKa0s testkit`, keep the 'LibKa0s icons:' declaration and prune media/icons with the tag's tools/prune-icons.lua). Append a section '## Re-vendor after the tag moved again (one key button)' to docs/revendor/2026-10-24-v1.77.0/05_SUMMARY.md naming the old and new tag sha and the minors that moved. Add any new public Options member to the degradation stub as an inert member if kit surface parity asks for it. Keep the README test badge and docs/test-cases.md equal to the suite. This addon has a General > Keybindings tab: rewrite every live description of the row (docs/settings-panel.md or the addon's settings doc, docs/smoke-tests.md, README, comments in settings/ that name Key 1 / Key 2 / two slots) to: one key button and Clear, '<key> +1' with a tooltip when the game's page holds a second key. A smoke check whose steps change is rewritten and set back to pending (its old owner mark cleared) and listed under Pending sign-off. Adjust any addon test that drove slot 2 through the tab. Do not touch Bindings.xml, NS.BINDINGS or the labels.",
+   "verify": "luacheck . (0/0); lua tests/run.lua green; no authored .lua above 1500 lines (the repo's CLAUDE.md names the exact commands); diff -r --strip-trailing-cr ../LibKa0s/LibKa0s libs/LibKa0s (icons excluded) is empty; `git grep -nE 'Key 2' -- docs settings README.md` finds no live keybindings-tab text",
+   "smoke": [
+    "SM-WG-RV3: General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window"
+   ],
+   "issue_refs": [
+    "015"
+   ]
+  },
+  {
+   "id": "CT-04",
+   "milestone": "M3",
+   "repo": "Ka0sAddonsCommonTasks",
+   "title": "Record the one-key-button follow-up (addendum-02)",
+   "depends_on": [],
+   "effort": "S",
+   "spec": "Lead-owned: outcomes, the tag move (old and new sha), new smoke ids pending.",
+   "verify": "resume-state.sh shows M3 complete",
+   "smoke": [],
+   "issue_refs": [
+    "015"
+   ]
+  }
+ ]
+}
