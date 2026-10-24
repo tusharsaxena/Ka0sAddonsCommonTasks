@@ -191,3 +191,10 @@
   `pass (owner, 2026-10-24)`, including the DC rows (dev-copilot 2.6.0), POPUP-10, SM-LK-40a, SM-AM-OC1 and SM-AT-OC2.
 - The addons' own `docs/smoke-tests.md` "Pending sign-off" lists still name this run's checks; they were not
   edited by this record.
+- Later the same day, on the owner's request, the addons' own `docs/smoke-tests.md` were signed off too (run
+  `wf_737cef67-dfd`): one commit per addon on master, pushed, each gate green, and no check left pending. These are the
+  14 addons other than DpsRace, which the owner is editing in another session. Commits: AbsorbTracker 33ce04f,
+  AuraMaster 7da933a, BankLedger c37ecb3, ConsumableMaster 8bfd73a, DropWatcher 4ffcb15, KickCD 34ddb11,
+  LootHistory 2520eef, MultiMeters 9ccc26b, PanelMaster 5797ab9, PartyFrameEnhanced 3dce698,
+  PremadeGroupsFilterExtension 7ba8ad9, PrettyChat f87abe6, QuickComms e5062ae, WhatGroup e0dac02. WhatGroup's
+  POPUP-10 is a probe, so it is recorded as run and reported passing, with no observation captured.
