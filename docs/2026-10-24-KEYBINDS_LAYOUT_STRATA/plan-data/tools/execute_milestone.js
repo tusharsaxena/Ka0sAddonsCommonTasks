@@ -1,6 +1,6 @@
 export const meta = {
   name: 'ka0s-execute-milestone-2026-10-24',
-  description: 'Execute sim/preview/strips plan items: dependency-aware scheduler, test-first implement, commit "<ID>: …", independent review, one fix round',
+  description: 'Execute keybindings/layout/strata plan items: dependency-aware scheduler, test-first implement, commit "<ID>: …", independent review, one fix round',
   phases: [
     { title: 'Implement', detail: 'one agent per item, serial within a repo, parallel across repos' },
     { title: 'Review', detail: 'independent review of each item commit' },

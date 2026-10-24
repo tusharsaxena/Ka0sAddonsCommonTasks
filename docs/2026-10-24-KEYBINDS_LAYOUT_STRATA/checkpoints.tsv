@@ -1,1 +1,2 @@
 date	milestone	evidence
+2026-10-24	M1	23/23 reviewed (3 fix rounds: WS-04, LK-11, WS-07); WowAddonStandards 897fbd3 check-standard all passed; LibKa0s 78240f7 luacheck 0/0 194 files, 2713 passed 0 failed 2 skipped, local tag v1.77.0 (not pushed); dev-copilot 9ba1651 5 script suites OK, 13 overlays OK; branches + refs/notes/ka0s-review pushed
