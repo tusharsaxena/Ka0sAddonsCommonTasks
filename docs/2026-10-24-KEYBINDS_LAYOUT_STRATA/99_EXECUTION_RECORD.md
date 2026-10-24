@@ -184,3 +184,10 @@
     out (it uses a page reset). This is docs only; the pushed v1.77.0 tag and its CHANGELOG entry are unchanged.
 - Gate: LibKa0s 0/0, 2753 passed; AuraMaster 0/0, 2150; AbsorbTracker 0/0, 906; WhatGroup 0/0, 967. No authored .lua
   file is over 1500 lines, and vendor drift is 0.
+
+## Owner smoke (2026-10-24)
+
+- The owner reported: "All smoke tests pass". All 83 rows in `06_SMOKE_TESTS.md` are recorded as
+  `pass (owner, 2026-10-24)`, including the DC rows (dev-copilot 2.6.0), POPUP-10, SM-LK-40a, SM-AM-OC1 and SM-AT-OC2.
+- The addons' own `docs/smoke-tests.md` "Pending sign-off" lists still name this run's checks; they were not
+  edited by this record.
