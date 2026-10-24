@@ -109,3 +109,18 @@
 - Smoke handling varies. Some addons rewrote the existing checks that name old labels and reset them to pending
   (AT, BL, PC, PF, PM, CM). Others kept the owner's passes and added new LAYOUT/PANEL checks that govern where
   they differ (DW, KC, MM, QC, PG, WG; WG reset PANEL-2).
+
+## Handover (CT-01)
+
+- 105 of 107 items have landed: M1 23, M2 37, M3 44, plus CT-03 and this record. Only CT-02 remains, the
+  finalize, which waits for the owner's merge go-ahead.
+- Every run branch and `refs/notes/ka0s-review` is pushed: WowAddonStandards, LibKa0s, dev-copilot, the 15 addons
+  and this repo. The v1.77.0 tag (afae2f7) is local only, and CT-02 pushes it after LibKa0s merges.
+- No addon version was bumped and no release was cut.
+- The owner's checks are every row in `06_SMOKE_TESTS.md`, all pending. The DC rows need dev-copilot 2.6.0
+  installed (installed: 2.4.0).
+- The owner's open calls are listed under "M3 — settings layout, outcomes": the AuraMaster ellipsis register row,
+  the AbsorbTracker band height, the WhatGroup §21 units, and the CONSUMERS planned-adopter row.
+- CT-02 order: WowAddonStandards → LibKa0s (then `git push origin v1.77.0`) → dev-copilot → the 15 addons →
+  Ka0sAddonsCommonTasks. Merge `--no-ff`, then delete the branch locally and on origin. Then remove every stash
+  and worktree this run created.
