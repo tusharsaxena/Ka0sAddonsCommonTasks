@@ -1,7 +1,7 @@
 {
  "source": "preview.html decisions + defaults",
  "threshold": 50,
- "decided": 0,
+ "decided": 6,
  "addons": {
   "AbsorbTracker": {
    "layout": [
@@ -551,37 +551,37 @@
   "CALL-01": {
    "title": "QuickComms gets its in-panel key editor back",
    "decision": "recommendation",
-   "explicit": false,
+   "explicit": true,
    "recommendation": "Proceed: QuickComms gets the same shared Keybindings tab as the other six. The 2026-10-21 decision is recorded as superseded."
   },
   "CALL-02": {
    "title": "Rename \"Master alpha\" to \"Master opacity\" everywhere",
    "decision": "recommendation",
-   "explicit": false,
+   "explicit": true,
    "recommendation": "Rename it (cross-addon convention XC-10, 75%)."
   },
   "CALL-03": {
    "title": "Binding labels in Settings > Keybindings",
    "decision": "recommendation",
-   "explicit": false,
+   "explicit": true,
    "recommendation": "Use these labels (60-90%)."
   },
   "CALL-04": {
    "title": "MultiMeters keeps \"Dialog\" in its strata choices",
    "decision": "recommendation",
-   "explicit": false,
+   "explicit": true,
    "recommendation": "Keep the value and add the warning. Removing it would be a separate settings change."
   },
   "CALL-05": {
    "title": "Defer the swatch disabledIf idea",
    "decision": "recommendation",
-   "explicit": false,
+   "explicit": true,
    "recommendation": "File it as an issue for a later run instead of doing it here."
   },
   "CALL-06": {
    "title": "KickCD: charge counts draw above the proc glow",
    "decision": "recommendation",
-   "explicit": false,
+   "explicit": true,
    "recommendation": "Text above glow, with a smoke check for you to look at."
   }
  }
