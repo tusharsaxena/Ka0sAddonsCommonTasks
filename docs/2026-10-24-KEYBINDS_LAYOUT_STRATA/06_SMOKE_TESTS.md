@@ -77,3 +77,11 @@ Status is **pending** until the owner reports. Never mark one passed on the owne
 | SM-LK-30c | in an addon whose LY item passes lockIsPreview: hover Lock frame and read the preview sentence; in an addon whose LY item passes notes, hover the noted row and read the canonical tooltip followed by the addon's sentence | pending |
 | SM-LK-31a | in AbsorbTracker after its LY item: hover Bar opacity; the tooltip is the addon's wording, the label is still Bar opacity, and color swatches still end with the class-color sentence | pending |
 | SM-LK-32a | in a windowed addon after its LY item, hover the General page's header Defaults: the text equals Reset all settings' tooltip followed by 'Key bindings are not changed.' | pending |
+| SM-LK-40a | in a windowed addon, General > Keybindings shows one key button and Clear per action; bind a key: Options -> Keybindings shows it in the first column; bind a second key on Options -> Keybindings: the tab's button reads '<key> +1' and its tooltip names both keys; Clear on the tab removes both | pending |
+| SM-BL-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
+| SM-DR-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
+| SM-DW-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
+| SM-LH-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
+| SM-MM-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
+| SM-QC-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |
+| SM-WG-RV3 | General > Keybindings shows one key button and Clear per action, and a key bound there still toggles the window | pending |

@@ -124,3 +124,29 @@
 - CT-02 order: WowAddonStandards → LibKa0s (then `git push origin v1.77.0`) → dev-copilot → the 15 addons →
   Ka0sAddonsCommonTasks. Merge `--no-ff`, then delete the branch locally and on origin. Then remove every stash
   and worktree this run created.
+
+## Addendum-02 — one-button keybindings row (015 follow-up)
+
+- LK-96 moved the local tag v1.77.0: commit afae2f75cb7ff61c57156d9a3d8a6b2b9f4c5e10 (tag object
+  b2b8ee25c5f9fa26db146254bf786b366dec986b) -> 2f2b2e22b4c9219cd8a4101d7e894681c7aea16e (tag object
+  e9b126d961c2970e5b14d0566480f7c1d8b5e5e8); not pushed. Release bundle 20261024-162023 (measured
+  7790dca): lint 0/0 in 197 files, 2755 tests 0 failed, complexity 0 over CCN 15, blindFiles 0,
+  crashedFiles 0.
+
+## Pre-merge (CT-02 stage 1) and the one-key-button follow-up (addendum-02, CT-04)
+
+- The owner gave the merge go-ahead. Stage 1 (run `wf_dba2ebab-2ce`) did a content-only doc sync and a bounded gate in
+  18 repos, all green. 11 repos committed `CT-02: sync docs before the merge`; 7 were clean.
+  - Declined, for the owner: dev-copilot README.md:5 still says standard v2.86.0 (bump-version rolls it).
+    WhatGroup.toc:96 cites core/CoreSetup.lua:34, which is now :41 (a comment; comments were out of scope).
+    LibKa0s README notes dated "as of v1.75.0" were left as dated.
+- Before the merge, the owner asked for one key button and Clear per action on the in-addon Keybindings tab, with
+  Options -> Keybindings left as it is. Planned as addendum-02 (f33f7f7) and run as `wf_aca45a46-8d2`: 19 of 19 landed
+  and reviewed.
+  - Fix rounds: LK-40 (the kit's slot-2 driver reported KEY_BOUND for ESCAPE or a lone modifier), and RV3 for AM, CM,
+    KC, PC, PG, PM and QC.
+  - Kit revision stays 42 because v1.77.0 has not shipped. The change is recorded in the version-42 doc.
+- The owner also asked for the Options -> Keybindings sections to sort by "Ka0s <name>". This is not done, and cannot
+  be done that way. Blizzard's page does not sort: `Blizzard_SettingsDefinitions_Frame/Keybindings.lua` orders sections
+  by first appearance in GetBinding order, which is addon load order (folder names). Only renaming the addon folders
+  would group them, and that would break saved variables and installs. Reported to the owner.
