@@ -36,3 +36,28 @@
 - Issues filed for the ideas the review moved out of item 020 (XC-34) and for CALL-05 (U-13):
   QuickComms#10 (QUI-L16), QuickComms#11 (QUI-L30), PartyFrameEnhanced#16 (PAR-L17), PrettyChat#19..#22
   (PRC-L02, L06, L11, L12), WowAddonStandards#13 (U-13). All `state:untriaged`, `severity:low`.
+
+## M2 — strata (ZS)
+
+- Run `wf_bf619483-f06`: 15 of 15 landed and reviewed, no library gap. PC-ZS's review asked for two doc fixes,
+  and its fix round made them.
+- **Lead fix, WG-ZS (f664624).** The implementer took WHA-Z01 beyond the accepted text. It made the popup body
+  ignore the mouse permanently, so a click on the visible popup fell through. The accepted text disables the body
+  only if an in-game probe allows it, and otherwise records the residual. f664624 restores `f:EnableMouse(true)`
+  and records the soft-hide residual in the ARCHITECTURE register. POPUP-10 is now the owner's in-game probe.
+- Accepted deviations, recorded in each commit body:
+  - KickCD and PrettyChat name the table `NS.Const.LAYERS`, their existing constants module.
+  - AbsorbTracker, ConsumableMaster and AuraMaster use the standard's level bands where the analysis drafted
+    other numbers.
+  - DropWatcher sets the Offer panel's strata at build, not in `dock()`.
+  - Unaccepted ids were left out, as specified (for example LOO-Z07, PAR-Z02, PAR-Z05, QUI-Z08).
+
+## M3 — settings layout (020), planned
+
+- Design run `wf_0f27c45a-4b1`: 9 agents. The adversarial review raised 11 issues; all were resolved in the fix
+  round.
+- U-14 was dropped from the library: every accepted change it would have served can be built on the existing
+  surface, and LK-95 files an issue for it.
+- 4 layout ids were vetoed for conflicts: AUR-L01, CON-L02, DPS-L14 (CALL-03 labels) and KIC-L29 (XC-33 is
+  all-or-none). That leaves 326 to make.
+- addendum-01: 45 items (7b60430).
