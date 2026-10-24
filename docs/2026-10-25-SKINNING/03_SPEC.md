@@ -1,5 +1,7 @@
 # Spec: Ka0s skins, leg 1 (engine + LootHistory prototype)
 
+Plan-review resolutions in `plan-data/items.json` (M0, `plan-data/plan-review.json`) bind over this page where they differ (notably: Appearance sits immediately before Keybindings; LK-03 is engine + Ka0s Default, LK-11 the other eight skins; the EllesmereUIDB read is an amendment of library-stack-§6, not a register row).
+
 Binding inputs: [`inputs/OWNER_SCOPE.md`](inputs/OWNER_SCOPE.md) (the owner's rulings R1-R8). Evidence:
 [`inputs/LIBKA0S_INTERNALS.md`](inputs/LIBKA0S_INTERNALS.md), [`inputs/LOOTHISTORY_SURFACES.md`](inputs/LOOTHISTORY_SURFACES.md),
 [`inputs/ACEGUI_AND_ENGINE_RESEARCH.md`](inputs/ACEGUI_AND_ENGINE_RESEARCH.md). Token source:

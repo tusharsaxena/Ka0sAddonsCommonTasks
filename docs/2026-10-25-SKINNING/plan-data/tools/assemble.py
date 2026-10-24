@@ -1,4 +1,4 @@
-"""Write plan-data/items.json and items.tsv from the item table below (the plan's single source)."""
+"""DO NOT RE-RUN after M0: apply_review.py has folded the plan review into items.json. Write plan-data/items.json and items.tsv from the item table below (the plan's single source)."""
 import json, os
 
 HERE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
