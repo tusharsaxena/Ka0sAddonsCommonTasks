@@ -1,0 +1,30 @@
+{
+ "items": [
+  {
+   "id": "LK-A3",
+   "milestone": "M2",
+   "repo": "LibKa0s",
+   "depends_on": [
+    "LK-A2"
+   ],
+   "effort": "M",
+   "title": "SkinDefs minor 6: every remaining LootHistory constant gets a token, in ONE sweep (library gap from LH-04)",
+   "spec": "Additive, the LK-A2 pattern (SkinDefs minor bump, in-flight docs/api Skin key moved by git mv, v1.78.0 CHANGELOG extended again, no tag, no push). LH-04's reported gap (each Ka0s Default value = today's LootHistory constant exactly): text.value {0.8,0.8,0.82,1} (AnalyticsCharts.lua:170/:256/:283/:393; analytics_golden.txt); text.bodyAlt {0.86,0.86,0.86,1} (settings/Panel.lua:708; panel_auction_golden.txt); text.subtle {0.85,0.85,0.85,1} (HoldingsTab.lua:415/:418); text.highlight {1,1,1,1} (HoldingsTab.lua:391); gtip.value {1,1,1,1} (Compat.lua:647/:661/:674, Timeline.lua:542, AnalyticsCharts.lua:29/:140, Panel.lua:647); icon.dim {0.55,0.55,0.55,1} (Panel.lua:721); sem.goodAlt {0.25,1,0.25,1}, sem.badAlt {1,0.25,0.25,1} (LedgerFormat.lua:35-44, |cff40ff40/|cffff4040 byte-exact); sem.warbandAlt {0.4,0.78,1,1} (HoldingsTab.lua:308). BEFORE implementing, SWEEP ../LootHistory (read-only) for every hard-coded color/alpha constant on the surfaces still to be skinned by LH-04 (Insights/AnalyticsCharts/AnalyticsFormat/LedgerFormat, Timeline, Holdings, the AH settings table, Compat tooltips), LH-06 (LootHistory's own settings widgets, Profiles page) and LH-05 (sim panel, test strip, debug console, perf, copy windows, library-owned tooltips) that no existing token (03_SPEC token schema + LK-A2's sem.bound*/danger + the statusX tokens) reproduces EXACTLY under Ka0s Default (byte-exact for |cff escapes; 3-decimal for golden-pinned SetTextColor/SetVertexColor), and add tokens for all of them in this one item, so LH-04..LH-05 meet no further gap. Name each new token with file:line evidence in the commit body and in the Skin doc's 'Split roles (candidates for leg 2)' table (text.value vs text.muted; text.bodyAlt/text.subtle vs text.body; sem.goodAlt/badAlt vs sem.good/bad; sem.warbandAlt vs sem.warband; plus whatever the sweep adds). Dark skins inherit; Azeroth must override every light text/icon/Alt token with readable dark values (the LK-A2 3:1 contrast test must cover the new tokens); gtip.* stays light in every skin because GameTooltip is always dark; High Contrast may override to its palette. Keep text.subtle separate from text.bodyAlt (exactness wins). Return the full token list you added in the summary."
+  },
+  {
+   "id": "LH-RV3",
+   "milestone": "M2",
+   "repo": "LootHistory",
+   "depends_on": [
+    "LK-A3"
+   ],
+   "effort": "S",
+   "title": "Re-vendor the re-cut local v1.78.0 (SkinDefs 6)",
+   "spec": "As LH-RV2: git archive from the local tag v1.78.0 (never check it out), copy libs/LibKa0s/ and tests/_kit/ whole, prune icons per the CLAUDE.md declaration, pin the new SkinDefs minor in tests/test_libka0s.lua (red first), update every comment naming the old SkinDefs minor, add docs/revendor/2026-10-25-v1.78.0/07_RECUT2.md. Gates green."
+  }
+ ],
+ "rulings": [
+  "LEAD RULING (LH-04): STATUS_RGB maps to sem.statusOk / sem.statusWarn / sem.statusBad (exact), not sem.ok/warn/bad.",
+  "LEAD RULING (LH-04..LH-05): use the LK-A3 tokens wherever they reproduce today's constant exactly; a surface whose only token differs from today's value is a library gap only if the value is golden- or test-pinned, otherwise take the nearest token and name the visible change in deviations (the LH-02/LH-03 gtip.muted precedent)."
+ ]
+}
