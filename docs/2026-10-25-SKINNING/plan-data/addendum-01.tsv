@@ -1,0 +1,3 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+LK-A1	M2	LibKa0s	Media minor 7: RegisterLSM skips a key LibSharedMedia already holds, so a newer copy never re-registers v1.78.0 faces/art at an older consumer's folder (LSM validates the file before its first-wins check and raises "invalid file"); re-cut local tag v1.78.0		S	SK-07	owner BugSack report 2026-10-25 (PGFE, PFE MediaSetup via LootHistory Media.lua)
+LH-RV2	M2	LootHistory	Re-vendor the re-cut v1.78.0 (Media minor 7)	LK-A1; M2 workflow idle	S	SK-07	LK-A1
