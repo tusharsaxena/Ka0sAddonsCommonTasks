@@ -39,6 +39,13 @@ Add an additive LibKa0s item `LK-91…` in `plan-data/addendum-NN.json` and `.ts
 and move the local tag (`git tag -f -a v1.78.0`). Record the old and new sha in `99_EXECUTION_RECORD.md`, add an
 `LH-RV2` item, then resume.
 
+**Tag re-cut rule (LK-90).** While `v1.78.0` is unpushed, a LibKa0s defect found in M2 or by the smoke test becomes a
+new LibKa0s item `LK-A<n>` that blocks the LH item that found it; it bumps the touched minors and extends the v1.78.0
+CHANGELOG block. The LEAD, never a workflow agent, then deletes and re-creates the local tag after a clean-tree
+`tests/_kit/run-automated-tests.sh --release 1.78.0` with a new bundle, `ANALYSIS.md` and release-gate line, and
+LootHistory re-vendors in an `LH-RV<n>` item. Record each re-cut in `99_EXECUTION_RECORD.md` (v1.77.0 precedent:
+"Extended on 2026-10-24, after the local tag"). LK-90 cut `v1.78.0` on LibKa0s `948007c`.
+
 ## 6. Finalize (owner go-ahead only)
 
 Run `/dev-copilot:finalize` in this order: WowAddonStandards → LibKa0s (then `git push origin v1.78.0`) → LootHistory →

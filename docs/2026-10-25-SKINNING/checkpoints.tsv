@@ -1,1 +1,2 @@
 date	milestone	evidence
+2026-10-25	M1	17/17 landed+reviewed; LibKa0s luacheck 0/0 (223 files), tests 3001 passed/0 failed/2 skipped, max file 1465 (mock_base) < 1500; standard check-standard all ok (v2.89.0, #1-#107); pushed WowAddonStandards b9ee560, LibKa0s fb7b7a3 + ka0s-review notes; local tag v1.78.0 moved 948007c -> fb7b7a3 (post-tag LK-90 review fix was CHANGELOG/releasing.md only, payload unchanged); tag NOT pushed
