@@ -1,0 +1,4 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+LK-A4	M4	LibKa0s	SkinPaint minor 3: P.font records a prior font object only when it is a named font that is not the target; an EditBox (whose client GetFontObject answers an anonymous font) gets its face back by path; re-cut local tag v1.78.0		S	SK-19	owner smoke 2026-10-26: Forever -> Midnight client STACK_OVERFLOW in EditBox:SetFontObject (SkinPaint.lua:400), crash 2026-10-26_11.54.58
+LH-RV4	M4	LootHistory	Re-vendor the re-cut v1.78.0 (SkinPaint 3)	LK-A4	S	SK-19	LK-A4
+LH-FX1	M4	LootHistory	The holder-move rollup test reads the clock its sample was stamped with (BuildTestData uses time(); the test pinned 2026-10-06 and drifted out of the window, red on master and the run branch since 2026-10-26)		S		found while gating LH-RV4

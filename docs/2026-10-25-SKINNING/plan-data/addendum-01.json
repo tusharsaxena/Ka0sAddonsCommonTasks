@@ -1,0 +1,39 @@
+{
+ "items": [
+  {
+   "id": "LK-A1",
+   "milestone": "M2",
+   "repo": "LibKa0s",
+   "depends_on": [],
+   "effort": "S",
+   "title": "Media minor 7: RegisterLSM skips a key LibSharedMedia already holds (owner BugSack: invalid file from older consumers' folders); re-cut local tag",
+   "status_note": "landed d8ac604 + record a3790f4 by the lead"
+  },
+  {
+   "id": "LK-A2",
+   "milestone": "M2",
+   "repo": "LibKa0s",
+   "depends_on": [
+    "LK-A1"
+   ],
+   "effort": "S",
+   "title": "Skin minor bump: bind-state and danger tokens in the Semantic group (library gap from LH-03)",
+   "spec": "Additive. In SkinDefs.lua's Semantic group add color tokens with Ka0s Default = today's LootHistory constants exactly: sem.boundNone {.60,.60,.60,.40}, sem.boundBoE {.92,.92,.92,.95}, sem.boundBoP {.30,.82,.42,1}, sem.boundWarband {.30,.58,.98,1}, sem.boundWarbandUE {.95,.52,.12,1} (LootHistory modules/BrowserTable.lua BOUND_STYLE), and the Insights split sem.boundBoPAlt {.85,.45,.45,1}, sem.boundBoEAlt {.55,.80,.60,1}, sem.boundNoneAlt {.60,.60,.65,1} (LootHistory AnalyticsFormat.lua BOUND_COLOR; verify the exact numbers in ../LootHistory before pinning). Add sem.danger {1,1/3,1/3,1} for destructive menu items so Ka0s Default keeps the exact |cffff5555 byte. Every other skin inherits unless it overrides for legibility: at least Azeroth (light parchment) must override the near-white/grey ones to readable dark values; High Contrast may override to its palette. Record the Alt split in the Skin API doc's 'Split roles (candidates for leg 2)' table and add the rows to the token reference; tests/test_skin.lua (or the SkinDefs suite) pins Ka0s Default values and the inheritance/legibility overrides. Skin minor bump with the docs/api in-flight key moved by git mv (the run's precedent), v1.78.0 CHANGELOG extended ('Extended on 2026-10-25, after the local tag'). Gates via ka0s-bounded. Do NOT tag or push: the lead re-runs the release battery and re-cuts the tag."
+  },
+  {
+   "id": "LH-RV2",
+   "milestone": "M2",
+   "repo": "LootHistory",
+   "depends_on": [
+    "LK-A2"
+   ],
+   "effort": "S",
+   "title": "Re-vendor the re-cut local v1.78.0 (Media 7 + Skin bind/danger tokens)",
+   "spec": "Copy libs/LibKa0s/ and tests/_kit/ whole from the local tag v1.78.0 via git archive (never check the tag out), as LH-RV did; CLAUDE.md provenance stays v1.78.0 (note the re-cut sha in the commit body); update tests/test_libka0s.lua pins for Media 7 and the new Skin minor; test_vendor_sync must go green; append to docs/revendor/2026-10-25-v1.78.0/ a short re-cut note. Gates green."
+  }
+ ],
+ "rulings": [
+  "LEAD RULING (LH-03..LH-05): destructive row-menu items (Delete, Forget) take sem.danger, not sem.bad, so Ka0s Default keeps |cffff5555 byte-exact; bind colors take the sem.bound* tokens (table) and sem.bound*Alt (Insights split) added by LK-A2.",
+  "LEAD RULING: LH-02's binding resolution applies to LH-03..LH-05: under Ka0s Default keep the same paint calls in the same order, arity and objects; existing call sites take only their values from tokens; git diff --exit-code tests/*_golden.txt must stay clean."
+ ]
+}

@@ -1,0 +1,3 @@
+id	milestone	repo	title	depends_on	effort	smoke	issue_refs
+LK-A3	M2	LibKa0s	SkinDefs 6: remaining LootHistory constants as tokens, one sweep over LH-04/LH-06/LH-05 surfaces	LK-A2	M	SK-01 SK-03	LH-04 library_gap
+LH-RV3	M2	LootHistory	Re-vendor the re-cut v1.78.0 (SkinDefs 6)	LK-A3	S	SK-01	LK-A3
