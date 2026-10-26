@@ -1,0 +1,37 @@
+{
+ "items": [
+  {
+   "id": "LK-A4",
+   "milestone": "M4",
+   "repo": "LibKa0s",
+   "depends_on": [],
+   "effort": "S",
+   "title": "SkinPaint minor 3: an EditBox's face goes back by path, never its anonymous font object (owner smoke crash)",
+   "spec": "Owner smoke 2026-10-26: LootHistory Forever -> Midnight crashed the client, STACK_OVERFLOW (Errors/2026-10-26_11.54.58_Crash_48668.txt). Lua stack: OptionsAppearance -> Skin:SetChoice('midnight') -> Repaint -> prim.EditBox (SkinPaintControls.lua:154) -> P.font -> P.unfont -> SkinPaint.lua:400 EditBox:SetFontObject(Font <UnknownFile:0>). Owner probe: CreateFrame('EditBox'):SetFontObject(GameFontHighlightSmall) then :GetFontObject() is an unnamed Font, ~= GameFontHighlightSmall. Fix: P.font records a prior font object only when it is a named font (a global font name, or an object whose GetName answers one) that is not the target; otherwise P.unfont restores the face by SetFont(path, size, flags). Test first (red on minor 2), SkinPaint minor bump, in-flight docs/api Skin key git mv'd, CHANGELOG v1.78.0 extended, no tag, no push; the lead re-runs the release battery and re-cuts the local tag."
+  },
+  {
+   "id": "LH-FX1",
+   "milestone": "M4",
+   "repo": "LootHistory",
+   "depends_on": [],
+   "effort": "S",
+   "title": "The holder-move rollup test reads the clock its sample was stamped with",
+   "spec": "Found while gating LH-RV4: 'TestData: the sample rollup books a holder move's loss and gain on each holder' fails on master and on the run branch from 2026-10-26. BrowserTable:BuildTestData stamps rows time() - age from the real clock; the test passed TestData.Build a fixed now of 2026-10-06, so the sample drifted out of the pinned window. Fix the test to read T.mocks.time() (the test_util.lua:490 idiom); no addon code changes."
+  },
+  {
+   "id": "LH-RV4",
+   "milestone": "M4",
+   "repo": "LootHistory",
+   "depends_on": [
+    "LK-A4"
+   ],
+   "effort": "S",
+   "title": "Re-vendor the re-cut local v1.78.0 (SkinPaint 3)",
+   "spec": "As LH-RV3: git archive from the local tag v1.78.0 (never check it out), copy libs/LibKa0s/ and tests/_kit/ whole, prune icons per the CLAUDE.md declaration, pin the new SkinPaint minor in tests/test_libka0s.lua (red first), update every comment naming the old SkinPaint minor, add docs/revendor/2026-10-25-v1.78.0/08_RECUT3.md. Gates green."
+  }
+ ],
+ "rulings": [
+  "LEAD RULING (LK-A4): the smoke-found defect is M4, after CT-01; the run reopens only for LK-A4 and LH-RV4, then stops again for the owner's re-smoke (SK-19 plus SK-01..SK-18 still open).",
+  "LEAD RULING (LH-FX1): a date-dependent test that turned red on its own blocks LootHistory's gate, so it is fixed in this run as its own item rather than left for master; the held bounded-lint LootHistory branch then merges once this branch has."
+ ]
+}

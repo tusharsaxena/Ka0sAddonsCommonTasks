@@ -3,7 +3,8 @@
 Mark each row **pass** / **fail** with a note. Only the owner marks rows.
 
 **Setup:** LootHistory and LibKa0s on `feat/2026-10-25-skinning` (the game loads `GIT/LootHistory` through its
-symlink; LootHistory vendors the local tag `v1.78.0` at LibKa0s `65a23cb`). **Fully exit and restart the WoW client**
+symlink; LootHistory vendors the local tag `v1.78.0` at LibKa0s `7bc3e9b`, re-cut on 2026-10-26 by LK-A4 for the
+Forever -> Midnight crash). **Fully exit and restart the WoW client**
 after checking out the branch: new font and texture files are only seen at client start, and `/reload` is not
 enough. Later rows may `/reload`.
 
@@ -30,3 +31,4 @@ LED-13, PANEL-22..24, SKIN-1..18); the rows below are the run-level pass.
 | SK-16 | LH-03, LH-04, LK-A3 | Under Azeroth and High Contrast: tooltips on a History row, an Insights bar and a Timeline point; the reset/purge popups | Legible; the tooltip frame is Blizzard's; popups are stock. Known leg-2 item: under Azeroth, Timeline's Gained/Lost tooltip lines take the dark parchment green/red and may read poorly on the dark tooltip | |
 | SK-17 | LH-04, LH-06 | Settings → General → AH price table, the Filters tab, Profiles | Follow the skin | |
 | SK-18 | LK-06..LK-09 | With LootHistory on a non-default skin, open two other Ka0s addons' windows, debug console, sim panel/test strip and settings pages; then disable LootHistory, `/reload` and compare | The other addons are unchanged in both cases | |
+| SK-19 | LK-A4, LH-RV4 | The 2026-10-26 crash path: open the History window, pick **WoW Forever**, then **WoW Midnight**; then from a skin with its own body font (Forever, Obsidian, Glass, High Contrast) to each skin without one (Azeroth, Ember, WoW Default, WoW Midnight, Ka0s Default), clicking into the History search box each time | No client crash and no Lua error; the search box's text font goes back to the stock font (no Barlow left behind, no extra shadow) and typing in it still filters | |

@@ -117,3 +117,61 @@ CT-01 is this record. `06_SMOKE_TESTS.md` now carries the plan-review resolution
 per row, the reworded SK-02/06/08/12, and SK-15..SK-18. It also adds SK-07's check for the LK-A1 error and SK-05's
 font caveat. **The run stops here for the owner's in-game smoke test.** Finalize only on the owner's go-ahead
 (RESUME §6).
+
+## M4 — the owner's smoke test, round 1 (2026-10-26)
+
+### Defect: client crash going from WoW Forever to WoW Midnight (LK-A4)
+
+The owner moved LootHistory from Ka0s Default to WoW Forever without trouble. The next pick, WoW Midnight,
+crashed the client with `0xC00000FD STACK_OVERFLOW`; the log is `Errors/2026-10-26_11.54.58_Crash_48668.txt`.
+
+- **What the log shows.** The native stack is one engine frame repeated thousands of times. The Lua stack
+  runs `OptionsAppearance` → `Skin:SetChoice("midnight")` → `Repaint` → `prim.EditBox`
+  (`SkinPaintControls.lua:154`) → `P.font` → `P.unfont` → `SkinPaint.lua:400`
+  `EditBox:SetFontObject(Font <UnknownFile:0>)`. The target was the History search box (`lib.SearchBox`).
+- **Why that path ran.** WoW Midnight has no body face, so `P.font` put back the font the box had before
+  Forever's font reached it.
+- **The cause, confirmed by an owner probe.** After `CreateFrame("EditBox"):SetFontObject(GameFontHighlightSmall)`,
+  `:GetFontObject()` prints an unnamed table that is not `GameFontHighlightSmall`. So the font object the skin
+  had recorded for the box was the anonymous one the client's EditBox answers with, and handing that object
+  back recursed without end. The kit's mock answers with the named font it was given, so no headless test
+  could see this.
+- **Probe side effect.** The probe's EditBox was created without `SetAutoFocus(false)`, so it took the
+  keyboard until the client restarted. A probe that creates an EditBox should clear its focus.
+- **The fix.** LK-A4 (`1e21c1f`, SkinPaint minor 3, Skin key 4.6.3.1.1.1.1) records a prior font object only
+  when it is a named font that is not the target. Any other target gets its face back by
+  `SetFont(path, size, flags)`. The test came first and was red on minor 2.
+- **Review.** An independent review found no defect and two hardening points, both taken in `f759a5e`: the
+  by-path restore puts back the target's own shadow too, and `P.unfont` checks the recorded object again
+  before handing it back. A mutation check showed that removing either guard makes the new case fail.
+- **Records.** Release record `docs/automated-tests/20261026-134954/` (`585d40e`), and the CHANGELOG
+  release-gate line (`7bc3e9b`, docs only).
+
+### Found while gating: a date-dependent LootHistory test (LH-FX1)
+
+`TestData: the sample rollup books a holder move's loss and gain on each holder` failed on LootHistory
+`master` and on this branch from 2026-10-26. `BuildTestData` stamps its rows from `time()`, while the test
+pinned `now` to 2026-10-06, so the sample drifted out of the window that date selects. LH-FX1 (`701a1fe`)
+reads `T.mocks.time()` instead. It is a test change only.
+
+### Re-vendor (LH-RV4)
+
+LH-RV4 (`9edc52a`, retargeted in `a1af6e8`) brought SkinPaint 3 into LootHistory, with SkinPaint 3 pinned
+in `tests/test_libka0s.lua` and recorded in `docs/revendor/2026-10-25-v1.78.0/08_RECUT3.md`.
+
+### Local tag moves (never pushed), continued
+
+`65a23cb` (LK-A3) → `585d40e` (LK-A4 release record) → `7bc3e9b` (LK-A4 CHANGELOG release-gate line,
+docs only; the payload is byte-identical to `585d40e`).
+
+### Gates at this stop
+
+| Repo | Lint | Tests |
+|---|---|---|
+| LibKa0s | 0/0 in 223 files | 3007 passed, 0 failed, 2 skipped |
+| LootHistory | 0/0 in 148 files | 1782 passed, 0 failed, 1 skipped |
+
+### Stop
+
+**The run stops again for the owner's smoke test.** SK-19 covers the crash path, and SK-01..SK-18 are
+still open. Finalize only on the owner's go-ahead (RESUME §6), and the v1.78.0 tag is pushed only then.
