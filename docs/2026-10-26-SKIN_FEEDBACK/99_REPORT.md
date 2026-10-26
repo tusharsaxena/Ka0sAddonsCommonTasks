@@ -1,7 +1,8 @@
-# Execution record: skin feedback, rounds 1 to 4 (SF-01..SF-34)
+# Execution record: skin feedback, rounds 1 to 4, the title bar and the Scope (SF-01..SF-40)
 
 Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
-[`01_SHOWROOM_NOTES.md`](01_SHOWROOM_NOTES.md), [`02_ROUND2_NOTES.md`](02_ROUND2_NOTES.md) and [`03_ROUND4_NOTES.md`](03_ROUND4_NOTES.md). Branch `feat/2026-10-26-skin-feedback` in all four repos.
+[`01_SHOWROOM_NOTES.md`](01_SHOWROOM_NOTES.md), [`02_ROUND2_NOTES.md`](02_ROUND2_NOTES.md), [`03_ROUND4_NOTES.md`](03_ROUND4_NOTES.md) and
+[`04_TITLEBAR_AND_SCOPE.md`](04_TITLEBAR_AND_SCOPE.md). Branch `feat/2026-10-26-skin-feedback` in all four repos.
 
 ## Commits
 
@@ -28,21 +29,31 @@ Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
 | SF-06 | LibKa0s | `de76300` | Name release record 20261026-222042 in the v1.78.0 release-gate line |
 | SF-33 | LootHistory | `0227508` | Re-vendor the re-cut LibKa0s v1.78.0 (round 4) |
 | SF-34 | LibKa0sSkinTester | `a78b7fc` | Re-vendor the re-cut LibKa0s v1.78.0 (round 4) |
+| SF-35 | LibKa0s | `f70882c` | Draw a fill as its target's own region, never on a frame below it |
+| SF-06 | LibKa0s | `a6c00a4` | Name release record 20261027-001339 in the v1.78.0 release-gate line |
+| SF-36 | LootHistory | `900e4fb` | Re-vendor the re-cut LibKa0s v1.78.0 (the title-bar fill) |
+| SF-37 | LibKa0sSkinTester | `ed70d01` | Re-vendor the re-cut LibKa0s v1.78.0 (the title-bar fill) |
+| SF-38 | LibKa0s | `fb8ff61` | The Appearance tab's Scope: Ignore settings panel, Ignore fonts |
+| SF-38 | LibKa0s | `854ad32` | Never keep a page as its own backdrop |
+| SF-06 | LibKa0s | `d4007bc` | Name release record 20261027-005758 in the v1.78.0 release-gate line |
+| SF-39 | LootHistory | `be8201e`, `c03406d` | The Scope: storage, seams and pins |
+| SF-40 | LibKa0sSkinTester | `4f2b793` | The Scope: storage, seams and pins |
 
 The local tag `v1.78.0` was re-cut from `7bc3e9b` to `fe7c3fc` after a clean-tree
 `run-automated-tests.sh --release 1.78.0` (bundle `docs/automated-tests/20261026-181407/`), then to `8291ecc`
 after round 2 (bundle `docs/automated-tests/20261026-190317/`), then to `e131bc6` after round 3 (bundle
 `docs/automated-tests/20261026-193808/`), then to `de76300` after round 4 (bundle `docs/automated-tests/20261026-222042/`;
-a first round-4 run at `afbcb85` measured one test case at CCN 16 and was not kept). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
+a first round-4 run at `afbcb85` measured one test case at CCN 16 and was not kept), then to `a6c00a4` after SF-35
+(bundle `docs/automated-tests/20261027-001339/`) and to `d4007bc` after SF-38 (bundle `docs/automated-tests/20261027-005758/`). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
 one at `fcdbb68`.
 
 ## Gates at the end
 
 | Repo | Tests | Lint |
 |---|---|---|
-| LibKa0s | 3017 passed / 2 skipped / 3019 | 0/0 over 223 files |
-| LootHistory | 1783 passed / 1 skipped / 1784 | 0/0 over 149 files |
-| LibKa0sSkinTester | 483 passed / 1 skipped / 484 | 0/0 over 65 files |
+| LibKa0s | 3027 passed / 2 skipped / 3029 | 0/0 over 223 files |
+| LootHistory | 1787 passed / 1 skipped / 1788 | 0/0 over 149 files |
+| LibKa0sSkinTester | 484 passed / 1 skipped / 485 | 0/0 over 65 files |
 
 Mutation-checked, each turning its case red when undone: the size-keyed font object (SF-10), the disabled
 label (SF-12), the shadowless dark label and the hint's face (SF-22).
@@ -109,6 +120,16 @@ dark, WoW Forever wears Atkinson. Restart the client (new font objects and a new
 | SF-S17 | WoW Forever | Crisp Atkinson text (no blur); the background a touch browner than before, still dark | |
 | SF-S18 | Loot History item names and the Insights quality bars, every skin | The client's quality colors (Epic purple, Rare blue) | |
 
+The title bar and the Scope (`04_TITLEBAR_AND_SCOPE.md`). Restart the client again.
+
+| Id | Check | Expect | Result |
+|---|---|---|---|
+| SF-S19 | Loot History on Azeroth (and two other skins) | The title bar wears its own dark band over the window, not the window's fill | |
+| SF-S20 | Appearance tab, any addon | A **Scope** section below the skins: *Ignore settings panel* and *Ignore fonts* side by side, then *Copy to every Ka0s addon…* | |
+| SF-S21 | Tick *Ignore fonts* in Loot History | Its window and settings text go back to the game's fonts at once, still colored by the skin; untick brings the skin's fonts back, no reload | |
+| SF-S22 | Tick *Ignore settings panel* in Loot History | A reload popup; after the reload the settings pages are the game's own look while the History window still wears the skin; untick re-skins the open page | |
+| SF-S23 | Copy to every Ka0s addon with a Scope set | The confirmation says "skin source, skin and scope"; the Skin Tester takes the same toggles | |
+
 **A rule bent in SF-33:** LootHistory's `tests/golden.lua` asks a deliberate render change to regenerate
 the golden in a commit of its own. The Insights golden (41 quality-color lines) went in with the re-vendor
 commit instead, with the change stated in its message.
@@ -117,8 +138,8 @@ commit instead, with the change stated in its message.
 
 - The owner's smoke pass above, then `/dev-copilot:finalize` over LibKa0s, LootHistory, LibKa0sSkinTester
   and this repo on the go-ahead. The v1.78.0 tag stays local until the owner says to push it.
-- Still for a later round: renaming the Appearance tab to Styles, and the scope and font settings.
-- Azeroth's title bar in Loot History (the window fill over the bar): awaiting the owner's in-client probe.
+- Still for a later round: renaming the Appearance tab to Styles. (The scope and font settings shipped as SF-38..SF-40.)
+- Azeroth's title bar in Loot History: the probe confirmed a frame-level tie; fixed in SF-35, awaiting SF-S19.
 - Found while fixing the tests: Options-1.0's combat lock keeps PLAYER_REGEN_* registered after the
   Profiles page hides, until the next REGEN event re-syncs it. Harmless in the client, but worth a
   LibKa0s issue.
