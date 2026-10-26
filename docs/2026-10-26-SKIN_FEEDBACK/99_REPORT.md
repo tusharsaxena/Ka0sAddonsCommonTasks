@@ -155,6 +155,18 @@ panel the client's (`ignorePanel` true, `ignoreFonts` false).
 the golden in a commit of its own. The Insights golden (41 quality-color lines) went in with the re-vendor
 commit instead, with the change stated in its message.
 
+## Finalized (2026-10-27)
+
+Sync-docs ran in the three code repos (`SF-47`), then `/dev-copilot:finalize` merged each feature branch
+`--no-ff` into `master`, pushed it and deleted the branch, in order LibKa0s, then LootHistory and
+LibKa0sSkinTester, then this repo. Merges: LibKa0s `c7e1add`, LootHistory `8b45e80`, LibKa0sSkinTester
+`9ec0750`. Each merge result re-gated green (3030 / 1788 / 485 passed, lint 0/0); both addons' vendored
+LibKa0s matches its source byte for byte.
+
+**The v1.78.0 tag is not pushed.** It stays local at `3b640fd` (the release record's commit; the SF-47
+doc sync landed after it). Both addons' CLAUDE.md name LibKa0s v1.78.0, so their vendor-sync case needs
+the tag on origin to pass on a fresh clone. Pushing it waits on the owner. No version was bumped.
+
 ## Open
 
 - The owner's smoke pass above, then `/dev-copilot:finalize` over LibKa0s, LootHistory, LibKa0sSkinTester
