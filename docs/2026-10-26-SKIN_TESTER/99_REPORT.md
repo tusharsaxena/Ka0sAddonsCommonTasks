@@ -61,10 +61,18 @@ LibKa0sSkinTester: 482 passed / 1 skipped / 483 (the skip is the kit's diagnosti
   `core/Compat.lua` it does not ship, a `tests/prose_waivers.lua` the scaffold rule says a new addon does not
   need) were reported by the ST-08 doc sync and left for the owner's call.
 
+## Owner smoke
+
+2026-10-26, the owner, in game: "Skin test works great! ship it. go ahead and merge". Recorded as the
+owner's verdict on the run; the per-row Result cells in `02_SMOKE_TESTS.md` stay the owner's to fill.
+
+## Finalize
+
+Merged on the owner's go-ahead (same message, 2026-10-26) with `/dev-copilot:finalize`: WowAddonStandards,
+then LibKa0sSkinTester, then this repo, each `--no-ff` into `master`, pushed, and the feature branch
+deleted. No tag, no version bump.
+
 ## Open
 
-- The owner's smoke pass: [`02_SMOKE_TESTS.md`](02_SMOKE_TESTS.md) and the tester's own `docs/smoke-tests.md`.
-- Merging waits for the owner's go-ahead (`/dev-copilot:finalize` over LibKa0sSkinTester, WowAddonStandards
-  and this repo).
 - Later, from the owner's feedback of 2026-10-26: the Azeroth, Glass, Obsidian, High Contrast and Midnight
   skin fixes; renaming Appearance to Styles; the scope (everything vs the main window) and font settings.
