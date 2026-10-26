@@ -1,4 +1,4 @@
-# Execution record: skin feedback, rounds 1 to 4, the title bar and the Scope (SF-01..SF-43)
+# Execution record: skin feedback, rounds 1 to 4, the title bar, the Scope and the scroll thumb (SF-01..SF-46)
 
 Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
 [`01_SHOWROOM_NOTES.md`](01_SHOWROOM_NOTES.md), [`02_ROUND2_NOTES.md`](02_ROUND2_NOTES.md), [`03_ROUND4_NOTES.md`](03_ROUND4_NOTES.md) and
@@ -42,23 +42,28 @@ Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
 | SF-06 | LibKa0s | `8f15fab` | Name release record 20261027-015805 in the v1.78.0 release-gate line |
 | SF-42 | LootHistory | `66aa68e` | Re-vendor (Ignore settings panel, live) |
 | SF-43 | LibKa0sSkinTester | `1a6665e` | Re-vendor (Ignore settings panel, live) |
+| SF-44 | LibKa0s | `42b04c1` | A scroll thumb fill for the five skins whose thumb barely read |
+| SF-06 | LibKa0s | `3b640fd` | Name release record 20261027-030736 in the v1.78.0 release-gate line |
+| SF-45 | LootHistory | `0b4fa74` | A new profile ignores the settings panel; the scroll thumb fill |
+| SF-46 | LibKa0sSkinTester | `792d1cf` | A new profile ignores the settings panel; the scroll thumb fill |
 
 The local tag `v1.78.0` was re-cut from `7bc3e9b` to `fe7c3fc` after a clean-tree
 `run-automated-tests.sh --release 1.78.0` (bundle `docs/automated-tests/20261026-181407/`), then to `8291ecc`
 after round 2 (bundle `docs/automated-tests/20261026-190317/`), then to `e131bc6` after round 3 (bundle
 `docs/automated-tests/20261026-193808/`), then to `de76300` after round 4 (bundle `docs/automated-tests/20261026-222042/`;
 a first round-4 run at `afbcb85` measured one test case at CCN 16 and was not kept), then to `a6c00a4` after SF-35
-(bundle `docs/automated-tests/20261027-001339/`) to `d4007bc` after SF-38 (bundle `docs/automated-tests/20261027-005758/`) and to `8f15fab` after SF-41 (bundle
-`docs/automated-tests/20261027-015805/`; a first run at `9d62ae1` measured `paintPage` at CCN 17 and was not kept). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
+(bundle `docs/automated-tests/20261027-001339/`) to `d4007bc` after SF-38 (bundle `docs/automated-tests/20261027-005758/`) to `8f15fab` after SF-41 (bundle
+`docs/automated-tests/20261027-015805/`; a first run at `9d62ae1` measured `paintPage` at CCN 17 and was not kept) and to
+`3b640fd` after SF-44 (bundle `docs/automated-tests/20261027-030736/`). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
 one at `fcdbb68`.
 
 ## Gates at the end
 
 | Repo | Tests | Lint |
 |---|---|---|
-| LibKa0s | 3028 passed / 2 skipped / 3030 | 0/0 over 223 files |
+| LibKa0s | 3030 passed / 2 skipped / 3032 | 0/0 over 223 files |
 | LootHistory | 1788 passed / 1 skipped / 1789 | 0/0 over 149 files |
-| LibKa0sSkinTester | 484 passed / 1 skipped / 485 | 0/0 over 65 files |
+| LibKa0sSkinTester | 485 passed / 1 skipped / 486 | 0/0 over 65 files |
 
 Mutation-checked, each turning its case red when undone: the size-keyed font object (SF-10), the disabled
 label (SF-12), the shadowless dark label and the hint's face (SF-22).
@@ -134,6 +139,17 @@ The title bar and the Scope (`04_TITLEBAR_AND_SCOPE.md`). Restart the client aga
 | SF-S21 | Tick *Ignore fonts* in Loot History | Its window and settings text go back to the game's fonts at once, still colored by the skin; untick brings the skin's fonts back, no reload | |
 | SF-S22 | Tick *Ignore settings panel* in Loot History, the settings open | No popup: the open page, its tabs, rail and rows go back to the game's own look at once, while the History window still wears the skin; untick re-skins the page at once (SF-41) | |
 | SF-S23 | Copy to every Ka0s addon with a Scope set | The confirmation says "skin source, skin and scope"; the Skin Tester takes the same toggles | |
+
+The scroll thumb and the new default (SF-44..SF-46). The owner: the thumb itself barely visible in Obsidian,
+High Contrast, Ember, WoW Default and WoW Midnight. A skin only tints the client's thumb art and a tint
+only darkens (High Contrast's is pure white), so those five get `scroll.thumbFill`, a flat fill in their
+accent over the thumb; the skins called good stay as they were. And a new profile now leaves the settings
+panel the client's (`ignorePanel` true, `ignoreFonts` false).
+
+| Id | Check | Expect | Result |
+|---|---|---|---|
+| SF-S24 | Loot History's History table in Obsidian, High Contrast, Ember, WoW Default, WoW Midnight | The scroll thumb reads clearly in the skin's accent and moves with the bar; Ka0s Default, Azeroth, Glass, Forever unchanged | |
+| SF-S25 | A brand-new profile (Profiles > New) | Appearance shows *Ignore settings panel* ticked and *Ignore fonts* unticked; the settings pages are the game's look | |
 
 **A rule bent in SF-33:** LootHistory's `tests/golden.lua` asks a deliberate render change to regenerate
 the golden in a commit of its own. The Insights golden (41 quality-color lines) went in with the re-vendor
