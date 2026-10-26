@@ -1,4 +1,4 @@
-# Execution record: skin feedback, rounds 1 and 2 (SF-01..SF-24)
+# Execution record: skin feedback, rounds 1 to 3 (SF-01..SF-28)
 
 Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
 [`01_SHOWROOM_NOTES.md`](01_SHOWROOM_NOTES.md) and [`02_ROUND2_NOTES.md`](02_ROUND2_NOTES.md). Branch `feat/2026-10-26-skin-feedback` in all four repos.
@@ -18,10 +18,15 @@ Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
 | SF-06 | LibKa0s | `8291ecc` | Name release record 20261026-190317 in the v1.78.0 release-gate line |
 | SF-23 | LootHistory | `625f9c5` | Re-vendor the re-cut LibKa0s v1.78.0 (round 2) |
 | SF-24 | LibKa0sSkinTester | `d99008a` | Re-vendor the re-cut LibKa0s v1.78.0 (round 2) |
+| SF-25 + SF-26 | LibKa0s | `ce9a2a3` | WoW Default's tabs one height, its inputs a 1px edge (round 3) |
+| SF-06 | LibKa0s | `e131bc6` | Name release record 20261026-193808 in the v1.78.0 release-gate line |
+| SF-27 | LootHistory | `9c8bf82` | Re-vendor the re-cut LibKa0s v1.78.0 (round 3) |
+| SF-28 | LibKa0sSkinTester | `288da15` | Re-vendor the re-cut LibKa0s v1.78.0 (round 3) |
 
 The local tag `v1.78.0` was re-cut from `7bc3e9b` to `fe7c3fc` after a clean-tree
 `run-automated-tests.sh --release 1.78.0` (bundle `docs/automated-tests/20261026-181407/`), then to `8291ecc`
-after round 2 (bundle `docs/automated-tests/20261026-190317/`). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
+after round 2 (bundle `docs/automated-tests/20261026-190317/`), then to `e131bc6` after round 3 (bundle
+`docs/automated-tests/20261026-193808/`). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
 one at `fcdbb68`.
 
 ## Gates at the end
@@ -76,6 +81,15 @@ Round 2 rows (fill these too):
 | SF-S11 | High Contrast's tabs | The selected tab yellow on black with the yellow underline | |
 | SF-S12 | WoW Default's buttons | Red with a thin dark rim, no gold frame; the primary brighter with a thin gold edge | |
 | SF-S13 | The Slider in every skin | One shape everywhere: a thin bar, a fill in the skin's accent, a thumb; no box | |
+
+Round 3, the owner's last notes ("Rest looks good"), on WoW Default alone: Tab 2 and Tab 3 stood shorter
+than Tab 1 (Blizzard's `-InActiveTab` art is drawn shorter, so idle tabs now wear the active art and the
+selected tab is told by its white label: SF-25), and the edit box and dropdown border was exaggerated (a
+2px `bevelIn`; now 1px, the primary button's size, the nav rail with it: SF-26).
+
+| Id | Check | Expect | Result |
+|---|---|---|---|
+| SF-S14 | WoW Default's tabs and inputs | Tab 1, Tab 2 and Tab 3 one height; the edit box and dropdown edges as thin as the primary button's | |
 
 ## Open
 
