@@ -53,3 +53,15 @@ My calls, stated so they can be overturned:
 - **Ignore fonts keeps the skin's colors**, because only the face, size and shadow come from the fonts.
 - **Copy to every Ka0s addon copies the Scope** along with the source and skin, and its confirmation
   says so.
+
+## Ignore settings panel, live (SF-41 to SF-43)
+
+The owner asked why turning *Ignore settings panel* on needed a reload when *Ignore fonts* did not. It did
+not have to. Leaving EllesmereUI still needs one, because EllesmereUI's paint is one-way and records nothing
+to undo. Ka0s's settings chrome is painted through the same recorded primitives as everything else. Its
+paint path only stopped painting, and two primitives recorded too little to undo: `P.tint` saved a prior
+color only for a nilable token or a stock target, and the nav rail's recolor saved nothing. Now the Options
+instance records every chrome target the skin paints and hands each one back from its record. Every tint
+records the color it replaced, the rail saves its colors, and a refused `PaintAce` hands back a held
+widget. A case compares every chrome piece with the same page built for an addon that never registered.
+This reverses the "panel-on needs a reload" call above.
