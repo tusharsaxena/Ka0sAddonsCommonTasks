@@ -1,7 +1,7 @@
-# Execution record: skin feedback, rounds 1 to 3 (SF-01..SF-28)
+# Execution record: skin feedback, rounds 1 to 4 (SF-01..SF-34)
 
 Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
-[`01_SHOWROOM_NOTES.md`](01_SHOWROOM_NOTES.md) and [`02_ROUND2_NOTES.md`](02_ROUND2_NOTES.md). Branch `feat/2026-10-26-skin-feedback` in all four repos.
+[`01_SHOWROOM_NOTES.md`](01_SHOWROOM_NOTES.md), [`02_ROUND2_NOTES.md`](02_ROUND2_NOTES.md) and [`03_ROUND4_NOTES.md`](03_ROUND4_NOTES.md). Branch `feat/2026-10-26-skin-feedback` in all four repos.
 
 ## Commits
 
@@ -22,11 +22,18 @@ Executed 2026-10-26 against [`00_PLAN.md`](00_PLAN.md) and its addenda
 | SF-06 | LibKa0s | `e131bc6` | Name release record 20261026-193808 in the v1.78.0 release-gate line |
 | SF-27 | LootHistory | `9c8bf82` | Re-vendor the re-cut LibKa0s v1.78.0 (round 3) |
 | SF-28 | LibKa0sSkinTester | `288da15` | Re-vendor the re-cut LibKa0s v1.78.0 (round 3) |
+| SF-29 | LootHistory | `e9ec74e` | The skin's face on LootHistory's own text; the browser tabs in the text roles |
+| SF-30 + SF-31 + SF-32 | LibKa0s | `afbcb85` | Ka0s Default sets every token; Azeroth dark; Forever in Atkinson (round 4) |
+| SF-30 | LibKa0s | `e1fca8b` | Keep the named-media case under CCN 15 |
+| SF-06 | LibKa0s | `de76300` | Name release record 20261026-222042 in the v1.78.0 release-gate line |
+| SF-33 | LootHistory | `0227508` | Re-vendor the re-cut LibKa0s v1.78.0 (round 4) |
+| SF-34 | LibKa0sSkinTester | `a78b7fc` | Re-vendor the re-cut LibKa0s v1.78.0 (round 4) |
 
 The local tag `v1.78.0` was re-cut from `7bc3e9b` to `fe7c3fc` after a clean-tree
 `run-automated-tests.sh --release 1.78.0` (bundle `docs/automated-tests/20261026-181407/`), then to `8291ecc`
 after round 2 (bundle `docs/automated-tests/20261026-190317/`), then to `e131bc6` after round 3 (bundle
-`docs/automated-tests/20261026-193808/`). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
+`docs/automated-tests/20261026-193808/`), then to `de76300` after round 4 (bundle `docs/automated-tests/20261026-222042/`;
+a first round-4 run at `afbcb85` measured one test case at CCN 16 and was not kept). It is still unpushed. The first release run, at `a8bb0ad`, was aborted before it finished; the run that counts is the
 one at `fcdbb68`.
 
 ## Gates at the end
@@ -34,7 +41,7 @@ one at `fcdbb68`.
 | Repo | Tests | Lint |
 |---|---|---|
 | LibKa0s | 3017 passed / 2 skipped / 3019 | 0/0 over 223 files |
-| LootHistory | 1782 passed / 1 skipped / 1783 | 0/0 over 148 files |
+| LootHistory | 1783 passed / 1 skipped / 1784 | 0/0 over 149 files |
 | LibKa0sSkinTester | 483 passed / 1 skipped / 484 | 0/0 over 65 files |
 
 Mutation-checked, each turning its case red when undone: the size-keyed font object (SF-10), the disabled
@@ -51,8 +58,9 @@ label (SF-12), the shadowless dark label and the hint's face (SF-22).
   would need a new token and a three-slice in `Button`.
 - **"Every skin sets a size"** is met relatively: Ka0s Default's sizes are the reference, and a string keeps
   its own stock size scaled by the skin's over it. An absolute size per role would grow every caption to
-  body size, which is the layout break the owner asked to avoid. Ka0s Default sets no face, so its text is
-  unchanged.
+  body size, which is the layout break the owner asked to avoid. Rounds 1 to 3 also read Ka0s Default as
+  setting no face; the owner overturned that in round 4 (SF-30: it sets Friz Quadrata by name, and every
+  other token).
 - **Ka0s Default changes in two places on purpose:** the square checkbox, and with it LootHistory's Timeline
   toggle, which drew .24 gray. Its row hover stays gold.
 
@@ -91,8 +99,26 @@ selected tab is told by its white label: SF-25), and the edit box and dropdown b
 |---|---|---|---|
 | SF-S14 | WoW Default's tabs and inputs | Tab 1, Tab 2 and Tab 3 one height; the edit box and dropdown edges as thin as the primary button's | |
 
+Round 4 (`03_ROUND4_NOTES.md`): Ka0s Default sets every token and is painted like every skin, Azeroth is
+dark, WoW Forever wears Atkinson. Restart the client (new font objects and a new face on Default).
+
+| Id | Check | Expect | Result |
+|---|---|---|---|
+| SF-S15 | Ka0s Default in the showroom, Loot History and its settings | The same look as before in Friz Quadrata; the scroll thumbs, slider, tabs and the settings rows drawn by the skin; nothing reverts to a different client look | |
+| SF-S16 | Azeroth everywhere | Dark leather with parchment text; gold edges; the primary button and the selected tab wax red; no light parchment left anywhere | |
+| SF-S17 | WoW Forever | Crisp Atkinson text (no blur); the background a touch browner than before, still dark | |
+| SF-S18 | Loot History item names and the Insights quality bars, every skin | The client's quality colors (Epic purple, Rare blue) | |
+
+**A rule bent in SF-33:** LootHistory's `tests/golden.lua` asks a deliberate render change to regenerate
+the golden in a commit of its own. The Insights golden (41 quality-color lines) went in with the re-vendor
+commit instead, with the change stated in its message.
+
 ## Open
 
 - The owner's smoke pass above, then `/dev-copilot:finalize` over LibKa0s, LootHistory, LibKa0sSkinTester
   and this repo on the go-ahead. The v1.78.0 tag stays local until the owner says to push it.
 - Still for a later round: renaming the Appearance tab to Styles, and the scope and font settings.
+- Azeroth's title bar in Loot History (the window fill over the bar): awaiting the owner's in-client probe.
+- Found while fixing the tests: Options-1.0's combat lock keeps PLAYER_REGEN_* registered after the
+  Profiles page hides, until the next REGEN event re-syncs it. Harmless in the client, but worth a
+  LibKa0s issue.
