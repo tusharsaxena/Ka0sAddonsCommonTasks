@@ -98,7 +98,8 @@ For long multi-repo runs, follow the pattern in `docs/2026-09-23-REVIEW_AND_STAN
 ## Verification
 
 - Every addon's green gate is in its own `CLAUDE.md`. It is typically `lua tests/run.lua` and
-  `luacheck .` (0 warnings / 0 errors), plus the 1500-line file cap. Complexity (no function above CCN 15)
+  `~/.claude/dev-copilot/bin/ka0s-bounded luacheck .` (0 warnings / 0 errors), plus the 1500-line file
+  cap. The kit bounds the suite itself; `luacheck` loads no kit, so the bounded-runs hook refuses it bare. Complexity (no function above CCN 15)
   is a release check, measured through the vendored runner's complexity suite by
   `/dev-copilot:bump-version`. Never run raw `lizard` over a tree, because it is blind in Lua.
 - For long batteries, use the bounded runner at `/home/tushar/.claude/dev-copilot/bin/ka0s-bounded`.
