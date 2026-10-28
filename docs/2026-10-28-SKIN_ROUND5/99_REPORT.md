@@ -95,3 +95,7 @@ Record a result per row. None is marked passed here.
 | R5-S7 | WoW Forever's checkboxes | The check mark in tan | |
 | R5-S8 | The showroom's skin cards under High Contrast | Every name on one line, "High Contrast" a little smaller; full size again under Ka0s Default | |
 | R5-S9 | Loot History with each skin | Nothing overflows its column in the new faces | |
+
+## Later
+
+Azeroth's border, R5-09..R5-11 and the smoke check R5-S10: [`01_AZEROTH_BORDER.md`](01_AZEROTH_BORDER.md).
