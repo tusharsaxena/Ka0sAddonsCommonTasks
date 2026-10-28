@@ -31,3 +31,19 @@ therefore stays local, and is not pushed, until the owner rules on it.
 
 Ka0s Melli Dark's original author is not recorded in the pack. The "Melli" bars are widely
 redistributed in SharedMedia packs. That is also recorded as an open provenance question.
+
+## Update, 2026-10-28: free art instead
+
+The owner ruled: "Pick a free font with a similar look", and asked for a generated texture similar to
+Melli Dark, named Ka0s Default. The first SO-06 commit (3b982f8) was never pushed. It was dropped
+from the local branch with a mixed reset, so Prototype never reached any public history. It was
+replaced by LibKa0s 9bdb6df:
+
+- **Face:** Oxanium (SIL OFL 1.1), cut by `tools/artwork/fonts.py` from google/fonts at the pinned
+  commit `8b0a1d0f`. `Ka0s Oxanium SemiBold` is the body and HUD face, at Prototype's weight, and
+  `Ka0s Oxanium Bold` is the title face. Electrolize, Chakra Petch and Oxanium 500 and 700 were also
+  rendered beside Prototype; Oxanium 600 was the closest match.
+- **Bar:** `Ka0s Default` (`ka0s-default.tga`, 256x32), synthesized by
+  `tools/artwork/bar_textures.py` (`ka0s_default()`). It has a dim top, a sine rise to a highlight at
+  85% of the height, and a quadratic lip. Every value is our own; no pixel is copied. The other
+  seven bars regenerate byte-identical.
