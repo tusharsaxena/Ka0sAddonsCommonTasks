@@ -1,6 +1,6 @@
 id	milestone	repo	title	depends_on
 CT-01	M0	Ka0sAddonsCommonTasks	Plan, inventory and execution record	
-LK-90	M1	LibKa0s	Release the run's library tag (v1.80.0 if M1 adds anything, else record v1.79.0 in exceptions)	
+LK-90	M1	LibKa0s	Release v1.80.0 (local tag) with LK-01..05	LK-01 LK-02 LK-03 LK-04 LK-05
 WS-01	M1	WowAddonStandards	Record the rollout in open-evolutions; any rule the inventory shows missing	
 AT-RV	M2	AbsorbTracker	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
 AT-01	M2	AbsorbTracker	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	AT-RV
