@@ -23,4 +23,4 @@ edge and a colored rule inside it, and the owner's complaint was thickness.
 
 | Id | Where | Expected | Result |
 |---|---|---|---|
-| R5-S10 | Loot History in Azeroth, then Ember and WoW Midnight | Azeroth's frame is a thin leather line with the gold rule inside it, as thin as Ember's; the corners stay unbroken | |
+| R5-S10 | Loot History in Azeroth, then Ember and WoW Midnight | Azeroth's frame is a thin leather line with the gold rule inside it, as thin as Ember's; the corners stay unbroken | Passed (owner, in game, 2026-10-28) |
