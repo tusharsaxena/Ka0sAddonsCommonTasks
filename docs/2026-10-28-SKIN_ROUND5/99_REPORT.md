@@ -121,3 +121,12 @@ everything to master"); the feature branch deleted in every repo.
 | this repo | see `git log` | — |
 
 The local tag `v1.78.0` (`b2f6ec6`) is **not pushed**: the owner has not said to push it.
+
+## After the finalize (2026-10-28)
+
+- **Tag pushed.** On the owner's word ("Push the tags also"), LibKa0s `v1.78.0` is on origin, at
+  `b2f6ec6`.
+- **Screenshots renamed to the vN convention.** The owner asked for one `docs/skins/screenshots/vN/`
+  folder per iteration. In LibKa0s (`c402acc`), the leg-1 set is now `v1/` and the round-5 Skin Tester
+  set is `v2/SkinTester/`. Loot History's round-5 set moved to the LootHistory repo, under
+  `docs/skins/screenshots/v2/` (`2420dbc`).
