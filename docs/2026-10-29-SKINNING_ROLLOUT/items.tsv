@@ -1,0 +1,89 @@
+id	milestone	repo	title	depends_on
+CT-01	M0	Ka0sAddonsCommonTasks	Plan, inventory and execution record	
+LK-90	M1	LibKa0s	Release the run's library tag (v1.80.0 if M1 adds anything, else record v1.79.0 in exceptions)	
+WS-01	M1	WowAddonStandards	Record the rollout in open-evolutions; any rule the inventory shows missing	
+AT-RV	M2	AbsorbTracker	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+AT-01	M2	AbsorbTracker	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	AT-RV
+AT-02	M2	AbsorbTracker	Windows, panels, dialogs and popups through the facade; no typed look values	AT-01
+AT-03	M2	AbsorbTracker	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	AT-01
+AT-04	M2	AbsorbTracker	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	AT-01
+AT-05	M2	AbsorbTracker	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	AT-02 AT-03 AT-04
+AM-RV	M2	AuraMaster	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+AM-01	M2	AuraMaster	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	AM-RV
+AM-02	M2	AuraMaster	Windows, panels, dialogs and popups through the facade; no typed look values	AM-01
+AM-03	M2	AuraMaster	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	AM-01
+AM-04	M2	AuraMaster	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	AM-01
+AM-05	M2	AuraMaster	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	AM-02 AM-03 AM-04
+BL-RV	M2	BankLedger	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+BL-01	M2	BankLedger	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	BL-RV
+BL-02	M2	BankLedger	Windows, panels, dialogs and popups through the facade; no typed look values	BL-01
+BL-03	M2	BankLedger	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	BL-01
+BL-04	M2	BankLedger	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	BL-01
+BL-05	M2	BankLedger	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	BL-02 BL-03 BL-04
+CM-RV	M2	ConsumableMaster	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+CM-01	M2	ConsumableMaster	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	CM-RV
+CM-02	M2	ConsumableMaster	Windows, panels, dialogs and popups through the facade; no typed look values	CM-01
+CM-03	M2	ConsumableMaster	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	CM-01
+CM-04	M2	ConsumableMaster	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	CM-01
+CM-05	M2	ConsumableMaster	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	CM-02 CM-03 CM-04
+DR-RV	M2	DpsRace	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+DR-01	M2	DpsRace	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	DR-RV
+DR-02	M2	DpsRace	Windows, panels, dialogs and popups through the facade; no typed look values	DR-01
+DR-03	M2	DpsRace	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	DR-01
+DR-04	M2	DpsRace	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	DR-01
+DR-05	M2	DpsRace	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	DR-02 DR-03 DR-04
+DW-RV	M2	DropWatcher	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+DW-01	M2	DropWatcher	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	DW-RV
+DW-02	M2	DropWatcher	Windows, panels, dialogs and popups through the facade; no typed look values	DW-01
+DW-03	M2	DropWatcher	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	DW-01
+DW-04	M2	DropWatcher	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	DW-01
+DW-05	M2	DropWatcher	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	DW-02 DW-03 DW-04
+KC-RV	M2	KickCD	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+KC-01	M2	KickCD	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	KC-RV
+KC-02	M2	KickCD	Windows, panels, dialogs and popups through the facade; no typed look values	KC-01
+KC-03	M2	KickCD	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	KC-01
+KC-04	M2	KickCD	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	KC-01
+KC-05	M2	KickCD	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	KC-02 KC-03 KC-04
+MM-RV	M2	MultiMeters	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+MM-01	M2	MultiMeters	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	MM-RV
+MM-02	M2	MultiMeters	Windows, panels, dialogs and popups through the facade; no typed look values	MM-01
+MM-03	M2	MultiMeters	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	MM-01
+MM-04	M2	MultiMeters	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	MM-01
+MM-05	M2	MultiMeters	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	MM-02 MM-03 MM-04
+PM-RV	M2	PanelMaster	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+PM-01	M2	PanelMaster	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	PM-RV
+PM-02	M2	PanelMaster	Windows, panels, dialogs and popups through the facade; no typed look values	PM-01
+PM-03	M2	PanelMaster	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	PM-01
+PM-04	M2	PanelMaster	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	PM-01
+PM-05	M2	PanelMaster	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	PM-02 PM-03 PM-04
+PF-RV	M2	PartyFrameEnhanced	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+PF-01	M2	PartyFrameEnhanced	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	PF-RV
+PF-02	M2	PartyFrameEnhanced	Windows, panels, dialogs and popups through the facade; no typed look values	PF-01
+PF-03	M2	PartyFrameEnhanced	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	PF-01
+PF-04	M2	PartyFrameEnhanced	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	PF-01
+PF-05	M2	PartyFrameEnhanced	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	PF-02 PF-03 PF-04
+PG-RV	M2	PremadeGroupsFilterExtension	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+PG-01	M2	PremadeGroupsFilterExtension	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	PG-RV
+PG-02	M2	PremadeGroupsFilterExtension	Windows, panels, dialogs and popups through the facade; no typed look values	PG-01
+PG-03	M2	PremadeGroupsFilterExtension	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	PG-01
+PG-04	M2	PremadeGroupsFilterExtension	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	PG-01
+PG-05	M2	PremadeGroupsFilterExtension	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	PG-02 PG-03 PG-04
+PG-06	M2	PremadeGroupsFilterExtension	Retire EUIBridge/EUISkin for LibKa0s's eui source; migrate the stored choice	PG-01
+PC-RV	M2	PrettyChat	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+PC-01	M2	PrettyChat	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	PC-RV
+PC-02	M2	PrettyChat	Windows, panels, dialogs and popups through the facade; no typed look values	PC-01
+PC-03	M2	PrettyChat	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	PC-01
+PC-04	M2	PrettyChat	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	PC-01
+PC-05	M2	PrettyChat	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	PC-02 PC-03 PC-04
+QC-RV	M2	QuickComms	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+QC-01	M2	QuickComms	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	QC-RV
+QC-02	M2	QuickComms	Windows, panels, dialogs and popups through the facade; no typed look values	QC-01
+QC-03	M2	QuickComms	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	QC-01
+QC-04	M2	QuickComms	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	QC-01
+QC-05	M2	QuickComms	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	QC-02 QC-03 QC-04
+WG-RV	M2	WhatGroup	Re-vendor LibKa0s from the run's tag; v1.78.0/v1.79.0 consumer obligations; pins	LK-90
+WG-01	M2	WhatGroup	Skin seam: SkinSetup RegisterOwner, skin.* keys, Skin tab, live repaint, owners to factories	WG-RV
+WG-02	M2	WhatGroup	Windows, panels, dialogs and popups through the facade; no typed look values	WG-01
+WG-03	M2	WhatGroup	HUD through the facade and S.Resolve/FROM_SKIN; fromSkin companions; one-time R3 reset migration	WG-01
+WG-04	M2	WhatGroup	First-run picker; own AceGUI acquisitions; owner-aware tool surfaces	WG-01
+WG-05	M2	WhatGroup	Docs, smoke checks per skin and under EllesmereUI, test-cases, badge, font credits	WG-02 WG-03 WG-04
