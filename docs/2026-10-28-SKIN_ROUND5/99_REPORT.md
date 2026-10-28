@@ -99,3 +99,25 @@ Record a result per row. None is marked passed here.
 ## Later
 
 Azeroth's border, R5-09..R5-11 and the smoke check R5-S10: [`01_AZEROTH_BORDER.md`](01_AZEROTH_BORDER.md).
+
+## Screenshots and showcase (R5-13)
+
+The owner's screenshots after round 5 ("skins look great now"), cropped to the window, are in LibKa0s
+`docs/skins/screenshots/2026-10-28-round5/` (`60119af`): the Skin Tester's showroom and Loot History's
+History tab in all nine skins, each folder with a `showcase.png` grid of every skin. The reusable
+script is LibKa0s `tools/skin_gallery.py`; it reads the skins from `SkinDefs.lua`, so it needs no
+change when a skin is added. `docs/skins/README.md` says how to run it for any addon.
+
+## Finalized (2026-10-28)
+
+Merged `--no-ff` and pushed to `master` on the owner's go-ahead ("go ahead and do the merge and push
+everything to master"); the feature branch deleted in every repo.
+
+| Repo | Merge | Gate on the merge |
+|---|---|---|
+| LibKa0s | `5caa63b` | 3031 passed / 2 skipped, luacheck 0/0 over 223 files |
+| LootHistory | `4db0fb1` | 1788 passed / 1 skipped, luacheck 0/0 over 149 files |
+| LibKa0sSkinTester | `2f1d12e` | 486 passed / 1 skipped, luacheck 0/0 over 65 files |
+| this repo | see `git log` | — |
+
+The local tag `v1.78.0` (`b2f6ec6`) is **not pushed**: the owner has not said to push it.
