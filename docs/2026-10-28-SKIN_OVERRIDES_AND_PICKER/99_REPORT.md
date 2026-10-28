@@ -33,7 +33,7 @@ GitHub: LibKa0s #63 and #64 are closed and labeled `state:done`, on the owner's 
 | 1 | Library items SO-01..03, PK-01 | Passed 2026-10-28 | LibKa0s 3914002 |
 | 2 | Both consumers on the branch's library | Passed 2026-10-28 | LH 14c108f, ST 751b90a |
 | 3 | SO-04, SO-05, LH-02, ST-02 (and ST-03) | Passed 2026-10-29. LibKa0s 3156 passed / 0 failed / 2 skipped; LootHistory 1830 / 0 / 1; LibKa0sSkinTester 538 / 0 / 1; `ka0s-bounded luacheck .` 0 warnings / 0 errors in all three; no file over 1500 lines | LibKa0s 730c1d8, LH 5487bf2, ST 3afa3be |
-| 4 | Merge, push the tag, delete the branches | **Waiting on the owner's go-ahead** | — |
+| 4 | Merge, push the tag, delete the branches | Done 2026-10-29 on the owner's go-ahead, after a doc sync (FIN-01: LibKa0s cc5fd6e, LootHistory 66d820a; the tester needed none). Gates re-run on every merge: 3156 / 1830 / 538 passed, 0 failed, lint 0/0. Tag `v1.79.0` pushed. Branches deleted locally and on origin | LibKa0s master 4e1ae41, LH b287253, ST 18280a6 |
 
 ## Smoke checks pending the owner
 
@@ -50,7 +50,6 @@ not just `/reload`.
 ## Left for the owner
 
 1. Run the smoke checks above.
-2. Give the go-ahead to merge the four branches `--no-ff`, push `v1.79.0` and delete the branches
-   (`/dev-copilot:finalize`).
+2. Merge, tag push and branch deletion: done 2026-10-29 with `/dev-copilot:finalize` (checkpoint 4).
 3. Not started: the backlog item LibKa0s#65 and the other addons' adoption of overrides and the
    picker. The collection-wide skinning adoption pass covers the adoption.
