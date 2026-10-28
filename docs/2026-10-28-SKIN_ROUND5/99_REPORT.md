@@ -82,19 +82,19 @@ The local tag `v1.78.0` was re-cut from `3b640fd` to `55883fa`, after a clean-tr
 
 ## Owner smoke
 
-Record a result per row. None is marked passed here.
+Every row passed in game (the owner, 2026-10-28).
 
 | Id | Where | Expected | Result |
 |---|---|---|---|
-| R5-S1 | Scroll bars in every skin: the showroom's lists, Loot History's History table, the settings panel's longest page | A corridor that stands apart from the window, one flat knob in the skin's color inside it, moving with the scroll; High Contrast shows one knob | |
-| R5-S2 | The window corners on Azeroth, High Contrast and WoW Midnight (the showroom and Loot History) | The edge runs unbroken round all four corners; the title bar and footer sit inside it | |
-| R5-S3 | Ka0s Default's window edge | The 1px edge where it was | |
-| R5-S4 | Fonts, every skin | Each skin in its own family (table above), titles in the same family's heavier weight; no empty squares; sizes read comfortably | |
-| R5-S5 | Obsidian | Inter reads modern and crisp | |
-| R5-S6 | Paging, dropdown and sort arrows in every skin | In the skin's accent color (gold where the accent is gold), not the client's yellow in every skin | |
-| R5-S7 | WoW Forever's checkboxes | The check mark in tan | |
-| R5-S8 | The showroom's skin cards under High Contrast | Every name on one line, "High Contrast" a little smaller; full size again under Ka0s Default | |
-| R5-S9 | Loot History with each skin | Nothing overflows its column in the new faces | |
+| R5-S1 | Scroll bars in every skin: the showroom's lists, Loot History's History table, the settings panel's longest page | A corridor that stands apart from the window, one flat knob in the skin's color inside it, moving with the scroll; High Contrast shows one knob | Passed (owner, in game, 2026-10-28) |
+| R5-S2 | The window corners on Azeroth, High Contrast and WoW Midnight (the showroom and Loot History) | The edge runs unbroken round all four corners; the title bar and footer sit inside it | Passed (owner, in game, 2026-10-28) |
+| R5-S3 | Ka0s Default's window edge | The 1px edge where it was | Passed (owner, in game, 2026-10-28) |
+| R5-S4 | Fonts, every skin | Each skin in its own family (table above), titles in the same family's heavier weight; no empty squares; sizes read comfortably | Passed (owner, in game, 2026-10-28) |
+| R5-S5 | Obsidian | Inter reads modern and crisp | Passed (owner, in game, 2026-10-28) |
+| R5-S6 | Paging, dropdown and sort arrows in every skin | In the skin's accent color (gold where the accent is gold), not the client's yellow in every skin | Passed (owner, in game, 2026-10-28) |
+| R5-S7 | WoW Forever's checkboxes | The check mark in tan | Passed (owner, in game, 2026-10-28) |
+| R5-S8 | The showroom's skin cards under High Contrast | Every name on one line, "High Contrast" a little smaller; full size again under Ka0s Default | Passed (owner, in game, 2026-10-28) |
+| R5-S9 | Loot History with each skin | Nothing overflows its column in the new faces | Passed (owner, in game, 2026-10-28) |
 
 ## Later
 
