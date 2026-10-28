@@ -1,1 +1,2 @@
 date	milestone	evidence
+2026-10-29	M1	LK-01..05 + LK-90 + ST-01/02 + WS-01 landed and reviewed (LibKa0s review: 8 minors, fixed in a95b686 except a shared stock mark documented and a PrettyChat smoke check moved to M2); LibKa0s 3220/0/2, luacheck 0/0 (233), release run 20261029-032426 green, max CCN 15; Skin Tester 551/0/1, 0/0 (71); check-standard all ok (v2.91.0); local tag v1.80.0 at 912f1b4 (NOT pushed); pushed LibKa0s 912f1b4, LibKa0sSkinTester a8b48d2, WowAddonStandards 334159d + ka0s-review notes

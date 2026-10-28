@@ -224,3 +224,9 @@ Each addon's implementer applies its inventory's recommendations below unless a 
 - D6: chat output colors (FFD700 summary labels at core/WhatGroup.lua:811, the green link, the cyan [WG] prefix, the yellow command hints) are not a skinned surface. Recommend leaving them.
 - D7: 00_PLAN says 'Skin tab', but skinning-§3 requires the label to be exactly 'Appearance', before Keybindings. Recommend 'Appearance'.
 - D8: the skin.* skip-render rows need a schema group, and tests/test_settings.lua:517-569 pins the General partition and the set of group names. Recommend group 'Appearance', or confirm skip-render rows are excluded, and move the test pins in the WG-01 commit.
+
+## Added during M1 (lead, 2026-10-29)
+
+- **X11. PrettyChat's settings TreeGroup takes the library's flat edge under Ka0s Default** (LK-03): its colors equal the stock TreeGroup's, but the tooltip-style 16px edge becomes the flat `nav.borderSize` edge and the rows take the body face, the way every other AceGUI widget the library paints already looks under Ka0s Default since v1.79.0. This is the one Ka0s Default shape change in the rollout outside O2; it is flagged to the owner in the report, and reverting it is a one-line painter option.
+- **X12. Owner-token names never reuse a library family** (the library refuses `text.*`, `gtip.*`, `sem.*`, ...): the inventories' proposals become addon-namespaced (`pc.note`, `dw.upgrade`, `am.attach`). A color token never follows a string token.
+- **X13. The Skin Tester's showroom gained a Quality tiers (`q.*`) category** in ST-01, beyond the plan (an agent read the owner's DropWatcher "tier tokens" note, meant for DropWatcher#13, as a showroom request). It is harmless and useful, so it stays.

@@ -4,3 +4,4 @@ LK-03	M1	LibKa0s	SkinAce: AliasAceType for custom AceGUI types; TreeGroup painte
 LK-04	M1	LibKa0s	Icon border family tokens + BorderGroup fromSkin=icon	
 LK-05	M1	LibKa0s	opts.stockDefault on Shell/TitleBar/CloseButton/template controls	
 ST-01	M1	LibKa0sSkinTester	Showroom samples for LK-01..05; re-vendor branch head	LK-01 LK-02 LK-03 LK-04 LK-05
+ST-02	M1	LibKa0sSkinTester	Provenance to the tagged v1.80.0	LK-90 ST-01
