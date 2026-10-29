@@ -1,1 +1,2 @@
 id	reason (with proof command)
+LK-06	Split into LK-06a..d by DECISIONS.md D-12; done when they are. Proof: grep -c "^LK-06[a-d]" plan-data/addendum-01.tsv  (expect 4)

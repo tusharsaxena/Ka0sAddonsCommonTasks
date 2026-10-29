@@ -16,7 +16,7 @@ BASE=/mnt/d/Profile/Users/Tushar/Documents/GIT
 BR=feat/2026-10-30-skin-library-followups
 HERE=${0:A:h}
 MANIFEST=$HERE/items.tsv
-IDRE='^[A-Z]{2}-[A-Z0-9]+$'
+IDRE='^[A-Z]{2}-[A-Z0-9]+[a-z]?$'
 
 [[ -r $MANIFEST ]] || { echo "missing $MANIFEST"; exit 0 }
 # Addenda (RESUME section 5) append rows without editing the frozen manifest.
