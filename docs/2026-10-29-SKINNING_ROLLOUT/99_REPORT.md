@@ -168,3 +168,24 @@ The owner accepted calls 3–4 as built and left the trailers as they are. Call 
 HUD) was not ruled on and stays library follow-up 1. The owner gave the go-ahead to sync docs, merge,
 push and delete the branches without waiting for the in-game smoke test, so every smoke check in
 `06_SMOKE_TESTS.md` is still owed.
+
+## M4: finalized (2026-10-29)
+
+On the owner's go-ahead, `/dev-copilot:finalize` ran in dependency order: WowAddonStandards → LibKa0s (tag
+`v1.80.0` at 912f1b4 **pushed**) → LibKa0sSkinTester and the fourteen addons → this repo.
+
+- **Doc sync:** content only, one agent per repo (wf_9effca84-081), with `SD-FIN-04` commits in 14 repos
+  and none needed in WowAddonStandards, BankLedger or PartyFrameEnhanced. Every gate was green after the
+  sync.
+- **Merges:** each was `--no-ff` onto an unmoved master, so each merge tree equals the gated branch tree.
+  Each was pushed with its `ka0s-review` notes, and the branch was deleted locally and on origin.
+- **Heads:** WowAddonStandards f5e5009, LibKa0s ea1d92d, LibKa0sSkinTester 9dab27b, AbsorbTracker a41affd, AuraMaster e565220, BankLedger 647e34f, ConsumableMaster 86dfb1b, DpsRace 4816414, DropWatcher 8851923, KickCD c006208, MultiMeters 6c5e837, PanelMaster febaed5, PartyFrameEnhanced b64ba84, PremadeGroupsFilterExtension 2fc7ae3, PrettyChat cfd8c58, QuickComms c77daa1, WhatGroup d8e52f4.
+- **Clean-up:** none of the 18 repos has a stash or an extra worktree. No version was bumped.
+- **Not done:**
+  - No `docs/revendor/` bundle exists for the v1.80.0 re-vendor in any addon.
+    `/dev-copilot:wow-revendor-libka0s` owns that.
+  - A few repos' docs/testing.md and DEPENDENCIES.md still show a bare `luacheck .` where CLAUDE.md
+    names the bounded runner.
+  - Dead exports, reported and not removed: `NS.SkinPaintAce` in PrettyChat and `NS.SkinOnRelease` in
+    AuraMaster, both used only by tests.
+- **Still owed:** every smoke check in `06_SMOKE_TESTS.md`, and LEDG-35 in BankLedger.
