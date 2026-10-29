@@ -189,3 +189,12 @@ On the owner's go-ahead, `/dev-copilot:finalize` ran in dependency order: WowAdd
   - Dead exports, reported and not removed: `NS.SkinPaintAce` in PrettyChat and `NS.SkinOnRelease` in
     AuraMaster, both used only by tests.
 - **Still owed:** every smoke check in `06_SMOKE_TESTS.md`, and LEDG-35 in BankLedger.
+
+## After M4: owner ruling on call 2 (2026-10-30)
+
+**Ignore fonts covers the HUD too.** With it on, HUD text ignores "From skin" for the face and outline and
+uses the face set in that HUD element's own font setting. This turns library follow-up 1 into planned work:
+`S.Resolve`/`Token` honour Ignore fonts for `hud.font` and `hud.outline`, the composer's font picker stops
+previewing the skin's face, LibKa0s is released and re-vendored, and the AbsorbTracker and ConsumableMaster
+workarounds are removed. AuraMaster SKIN-10, KickCD SKIN-14 and the QuickComms check are then rewritten to
+expect the HUD's own face. Not started; it needs its own run.
