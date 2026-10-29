@@ -1,0 +1,4 @@
+id	milestone	repo	title	depends_on
+KC-A1	M3	KickCD	Owner ruling R-1: the cast-bar borders follow the icon border family (fromSkin = "icon"), so they keep a flat edge under every skin	
+MM-A1	M3	MultiMeters	Owner ruling R-3: the meter window chrome follows the skin (inventory D1, D3, D4, D16: fill, edge, header strip, header controls), with the one-time reset	
+BL-A1	M3	BankLedger	Owner ruling R-4: the close control is the library S.CloseButton, as in every other addon (no stockDefault, no host hover tint, bl.closeRest retired)	
