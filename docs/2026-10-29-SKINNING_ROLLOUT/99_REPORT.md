@@ -150,3 +150,21 @@ Standard follow-up: skinning-§3 says the tab is labeled "Appearance", but the l
 2. Follow-up fixes, if any, land on the same branches.
 3. M4, on the go-ahead only: `/dev-copilot:finalize` in RESUME §6's order, push the v1.80.0 tag, and
    delete the branches, stashes and worktrees.
+
+## After M3: the owner's rulings (2026-10-29)
+
+The owner's rulings are in `OWNER_RULINGS_M3.md`. They produced three addendum items, each reviewed, with
+its gate re-run by the lead:
+
+- **KC-A1** (72969e1): the cast-bar borders follow the icon border family, a flat 2 px edge under Ka0s
+  Default. KickCD 1555/0/1.
+- **BL-A1** (d20a28b): the close control is the library's `S.CloseButton` under every skin, and
+  `bl.closeRest` is retired. LEDG-35 is re-opened for the owner. BankLedger 1509/0/1.
+- **MM-A1** (44b21ad..0aed7f5): the meter window's fill, edge, header strip and header controls follow the
+  skin (a `skin` mode, the default), and step v20 → v21 resets every profile once. The independent review
+  found 8 minors; 5 were fixed and the gradient title band is documented. MultiMeters 2415/0/1.
+
+The owner accepted calls 3–4 as built and left the trailers as they are. Call 2 (Ignore fonts and the
+HUD) was not ruled on and stays library follow-up 1. The owner gave the go-ahead to sync docs, merge,
+push and delete the branches without waiting for the in-game smoke test, so every smoke check in
+`06_SMOKE_TESTS.md` is still owed.
