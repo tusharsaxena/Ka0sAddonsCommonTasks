@@ -11,3 +11,10 @@
 - **Kept from WS-01's review:** a stored font flag equal to the addon's previous default moves to From skin once on
   the v1.82.0 re-vendor (per-profile migration); only a flag the player changed counts as picked. Every M2 item
   that stores flags carries that migration step.
+
+# Addendum 02 (2026-10-30, owner, during M1)
+
+DpsRace (image-58, image-59): hovering a spell's icon or its bar in the Spell breakdown opens the game's full spell
+tooltip, anchored to the right of the DpsRace window. The damage chart's cast-marker tooltip (today "Colossus Smash /
+Cast at 0:45") also shows the full spell tooltip, keeping the cast time, anchored the same way. Both in the mid-race
+and post-race views. Item DR-03 (`addendum-02.tsv`).
