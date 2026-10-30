@@ -1,0 +1,18 @@
+id	milestone	repo	title	depends_on
+AT-02 AbsorbTracker	M2	AT-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+AM-04 AuraMaster	M2	AM-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+DR-07 DpsRace	M2	DR-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+KC-04 KickCD	M2	KC-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+MM-02 MultiMeters	M2	MM-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+PM-02 PanelMaster	M2	PM-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+PG-03 PremadeGroupsFilterExtension	M2	PG-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+PC-02 PrettyChat	M2	PC-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+QC-03 QuickComms	M2	QC-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+WG-02 WhatGroup	M2	WG-01	Adopt the kit display-glyph guard (T.assertDisplayGlyphs) and fix or mark every hit	
+AM-05 AuraMaster	M2	AM-01	Bring every function above CCN 15 to 15 or below, behaviour unchanged	
+BL-03 BankLedger	M2	BL-01	Bring every function above CCN 15 to 15 or below, behaviour unchanged	
+DR-08 DpsRace	M2	DR-01	Bring every function above CCN 15 to 15 or below, behaviour unchanged	
+KC-05 KickCD	M2	KC-01	Bring every function above CCN 15 to 15 or below, behaviour unchanged	
+MM-03 MultiMeters	M2	MM-01	Bring every function above CCN 15 to 15 or below, behaviour unchanged	
+PM-03 PanelMaster	M2	PM-01	Bring every function above CCN 15 to 15 or below, behaviour unchanged	
+MM-04	M2	MultiMeters	Split modules/Window.lua (1500 lines, at the cap) into cohesive files with headroom	MM-01

@@ -61,3 +61,17 @@ Delve, Scenario, Solo. Raid Finder: tracked, no auto-open. PvP and Open world gr
 everywhere. Loot rule Personal everywhere except PvP (Legacy), so Follower dungeon moves from Legacy to Personal.
 Master Auto-open stays on. These are AceDB defaults: a profile that never changed a cell takes them, a stored choice
 stays (D-18's rule, no migration). Item DW-06.
+
+# Addendum 07 (2026-10-31, owner, after M4)
+
+The owner asked for the three follow-ups `99_REPORT.md` left open:
+- **The display-glyph guard in the ten addons that do not call it** (AT-02, AM-04, DR-07, KC-04, MM-02, PM-02, PG-03,
+  PC-02, QC-03, WG-02). Each adds a `tests/test_glyphs.lua` calling `T.assertDisplayGlyphs` (BankLedger's is the
+  model). A character a shipped face cannot draw in player-facing text becomes a safe one (D-19's rule). Strings that
+  are data, not display text, get a `glyph: data` mark with a reason; ones drawn in the mono role get `glyph: mono`.
+  Examples are PGFE's realm lookup keys and PrettyChat's Blizzard GlobalStrings.
+- **No function above CCN 15** in the six addons that have pre-existing ones (AM-05, BL-03, DR-08, KC-05, MM-03,
+  PM-03). These are behaviour-preserving refactors measured with the vendored complexity suite, so each addon's next
+  `/dev-copilot:bump-version` is not blocked.
+- **MultiMeters' `modules/Window.lua`** is at the 1500-line cap; MM-04 splits it into cohesive files with headroom,
+  with the same public surface.
