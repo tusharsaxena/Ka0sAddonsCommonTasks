@@ -3,7 +3,7 @@
 This is the execution record. The plan (`00_PLAN.md`), `DECISIONS.md`, `items.tsv` and the addenda stay as written;
 everything decided after them is recorded here.
 
-## Where it stands (2026-10-30, end of M3)
+## Where it stands (2026-10-30, end of M3; see "After M4" for 2026-10-31)
 
 - All 60 items have landed (`resume-state.sh -v`: 60/60): the 59 of M0 to M3, and CT-02, this report. Each is a
   commit or an `exceptions.tsv` row with a proof command (the seven IS-* items).
@@ -14,6 +14,59 @@ everything decided after them is recorded here.
 - **Nothing is merged.** The LibKa0s tag `v1.82.0` is **local only**: tag object 5eca031 on commit 277081f.
   `git ls-remote --tags origin v1.82.0` is empty.
 - The run is stopped for the owner's in-game smoke pass (`06_SMOKE_TESTS.md`) and the go-ahead for M5.
+
+## After M4 (2026-10-31, owner requests)
+
+Three addenda landed after the report was first written. Each was reviewed, fixed, re-gated by the lead and pushed;
+`resume-state.sh -v` shows 79/79. Nothing is merged and the tag is still local.
+
+- **Addendum 06, DW-06 (bdf341c).** DropWatcher's Situations defaults from image-64: Follower dungeon, Delve,
+  Scenario and Solo tracked and auto-open; Follower dungeon's loot rule Personal (PvP stays Legacy). These are AceDB
+  defaults, with no migration. Eleven tests that assumed Solo or Delve untracked now set that up explicitly. Four
+  passing tests that wrote a value now equal to the default were made to write a non-default value. **Owner to
+  confirm:** with Solo on auto-open, every own drop that passes the feed's filters while solo opens the window.
+- **Addendum 08, DW-07 (42d2a1a, e4dde41).** DropWatcher offers a drop only when another player is in the group.
+  This applies to solo, follower dungeons (NPC followers) and delves with a companion. The check is
+  `Compat.UnitIsPlayer`, with the GUID kind as the fallback for a secret answer. Every offer surface is gated: the
+  table cell, the detail and compact cards, the Offer panel, Announce, `/dw offer`, and Post my tradeables (hidden
+  while alone, after the review). The row shows No action with "no other player in your group". A roster change
+  repaints the rows. **Owner to confirm:** an offline member still counts as present (recorded in
+  known-limitations).
+- **Addendum 07, the three follow-ups below this report listed as open.**
+  - The display-glyph guard now runs in all 15 addons: AT-02, AM-04, DR-07, KC-04, MM-02, PM-02, PG-03, PC-02,
+    QC-03 and WG-02. No player-facing string changed.
+    - AbsorbTracker's and KickCD's arrows are debug-console text (`glyph: mono`).
+    - PGFE's 200 hits are the realm lists, which are lookup keys only and are never drawn; the region tags are
+      ASCII. They are marked data, and a test fails if the mark hides anything outside the table.
+    - PrettyChat's two euro signs are in its copy of Blizzard's GlobalStrings. They are marked data, and the
+      splitter keeps the mark.
+  - No function is above CCN 15 in AuraMaster, BankLedger, DpsRace, KickCD, MultiMeters or PanelMaster (AM-05,
+    BL-03, DR-08, KC-05, MM-03, PM-03). These are behaviour-preserving refactors, with characterization tests where
+    a function had no direct test. The lead re-ran the vendored complexity suite in all 11 touched repos: the
+    maximum is 15 everywhere.
+  - MM-04 split MultiMeters' `modules/Window.lua` (1500 lines) into Window.lua (414), Window_Frame.lua (637) and
+    Window_Render.lua (537), with every function moved unchanged and the same load order. The review moved
+    `tests/test_window.lua`'s static sweep into `tests/test_window_static.lua` (test_window.lua was at 1500).
+
+Gates after the addenda (lead re-runs, ka0s-bounded; luacheck 0/0 everywhere; complexity pass, max CCN 15 or 14):
+
+| Repo | Head | Tests | Luacheck files |
+|---|---|---|---|
+| AbsorbTracker | de86a9b | 972/0/1 | 78 |
+| AuraMaster | f468fb2 | 2247/0/1 | 193 |
+| BankLedger | fa58f89 | 1531/0/1 | 114 |
+| DpsRace | 03280f6 | 1190/0/1 | 154 |
+| DropWatcher | e4dde41 | 1842/0/1 | 206 |
+| KickCD | 1fc77ea | 1576/0/1 | 154 |
+| MultiMeters | 5684c29 | 2449/0/1 | 178 |
+| PanelMaster | 820adc0 | 1157/0/1 | 83 |
+| PremadeGroupsFilterExtension | 8c8e75c | 450/0/1 | 67 |
+| PrettyChat | 19610de | 648/0/1 | 65 |
+| QuickComms | 2a1c48b | 1296/0/1 | 148 |
+| WhatGroup | 37da88f | 1042/0/1 | 72 |
+
+In "Open findings and follow-ups" below, the bullets on the glyph guard, on the pre-existing CCN functions and on
+MultiMeters' 1500-line Window.lua are resolved by Addendum 07.
 
 ## What shipped, per owner item
 
