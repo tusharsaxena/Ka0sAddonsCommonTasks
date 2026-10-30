@@ -245,8 +245,9 @@ Filed one at a time, 24 to 37 s apart (about 25 s for all but one gap), after a 
 
 ## Things the run noticed
 
-- An early ST-01 attempt's staged work was wiped by a `reset` at 19:16:52 +0530 before it was committed; ST-01 was
-  re-implemented from the re-cut tag and reviewed again. The lost blobs were not recovered.
+- ST-01's first attempt was a trial re-vendor of the first tag. It found the kit's PDF gap (LK-A2), and the agent
+  then undid its own uncommitted copy (the `reset` at 19:16:52 +0530 that the ST-01 review saw). ST-01 was redone
+  from the re-cut tag and reviewed again. Nothing committed was lost.
 - The first release run's tag predated the kit fix; nothing had re-vendored from it, so moving the local tag was safe.
 - Several implementers wrote LF into CRLF files or doubled CRs; the kit's eol test caught each before commit.
 - DR-03 passes a secret spell ID to `GameTooltip:SetSpellByID` mid race under `pcall`. Whether the live client accepts
