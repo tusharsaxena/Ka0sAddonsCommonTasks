@@ -53,3 +53,11 @@ ST-01's trial re-vendor of the v1.82.0 tag (11a9c9a) went red on a library gap. 
 vendor-sync case. Every consumer would go red. LK-A2 fixes the table, adds a kit test that it covers every `binary`
 line in `.gitattributes`, re-runs the release battery and re-cuts the **local** v1.82.0 tag (never pushed, so
 moving it is safe). ST-01 then runs on the re-cut tag. RESUME §5's path, taken in M1 instead of M2.
+
+# Addendum 06 (2026-10-31, owner, after M4)
+
+DropWatcher's Situations defaults (image-64). Tracked and auto-open: Mythic+, Dungeon, Follower dungeon, Raid,
+Delve, Scenario, Solo. Raid Finder: tracked, no auto-open. PvP and Open world group: neither. Quality "Use global"
+everywhere. Loot rule Personal everywhere except PvP (Legacy), so Follower dungeon moves from Legacy to Personal.
+Master Auto-open stays on. These are AceDB defaults: a profile that never changed a cell takes them, a stored choice
+stays (D-18's rule, no migration). Item DW-06.

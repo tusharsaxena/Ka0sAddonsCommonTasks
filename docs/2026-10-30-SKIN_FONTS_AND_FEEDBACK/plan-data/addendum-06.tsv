@@ -1,0 +1,2 @@
+id	milestone	repo	title	depends_on
+DW-06	M2	DropWatcher	Situation defaults from the owner (image-64): Follower dungeon, Delve, Scenario and Solo tracked and auto-open; Follower dungeon loot rule Personal	DW-01
