@@ -75,3 +75,11 @@ The owner asked for the three follow-ups `99_REPORT.md` left open:
   `/dev-copilot:bump-version` is not blocked.
 - **MultiMeters' `modules/Window.lua`** is at the 1500-line cap; MM-04 splits it into cohesive files with headroom,
   with the same public surface.
+
+# Addendum 08 (2026-10-31, owner, after M4)
+
+DropWatcher (image-66): a tradeable drop of your own shows the Offer button even when nobody could take it. Do not
+offer when you are the only human player present: solo, in a delve (Brann or other companions are NPCs), in a
+follower dungeon (the party's followers are NPCs), or in any group whose other members are all non-player units.
+The row shows the existing "No action" state, with a tooltip naming the reason, instead. When a human joins, the
+Offer returns. Item DW-07.

@@ -1,0 +1,2 @@
+id	milestone	repo	title	depends_on
+DW-07	M2	DropWatcher	No Offer when there is no other human player in the group (solo, a delve with Brann, a follower dungeon)	DW-01
