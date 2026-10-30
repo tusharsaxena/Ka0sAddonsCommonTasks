@@ -1,0 +1,3 @@
+id	milestone	repo	title	depends_on
+DR-04	M2	DpsRace	New-best toast: 25% larger with every element scaled, trophy as tall as the three rows, equal row spacing, even top and bottom padding, class and spec icons beside the class and spec text	DR-01
+DW-05	M2	DropWatcher	Toast height matches the DpsRace toast (DR-04), every element scaled to match	DW-01

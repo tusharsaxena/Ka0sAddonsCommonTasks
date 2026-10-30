@@ -18,3 +18,18 @@ DpsRace (image-58, image-59): hovering a spell's icon or its bar in the Spell br
 tooltip, anchored to the right of the DpsRace window. The damage chart's cast-marker tooltip (today "Colossus Smash /
 Cast at 0:45") also shows the full spell tooltip, keeping the cast time, anchored the same way. Both in the mid-race
 and post-race views. Item DR-03 (`addendum-02.tsv`).
+
+# Addendum 03 (2026-10-30, owner, during M1)
+
+DpsRace's new-best toast (image-60):
+- 25% larger overall, with every element scaled to match.
+- The trophy icon is as tall as the three text rows (headline, the Cleave / 1:00 tags, the DPS line), and the toast
+  widens as needed to fit it.
+- The three rows get a little more spacing, equal between each pair. The padding above the first row and below the
+  last row is evened out.
+- Class and spec icons go next to the "Arms Warrior" text. The owner wrote "class and spec tooltip"; the lead reads
+  it as icons, the only reading that fits "next to the text". Item DR-04.
+
+Then DropWatcher's toast is resized so its height matches the new DpsRace toast, with its elements scaled to match.
+Item DW-05, run after DR-04 lands so the height can be read from DpsRace's code (the two addons run in parallel in
+M2, so DW-05 waits on DpsRace's commit). Both rows are in `addendum-03.tsv`.
