@@ -42,6 +42,9 @@ passed. The screenshots are in `screenshots/`, named `image-NN.png` after the nu
     on its own. image-52: in `/qc test` the dial's first level of callout groups has placeholder icons; replace them
     with proper glyphs like image-53's.
 
+16. **DpsRace (added mid-run).** image-55..57: the Arm Race button's label looks muted, as if disabled (Ka0s
+    Default, and the two other skins shown). Make it read as enabled in every skin.
+
 ## Answers to the lead's questions
 
 - **Finalize first.** The follow-ups run (v1.81.0) is merged and its tag pushed before this run starts; this run

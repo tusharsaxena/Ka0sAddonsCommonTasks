@@ -12,6 +12,7 @@ LK-09	M1	LibKa0s	Drag strip titles re-fit on every skin repaint, measured in the
 LK-10	M1	LibKa0s	OptionsWidgets shownWhen any (OR across dropdowns), splitting the file if the cap needs it
 LK-11	M1	LibKa0s	O.SkinVerb: the /xx skin verb opens the new-profile skin picker	LK-08
 LK-12	M1	LibKa0s	Test-kit glyph guard: display strings only use characters every shipped face draws	LK-01
+LK-14	M1	LibKa0s	Accent (primary) button labels read as enabled in every skin (DpsRace Arm Race looks disabled)	
 LK-13	M1	LibKa0s	Docs: docs/api, README credits, CHANGELOG for v1.82.0	LK-12
 LK-90	M1	LibKa0s	Release run and local tag v1.82.0	LK-13
 WS-01	M1	WowAddonStandards	Standard v2.93.0: fonts and licenses, width parity, outline, font-setting minimum set, overrides, skin verb, HUD test-marker carve-out, sim markers, conditional sections MUST, character set
@@ -24,6 +25,7 @@ BL-01	M2	BankLedger	Re-vendor v1.82.0 with skin verb, stubs and facades; font se
 BL-02	M2	BankLedger	Replace characters some skin fonts cannot draw	BL-01
 CM-01	M2	ConsumableMaster	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags; HUD size scale	LK-90
 DR-01	M2	DpsRace	Re-vendor v1.82.0 with skin verb, stubs and facades; stored font flags, font settings minimum set; HUD size scale	LK-90
+DR-02	M2	DpsRace	Arm Race button reads as enabled in every skin	DR-01
 DW-01	M2	DropWatcher	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags	LK-90
 DW-02	M2	DropWatcher	Situations table: Loot rule column fits	DW-01
 DW-03	M2	DropWatcher	Upgrade glow defaults: Proc for both, main 19FF19, off-spec 3FC7EB	DW-01

@@ -95,6 +95,11 @@ reports A to K and the critic Z). The plan follows these. A later change goes in
   A group or callout with no icon draws `ph:folder-simple` / `ph:chat-circle-dots`, the "?" only without the
   library. The animation request is a comment on the existing #13 (each surface on its own), not a new issue.
 
+- **D-25 Arm Race contrast (owner item 16).** The label is dim in three skins, so the cause is most likely the
+  library's accent-button label color, not DpsRace. LK-14 finds it and fixes the label for every skin and every
+  accent button (a guard test on label-to-fill contrast in all skins). If the cause is DpsRace's own (it disables
+  or recolors the button while idle), LK-14 lands as an exception with proof and DR-02 fixes it there.
+
 ## Issues (M3, spaced out)
 
 - **D-22** IS-01 LibKa0s: conditional sections across every addon + the standard MUST. IS-02 DropWatcher: stacked
