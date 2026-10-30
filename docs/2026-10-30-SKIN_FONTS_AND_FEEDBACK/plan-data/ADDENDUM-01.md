@@ -33,3 +33,14 @@ DpsRace's new-best toast (image-60):
 Then DropWatcher's toast is resized so its height matches the new DpsRace toast, with its elements scaled to match.
 Item DW-05, run after DR-04 lands so the height can be read from DpsRace's code (the two addons run in parallel in
 M2, so DW-05 waits on DpsRace's commit). Both rows are in `addendum-03.tsv`.
+
+# Addendum 04 (2026-10-30, owner, during M1)
+
+DpsRace's Spell breakdown:
+- **DR-05 (image-61, image-62).** Some hovers in the breakdown, such as the "Compare vs runner-up" Damage and DPS rows
+  and the headers and text, show their tooltip at the cursor. Every tooltip in the section anchors to the right of
+  the window, as the spell rows' tooltips already do (image-62). The anchor is shared with DR-03, so DR-05 follows
+  it.
+- **DR-06 (image-63).** The Difference column becomes two columns under one shared "Difference" header: the amount
+  (`+512.6K`) and the percent (`+5.0%`), both right-aligned and with a tight gap between them. The percent column is
+  wide enough for a signed value with three integer digits and one decimal (`+100.0%`, `-100.0%`) in every skin.
