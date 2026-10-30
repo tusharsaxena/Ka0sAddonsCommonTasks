@@ -1,0 +1,2 @@
+id	milestone	repo	title	depends_on
+LK-A2	M1	LibKa0s	Test kit vendor_sync: BINARY_EXT covers every binary pin in .gitattributes (pdf first), with a kit test that keeps them in step; re-cut the local v1.82.0 tag	LK-90

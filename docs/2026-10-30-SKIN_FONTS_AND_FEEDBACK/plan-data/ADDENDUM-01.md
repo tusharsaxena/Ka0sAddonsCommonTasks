@@ -44,3 +44,12 @@ DpsRace's Spell breakdown:
 - **DR-06 (image-63).** The Difference column becomes two columns under one shared "Difference" header: the amount
   (`+512.6K`) and the percent (`+5.0%`), both right-aligned and with a tight gap between them. The percent column is
   wide enough for a signed value with three integer digits and one decimal (`+100.0%`, `-100.0%`) in every skin.
+
+# Addendum 05 (2026-10-30, lead, end of M1)
+
+ST-01's trial re-vendor of the v1.82.0 tag (11a9c9a) went red on a library gap. The test kit's `vendor_sync.lua`
+`BINARY_EXT` table says it matches `.gitattributes`' binary pins but has no `pdf` (nor `tar`, `gz`, `7z`, `bin`,
+`param`). It strips CR from the shipped `Expressway-EULA.pdf`, so a byte-identical vendored copy fails its own
+vendor-sync case. Every consumer would go red. LK-A2 fixes the table, adds a kit test that it covers every `binary`
+line in `.gitattributes`, re-runs the release battery and re-cuts the **local** v1.82.0 tag (never pushed, so
+moving it is safe). ST-01 then runs on the re-cut tag. RESUME §5's path, taken in M1 instead of M2.
