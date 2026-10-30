@@ -5,10 +5,11 @@ everything decided after them is recorded here.
 
 ## Where it stands (2026-10-30, end of M3)
 
-- Every item in M0 to M3 has landed: 59 of 60, CT-02 being this commit. `resume-state.sh -v` shows each one as a
-  commit or as an `exceptions.tsv` row with a proof command (the seven IS-* items).
+- All 60 items have landed (`resume-state.sh -v`: 60/60): the 59 of M0 to M3, and CT-02, this report. Each is a
+  commit or an `exceptions.tsv` row with a proof command (the seven IS-* items).
 - Every run branch is pushed with its `refs/notes/ka0s-review` note: LibKa0s, WowAddonStandards, LibKa0sSkinTester,
-  the 15 addons and this repo. Local and origin heads match in every repo, and so do the notes refs. Every tree is
+  the 15 addons and this repo. Local and origin heads match in all 18 code repos, and so do the notes refs. This
+  repo's branch is pushed at 3498749 (the M2+M3 checkpoint); the CT-02 commits after it are local. Every tree is
   clean and on `feat/2026-10-30-skin-fonts-feedback`.
 - **Nothing is merged.** The LibKa0s tag `v1.82.0` is **local only**: tag object 5eca031 on commit 277081f.
   `git ls-remote --tags origin v1.82.0` is empty.
@@ -53,7 +54,7 @@ everything decided after them is recorded here.
 
 ## The library and the standard
 
-**LibKa0s v1.82.0** (27 commits, 8bb8b0f..277081f). Eleven files moved one LibStub minor each: Media 10, Skin 9,
+**LibKa0s v1.82.0** (27 commits, 667fb51..277081f, LK-01's 8bb8b0f the first). Eleven files moved one LibStub minor each: Media 10, Skin 9,
 SkinDefs 17, SkinPaint 13, SkinPaintExtras 7, SkinPaintControls 11, WidgetsDragHandle 8, OptionsWidgets 37,
 OptionsCompose 14, OptionsAppearance 4, OptionsSkinPicker 3. OptionsSwitch.lua is new (minor 1). The kit is
 revision 45.
@@ -65,7 +66,7 @@ revision 45.
   outlined.
 - Sizes (LK-05, LK-06): body/title/HUD sizes per skin measured on the shipped bytes with outline on
   (`plan-data/font_metrics_shipped.txt`), pinned by `tests/test_skin_width_parity.lua`; `S.HudFontSize(size,
-  fromSkin)`. High Contrast's description drops "larger text".
+  fromSkin)`. High Contrast's description drops "larger type".
 - Skin tab (LK-07, LK-08): `lib.__chooseSkin` resets overrides when the drawn look changes; the new layout.
 - Strips (LK-09): re-fit on every repaint, `spec.onRefit` for hosts that size their own strips; `SetWidth` clears the
   fit.
@@ -173,7 +174,7 @@ so LK-14 is a commit and DR-02 is DpsRace's guard test.
 
 ## Issues filed (M3)
 
-Filed one at a time, 25 s apart, after a duplicate search in each repo. All open, `state:untriaged`.
+Filed one at a time, 24 to 37 s apart (about 25 s for all but one gap), after a duplicate search in each repo. All open, `state:untriaged`.
 
 | Item | Issue | Title |
 |---|---|---|
@@ -273,7 +274,8 @@ Filed one at a time, 25 s apart, after a duplicate search in each repo. All open
   words); PageButton has no `opts.icon` / `opts.size`; `icon.arrow` is not in SkinEUI's `ACCENT_TOKENS`, so the
   chevron is Ka0s gold under EllesmereUI. Declined in PGFE: a border-aware inset for the nine-slice skins (Glass, WoW
   Default); SKIN-38 decides.
-- **Glyph-guard hits not adopted.** AbsorbTracker (3 hits: `debugNames = {"adoptProfile"}` and `core/Units.lua:125`'s
+- **Glyph guard not adopted everywhere.** Five addons call it (BankLedger, ConsumableMaster, DropWatcher,
+  LootHistory, PartyFrameEnhanced); the other ten do not. Known hits in four of those: AbsorbTracker (3 hits: `debugNames = {"adoptProfile"}` and `core/Units.lua:125`'s
   `player→` scope string), KickCD (`core/Units.lua:161`, the same kind), PGFE (200 hits, all lookup keys in
   `defaults/Realms.lua`, needs a skip), PrettyChat (Blizzard's € in GlobalStrings). The guard was optional in M2.
 - **The flaky LibKa0s test** "tool windows skin: without a registered owner each window is the previous minors'
@@ -288,9 +290,10 @@ Filed one at a time, 25 s apart, after a duplicate search in each repo. All open
   MultiMeters' `modules/Window.lua` is at exactly 1500 lines; the next change there must peel first.
 - **Stale comments in LibKa0s.** Nine shipped files still say Ka0s Default draws Oxanium (DebugLogWindow, PerfPanel,
   SimPanel, Widgets, WidgetsAutocomplete, WidgetsDragHandle, WidgetsLineChart; the Media and SkinDefs lines are
-  history). Comment-only; fix when each file's minor next moves.
-- **The standard's glyph rule** could cite the generated allow-list, the `glyph: mono` / `glyph: data` markers and the
-  skip-reason rule (LK-12 review info, handed to WS-01; not confirmed done).
+  history). Comment-only; fix when each file's minor next moves. WidgetsDragHandle's minor moved in this run (LK-09,
+  7 to 8) and its comment was not fixed.
+- **The standard's glyph rule.** localization-§7 makes the guard's generated set the authority, but does not name
+  the `glyph: mono` / `glyph: data` markers or the skip-reason rule (LK-12 review info, handed to WS-01; not done).
 - `docs/api/CONSUMERS.md` keeps its v1.75.0 stamp and does not measure the new surfaces.
 - `plan-data/font_metrics_shipped.txt` still says in its header that `font_metrics.py` generated it; the script is
   `font_metrics_shipped.py`. The bundle file is left as committed.
