@@ -1,1 +1,8 @@
 id	reason (with proof command)
+IS-01	Filed on GitHub, no commit: https://github.com/tusharsaxena/LibKa0s/issues/67 (proof: gh issue view 67 -R tusharsaxena/LibKa0s --json url,title)
+IS-02	Filed on GitHub, no commit: https://github.com/tusharsaxena/DropWatcher/issues/14 (proof: gh issue view 14 -R tusharsaxena/DropWatcher --json url,title)
+IS-03	Filed on GitHub, no commit: https://github.com/tusharsaxena/LibKa0s/issues/68 (proof: gh issue view 68 -R tusharsaxena/LibKa0s --json url,title)
+IS-04	Filed on GitHub, no commit: https://github.com/tusharsaxena/MultiMeters/issues/61 (proof: gh issue view 61 -R tusharsaxena/MultiMeters --json url,title)
+IS-05	Filed on GitHub, no commit: https://github.com/tusharsaxena/MultiMeters/issues/62 (proof: gh issue view 62 -R tusharsaxena/MultiMeters --json url,title)
+IS-06	Filed on GitHub, no commit: https://github.com/tusharsaxena/QuickComms/issues/13#issuecomment-6528907808 (proof: gh api repos/tusharsaxena/QuickComms/issues/13/comments --jq '.[].body' | grep -c "four independent switches")
+IS-07	Filed on GitHub, no commit: https://github.com/tusharsaxena/LibKa0s/issues/69 (proof: gh issue view 69 -R tusharsaxena/LibKa0s --json url,title)
