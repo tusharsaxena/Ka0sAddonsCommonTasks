@@ -22,8 +22,8 @@ crashed run.
 | 12 | `/xx skin` | LK-11, every XX-01, WS-01 |
 | 13 | Outline by default, as a setting; every addon stores flags | LK-03, LK-04, every XX-01, WS-01 |
 | 14 | MultiMeters issues | IS-04, IS-05 |
-| 16 | DpsRace Arm Race label looks disabled | LK-14, DR-02 |
 | 15 | QuickComms animations (existing #13); test dial glyphs | IS-06, QC-02 |
+| 16 | DpsRace Arm Race label looks disabled | LK-14, DR-02 |
 
 ## Milestones
 
