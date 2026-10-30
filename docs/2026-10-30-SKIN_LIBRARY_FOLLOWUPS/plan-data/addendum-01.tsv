@@ -1,0 +1,5 @@
+id	milestone	repo	title	depends_on
+LK-06a	M1	LibKa0s	Widgets controls skinned and scoped (Widgets, Autocomplete, LineChart, DragHandle label)	
+LK-06b	M1	LibKa0s	Tool windows and the Core grip skinned (DebugLog, Perf, Sim incl. owner-less dropdowns, CopyWindow grip)	
+LK-06c	M1	LibKa0s	Options chrome skinned and panel-scoped (Drawer, Nav, IdList, Ids; list.hoverArt, icon.grip)	
+LK-06d	M1	LibKa0s	Tooltip lines the library writes take gtip.*	

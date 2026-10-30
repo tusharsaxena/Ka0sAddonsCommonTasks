@@ -1,0 +1,61 @@
+id	milestone	repo	title	depends_on
+CT-01	M0	Ka0sAddonsCommonTasks	Plan, inventory and execution record	
+LK-01	M1	LibKa0s	Ignore fonts covers hud.font and hud.outline; composer picker previews the stored face	
+LK-02	M1	LibKa0s	Retire stockDefault and stock: Ka0s Default always paints the Ka0s look; PageButton forwards opts	
+LK-03	M1	LibKa0s	S.CloseButton saves the art's own tint and restores it on unpaint	
+LK-04	M1	LibKa0s	A HUD font for each of the eight non-Ka0s skins	
+LK-05	M1	LibKa0s	S.Text and WidgetsReorder obey the Scope switches	
+LK-06	M1	LibKa0s	Every other custom LibKa0s widget skinned and obeying the Scope	
+LK-07	M1	LibKa0s	Skin.ResetToSkin leaves an absent bool companion a bool	
+LK-08	M1	LibKa0s	WidgetsDragHandle tooltip takes gtip.*	
+LK-09	M1	LibKa0s	q.* Ka0s Default values match the client exactly	
+LK-10	M1	LibKa0s	Public DrawsKey	
+LK-11	M1	LibKa0s	Skin picker: title "Choose a skin"; addon name above the dropdown	
+LK-90	M1	LibKa0s	Release v1.81.0 (local tag) with LK-01..11	LK-01 LK-02 LK-03 LK-04 LK-05 LK-06 LK-07 LK-08 LK-09 LK-10 LK-11
+ST-01	M1	LibKa0sSkinTester	Re-vendor v1.81.0; showroom samples for the new tokens, HUD faces and custom widgets	LK-90
+WS-01	M1	WowAddonStandards	skinning-section-3 tab named Skin; stock look retired; Ignore fonts on the HUD; custom widgets and the Scope; open-evolutions	
+AT-RV	M2	AbsorbTracker	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+AT-01	M2	AbsorbTracker	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	AT-RV
+AT-02	M2	AbsorbTracker	Docs and smoke checks whose expectation changed	AT-01
+AM-RV	M2	AuraMaster	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+AM-01	M2	AuraMaster	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	AM-RV
+AM-02	M2	AuraMaster	Docs and smoke checks whose expectation changed	AM-01
+BL-RV	M2	BankLedger	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+BL-01	M2	BankLedger	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	BL-RV
+BL-02	M2	BankLedger	Docs and smoke checks whose expectation changed	BL-01
+CM-RV	M2	ConsumableMaster	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+CM-01	M2	ConsumableMaster	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	CM-RV
+CM-02	M2	ConsumableMaster	Docs and smoke checks whose expectation changed	CM-01
+DR-RV	M2	DpsRace	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+DR-01	M2	DpsRace	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	DR-RV
+DR-02	M2	DpsRace	Docs and smoke checks whose expectation changed	DR-01
+DW-RV	M2	DropWatcher	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+DW-01	M2	DropWatcher	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	DW-RV
+DW-02	M2	DropWatcher	Docs and smoke checks whose expectation changed	DW-01
+KC-RV	M2	KickCD	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+KC-01	M2	KickCD	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	KC-RV
+KC-02	M2	KickCD	Docs and smoke checks whose expectation changed	KC-01
+LH-RV	M2	LootHistory	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+LH-01	M2	LootHistory	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	LH-RV
+LH-02	M2	LootHistory	Docs and smoke checks whose expectation changed	LH-01
+MM-RV	M2	MultiMeters	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+MM-01	M2	MultiMeters	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	MM-RV
+MM-02	M2	MultiMeters	Docs and smoke checks whose expectation changed	MM-01
+PM-RV	M2	PanelMaster	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+PM-01	M2	PanelMaster	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	PM-RV
+PM-02	M2	PanelMaster	Docs and smoke checks whose expectation changed	PM-01
+PF-RV	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+PF-01	M2	PartyFrameEnhanced	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	PF-RV
+PF-02	M2	PartyFrameEnhanced	Docs and smoke checks whose expectation changed	PF-01
+PG-RV	M2	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+PG-01	M2	PremadeGroupsFilterExtension	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	PG-RV
+PG-02	M2	PremadeGroupsFilterExtension	Docs and smoke checks whose expectation changed	PG-01
+PC-RV	M2	PrettyChat	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+PC-01	M2	PrettyChat	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	PC-RV
+PC-02	M2	PrettyChat	Docs and smoke checks whose expectation changed	PC-01
+QC-RV	M2	QuickComms	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+QC-01	M2	QuickComms	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	QC-RV
+QC-02	M2	QuickComms	Docs and smoke checks whose expectation changed	QC-01
+WG-RV	M2	WhatGroup	Re-vendor LibKa0s v1.81.0; consumer obligations; pins	LK-90
+WG-01	M2	WhatGroup	Delete the workarounds v1.81.0 makes unnecessary; HUD honours Ignore fonts	WG-RV
+WG-02	M2	WhatGroup	Docs and smoke checks whose expectation changed	WG-01
