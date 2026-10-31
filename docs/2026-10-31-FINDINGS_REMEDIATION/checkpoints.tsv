@@ -1,3 +1,4 @@
 when	milestone	evidence
 2026-10-31 23:00	M1	16 repos remediated, reviewed, recorded and pushed: tests and lint green; every perf ceiling passes where a suite exists. DpsRace pending.
 2026-11-01 02:00	M2	v1.84.0 local on e917ccd; 16 consumers re-vendored, drift 0; #59, #66, #67, #68 code landed with review and recorded runs; PG-D1, ST-D1, ST-D2; all 18 branches pushed, tag not pushed; SKIN_DEFAULT_GAPS.csv written.
+2026-11-01 04:00	M3	Merged --no-ff in 19 repos, branch deleted, tag v1.84.0 pushed (standard v2.96.0). Owner smoke passed, including the pickers. All gates green on the merge results.
