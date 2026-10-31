@@ -1,0 +1,60 @@
+{
+ "repo": "PanelMaster",
+ "tests": {
+  "repo": "PanelMaster",
+  "status": "ok",
+  "summary": "Verdict green on run 20261031-202058 at e63877d (clean tree). Lint and tests gate the commit; perf and complexity are recorded here, and the tag gates on all four. Lint: pass, 0 warnings / 0 errors in 83 files. Tests: pass, 1161 passed, 0 failed, 1 skipped, 1162 total. Perf: skip, no tests/perf.lua, so runtime cost was not measured and the release gate reads it as NOT EVALUATED. Complexity: pass, 0 warnings, max CCN 15, 20290 NLOC, 2537 functions, avg CCN 2.0, avg NLOC 7.4, blindFiles 0, crashedFiles 0, 2 band files, 0 over cap. The pre-scan is confirmed, so no code changed. No Disposition was blank, so both were carried forward verbatim and the only authored file is ANALYSIS.md. Committed as 4e93234 on the feature branch, not pushed. The lint and tests gate re-run after the commit is still green. Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster/docs/automated-tests/20261031-202058/",
+  "commit": "4e93234",
+  "bundle": "/mnt/d/Profile/Users/Tushar/Documents/GIT/PanelMaster/docs/automated-tests/20261031-202058/",
+  "lint": "pass: 0 warnings / 0 errors in 83 files",
+  "tests": "pass: 1161 passed, 0 failed, 1 skipped, 1162 total",
+  "complexity": "pass (recorded): 0 functions above CCN 15, max CCN 15, 2537 functions, 20290 NLOC, avg CCN 2.0, blindFiles 0, crashedFiles 0, band files 2, over cap 0",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202058/ANALYSIS.md",
+   "docs/automated-tests/20261031-202058/manifest.json",
+   "docs/automated-tests/20261031-202058/lint.txt",
+   "docs/automated-tests/20261031-202058/tests.txt",
+   "docs/automated-tests/20261031-202058/complexity.txt",
+   "docs/automated-tests/20261031-202058/test-cases.md"
+  ],
+  "concerns": [
+   "No row has reached three consecutive release runs as Accepted, so nothing is owed yet. tests/test_libka0s.lua (1215 LOC) is at two (1.2.0, 1.3.0), so the next release makes it owed a split or a tracking issue (anti-pattern #53). This action carries over from the previous run and is still open.",
+   "The two carried Disposition cells quote figures from the 1.3.0 release (test_libka0s 1184 and '116 lines short'; test_slash '1166 now'). The LOC column reads 1215 and 1167, and test_libka0s is now 85 short of its 1300 trigger. The cells were left verbatim, and ANALYSIS.md states the current figures.",
+   "perf is a permanent skip, so it reads as NOT EVALUATED at the release gate.",
+   "Two functions sit exactly at CCN 15 without crossing it: R.ApplyArtSize (modules/Registry.lua) and splitArgs (tests/test_skin_literals.lua, new since the previous run)."
+  ],
+  "newBandFiles": []
+ },
+ "docs": {
+  "repo": "PanelMaster",
+  "status": "ok",
+  "summary": "Docs synced and committed as c1fcb5a on feat/2026-10-31-font-pickers-skin-faces; not pushed. The branch's earlier commits already covered most of the run, so this was a small correction pass. README: added `/pm skin` to the skin picker paragraph; the de-AI pass covered that one rewrapped sentence and changed nothing further. module-map: the SkinOutline pre-InitDB value is now \"hud\" (it said \"all\"), Schema reads three option lists, and the OptionsSetup row names getLSM. settings-panel: added the media pickers paragraph (always previewing LSM30_*, getLSM, the font preload). testing: luacheck file count 80 to 83, and bare luacheck replaced with ka0s-bounded (also in common-tasks). Refreshed stale line citations in performance, compat-layer, settings-panel, smoke-tests and testing, plus the vendored-kit citations in DEPENDENCIES.md. No version, libs/, tests/_kit/, generated doc or frozen bundle was edited. Gate green.",
+  "commit": "c1fcb5a",
+  "tests": "ka0s-bounded lua tests/run.lua: 1161 passed, 0 failed, 1 skipped (1162 total); matches docs/test-cases.md Total and the README badge",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 83 files. Vendor drift: both byte diffs and both --strip-trailing-cr diffs against ../LibKa0s (LibKa0s, testkit) are empty apart from the declared media/icons prune",
+  "filesChanged": [
+   "DEPENDENCIES.md",
+   "README.md",
+   "docs/common-tasks.md",
+   "docs/compat-layer.md",
+   "docs/module-map.md",
+   "docs/performance.md",
+   "docs/settings-panel.md",
+   "docs/smoke-tests.md",
+   "docs/testing.md"
+  ],
+  "commentCitations": [
+   "No genuine mechanical hits. The unresolved paths are all legitimate: deleted files named as history (core/LSMPatch.lua at settings/OptionsSetup.lua:166,190,273 and tests/test_libka0s.lua:675,681; modules/DebugLog.lua at core/DebugLogSetup.lua:5,117 and tests/test_libka0s.lua:114), a file named as absent (core/PerfSetup.lua at tests/test_disabled.lua:33), paths in other repos or addons (SunnArt/CustomTheme.lua at modules/SunnArt.lua:121, AbsorbTracker/tests/test_vendor_sync.lua at tests/test_vendor_sync.lua:25), the library's docs/api/ pages, which resolve in ../LibKa0s (settings/Schema.lua:302, settings/Slash.lua:573,592, tests/test_schema.lua:560), and tests/run.lua:116, which distinguishes this repo's tests/test_layout_cap.lua from the kit's.",
+   "Not mechanical, reported only, not edited: PanelMaster.toc's SkinSetup note and the core/SkinSetup.lua header ('settings/Schema.lua reads both') name two option lists read at file load; Schema.lua now also reads NS.SKIN_OUTLINE_OPTIONS."
+  ],
+  "deadExports": [
+   "core/SkinSetup.lua:121 NS.SkinColor: no addon callers, used by tests only",
+   "core/MediaSetup.lua:56 NS.Icon: no callers, as CLAUDE.md already states"
+  ],
+  "concerns": [
+   "The DEPENDENCIES.md kit citations had drifted with re-vendors (vendor_sync.lua :193 to :420). They are refreshed, but they will drift again on the next re-vendor."
+  ],
+  "proposals": []
+ }
+}

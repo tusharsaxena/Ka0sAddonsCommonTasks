@@ -1,0 +1,67 @@
+{
+ "repo": "LibKa0sSkinTester",
+ "tests": {
+  "repo": "LibKa0sSkinTester",
+  "status": "ok",
+  "commit": "08079ac",
+  "summary": "Recorded bundle docs/automated-tests/20261031-202019 at 1fab9f1, verdict AMBER, and committed it as 08079ac. Lint: 0 warnings / 0 errors in 79 files. Tests: 605 passed, 0 failed, 1 skipped, 606 total. Complexity: pass (non-gating for the commit), max CCN 14, 0 warnings, 11088 NLOC / 1563 functions, 1 band file, 0 over cap, 0 blind, 0 crashed. No code changed. PERF FAILED (non-gating for the commit, but it gates the tag): showroomToggle allocated 160.0 bytes/iter, over its 88-byte ceiling. This is a mock artifact, not addon allocation. Bisected to 3afa3be (ST-03, R.Show calls syncBar); the tests/wow_mock.lua frame __index fallback mints a closure on each read of an undefined PascalCase method. Caching it in a scratch export restored the previous figure and the assertion passed. The file-band row already had a disposition, so nothing was authored in RESULTS.md. Lint and tests were re-run clean after staging, before the commit.",
+  "lint": "pass: 0 warnings / 0 errors in 79 files",
+  "tests": "pass: 605 passed, 0 failed, 1 skipped, 606 total",
+  "complexity": "pass: max CCN 14, 0 warnings, avg CCN 2.0, avg NLOC 6.5, avg tokens 54.2, 0 blind, 0 crashed, 0 over the 1500 cap",
+  "bundle": "docs/automated-tests/20261031-202019",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202019/ANALYSIS.md",
+   "docs/automated-tests/20261031-202019/complexity.txt",
+   "docs/automated-tests/20261031-202019/lint.txt",
+   "docs/automated-tests/20261031-202019/manifest.json",
+   "docs/automated-tests/20261031-202019/perf.json",
+   "docs/automated-tests/20261031-202019/perf.txt",
+   "docs/automated-tests/20261031-202019/test-cases.md",
+   "docs/automated-tests/20261031-202019/tests.txt"
+  ],
+  "newBandFiles": [],
+  "concerns": [
+   "perf suite status is fail, so the run is amber: showroomToggle 160.0 bytes/iter over its 88-byte ceiling. It does not block commit or merge, but perf gates the tag, so the next release of this addon needs it resolved. Cause is the test mock (tests/wow_mock.lua), first exposed by 3afa3be.",
+   "perf has been failing on this repo since 3afa3be (master merge 18280a6): no bundle was recorded in between, so the failure went unseen across 59 commits.",
+   "skinRepaint rose 12.0 to 1083.0 api/iter and 8501.7 to 41794.7 bytes/iter. It passes only because its ceiling is computed from the same run's measurement, so that scenario cannot fail. The rise matches the showroom's growth, but it is unguarded.",
+   "Scratch exports for the bisect were left in /tmp/claude-1000/-mnt-d-Profile-Users-Tushar-Documents-GIT-Ka0sAddonsCommonTasks/81d18148-7543-4f61-b2a2-70352f1a0364/scratchpad/skintester-bisect because the safety check refused the removal. They are outside any repo and can be deleted by hand."
+  ],
+  "proposals": [
+   "Fix tests/wow_mock.lua's frame __index fallback to cache the closure with rawset (authored file, one line), then re-run perf. A scratch export confirmed this clears the assertion. Outside this step's no-code ruling, so not applied; needs a decision before the addon's next release."
+  ]
+ },
+ "docs": {
+  "repo": "LibKa0sSkinTester",
+  "status": "ok",
+  "commit": "28b911f",
+  "summary": "Docs synced to the font pickers and skin faces work and committed as 28b911f on feat/2026-10-31-font-pickers-skin-faces. Eight doc files changed. Main drift: the skin picker's new rows, the Apply to all payload, and the Skin tab layout. Also fixed: stale counts and claims (17 COMMANDS, twelve sections, /st show opens the showroom) and a bundled library name in the README. Not pushed. README de-AI pass ran on the three changed paragraphs; one word-level fix (\"sit\" over \"are\") went in with the rewrite, and the audit found nothing further. No bundled-library section was removed.",
+  "filesChanged": [
+   "README.md",
+   "DEPENDENCIES.md",
+   "docs/ARCHITECTURE.md",
+   "docs/data-flow.md",
+   "docs/module-map.md",
+   "docs/profiles.md",
+   "docs/scope.md",
+   "docs/settings-panel.md"
+  ],
+  "tests": "605 passed, 0 failed, 1 skipped, 606 total (ka0s-bounded lua tests/run.lua, exit 0). Matches the README badge and test-cases.md Total of 605.",
+  "lint": "0 warnings / 0 errors in 79 files (ka0s-bounded luacheck .). Vendor drift: libs/LibKa0s against ../LibKa0s/LibKa0s differs only by the declared media/icons prune; tests/_kit against ../LibKa0s/testkit has no differences.",
+  "commentCitations": [
+   "tests/test_surface_parity.lua:90 LINE PAST EOF: names core/DebugLogSetup.lua:142; the file has 135 lines. Not edited.",
+   "settings/OptionsSetup.lua:295 STALE RATIONALE (outside the mechanical check): 'the schema is bool and number only'; sample.color is a color row (settings/Schema.lua:215). Not edited.",
+   "settings/OptionsSetup.lua:297 STALE RATIONALE (outside the mechanical check): 'no color pickers'; the Sample controls page has a color swatch. Not edited."
+  ],
+  "deadExports": [
+   "settings/Panel.lua:166 NS.SKIN_PICKER_SPEC: no caller in addon source, read only by tests (2 hits). Reported, not deleted."
+  ],
+  "concerns": [
+   "Perf gate from the AT-FIN bundle (docs/automated-tests/20261031-202019/ANALYSIS.md): showroomToggle reads 160 bytes/iter, over its 88-byte ceiling. It is a tests/wow_mock.lua measurement artifact, but the analysis says perf gates the tag, so the mock or the ceiling needs a change before this addon's next release. No code changed here.",
+   "../LibKa0s HEAD (3abfe4d) is not tag v1.83.0 (c88588a). The drift diffs ran against the working tree as instructed and came back clean, and test_vendor_sync passed against the provenance tag."
+  ],
+  "proposals": [
+   "DEPENDENCIES.md names ka0s-bounded only in commands, with no install row. A row citing the dev-copilot plugin would fit, ideally as a collection-wide change rather than in this repo alone."
+  ]
+ }
+}

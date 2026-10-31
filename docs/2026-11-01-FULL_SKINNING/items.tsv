@@ -1,0 +1,81 @@
+id	milestone	repo	title
+FS-L1	M1	LibKa0s	Launcher tooltip text
+FS-L2	M1	LibKa0s	Tooltip text lines
+FS-L3	M1	LibKa0s	Settings chrome, Scope cleared
+FS-L4	M1	LibKa0s	Settings fonts, Scope cleared
+FS-L5	M1	LibKa0s	Settings typed colors, Scope cleared
+FS-L6	M1	LibKa0s	Marks and icons
+FS-L7	M1	LibKa0s	Scroll bar arrows
+FS-L8	M1	LibKa0s	Small misses
+FS-L9	M1	LibKa0s	Title bars
+FS-D1	M1	LibKa0s	Composer defaults follow the skin
+FS-T1	M1	LibKa0s	New skin tokens for HUD text, fill and shadow
+FS-A4	M1	LibKa0s	Delete profile confirmation, Ace profile page untouched
+FS-REL	M1	LibKa0s	Local v1.85.0 after a clean release run
+FS-ST-RV	M2	LibKa0sSkinTester	Re-vendor the release
+FS-ST-FLIP	M2	LibKa0sSkinTester	Default flips D2 to D7 and the one migration
+FS-ST-FIX	M2	LibKa0sSkinTester	Addon causes A1 to A3, A5 and L-cause host parts
+FS-ST-REC	M2	LibKa0sSkinTester	Recorded automated-test run
+FS-AT-RV	M2	AbsorbTracker	Re-vendor the release
+FS-AT-FLIP	M2	AbsorbTracker	Default flips D2 to D7 and the one migration
+FS-AT-FIX	M2	AbsorbTracker	Addon causes A1 to A3, A5 and L-cause host parts
+FS-AT-REC	M2	AbsorbTracker	Recorded automated-test run
+FS-AM-RV	M2	AuraMaster	Re-vendor the release
+FS-AM-FLIP	M2	AuraMaster	Default flips D2 to D7 and the one migration
+FS-AM-FIX	M2	AuraMaster	Addon causes A1 to A3, A5 and L-cause host parts
+FS-AM-REC	M2	AuraMaster	Recorded automated-test run
+FS-BL-RV	M2	BankLedger	Re-vendor the release
+FS-BL-FLIP	M2	BankLedger	Default flips D2 to D7 and the one migration
+FS-BL-FIX	M2	BankLedger	Addon causes A1 to A3, A5 and L-cause host parts
+FS-BL-REC	M2	BankLedger	Recorded automated-test run
+FS-CM-RV	M2	ConsumableMaster	Re-vendor the release
+FS-CM-FLIP	M2	ConsumableMaster	Default flips D2 to D7 and the one migration
+FS-CM-FIX	M2	ConsumableMaster	Addon causes A1 to A3, A5 and L-cause host parts
+FS-CM-REC	M2	ConsumableMaster	Recorded automated-test run
+FS-DR-RV	M2	DpsRace	Re-vendor the release
+FS-DR-FLIP	M2	DpsRace	Default flips D2 to D7 and the one migration
+FS-DR-FIX	M2	DpsRace	Addon causes A1 to A3, A5 and L-cause host parts
+FS-DR-REC	M2	DpsRace	Recorded automated-test run
+FS-DW-RV	M2	DropWatcher	Re-vendor the release
+FS-DW-FLIP	M2	DropWatcher	Default flips D2 to D7 and the one migration
+FS-DW-FIX	M2	DropWatcher	Addon causes A1 to A3, A5 and L-cause host parts
+FS-DW-REC	M2	DropWatcher	Recorded automated-test run
+FS-KC-RV	M2	KickCD	Re-vendor the release
+FS-KC-FLIP	M2	KickCD	Default flips D2 to D7 and the one migration
+FS-KC-FIX	M2	KickCD	Addon causes A1 to A3, A5 and L-cause host parts
+FS-KC-REC	M2	KickCD	Recorded automated-test run
+FS-LH-RV	M2	LootHistory	Re-vendor the release
+FS-LH-FLIP	M2	LootHistory	Default flips D2 to D7 and the one migration
+FS-LH-FIX	M2	LootHistory	Addon causes A1 to A3, A5 and L-cause host parts
+FS-LH-REC	M2	LootHistory	Recorded automated-test run
+FS-MM-RV	M2	MultiMeters	Re-vendor the release
+FS-MM-FLIP	M2	MultiMeters	Default flips D2 to D7 and the one migration
+FS-MM-FIX	M2	MultiMeters	Addon causes A1 to A3, A5 and L-cause host parts
+FS-MM-REC	M2	MultiMeters	Recorded automated-test run
+FS-PM-RV	M2	PanelMaster	Re-vendor the release
+FS-PM-FLIP	M2	PanelMaster	Default flips D2 to D7 and the one migration
+FS-PM-FIX	M2	PanelMaster	Addon causes A1 to A3, A5 and L-cause host parts
+FS-PM-REC	M2	PanelMaster	Recorded automated-test run
+FS-PF-RV	M2	PartyFrameEnhanced	Re-vendor the release
+FS-PF-FLIP	M2	PartyFrameEnhanced	Default flips D2 to D7 and the one migration
+FS-PF-FIX	M2	PartyFrameEnhanced	Addon causes A1 to A3, A5 and L-cause host parts
+FS-PF-REC	M2	PartyFrameEnhanced	Recorded automated-test run
+FS-PG-RV	M2	PremadeGroupsFilterExtension	Re-vendor the release
+FS-PG-FLIP	M2	PremadeGroupsFilterExtension	Default flips D2 to D7 and the one migration
+FS-PG-FIX	M2	PremadeGroupsFilterExtension	Addon causes A1 to A3, A5 and L-cause host parts
+FS-PG-REC	M2	PremadeGroupsFilterExtension	Recorded automated-test run
+FS-PC-RV	M2	PrettyChat	Re-vendor the release
+FS-PC-FLIP	M2	PrettyChat	Default flips D2 to D7 and the one migration
+FS-PC-FIX	M2	PrettyChat	Addon causes A1 to A3, A5 and L-cause host parts
+FS-PC-REC	M2	PrettyChat	Recorded automated-test run
+FS-QC-RV	M2	QuickComms	Re-vendor the release
+FS-QC-FLIP	M2	QuickComms	Default flips D2 to D7 and the one migration
+FS-QC-FIX	M2	QuickComms	Addon causes A1 to A3, A5 and L-cause host parts
+FS-QC-REC	M2	QuickComms	Recorded automated-test run
+FS-WG-RV	M2	WhatGroup	Re-vendor the release
+FS-WG-FLIP	M2	WhatGroup	Default flips D2 to D7 and the one migration
+FS-WG-FIX	M2	WhatGroup	Addon causes A1 to A3, A5 and L-cause host parts
+FS-WG-REC	M2	WhatGroup	Recorded automated-test run
+FS-WS	M3	WowAddonStandards	Standard rule: every surface follows the skin
+FS-GATE	M3	LibKa0s	Kit check for typed values and a skin-switch test
+FS-REPORT	M4	Ka0sAddonsCommonTasks	Report and smoke list

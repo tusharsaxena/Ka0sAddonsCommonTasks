@@ -1,0 +1,57 @@
+{
+ "repo": "LibKa0s",
+ "tests": {
+  "repo": "LibKa0s",
+  "status": "ok",
+  "commit": "3abfe4d",
+  "summary": "Pre-merge run 20261031-202020 at 6c816fd (clean) is green; committed as 3abfe4d, not pushed. No function is above CCN 15 (max 15), and no file is over the 1500 cap, blind or crashed, so no code changed. Nothing moved since 20261031-185000: all four suite artifacts are byte-identical. Perf was skipped because there is no tests/perf.lua (0 scenarios), so runtime cost was not measured. Every band row already had a disposition, so no new one was written. I re-ran the lint and tests gate with the record staged and it stayed green. Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/LibKa0s/docs/automated-tests/20261031-202020/",
+  "tests": "pass: 3522 passed, 0 failed, 2 skipped, 3524 total (the two skips are the declined kit prose suite and the diagnostics opt-out case)",
+  "lint": "pass: 0 warnings / 0 errors in 251 files",
+  "complexity": "pass (recorded; gates the tag, not this run): 0 warnings, max CCN 15, 78123 NLOC, 11318 functions, avg NLOC 6.8, avg CCN 2.1, avg tokens 59.0, warning rate 0.00/0.00, 15 files in the 1000-1500 band, 0 over the cap, 0 blind, 0 crashed",
+  "newBandFiles": [],
+  "concerns": [
+   "Five rows have been Accepted across three or more consecutive release runs, past the automated-tests-\u00a74 shelf life, and each is owed a fix or a tracked deviation: tests/test_options_compose.lua (v1.77.0-v1.83.0, 7 runs), LibKa0s/Skin.lua (v1.80.0 on, 4, re-ruled at v1.83.0), LibKa0s/SimPanel.lua (v1.81.0 on, 3), LibKa0s/SkinDefs.lua (v1.81.0 on, 3, re-ruled at v1.83.0), tests/test_options_skin_picker.lua (v1.81.0 on, 3). Recorded as action 1 in ANALYSIS.md, with no tracker yet.",
+   "testkit/mock_base.lua (in the band since at least v1.75.0) and tests/test_sim_panel.lua (since v1.76.0) carry an 'On notice' disposition rather than 'accepted', so they sit outside the shelf-life wording and outside the tracked CLAUDE.md row. Both are under their re-check triggers. Recorded as action 2 in ANALYSIS.md.",
+   "CLAUDE.md's census cites LibKa0s/OptionsSkinPicker.lua at 1451 lines, while this run's RESULTS.md watch list says 1455. It is still under the 1480 trigger, but sync-docs should refresh the figure.",
+   "Perf was skipped because this repo ships no tests/perf.lua, which stays a standing fact of the record. Offline runtime cost was not measured."
+  ],
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202020/ANALYSIS.md",
+   "docs/automated-tests/20261031-202020/complexity.txt",
+   "docs/automated-tests/20261031-202020/lint.txt",
+   "docs/automated-tests/20261031-202020/manifest.json",
+   "docs/automated-tests/20261031-202020/test-cases.md",
+   "docs/automated-tests/20261031-202020/tests.txt"
+  ],
+  "bundle": "docs/automated-tests/20261031-202020/"
+ },
+ "docs": {
+  "repo": "LibKa0s",
+  "status": "ok",
+  "summary": "Docs synced to the branch and committed as 9ddbe89 (not pushed). The gate is green: 3522 passed, 0 failed, 2 skipped of 3524, and luacheck reports 0 warnings / 0 errors in 251 files, both through ka0s-bounded.\n\nREADME.md: Options is sixteen files, not fourteen; OptionsMedia.lua added to its row; the Ka0sMedia_* pickers, the picker's Skin-tab rows, the font outline and Apply to all described; docs/skins/ and media/screenshots/skins/ added to the layout.\n\nDEPENDENCIES.md: the variable fonts are five, not three; the verified-with manifest is now the newest run; the Python row names tools/glyph_safe_set.py; the fonts.py network note is corrected.\n\nCLAUDE.md: the deviation register has nine rows, not eight; band figures re-measured (OptionsSkinPicker 1455, OptionsTabs 1382, the tracked row's figures, skin_picker_rows 843); still fifteen band files, nothing over 1500, no trigger fired.\n\ndocs/releasing.md: the Toast row said \"none yet\" and now names DpsRace and DropWatcher with their wiring; the Skin row now lists all sixteen adopters.\n\nREADME de-AI pass: audited against the catalog by hand (the /humanize skill was not invoked) on the changed lines only, and it changed nothing. Bundled-library inventory removal and the Reporting a bug section are not applicable to this library README. No comment citation resolved to a real miss: the scan's path hits name other repos, third-party files or a repo the code operates on, and its two symbol hits are real or a mutation note. CHANGELOG.md, generated docs and vendored copies were not touched.",
+  "commit": "9ddbe89",
+  "filesChanged": [
+   "README.md",
+   "CLAUDE.md",
+   "DEPENDENCIES.md",
+   "docs/releasing.md"
+  ],
+  "tests": "3522 passed, 0 failed, 2 skipped, 3524 total (ka0s-bounded lua tests/run.lua, exit 0)",
+  "lint": "0 warnings / 0 errors in 251 files (ka0s-bounded luacheck .)",
+  "commentCitations": [],
+  "deadExports": [],
+  "newBandFiles": [],
+  "concerns": [
+   "docs/releasing.md Consumers table: the module rows beyond Toast and Skin still omit DpsRace and LibKa0sSkinTester, and a broad string grep also shows Perf in BankLedger, PanelMaster, PrettyChat and WhatGroup and Sim in KickCD and MultiMeters. That grep includes comments and is not the step-9 lookup, so those rows were left for the next step-9 sweep, which the doc already says owes DpsRace. Step 9's loop also omits DpsRace and LibKa0sSkinTester.",
+   "CLAUDE.md register, library-stack-\u00a77 line chart row: its trigger 'a second addon draws a chart' may have fired. LibKa0sSkinTester/modules/ShowroomWidgets.lua references LineChart beside LootHistory. The test addon may not count, so the row was left for the owner to rule on.",
+   "CLAUDE.md register, library-stack-\u00a77 drawer row: its 'one release passes after v1.73.0 with no second consumer named' trigger has long passed. Only QuickComms draws a drawer (LootHistory carries just a no-op stub). The row needs an owner re-ruling.",
+   "docs/api/CONSUMERS.md stays stamped v1.75.0 and its v1.83.0 note says the next census measures the new surface; its Toast note predates both adoptions. No re-run was done here.",
+   "README.md's Versioning paragraph quotes the v1.75.0 MODULES tables. They are dated and the text says to read the files, so this was left as is, but it is several releases old."
+  ],
+  "proposals": [
+   "Run the step-9 Consumers sweep, with DpsRace and LibKa0sSkinTester added to its loop, and re-run the CONSUMERS.md census.",
+   "Consider a short adoption-prompt.md note on the Ka0sMedia_* pickers and the Skin surface, which that page does not cover."
+  ]
+ }
+}

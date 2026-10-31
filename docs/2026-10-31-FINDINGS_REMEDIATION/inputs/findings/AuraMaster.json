@@ -1,0 +1,63 @@
+{
+ "repo": "AuraMaster",
+ "tests": {
+  "repo": "AuraMaster",
+  "status": "ok",
+  "summary": "Pre-merge run green, bundle docs/automated-tests/20261031-202022/ at 472da8f (clean), committed as df9e685; no code changed. lint: pass, 0/0 in 193 files (gates commit and tag). tests: pass, 2249 passed, 1 skipped, 0 failed, 2250 total (gates commit and tag; the skip is the kit's standing diagnostics opt-out case, unchanged). perf: pass, 12 scenarios (does not gate commit, gates tag). complexity: pass, 55057 NLOC, 5977 functions, avg NLOC 8.3, avg CCN 2.3, max CCN 15, 0 warnings, 14 band files, 0 over cap, 0 blind, 0 crashed (does not gate commit, gates tag). Four files newly crossed into the 1000-1500 band and each got a disposition after reading it: core/Database_Migrations.lua 1076, modules/Anchors.lua 1068, modules/Container.lua 1020, settings/Filters.lua 1018. After staging, the lint+tests gate re-ran green with exit 0 (no bundle written). Nothing pushed, merged, tagged or bumped.",
+  "commit": "df9e685",
+  "bundle": "/mnt/d/Profile/Users/Tushar/Documents/GIT/AuraMaster/docs/automated-tests/20261031-202022/",
+  "lint": "0 warnings / 0 errors in 193 files",
+  "tests": "2249 passed, 1 skipped, 0 failed, 2250 total",
+  "complexity": "max CCN 15, 0 warnings, 0 over cap, 14 in band, 0 blind, 0 crashed",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202022/ANALYSIS.md",
+   "docs/automated-tests/20261031-202022/complexity.txt",
+   "docs/automated-tests/20261031-202022/lint.txt",
+   "docs/automated-tests/20261031-202022/manifest.json",
+   "docs/automated-tests/20261031-202022/perf.json",
+   "docs/automated-tests/20261031-202022/perf.txt",
+   "docs/automated-tests/20261031-202022/test-cases.md",
+   "docs/automated-tests/20261031-202022/tests.txt"
+  ],
+  "newBandFiles": [
+   "core/Database_Migrations.lua",
+   "modules/Anchors.lua",
+   "modules/Container.lua",
+   "settings/Filters.lua"
+  ],
+  "concerns": [
+   "Eight band entries have been Accepted across three consecutive release runs (1.0.0, 1.0.1, 1.1.0) and each is still owed a fix or a tracked deviation ID (anti-pattern #53): defaults/Categories.lua, modules/Style.lua, settings/Schema.lua, tests/test_containermanager.lua, tests/test_database.lua, tests/test_filtercompiler.lua, tests/test_pages_filters.lua, tests/test_style.lua. No deviation row exists in docs/ARCHITECTURE.md, and a gh issue search found no issue for it. This pre-merge run does not add to the release-run count.",
+   "Perf api/iter rose: visibilityPass 4.0 to 8.0, and probeOverheadOff/On/Absent 5.0 to 9.0. tests/perf.lua (TG-11) now counts one SetEnabled per engine and its fixture turns on the text glow, so this is the scenario gaining twin engines, recorded in ANALYSIS.md."
+  ]
+ },
+ "docs": {
+  "repo": "AuraMaster",
+  "status": "ok",
+  "commit": "627a9a4",
+  "summary": "Sync-docs finished on feat/2026-10-31-font-pickers-skin-faces and committed as 627a9a4 (not pushed). The docs had mostly kept up with the branch, so this was 6 small edits.\n\nFixed:\n- The stale '25 commands' count is now 26 (with `skin`) in docs/slash-dispatch.md:3 and the docs/ARCHITECTURE.md documentation map.\n- The NS.CONTAINER_TEMPLATE citation moved from defaults/Profile.lua:155 to :157 in docs/schema.md and docs/scope.md.\n\nAdded from LibKa0s v1.83.0:\n- The Skin tab's preview media pickers and their 'Skin's default (<key>)' lead row, in docs/settings-panel.md.\n- The skin picker's new rows and its preview-until-Apply behaviour, in docs/ARCHITECTURE.md and README.md.\n- A README line on the font and texture lists showing each entry.\n\nREADME de-AI pass: run by manual audit on the three lines added. It found nothing to change: plain sentences, no flagged vocabulary, no em dashes, no bold openers.\n\nChecked and needing no change:\n- README Tests badge 2249 matches the live run.\n- File counts in docs/ARCHITECTURE.md, the 293 schema rows and the per-page row counts in docs/settings-panel.md (the page counts sum to 293; the 293 itself comes from the AM-F02 commit, not recounted here), the 26 Compat shims, the 4 NS.MSG messages and SKIN-1 to SKIN-32.\n- Schema ladder to v15, the v1.83.0 provenance line, and every test and source file in docs/module-map.md.\n- The documentation map, and the doc path and line citations (only defaults/Profile.lua:155 was wrong).\n- Library and command-table rulings left alone. DEPENDENCIES.md needed no change.\n\nGreen gate passed. Both vendor drift diffs against ../LibKa0s are clean: libs/LibKa0s differs only by the declared media/icons prune, tests/_kit against ../LibKa0s/testkit is identical.",
+  "tests": "ka0s-bounded lua tests/run.lua: exit 0, 2249 passed, 0 failed, 1 skipped, 2250 total (16 shards). The skip is the declared diagnostics opt-out case.",
+  "lint": "ka0s-bounded luacheck .: exit 0, 0 warnings / 0 errors in 193 files.",
+  "filesChanged": [
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/schema.md",
+   "docs/scope.md",
+   "docs/settings-panel.md",
+   "docs/slash-dispatch.md"
+  ],
+  "commentCitations": [
+   "core/SkinSetup.lua:110 NO SUCH PATH in this repo: 'inputs/inventory/AuraMaster.md'. The file exists in Ka0sAddonsCommonTasks, under both the 2026-10-29-SKINNING_ROLLOUT and 2026-10-30-SKIN_LIBRARY_FOLLOWUPS bundles, so the comment does not say which one. Not edited.",
+   "tests/test_skin_glow_restore.lua:6 NO SUCH PATH in this repo: 'inputs/inventory/H_AURAMASTER.md'. It is bundle-relative: Ka0sAddonsCommonTasks/docs/2026-10-30-SKIN_FONTS_AND_FEEDBACK/inputs/inventory/. Not edited."
+  ],
+  "deadExports": [
+   "settings: NS.ContainerSection has no non-test caller; only tests/test_pages_rail.lua calls it. Reported, not deleted.",
+   "settings: NS.IsSection has no non-test caller; only tests/test_anchors_label.lua calls it. Reported, not deleted."
+  ],
+  "concerns": [
+   "README.md changed after the badge and the AT-FIN bundle, but no code or test changed, so docs/test-cases.md and RESULTS.md are still current.",
+   "The SKIN smoke lines stay as the earlier commits left them. docs/smoke-tests.md was not edited: SKIN-3, 4, 10, 26, 29 and 30 carry notes that they are open, and the owner has since said everything works. Their Result lines are the owner's to record."
+  ],
+  "proposals": []
+ }
+}

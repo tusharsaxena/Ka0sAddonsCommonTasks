@@ -1,0 +1,728 @@
+row,addon,component,reason,cause_id,bucket
+2,LibKa0sSkinTester,"AceGUI rows, Options chrome (drawers, nav rail, tab strips), library widgets on a page",default off,not a gap,follows the Scope
+3,LibKa0sSkinTester,"Blizzard SettingsPanel chrome around the pages, and the category list entries",deliberate ruling,not a gap,can't skin: Settings window
+4,LibKa0sSkinTester,Addon logo,no skin token,not a gap,addon logo
+5,LibKa0sSkinTester,Skin grid swatches; Ka0sMedia picker rows,deliberate ruling,not a gap,preview by design
+6,LibKa0sSkinTester,"AceGUI Dropdown, Ka0sMedia_Font and Ka0sMedia_Statusbar pickers, TreeGroup sample",default off,not a gap,follows the Scope
+7,LibKa0sSkinTester,LSM30_Font and LSM30_Statusbar pickers,deliberate ruling,not a gap,"LSM30 picker, being replaced"
+8,LibKa0sSkinTester,WowStyle1DropdownTemplate sample's open list,stock Blizzard art,not a gap,can't skin: client Menu
+9,LibKa0sSkinTester,SquareIcon sample's edge,hard-coded,A5,
+10,LibKa0sSkinTester,Hover tooltip sample: frame,stock Blizzard art,A5,
+11,LibKa0sSkinTester,Hover tooltip sample: title and line text,hard-coded,A5,
+12,LibKa0sSkinTester,ApplyBarFill sample bar texture,hard-coded,A5,
+13,LibKa0sSkinTester,FadeRegions and FadeNineSlice stock twins,deliberate ruling,not a gap,preview by design
+14,LibKa0sSkinTester,FadeRegions sample's 'Faded' label,other,A5,
+15,LibKa0sSkinTester,IconBorder sample (no fromSkin),hard-coded,A5,
+16,LibKa0sSkinTester,Shell on SettingsFrameTemplate: close 'x' glyph,hard-coded,L8,
+17,LibKa0sSkinTester,"Getter readouts: color getter text, BarStyle line, FontFlags line, HudFontSize line",other,A5,
+18,LibKa0sSkinTester,GetFont line,hard-coded,L11,
+19,LibKa0sSkinTester,BarStyle sample bar fill color,other,A5,
+20,LibKa0sSkinTester,Font outline readout line,other,A5,
+21,LibKa0sSkinTester,Per-skin body and title lines,deliberate ruling,not a gap,preview by design
+22,LibKa0sSkinTester,Per-skin hud.font lines,deliberate ruling,not a gap,preview by design
+23,LibKa0sSkinTester,Worn-skin BarStyle line,other,A5,
+24,LibKa0sSkinTester,Skin cards' four swatches,deliberate ruling,not a gap,preview by design
+25,LibKa0sSkinTester,Skin rows and swatches,deliberate ruling,not a gap,preview by design
+26,LibKa0sSkinTester,Control hover tooltips,deliberate ruling,L2,
+27,LibKa0sSkinTester,Reset icons on the font and texture rows,stock Blizzard art,L6,
+28,LibKa0sSkinTester,Drawer and nav entry hover art,deliberate ruling,D9,
+29,LibKa0sSkinTester,Resize grip,deliberate ruling,D9,
+30,LibKa0sSkinTester,Arrow and chevron art,no skin token,L10,
+31,LibKa0sSkinTester,"Library icon marks: close, copy, clear, eye, gear",no skin token,L10,
+32,LibKa0sSkinTester,DragHandle help mark,stock Blizzard art,L6,
+33,LibKa0sSkinTester,Sample icon art,no skin token,not a gap,game art
+34,LibKa0sSkinTester,Slider sample's host track,hard-coded,A5,
+35,LibKa0sSkinTester,NavItem (selected) selection fill,other,A5,
+36,LibKa0sSkinTester,Tab sample edges,other,L3,
+37,LibKa0sSkinTester,"Title bar and footer height, scrollbar width",hard-coded,A5,
+38,LibKa0sSkinTester,Sizes of painted strings,deliberate ruling,L11,
+39,LibKa0sSkinTester,Window text outline,deliberate ruling,D8,
+40,LibKa0sSkinTester,Log and line counter face,deliberate ruling,L12,
+41,LibKa0sSkinTester,Copy window body text,other,L12,
+42,LibKa0sSkinTester,Scroll bar arrow buttons and any template bar art,stock Blizzard art,L7,
+43,LibKa0sSkinTester,Drag handle tooltip frame,deliberate ruling,not a gap,can't skin: GameTooltip frame
+44,LibKa0sSkinTester,"Minimap button, broker row, status tooltip frame, right-click menu",no skin token,L1,
+45,LibKa0sSkinTester,Status tooltip's enabled and disabled values,meaning color,L1,
+46,LibKa0sSkinTester,Reset all confirmation,deliberate ruling,not a gap,can't skin: StaticPopup
+47,LibKa0sSkinTester,"Copy to every Ka0s addon confirmation, reload offer",deliberate ruling,not a gap,can't skin: StaticPopup
+48,LibKa0sSkinTester,Color swatch's picker,deliberate ruling,not a gap,can't skin: ColorPickerFrame
+49,LibKa0sSkinTester,Sample media values and swatch color,hard-coded,A5,
+50,LibKa0sSkinTester,[ST] tag and command highlights,deliberate ruling,L13,
+51,LibKa0sSkinTester,"Library lines: help, /st list, profile list, perf status, debug on/off, console refusals",hard-coded,L13,
+52,AbsorbTracker,Fill color,deliberate ruling,D3,
+53,AbsorbTracker,Background color,deliberate ruling,D4,
+54,AbsorbTracker,Border color,deliberate ruling,D4,
+55,AbsorbTracker,Absorb value text color,deliberate ruling,D2,
+56,AbsorbTracker,Absorb value text shadow,deliberate ruling,D6,
+57,AbsorbTracker,"Bar width, height and opacity",no skin token,not a gap,layout
+58,AbsorbTracker,Fill inset inside the bar,hard-coded,not a gap,layout
+59,AbsorbTracker,bar.gloss not applied,other,A3,
+60,AbsorbTracker,Help and close mark art,no skin token,L10,
+61,AbsorbTracker,Strip height and gap,no skin token,not a gap,layout
+62,AbsorbTracker,Strip tooltips frame and fonts,deliberate ruling,not a gap,can't skin: GameTooltip frame
+63,AbsorbTracker,"Panel chrome and all AceGUI rows: headers, tab strips, band controls, checkboxes, sliders, dropdowns, buttons, scroll bars, the mirrored-unit hint",default off,not a gap,follows the Scope
+64,AbsorbTracker,"Blizzard Settings window: frame, category list, close and search controls",deliberate ruling,not a gap,can't skin: Settings window
+65,AbsorbTracker,"Media picker pull-outs (LSM30_Statusbar, LSM30_Border, LSM30_Font)",deliberate ruling,not a gap,"LSM30 picker, being replaced"
+66,AbsorbTracker,Color swatch popup,deliberate ruling,not a gap,can't skin: ColorPickerFrame
+67,AbsorbTracker,Reset all settings confirmation,deliberate ruling,not a gap,can't skin: StaticPopup
+68,AbsorbTracker,Copy to other addons and reload confirmations,deliberate ruling,not a gap,can't skin: StaticPopup
+69,AbsorbTracker,Profile confirmation dialog (delete profile and similar),other,A4,
+70,AbsorbTracker,Landing page logo,no skin token,not a gap,addon logo
+71,AbsorbTracker,Addon icon,no skin token,not a gap,addon logo
+72,AbsorbTracker,"Button ring, background disc and hover highlight",stock Blizzard art,L10,
+73,AbsorbTracker,"Status values (Enabled, Locked)",hard-coded,L1,
+74,AbsorbTracker,Tooltip frame and other lines,deliberate ruling,L1,
+75,AbsorbTracker,Right-click menu,stock Blizzard art,not a gap,can't skin: client Menu
+76,AbsorbTracker,"Log, line-counter and copy text face and size",deliberate ruling,L12,
+77,AbsorbTracker,"Close, copy and clear mark art",no skin token,L10,
+78,AbsorbTracker,[AT] prefix,hard-coded,L13,
+79,AbsorbTracker,Debug logging ON and OFF words,meaning color,L13,
+80,AbsorbTracker,"Perf run state words (STARTED, FINISHED, SUSPENDED, armed and similar)",meaning color,L13,
+81,AbsorbTracker,Settings combat refusal notices,hard-coded,L13,
+82,AbsorbTracker,"Mirrored note on /at list, get and set rows",hard-coded,L13,
+83,AbsorbTracker,"Command rows, setting rows, list headers",hard-coded,L13,
+84,AbsorbTracker,Disabled line command highlight,hard-coded,L13,
+85,AuraMaster,"AceGUI rows, Options chrome (drawers, nav rail, tab strips, id lists), Skin tab, Ka0sMedia pickers, page markup",deliberate ruling,not a gap,follows the Scope
+86,AuraMaster,"Name, time, stack and text-line font color",deliberate ruling,D2,
+87,AuraMaster,Text shadow,default off,D6,
+88,AuraMaster,Bar fill color,no skin token,D3,
+89,AuraMaster,Bar background color,deliberate ruling,D4,
+90,AuraMaster,Bar gloss,no skin token,A3,
+91,AuraMaster,Bar border,deliberate ruling,D4,
+92,AuraMaster,Icon border beside a bar or text line,default off,D4,
+93,AuraMaster,Icon border,deliberate ruling,D4,
+94,AuraMaster,Dispel-type edge on debuff icons,meaning color,MC,meaning color
+95,AuraMaster,Cooldown swipe and edge,stock Blizzard art,A6,
+96,AuraMaster,Blizzard countdown numbers,default off,A6,
+97,AuraMaster,Spark,stock Blizzard art,A6,
+98,AuraMaster,Aura icon art,other,not a gap,game art
+99,AuraMaster,Pandemic highlight wash,default off,D5,
+100,AuraMaster,Running-out time color,default off,D5,
+101,AuraMaster,"Class-color options on text, fill, background, borders, spark and glow",meaning color,MC,meaning color
+102,AuraMaster,"Dispel palette: bar fill and background by type, text backdrop, edge and dispel word",meaning color,MC,meaning color
+103,AuraMaster,Text glow color,deliberate ruling,D5,
+104,AuraMaster,Container name label color,default off,D2,
+105,AuraMaster,Element sizes and gaps,no skin token,not a gap,layout
+106,AuraMaster,Missing-media fallbacks,other,not a gap,missing-media fallback
+107,AuraMaster,Drag strip help and close marks,no skin token,L10,
+108,AuraMaster,Frame name and hint label font,hard-coded,L8,
+109,AuraMaster,"Outline, picker edge, strip edge, attach box, line and dot sizes",no skin token,not a gap,layout
+110,AuraMaster,Log text and line counter font,deliberate ruling,L12,
+111,AuraMaster,"Unit, Aura type and Style dropdown value colors",hard-coded,L5,
+112,AuraMaster,Category [type] marker color,hard-coded,L5,
+113,AuraMaster,Overlap warning line on a spell tooltip,hard-coded,L2,
+114,AuraMaster,"Lead-in, heading and note rows with a named font object",hard-coded,not a gap,follows the Scope
+115,AuraMaster,Addon logo,deliberate ruling,not a gap,addon logo
+116,AuraMaster,Button logo and ring,deliberate ruling,not a gap,addon logo
+117,AuraMaster,Status words and title lines,hard-coded,L1,
+118,AuraMaster,Right-click menu,stock Blizzard art,not a gap,can't skin: client Menu
+119,AuraMaster,"Reset, delete container, delete category, forget broken and attach confirmations",deliberate ruling,not a gap,can't skin: StaticPopup
+120,AuraMaster,Tooltip frame for strip and close-mark hovers; the aura tooltip,deliberate ruling,not a gap,can't skin: GameTooltip frame
+121,AuraMaster,"SettingsPanel chrome, ColorPickerFrame",deliberate ruling,not a gap,can't skin: Settings window
+122,AuraMaster,Skin rows and font rows,deliberate ruling,not a gap,preview by design
+123,AuraMaster,[AM] prefix,deliberate ruling,L13,
+124,AuraMaster,Gray refusal lines and notes,deliberate ruling,L13,
+125,AuraMaster,Active-container marker,deliberate ruling,L13,
+126,AuraMaster,"Command yellow, list headers, ON/OFF state, perf status words, combat gray",deliberate ruling,L13,
+127,BankLedger,"AceGUI rows, Options chrome (drawer, tab strips, id lists) and the Skin tab itself",deliberate ruling,not a gap,follows the Scope
+128,BankLedger,Quality name in each dropdown option,meaning color,MC,meaning color
+129,BankLedger,Addon logo,no skin token,not a gap,addon logo
+130,BankLedger,"Blizzard SettingsPanel frame around the addon's pages, and the client's Key Bindings list that Bindings.xml feeds",deliberate ruling,not a gap,can't skin: Settings window
+131,BankLedger,Launcher icon and ring,stock Blizzard art,L10,
+132,BankLedger,"Library-written lines: title, Enabled, Locked, Test mode and the click hints",hard-coded,L1,
+133,BankLedger,Options context menu,stock Blizzard art,not a gap,can't skin: client Menu
+134,BankLedger,"GameTooltip frame, its font, and item hyperlink content",deliberate ruling,not a gap,can't skin: GameTooltip frame
+135,BankLedger,"Purge, Reset all, Clear blacklist, Clear whitelist popups",deliberate ruling,not a gap,can't skin: StaticPopup
+136,BankLedger,Resize grip,stock Blizzard art,L8,
+137,BankLedger,Up and down direction glyph,deliberate ruling,L12,
+138,BankLedger,"Log text, line counter and CSV text",deliberate ruling,L12,
+139,BankLedger,Font outline on window text,default off,D8,
+140,BankLedger,"Store color for Bank, Warband Bank, Guild Bank and Bags",meaning color,MC,meaning color
+141,BankLedger,Class color on character names,meaning color,MC,meaning color
+142,BankLedger,"Quality color for artifact, heirloom and token items",meaning color,MC,meaning color
+143,BankLedger,Round class icon,stock Blizzard art,not a gap,game art
+144,BankLedger,"Gold, silver and copper coin icons",stock Blizzard art,not a gap,game art
+145,BankLedger,[BL] prefix,deliberate ruling,L13,
+146,BankLedger,Disabled refusal line's '/bl enable' command,deliberate ruling,L13,
+147,BankLedger,Zebra stripe and hover wash alpha,deliberate ruling,A7,
+148,BankLedger,"Bar fill, strip bar and legend chip alpha",hard-coded,A7,
+149,BankLedger,Non-data bar surfaces,deliberate ruling,A7,
+150,BankLedger,History and Insights tabs,deliberate ruling,A1,
+151,BankLedger,Footer band behind the status and database-size text,deliberate ruling,A1,
+152,BankLedger,Title bar height,hard-coded,L9,
+153,BankLedger,Window title placement,hard-coded,L9,
+154,BankLedger,Scroll gutter,hard-coded,A7,
+155,BankLedger,Text size,hard-coded,L11,
+156,BankLedger,Divider title size and headline shrink-to-fit,hard-coded,L11,
+157,BankLedger,"Row, header, button, tab, card, bar, menu, dropdown and close-control dimensions",no skin token,not a gap,layout
+158,BankLedger,Sort arrows and group header chevrons,other,L8,
+159,ConsumableMaster,Bar and flyout panel fill texture,hard-coded,A7,
+160,ConsumableMaster,Bar background fill color,deliberate ruling,D4,
+161,ConsumableMaster,Bar and flyout panel border color,deliberate ruling,D4,
+162,ConsumableMaster,Bar and flyout panel border thickness,deliberate ruling,D4,
+163,ConsumableMaster,Button border color,deliberate ruling,D4,
+164,ConsumableMaster,Button border offset,no skin token,not a gap,layout
+165,ConsumableMaster,Button backdrop fill,deliberate ruling,D4,
+166,ConsumableMaster,Bar and flyout geometry,no skin token,not a gap,layout
+167,ConsumableMaster,Button label color,deliberate ruling,D2,
+168,ConsumableMaster,Button label size,deliberate ruling,L11,
+169,ConsumableMaster,Button label shadow,deliberate ruling,D6,
+170,ConsumableMaster,Stack count color and base size,no skin token,D2,
+171,ConsumableMaster,Button pressed art,stock Blizzard art,A6,
+172,ConsumableMaster,Button hover highlight art,stock Blizzard art,A6,
+173,ConsumableMaster,"Cooldown swipe, edge and countdown numbers",stock Blizzard art,A6,
+174,ConsumableMaster,Slot and entry icon art,no skin token,not a gap,game art
+175,ConsumableMaster,Drag strip mark art and geometry,no skin token,L10,
+176,ConsumableMaster,Flyout panel fill,deliberate ruling,D4,
+177,ConsumableMaster,Indicator shade band,deliberate ruling,D4,
+178,ConsumableMaster,Indicator arrow art,stock Blizzard art,L10,
+179,ConsumableMaster,Launcher icon,no skin token,not a gap,addon logo
+180,ConsumableMaster,Status tooltip lines,hard-coded,L1,
+181,ConsumableMaster,Options context menu,stock Blizzard art,not a gap,can't skin: client Menu
+182,ConsumableMaster,Skin row names and swatches,deliberate ruling,not a gap,preview by design
+183,ConsumableMaster,Font pull-out rows,deliberate ruling,not a gap,preview by design
+184,ConsumableMaster,Log and line counter font,deliberate ruling,L12,
+185,ConsumableMaster,[CM] prefix,hard-coded,L13,
+186,ConsumableMaster,ON / OFF state words,meaning color,L13,
+187,ConsumableMaster,"Dump and list tags ([owned], [on], [off], <-- pick, (none))",meaning color,L13,
+188,ConsumableMaster,"Help, command and error highlights",hard-coded,L13,
+189,ConsumableMaster,"AceGUI widgets, drawers, nav rail, tab strips, id lists, reorder lists, Profiles page, landing page",deliberate ruling,not a gap,follows the Scope
+190,ConsumableMaster,"KCM* rows, Stat Priority and slot rows: text, hover wash, ghost text, warnings, score and glyph tooltips",deliberate ruling,not a gap,follows the Scope
+191,ConsumableMaster,"In-bags, not-in-bags, included, excluded, shown, hidden and pick glyphs",stock Blizzard art,L6,
+192,ConsumableMaster,Macro drag icon highlight,stock Blizzard art,L6,
+193,ConsumableMaster,"Item, spell, macro and spec icons on rows",no skin token,not a gap,game art
+194,ConsumableMaster,Crafting-quality glyph on item rows,meaning color,MC,meaning color
+195,ConsumableMaster,Row remove icon,stock Blizzard art,L6,
+196,ConsumableMaster,Score button info mark,hard-coded,L6,
+197,ConsumableMaster,Dimmed states: inapplicable item rows and disabled marks,no skin token,A7,
+198,ConsumableMaster,Row and icon sizes,no skin token,not a gap,layout
+199,ConsumableMaster,Landing page logo,no skin token,not a gap,addon logo
+200,ConsumableMaster,"Reset confirmations (KCM_CONFIRM_RESET, KCM_RESET_CATEGORY, KCM_RESET_PRIORITIES)",deliberate ruling,not a gap,can't skin: StaticPopup
+201,ConsumableMaster,"GameTooltip frame on bar buttons, flyout entries, the drag strip and rows",deliberate ruling,not a gap,can't skin: GameTooltip frame
+202,ConsumableMaster,Color picker and the Blizzard Settings window around the pages,deliberate ruling,not a gap,can't skin: Settings window
+203,DpsRace,Elapsed and time-left clock face,deliberate ruling,A9,
+204,DpsRace,Clock and STOP outline,deliberate ruling,A9,
+205,DpsRace,Elapsed green and time-left red,meaning color,MC,meaning color
+206,DpsRace,"Damage/DPS figures, spell name and amount, Damage/DPS cell text",deliberate ruling,D2,
+207,DpsRace,Text drop shadow,deliberate ruling,D6,
+208,DpsRace,Font size,deliberate ruling,L11,
+209,DpsRace,Big clock and STOP text size and shadow,no skin token,L11,
+210,DpsRace,Label size,no skin token,L11,
+211,DpsRace,Window text outline,default off,D8,
+212,DpsRace,Bar fill color,deliberate ruling,A9,
+213,DpsRace,Plot background,hard-coded,D4,
+214,DpsRace,Plot edge,deliberate ruling,A9,
+215,DpsRace,Damage and DPS cell bar track,default off,A9,
+216,DpsRace,Best and other column bar track,default off,A9,
+217,DpsRace,Best and other column bar fill,deliberate ruling,A9,
+218,DpsRace,Bar border color and thickness,deliberate ruling,D4,
+219,DpsRace,Icon border,other,A1,
+220,DpsRace,Spell icons,stock Blizzard art,not a gap,game art
+221,DpsRace,Class and spec icons,stock Blizzard art,not a gap,game art
+222,DpsRace,Damage and DPS score line icons,stock Blizzard art,not a gap,game art
+223,DpsRace,"Item icons, enchant and gem marks",stock Blizzard art,not a gap,game art
+224,DpsRace,"Artifact, heirloom and token quality colors",meaning color,MC,meaning color
+225,DpsRace,"Item, food and unknown icons",stock Blizzard art,not a gap,game art
+226,DpsRace,Catalog icon art,no skin token,L10,
+227,DpsRace,Back arrow icon,other,L6,
+228,DpsRace,Legend swatch disc,stock Blizzard art,not a gap,game art
+229,DpsRace,Window resize grip,deliberate ruling,D9,
+230,DpsRace,Scroll bar track,other,A1,
+231,DpsRace,Countdown digits and glow,deliberate ruling,not a gap,can't skin: other Blizzard frames
+232,DpsRace,Fallback number,deliberate ruling,not a gap,missing-media fallback
+233,DpsRace,Raid-warning STOP message,stock Blizzard art,not a gap,can't skin: other Blizzard frames
+234,DpsRace,Target category chips and bars,meaning color,MC,meaning color
+235,DpsRace,Race length chips and bars,meaning color,MC,meaning color
+236,DpsRace,"Spec best blue and the Incomplete, Died, Lost status hues",meaning color,MC,meaning color
+237,DpsRace,Class-colored names and labels,meaning color,MC,meaning color
+238,DpsRace,Difference percent,meaning color,MC,meaning color
+239,DpsRace,"Race fill, combat end, restart and ignored-cast marks and legend",meaning color,MC,meaning color
+240,DpsRace,"Run identity colors, cast ticks and lane corridors",meaning color,MC,meaning color
+241,DpsRace,Wash and edge opacities,hard-coded,A7,
+242,DpsRace,Talent hyperlink,hard-coded,L13,
+243,DpsRace,[DR] prefix,deliberate ruling,L13,
+244,DpsRace,AceGUI rows and Options chrome,default off,not a gap,follows the Scope
+245,DpsRace,GameTooltip frame and client tooltip text,deliberate ruling,not a gap,can't skin: GameTooltip frame
+246,DpsRace,StaticPopup dialogs,deliberate ruling,not a gap,can't skin: StaticPopup
+247,DpsRace,Context menus,stock Blizzard art,A2,
+248,DpsRace,Minimap button and landing logo,no skin token,not a gap,addon logo
+249,DpsRace,Minimap button ring and backing,stock Blizzard art,L10,
+250,DpsRace,Log and line counter face,deliberate ruling,L12,
+251,DpsRace,Title bar height and scroll bar width,deliberate ruling,L9,
+252,DpsRace,Row height and chart height,no skin token,not a gap,layout
+253,DropWatcher,"AceGUI rows, Options chrome (drawer, nav rail, tab strips, id lists), Situations table cells, Keybindings tab, media picker pull-outs",default off,not a gap,follows the Scope
+254,DropWatcher,Column headers and situation labels (raw FontStrings),hard-coded,L4,
+255,DropWatcher,Window text outline,deliberate ruling,D8,
+256,DropWatcher,Tables font shadow,hard-coded,D6,
+257,DropWatcher,Message text input,deliberate ruling,not a gap,preview by design
+258,DropWatcher,Log text and line count,deliberate ruling,L12,
+259,DropWatcher,"Upgrade glow color, main and off-spec",deliberate ruling,D5,
+260,DropWatcher,Upgrade glow art (Proc style),stock Blizzard art,A6,
+261,DropWatcher,Icon border color,deliberate ruling,D4,
+262,DropWatcher,Icon crop (zoom),no skin token,not a gap,layout
+263,DropWatcher,Countdown bar fill,deliberate ruling,A7,
+264,DropWatcher,Countdown bar track,deliberate ruling,A7,
+265,DropWatcher,Quality bar at the card's left edge,hard-coded,A7,
+266,DropWatcher,"Flat text button (Ask, Offer, Announce, Send, Cancel, footer buttons)",deliberate ruling,A1,
+267,DropWatcher,"Untoned button label and mark (Post my tradeables, Scan group, Expand all, Send, Cancel)",hard-coded,L8,
+268,DropWatcher,Disabled button look,no skin token,A7,
+269,DropWatcher,Boxes and chips,no skin token,A1,
+270,DropWatcher,Drops and History tabs,deliberate ruling,A1,
+271,DropWatcher,Title alignment,hard-coded,L9,
+272,DropWatcher,Header row band,deliberate ruling,A1,
+273,DropWatcher,Row hover wash,other,A1,
+274,DropWatcher,Footer band,deliberate ruling,A1,
+275,DropWatcher,"Secondary stat names (Crit, Haste, Mastery, Versatility)",meaning color,MC,meaning color
+276,DropWatcher,Player names in class color,meaning color,MC,meaning color
+277,DropWatcher,"Artifact, heirloom and token item colors",meaning color,MC,meaning color
+278,DropWatcher,Class icon beside each character,stock Blizzard art,not a gap,game art
+279,DropWatcher,Item icon art,other,not a gap,game art
+280,DropWatcher,LibKa0s catalog icon art,no skin token,L10,
+281,DropWatcher,Resize grip,deliberate ruling,D9,
+282,DropWatcher,"GameTooltip frame, item tooltip and the lines the addon writes",deliberate ruling,not a gap,can't skin: GameTooltip frame
+283,DropWatcher,Plain grid cells,deliberate ruling,not a gap,can't skin: GameTooltip frame
+284,DropWatcher,"Reset settings, Clear history and history-retention popups",deliberate ruling,not a gap,can't skin: StaticPopup
+285,DropWatcher,"SettingsPanel frame, ColorPickerFrame",deliberate ruling,not a gap,can't skin: Settings window
+286,DropWatcher,"Button ring, background, hover art and right-click menu",stock Blizzard art,L10,
+287,DropWatcher,Drop Watcher logo,no skin token,not a gap,addon logo
+288,DropWatcher,Text sizes,deliberate ruling,L11,
+289,DropWatcher,Verdict glyphs (mono face),hard-coded,L12,
+290,DropWatcher,"Title bar height, row height and insets",deliberate ruling,L9,
+291,DropWatcher,[DW] prefix,deliberate ruling,L13,
+292,DropWatcher,Command highlights in usage and hint lines,deliberate ruling,L13,
+293,DropWatcher,"Library-written lines: /dw help, list and profile output, combat refusals",deliberate ruling,L13,
+294,DropWatcher,Debug logging ON and OFF words,deliberate ruling,L13,
+295,DropWatcher,Schema validator error label,deliberate ruling,L13,
+296,KickCD,"AceGUI rows and the Options chrome (drawer, nav rail, tab strips, id lists, Skin tab, Spells reorder list)",deliberate ruling,not a gap,follows the Scope
+297,KickCD,"Host-colored page bits: 'not tracked' tag, Remove mark tint, row hint tooltip titles, AceGUI-missing label",deliberate ruling,not a gap,follows the Scope
+298,KickCD,Dead tab strip while Focus links to Target,no skin token,A7,
+299,KickCD,Known / not-known status glyph,stock Blizzard art,L6,
+300,KickCD,Spell icon,stock Blizzard art,not a gap,game art
+301,KickCD,"Class and spec entries: class icon, spec icon, class-colored name",meaning color,MC,meaning color
+302,KickCD,Spell tooltip on row icon and name,deliberate ruling,not a gap,can't skin: GameTooltip frame
+303,KickCD,"Reset confirmation popups (KICKCD_RESET_ALL, KICKCD_RESET_SPELLS)",deliberate ruling,not a gap,can't skin: StaticPopup
+304,KickCD,Blizzard SettingsPanel chrome around every KickCD page,deliberate ruling,not a gap,can't skin: Settings window
+305,KickCD,KickCD logo,no skin token,not a gap,addon logo
+306,KickCD,Launcher icon,no skin token,not a gap,addon logo
+307,KickCD,Minimap button frame,no skin token,L10,
+308,KickCD,Status tooltip,hard-coded,L1,
+309,KickCD,Right-click options menu,stock Blizzard art,not a gap,can't skin: client Menu
+310,KickCD,Icon border color,deliberate ruling,D4,
+311,KickCD,Cooldown countdown text color,deliberate ruling,D2,
+312,KickCD,Cooldown body tint and dim on an icon on cooldown,deliberate ruling,D5,
+313,KickCD,"Ready glow color, primary and secondary",deliberate ruling,D5,
+314,KickCD,Spell icon art,stock Blizzard art,not a gap,game art
+315,KickCD,Cooldown swipe,stock Blizzard art,A6,
+316,KickCD,Charges badge color,no skin token,D2,
+317,KickCD,Charges badge size,hard-coded,L11,
+318,KickCD,"HUD text base sizes: countdown 14, cast name and time 10, label 14",deliberate ruling,L11,
+319,KickCD,"Frame sizes: primary icon 64, secondary 0.5 of it, cast bar 250 x 24, grid gap 0",no skin token,not a gap,layout
+320,KickCD,HUD text drop shadow,deliberate ruling,D6,
+321,KickCD,"Bar fill color, interruptible and non-interruptible",meaning color,MC,meaning color
+322,KickCD,"Bar background color, both states",deliberate ruling,D4,
+323,KickCD,"Bar border color and family, both states",deliberate ruling,D4,
+324,KickCD,"Spell name text color, per state",deliberate ruling,D2,
+325,KickCD,Cast time text color,deliberate ruling,D2,
+326,KickCD,Spark,stock Blizzard art,A6,
+327,KickCD,Gloss overlay,other,A3,
+328,KickCD,"Spell icon, and the unlocked preview's question mark",stock Blizzard art,not a gap,game art
+329,KickCD,"Label text color (Target, Focus)",deliberate ruling,D2,
+330,KickCD,Spell hover tooltip,deliberate ruling,not a gap,can't skin: GameTooltip frame
+331,KickCD,Strip tooltip frame,deliberate ruling,not a gap,can't skin: GameTooltip frame
+332,KickCD,Log text and line counter face and size,deliberate ruling,L12,
+333,KickCD,[KCD] tag on every chat line,deliberate ruling,L13,
+334,KickCD,Combat refusal line when opening settings,deliberate ruling,L13,
+335,KickCD,'Available settings' list header (/kcd list),hard-coded,L13,
+336,KickCD,Highlighted words in the retired /kcd reset replies,hard-coded,L13,
+337,LootHistory,"AceGUI rows: checkboxes, dropdowns, sliders, buttons, labels, headings, edit boxes, including the AH table's check boxes and the Profiles page",default off,not a gap,follows the Scope
+338,LootHistory,"Nav rail, tab strips, drawers, id lists and suggestions, Skin and Keybindings tabs",default off,not a gap,follows the Scope
+339,LootHistory,"AH price table strings (headers, addon, module, status)",default off,not a gap,follows the Scope
+340,LootHistory,"AH table text colors, status ticks and info mark",deliberate ruling,not a gap,follows the Scope
+341,LootHistory,"Priority drag list (handle, row boxes)",default off,not a gap,follows the Scope
+342,LootHistory,Minimum quality dropdown labels,meaning color,MC,meaning color
+343,LootHistory,Addon logo,no skin token,not a gap,addon logo
+344,LootHistory,Window text outline,deliberate ruling,D8,
+345,LootHistory,Text sizes,deliberate ruling,L11,
+346,LootHistory,Chart axis tick labels,hard-coded,L8,
+347,LootHistory,"Direction column glyph (up, down, transfer arrows)",deliberate ruling,L12,
+348,LootHistory,CSV text box,hard-coded,L12,
+349,LootHistory,Log text and line counter face,deliberate ruling,L12,
+350,LootHistory,Column header band,other,A1,
+351,LootHistory,"Tab strip (History, Holdings, Insights, Timeline) labels, backing, border",deliberate ruling,A1,
+352,LootHistory,Total only toggle box and tick,deliberate ruling,A1,
+353,LootHistory,"Bar tracks, axes, legend swatches, row stripes, highlights, and the data bars' backing and edge",deliberate ruling,A7,
+354,LootHistory,"Source bars and legend (Kill, Container, Vendor, ...)",meaning color,MC,meaning color
+355,LootHistory,"Class-colored character names, per-character bars, timeline lines, Character dropdown rows",meaning color,MC,meaning color
+356,LootHistory,"Item names and quality labels for artifact, heirloom and token items",no skin token,MC,meaning color
+357,LootHistory,"Gold, silver and copper coin marks in money amounts",stock Blizzard art,not a gap,game art
+358,LootHistory,Inline class icons,stock Blizzard art,not a gap,game art
+359,LootHistory,Star before epic and above items,stock Blizzard art,not a gap,game art
+360,LootHistory,Menu item marks,other,L6,
+361,LootHistory,Menu item labels,other,L8,
+362,LootHistory,Info mark on the test and simulation strips,other,L6,
+363,LootHistory,Resize grip,stock Blizzard art,L8,
+364,LootHistory,Scroll bar up and down arrow buttons,stock Blizzard art,L7,
+365,LootHistory,Scroll bar width and gutter,hard-coded,A7,
+366,LootHistory,Section divider titles,deliberate ruling,L11,
+367,LootHistory,Title bar height,hard-coded,L9,
+368,LootHistory,"GameTooltip frame, and item and currency tooltip contents",deliberate ruling,not a gap,can't skin: GameTooltip frame
+369,LootHistory,"StaticPopup frames (purge, prune, forget, reset, clear lists, ledger reset)",deliberate ruling,not a gap,can't skin: StaticPopup
+370,LootHistory,Gold emphasis lines,hard-coded,not a gap,can't skin: StaticPopup
+371,LootHistory,[LH] message prefix,no skin token,L13,
+372,LootHistory,Launcher button,stock Blizzard art,L10,
+373,LootHistory,"Title, status and click hint lines",deliberate ruling,L1,
+374,LootHistory,"Options menu (Enabled, Locked, Test mode, Show window)",stock Blizzard art,not a gap,can't skin: client Menu
+375,LootHistory,Skin list row names,deliberate ruling,not a gap,preview by design
+376,LootHistory,Dropdown arrow and font and texture reset icons,stock Blizzard art,L6,
+377,MultiMeters,Bar fill color (every stat cell),meaning color,MC,meaning color
+378,MultiMeters,"Bar fill for a row with no known class (NPC, unknown)",hard-coded,not a gap,missing-media fallback
+379,MultiMeters,Bar gloss,deliberate ruling,A3,
+380,MultiMeters,"Cell background tint, name column included",meaning color,MC,meaning color
+381,MultiMeters,Player name text,meaning color,MC,meaning color
+382,MultiMeters,Cell number text,deliberate ruling,D2,
+383,MultiMeters,Column label text,deliberate ruling,D2,
+384,MultiMeters,Column header strip background,deliberate ruling,A1,
+385,MultiMeters,Sort arrow,hard-coded,L8,
+386,MultiMeters,"Unit icon in the name column (spec icon, class circle, breakdown spell or death icon)",stock Blizzard art,not a gap,game art
+387,MultiMeters,Unit icon border,hard-coded,A1,
+388,MultiMeters,Alternating row stripe and 'this row is you' edge,default off,D4,
+389,MultiMeters,Cell bar border,default off,D4,
+390,MultiMeters,Title text face,deliberate ruling,L8,
+391,MultiMeters,Title alignment,hard-coded,L9,
+392,MultiMeters,Close control at rest and under the pointer,deliberate ruling,L8,
+393,MultiMeters,Meter-unavailable notice outline,hard-coded,L8,
+394,MultiMeters,Segment picker menu,stock Blizzard art,A2,
+395,MultiMeters,Resize grip,deliberate ruling,L8,
+396,MultiMeters,"Text sizes (title 12, column labels 11, cells 11, tooltip 12)",deliberate ruling,L11,
+397,MultiMeters,"Drop shadows (header on, cells on, column labels off, tooltip off)",no skin token,D6,
+398,MultiMeters,"Row height, spacing, padding, control size, icon size, divider thickness",no skin token,not a gap,layout
+399,MultiMeters,The tooltip box itself,deliberate ruling,not a gap,can't skin: GameTooltip frame
+400,MultiMeters,Spell bar fill,meaning color,MC,meaning color
+401,MultiMeters,Spell bar backdrop,deliberate ruling,D4,
+402,MultiMeters,Spell bar border color and thickness,deliberate ruling,D4,
+403,MultiMeters,"Spell name, amount and share text",deliberate ruling,D2,
+404,MultiMeters,Event time and caster columns,hard-coded,L8,
+405,MultiMeters,Player name on the first line,meaning color,MC,meaning color
+406,MultiMeters,"Spell, death, target and fallback icons",stock Blizzard art,not a gap,game art
+407,MultiMeters,"Statistic lines, and any stat color elsewhere",meaning color,MC,meaning color
+408,MultiMeters,"Bar line height, icon size, line spacing",no skin token,not a gap,layout
+409,MultiMeters,Name box text,hard-coded,L8,
+410,MultiMeters,CSV text box,hard-coded,L12,
+411,MultiMeters,Title bar height,hard-coded,L9,
+412,MultiMeters,"AceGUI pages, drawers, nav rail, tab strips, id lists, Skin tab",deliberate ruling,not a gap,follows the Scope
+413,MultiMeters,Column block enabled and disabled glyph,stock Blizzard art,L6,
+414,MultiMeters,Column block label,hard-coded,L4,
+415,MultiMeters,"Reset all settings, Reset meter data, Delete window; the color picker",deliberate ruling,not a gap,can't skin: StaticPopup
+416,MultiMeters,Addon logo,no skin token,not a gap,addon logo
+417,MultiMeters,Minimap button ring and right-click menu,stock Blizzard art,L10,
+418,MultiMeters,"Yes, No, On and Off status words, title and hint lines",hard-coded,L1,
+419,MultiMeters,[MM] tag,deliberate ruling,L13,
+420,MultiMeters,"Notice gray, command yellow, /mm window list, diagnostics headings",hard-coded,L13,
+421,PanelMaster,Background color,deliberate ruling,A8,
+422,PanelMaster,Background texture,deliberate ruling,A8,
+423,PanelMaster,"Border color, texture and thickness",deliberate ruling,A8,
+424,PanelMaster,Panel width and height,no skin token,not a gap,layout
+425,PanelMaster,Bar texture,deliberate ruling,A8,
+426,PanelMaster,Bar fill color,meaning color,MC,meaning color
+427,PanelMaster,Bar thickness,no skin token,not a gap,layout
+428,PanelMaster,"Bar outline color, texture and size",deliberate ruling,A8,
+429,PanelMaster,Outline thickness,no skin token,not a gap,layout
+430,PanelMaster,Font outline,default off,D8,
+431,PanelMaster,"All page chrome and AceGUI rows (header, tab strip, buttons, check boxes, dropdowns, sliders, edit boxes, headings, labels, scroll bars, including the Panels band and editor and the Skin tab)",default off,not a gap,follows the Scope
+432,PanelMaster,"""(disabled)"" marker color",default off,not a gap,follows the Scope
+433,PanelMaster,"Inline emphasis in tooltip bodies (frame name, example paths, option names)",deliberate ruling,L5,
+434,PanelMaster,Tooltip body text on every settings row,other,L2,
+435,PanelMaster,Slash command rows,deliberate ruling,L5,
+436,PanelMaster,Addon logo,deliberate ruling,not a gap,addon logo
+437,PanelMaster,Subsection heading font,deliberate ruling,L4,
+438,PanelMaster,LSM30 texture and border pickers and their pull-outs,deliberate ruling,not a gap,"LSM30 picker, being replaced"
+439,PanelMaster,ColorPickerFrame opened from a swatch,stock Blizzard art,not a gap,can't skin: ColorPickerFrame
+440,PanelMaster,GameTooltip frame on every settings row,stock Blizzard art,not a gap,can't skin: GameTooltip frame
+441,PanelMaster,SettingsPanel chrome around the pages,stock Blizzard art,not a gap,can't skin: Settings window
+442,PanelMaster,"Reset all, Delete all, Delete panel and Reset panel popups",stock Blizzard art,not a gap,can't skin: StaticPopup
+443,PanelMaster,Delete confirmation dialog,stock Blizzard art,A4,
+444,PanelMaster,[PM] tag,deliberate ruling,L13,
+445,PanelMaster,"Line colors in panel lists, new panel and unlock messages, disabled refusal, schema error, help rows",deliberate ruling,L13,
+446,PanelMaster,Addon icon,deliberate ruling,not a gap,addon logo
+447,PanelMaster,"Round border, background and highlight art",stock Blizzard art,L10,
+448,PanelMaster,"Status tooltip lines (title, Enabled, Locked, click hints)",hard-coded,L1,
+449,PanelMaster,Right-click options menu,stock Blizzard art,not a gap,can't skin: client Menu
+450,PanelMaster,Mono face and size,deliberate ruling,L12,
+451,PartyFrameEnhanced,Bar fill color,deliberate ruling,D3,
+452,PartyFrameEnhanced,"Cast-state fill palette (channel, empowered, can't be interrupted, interrupted or failed)",meaning color,MC,meaning color
+453,PartyFrameEnhanced,"NPC reaction fill (hostile, neutral, friendly)",meaning color,MC,meaning color
+454,PartyFrameEnhanced,Bar background tint,deliberate ruling,D4,
+455,PartyFrameEnhanced,"Text color (name, time, percent)",deliberate ruling,D2,
+456,PartyFrameEnhanced,Text size,deliberate ruling,L11,
+457,PartyFrameEnhanced,Text shadow,deliberate ruling,D6,
+458,PartyFrameEnhanced,Bar border,default off,D4,
+459,PartyFrameEnhanced,Bar gloss,no skin token,A3,
+460,PartyFrameEnhanced,Element width and height,no skin token,not a gap,layout
+461,PartyFrameEnhanced,Spell icon border,other,A1,
+462,PartyFrameEnhanced,Fallback and preview spell icon,hard-coded,not a gap,game art
+463,PartyFrameEnhanced,Cast spark,stock Blizzard art,A6,
+464,PartyFrameEnhanced,Uninterruptible shield,deliberate ruling,A6,
+465,PartyFrameEnhanced,Raid marker,stock Blizzard art,not a gap,game art
+466,PartyFrameEnhanced,The Blizzard or EllesmereUI party frames the elements attach to,deliberate ruling,not a gap,can't skin: other Blizzard frames
+467,PartyFrameEnhanced,"Skin's window text outline (mover caption, library tool windows)",default off,D8,
+468,PartyFrameEnhanced,Caption text size,hard-coded,L11,
+469,PartyFrameEnhanced,"AceGUI rows, page chrome, panel strings and page scrollbar",default off,not a gap,follows the Scope
+470,PartyFrameEnhanced,AceConfigDialog tree,default off,not a gap,follows the Scope
+471,PartyFrameEnhanced,"SettingsPanel chrome, Reset all StaticPopup, ColorPickerFrame, GameTooltip, LSM media pull-outs",deliberate ruling,not a gap,can't skin: StaticPopup
+472,PartyFrameEnhanced,Frame ground and edge,deliberate ruling,not a gap,preview by design
+473,PartyFrameEnhanced,Health and power bars,deliberate ruling,not a gap,preview by design
+474,PartyFrameEnhanced,Name text,deliberate ruling,not a gap,preview by design
+475,PartyFrameEnhanced,(test) mark,deliberate ruling,not a gap,preview by design
+476,PartyFrameEnhanced,Portrait (Blizzard party look),deliberate ruling,not a gap,game art
+477,PartyFrameEnhanced,Log and line-counter face,hard-coded,L12,
+478,PartyFrameEnhanced,"Minimap button ring, background and highlight",stock Blizzard art,L10,
+479,PartyFrameEnhanced,Status tooltip,deliberate ruling,L1,
+480,PartyFrameEnhanced,Addon logo,deliberate ruling,not a gap,addon logo
+481,PartyFrameEnhanced,[PFE] prefix and refused-unlock lines,deliberate ruling,L13,
+482,PartyFrameEnhanced,Fallback media rung,hard-coded,not a gap,missing-media fallback
+483,PremadeGroupsFilterExtension,"All AceGUI rows and Options chrome: tab strips, headings, check boxes, dropdowns, sliders, buttons, scroll bars, text",default off,not a gap,follows the Scope
+484,PremadeGroupsFilterExtension,"Blizzard SettingsPanel frame, category list, title and close control",deliberate ruling,not a gap,can't skin: Settings window
+485,PremadeGroupsFilterExtension,"Labels, readout, notes, title, button and box text, console labels: outline",default off,D8,
+486,PremadeGroupsFilterExtension,Skin list rows: each row's swatches and name; font picker rows,deliberate ruling,not a gap,preview by design
+487,PremadeGroupsFilterExtension,"Blizzard_Menu popup: backing, border, entry text, check and radio art, divider, hover, 'no presets' title",stock Blizzard art,A2,
+488,PremadeGroupsFilterExtension,"Region tag colors (OCE, LA, CHI, MEX, BZL, ENG, GER, FRA, ITA, SPA, POR, RUS)",meaning color,MC,meaning color
+489,PremadeGroupsFilterExtension,Preview line tag colors,meaning color,MC,meaning color
+490,PremadeGroupsFilterExtension,Region tag '?' for an unknown realm,hard-coded,MC,meaning color
+491,PremadeGroupsFilterExtension,Region tag font and the row it sits in,deliberate ruling,not a gap,can't skin: other Blizzard frames
+492,PremadeGroupsFilterExtension,Portal preview line of every tag,hard-coded,L4,
+493,PremadeGroupsFilterExtension,Slash command rows,deliberate ruling,L5,
+494,PremadeGroupsFilterExtension,Region color pickers' ColorPickerFrame,deliberate ruling,not a gap,can't skin: ColorPickerFrame
+495,PremadeGroupsFilterExtension,Addon logo,no skin token,not a gap,addon logo
+496,PremadeGroupsFilterExtension,"GameTooltip frame, backing, border and line font",deliberate ruling,not a gap,can't skin: GameTooltip frame
+497,PremadeGroupsFilterExtension,Tooltip title and body line colors,deliberate ruling,L8,
+498,PremadeGroupsFilterExtension,"Save as prompt, Delete confirmation, Reset all confirmation, Copy to every Ka0s addon confirmation, reload prompt",deliberate ruling,not a gap,can't skin: StaticPopup
+499,PremadeGroupsFilterExtension,Level box and copy box typed text,other,L8,
+500,PremadeGroupsFilterExtension,'Copy to search' label color,other,L8,
+501,PremadeGroupsFilterExtension,Selected-text highlight and cursor (copy box selects its text on focus),no skin token,A6,
+502,PremadeGroupsFilterExtension,Text size per string,deliberate ruling,L11,
+503,PremadeGroupsFilterExtension,Title alignment,hard-coded,L9,
+504,PremadeGroupsFilterExtension,Min/max button size and chevron size,deliberate ruling,not a gap,layout
+505,PremadeGroupsFilterExtension,Min/max chevron art,no skin token,L10,
+506,PremadeGroupsFilterExtension,Dropdown arrow glyph art,no skin token,L10,
+507,PremadeGroupsFilterExtension,"Control and row geometry: check box, edit box, button height and width, dropdown width, row pitch",deliberate ruling,not a gap,layout
+508,PremadeGroupsFilterExtension,"Log, line-count and copy text font and size",hard-coded,L12,
+509,PremadeGroupsFilterExtension,Resize grip,deliberate ruling,D9,
+510,PremadeGroupsFilterExtension,LibDBIcon button ring and addon logo; AddOn list icon,stock Blizzard art,L10,
+511,PremadeGroupsFilterExtension,Enabled status value colors and tooltip lines,hard-coded,L1,
+512,PremadeGroupsFilterExtension,Options context menu,stock Blizzard art,not a gap,can't skin: client Menu
+513,PremadeGroupsFilterExtension,[PGFE] chat tag,deliberate ruling,L13,
+514,PremadeGroupsFilterExtension,"/pgfe help, list, get, set, reset, profile lines and the disabled refusal",deliberate ruling,L13,
+515,PremadeGroupsFilterExtension,/pgfe reset usage line command highlights,deliberate ruling,L13,
+516,PremadeGroupsFilterExtension,Debug on/off state word,meaning color,L13,
+517,PremadeGroupsFilterExtension,"Combat refusal lines (settings, skin picker)",hard-coded,L13,
+518,PremadeGroupsFilterExtension,Schema validation error prefix,hard-coded,L13,
+519,PrettyChat,"Default format strings: category tag and field colors in every rewritten line (79 strings; red Loot, green You, orange item, white values, and others)",hard-coded,L13,
+520,PrettyChat,"Text face and size of every chat line, and the base color of any line with no escape",deliberate ruling,not a gap,can't skin: other Blizzard frames
+521,PrettyChat,[PC] prefix on every line,deliberate ruling,L13,
+522,PrettyChat,Host-written help and notice text: note() white body and cmd() gold command,hard-coded,L13,
+523,PrettyChat,"/pc list headers and path = value rows, help index rows and alias note, /pc profile list header, the disabled-verb refusal",deliberate ruling,L13,
+524,PrettyChat,ON and OFF word in the /pc debug on and off acknowledgement,meaning color,L13,
+525,PrettyChat,"Settings-refused line from /pc config in combat, the locked-settings notice, and the /pc skin combat refusal",hard-coded,L13,
+526,PrettyChat,"/pc test report labels: green Name/Original/Formatted, gold Category header",hard-coded,L13,
+527,PrettyChat,"Gray placeholders and error lines, white report notes",hard-coded,L13,
+528,PrettyChat,Rendered Original and Formatted sample lines,meaning color,not a gap,preview by design
+529,PrettyChat,"Log, line-counter and copy-box face",deliberate ruling,L12,
+530,PrettyChat,"Log, counter and copy-box text size",hard-coded,L12,
+531,PrettyChat,Console and copy window dimensions,deliberate ruling,not a gap,layout
+532,PrettyChat,"Copy, Clear and close marks; the picker's settings gear",no skin token,L10,
+533,PrettyChat,Title-bar and picker labels: the skin's OUTLINE flag,default off,D8,
+534,PrettyChat,"All library-built Options chrome and rows: header, tabs, checkboxes, dropdowns, media picker pull-outs, buttons, Skin tab",default off,not a gap,follows the Scope
+535,PrettyChat,"String tree and editor: TreeGroup panes, row buttons, selection, scrollbar, Rewrite tick, Original/New/Preview boxes, Reset message",default off,not a gap,follows the Scope
+536,PrettyChat,"AceDBOptions profile manager, all rows",default off,not a gap,follows the Scope
+537,PrettyChat,"GLOBALNAME caption, Categories footnote, /prettychat alias row",default off,not a gap,follows the Scope
+538,PrettyChat,"Slash Commands rows: gold command, white description",deliberate ruling,L5,
+539,PrettyChat,Preview box sample text and the list hover's Blizzard original,meaning color,not a gap,preview by design
+540,PrettyChat,Tooltip body line uncolored text,stock Blizzard art,L2,
+541,PrettyChat,Tooltip body line of every attached control tooltip,stock Blizzard art,L2,
+542,PrettyChat,"GameTooltip frame: background, border, face",deliberate ruling,not a gap,can't skin: GameTooltip frame
+543,PrettyChat,"PRETTYCHAT_RESET_ALL and PRETTYCHAT_RESET_CATEGORIES popups, the library's skin reload popup, AceConfigDialog's Profiles confirmation",deliberate ruling,not a gap,can't skin: StaticPopup
+544,PrettyChat,"SettingsPanel frame, sidebar entry and page frame around the addon's canvases",deliberate ruling,not a gap,can't skin: Settings window
+545,PrettyChat,Logo image,no skin token,not a gap,addon logo
+546,PrettyChat,"Tree width, heights, tick and reset widths, string spacer",deliberate ruling,not a gap,layout
+547,PrettyChat,Font picker rows drawn in their own faces,deliberate ruling,not a gap,preview by design
+548,PrettyChat,Button logo,no skin token,not a gap,addon logo
+549,PrettyChat,"Button ring, background, sizes and highlight",stock Blizzard art,L10,
+550,PrettyChat,Enabled Yes/No status value,meaning color,L1,
+551,PrettyChat,"Title, Enabled label and click-hint lines",stock Blizzard art,L1,
+552,PrettyChat,Options context menu,stock Blizzard art,not a gap,can't skin: client Menu
+553,PrettyChat,Addon title rainbow lettering,deliberate ruling,not a gap,addon logo
+554,PrettyChat,Addon list icon,no skin token,not a gap,addon logo
+555,QuickComms,Pad background fill,deliberate ruling,D7,
+556,QuickComms,Pad border color,deliberate ruling,D7,
+557,QuickComms,Pad border thickness,deliberate ruling,D7,
+558,QuickComms,Backdrop fill texture and flat edge art,hard-coded,D7,
+559,QuickComms,Situation text and collapse mark color,deliberate ruling,D7,
+560,QuickComms,Header row background and edge,deliberate ruling,D7,
+561,QuickComms,Section title text color,deliberate ruling,D7,
+562,QuickComms,Section band background and edge,deliberate ruling,D7,
+563,QuickComms,Button body fill color,deliberate ruling,D7,
+564,QuickComms,Button body texture,hard-coded,D7,
+565,QuickComms,Button edge color,deliberate ruling,D7,
+566,QuickComms,Button edge thickness,deliberate ruling,D7,
+567,QuickComms,Button label color,deliberate ruling,D7,
+568,QuickComms,Button shine overlay,no skin token,D7,
+569,QuickComms,Button glow color,default off,D7,
+570,QuickComms,Icon tint,deliberate ruling,D7,
+571,QuickComms,Built-in callout and group glyph colors,meaning color,MC,meaning color
+572,QuickComms,Callout and group icon art,no skin token,not a gap,game art
+573,QuickComms,Padlock mark art,no skin token,L10,
+574,QuickComms,Icon border color,default off,D7,
+575,QuickComms,Icon glow color,default off,D7,
+576,QuickComms,"Text base sizes (pad header 16, section 12, button 10, slice label 12, group label 16)",deliberate ruling,L11,
+577,QuickComms,Text shadow,deliberate ruling,D6,
+578,QuickComms,"Layout sizes (header height, button width and height, pad icon size, dial radius, icon size, hub and pointer sizes, paging sizes)",no skin token,not a gap,layout
+579,QuickComms,Send flash wash strength,hard-coded,A7,
+580,QuickComms,Tooltip title line color,hard-coded,L2,
+581,QuickComms,"GameTooltip frame, fonts and background",deliberate ruling,not a gap,can't skin: GameTooltip frame
+582,QuickComms,Channel name in a button's or wedge's tooltip,meaning color,MC,meaning color
+583,QuickComms,"Stale hint, LOCKDOWN and TEST MODE / PREVIEW label faces",hard-coded,L8,
+584,QuickComms,Circle mark rest and hover brightness,hard-coded,A7,
+585,QuickComms,Slice fill color,deliberate ruling,D7,
+586,QuickComms,Hovered slice highlight,deliberate ruling,D7,
+587,QuickComms,"Sector, disc and ring art",no skin token,not a gap,game art
+588,QuickComms,Slice shine overlay,no skin token,D7,
+589,QuickComms,Pointer color,deliberate ruling,D7,
+590,QuickComms,Pointer and page arrow glyphs,no skin token,L10,
+591,QuickComms,Hub backdrop disc,deliberate ruling,D7,
+592,QuickComms,Hub rim and circle mark,deliberate ruling,D7,
+593,QuickComms,Slice label color,deliberate ruling,D7,
+594,QuickComms,Group label color,deliberate ruling,D7,
+595,QuickComms,Page arrow chevrons and plates,deliberate ruling,D7,
+596,QuickComms,"Page indicators, background and border",deliberate ruling,D7,
+597,QuickComms,End preview button label face,hard-coded,L8,
+598,QuickComms,Locked controls dim,hard-coded,A7,
+599,QuickComms,"AceGUI pages, Options chrome, nav rail, tabs, lists",deliberate ruling,not a gap,follows the Scope
+600,QuickComms,"Page inside the window: AceGUI controls, page header, tabs",deliberate ruling,not a gap,follows the Scope
+601,QuickComms,Panel-scoped text colors,deliberate ruling,not a gap,follows the Scope
+602,QuickComms,Channel letter,meaning color,MC,meaning color
+603,QuickComms,Active group dot,stock Blizzard art,L6,
+604,QuickComms,Remove and Clear icon glyphs,stock Blizzard art,L6,
+605,QuickComms,Edit and Tokens info glyphs,hard-coded,L6,
+606,QuickComms,Icon chooser's label face,hard-coded,not a gap,follows the Scope
+607,QuickComms,Tooltip body lines,hard-coded,L2,
+608,QuickComms,Grid cell hover highlight,stock Blizzard art,L6,
+609,QuickComms,Raid markers and game icons,stock Blizzard art,not a gap,game art
+610,QuickComms,Quick Comms logo,no skin token,not a gap,addon logo
+611,QuickComms,Launcher icon,no skin token,not a gap,addon logo
+612,QuickComms,Button ring and background,stock Blizzard art,L10,
+613,QuickComms,Right-click options menu,stock Blizzard art,not a gap,can't skin: client Menu
+614,QuickComms,Yes/No and On/Off status words,meaning color,L1,
+615,QuickComms,StaticPopup,deliberate ruling,not a gap,can't skin: StaticPopup
+616,QuickComms,ColorPickerFrame,deliberate ruling,not a gap,can't skin: ColorPickerFrame
+617,QuickComms,Log and line counter face,deliberate ruling,L12,
+618,QuickComms,[QC] line prefix,hard-coded,L13,
+619,QuickComms,debug logging ON and OFF words,meaning color,L13,
+620,QuickComms,Setting path usage line highlights,hard-coded,L13,
+621,QuickComms,Icon browser combat refusal line,deliberate ruling,L13,
+622,QuickComms,Schema error lines,meaning color,L13,
+623,QuickComms,Preview echo's raid marker icons,stock Blizzard art,not a gap,game art
+624,WhatGroup,"All AceGUI rows and Options chrome (nav, tabs, drawers, buttons, checkboxes)",default off,not a gap,follows the Scope
+625,WhatGroup,"Blizzard SettingsPanel frame around the pages, and the client's Keybindings list row for Show window",deliberate ruling,not a gap,can't skin: Settings window
+626,WhatGroup,Addon logo (300px),no skin token,not a gap,addon logo
+627,WhatGroup,Teleport spell icon texture,no skin token,not a gap,game art
+628,WhatGroup,Teleport icon border,other,A1,
+629,WhatGroup,Teleport icon not-ready state,hard-coded,A7,
+630,WhatGroup,Teleport cooldown swipe,stock Blizzard art,A6,
+631,WhatGroup,"Role row icon (tank, healer, damager)",stock Blizzard art,not a gap,game art
+632,WhatGroup,Title text size,hard-coded,L11,
+633,WhatGroup,Teleport note text size,hard-coded,L11,
+634,WhatGroup,"All popup text outline (title, labels, values, note, Close)",default off,D8,
+635,WhatGroup,Title bar height,hard-coded,L9,
+636,WhatGroup,Title text alignment,hard-coded,L9,
+637,WhatGroup,Window size,no skin token,not a gap,layout
+638,WhatGroup,Close button size,no skin token,not a gap,layout
+639,WhatGroup,Teleport button size,no skin token,not a gap,layout
+640,WhatGroup,"Field row layout (label width, row gap, content and divider insets, teleport note offset)",no skin token,not a gap,layout
+641,WhatGroup,GameTooltip with the spell's lines,deliberate ruling,not a gap,can't skin: GameTooltip frame
+642,WhatGroup,"WHATGROUP_RESET_ALL StaticPopup, plus the library's LIBKA0S_SKIN_COPY and LIBKA0S_SKIN_RELOAD",deliberate ruling,not a gap,can't skin: StaticPopup
+643,WhatGroup,Minimap and broker icon,no skin token,not a gap,addon logo
+644,WhatGroup,Launcher tooltip and right-click menu,stock Blizzard art,L1,
+645,WhatGroup,Log and line counter face,deliberate ruling,L12,
+646,WhatGroup,"All printed lines' face, size and uncolored text (values, 'You have joined a group!', notices)",no skin token,not a gap,can't skin: other Blizzard frames
+647,WhatGroup,[WG] prefix,deliberate ruling,L13,
+648,WhatGroup,"Field labels (Group, Instance, Type, and so on)",hard-coded,L13,
+649,WhatGroup,[Click here to view details] link,hard-coded,L13,
+650,WhatGroup,Teleport row tag and spell link fallback,hard-coded,L13,
+651,WhatGroup,Command callouts in help and notice lines,deliberate ruling,L13,
+652,WhatGroup,debug logging ON and OFF words,meaning color,L13,
+653,WhatGroup,Combat refusal line,hard-coded,L13,
+654,WhatGroup,schema error tag,meaning color,L13,
+655,LibKa0s,Page title and breadcrumb,default off,not a gap,follows the Scope
+656,LibKa0s,Header divider,default off,L3,
+657,LibKa0s,Page backdrop,default off,not a gap,follows the Scope
+658,LibKa0s,Page scroll bar knob and corridor,default off,not a gap,follows the Scope
+659,LibKa0s,Tabs and the content panel under them,default off,not a gap,follows the Scope
+660,LibKa0s,Tab labels,default off,not a gap,follows the Scope
+661,LibKa0s,Rail pane,default off,L3,
+662,LibKa0s,"Rail entries (label, selection, hover)",default off,not a gap,follows the Scope
+663,LibKa0s,"Drawer head and box fills, edges and text",default off,not a gap,follows the Scope
+664,LibKa0s,Drawer chevron and hover art,default off,not a gap,follows the Scope
+665,LibKa0s,"Every AceGUI row: Button, CheckBox, Slider, EditBox, MultiLineEditBox, Dropdown, Heading, Label, InteractiveLabel, Icon, ColorPicker, InlineGroup, ScrollFrame, TreeGroup",default off,not a gap,follows the Scope
+666,LibKa0s,Section headings,default off,L4,
+667,LibKa0s,"Note rows, disabled-page notice, landing notes",default off,not a gap,follows the Scope
+668,LibKa0s,"Id gray, status warning, help-mark tints",default off,L5,
+669,LibKa0s,Id suggestion popup,default off,L3,
+670,LibKa0s,"Key rows, set line, outcome line",default off,not a gap,follows the Scope
+671,LibKa0s,Ka0sMedia_* closed bar and pull-out frame,default off,not a gap,follows the Scope
+672,LibKa0s,"Row boxes, handle, insertion line, carried copy, tooltip",default off,not a gap,follows the Scope
+673,LibKa0s,"Dropdown, search box, test strip, autocomplete, line chart, drag strip built with panel = true",default off,not a gap,follows the Scope
+674,LibKa0s,Combat cover dim and line,default off,not a gap,follows the Scope
+675,LibKa0s,Chrome tooltip titles,default off,not a gap,follows the Scope
+676,LibKa0s,Chrome tooltip body lines,other,L2,
+677,LibKa0s,Remove mark,no skin token,L6,
+678,LibKa0s,EllesmereUI gate check and cross marks,stock Blizzard art,L6,
+679,LibKa0s,Skin swatches,deliberate ruling,not a gap,preview by design
+680,LibKa0s,Landing logo,no skin token,not a gap,addon logo
+681,LibKa0s,Swatches and speaker on picker rows,hard-coded,L6,
+682,LibKa0s,Font picker rows,deliberate ruling,not a gap,preview by design
+683,LibKa0s,Skin rows,deliberate ruling,not a gap,preview by design
+684,LibKa0s,Font and Texture reset icons,stock Blizzard art,L6,
+685,LibKa0s,Tooltip title,other,L2,
+686,LibKa0s,Window text size,deliberate ruling,L11,
+687,LibKa0s,Window text outline,default off,D8,
+688,LibKa0s,Text shadow offset and color,no skin token,D6,
+689,LibKa0s,Corner radius,other,A7,
+690,LibKa0s,Scroll bar and window inset geometry,hard-coded,A7,
+691,LibKa0s,Scroll bar step arrows,stock Blizzard art,L7,
+692,LibKa0s,Declared tab and popup edge tokens,other,L3,
+693,LibKa0s,Resize grip,deliberate ruling,D9,
+694,LibKa0s,Hover highlight art,deliberate ruling,D9,
+695,LibKa0s,Log body and line counter,deliberate ruling,L12,
+696,LibKa0s,Copied text,hard-coded,L12,
+697,LibKa0s,Window fill,other,L8,
+698,LibKa0s,Title bar height,hard-coded,L9,
+699,LibKa0s,"Close, Copy, Clear, settings, eye, help and similar icons",no skin token,L10,
+700,LibKa0s,"Paging, dropdown and sort arrows",stock Blizzard art,L10,
+701,LibKa0s,"Fallback marks: chevron, check, help, close, reorder handle",stock Blizzard art,L6,
+702,LibKa0s,Done-step check,no skin token,L10,
+703,LibKa0s,Locked step dot alpha,hard-coded,A7,
+704,LibKa0s,Carried copy's text and icon,hard-coded,L8,
+705,LibKa0s,Glyph column,hard-coded,L8,
+706,LibKa0s,Row and glyph value colors,meaning color,MC,meaning color
+707,LibKa0s,List fill and edge,other,L8,
+708,LibKa0s,Row text color,meaning color,MC,meaning color
+709,LibKa0s,Series and marker colors a host passes,meaning color,MC,meaning color
+710,LibKa0s,"Bar, row and label colors and faces a host passes to Charts",meaning color,MC,meaning color
+711,LibKa0s,"Host-supplied faces on drag strip, autocomplete, line chart",deliberate ruling,L8,
+712,LibKa0s,"Use the skin's font, border and texture companions",default off,D1,
+713,LibKa0s,"Font, border and bar picker defaults",hard-coded,D1,
+714,LibKa0s,Font size and border thickness rows,hard-coded,D1,
+715,LibKa0s,"Font, border and bar color swatches",no skin token,D1,
+716,LibKa0s,Font flags row without flagsFromSkin,hard-coded,D1,
+717,LibKa0s,Font shadow row,no skin token,D1,
+718,LibKa0s,Glow color,other,L8,
+719,LibKa0s,"Tooltip Yes/No, On/Off status words",meaning color,L1,
+720,LibKa0s,Tooltip title and lines,other,L1,
+721,LibKa0s,Minimap button,no skin token,L10,
+722,LibKa0s,Right-click menu,deliberate ruling,not a gap,can't skin: client Menu
+723,LibKa0s,"Slash help, setting list, hints and combat refusals",hard-coded,L13,
+724,LibKa0s,State words in debug and perf lines,meaning color,L13,
+725,LibKa0s,GameTooltip frame and line face,deliberate ruling,not a gap,can't skin: GameTooltip frame
+726,LibKa0s,Reload and copy confirmations (StaticPopup),deliberate ruling,not a gap,can't skin: StaticPopup
+727,LibKa0s,Settings window chrome,deliberate ruling,not a gap,can't skin: Settings window
+728,LibKa0s,"LSM30_* widgets and pull-outs, TabGroup, ColorPickerFrame, TreeGroup toggles, icons and dragger, and any type outside the PAINT table",deliberate ruling,not a gap,can't skin: ColorPickerFrame

@@ -1,0 +1,69 @@
+{
+ "repo": "MultiMeters",
+ "tests": {
+  "repo": "MultiMeters",
+  "status": "ok",
+  "summary": "Pre-merge run 20261031-202021 at 0d603a4 is green and recorded in commit c72282b on feat/2026-10-31-font-pickers-skin-faces (not pushed). Lint and tests gate the run and the commit. Perf and complexity gate neither, but the tag needs all four at pass plus zero functions above CCN 15. No function above CCN 15, no blind or crashed files, no file over 1500 lines, so no code changed. Two new band rows had blank Dispositions and each got one after reading the file: tests/test_database_migrations.lua (1000) and tests/test_launchersetup.lua (1074). No row is marked Accepted. After the edits, a lint+tests rerun (--no-bundle) passed with the same figures. Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/MultiMeters/docs/automated-tests/20261031-202021/",
+  "commit": "c72282b",
+  "tests": "pass: 2449 passed, 1 skipped, 0 failed, 2450 total. The skip is the kit diagnostics opt-out contract case, unchanged since the previous run.",
+  "lint": "pass: 0 warnings / 0 errors in 178 files",
+  "complexity": "pass: 0 warnings, max CCN 15, avg CCN 2.5, 52646 NLOC, 5713 functions, avg NLOC 8.4, avg tokens 68.8; 24 band files, 0 over cap, blindFiles 0, crashedFiles 0",
+  "bundle": "docs/automated-tests/20261031-202021/",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202021/ANALYSIS.md",
+   "docs/automated-tests/20261031-202021/complexity.txt",
+   "docs/automated-tests/20261031-202021/lint.txt",
+   "docs/automated-tests/20261031-202021/manifest.json",
+   "docs/automated-tests/20261031-202021/perf.json",
+   "docs/automated-tests/20261031-202021/perf.txt",
+   "docs/automated-tests/20261031-202021/test-cases.md",
+   "docs/automated-tests/20261031-202021/tests.txt"
+  ],
+  "newBandFiles": [
+   "tests/test_database_migrations.lua (1000)",
+   "tests/test_launchersetup.lua (1074)"
+  ],
+  "concerns": [
+   "Five carried band rows are past the re-check line in their own disposition: settings/Schema.lua 1473 (re-check 1450), settings/Schema_Compose.lua 1470 (1470), tests/test_window.lua 1472 (1450), tests/test_options_panel.lua 1402 (1400), core/Database.lua 1387 (1200). Schema.lua, Schema_Compose.lua and test_window.lua are within 30 lines of the cap. These dispositions were carried forward, not re-ruled. No issue tracks them.",
+   "Perf: applyConfig bytes/iter rose 46232.3 to 63874.5 and ms/iter 0.25980 to 0.48738, with api/iter unchanged. It is the only scenario whose bytes/iter moved. The cause was not traced and no issue tracks it. Perf is non-gating.",
+   "Perf: rosterBurst read 1.156 ms against 17.876 ms on a single iteration. Issue #54 about this reading is still open; one low sample does not settle it."
+  ]
+ },
+ "docs": {
+  "repo": "MultiMeters",
+  "status": "ok",
+  "commit": "c81f679",
+  "summary": "Docs synced to the branch and committed as c81f679 on feat/2026-10-31-font-pickers-skin-faces; not pushed. 10 docs changed (+26/-23). Fixes: stale counts (22 verbs, 188 schema rows, header 38, eight skin rows, eight feature verbs); references left behind by the Window_Frame / Window_Render peel, including the perf-analysis call-site table; Oxanium replaced by Ka0s Prototype as Ka0s Default's face; SkinSetup's new exports added to the module map. New coverage: the skin picker's rows, the /mm skin verb and the Ka0sMedia_* pickers. README de-AI pass ran as a manual audit on the one changed sentence (the skin picker's rows); it needed no rewording and humanize was not run. No library section removed, no agent-context.md present, no comment edited, no version touched.",
+  "tests": "ka0s-bounded lua tests/run.lua: exit 0, 2449 passed, 0 failed, 1 skipped, 2450 total. README badge and test-cases.md agree at 2449.",
+  "lint": "ka0s-bounded luacheck .: exit 0, 0 warnings / 0 errors in 178 files. Vendor drift: libs/LibKa0s vs ../LibKa0s/LibKa0s differs only by the media/icons prune; tests/_kit vs ../LibKa0s/testkit is identical (the kit's upstream directory is testkit/).",
+  "filesChanged": [
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/common-tasks.md",
+   "docs/data-flow.md",
+   "docs/module-map.md",
+   "docs/perf-analysis/README.md",
+   "docs/schema.md",
+   "docs/scope.md",
+   "docs/settings-panel.md",
+   "docs/smoke-tests.md"
+  ],
+  "commentCitations": [
+   "modules/SimDrivers.lua:3 NO SUCH PATH: design-mm-sim.md; the repo holds docs/superpowers/specs/2026-10-23-simulator-design.md, not confirmed as the same document",
+   "modules/SimScenario.lua:3 NO SUCH PATH: design-mm-sim.md, same as above",
+   "core/EnvSetup.lua:5 NO DEFINITION: comment names NS.PlayerMapID; no definition or call in the loaded tree. Not investigated further",
+   "core/Compat.lua:869 NO SUCH PATH: Deprecated_ChatInfo.lua; no such file in this repo, not read to see whether it names Blizzard's client file"
+  ],
+  "deadExports": [
+   "NS.SchemaRuntime (settings/Schema_Paths.lua): no first-party caller outside its definition; tests reference it",
+   "NS.WindowSection (settings/OptionsSetup.lua): no first-party caller outside its definition; tests reference it"
+  ],
+  "concerns": [
+   "The citation scan was scripted over .lua, .xml, .toc and .luacheckrc comments for paths, line suffixes and member names. Hits that plainly name LibKa0s, standard-repo or retired files were dropped as prose (for example core/LSMPatch.lua, gone by its own comment). The version-citation check was partial: migration steps were checked, but a filter that excluded v1.80 to v1.83 meant quoted LibKa0s tags were not compared with the provenance line. Older tags are stated as history, not as what this build vendors.",
+   "The dead-export scan is name-based over NS.X definitions and does not see string-keyed dispatch.",
+   "docs/smoke-tests.md STATE-1 is a recorded owner pass that said 'six feature verbs'; the count now reads eight. The owner's recorded result is untouched, but the check's text was edited after it passed, and the /mm skin refusal has its own check in SLASH-33."
+  ],
+  "proposals": []
+ }
+}

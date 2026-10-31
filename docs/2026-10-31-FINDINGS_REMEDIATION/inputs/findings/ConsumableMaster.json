@@ -1,0 +1,68 @@
+{
+ "repo": "ConsumableMaster",
+ "tests": {
+  "repo": "ConsumableMaster",
+  "status": "ok",
+  "summary": "Pre-merge run is green and committed; no code changed. Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/ConsumableMaster/docs/automated-tests/20261031-202052/, measured at c7658c6 on a clean tree.\n- lint: pass, 0 warnings / 0 errors in 140 files. Gates the run and the commit.\n- tests: pass, 1316 passed, 1 skipped, 0 failed, 1317 total. Gates the run and the commit. The skip is the declared diagnostics-contract case, same as the previous run.\n- perf: pass, 5 scenarios. Recorded; gates the tag only.\n- complexity: pass, 0 functions above CCN 15, max CCN 15, 30106 NLOC / 3541 functions, avg NLOC 7.9, avg CCN 2.5, 7 band files, 0 over cap, blindFiles 0, crashedFiles 0. Recorded; gates the tag only.\nThis confirms the pre-scan, so there was nothing to fix. No file newly crossed a band, so no Disposition was blank and none was edited; RESULTS.md is the runner's output only. ANALYSIS.md written with CRLF. Skipped suites: none.",
+  "commit": "2b3bafb AT-FIN: Record the pre-merge automated-test run",
+  "lint": "0 warnings / 0 errors in 140 files",
+  "tests": "1316 passed, 1 skipped, 0 failed, 1317 total",
+  "complexity": "0 warnings (CCN > 15); max CCN 15 (BB.ApplyCountFont, splitArgs, both at the ceiling); 7 files in band, 0 over cap, blindFiles 0, crashedFiles 0",
+  "bundle": "docs/automated-tests/20261031-202052/",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202052/ANALYSIS.md",
+   "docs/automated-tests/20261031-202052/complexity.txt",
+   "docs/automated-tests/20261031-202052/lint.txt",
+   "docs/automated-tests/20261031-202052/manifest.json",
+   "docs/automated-tests/20261031-202052/perf.json",
+   "docs/automated-tests/20261031-202052/perf.txt",
+   "docs/automated-tests/20261031-202052/test-cases.md",
+   "docs/automated-tests/20261031-202052/tests.txt"
+  ],
+  "newBandFiles": [],
+  "concerns": [
+   "Shelf life: no row has reached three consecutive release runs of Accepted yet. settings/MacroBar.lua, tests/test_schema.lua and tests/test_selector.lua are at 2 of 3, so the next release run owes each a fix or a tracked issue; none has an issue yet.",
+   "Perf: recompute bytes/iter went 13741.2 -> 29832.8 in the bundles, but this is a measurement artifact and not new garbage. tests/perf.lua measures with the collector running. Bisect on exported trees put the jump at 1373242, the LibKa0s v1.77.0 re-vendor, which changed no modules/, core/, settings/ or tests/perf.lua; the figure was non-monotonic across the range (about 5000 to 35000). With the collector paused, in throwaway exported trees only, recompute read about 246905 at 944e16b and 247385 at c7658c6, so real allocation is flat. Those out-of-bundle numbers are deliberately not in ANALYSIS.md, which states the finding without them.",
+   "The carried Disposition cells hold stale history, kept verbatim as the rule requires: tests/test_schema.lua says '1023, unchanged' but is now 1176; tests/test_settingsui.lua's cell gives 1002 but it is now 1151. All seven rows remain under the 1300 re-check.",
+   "Issues #42 and #43 (Panel and Category peels) are still open."
+  ],
+  "proposals": [
+   "Pause the collector across measure() in tests/perf.lua so bytes/iter stops depending on GC pacing. Not done here: it is outside this run's scope and would rebase the perf trend. The same pattern may exist in other addons' perf.lua; not checked."
+  ]
+ },
+ "docs": {
+  "repo": "ConsumableMaster",
+  "status": "ok",
+  "commit": "689e368",
+  "summary": "Docs synced to the skin fonts and font pickers runs on feat/2026-10-31-font-pickers-skin-faces and committed as 689e368. The gate is green and nothing was pushed. Fixed: schema.md's skin.outline default (hud, not all) and the v5 row; ARCHITECTURE's skin row count (eight rows, seven drawn), the four ApplySkin* functions, /cm skin coverage and the Documentation map's stale twenty-three verbs; module-map now lists ApplySkinOutline, RunSkinVerb and SKIN_OUTLINE_OPTIONS; settings-panel notes the media-picker previews and /cm skin. Line citations corrected across ARCHITECTURE, slash-dispatch and DEPENDENCIES (kit vendor_sync, lizard), and 1000-1500 band sizes re-measured 2026-10-31. README: one sentence added for /cm skin; the de-AI pass ran by reading that sentence against the pattern list (no skill run) and changed nothing else. Unchanged and already accurate: CLAUDE.md, test-cases.md (matches --list), Tests badge 1316/1316, RESULTS.md (AT-FIN is the current record).",
+  "filesChanged": [
+   "README.md",
+   "DEPENDENCIES.md",
+   "docs/ARCHITECTURE.md",
+   "docs/module-map.md",
+   "docs/schema.md",
+   "docs/settings-panel.md",
+   "docs/slash-dispatch.md"
+  ],
+  "tests": "ka0s-bounded lua tests/run.lua: 1316 passed, 0 failed, 1 skipped, 1317 total",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 140 files. Both vendor-drift diffs: libs/LibKa0s differs only by the declared media/icons prune (--strip-trailing-cr and bytes), tests/_kit has no differences. ../LibKa0s is at v1.83.0-1-g3abfe4d, one commit past the tag.",
+  "commentCitations": [
+   "tests/test_debug.lua:172 LINE PAST EOF: \"libs/LibKa0s/DebugLog.lua:795-812\"; the file has 663 lines (664 by newline count). Not edited.",
+   "settings/StatPriority.lua:399, modules/MacroBarButton.lua:251, core/SlashCommands.lua:16, tests/test_settingsui_optionsui.lua:522 and tests/test_skin_surfaces.lua:6 name paths in other repos (MultiMeters, a reference addon, KickCD, LibKa0s, LootHistory): not hits, not edited.",
+   "core/LSMPatch.lua (settings/OptionsSetup.lua:176,204, tests/test_settingsui.lua:41) and tests/harness.lua, tests/loader.lua (tests/run.lua:15,17) are named explicitly as deleted or former paths: not hits, not edited."
+  ],
+  "deadExports": [
+   "settings/SchemaStub.lua:103,212,213,214,217 S.Reindex, S.BulkAdd, S.InBulk, S.CountOffDefault, S.Validate: degraded-stub surface mirroring the library, no addon callers, probably kept for parity",
+   "core/SkinSetup.lua:495 S.GetStyle: degraded facade member, no addon callers, probably kept for parity",
+   "settings/OptionsSetup.lua:391 Helpers.AppearanceRows: degraded stub, no addon callers, referenced in tests only",
+   "settings/Category.lua:1151 O.SetMacroTab: no production callers, referenced in tests only"
+  ],
+  "concerns": [
+   "Most line citations fixed here had drifted from earlier work, not only this branch; they will drift again on the next edit to those files.",
+   "Dead-export scan uses name-count heuristics on comment-stripped source (one occurrence, the definition); string-keyed or library dispatch can hide a real caller. KCM:OnInitialize and ctx.panel.defaultsOnClick also hit and are excluded as library-invoked.",
+   "settings/Slash.lua, modules/MacroBar.lua and other cited files: the 2026-10-31 size figures are this run's wc -l, not the kit gate's measurement."
+  ],
+  "proposals": []
+ }
+}

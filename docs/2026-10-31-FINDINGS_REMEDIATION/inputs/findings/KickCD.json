@@ -1,0 +1,55 @@
+{
+ "repo": "KickCD",
+ "tests": {
+  "repo": "KickCD",
+  "status": "ok",
+  "summary": "Pre-merge run 20261031-202020 is green at f97114c, and the record is committed as 9843ed6. No code changed. Max CCN is 15 with 0 warnings, 0 files are over the 1500 cap, and blindFiles and crashedFiles are both 0. Two files newly crossed into the 1000\u20131500 band, and each now has a disposition. Nothing was pushed.",
+  "commit": "9843ed6",
+  "tests": "pass: 1577 passed, 1 skipped, 0 failed, 1578 total (gates run, commit and tag). The skip is the kit's diagnostics opt-out branch, which KickCD does not take; the previous run carried the same skip.",
+  "lint": "pass: 0 warnings / 0 errors in 154 files (gates run, commit and tag)",
+  "complexity": "pass: 33092 NLOC, 4570 functions, avg NLOC 6.7, avg CCN 2.1, max CCN 15, avg tokens 54.8, 0 warnings, band files 2, over-cap 0, blindFiles 0, crashedFiles 0 (does not gate run or commit; gates the tag). perf also passed with 7 scenarios under the same gating.",
+  "bundle": "/mnt/d/Profile/Users/Tushar/Documents/GIT/KickCD/docs/automated-tests/20261031-202020/",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202020/ANALYSIS.md",
+   "docs/automated-tests/20261031-202020/complexity.txt",
+   "docs/automated-tests/20261031-202020/lint.txt",
+   "docs/automated-tests/20261031-202020/manifest.json",
+   "docs/automated-tests/20261031-202020/perf.json",
+   "docs/automated-tests/20261031-202020/perf.txt",
+   "docs/automated-tests/20261031-202020/test-cases.md",
+   "docs/automated-tests/20261031-202020/tests.txt"
+  ],
+  "newBandFiles": [
+   "modules/IconGrid.lua (1023 LOC): Accepted \u2014 475 NLOC in 60 functions; the rest is comments and blanks, one cohesive per-unit grid manager already peeled twice",
+   "tests/test_schema.lua (1026 LOC): Accepted \u2014 case count, not tangle: 648 NLOC of individual schema cases"
+  ],
+  "concerns": []
+ },
+ "docs": {
+  "repo": "KickCD",
+  "status": "ok",
+  "summary": "Docs were mostly already in step with the branch. Fixed the remaining drift in four files and committed 5d3d960 (not pushed). Green gate passed before the commit. Main fixes: the mock key counts in testing.md, the Skin row count in settings-panel.md (8, was 7), a nonexistent `lsm` field replaced by `dialogControl`, and the Ka0sMedia preview pickers, Font outline row and skin picker rows (LK-A3) now documented. README got two sentences on those pickers and rows. The de-AI pass was limited to those two README edits, a manual audit against the overlay's checklist rather than the /humanize skill; it found nothing to change. No library inventory, command table or font license text was added. test-cases.md Total (1577) matches the badge, the Documentation map and module map are complete, and the DEPENDENCIES.md line citations resolve.",
+  "commit": "5d3d960",
+  "filesChanged": [
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/settings-panel.md",
+   "docs/testing.md"
+  ],
+  "tests": "ka0s-bounded lua tests/run.lua: 1577 passed, 0 failed, 1 skipped, exit 0",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 154 files, exit 0. Vendor drift: libs/LibKa0s differs from ../LibKa0s/LibKa0s only by the media/icons prune; tests/_kit is identical to ../LibKa0s/testkit, content and bytes.",
+  "commentCitations": [
+   "core/KickCD.lua:309 NO SUCH PATH: cites slash-commands.md:7. No such file in this repo; the file is in WowAddonStandards and line 7 there is the Adoption strength paragraph. Probably meant section form slash-commands-\u00a77; not edited.",
+   "tests/test_slash_profile.lua:192 NO SUCH PATH: same slash-commands.md:7 citation; not edited.",
+   "settings/Castbar.lua:173 NO DEFINITION THERE: comment says Panel.lua's makeDropdown; settings/Panel.lua has no makeDropdown, it lives in libs/LibKa0s/OptionsWidgets.lua (cited correctly at settings/Castbar.lua:151); not edited."
+  ],
+  "deadExports": [],
+  "concerns": [
+   "tests/wow_mock.lua:31 comment still says 'MEASURED ... of the base's 60 keys, this file reassigns 27 and inherits 33'. A recording proxy over build() measured 74 keys, 25 reassigned, 49 inherited. docs/testing.md now carries the measured numbers; the comment is not a mechanical citation and was left as it is, so comment and doc disagree until it is fixed.",
+   "docs/smoke-tests.md has 17 empty 'Result:' lines. The owner reported that everything works, but smoke results are the owner's to record, so they were not touched.",
+   "Dead-export sweep covered NS.* functions only, not other tables on the addon table; the only zero-caller hit was NS:OnInitialize, which is the Ace lifecycle hook, so it is not reported."
+  ],
+  "proposals": []
+ }
+}

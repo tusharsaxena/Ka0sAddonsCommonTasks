@@ -1,0 +1,74 @@
+{
+ "repo": "LootHistory",
+ "tests": {
+  "repo": "LootHistory",
+  "status": "ok",
+  "summary": "Pre-merge run 20261031-202125 at 1952c06 is green, recorded in commit 17829fd. No code changed. Bundle: docs/automated-tests/20261031-202125/. Three new band rows got dispositions; the fired re-checks and Panel's spent shelf life are under concerns. The bundle and RESULTS.md are committed on the branch, not pushed.\n\n- lint: pass, 0/0 in 154 files. Gates the commit and the tag.\n- tests: pass, 1860 passed, 1 skipped, 0 failed, 1861 total. Gates the commit and the tag. The skip is the pre-existing Kit.skip diagnostics opt-out case.\n- perf: pass, 0 scenarios (perf.txt has 5 checks passing). Does not gate the commit; gates the tag.\n- complexity: pass, 0 warnings, max CCN 15, 42741 NLOC over 6203 functions, avg NLOC 6.7, avg CCN 2.3, avg tokens 60.9. blindFiles 0, crashedFiles 0, 0 files over the 1500 cap. lizard's footer reads \"No thresholds exceeded\", so there are no CCN or NLOC flags to fix. Does not gate the commit; gates the tag.\n\nA lint and tests re-run after the edits was also green: 0/0 in 154 files, 1860 passed, 1 skipped, 0 failed.",
+  "commit": "17829fd",
+  "tests": "1860 passed, 0 failed, 1 skipped, 1861 total",
+  "lint": "0 warnings / 0 errors in 154 files",
+  "complexity": "0 warnings, max CCN 15, avg CCN 2.3, avg NLOC 6.7, 42741 NLOC, 6203 functions, 13 band files, 0 over cap, 0 blind, 0 crashed",
+  "bundle": "/mnt/d/Profile/Users/Tushar/Documents/GIT/LootHistory/docs/automated-tests/20261031-202125",
+  "newBandFiles": [
+   "core/Compat.lua (1001): Accepted, the compat firewall as small commented shims",
+   "tests/test_libka0s.lua (1054): Accepted, one adoption suite on purpose, grouped by section",
+   "tests/test_panel.lua (1080): Accepted, back in the band, one section per panel concern"
+  ],
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202125/ANALYSIS.md",
+   "docs/automated-tests/20261031-202125/complexity.txt",
+   "docs/automated-tests/20261031-202125/lint.txt",
+   "docs/automated-tests/20261031-202125/manifest.json",
+   "docs/automated-tests/20261031-202125/perf.txt",
+   "docs/automated-tests/20261031-202125/test-cases.md",
+   "docs/automated-tests/20261031-202125/tests.txt"
+  ],
+  "concerns": [
+   "settings/Panel.lua (1262): shelf life was spent at 20261009-191728 (third consecutive release run as Accepted: 1.3.0, 1.4.0, 1.5.0). It is still owed a fix or a tracked deviation ID, and neither exists. Its recorded 1200 re-check has also fired.",
+   "Recorded re-checks have fired on modules/BrowserTable.lua (1407, line 1400) and tests/test_schema.lua (1340, line 1300). I left those carried dispositions unchanged and listed them as actions in ANALYSIS.md.",
+   "tests/test_browser.lua (1459) is still marked Peel next from 2026-10-07 and was not peeled; it is 41 lines under the cap. modules/Browser.lua (1386) is 14 lines from its 1400 re-check.",
+   "tests/test_schema.lua and tests/test_slash.lua each reach their third release run as Accepted at the next release, so both then owe a fix or a tracked deviation ID.",
+   "Standing since the 20261007-215451 run: tests/perf.lua writes no perf.json, so the manifest reads 0 scenarios and RESULTS.md's generated perf.json link does not resolve."
+  ]
+ },
+ "docs": {
+  "repo": "LootHistory",
+  "status": "ok",
+  "commit": "ae91dbe",
+  "summary": "Docs synced and committed as ae91dbe on feat/2026-10-31-font-pickers-skin-faces (not pushed). Content changes:\n- `/lh skin` added to the ARCHITECTURE verb table and feature-verb lists, and to disabled-state.md.\n- Picker rows, Font outline and media previews documented.\n- Stale claim fixed: \"every size stays the skin's\".\n- Stale claim fixed: Apply to all copying only source and skin.\n- Ka0s Default's face corrected from Oxanium to Prototype.\n- 14 suites missing from testing.md added.\n- Degraded verb count corrected.\n- The bare `luacheck .` in the gate commands (testing.md, DEPENDENCIES.md) and testing.md's opening line now name ka0s-bounded.\n\nAbout 65 stale file:line citations were resolved to current lines. 59 were left unchanged because they could not be matched safely (see concerns).\n\nREADME changes: first-run picker note, a skins paragraph naming `/lh skin`, picker icons in Credits, and the LibKa0s mention removed from Credits per the owner ruling. No font license text and no command table were added. The de-AI pass was a manual audit against the overlay's pattern list, not the /humanize skill, and it ran on the changed README text only. It found no tells and changed nothing further.\n\nGate: green. Full results are in the tests, lint and concerns fields.",
+  "tests": "ka0s-bounded lua tests/run.lua exit 0: 1860 passed, 0 failed, 1 skipped, 1861 total",
+  "lint": "ka0s-bounded luacheck . exit 0: 0 warnings / 0 errors in 154 files",
+  "filesChanged": [
+   "DEPENDENCIES.md",
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/browser.md",
+   "docs/common-tasks.md",
+   "docs/data-flow.md",
+   "docs/disabled-state.md",
+   "docs/module-map.md",
+   "docs/profiles.md",
+   "docs/schema.md",
+   "docs/settings-panel.md",
+   "docs/slash-dispatch.md",
+   "docs/testing.md"
+  ],
+  "commentCitations": [],
+  "deadExports": [
+   "core/Constants.lua:334 NS.BusLib: no shipped caller, read only by tests (6 references)"
+  ],
+  "concerns": [
+   "59 doc line citations were left unchanged. Their symbol could not be uniquely matched, so an unknown share of them may still be stale. Most are in docs/combat-path-sweep.md, docs/common-tasks.md and docs/browser.md (for example Browser.lua:1063 OnHide, Browser.lua:1030 MakeResizable). The check only covers docs for files changed on this branch.",
+   "Vendor drift: the diff against ../LibKa0s/LibKa0s shows only the declared media/icons prune (208 'Only in' lines). The diff against ../LibKa0s/testkit is empty. The sibling LibKa0s checkout is on the same feature branch at 3abfe4d.",
+   "Generated docs were not edited. docs/test-cases.md matches a fresh `lua tests/run.lua --list`. RESULTS.md was left as the AT-FIN record.",
+   "Comment-citation scan: no true hits. Every unresolved path token was a reference to another repo (standard docs, LibKa0s docs, BagSync, BankLedger, the req-lh-sim spec) or to a historical deleted file described as replaced, so commentCitations is empty.",
+   "Open items from the AT-FIN ANALYSIS: settings/Panel.lua's shelf life is spent with no tracked deviation, and the fired re-checks on modules/BrowserTable.lua and tests/test_schema.lua are undecided. This run left all three as they were.",
+   "The docs keep the literal `~/.claude/dev-copilot/bin/ka0s-bounded` path in DEPENDENCIES.md and testing.md, matching CLAUDE.md. That runner is not listed as a toolchain entry in DEPENDENCIES.md."
+  ],
+  "proposals": [
+   "List the bounded runner as a development tool in DEPENDENCIES.md, or state where it comes from.",
+   "Sweep the 59 remaining doc line citations by hand, or replace line numbers with symbol names in docs/combat-path-sweep.md and docs/common-tasks.md so they stop drifting."
+  ]
+ }
+}

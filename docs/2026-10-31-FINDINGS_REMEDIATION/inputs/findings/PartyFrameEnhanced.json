@@ -1,0 +1,46 @@
+{
+ "repo": "PartyFrameEnhanced",
+ "tests": {
+  "repo": "PartyFrameEnhanced",
+  "status": "ok",
+  "commit": "03669a2",
+  "bundle": "docs/automated-tests/20261031-202100/",
+  "lint": "pass: 0 warnings / 0 errors in 90 files (gates run and commit)",
+  "tests": "pass: 565 passed, 0 failed, 1 skipped, 566 total (gates run and commit). The skip is the pre-existing kit diagnostics opt-out contract.",
+  "complexity": "pass: 0 warnings, max CCN 15, avg CCN 2.1, 14275 NLOC, 1996 functions, avg NLOC 6.4, avg tokens 50.5; 0 band files, 0 over cap, 0 blind, 0 crashed. Perf and complexity do not gate the run or the commit; they do gate the tag.",
+  "summary": "Pre-merge run 20261031-202100 is green at 531f3bc. Lint and tests passed, and perf passed its 10 scenarios (api/iter and bytes/iter unchanged). No function is above CCN 15; the max rose 14 to 15 on the test helper splitArgs in tests/test_skin_literals.lua, which is at the limit and not a warning. No file is in the 1000-1500 band or over the cap, and blindFiles and crashedFiles are both 0. The watch list is empty, so no code changed and no disposition was owed. Committed the bundle, ANALYSIS.md (CRLF, as git declares) and RESULTS.md as 03669a2 on feat/2026-10-31-font-pickers-skin-faces. Nothing pushed.",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202100/ANALYSIS.md",
+   "docs/automated-tests/20261031-202100/complexity.txt",
+   "docs/automated-tests/20261031-202100/lint.txt",
+   "docs/automated-tests/20261031-202100/manifest.json",
+   "docs/automated-tests/20261031-202100/perf.json",
+   "docs/automated-tests/20261031-202100/perf.txt",
+   "docs/automated-tests/20261031-202100/test-cases.md",
+   "docs/automated-tests/20261031-202100/tests.txt"
+  ],
+  "newBandFiles": [],
+  "concerns": []
+ },
+ "docs": {
+  "repo": "PartyFrameEnhanced",
+  "status": "ok",
+  "summary": "Docs synced to the skin fonts and font pickers work and committed as 78eafbb on feat/2026-10-31-font-pickers-skin-faces (not pushed).\n\nChanges by file:\n- docs/ARCHITECTURE.md: seven skin rows corrected to eight, 18 commands to 19. The substrate line now notes the Ka0sMedia_* pickers. The surface list adds NS.ApplySkinOutline and NS.RunSkinVerb, and the picker bullet adds the v1.83.0 rows and /pfe skin.\n- docs/module-map.md: rows 11, 23, 33 and 36 updated, plus the new skin test suites.\n- docs/profiles.md: Font outline added to what a profile carries.\n- docs/settings-panel.md: fixed the stale claim that sizes and flags never follow the skin. Added the picker's rows, Ka0sMedia previews and From skin.\n\nREADME.md, CLAUDE.md, DEPENDENCIES.md, docs/schema.md, docs/slash-dispatch.md and docs/testing.md were already accurate. README.md was not touched, so the de-AI pass did not apply. No documents were created or moved, and no comments were edited.\n\nGenerated docs agree: the badge reads 565/565, and test-cases.md was regenerated at 491abb9.\n\nGreen gate: tests 565 passed, 0 failed, 1 skipped, 566 total; luacheck 0/0 in 90 files. Both vendor diffs are clean against the ../LibKa0s checkout (branch HEAD 3abfe4d): the only libs/LibKa0s difference is the declared media/icons prune, and tests/_kit matches ../LibKa0s/testkit with no differences.",
+  "commit": "78eafbb",
+  "filesChanged": [
+   "docs/ARCHITECTURE.md",
+   "docs/module-map.md",
+   "docs/profiles.md",
+   "docs/settings-panel.md"
+  ],
+  "tests": "565 passed, 0 failed, 1 skipped, 566 total (ka0s-bounded lua tests/run.lua, exit 0)",
+  "lint": "0 warnings / 0 errors in 90 files (ka0s-bounded luacheck ., exit 0)",
+  "deadExports": [
+   "NS.ProfileRowsOffDefault: only the definition in production code, referenced otherwise only from tests (candidate, not deleted)"
+  ],
+  "commentCitations": [],
+  "concerns": [],
+  "proposals": []
+ }
+}

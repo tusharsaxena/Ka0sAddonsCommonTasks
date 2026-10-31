@@ -1,0 +1,65 @@
+{
+ "repo": "BankLedger",
+ "tests": {
+  "repo": "BankLedger",
+  "status": "ok",
+  "commit": "c67a639",
+  "bundle": "docs/automated-tests/20261031-202022/",
+  "summary": "Pre-merge run 20261031-202022 is green at ac7a3e8, and the record is committed as c67a639 (not pushed). Lint: pass, 0/0 in 114 files. Tests: pass, 1534 passed, 0 failed, 1 skipped, 1535 total. The skip is the kit diagnostics-contract case, which does not apply to this addon. Perf: skip (0 scenarios) under the ratified performance-\u00a712 exemption; not measured. Complexity: pass (recorded; gates the tag, not the commit) with 0 warnings, max CCN 15, 29456 NLOC, 4698 functions, avg CCN 2.1, blindFiles 0, crashedFiles 0, no file over 1500. No code changed. The band went from 4 to 8 files; the four blank dispositions are written. ANALYSIS.md and RESULTS.md are CRLF as git declares. A lint+tests re-run with --no-bundle after writing them was also green.",
+  "tests": "1534 passed, 0 failed, 1 skipped, 1535 total",
+  "lint": "0 warnings / 0 errors in 114 files",
+  "complexity": "0 warnings, max CCN 15, 29456 NLOC, 4698 functions, avg NLOC 6.2, avg CCN 2.1, avg tokens 50.8, band files 8, over cap 0, blind 0, crashed 0",
+  "newBandFiles": [
+   "modules/LedgerTable.lua (1047)",
+   "settings/Schema.lua (1046)",
+   "tests/test_ledger.lua (1006)",
+   "tests/test_panel_filters.lua (1003)"
+  ],
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202022/ANALYSIS.md",
+   "docs/automated-tests/20261031-202022/complexity.txt",
+   "docs/automated-tests/20261031-202022/lint.txt",
+   "docs/automated-tests/20261031-202022/manifest.json",
+   "docs/automated-tests/20261031-202022/test-cases.md",
+   "docs/automated-tests/20261031-202022/tests.txt"
+  ],
+  "concerns": [
+   "No row has reached three consecutive Accepted release runs. Closest is modules/Insights.lua (1030): two release runs so far, so the next release owes the peel or a tracked ID.",
+   "tests/test_browser.lua is 1442 LOC, 58 under the cap and past the 1300 re-check trigger in its own carried disposition. I left the carried cell as it was, because only blank rows were in scope; it is Action 1 in ANALYSIS.md.",
+   "The carried dispositions for modules/Browser.lua (1323) and modules/Insights.lua (1030) still quote older LOC figures. The figures in the table are current.",
+   "Eight functions sit exactly at CCN 15. Three are in files added since the last run: warbandMove in modules/SimDrivers.lua, splitArgs in tests/test_skin_literals.lua and M.advance in tests/sim_support.lua. Growth in any of the eight trips the release gate."
+  ]
+ },
+ "docs": {
+  "repo": "BankLedger",
+  "status": "ok",
+  "summary": "Docs synced to the skin fonts and font pickers run and committed as 79e56b3 on feat/2026-10-31-font-pickers-skin-faces; not pushed. Main drift: the first-run skin picker docs missed LK-A3's Font, Texture, outline and Scope rows, the wider Apply saves and the wider Apply to all copy. Also added the outline and /bl skin seams and getLSM to module-map.md, the kit glyph guard to testing.md and DEPENDENCIES.md, and \u25b2/\u25bc notes on skin faces to media.md and midnight-quirks.md. Refreshed moved file:line citations in DEPENDENCIES.md and common-tasks.md. README: one short paragraph on skins and /bl skin (no command table), and the Credits line no longer names the bundled library. README de-AI pass ran as a manual audit on the changed lines against the overlay's pattern list and changed nothing further. docs/test-cases.md matches the `tests/run.lua --list` output; counts (1534 tests, 21 verbs, eight appearance rows, nine skins) checked out and needed no edit.",
+  "commit": "79e56b3",
+  "filesChanged": [
+   "DEPENDENCIES.md",
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/common-tasks.md",
+   "docs/media.md",
+   "docs/midnight-quirks.md",
+   "docs/module-map.md",
+   "docs/settings-panel.md",
+   "docs/testing.md"
+  ],
+  "tests": "ka0s-bounded lua tests/run.lua: 1534 passed, 0 failed, 1 skipped, 1535 total (exit 0)",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 114 files (exit 0). Vendor drift: tests/_kit vs ../LibKa0s/testkit clean; libs/LibKa0s vs ../LibKa0s/LibKa0s differs only by the declared media/icons prune.",
+  "commentCitations": [
+   "tests/test_skin_literals.lua:25 NO SUCH PATH: comment names tests/test_doc_structure.lua, which is not in this repo; no target guessed, not edited"
+  ],
+  "deadExports": [],
+  "concerns": [
+   "docs/smoke-tests.md has no check that names the picker's LK-A3 rows, and SKIN-19 still describes the window without them. Left unedited because the check is owner-marked.",
+   "The owner's Credits ruling meant removing the sentence that named LibKa0s; the icon credit and license pointer stay, and the green gate accepted the change."
+  ],
+  "proposals": [
+   "DEPENDENCIES.md:218, docs/testing.md:13 and docs/common-tasks.md:215 still show bare `luacheck .`, while CLAUDE.md names `ka0s-bounded luacheck .`. Left alone because they predate this run; consider aligning them.",
+   "Add a smoke check for the picker's Font, Texture, outline and Scope rows, and refresh SKIN-19's window description."
+  ]
+ }
+}

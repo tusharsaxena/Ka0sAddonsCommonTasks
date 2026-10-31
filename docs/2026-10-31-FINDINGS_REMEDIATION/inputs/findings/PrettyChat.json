@@ -1,0 +1,52 @@
+{
+ "repo": "PrettyChat",
+ "tests": {
+  "repo": "PrettyChat",
+  "status": "ok",
+  "summary": "Green pre-merge run, recorded and committed as 7876266; no code changed and nothing pushed. Bundle: docs/automated-tests/20261031-202238 (measured d6ac61e, clean, 54 commits past the previous run). lint: pass, 0/0 in 65 files (gates commit, run and tag). tests: pass, 656 passed, 1 skipped, 0 failed, 657 total (gates commit, run and tag); the skip is the standing kit diagnostics-contract case. perf: skip, ratified performance-\u00a712 no-combat-path exemption, 0 scenarios, so nothing was measured (gates neither run nor commit; the tag reads this skip as NOT EVALUATED). complexity: pass, 0 warnings, 59469 NLOC, 1538 functions, avg CCN 2.1, max CCN 15, 0 blind, 0 crashed (gates neither run nor commit; the tag needs zero above CCN 15). Pre-scan confirmed: 0 functions above CCN 15 and 0 files over the 1500 cap, with GlobalStrings/GlobalStrings.lua left out as exempt generated data. The only band row is settings/Schema.lua at 1225 lines. Its Disposition was not blank, but it had crossed its own 'Re-check at 1200' trigger, so I re-ruled it: On notice, 651 NLOC with no warned function, re-check at 1300, peel seam is the General > Skin block. The lint and tests gate re-run over the record before committing also passed (exit 0).",
+  "commit": "7876266",
+  "tests": "656 passed, 1 skipped, 0 failed, 657 total",
+  "lint": "0 warnings / 0 errors in 65 files",
+  "complexity": "0 warnings; max CCN 15 (listSettings, settings/Slash.lua:368); 59469 NLOC, 1538 functions, avg NLOC 7.2, avg CCN 2.1, avg tokens 60.2; band files 1, over cap 0, blind 0, crashed 0",
+  "bundle": "docs/automated-tests/20261031-202238",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202238/ANALYSIS.md",
+   "docs/automated-tests/20261031-202238/complexity.txt",
+   "docs/automated-tests/20261031-202238/lint.txt",
+   "docs/automated-tests/20261031-202238/manifest.json",
+   "docs/automated-tests/20261031-202238/test-cases.md",
+   "docs/automated-tests/20261031-202238/tests.txt"
+  ],
+  "concerns": [
+   "settings/Schema.lua has been on notice through two release runs (1.6.0, 1.7.0) and this seventh consecutive run in the band. Its status is On notice rather than Accepted, and this was not a release run, so the three-run limit is not hit yet. The next release run would be the third, so decide then whether to peel the General > Skin block or record a tracked deviation.",
+   "docs/ARCHITECTURE.md cap-census prose is stale: it still says settings/Schema.lua is 1087 lines (dated 2026-09-27). This is for the sync-docs step; I did not change it here."
+  ],
+  "newBandFiles": []
+ },
+ "docs": {
+  "repo": "PrettyChat",
+  "status": "ok",
+  "summary": "Docs synced to the font pickers and skin faces run and committed as 30a0597 on feat/2026-10-31-font-pickers-skin-faces; green gate passed; not pushed. README gained one clause saying /pc skin brings the picker window back. ARCHITECTURE and settings-panel now describe the skin picker's rows and /pc skin. ARCHITECTURE also corrects the media picker claim (Font and Texture, not Font alone) and refreshes the 1000-1500 band to Schema.lua at 1225 on 2026-10-31. debug.md moves to the vendored DebugLog minors and the 22.5.1.2 API doc. DEPENDENCIES' OptionalDeps quote now includes EllesmereUI. testing.md gains a section on the display-glyph guard. Already accurate: README badge 656 = test-cases.md Total, 15 verbs, eight skin.* keys, outline default hud, kit revision 46, Documentation map (every docs/*.md has a row). README de-AI pass ran on the one changed clause by audit against the overlay's checklist, not the /humanize skill; it found nothing to change.",
+  "commit": "30a0597",
+  "filesChanged": [
+   "README.md",
+   "DEPENDENCIES.md",
+   "docs/ARCHITECTURE.md",
+   "docs/debug.md",
+   "docs/settings-panel.md",
+   "docs/testing.md"
+  ],
+  "tests": "ka0s-bounded lua tests/run.lua: 656 passed, 0 failed, 1 skipped, 657 total (exit 0), run after the doc edits",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 65 files (exit 0). Vendor drift: libs/LibKa0s vs ../LibKa0s/LibKa0s differs only by the declared media/icons prune; tests/_kit vs ../LibKa0s/testkit is identical.",
+  "commentCitations": [
+   "defaults/Profile.lua:64: NO SUCH PATH: docs/2026-10-31-FONT_PICKERS_AND_SKIN_FACES/ is a Ka0sAddonsCommonTasks bundle, but the comment omits that repo prefix, which every other citation of a bundle carries. Comment-only fix, not applied."
+  ],
+  "deadExports": [],
+  "concerns": [
+   "docs/revendor/ stops at 2026-10-24-v1.77.0: no frozen re-vendor bundle exists for v1.78.0 through v1.83.0. Reported only, not created.",
+   "docs/test-cases.md matches a fresh `--list` and is current. docs/automated-tests/RESULTS.md was not edited; the AT-FIN bundle 20261031-202238 stands as the current record."
+  ],
+  "proposals": []
+ }
+}

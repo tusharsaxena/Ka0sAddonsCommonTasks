@@ -1,0 +1,63 @@
+{
+ "repo": "QuickComms",
+ "tests": {
+  "repo": "QuickComms",
+  "status": "ok",
+  "commit": "7a90a1b",
+  "summary": "Pre-merge run 20261031-202243 is green at 15dde36 on a clean tree. Verdict: green. Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/QuickComms/docs/automated-tests/20261031-202243/. No CCN or NLOC flags were found, so no code changed. All 7 band rows already carried a Disposition, so no cell was authored. Commit 7a90a1b holds the bundle, ANALYSIS.md and RESULTS.md; it is local only, not pushed.\n\n- lint: pass, 0 warnings / 0 errors in 148 files. Gates commit and tag.\n- tests: pass, 1297 passed, 0 failed, 1 skipped, 1298 total. Gates commit and tag. The skip is the same diagnostics opt-out contract case as the previous run.\n- perf: pass, 6 scenarios. Does not gate the commit; gates the tag.\n- complexity: pass, 0 warnings, max CCN 15, 37722 NLOC, 4221 functions, avg CCN 2.5, avg NLOC 8.0, avg tokens 77.3. Does not gate the commit; gates the tag.\n- blindFiles 0, crashedFiles 0, 7 band files, 0 over the 1500 cap. Nothing newly crossed a threshold. No suite skipped.\n\nPerf timings rose against 20261026-113818, for example padRebuild12 0.44247 to 0.75827 ms/iter, while bytes/iter held except padRebuild12 (66191.4 to 66528.4). ANALYSIS.md reads this as load from parallel batteries; that is an inference, not measured.",
+  "lint": "0 warnings / 0 errors in 148 files",
+  "tests": "1297 passed, 0 failed, 1 skipped, 1298 total",
+  "complexity": "0 functions above CCN 15, max CCN 15, avg CCN 2.5, 37722 NLOC, 4221 functions, 7 band files, 0 over cap, 0 blind, 0 crashed",
+  "bundle": "docs/automated-tests/20261031-202243",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202243/ANALYSIS.md",
+   "docs/automated-tests/20261031-202243/complexity.txt",
+   "docs/automated-tests/20261031-202243/lint.txt",
+   "docs/automated-tests/20261031-202243/manifest.json",
+   "docs/automated-tests/20261031-202243/perf.json",
+   "docs/automated-tests/20261031-202243/perf.txt",
+   "docs/automated-tests/20261031-202243/test-cases.md",
+   "docs/automated-tests/20261031-202243/tests.txt"
+  ],
+  "concerns": [
+   "tests/test_dial.lua stays at Peel next (1471 lines). Its carried disposition still says '28 lines under the cap', which is now one line out. I left it unchanged because only blank rows were in scope.",
+   "No Accepted row has crossed the three-release-run limit: only two release runs exist (0.1.0 and 1.0.0).",
+   "Perf timings are up against the previous run; the load explanation is unconfirmed until a run on a quiet machine."
+  ]
+ },
+ "docs": {
+  "repo": "QuickComms",
+  "status": "ok",
+  "commit": "6577ba6",
+  "summary": "Docs synced to the skin fonts and font pickers runs and committed locally on feat/2026-10-31-font-pickers-skin-faces; not pushed. Most of the branch's docs were already accurate. Fixed: the reserved `skin` verb was missing from ARCHITECTURE's verb list; ARCHITECTURE still said Oxanium for Ka0s Default and claimed sizes and flags are always the player's; the settings-panel skin picker description predated the rows LK-A3 added; `Ka0sMedia_*` previews and From skin were undocumented; test_glyphs was in neither module-map nor testing.md; the default-icon rule was not in data-flow; the gate lines in testing.md and DEPENDENCIES.md used bare luacheck. Added a known limitation that new font files need a full client restart. README gained `/qc skin` and Font outline in the skin paragraph. README de-AI pass was done by hand on those two sentences and changed nothing further. No document created, no version touched, no command table or library name added. Comment citations were reported only, none edited.",
+  "tests": "ka0s-bounded lua tests/run.lua: 1297 passed, 0 failed, 1 skipped, 1298 total (16 shards), exit 0",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 148 files, exit 0. Vendor drift: libs/LibKa0s vs ../LibKa0s/LibKa0s has 0 differences; tests/_kit vs ../LibKa0s/testkit has 0 differences (the kit lives in testkit/, not under LibKa0s/).",
+  "filesChanged": [
+   "DEPENDENCIES.md",
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/data-flow.md",
+   "docs/known-limitations.md",
+   "docs/module-map.md",
+   "docs/settings-panel.md",
+   "docs/testing.md"
+  ],
+  "commentCitations": [
+   "settings/ModalWindow.lua:24 NO SUCH PATH: settings/CalloutPopup_Skin.lua; the comment calls it retired, so it reads as deliberate history",
+   "tests/test_skinsetup.lua:125 NO SUCH PATH: core/EUIBridge.lua and settings/CalloutPopup_Skin.lua; past-tense history of the retired bridge",
+   "Not defects: the other path misses in the scan name files in sibling addons or LibKa0s (KickCD, DropWatcher, ConsumableMaster, PanelMaster, LibKa0s docs/api) or a Blizzard file. No line-past-EOF hits. Migration citations agree with the table's highest to = 11. The bundled-tag grep did not complete (a zsh glob error on --include), so bundled-library version citations were not checked."
+  ],
+  "deadExports": [],
+  "concerns": [
+   "docs/test-cases.md is stale by one line at line 1383: the suite now lists 'outline: All text picked under the HUD default persists; nothing migrates it', but the file still has the old name 'outline: a stored All text is kept and applied; nothing migrates it'. Commit b525d19 renamed the test without regenerating the file. Left unedited as instructed. Regenerate with lua tests/run.lua --list > docs/test-cases.md; the case count does not change.",
+   "tests/test_glyphs.lua:5 says 'Ten skins', but LibKa0s registers nine (Ka0s Default plus eight), which README and settings-panel state correctly. The citation check cannot catch this and a code comment is out of scope for sync-docs, so it was left as is.",
+   "Dead-export scan was name-level only: every NS.* name in first-party source had at least 2 hits, and hits in comments count, so a clean result is weak. Table-scoped exports (Lib.*, Ed.*, S.*) were not scanned as a set; the ones added on this branch (Lib.FONT_FLAG_BLOCKS, Ed.NoIcon, S.TEST_GLYPHS) were confirmed used by reading the diff.",
+   "Tests badge 1297/1297 matches the suite. Not all live docs were read in full: review targeted the branch's changes plus greps for the changed facts. API parity and config drift were not walked separately. docs/smoke-tests.md was not audited; it changed on this branch and cites SKIN-29.",
+   "../LibKa0s HEAD is 9ddbe89, its own SD-FIN commit, so it moved during this run. Vendor diffs are still zero against that working tree."
+  ],
+  "proposals": [
+   "Regenerate docs/test-cases.md before finalize so it matches the renamed test_skin_outline case."
+  ]
+ }
+}
