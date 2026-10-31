@@ -13,3 +13,9 @@ Order:
 5. **#68:** code pass over every mover with computed widths per skin; fix what is short. The in-client sweep and screenshots stay the owner's, so the issue stays open until then.
 6. **#67:** sweep the roster; KickCD `settings/Icons.lua` is the known candidate. Update the options-ui §22 pointer in WowAddonStandards.
 7. Re-vendor v1.84.0 into all 16 consumers, gates, review, recorded runs, push branches. Close no issue before merge.
+
+## DpsRace queue
+
+Owner, 2026-10-31 (`inputs/image-34`): in test mode the compare bars are always full; make them work as in live, and pass over DpsRace so test and live modes show nothing inconsistent, with no test-mode hacks.
+
+Order in the DpsRace checkout, one agent at a time: bar styling, then this test/live parity pass, then FX remediation, then the M2 adoption. Commit prefix `DR-P`.
