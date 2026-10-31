@@ -1,19 +1,19 @@
 id	milestone	repo	title	depends_on
 LK-A1	M2	LibKa0s	Nil owner on a client that refuses the face; stale API row; re-cut local v1.83.0	LK-F90
 LK-A2	M2	LibKa0s	Skin picker rows cannot stay blank; re-cut local v1.83.0	LK-A1
-ST LibKa0sSkinTester-RV2	M2		Take the re-cut v1.83.0	LK-A2
-AT AbsorbTracker-RV2	M2		Take the re-cut v1.83.0	LK-A2
-AM AuraMaster-RV2	M2		Take the re-cut v1.83.0	LK-A2
-BL BankLedger-RV2	M2		Take the re-cut v1.83.0	LK-A2
-CM ConsumableMaster-RV2	M2		Take the re-cut v1.83.0	LK-A2
-DR DpsRace-RV2	M2		Take the re-cut v1.83.0	LK-A2
-DW DropWatcher-RV2	M2		Take the re-cut v1.83.0	LK-A2
-KC KickCD-RV2	M2		Take the re-cut v1.83.0	LK-A2
-LH LootHistory-RV2	M2		Take the re-cut v1.83.0	LK-A2
-MM MultiMeters-RV2	M2		Take the re-cut v1.83.0	LK-A2
-PM PanelMaster-RV2	M2		Take the re-cut v1.83.0	LK-A2
-PF PartyFrameEnhanced-RV2	M2		Take the re-cut v1.83.0	LK-A2
-PG PremadeGroupsFilterExtension-RV2	M2		Take the re-cut v1.83.0	LK-A2
-PC PrettyChat-RV2	M2		Take the re-cut v1.83.0	LK-A2
-QC QuickComms-RV2	M2		Take the re-cut v1.83.0	LK-A2
-WG WhatGroup-RV2	M2		Take the re-cut v1.83.0	LK-A2
+ST-RV2	M2	LibKa0sSkinTester	Take the re-cut v1.83.0	LK-A2
+AT-RV2	M2	AbsorbTracker	Take the re-cut v1.83.0	LK-A2
+AM-RV2	M2	AuraMaster	Take the re-cut v1.83.0	LK-A2
+BL-RV2	M2	BankLedger	Take the re-cut v1.83.0	LK-A2
+CM-RV2	M2	ConsumableMaster	Take the re-cut v1.83.0	LK-A2
+DR-RV2	M2	DpsRace	Take the re-cut v1.83.0	LK-A2
+DW-RV2	M2	DropWatcher	Take the re-cut v1.83.0	LK-A2
+KC-RV2	M2	KickCD	Take the re-cut v1.83.0	LK-A2
+LH-RV2	M2	LootHistory	Take the re-cut v1.83.0	LK-A2
+MM-RV2	M2	MultiMeters	Take the re-cut v1.83.0	LK-A2
+PM-RV2	M2	PanelMaster	Take the re-cut v1.83.0	LK-A2
+PF-RV2	M2	PartyFrameEnhanced	Take the re-cut v1.83.0	LK-A2
+PG-RV2	M2	PremadeGroupsFilterExtension	Take the re-cut v1.83.0	LK-A2
+PC-RV2	M2	PrettyChat	Take the re-cut v1.83.0	LK-A2
+QC-RV2	M2	QuickComms	Take the re-cut v1.83.0	LK-A2
+WG-RV2	M2	WhatGroup	Take the re-cut v1.83.0	LK-A2
