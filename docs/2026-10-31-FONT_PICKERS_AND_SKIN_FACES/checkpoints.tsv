@@ -1,2 +1,3 @@
 when	milestone	evidence
 2026-10-31 17:30	M1+M2	LibKa0s ec41b22 3469/0/2, tag v1.83.0 local; WowAddonStandards 38f880b; 16 consumers on the re-cut tag, all gates green; all pushed with notes
+2026-10-31 19:30	Addenda	LibKa0s 6c816fd 3522/0/2, tag v1.83.0 local; 16 consumers on it, drift 0, gates green; DpsRace DR-F05 landed; all pushed with notes

@@ -14,3 +14,6 @@ The owner runs these in the client. Each repo's checks are in its `docs/smoke-te
 8. **Overrides.** Pick a Ka0s face as a font override: text keeps Prototype's width.
 9. **DpsRace.** Run detail has one header row, starting "Spell". HUD tooltips SM-DR-FP6 to SM-DR-FP11, including an in-combat hover (SM-DR-FP8), which the harness cannot prove.
 10. **ruRU**, if you care to check: Ember and WoW Default window text has no Cyrillic face.
+11. **Skin picker rows** (`/xx skin`, any addon; Skin Tester PICKER-17 to PICKER-23). Font and Texture preview in their pull-outs; each reset icon draws (it is the client's refresh art) and is gray while that half is the skin's default; Font outline; both Scope boxes on one line. Everything previews live, closing puts it all back, Apply saves. Long names beside the Texture swatch may truncate. Enter combat with it open: rows lock, then wake about a quarter second after combat.
+12. **Apply to all** now also copies scope, font, texture and outline to every other addon, which the old button did not.
+13. **DpsRace compare** (SM-DR-FP12). Damage, DPS and spell bars share one scale; dark blue on the best run, dark gold on the other, swapping sides by run; the percentages keep their colors.
