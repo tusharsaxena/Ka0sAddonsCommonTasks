@@ -1,0 +1,64 @@
+{
+ "repo": "WhatGroup",
+ "tests": {
+  "repo": "WhatGroup",
+  "status": "ok",
+  "summary": "Pre-merge run 20261031-202312 is AMBER, not green. Lint and tests pass, so the record was committed as d07b81b, but perf FAILED and that blocks the next tag.\n- lint: pass, 0 warnings / 0 errors in 72 files (gates commit and tag).\n- tests: pass, 1045 passed, 0 failed, 1 skipped, 1046 total (gates commit and tag).\n- perf: FAIL, 8 scenarios; `showFrameRepeat allocated 3712.2 bytes/iter, over its 1769-byte ceiling` (does not gate commit or merge, gates the tag).\n- complexity: pass, 0 warnings, max CCN 15, 16125 NLOC / 2167 functions, avg CCN 1.9, avg NLOC 7.0, blindFiles 0, crashedFiles 0, 3 band files, 0 over cap (does not gate commit, gates the tag).\nNo code changed: there were no CCN or NLOC flags to fix. No band row had a blank Disposition. All three carried dispositions were updated with this run's sizes, and modules/Frame.lua is now ruled Peel next. Line endings are CRLF as git declares. Lint and tests were re-run after the edits and stayed green. Not pushed.\nBundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/WhatGroup/docs/automated-tests/20261031-202312/",
+  "commit": "d07b81b",
+  "tests": "1045 passed, 0 failed, 1 skipped, 1046 total (skip: kit diagnostics-contract arm for an addon that opts out of logging, tests.txt line 1035)",
+  "lint": "0 warnings / 0 errors in 72 files",
+  "complexity": "0 functions above CCN 15, max CCN 15 (tests/perf.lua encode, tests/test_skin_literals.lua splitArgs), production max 13; 3 band files, 0 over the 1500 cap, 0 blind, 0 crashed",
+  "bundle": "docs/automated-tests/20261031-202312",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202312/ANALYSIS.md",
+   "docs/automated-tests/20261031-202312/complexity.txt",
+   "docs/automated-tests/20261031-202312/lint.txt",
+   "docs/automated-tests/20261031-202312/manifest.json",
+   "docs/automated-tests/20261031-202312/perf.json",
+   "docs/automated-tests/20261031-202312/perf.txt",
+   "docs/automated-tests/20261031-202312/test-cases.md",
+   "docs/automated-tests/20261031-202312/tests.txt"
+  ],
+  "newBandFiles": [],
+  "concerns": [
+   "PERF FAIL, new since the last run and a tag blocker: showFrameRepeat 3712.2 bytes/iter against the pinned 1769-byte ceiling in tests/perf.lua line 294 (previous run 1744.2), api/iter 19.0 to 25.0. It does not block this merge, but the verdict is amber and /dev-copilot:bump-version will refuse the next release until it is resolved. A commit walk of perf.lua on exported trees (outside the bundle) puts the rises at 27befff (WG-ZS layers table), 116b5a8 (WG-02 skin facade paint, the largest step and the only api/iter rise) and 7914b8c (LibKa0s v1.81.0 re-vendor). It has been over the ceiling since 27befff, so it is not specific to this branch's last commits. No issue tracks it.",
+   "modules/Frame.lua at 1467 is past its recorded 1450 re-check trigger (WHATGROUP-R-14) and 33 lines under the 1500 cap. It is not a lizard flag, so no code changed. Disposition is now Peel next, with buildFrame@771-1040 as the seam.",
+   "core/WhatGroup.lua (1367) and modules/Frame.lua stay at 2 of 3 release runs Accepted. Neither has crossed three consecutive release runs yet, but both are owed a fix or a tracked deviation ID at the next release, and neither has an issue."
+  ],
+  "proposals": [
+   "Owner decision on showFrameRepeat before the next tag: cut the allocation in the skin paint path, or re-measure and raise the pin at tests/perf.lua line 294 with the reason, updating docs/performance.md line 149, which still shows 19.0 / 1744.2.",
+   "Peel buildFrame out of modules/Frame.lua before the next feature lands there."
+  ]
+ },
+ "docs": {
+  "repo": "WhatGroup",
+  "status": "ok",
+  "summary": "Docs synced to the skin fonts and font pickers runs and committed as f112fa9; the green gate passed and nothing was pushed, but the test count in the badge and test-cases.md is one short (see concerns). Most of the branch's docs were already current. Fixes: the skin.* row count and defaults blocks now show eight rows including outline, the verb count is 16, the picker's Skin tab rows are described, the getLSM wiring is noted, testing.md's suite list gains 8 missing suites (test_frame_skin, test_skin_literals, test_skinsetup, test_skin_outline, test_skin_picker, test_skin_verb, test_skin_tools, test_glyphs), line citations in performance.md and slash-dispatch.md are corrected, and the file-size census is re-measured. The README skin paragraph now covers /wg skin and the picker rows, and the de-AI pass ran by hand on that sentence only (it replaced the 'font of your own' wording; no em dashes, bold openers or AI vocabulary added).",
+  "commit": "f112fa9",
+  "tests": "ka0s-bounded lua tests/run.lua: 1045 passed, 0 failed, 1 skipped, 1046 total (exit 0)",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 72 files",
+  "bundle": "Vendor drift: libs/LibKa0s vs ../LibKa0s/LibKa0s differs only by the declared media/icons prune; tests/_kit vs ../LibKa0s/testkit is identical (../LibKa0s/tests/_kit does not exist, so the kit was compared against testkit). AT-FIN bundle 20261031-202312 untouched.",
+  "filesChanged": [
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/module-map.md",
+   "docs/performance.md",
+   "docs/schema.md",
+   "docs/settings-panel.md",
+   "docs/slash-dispatch.md",
+   "docs/testing.md"
+  ],
+  "commentCitations": [
+   "core/DebugLogSetup.lua:4 NO SUCH PATH: core/DebugLog.lua, named as the file the code used to live in (historical; not edited)",
+   "core/DebugLogSetup.lua:9 NO SUCH PATH: core/DebugLog.lua, same historical note (not edited)"
+  ],
+  "deadExports": [],
+  "concerns": [
+   "docs/test-cases.md and the README Tests badge are stale by one case: both say 1044, the suite runs 1045. docs/test-cases.md is missing test_skin_outline's 'outline: a stored mode the library does not know applies its default'. The AT-FIN bundle 20261031-202312 recorded 1045 and has the case, so the live docs/test-cases.md did not get it. Regenerate with `lua tests/run.lua --list > docs/test-cases.md` and set the badge to 1045/1045. I left both alone because generated docs are report-only here and the badge must equal test-cases.md's Total."
+  ],
+  "proposals": [
+   "Regenerate docs/test-cases.md and move the README badge to 1045/1045 in the same commit."
+  ]
+ }
+}

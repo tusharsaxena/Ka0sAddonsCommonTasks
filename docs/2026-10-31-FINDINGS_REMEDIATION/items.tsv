@@ -1,0 +1,103 @@
+id	milestone	repo	title
+FX-LK-PERF	M1	LibKa0s	Perf findings fixed at the cause
+FX-LK-CITE	M1	LibKa0s	Comment citations corrected, comment-only
+FX-LK-DEAD	M1	LibKa0s	Dead exports removed after verification
+FX-LK-SIZE	M1	LibKa0s	Watch list: split, or tracked deviation
+FX-LK-DOCS	M1	LibKa0s	Remaining doc findings
+FX-LK-REC	M1	LibKa0s	Fresh recorded automated-test run
+FX-ST-PERF	M1	LibKa0sSkinTester	Perf findings fixed at the cause
+FX-ST-CITE	M1	LibKa0sSkinTester	Comment citations corrected, comment-only
+FX-ST-DEAD	M1	LibKa0sSkinTester	Dead exports removed after verification
+FX-ST-SIZE	M1	LibKa0sSkinTester	Watch list: split, or tracked deviation
+FX-ST-DOCS	M1	LibKa0sSkinTester	Remaining doc findings
+FX-ST-REC	M1	LibKa0sSkinTester	Fresh recorded automated-test run
+FX-AT-PERF	M1	AbsorbTracker	Perf findings fixed at the cause
+FX-AT-CITE	M1	AbsorbTracker	Comment citations corrected, comment-only
+FX-AT-DEAD	M1	AbsorbTracker	Dead exports removed after verification
+FX-AT-SIZE	M1	AbsorbTracker	Watch list: split, or tracked deviation
+FX-AT-DOCS	M1	AbsorbTracker	Remaining doc findings
+FX-AT-REC	M1	AbsorbTracker	Fresh recorded automated-test run
+FX-AM-PERF	M1	AuraMaster	Perf findings fixed at the cause
+FX-AM-CITE	M1	AuraMaster	Comment citations corrected, comment-only
+FX-AM-DEAD	M1	AuraMaster	Dead exports removed after verification
+FX-AM-SIZE	M1	AuraMaster	Watch list: split, or tracked deviation
+FX-AM-DOCS	M1	AuraMaster	Remaining doc findings
+FX-AM-REC	M1	AuraMaster	Fresh recorded automated-test run
+FX-BL-PERF	M1	BankLedger	Perf findings fixed at the cause
+FX-BL-CITE	M1	BankLedger	Comment citations corrected, comment-only
+FX-BL-DEAD	M1	BankLedger	Dead exports removed after verification
+FX-BL-SIZE	M1	BankLedger	Watch list: split, or tracked deviation
+FX-BL-DOCS	M1	BankLedger	Remaining doc findings
+FX-BL-REC	M1	BankLedger	Fresh recorded automated-test run
+FX-CM-PERF	M1	ConsumableMaster	Perf findings fixed at the cause
+FX-CM-CITE	M1	ConsumableMaster	Comment citations corrected, comment-only
+FX-CM-DEAD	M1	ConsumableMaster	Dead exports removed after verification
+FX-CM-SIZE	M1	ConsumableMaster	Watch list: split, or tracked deviation
+FX-CM-DOCS	M1	ConsumableMaster	Remaining doc findings
+FX-CM-REC	M1	ConsumableMaster	Fresh recorded automated-test run
+FX-DR-PERF	M1	DpsRace	Perf findings fixed at the cause
+FX-DR-CITE	M1	DpsRace	Comment citations corrected, comment-only
+FX-DR-DEAD	M1	DpsRace	Dead exports removed after verification
+FX-DR-SIZE	M1	DpsRace	Watch list: split, or tracked deviation
+FX-DR-DOCS	M1	DpsRace	Remaining doc findings
+FX-DR-REC	M1	DpsRace	Fresh recorded automated-test run
+FX-DW-PERF	M1	DropWatcher	Perf findings fixed at the cause
+FX-DW-CITE	M1	DropWatcher	Comment citations corrected, comment-only
+FX-DW-DEAD	M1	DropWatcher	Dead exports removed after verification
+FX-DW-SIZE	M1	DropWatcher	Watch list: split, or tracked deviation
+FX-DW-DOCS	M1	DropWatcher	Remaining doc findings
+FX-DW-REC	M1	DropWatcher	Fresh recorded automated-test run
+FX-KC-PERF	M1	KickCD	Perf findings fixed at the cause
+FX-KC-CITE	M1	KickCD	Comment citations corrected, comment-only
+FX-KC-DEAD	M1	KickCD	Dead exports removed after verification
+FX-KC-SIZE	M1	KickCD	Watch list: split, or tracked deviation
+FX-KC-DOCS	M1	KickCD	Remaining doc findings
+FX-KC-REC	M1	KickCD	Fresh recorded automated-test run
+FX-LH-PERF	M1	LootHistory	Perf findings fixed at the cause
+FX-LH-CITE	M1	LootHistory	Comment citations corrected, comment-only
+FX-LH-DEAD	M1	LootHistory	Dead exports removed after verification
+FX-LH-SIZE	M1	LootHistory	Watch list: split, or tracked deviation
+FX-LH-DOCS	M1	LootHistory	Remaining doc findings
+FX-LH-REC	M1	LootHistory	Fresh recorded automated-test run
+FX-MM-PERF	M1	MultiMeters	Perf findings fixed at the cause
+FX-MM-CITE	M1	MultiMeters	Comment citations corrected, comment-only
+FX-MM-DEAD	M1	MultiMeters	Dead exports removed after verification
+FX-MM-SIZE	M1	MultiMeters	Watch list: split, or tracked deviation
+FX-MM-DOCS	M1	MultiMeters	Remaining doc findings
+FX-MM-REC	M1	MultiMeters	Fresh recorded automated-test run
+FX-PM-PERF	M1	PanelMaster	Perf findings fixed at the cause
+FX-PM-CITE	M1	PanelMaster	Comment citations corrected, comment-only
+FX-PM-DEAD	M1	PanelMaster	Dead exports removed after verification
+FX-PM-SIZE	M1	PanelMaster	Watch list: split, or tracked deviation
+FX-PM-DOCS	M1	PanelMaster	Remaining doc findings
+FX-PM-REC	M1	PanelMaster	Fresh recorded automated-test run
+FX-PF-PERF	M1	PartyFrameEnhanced	Perf findings fixed at the cause
+FX-PF-CITE	M1	PartyFrameEnhanced	Comment citations corrected, comment-only
+FX-PF-DEAD	M1	PartyFrameEnhanced	Dead exports removed after verification
+FX-PF-SIZE	M1	PartyFrameEnhanced	Watch list: split, or tracked deviation
+FX-PF-DOCS	M1	PartyFrameEnhanced	Remaining doc findings
+FX-PF-REC	M1	PartyFrameEnhanced	Fresh recorded automated-test run
+FX-PG-PERF	M1	PremadeGroupsFilterExtension	Perf findings fixed at the cause
+FX-PG-CITE	M1	PremadeGroupsFilterExtension	Comment citations corrected, comment-only
+FX-PG-DEAD	M1	PremadeGroupsFilterExtension	Dead exports removed after verification
+FX-PG-SIZE	M1	PremadeGroupsFilterExtension	Watch list: split, or tracked deviation
+FX-PG-DOCS	M1	PremadeGroupsFilterExtension	Remaining doc findings
+FX-PG-REC	M1	PremadeGroupsFilterExtension	Fresh recorded automated-test run
+FX-PC-PERF	M1	PrettyChat	Perf findings fixed at the cause
+FX-PC-CITE	M1	PrettyChat	Comment citations corrected, comment-only
+FX-PC-DEAD	M1	PrettyChat	Dead exports removed after verification
+FX-PC-SIZE	M1	PrettyChat	Watch list: split, or tracked deviation
+FX-PC-DOCS	M1	PrettyChat	Remaining doc findings
+FX-PC-REC	M1	PrettyChat	Fresh recorded automated-test run
+FX-QC-PERF	M1	QuickComms	Perf findings fixed at the cause
+FX-QC-CITE	M1	QuickComms	Comment citations corrected, comment-only
+FX-QC-DEAD	M1	QuickComms	Dead exports removed after verification
+FX-QC-SIZE	M1	QuickComms	Watch list: split, or tracked deviation
+FX-QC-DOCS	M1	QuickComms	Remaining doc findings
+FX-QC-REC	M1	QuickComms	Fresh recorded automated-test run
+FX-WG-PERF	M1	WhatGroup	Perf findings fixed at the cause
+FX-WG-CITE	M1	WhatGroup	Comment citations corrected, comment-only
+FX-WG-DEAD	M1	WhatGroup	Dead exports removed after verification
+FX-WG-SIZE	M1	WhatGroup	Watch list: split, or tracked deviation
+FX-WG-DOCS	M1	WhatGroup	Remaining doc findings
+FX-WG-REC	M1	WhatGroup	Fresh recorded automated-test run

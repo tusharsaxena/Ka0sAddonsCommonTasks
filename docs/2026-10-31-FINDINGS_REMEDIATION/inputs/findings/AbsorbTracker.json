@@ -1,0 +1,58 @@
+{
+ "repo": "AbsorbTracker",
+ "tests": {
+  "repo": "AbsorbTracker",
+  "status": "ok",
+  "summary": "Pre-merge run 20261031-202021 (--label pre-merge) at c873518: verdict green. No code changed. Recorded in 723d015; not pushed.\n- lint: pass, 0 warnings / 0 errors in 78 files. Gates the run, commit and tag.\n- tests: pass, 972 passed, 0 failed, 1 skipped, 973 total. Gates the run, commit and tag. The skip is the kit's diagnostics opt-out branch, also present at the previous run.\n- perf: pass, 7 scenarios. Gates the tag only.\n- complexity: pass, 0 warnings, 16866 NLOC, 2575 functions, avg NLOC 6.4, avg CCN 1.8, max CCN 14, avg tokens 49.2, blindFiles 0, crashedFiles 0. Gates the tag only.\nBand: 3 files in 1000-1500, 0 over the 1500 cap. tests/test_schema.lua (1084) newly crossed; its Disposition is ruled Accepted, watch. A post-record lint and tests re-run (--no-bundle) was green, and the EOL check on ANALYSIS.md and RESULTS.md found no bare LF.",
+  "commit": "723d015",
+  "tests": "972 passed, 0 failed, 1 skipped, 973 total",
+  "lint": "0 warnings / 0 errors in 78 files",
+  "complexity": "0 functions above CCN 15; max CCN 14; avg CCN 1.8; 16866 NLOC; 2575 functions; bandFiles 3; overCapFiles 0; blindFiles 0; crashedFiles 0",
+  "bundle": "docs/automated-tests/20261031-202021/",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202021/ANALYSIS.md",
+   "docs/automated-tests/20261031-202021/complexity.txt",
+   "docs/automated-tests/20261031-202021/lint.txt",
+   "docs/automated-tests/20261031-202021/manifest.json",
+   "docs/automated-tests/20261031-202021/perf.json",
+   "docs/automated-tests/20261031-202021/perf.txt",
+   "docs/automated-tests/20261031-202021/test-cases.md",
+   "docs/automated-tests/20261031-202021/tests.txt"
+  ],
+  "newBandFiles": [
+   "tests/test_schema.lua (1084)"
+  ],
+  "concerns": [
+   "No row has reached three consecutive release runs as Accepted. tests/test_widgets.lua is at 2 of 3 and reaches the limit at the next release run: it owes a peel or a tracked deviation ID before 1.13.0, and no issue tracks that yet.",
+   "appearancePass rose from 48.0 to 51.0 api/iter and from 97.8 to 2560.9 bytes/iter. It runs from the appearance bus and settings changes, not the repaint path, whose scenarios held their api and bytes figures. The link to the skin getters in modules/Display.lua comes from reading the code and was not bisected. Recorded as a new action in ANALYSIS.md; no issue tracks it."
+  ]
+ },
+ "docs": {
+  "repo": "AbsorbTracker",
+  "status": "ok",
+  "summary": "Docs synced to the skin fonts and font pickers runs and committed as e2bfc83 on feat/2026-10-31-font-pickers-skin-faces. Seven files changed (+62/-48). Not pushed.\n\nDrift fixed:\n- docs/module-map.md: 29 stale line counts; fourteen to sixteen Options files; ApplySkinOutline, RunSkinVerb, SKIN_OUTLINE_OPTIONS, GetFontSize and GetFontFlags added; test rows 46b and 46c extended.\n- docs/ARCHITECTURE.md: SCHEMA_VERSION 6 to 7 and the v7 step; seven to eight skin keys and rows; the picker's new rows and /at skin.\n- docs/settings-panel.md: OptionsMedia row; OptionsAppearance minor 3 to 5; Font outline; eight rows; the 308-wide picker with its rows; the Ka0sMedia_* fallback, with the code snippet updated to match the library.\n- docs/common-tasks.md: the same fallback.\n- docs/schema.md: skin.font and skin.texture draw as pickers on the tab.\n- docs/performance.md: fifteen to nineteen majors, nine to fifteen attach files.\n- README.md: removed the Credits sentence naming the bundled LibKa0s payload and the path to its license file (owner ruling, which sibling READMEs I checked already follow). The Open Iconic credit stays.\n\nThe README de-AI pass ran on the change; it was a deletion only, so there was nothing to rewrite. The README badge (972/972) matches docs/test-cases.md Total 972. CLAUDE.md, DEPENDENCIES.md, docs/data-flow.md, docs/slash-dispatch.md and docs/profiles.md needed no change (already synced on the branch).",
+  "commit": "e2bfc83",
+  "filesChanged": [
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/common-tasks.md",
+   "docs/module-map.md",
+   "docs/performance.md",
+   "docs/schema.md",
+   "docs/settings-panel.md"
+  ],
+  "tests": "ka0s-bounded lua tests/run.lua: 972 passed, 0 failed, 1 skipped, 973 total (exit 0)",
+  "lint": "ka0s-bounded luacheck .: 0 warnings / 0 errors in 78 files (exit 0). Vendor drift: the library diff shows only the declared media/icons prune (0 other lines); the testkit diff is empty.",
+  "commentCitations": [],
+  "deadExports": [
+   "core/Data.lua:291 NS.__ResetBgClassColor: only tests call it (test seam, double-underscore name)",
+   "settings/Schema.lua:447 NS.ProfileRowsOffDefault: no shipped caller, only tests call it"
+  ],
+  "concerns": [
+   "Comment-citation sweep found no actionable hit. The unresolved paths were historical mentions of old files, paths in other repos (docs/api and docs/record-schema.md in LibKa0s, ADDONS.md in the standard) or false matches. Comments quoting LibKa0s v1.82.0 or similar were treated as history, not as claims about what this build vendors, so they were not checked against the provenance line.",
+   "docs/test-cases.md and RESULTS.md were not edited or regenerated; test-cases.md Total 972 matches this run."
+  ],
+  "proposals": []
+ }
+}

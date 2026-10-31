@@ -1,0 +1,68 @@
+{
+ "repo": "PremadeGroupsFilterExtension",
+ "tests": {
+  "repo": "PremadeGroupsFilterExtension",
+  "status": "ok",
+  "summary": "Verdict AMBER, not green. Lint and tests pass; perf failed; complexity is clean. Bundle docs/automated-tests/20261031-202055/ is committed as d55fbce on feat/2026-10-31-font-pickers-skin-faces (not pushed). No code changed.\n- lint: pass, 0 warnings / 0 errors in 67 files (gates run and commit)\n- tests: pass, 452 passed, 0 failed, 1 skipped, 453 total (gates run and commit)\n- perf: FAIL, 6 scenarios, 1 assertion failed: \"combatEvents allocated 30641.4 bytes/iter, over its 28186-byte ceiling\" (gates the tag, not the run or commit)\n- complexity: pass, max CCN 14, 0 warnings, 9540 NLOC, 1408 functions, avg CCN 2.0, avg NLOC 5.8, avg tokens 51.8, blindFiles 0, crashedFiles 0, 0 files over the 1500 cap (gates the tag, not the run or commit)\nWatch list: 2 files in the 1000-1500 band. I ruled the one blank row, modules/Panel.lua (1026, newly crossed), after reading the file. tests/test_panel.lua (1169) keeps its carried disposition. No functions warned. No Accepted row has reached three release runs. Committed under the task's rule (lint and tests pass); the task's stop conditions did not fire.",
+  "commit": "d55fbce",
+  "tests": "452 passed, 0 failed, 1 skipped, 453 total",
+  "lint": "0 warnings / 0 errors in 67 files",
+  "complexity": "max CCN 14, 0 warnings, 9540 NLOC, 1408 functions, avg CCN 2.0; blindFiles 0, crashedFiles 0; 2 files in band, 0 over cap",
+  "bundle": "docs/automated-tests/20261031-202055/",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202055/ANALYSIS.md",
+   "docs/automated-tests/20261031-202055/complexity.txt",
+   "docs/automated-tests/20261031-202055/lint.txt",
+   "docs/automated-tests/20261031-202055/manifest.json",
+   "docs/automated-tests/20261031-202055/perf.json",
+   "docs/automated-tests/20261031-202055/perf.txt",
+   "docs/automated-tests/20261031-202055/test-cases.md",
+   "docs/automated-tests/20261031-202055/tests.txt"
+  ],
+  "concerns": [
+   "PERF REGRESSION, the verdict is amber: combatEvents is 30641.4 bytes/iter against its 28186-byte ceiling (28161.1 at the previous run). It does not block the commit or the merge, but it gates the tag, so bump-version will fail it at the next release. The owner asked about CCN and NLOC only, so I changed no code; this needs a ruling before any tag.",
+   "Cause: reproduced on repeat runs, so not a flake. Snapshot runs of tests/perf.lua (diagnostic, outside the bundle) walked every commit since the last good one. The first crossing is 5dc2e86 and the largest step is 1ecf7a7 (the chevron commit), which made Panel.Refresh's applyLayout call placeMinMax and tintChevrons. tintChevrons builds a throwaway table with ipairs({ ... }) per refresh, beside new token reads. Which part of the step each accounts for is not measured. Likely fix: drop the per-refresh table in modules/Panel.lua, then re-measure, or re-measure the ceiling in tests/perf.lua with the reason recorded.",
+   "The record was stale: the previous bundle measured cd648c8, 61 commits behind this HEAD, so the perf crossing went unrecorded through the v1.80.0-v1.83.0 runs."
+  ],
+  "proposals": [
+   "Fix tintChevrons in modules/Panel.lua (no per-refresh table), re-run perf, and rule on the ceiling before the next release."
+  ]
+ },
+ "docs": {
+  "repo": "PremadeGroupsFilterExtension",
+  "status": "ok",
+  "summary": "Docs synced and committed as dc04445 on feat/2026-10-31-font-pickers-skin-faces; not pushed. Green gate passed: suite 452 passed, 0 failed, 1 skipped (453 total), and luacheck 0/0 over 67 files, both exit 0. Vendor drift: libs/LibKa0s differs from ../LibKa0s/LibKa0s only by the declared media/icons prune, and tests/_kit is identical to ../LibKa0s/testkit. Drift fixed: newest automated-test record in CLAUDE.md; 15 to 16 commands; eight to six feature events; Skin added to the wired LibKa0s majors and Toast to the vendored-unwired list; six stale figures in performance.md (five file:line citations, including Panel.lua lines past its end, and one allocation figure); the retired 'two clipped copies' collapse description in data-flow.md; the bounded luacheck command in testing.md, common-tasks.md and DEPENDENCIES.md; getLSM and preview pickers plus Font outline in settings-panel.md, module-map.md and ARCHITECTURE.md. README gained one small edit (/pgfe skin reopens the picker, font list drawn in its own faces). The README de-AI pass ran by hand against the overlay's pattern list on those two sentences and changed nothing further; the /humanize skill was not used. No document was created or moved, and no version, generated doc, frozen bundle or vendored file was touched. Dead-export check: no real dead exports found; the zero-caller hits are not listed individually (see deadExports).",
+  "commit": "dc04445",
+  "tests": "452 passed, 0 failed, 1 skipped, 453 total (ka0s-bounded lua tests/run.lua, exit 0)",
+  "lint": "0 warnings / 0 errors in 67 files (ka0s-bounded luacheck ., exit 0)",
+  "filesChanged": [
+   "CLAUDE.md",
+   "DEPENDENCIES.md",
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/common-tasks.md",
+   "docs/data-flow.md",
+   "docs/module-map.md",
+   "docs/performance.md",
+   "docs/settings-panel.md",
+   "docs/testing.md"
+  ],
+  "commentCitations": [
+   "tests/test_glyphs.lua:6: comment says 'Ten skins'; libs/LibKa0s/SkinDefs.lua:1 says nine. A count error, outside the mechanical citation check, reported and not edited.",
+   "tests/perf.lua:46: comment says the readout rebuild allocates 'about 7 KB each'; run 20261031-202055 implies about 7.6 KB (combatEvents 30641.4 bytes/iter across the events). tests/perf.lua:40 still records combatEvents at 28161.1 / 28186. Reported, not edited.",
+   "core/SkinSetup.lua:61: names 01_INVENTORY.md, which is not in this repo; it appears to be a planning bundle file in Ka0sAddonsCommonTasks (not checked). Reported, not edited.",
+   "No other unresolved citation: the remaining path hits are PGF source, vendored library files or Blizzard files, or retired files named as retired (modules/EUISkin.lua, core/EUIBridge.lua, core/PerfSetup.lua). No line-past-EOF hits."
+  ],
+  "deadExports": [
+   "None found to flag. The scan's zero-caller names (AllRows, BulkAdd, CountOffDefault, InBulk, Reindex, SetMany, VERSION) were not traced individually; AllRows and similar look like host-stub members mirroring the library, the rest are unconfirmed."
+  ],
+  "concerns": [
+   "tests/perf.lua fails an assertion in the AT-FIN record docs/automated-tests/20261031-202055: combatEvents allocated 30641.4 bytes/iter over its 28186-byte ceiling. perf never gates a commit, but it does gate the release tag. ANALYSIS.md leaves the fix or a re-measured ceiling to the owner; it attributes the largest step to 1ecf7a7.",
+   "docs/test-cases.md and the README badge agree with the suite at 452, so neither is stale.",
+   "docs/smoke-tests.md still carries owed checks (SLASH-4, SKIN-12, SKIN-20, SKIN-34..39) with blank Result fields; the owner's message says everything works, and this sync did not mark any.",
+   "README's bug-reporting section and credits were not changed; the README still names Open Iconic as an external credit, which matches the shipped media/icons set."
+  ],
+  "proposals": []
+ }
+}

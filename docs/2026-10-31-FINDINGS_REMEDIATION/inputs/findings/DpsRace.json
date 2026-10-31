@@ -1,0 +1,84 @@
+{
+ "repo": "DpsRace",
+ "tests": {
+  "repo": "DpsRace",
+  "status": "ok",
+  "summary": "Automated-test run 20261031-202021 (label pre-merge, measured 0d913d2) is recorded and committed. Verdict is amber because perf failed; no code changed.\n- lint: pass, 0 warnings / 0 errors in 156 files (gates commit and tag).\n- tests: pass, 1206 passed, 0 failed, 1 skipped, 1207 total (gates commit and tag).\n- perf: FAIL, 9 scenarios with 4 allocation assertions over ceiling (does not gate the commit, does gate the tag).\n- complexity: pass, 0 warnings, max CCN 15, 0 blind, 0 crashed, 0 over the 1500 cap, 10 in the band (does not gate the commit, does gate the tag).\nThe pre-scan is confirmed, so there were no CCN or NLOC fixes. All ten band rows were new and blank; each now has a disposition, written after reading the file. ANALYSIS.md and RESULTS.md are CRLF as declared. Bundle: /mnt/d/Profile/Users/Tushar/Documents/GIT/DpsRace/docs/automated-tests/20261031-202021/",
+  "commit": "ef37277",
+  "lint": "0 warnings / 0 errors in 156 files",
+  "tests": "1206 passed, 0 failed, 1 skipped, 1207 total",
+  "complexity": "0 warnings; max CCN 15; 42513 NLOC / 4886 functions; avg CCN 2.5; 0 blind; 0 crashed; 0 over cap; 10 in band",
+  "bundle": "docs/automated-tests/20261031-202021/",
+  "newBandFiles": [
+   "locales/enUS.lua",
+   "modules/Hud.lua",
+   "modules/Hud_States.lua",
+   "modules/Results_Detail.lua",
+   "modules/Results_Runs.lua",
+   "modules/Results_Table.lua",
+   "modules/Results_Timeline.lua",
+   "tests/test_hud.lua",
+   "tests/test_insights.lua",
+   "tests/test_results.lua"
+  ],
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202021/ANALYSIS.md",
+   "docs/automated-tests/20261031-202021/complexity.txt",
+   "docs/automated-tests/20261031-202021/lint.txt",
+   "docs/automated-tests/20261031-202021/manifest.json",
+   "docs/automated-tests/20261031-202021/perf.json",
+   "docs/automated-tests/20261031-202021/perf.txt",
+   "docs/automated-tests/20261031-202021/test-cases.md",
+   "docs/automated-tests/20261031-202021/tests.txt"
+  ],
+  "concerns": [
+   "Perf suite failed, so the next tag's gate is not met (merge is unaffected): hudLiveCaptureOff/On at 7264.4 bytes/iter over the 7000 ceiling, combatEventCaptureOff/On at 3376.5 over the 3000 ceiling. This is pre-existing: the tests/perf.lua comment records both figures as over ceiling on 2026-10-25 and calls them 'still the finding'. No issue found for it (one gh search). Left unfixed as out of scope for the CCN/NLOC request; ANALYSIS.md lists it as Action 1.",
+   "tests/test_hud.lua and tests/test_results.lua are each at 1478 LOC and modules/Results_Timeline.lua at 1449, close to the 1500 cap. The dispositions say to peel or start a new file before adding more.",
+   "No band row has been Accepted across three release runs; all ten are new since the previous run."
+  ]
+ },
+ "docs": {
+  "repo": "DpsRace",
+  "status": "ok",
+  "summary": "Docs synced to the branch and committed as d5a7e0f on feat/2026-10-31-font-pickers-skin-faces. Gate green: 1206 passed, 0 failed, 1 skipped (1207 total); luacheck 0/0 in 156 files; libs/LibKa0s differs from ../LibKa0s/LibKa0s only by the media/icons prune, and tests/_kit is identical to ../LibKa0s/tests/_kit. README: test badge 1205 to 1206, compare bars, HUD tooltips, picker rows, /dr skin, Font outline, drawn font size, media previews. README de-AI pass ran as a manual audit of the changed sentences against the pattern list (the /humanize skill was not invoked); one rule-of-three phrasing was reworded. Other fixes: eight skin keys, 25 commands, band line counts, the malformed Hud_Tips module-map row, new Style/Hud_Appearance/SkinSetup members, Ka0sMedia pickers, migration 5 to 6 fallback, Hud_Tips in ARCHITECTURE, a common-tasks tooltip step, and DEPENDENCIES' fonts wording. No section, document or command table added; no license text restored; no library named. No docs/agent-context.md found; no bundled-library section removed.",
+  "commit": "d5a7e0f",
+  "tests": "1206 passed, 0 failed, 1 skipped, 1207 total (ka0s-bounded lua tests/run.lua, rc 0)",
+  "lint": "0 warnings / 0 errors in 156 files (ka0s-bounded luacheck ., rc 0)",
+  "filesChanged": [
+   "DEPENDENCIES.md",
+   "README.md",
+   "docs/ARCHITECTURE.md",
+   "docs/common-tasks.md",
+   "docs/module-map.md",
+   "docs/profiles.md",
+   "docs/schema.md",
+   "docs/settings-panel.md",
+   "docs/testing.md"
+  ],
+  "deadExports": [
+   "core/Bus.lua NS.BusLib: no shipped reader beyond its definition; 1 test mention",
+   "core/ToastSetup.lua NS.HasToast: only tests read it",
+   "core/WidgetsSetup.lua NS.HasWidgets: only tests read it",
+   "core/Database.lua NS.__migrationSteps: test-only seam",
+   "settings/Schema.lua NS.SchemaRuntime: only tests read it",
+   "settings/Schema.lua NS.__schemaLib: test-only seam"
+  ],
+  "commentCitations": [
+   "tests/test_skin_literals.lua:28 NO SUCH PATH: names tests/test_doc_structure.lua; no such file in tests/ or tests/_kit (unedited, replacement not named). The path scan's other hits were judged false positives by reading their comment text: LibKa0s, LootHistory and Blizzard paths, plus basename shorthand; SkinAce.lua was confirmed in libs/LibKa0s. Symbol citations were checked only in comments added on this branch (no hits); migration versions were checked (no hits); the LibKa0s-tag check matched nothing because its filter excluded every two-digit minor, so quoted tags were not actually verified."
+  ],
+  "concerns": [
+   "docs/test-cases.md is STALE: Total 1205 with test_compare.lua (27), while `lua tests/run.lua --list` gives 1206 and test_compare.lua (28); the AT-FIN bundle's copy also says 1206. Not edited, per the rule. The README badge now says the true 1206, so it disagrees with test-cases.md until someone regenerates it with `lua tests/run.lua --list > docs/test-cases.md`. Recommended before merge.",
+   "docs/smoke-tests.md still opens with sections 28 and 29 'none run yet', and has no Sign-off row for these builds. The owner said everything works as expected; marking rows passed is the owner's to record, so it was left unchanged.",
+   "Perf is failing in the AT-FIN bundle (hudLive 7264.4 over the 7000 byte ceiling, combatEvent 3376.5 over 3000). Per that bundle it does not gate this merge but does gate the next tag.",
+   "docs/ARCHITECTURE.md Documentation map: the mechanical check confirmed every docs/*.md filename appears somewhere in the file. It did not verify rows table by table, or the Tier 2 and Verification-table rules.",
+   "data-flow.md, scope.md, known-limitations.md, performance.md and compat-layer.md were checked by targeted grep only, not read end to end. Not done this run: a full API-parity sweep of every addon-table function, and the schema-row sweep beyond the skin keys and branch changes.",
+   "The dead-export scan covered only NS.* members, not members of module tables such as NS.Style.",
+   "scope.md has no skinning entry at all. Left alone; see proposals."
+  ],
+  "proposals": [
+   "Add a skins bullet to docs/scope.md: the feature has no scope entry.",
+   "Decide whether full client restart for new font files belongs in known-limitations.md; smoke rows use 'on a fresh client start' but no doc states the limitation."
+  ]
+ }
+}

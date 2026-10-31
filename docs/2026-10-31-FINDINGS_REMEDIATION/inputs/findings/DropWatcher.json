@@ -1,0 +1,86 @@
+{
+ "repo": "DropWatcher",
+ "tests": {
+  "repo": "DropWatcher",
+  "status": "ok",
+  "summary": "Recorded the pre-merge run in bundle docs/automated-tests/20261031-202124/ and committed it as 0440a49 (ANALYSIS.md, the bundle and RESULTS.md only). Verdict is amber, not green, because perf failed.\n\n- lint: pass, 0 warnings / 0 errors in 206 files (gates commit and tag).\n- tests: pass, 1844 passed, 0 failed, 1 skipped, 1845 total (gates commit and tag). The skip is the same diagnostics-contract case as the previous run.\n- perf: FAIL, 7 scenarios, 2 assertions failed (does not gate the commit, does gate the tag). refreshCaptureOff and refreshCaptureOn allocated 14577.0 bytes/iter, over their 14500-byte ceiling; the previous run measured 13713.0.\n- complexity: pass, 0 warnings, max CCN 15, avg CCN 2.4, 54383 NLOC, 6712 functions (does not gate the commit, does gate the tag). blindFiles 0, crashedFiles 0, 0 files over the 1500 cap, 8 files in the 1000-1500 band.\n\nCCN and NLOC are confirmed clean, so no code changed. All 8 band rows already had dispositions and none newly crossed, so RESULTS.md needed no authored edit. The perf failure falls outside the stop conditions and lint and tests passed, so the record was committed as instructed and the failure is raised under concerns. Runner exit was 0; nothing was pushed, merged, tagged or bumped.",
+  "commit": "0440a49",
+  "bundle": "docs/automated-tests/20261031-202124/",
+  "lint": "pass: 0 warnings / 0 errors in 206 files",
+  "tests": "pass: 1844 passed, 0 failed, 1 skipped, 1845 total",
+  "complexity": "pass: 0 warnings, max CCN 15, avg CCN 2.4, avg NLOC 7.4, avg tokens 75.4, 54383 NLOC, 6712 functions; 8 band files, 0 over cap, 0 blind, 0 crashed",
+  "filesChanged": [
+   "docs/automated-tests/RESULTS.md",
+   "docs/automated-tests/20261031-202124/ANALYSIS.md",
+   "docs/automated-tests/20261031-202124/complexity.txt",
+   "docs/automated-tests/20261031-202124/lint.txt",
+   "docs/automated-tests/20261031-202124/manifest.json",
+   "docs/automated-tests/20261031-202124/perf.json",
+   "docs/automated-tests/20261031-202124/perf.txt",
+   "docs/automated-tests/20261031-202124/test-cases.md",
+   "docs/automated-tests/20261031-202124/tests.txt"
+  ],
+  "newBandFiles": [],
+  "concerns": [
+   "perf FAILED and the verdict is amber. refreshCaptureOff and refreshCaptureOn allocate 14577.0 bytes/iter against the 14500 ceiling in tests/perf.lua. This does not block the commit or the merge, but /dev-copilot:bump-version's tag gate will refuse until it is resolved, so the owner should know before merging. This is not a CCN/NLOC flag, so it was left unfixed.",
+   "The perf regression comes from this branch, not master. A read-only per-commit re-measure from scratch extracts (figures outside the bundle): master 0d9d843 is under the ceiling at 14081.0, and the crossing is bc3c5dc 'DW-01: Give the tables' font the whole font setting (lead ruling on D-07)', which took it to 14577.0 and stayed there through HEAD. The commit adds a font read per repaint in modules/WindowRows.lua; the exact allocation site was not traced. The fix is either to trim that repaint path or to re-pin the ceiling with a recorded reason.",
+   "docs/performance.md's measured re-run log stops at 2026-10-18 (13713.0 / 10481.1), so it no longer matches the current figures. Sync-docs should note this; it was not changed here.",
+   "locales/enUS.lua has been Accepted across three consecutive release runs (20261017-012204, 20261025-152417, 20261025-153954) and is still carried as Accepted, now at 1331 LOC. Anti-pattern #53 owes it a fix or a tracked deviation ID. The previous analysis raised this first; this non-release run did not advance the count.",
+   "core/Compat.lua's journal split to core/CompatJournal.lua is still owed from 1.0.0's watch list (1051 LOC). Its Disposition cell still reads 'Newly crossed', carried verbatim.",
+   "Before this run the record was 48 commits behind HEAD; the previous bundle measured 343370a."
+  ]
+ },
+ "docs": {
+  "repo": "DropWatcher",
+  "status": "ok",
+  "summary": "Docs were synced and committed as 6a0bcaf on feat/2026-10-31-font-pickers-skin-faces, nothing pushed. Most of the branch's doc work was already in place. README still had stale defaults: the main-spec glow was called yellow (now green) and delves, scenarios and solo were called off (now on, and they auto-open). It also lacked the Offer-needs-another-player rule, `/dw skin` and the font settings. Other fixes: `NS.COMMANDS` count 30 to 31, compat shims 86 to 87 (CompatWorld 18), module-map defaults (glow proc, table font, outline) plus `NS.RunSkinVerb` and the `/dw offer` refusal, and four test suites missing from testing.md (skin suites now eight). The README de-AI check on the five changed spots found nothing to change, and README stays free of command tables, library names and font licence text. Green gate passed before the commit.",
+  "commit": "6a0bcaf",
+  "tests": "ka0s-bounded lua tests/run.lua: exit 0, 1844 passed, 0 failed, 1 skipped, 1845 total",
+  "lint": "ka0s-bounded luacheck .: exit 0, 0 warnings / 0 errors in 206 files. Vendor drift: libs/LibKa0s against ../LibKa0s/LibKa0s differs only by the 196 declared media/icons prunes; tests/_kit is identical to ../LibKa0s/testkit.",
+  "filesChanged": [
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/README.md",
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/docs/ARCHITECTURE.md",
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/docs/compat-layer.md",
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/docs/module-map.md",
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/docs/scope.md",
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/docs/settings-panel.md",
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/docs/slash-dispatch.md",
+   "/mnt/d/Profile/Users/Tushar/Documents/GIT/DropWatcher/docs/testing.md"
+  ],
+  "commentCitations": [
+   "tests/test_skin_literals.lua:30 NO SUCH PATH: comment names tests/test_doc_structure.lua, which is not in this repo or tests/_kit; not edited, the replacement is the owner's call",
+   "tests/prose_waivers.lua:19 NO SUCH PATH (likely external): tools/prune-icons.lua is LibKa0s's file, but the comment does not say so; not edited"
+  ],
+  "deadExports": [
+   "core/ClassData.lua:169 CD.ClassOf",
+   "core/ClassData.lua:175 CD.IsDualWield",
+   "core/ClassData.lua:182 CD.IsTitanGrip",
+   "core/ItemRead.lua:116 IR.SameItem",
+   "core/WidgetsSetup.lua:66 NS.HasWidgets (tests use it)",
+   "modules/Asks.lua:453 A.IsFlushing",
+   "modules/CompactCards.lua:387 CC.Plain",
+   "modules/DetailCard.lua:745 DCard.Editor",
+   "modules/Gear.lua:395 G.IsComplete",
+   "modules/ItemFacts.lua:283 IF.Invalidate",
+   "modules/Session.lua:79 S.IsReload",
+   "modules/Sim.lua:108 Host.IsSimGUID",
+   "modules/SimEvents.lua:253 E.Configure",
+   "modules/SimWorld.lua:139 W.SetMember",
+   "modules/SimWorld.lua:227 W.BagItems",
+   "modules/Situations.lua:192 Sit.LastInputs",
+   "modules/TipGrid.lua:200 TG.Painted",
+   "modules/TipMarks.lua:134 TM.NoWrap",
+   "modules/TradeRules.lua:69 TR.Rules",
+   "modules/TradeTimer.lua:134 TT.TickerPeriod",
+   "modules/Window.lua:119 Window.FeedName",
+   "modules/Window.lua:268 Window.TooltipOf",
+   "modules/WindowCompact.lua:77 WC.ValidMode"
+  ],
+  "concerns": [
+   "Perf is the open release gate: the AT-FIN bundle 20261031-202124 is amber because refreshCaptureOff and refreshCaptureOn allocate 14577.0 bytes/iter against the 14500 ceiling that docs/performance.md lists. The bundle says this does not block this commit but the next tag is gated on it. No doc was edited for it.",
+   "Dead-export list comes from a name-count grep of non-test source, with a name appearing only at its definition. Only NS.HasWidgets was checked for test use, so the others may also be test seams, and string-keyed dispatch is not ruled out. Treat them as candidates; nothing was deleted.",
+   "Generated docs were read, not edited: docs/test-cases.md Total 1844 matches the README badge and the suite's 1844 passed."
+  ],
+  "proposals": []
+ }
+}
