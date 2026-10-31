@@ -1,0 +1,19 @@
+id	milestone	repo	title	depends_on
+LK-A1	M2	LibKa0s	Nil owner on a client that refuses the face; stale API row; re-cut local v1.83.0	LK-F90
+LK-A2	M2	LibKa0s	Skin picker rows cannot stay blank; re-cut local v1.83.0	LK-A1
+ST LibKa0sSkinTester-RV2	M2		Take the re-cut v1.83.0	LK-A2
+AT AbsorbTracker-RV2	M2		Take the re-cut v1.83.0	LK-A2
+AM AuraMaster-RV2	M2		Take the re-cut v1.83.0	LK-A2
+BL BankLedger-RV2	M2		Take the re-cut v1.83.0	LK-A2
+CM ConsumableMaster-RV2	M2		Take the re-cut v1.83.0	LK-A2
+DR DpsRace-RV2	M2		Take the re-cut v1.83.0	LK-A2
+DW DropWatcher-RV2	M2		Take the re-cut v1.83.0	LK-A2
+KC KickCD-RV2	M2		Take the re-cut v1.83.0	LK-A2
+LH LootHistory-RV2	M2		Take the re-cut v1.83.0	LK-A2
+MM MultiMeters-RV2	M2		Take the re-cut v1.83.0	LK-A2
+PM PanelMaster-RV2	M2		Take the re-cut v1.83.0	LK-A2
+PF PartyFrameEnhanced-RV2	M2		Take the re-cut v1.83.0	LK-A2
+PG PremadeGroupsFilterExtension-RV2	M2		Take the re-cut v1.83.0	LK-A2
+PC PrettyChat-RV2	M2		Take the re-cut v1.83.0	LK-A2
+QC QuickComms-RV2	M2		Take the re-cut v1.83.0	LK-A2
+WG WhatGroup-RV2	M2		Take the re-cut v1.83.0	LK-A2
