@@ -1,0 +1,19 @@
+id	milestone	repo	title	depends_on
+LK-A3	M2	LibKa0s	Skin picker gains font, texture, outline and scope rows; final local v1.83.0	LK-A2
+DR-F05	M2	DpsRace	Compare bars: one proportional rule, dark blue best, dark gold other	DR-F04
+ST-RV3	M2	LibKa0sSkinTester	Take the final re-cut v1.83.0	LK-A3
+AT-RV3	M2	AbsorbTracker	Take the final re-cut v1.83.0	LK-A3
+AM-RV3	M2	AuraMaster	Take the final re-cut v1.83.0	LK-A3
+BL-RV3	M2	BankLedger	Take the final re-cut v1.83.0	LK-A3
+CM-RV3	M2	ConsumableMaster	Take the final re-cut v1.83.0	LK-A3
+DR-RV3	M2	DpsRace	Take the final re-cut v1.83.0	LK-A3
+DW-RV3	M2	DropWatcher	Take the final re-cut v1.83.0	LK-A3
+KC-RV3	M2	KickCD	Take the final re-cut v1.83.0	LK-A3
+LH-RV3	M2	LootHistory	Take the final re-cut v1.83.0	LK-A3
+MM-RV3	M2	MultiMeters	Take the final re-cut v1.83.0	LK-A3
+PM-RV3	M2	PanelMaster	Take the final re-cut v1.83.0	LK-A3
+PF-RV3	M2	PartyFrameEnhanced	Take the final re-cut v1.83.0	LK-A3
+PG-RV3	M2	PremadeGroupsFilterExtension	Take the final re-cut v1.83.0	LK-A3
+PC-RV3	M2	PrettyChat	Take the final re-cut v1.83.0	LK-A3
+QC-RV3	M2	QuickComms	Take the final re-cut v1.83.0	LK-A3
+WG-RV3	M2	WhatGroup	Take the final re-cut v1.83.0	LK-A3

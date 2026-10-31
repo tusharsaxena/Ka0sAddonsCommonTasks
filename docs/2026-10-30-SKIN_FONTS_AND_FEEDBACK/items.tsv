@@ -1,0 +1,54 @@
+id	milestone	repo	title	depends_on
+CT-01	M0	Ka0sAddonsCommonTasks	Plan, inventory, decisions and baselines
+LK-01	M1	LibKa0s	Fonts payload: ship Prototype, Expressway, Fira Sans Medium with their licenses; delete Inter, Oxanium, Fira Sans Regular
+LK-02	M1	LibKa0s	Skin faces: Ka0s Default Prototype, Obsidian Expressway, WoW Forever Fira Sans Medium (titles and HUD SemiBold)	LK-01
+LK-03	M1	LibKa0s	Font outline setting skin.outline (All text, HUD text only, Off; default All)	LK-02
+LK-04	M1	LibKa0s	Font flags From skin resolver and the minimum font-setting group (size, color incl. class, flags, shadow)	LK-03
+LK-05	M1	LibKa0s	Width parity: body and title sizes per skin measured against Ka0s Default, guard test	LK-04
+LK-06	M1	LibKa0s	HUD size scale per skin: HUD_SIZE and S.HudFontSize	LK-05
+LK-07	M1	LibKa0s	A skin change resets the font and texture overrides (tab, picker, apply to all)
+LK-08	M1	LibKa0s	Skin tab: Reset font and Reset texture buttons; Scope section alignment; Other Ka0s addons heading	LK-07
+LK-09	M1	LibKa0s	Drag strip titles re-fit on every skin repaint, measured in the strip's own font	LK-05
+LK-10	M1	LibKa0s	OptionsWidgets shownWhen any (OR across dropdowns), splitting the file if the cap needs it
+LK-11	M1	LibKa0s	O.SkinVerb: the /xx skin verb opens the new-profile skin picker	LK-08
+LK-12	M1	LibKa0s	Test-kit glyph guard: display strings only use characters every shipped face draws	LK-01
+LK-14	M1	LibKa0s	Accent (primary) button labels read as enabled in every skin (DpsRace Arm Race looks disabled)	
+LK-13	M1	LibKa0s	Docs: docs/api, README credits, CHANGELOG for v1.82.0	LK-12
+LK-90	M1	LibKa0s	Release run and local tag v1.82.0	LK-13
+WS-01	M1	WowAddonStandards	Standard v2.93.0: fonts and licenses, width parity, outline, font-setting minimum set, overrides, skin verb, HUD test-marker carve-out, sim markers, conditional sections MUST, character set
+ST-01	M1	LibKa0sSkinTester	Re-vendor v1.82.0; showcase faces, outline and widths; /skt widths probe; skin verb	LK-90
+AT-01	M2	AbsorbTracker	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags; HUD size scale	LK-90
+AM-01	M2	AuraMaster	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags; HUD size scale	LK-90
+AM-02	M2	AuraMaster	Remove the test-mode TEST marker from containers	AM-01
+AM-03	M2	AuraMaster	Migration: Use the skin's font off where a different font was stored (glow regression); strip re-fit hook	AM-01
+BL-01	M2	BankLedger	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings check	LK-90
+BL-02	M2	BankLedger	Replace characters some skin fonts cannot draw	BL-01
+CM-01	M2	ConsumableMaster	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags; HUD size scale	LK-90
+DR-01	M2	DpsRace	Re-vendor v1.82.0 with skin verb, stubs and facades; stored font flags, font settings minimum set; HUD size scale	LK-90
+DR-02	M2	DpsRace	Arm Race button reads as enabled in every skin	DR-01
+DW-01	M2	DropWatcher	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags	LK-90
+DW-02	M2	DropWatcher	Situations table: Loot rule column fits	DW-01
+DW-03	M2	DropWatcher	Upgrade glow defaults: Proc for both, main 19FF19, off-spec 3FC7EB	DW-01
+DW-04	M2	DropWatcher	Hide glow-style sections neither style dropdown selects	DW-01
+KC-01	M2	KickCD	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags; HUD size scale	LK-90
+KC-02	M2	KickCD	Remove the floating simulation strip; step panel stays open	KC-01
+KC-03	M2	KickCD	Migration: Use the skin's font off where a different font was stored	KC-01
+LH-01	M2	LootHistory	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings check	LK-90
+LH-02	M2	LootHistory	Replace characters some skin fonts cannot draw	LH-01
+MM-01	M2	MultiMeters	Re-vendor v1.82.0 with skin verb, stubs and facades; stored font flags, font settings minimum set; HUD size scale	LK-90
+PM-01	M2	PanelMaster	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings check	LK-90
+PF-01	M2	PartyFrameEnhanced	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags; HUD size scale	LK-90
+PG-01	M2	PremadeGroupsFilterExtension	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings check	LK-90
+PG-02	M2	PremadeGroupsFilterExtension	Expand/collapse button: a chevron glyph, aligned in every skin	PG-01
+PC-01	M2	PrettyChat	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings check	LK-90
+QC-01	M2	QuickComms	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings minimum set and From skin flags; HUD size scale	LK-90
+QC-02	M2	QuickComms	Test groups get numbered glyphs; real groups and callouts without an icon get default glyphs	QC-01
+WG-01	M2	WhatGroup	Re-vendor v1.82.0 with skin verb, stubs and facades; font settings check	LK-90
+IS-01	M3	LibKa0s	Issue: conditional sections across every addon, and the standard MUST	M2
+IS-02	M3	DropWatcher	Issue: stack toasts when several apply	M2
+IS-03	M3	LibKa0s	Issue: check every addon's anchor widths once the fonts are frozen	M2
+IS-04	M3	MultiMeters	Issue: an Insights view	M2
+IS-05	M3	MultiMeters	Issue: bar animations	M2
+IS-06	M3	QuickComms	Comment on #13: animate the pad and the dial on open and close, each on its own	M2
+IS-07	M3	LibKa0s	Issue: measure real Friz Quadrata for WoW Default's sizes	M2
+CT-02	M4	Ka0sAddonsCommonTasks	Report and smoke-test index	M3

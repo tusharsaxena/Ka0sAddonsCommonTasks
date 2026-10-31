@@ -1,0 +1,44 @@
+id	milestone	repo	title	depends_on
+CT-F01	M0	Ka0sAddonsCommonTasks	Plan, decisions, inputs	
+LK-F01	M1	LibKa0s	Fonts payload: ship 15 new Ka0s faces, keep every older face, FONTS.md + licenses in the font folder	CT-F01
+LK-F02	M1	LibKa0s	Skin faces and Obsidian title color; normalized sizes against Prototype; per-face width scale for font overrides	LK-F01
+LK-F03	M1	LibKa0s	Self-contained media preview widgets; Skin tab and first-run picker use them; LSM30 rows fall back to them	LK-F02
+LK-F04	M1	LibKa0s	Skin's own becomes Skin's default	LK-F03
+LK-F05	M1	LibKa0s	Default font outline becomes HUD text only	LK-F04
+LK-F06	M1	LibKa0s	Remove font licensing text from README; API docs, CHANGELOG, glyph guard block	LK-F05
+LK-F90	M1	LibKa0s	Release run and LOCAL tag v1.83.0	LK-F06
+WS-F01	M1	WowAddonStandards	Media pickers MUST preview; picker widget, outline default, label, per-face width and README rules; v2.94.0	
+ST-F01	M1	LibKa0sSkinTester	Re-vendor v1.83.0 and show every picker kind	LK-F90
+AT-F01	M2	AbsorbTracker	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+AT-F02	M2	AbsorbTracker	Every media picker previews (font, statusbar, border, background, sound)	AT-F01
+AM-F01	M2	AuraMaster	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+AM-F02	M2	AuraMaster	Every media picker previews (font, statusbar, border, background, sound)	AM-F01
+BL-F01	M2	BankLedger	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+BL-F02	M2	BankLedger	Every media picker previews (font, statusbar, border, background, sound)	BL-F01
+CM-F01	M2	ConsumableMaster	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+CM-F02	M2	ConsumableMaster	Every media picker previews (font, statusbar, border, background, sound)	CM-F01
+DR-F01	M2	DpsRace	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+DR-F02	M2	DpsRace	Every media picker previews (font, statusbar, border, background, sound)	DR-F01
+DW-F01	M2	DropWatcher	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+DW-F02	M2	DropWatcher	Every media picker previews (font, statusbar, border, background, sound)	DW-F01
+KC-F01	M2	KickCD	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+KC-F02	M2	KickCD	Every media picker previews (font, statusbar, border, background, sound)	KC-F01
+LH-F01	M2	LootHistory	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+LH-F02	M2	LootHistory	Every media picker previews (font, statusbar, border, background, sound)	LH-F01
+MM-F01	M2	MultiMeters	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+MM-F02	M2	MultiMeters	Every media picker previews (font, statusbar, border, background, sound)	MM-F01
+PM-F01	M2	PanelMaster	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+PM-F02	M2	PanelMaster	Every media picker previews (font, statusbar, border, background, sound)	PM-F01
+PF-F01	M2	PartyFrameEnhanced	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+PF-F02	M2	PartyFrameEnhanced	Every media picker previews (font, statusbar, border, background, sound)	PF-F01
+PG-F01	M2	PremadeGroupsFilterExtension	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+PG-F02	M2	PremadeGroupsFilterExtension	Every media picker previews (font, statusbar, border, background, sound)	PG-F01
+PC-F01	M2	PrettyChat	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+PC-F02	M2	PrettyChat	Every media picker previews (font, statusbar, border, background, sound)	PC-F01
+QC-F01	M2	QuickComms	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+QC-F02	M2	QuickComms	Every media picker previews (font, statusbar, border, background, sound)	QC-F01
+WG-F01	M2	WhatGroup	Re-vendor v1.83.0, outline default, font sizes, README font text removed	LK-F90
+WG-F02	M2	WhatGroup	Every media picker previews (font, statusbar, border, background, sound)	WG-F01
+DR-F03	M2	DpsRace	Spell breakdown: single header row with Spell column	DR-F01
+DR-F04	M2	DpsRace	Tooltips on the main HUD elements, pre, mid and post race	DR-F01
+CT-F02	M3	Ka0sAddonsCommonTasks	Report and smoke index	all

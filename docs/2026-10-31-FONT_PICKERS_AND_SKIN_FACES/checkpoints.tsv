@@ -1,0 +1,4 @@
+when	milestone	evidence
+2026-10-31 17:30	M1+M2	LibKa0s ec41b22 3469/0/2, tag v1.83.0 local; WowAddonStandards 38f880b; 16 consumers on the re-cut tag, all gates green; all pushed with notes
+2026-10-31 19:30	Addenda	LibKa0s 6c816fd 3522/0/2, tag v1.83.0 local; 16 consumers on it, drift 0, gates green; DpsRace DR-F05 landed; all pushed with notes
+M5	2026-10-31	Merged --no-ff to master and pushed in 18 repos, both run branches deleted, tags v1.82.0 and v1.83.0 pushed. LibKa0s 33840f0, WowAddonStandards 8eb6181, DpsRace c67a51a. All gates green on the merge results. Owner smoke reported passed. Perf fails recorded for next tag: LibKa0sSkinTester, DpsRace, DropWatcher, PGFE, WhatGroup.

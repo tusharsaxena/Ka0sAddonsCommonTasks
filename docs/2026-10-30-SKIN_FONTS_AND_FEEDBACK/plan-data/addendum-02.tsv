@@ -1,0 +1,2 @@
+id	milestone	repo	title	depends_on
+DR-03	M2	DpsRace	Spell tooltips: hovering a spell icon or breakdown bar, and the damage chart cast markers, shows the full spell tooltip to the right of the window, mid race and post race	DR-01

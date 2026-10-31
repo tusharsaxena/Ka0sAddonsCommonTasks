@@ -1,0 +1,19 @@
+repo	master	passed	failed	skipped	luacheck_files
+LibKa0s	667fb51	3297	0	2	237
+QuickComms	be7cbb4	1260	0	1	143
+AbsorbTracker	fe96c06	954	0	1	77
+AuraMaster	a9c2831	2216	0	1	188
+BankLedger	01f18b8	1510	0	1	111
+ConsumableMaster	b9f0f64	1293	0	1	138
+DpsRace	b6e4576	1146	0	1	148
+DropWatcher	0d9d843	1792	0	1	202
+KickCD	3852628	1557	0	1	153
+LibKa0sSkinTester	7274e37	571	0	1	75
+LootHistory	5b28b54	1834	0	1	151
+MultiMeters	a3284b3	2418	0	1	171
+PanelMaster	f7adca7	1140	0	1	80
+PartyFrameEnhanced	97b4904	538	0	1	87
+PremadeGroupsFilterExtension	6583515	429	0	1	64
+PrettyChat	4fa8452	631	0	1	62
+WhatGroup	8360cb3	1025	0	1	69
+WowAddonStandards	9c4837e	check-standard green			
