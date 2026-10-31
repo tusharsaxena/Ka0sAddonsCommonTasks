@@ -19,3 +19,5 @@ Order:
 Owner, 2026-10-31 (`inputs/image-34`): in test mode the compare bars are always full; make them work as in live, and pass over DpsRace so test and live modes show nothing inconsistent, with no test-mode hacks.
 
 Order in the DpsRace checkout, one agent at a time: bar styling, then this test/live parity pass, then FX remediation, then the M2 adoption. Commit prefix `DR-P`.
+
+Owner ruling, 2026-10-31: compare bars follow the skin's texture by default (`barTextureFromSkin` true for `compare.best` and `compare.other`), even if the color comes out different from what was asked. Keep the colors. Goes in after the parity pass, before FX remediation, with its test pin updated.
