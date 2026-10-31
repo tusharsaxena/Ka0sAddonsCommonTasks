@@ -1,5 +1,7 @@
 # Smoke tests: skin fonts and feedback (LibKa0s v1.82.0)
 
+**Owner result, 2026-10-31:** "everythings works as expected". The owner reported this smoke list passed in the client; the per-check Result cells and each repo's `docs/smoke-tests.md` were not filled in line by line.
+
 The owner runs these checks in the client. Each repo keeps its own checks in `docs/smoke-tests.md`, listed under
 Pending sign-off, and the owner records the results there. This file gives the index and the order to run them in.
 The run marks nothing here as passed.

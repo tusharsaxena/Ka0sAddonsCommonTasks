@@ -1,5 +1,7 @@
 # Smoke tests: font pickers and skin faces (LibKa0s v1.83.0)
 
+**Owner result, 2026-10-31:** "everythings works as expected". The owner reported this smoke list passed in the client; the per-check Result cells and each repo's `docs/smoke-tests.md` were not filled in line by line.
+
 The owner runs these in the client. Each repo's checks are in its `docs/smoke-tests.md`. The run marks nothing as passed. These sit on top of the unfinished 2026-10-30 list, `../2026-10-30-SKIN_FONTS_AND_FEEDBACK/06_SMOKE_TESTS.md`.
 
 **Start with a full client restart.** `/reload` cannot see new font files.
