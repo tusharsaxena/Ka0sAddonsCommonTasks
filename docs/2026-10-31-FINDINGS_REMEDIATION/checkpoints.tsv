@@ -1,1 +1,2 @@
 when	milestone	evidence
+2026-10-31 23:00	M1	16 repos remediated, reviewed, recorded and pushed: tests and lint green; every perf ceiling passes where a suite exists. DpsRace pending.
