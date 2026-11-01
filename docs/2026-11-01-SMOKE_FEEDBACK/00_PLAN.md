@@ -15,4 +15,6 @@ Owner's rulings on this batch, 2026-11-01:
 - All skins: a visible separation between header and content, and a separator line. Good: images 65, 66. Bad: 67. Obsidian's rule too dark: 68; good: 69.
 - PartyFrameEnhanced, PremadeGroupsFilterExtension, PrettyChat: all smoke passed. DpsRace's existing smoke passed.
 
+- LibKa0s #70, #71, #72, added to M3, 2026-11-02: #72 keeps the anchor in the library, not a documented limit. #71 is a straight fix. #70 is not just retired: the chart gains an area-fill mode and DpsRace's Damage profile moves onto it. Its users today are LootHistory and the Skin Tester; DropWatcher takes it when an Insights tab comes. Close the three issues after the merge, spaced out.
+
 Order: M1 library, re-cut local v1.85.0. M2 one re-vendor, then each addon's bugs. M3 features, which needs a further library change and re-cut. Nothing merges or tags remotely without the owner's go-ahead. After the merge, delete every branch, stash and worktree the run made.

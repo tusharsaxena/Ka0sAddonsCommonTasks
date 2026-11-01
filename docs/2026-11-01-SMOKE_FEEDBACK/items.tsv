@@ -24,6 +24,12 @@ SF-MM-5	M2	MultiMeters	Export glyph chat-text
 SF-DR-1	M2	DpsRace	Elapsed and time left clocks inherit the font from the skin (img 18)
 SF-DR-2	M2	DpsRace	File a GitHub issue: keep the Damage profile across sessions, which implies saving it (img 16)
 SF-GATE	M2	Ka0sAddonsCommonTasks	Final gates, one review, checkpoint and push
+SF-L6	M3	LibKa0s	#72: MakeResizable restores a frame's anchors after a grip drag, keeping the new size; windows behave as before
+SF-L7	M3	LibKa0s	#71: S.Dropdown handles WowStyle1DropdownTemplate: flat skinned control, Background faded, Arrow not tinted gold, label stays input.text on hover and press
+SF-L8	M3	LibKa0s	#70: line chart docs and skin tokens confirmed, an area-fill mode added, register row retired
+SF-PG-1	M3	PremadeGroupsFilterExtension	#71: drop the opts.stock and dd.arrow workaround
+SF-ST-2	M3	LibKa0sSkinTester	#71 and #72: drop the workarounds, ST-D2's included, and sample the area chart
+SF-DR-9	M3	DpsRace	#70: Damage profile moves onto the library's line chart with its area fill; same look
 SF-F1	M3	LibKa0s	Right-click on test and sim strips opens a context menu: end test or sim, and more (img 51, 52)
 SF-F2	M3	LibKa0s	Minimap menu gains an action opening the skin selector
 SF-DR-3	M3	DpsRace	Everything under the tab viewer scoped to that tab, charts, tables, up to recent bests (img 15)
