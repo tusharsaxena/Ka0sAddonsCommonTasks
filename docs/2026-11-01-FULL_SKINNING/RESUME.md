@@ -22,3 +22,7 @@ M1 passed and is pushed (`checkpoints.tsv`), but v1.85.0 is being re-cut locally
 The M2 script is `~/.claude/projects/-mnt-d-Profile-Users-Tushar-Documents-GIT-Ka0sAddonsCommonTasks/d3552dd5-7156-418f-9b72-44be07f9b377/workflows/scripts/full-skinning-m2-addons-wf_dc0be42e-fc6.js`, with `args.addons` as `{repo, p, short}` rows; p is the item prefix, FS-<p>. Item agents skip landed ids.
 
 DpsRace's branch already holds `09f02e7`, the owner's 42-dummy catalog, unrelated to skinning and carried on this branch at the lead's choice. Do not recreate that branch from master.
+
+## Fan-out, 2026-11-01, 14:10
+
+v1.85.0 stays local and is re-cut once more for Toast `d.soundFile` and the Moving-to fixes, then 14 addons run in `full-skinning-m2-fanout`. QuickComms is held out: its #13 and #14 build runs on this branch in its own workflow, and its FS-QC items run after that, through the M2 script with `{repo:"QuickComms",p:"QC",short:"QC"}`. Its #13 rulings are in its `docs/superpowers/specs/2026-11-01-open-close-animations-design.md`.
