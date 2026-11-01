@@ -30,3 +30,7 @@ v1.85.0 stays local and is re-cut once more for Toast `d.soundFile` and the Movi
 ## M3 from here, 2026-11-01, 17:00
 
 M2 is pushed. Owner's rulings on the triage, 2026-11-01: each skin gets its own values for bar background, bar border, icon border and glow, with Ka0s Default unchanged; a skin's None bar border style defers to the player's Show border and stored style, and a real style in a skin wins; the KC, AM and DW migration overrides are accepted; the Ka0s Default look moves stay, named on the smoke list. M3 adds the library gaps of that triage, re-cuts local v1.85.0, adds a per-addon `FS-<p>-GATE` commit (re-vendor, adoption, kit check, allow-list, leftovers) to every addon, then FS-WS, FS-GATE, FS-REPORT.
+
+## Finished, 2026-11-01
+
+The run's work is done and waits on the owner. `99_REPORT.md` is the outcome, with the gaps left and what remains. `06_SMOKE_TESTS.md` is the one list to run in game. No smoke has passed, nothing is merged, and the v1.85.0 tag is local. M3 is committed but not pushed. Bump nothing without the owner's go-ahead.
