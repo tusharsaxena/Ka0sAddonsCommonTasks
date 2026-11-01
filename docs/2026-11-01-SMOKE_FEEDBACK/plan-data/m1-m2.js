@@ -1,0 +1,24 @@
+export const meta = {
+  name: 'smoke-feedback-m1-m2',
+  description: 'Smoke feedback: library skin fixes, re-cut local v1.85.0, one re-vendor sweep, addon bug fixes, one final review',
+  phases: [ { title: 'Library' }, { title: 'Revendor' }, { title: 'Addons' }, { title: 'Final' } ],
+}
+const G = '/mnt/d/Profile/Users/Tushar/Documents/GIT'
+const B = G + '/Ka0sAddonsCommonTasks/docs/2026-11-01-SMOKE_FEEDBACK'
+const BR = 'feat/2026-11-01-full-skinning'
+const TR = 'Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01JV4dmMQYizE9a4AjcTvyf2'
+const OK = {type:'object',required:['ok','report'],properties:{ok:{type:'boolean'},report:{type:'string',description:'under 150 words'}}}
+const REV = {type:'object',required:['verdict','issues'],properties:{verdict:{type:'string',enum:['clean','issues']},issues:{type:'array',items:{type:'string'}}}}
+const BASE = `Read ${B}/00_PLAN.md and your items in ${B}/items.tsv; look at the cited images in ${B}/inputs/images/ with the Read tool, only those you need. The owner is near a weekly token limit: be direct, read narrowly, no broad sweeps, no mutation sweeps, no long reports. Skip any id whose commit already exists on the branch. One commit per item, subject starting "<id>: ", ending with a blank line then:\n${TR}\nBranch ${BR}, already checked out. Never push, merge, tag, bump. Use "cd <repo> && ..." in every command. Lua and luacheck through ~/.claude/dev-copilot/bin/ka0s-bounded. Keep CRLF. Tests first for bugs: find the cause, then fix. Smoke checks whose expected result changed lose any pass mark; add one not-run check per item. Finish green and clean, report under 150 words, set ok false only if blocked.`
+phase('Library')
+const lib = await agent(`${BASE}\nRepo ${G}/LibKa0s. Items SF-L1 to SF-L5. Minors bump per its rules; docs/api and CHANGELOG (v1.85.0 block) stay true. Ka0s Default may change only where these items ask. Do these at skin level so every addon gets them. Then SF-REL: re-cut local v1.85.0 per docs/releasing.md the way the last re-cut did, recorded --release battery, ANALYSIS.md, record commit, annotated local tag. Re-look stays Current, lead's call, unless Sim files moved. Set ok false if a gate refuses and a small fix does not clear it.`, {label:'library', phase:'Library', schema:OK})
+if (!lib || !lib.ok) return {stopped:'library', lib}
+phase('Revendor')
+const rv = await agent(`${BASE}\nItem SF-RV, a mechanical sweep with one shell loop, no per-repo reading: in each of LibKa0sSkinTester AbsorbTracker AuraMaster BankLedger ConsumableMaster DpsRace DropWatcher KickCD LootHistory MultiMeters PanelMaster PartyFrameEnhanced PremadeGroupsFilterExtension PrettyChat QuickComms WhatGroup under ${G}, replace libs/LibKa0s and tests/_kit from local tag v1.85.0 of LibKa0s, keeping each repo's icon declaration through the tag's tools/prune-icons.lua, as each repo's docs/revendor/2026-11-01-v1.85.0 records. Add chat-text to MultiMeters' LibKa0s icons line. Commit "SF-RV: Refresh the re-cut LibKa0s v1.85.0". Run each repo's bounded tests and report only reds; fix a red only if it is a pinned value this library change moved.`, {label:'revendor', phase:'Revendor', schema:OK, model:'sonnet'})
+if (!rv || !rv.ok) return {stopped:'revendor', lib, rv}
+phase('Addons')
+const AD = [['QuickComms','SF-QC-1 to SF-QC-3. Keep Rotate and scale the default. Stored scaleIn and scaleOut become the merged scale; scaleInFade and scaleOutFade the merged fade version: a schema step, idempotent. Swap the two spiral labels only, so the motion each row names matches on Open.'],['LibKa0sSkinTester','SF-ST-1.'],['AbsorbTracker','SF-AT-1.'],['BankLedger','SF-BL-1.'],['AuraMaster','SF-AM-1 to SF-AM-3. Defaults change new profiles and a one-time step moves profiles that still hold the old defaults, not a pick. Record deviations in docs/ARCHITECTURE.md.'],['ConsumableMaster','SF-CM-1.'],['MultiMeters','SF-MM-1 to SF-MM-5. Record the deviation in docs/ARCHITECTURE.md.'],['DpsRace','SF-DR-1 and SF-DR-2. SF-DR-2 needs no commit: gh issue create with label enhancement, then add a row to exceptions.tsv in the bundle with the issue URL.']]
+const res = await pipeline(AD, ([r,x]) => agent(`${BASE}\nRepo ${G}/${r}. Items: ${x}\nThen a recorded run through the installed Skill "dev-copilot:wow-automated-tests", committed "SF-REC: ${r}".`, {label:r, phase:'Addons', schema:OK, model:'sonnet'}))
+phase('Final')
+const fin = await agent(`One independent review, read-only, of the SF- commits on ${BR} across ${G}/LibKa0s and the addons named in ${B}/items.tsv. ${B}/00_PLAN.md holds the rulings. Hunt only for real bugs: a ruling not met, a migration overwriting a pick, a meaning color moved, a settings panel skinned by default, a stale skin path. Run the bounded gate in repos with changes. At most 12 verified issues with file:line and the fix. Be brief.`, {label:'review', phase:'Final', schema:REV})
+return {lib, rv, res, fin}
