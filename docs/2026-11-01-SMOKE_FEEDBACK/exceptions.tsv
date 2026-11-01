@@ -1,1 +1,2 @@
 id	reason
+SF-DR-2	No commit: GitHub issue https://github.com/tusharsaxena/DpsRace/issues/19 (enhancement). Proof: cd ../DpsRace && gh issue view 19 --json title
