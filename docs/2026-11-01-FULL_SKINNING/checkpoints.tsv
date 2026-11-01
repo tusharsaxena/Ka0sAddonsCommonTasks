@@ -2,3 +2,4 @@ when	milestone	evidence
 2026-11-01 10:57	M1-partial	12 of 13 M1 items committed and pushed (LibKa0s fd5635f). Independent review was running, unfinished, when the owner restarted the PC. Nothing reviewed, no v1.85.0.
 2026-11-01 12:20	M1	LibKa0s 3407f43 pushed; local v1.85.0 a2432e4 unpushed. 3728 passed, 0 failed, 2 skipped; luacheck 0/0; max CCN 15. Review 7 issues fixed in 153b906. Re-look Current is the lead's call, not the owner's.
 2026-11-01 16:58	M2	16 addons pushed on LibKa0s 9776130 (local v1.85.0). Re-run by the lead: every addon 0 failed, luacheck 0/0. QuickComms also holds #13 and #14, DpsRace the 42-dummy catalog, 10 s toast and sound selector. AuraMaster bar border left for the owner, ruled for M3.
+2026-11-01 21:50	M3	All 18 repos pushed; local v1.85.0 at LibKa0s 2ad1a50, unpushed. Lead re-ran 17 repos: 26320 passed, 0 failed, luacheck 0/0. Standard v2.97.0. Smoke list 06_SMOKE_TESTS.md; none passed.

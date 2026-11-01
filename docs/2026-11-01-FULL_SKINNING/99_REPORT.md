@@ -101,7 +101,6 @@ From each repo's newest `docs/automated-tests` bundle, run on a clean tree. Each
 These were not your rulings. Overturn any of them.
 
 - **Preview and simulation re-look answered Current.** The release needs that answer; you did not give it. `checkpoints.tsv` M1 row and LibKa0s `CHANGELOG.md:149`.
-- **0.2 s for the dial's default** came from your screenshot. QuickComms' spec line 29 records it as "ruled by the owner", which overstates it: you ruled the style, and the number was read off a screenshot. Git holds no record of the screenshot.
 - **The 42-dummy catalog is carried on this branch** though it has nothing to do with skinning (`RESUME.md`).
 
 Addon agents made these calls and flagged them:
@@ -125,7 +124,6 @@ Addon agents made these calls and flagged them:
 
 ## What could not be traced
 
-- The screenshot behind 0.2 s has no record in git.
 - LibKa0s has no `docs/smoke-tests.md`, so the library has no check IDs of its own; it is smoked through the addons.
 - The 42 dummies have no check in DpsRace's `docs/smoke-tests.md`. The first-section row has no ID.
 - The agent digest has no section for AbsorbTracker or QuickComms, so their left-overs come from their commits and bundles.
