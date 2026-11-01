@@ -1,1 +1,2 @@
 id	reason
+FS-PM-FLIP	No work: PanelMaster has no D2 to D7 row in the map, so no default flips and no migration are owed; its only D row is 430 (D8), on the Leave list, and defaults/, modules/ and the migration code are untouched. Proof (run in this folder, prints 0): python3 -c "import csv; print(sum(r['addon']=='PanelMaster' and r['cause_id'] in ('D2','D3','D4','D5','D6','D7') for r in csv.DictReader(open('plan-data/SKIN_CAUSES_map.csv'))))"
