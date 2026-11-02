@@ -1,0 +1,13 @@
+id	milestone	repo	title
+R3-L1	M1	LibKa0s	AceGUI Dropdown, Ka0sMedia_Font, Ka0sMedia_Statusbar take the skinned WowStyle1 dropdown look: flat box, left label, one skin chevron, no gold button, skinned pullout, media preview kept (img 83, 84)
+R3-L2	M1	LibKa0s	FadeNineSlice draws a 1 px border in the skin's border color in every skin, visible on dark skins like MakeResizable's (img 85-87, 93)
+R3-L3	M1	LibKa0s	IconBorder: icon zoomed 0.07 by default (opts override), 1 px outline in the skin's border color in every skin, never 2 px (img 88-92)
+R3-REL	M1	LibKa0s	Re-cut local v1.85.0 with a recorded release battery
+R3-RV	M2	*	Re-vendor the re-cut LibKa0s v1.85.0 into the 16 addons
+R3-DR-1	M2	DpsRace	Elapsed and Left clocks (and figures, spell rows if the same cause) really follow the skin's font; diagnose first (img 81, 82; SG-DR-2 failed)
+R3-SIM-KC	M2	KickCD	Simulation step delay slider, as in the other sims
+R3-SIM-MM	M2	MultiMeters	Simulation step delay slider, as in the other sims
+R3-DEFER	M2	LibKa0s	SF-DR-9 deferred: note on LibKa0s#70, no code
+R3-SMOKE	M2	Ka0sAddonsCommonTasks	Record the owner's passes and fails in both earlier 06 files and per-addon smoke files
+R3-FIX	M3	*	Fixes from the independent review
+R3-GATE	M3	Ka0sAddonsCommonTasks	Green loop, 06_SMOKE_TESTS.md, 99_REPORT.md, push
