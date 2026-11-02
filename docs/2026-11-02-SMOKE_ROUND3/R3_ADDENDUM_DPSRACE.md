@@ -18,3 +18,7 @@ Owner's ask: on the idle race screen (length buttons, Target card, Arm Race), sh
 - **Live:** it swaps at once on a length button, Custom, a new target or a spec change, and when the board invalidates.
 - **Hover:** a tooltip with the full run (date, length, damage, DPS, top 3 spells). **Click:** opens Results on that run.
 - **Skinned:** every element through the library, like the Target card. It fits the window's current width, and none of the existing layout moves.
+
+## R3-DR-5: Compare bars as bright as the runs table's (owner, 2026-11-03 00:48, images 103, 104)
+
+Owner's ask: the bars in the Results compare view (image 103: the This run column's blue and the Runner-up column's gold, behind each figure) are far too dim. Make them as bright as the run list's bars (image 104), keeping each bar's own tint. The lead's reading: raise the fill's alpha and brightness to the run list's values under the same skin, through the same skin token or alpha path, and leave the hue alone. It must hold in every skin, and the numbers on the bars stay readable (check the contrast of text on a bright fill).
