@@ -99,3 +99,7 @@ Also still owed, from the `[No lib]` and per-skin walk sections of that file: ru
 ## SG-MM-1 (not run)
 
 - SG-MM-1: In MultiMeters, drag the resize grip of a window wider and narrower: the column headers never draw past the window edge during the drag, as the cells already do. Not run.
+
+## SG-AT-1 (not run)
+
+- SG-AT-1: In AbsorbTracker, /at sim opens the library step window (fight, drain, refresh) and plays nothing until you start it; a run follows the scripted step gaps, a click on a step jumps the bar to that shield, and Stop (or /at sim stop) returns the bar to live data. Not run.
