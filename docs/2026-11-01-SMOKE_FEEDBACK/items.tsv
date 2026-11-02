@@ -41,3 +41,15 @@ SF-DR-8	M3	DpsRace	Sim mode shows the Sim stepper window alongside the race wind
 SF-AT-2	M3	AbsorbTracker	/at sim, modeled on DpsRace's sim with these changes
 SF-KC-1	M3	KickCD	Sim step with both target and focus casting
 SF-F-REC	M3	Ka0sAddonsCommonTasks	Re-cut, re-vendor, gates, smoke list, push
+SG-L1	M4	LibKa0s	Launcher menu: Sim mode where the addon has one, Open settings for all, one checkbox behavior for every row (img 72)
+SG-L2	M4	LibKa0s	Every addon appears twice among minimap buttons: find the cause, fix it (img 74, 75)
+SG-L3	M4	LibKa0s	One-time skin selector popup on the next release, once per account, not per addon
+SG-REL	M4	LibKa0s	Re-cut local v1.85.0 with a full release battery
+SG-RV	M4	AbsorbTracker	Re-vendor into 16 addons with launcher wiring for Sim mode
+SG-AT-1	M4	AbsorbTracker	/at sim gets the library Sim stepper window like MultiMeters (img 76)
+SG-DR-1	M4	DpsRace	/dr sim does not start by itself
+SG-SIM	M4	DpsRace	Every sim respects the step duration setting: DpsRace, AbsorbTracker, BankLedger, DropWatcher, KickCD, LootHistory, MultiMeters
+SG-MM-1	M4	MultiMeters	Column headers still overflow the window while dragging; cells are fixed (img 77)
+SG-DR-2	M4	DpsRace	Elapsed and Left clocks really follow the skin's font (img 78-80 all draw the same face)
+SG-DR-3	M4	DpsRace	Insights opens on Overall, remembers the last tab within the session, no SavedVariable
+SG-GATE	M4	Ka0sAddonsCommonTasks	Review, gates, smoke list, push

@@ -20,4 +20,6 @@ Owner's rulings on this batch, 2026-11-01:
 - 2026-11-02: M3 starts straight after M2, not at the limit reset, and the owner smokes everything together at the end.
 - Lead's call: AuraMaster's v17 keeps forcing bars' Show border on, because a deliberate off cannot be told from the old default, the owner asked for a border on every bar, and overwriting is accepted. Named on the smoke list.
 
+- M4, the owner's second smoke round, 2026-11-02: everything else passed. Items SG-* in `items.tsv`, images 72 to 80. The lead's calls: the one-time skin popup is once per account, from the first addon loaded. SF-DR-9 stays open, waiting on the owner.
+
 Order: M1 library, re-cut local v1.85.0. M2 one re-vendor, then each addon's bugs. M3 features, which needs a further library change and re-cut. Nothing merges or tags remotely without the owner's go-ahead. After the merge, delete every branch, stash and worktree the run made.
