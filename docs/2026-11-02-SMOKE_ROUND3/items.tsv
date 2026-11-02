@@ -18,3 +18,4 @@ R3-L7	M1	LibKa0s	Delete Ka0s Friz Quadrata TT; stored picks migrate to Ka0s Ubun
 R3-FRIZ	M2	*	Addons: references and stored picks of Ka0s Friz Quadrata TT move to Ka0s Ubuntu
 R3-DR-2	M2	DpsRace	A new profile races 1 minute (race.defaultLength 60)
 R3-DR-3	M2	DpsRace	Show near a training dummy (hud.autoShow) on by default; auto-arm stays opt-in
+R3-DR-4	M2	DpsRace	Idle screen: Your best card (spec+category+length) as the target, beat X on Arm Race (img 101)

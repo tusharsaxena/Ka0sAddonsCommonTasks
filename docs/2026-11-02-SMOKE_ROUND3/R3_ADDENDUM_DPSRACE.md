@@ -5,3 +5,16 @@
 - **Ruling:** a new profile's race length (`race.defaultLength`) is **60 s**, not 120.
 
 Items R3-DR-2 (length) and R3-DR-3 (auto-show), in the DpsRace stage with R3-DR-1.
+
+## R3-DR-4: "Your best" target card on the idle screen (owner, 2026-11-03 00:45, image 101)
+
+Owner's ask: on the idle race screen (length buttons, Target card, Arm Race), show the current best for that duration and target type as the target to beat. The owner approved the lead's mockup, "Build as mocked":
+
+- **Section** "Your best · <spec> · <category> · <length>", in the skin's label color, between the Target card and Arm Race.
+- **Card:** the best's DPS as the big figure (HUD font) and its damage on the right (dim). Line two: date · ilvl · top spell (dim, truncated).
+- **Arm Race** reads "Arm Race · beat <DPS>" while a best exists.
+- **Empty state:** "No race yet: this one sets the mark." With no target: "Target a dummy to see your best."
+- **Data:** the existing bests board, keyed spec | target category | length (modules/Bests.lua:32), the same best the live chart's pace and the result delta read. Flagged runs never count. Nothing new is stored.
+- **Live:** it swaps at once on a length button, Custom, a new target or a spec change, and when the board invalidates.
+- **Hover:** a tooltip with the full run (date, length, damage, DPS, top 3 spells). **Click:** opens Results on that run.
+- **Skinned:** every element through the library, like the Target card. It fits the window's current width, and none of the existing layout moves.
