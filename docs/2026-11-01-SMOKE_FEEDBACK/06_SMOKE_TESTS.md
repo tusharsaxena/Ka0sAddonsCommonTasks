@@ -119,3 +119,19 @@ Also still owed, from the `[No lib]` and per-skin walk sections of that file: ru
 ## SG-SIM (not run)
 
 - SG-SIM: In DpsRace, set Race > Simulator > Simulation step delay to 5, run /dr sim and press Run: each step follows the last by about 5 seconds, and changing the slider mid-run takes effect from the next step. BankLedger, DropWatcher and LootHistory already read their slider; KickCD and MultiMeters have no such setting (an owner call is open). Not run.
+
+## M4: the owner's second smoke round, with the review's fixes (none run)
+
+The checks above under SG-RV, SG-MM-1, SG-AT-1, SG-DR-1, SG-DR-2, SG-DR-3 and SG-SIM stand. The re-cut after the review changes what they must show; each id below is the full set for M4.
+
+- SG-L1: Right-click the minimap button of every addon: Open settings is always present and live; Sim mode is present only where the addon has a sim; every toggle row is a checkbox with a live tick. In DpsRace, start /dr sim: only Sim mode is ticked, Test mode is not.
+- SG-L2: Count the minimap buttons per addon in your button collector with each addon enabled once: one button per addon. If two remain, note which collector and which addons; the library makes one broker object and one button and never registers a compartment entry.
+- SG-L3: With a profile that has never seen the notice, log in: one skin picker opens in total, not one per addon. Relog: it does not open again. With AbsorbTracker disabled and every other addon already past the notice, log in: it does not open. Log in while in combat: it opens after combat ends, however long the combat runs. Known gap: an addon with no record that loads before every addon that has one still opens it once.
+- SG-REL: The local tag v1.85.0 is at 13e455d (eighth re-cut, bundle docs/automated-tests/20261102-130954/ in LibKa0s). Nothing to run in the client; confirm the tag is not on the remote.
+- SG-RV: All 16 vendored copies carry the re-cut OptionsSkinPicker; with every addon on, /reload shows no Lua error.
+- SG-AT-1: In AbsorbTracker, Settings > General > Behavior > Simulation step delay (seconds) exists; at 4 s each step of /at sim follows the last by about 4 s, and a change lands on the next step.
+- SG-DR-1: /dr sim does not start by itself; the race stays armed until you press Run or play the Armed step.
+- SG-SIM: In DpsRace with the delay at 5, play the Armed step: the countdown lasts about 5 s and Race starts lights as the race starts. At 1 s the countdown is about 1 s. Repeat the delay setting in AbsorbTracker, BankLedger, DropWatcher, LootHistory. KickCD and MultiMeters keep a fixed 1 s and stay the open owner call.
+- SG-MM-1: In MultiMeters, drag a window narrower: the Deaths column header is cut at the window edge during the drag, as the cells are.
+- SG-DR-2: In DpsRace, Elapsed and Time Left use the active skin's font under Ka0s Default, Obsidian and WoW Forever. If not, check your SavedVariables clocks.fontFromSkin: this depends on it being false in your profile.
+- SG-DR-3: Insights opens on Overall the first time; later opens remember the last board for the session only; /reload resets it.
