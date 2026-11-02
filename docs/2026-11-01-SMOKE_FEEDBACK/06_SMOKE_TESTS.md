@@ -103,3 +103,19 @@ Also still owed, from the `[No lib]` and per-skin walk sections of that file: ru
 ## SG-AT-1 (not run)
 
 - SG-AT-1: In AbsorbTracker, /at sim opens the library step window (fight, drain, refresh) and plays nothing until you start it; a run follows the scripted step gaps, a click on a step jumps the bar to that shield, and Stop (or /at sim stop) returns the bar to live data. Not run.
+
+## SG-DR-1 (not run)
+
+- SG-DR-1: In DpsRace, /dr sim opens the race window armed and the step window beside it, and nothing moves until you press Run or play the Armed step; the Armed step then starts the 3 second countdown. Not run.
+
+## SG-DR-2 (not run)
+
+- SG-DR-2: In DpsRace on your existing profile, /reload once, then switch the skin between Ka0s Default, Obsidian and WoW Forever: the Elapsed and Time Left clocks change face with the skin each time. Not run.
+
+## SG-DR-3 (not run)
+
+- SG-DR-3: In DpsRace, open Results and click Insights: Overall is lit. Pick another board, switch to Runs and back to Insights, close and reopen Results: the board you picked is lit; after /reload Overall is lit again. Not run.
+
+## SG-SIM (not run)
+
+- SG-SIM: In DpsRace, set Race > Simulator > Simulation step delay to 5, run /dr sim and press Run: each step follows the last by about 5 seconds, and changing the slider mid-run takes effect from the next step. BankLedger, DropWatcher and LootHistory already read their slider; KickCD and MultiMeters have no such setting (an owner call is open). Not run.
