@@ -11,3 +11,8 @@ R3-DEFER	M2	LibKa0s	SF-DR-9 deferred: note on LibKa0s#70, no code
 R3-SMOKE	M2	Ka0sAddonsCommonTasks	Record the owner's passes and fails in both earlier 06 files and per-addon smoke files
 R3-FIX	M3	*	Fixes from the independent review
 R3-GATE	M3	Ka0sAddonsCommonTasks	Green loop, 06_SMOKE_TESTS.md, 99_REPORT.md, push
+R3-L4	M1	LibKa0s	Obsidian body font a tad smaller so Loot History's Date fits (img 95, 96)
+R3-L5	M1	LibKa0s	Obsidian alternating row tint slightly more visible (img 95)
+R3-L6	M1	LibKa0s	Vendor Ubuntu Regular as Ka0s Ubuntu (UFL); WoW Default's body, title and HUD face (img 98, 99)
+R3-L7	M1	LibKa0s	Delete Ka0s Friz Quadrata TT; stored picks migrate to Ka0s Ubuntu
+R3-FRIZ	M2	*	Addons: references and stored picks of Ka0s Friz Quadrata TT move to Ka0s Ubuntu
