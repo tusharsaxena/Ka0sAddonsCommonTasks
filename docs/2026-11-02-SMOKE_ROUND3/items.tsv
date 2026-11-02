@@ -16,3 +16,5 @@ R3-L5	M1	LibKa0s	Obsidian alternating row tint slightly more visible (img 95)
 R3-L6	M1	LibKa0s	Vendor Ubuntu Regular as Ka0s Ubuntu (UFL); WoW Default's body, title and HUD face (img 98, 99)
 R3-L7	M1	LibKa0s	Delete Ka0s Friz Quadrata TT; stored picks migrate to Ka0s Ubuntu
 R3-FRIZ	M2	*	Addons: references and stored picks of Ka0s Friz Quadrata TT move to Ka0s Ubuntu
+R3-DR-2	M2	DpsRace	A new profile races 1 minute (race.defaultLength 60)
+R3-DR-3	M2	DpsRace	Show near a training dummy (hud.autoShow) on by default; auto-arm stays opt-in

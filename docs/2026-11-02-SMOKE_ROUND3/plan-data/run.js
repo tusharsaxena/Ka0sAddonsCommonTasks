@@ -32,7 +32,7 @@ if (!rv || !rv.ok) return {stopped:'revendor', diag, lib, rel, rv}
 
 phase('Addons')
 const AD = [
-  ['DpsRace', `R3-DR-1. The diagnosis: ${JSON.stringify(diag)}. Make the Elapsed and Left clocks draw the skin's hud.font under every skin (check Ka0s Default, Obsidian, WoW Forever, Glass faces in a test through the real library), and the Damage/DPS figures and spell rows too if they share the cause. A switch of skin must restyle them. Keep their colors (they mean something) and the mono clocks unoutlined.`],
+  ['DpsRace', `R3-DR-1. The diagnosis: ${JSON.stringify(diag)}. Make the Elapsed and Left clocks draw the skin's hud.font under every skin (check Ka0s Default, Obsidian, WoW Forever, Glass faces in a test through the real library), and the Damage/DPS figures and spell rows too if they share the cause. A switch of skin must restyle them. Keep their colors (they mean something) and the mono clocks unoutlined. Then R3-DR-2 and R3-DR-3 from ${B}/R3_ADDENDUM_DPSRACE.md: race.defaultLength 60 for a new profile, hud.autoShow default true (auto-arm stays false); update the defaults comments, tests, settings tests, docs and smoke checks that pin 120 or the opt-in.`],
   ['KickCD', `R3-SIM-KC: a Simulation step delay (seconds) slider and sim.stepDelay setting, the same path, range, default and behavior as AbsorbTracker's and DpsRace's (read their code and tests first); the sim follows it from the next step.`],
   ['MultiMeters', `R3-SIM-MM: same as KickCD's: a Simulation step delay slider and sim.stepDelay as the other sims have it.`],
 ]
