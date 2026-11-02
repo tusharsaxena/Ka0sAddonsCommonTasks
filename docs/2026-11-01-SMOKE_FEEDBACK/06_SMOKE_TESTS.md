@@ -95,3 +95,7 @@ Also still owed, from the `[No lib]` and per-skin walk sections of that file: ru
 ## SG-RV (not run)
 
 - SG-RV-1: On one account, with all addons on the refreshed LibKa0s v1.85.0, log in once: exactly one skin picker opens (the first addon to ask), reopening any other addon or /reload shows none; the right-click launcher menu of AbsorbTracker, BankLedger, DpsRace, DropWatcher, KickCD, LootHistory and MultiMeters shows a Sim mode checkbox that ticks while the sim runs and starts or stops it, and every addon shows Open settings. Not run.
+
+## SG-MM-1 (not run)
+
+- SG-MM-1: In MultiMeters, drag the resize grip of a window wider and narrower: the column headers never draw past the window edge during the drag, as the cells already do. Not run.
