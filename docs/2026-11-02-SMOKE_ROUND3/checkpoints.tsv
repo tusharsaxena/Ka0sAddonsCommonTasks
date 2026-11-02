@@ -1,1 +1,2 @@
 when	milestone	evidence
+2026-11-02 23:59	M1	LibKa0s release battery docs/automated-tests/20261102-235338/ (release 1.85.0, clean at 8582037): lint pass 0 warnings / 0 errors in 291 files; tests 3949 passed, 0 failed, 3 skipped, 3952 total; complexity pass, 0 over CCN 15 (max 15); perf skipped, not measured. Local tag v1.85.0 re-cut at 7e6864b (R3-REL), never pushed; branch feat/2026-11-01-full-skinning pushed at 7e6864b.
