@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Ka0s skins: header and icon border sign-off (smoke round 4)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+*{box-sizing:border-box}
+body{margin:0;background:#101118;color:#d8d8de;font:14px/1.45 "Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif}
+main{max-width:1560px;margin:0 auto;padding:24px 20px 60px}
+h1{font-size:24px;margin:0 0 6px;color:#fff}
+h2{font-size:19px;margin:36px 0 8px;color:#fff;border-bottom:1px solid #2c2e3c;padding-bottom:6px}
+h3{font-size:16px;margin:22px 0 6px;color:#fff}
+p,li{max-width:1200px}
+code{font:12px Consolas,"Cascadia Mono",monospace;color:#cfd3ff}
+.world{background:#1a1c2a}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:18px;border-radius:6px}
+.card{margin:0;padding:12px;background:#1a1c2a;border-radius:4px}
+.card figcaption{margin-bottom:8px;color:#e6e6ee}
+.card .k{font:12px Consolas,monospace;color:#8a8ea8}
+.desc{font-size:12px;color:#9a9db2}
+.win{position:relative;overflow:hidden;margin:0 auto;font-family:"Segoe UI",system-ui,sans-serif}
+.win .inner{position:absolute;inset:0;pointer-events:none;z-index:3}
+.band{height:30px;line-height:30px;padding:0 30px;position:relative;font-weight:600;text-shadow:0 0 1px #000,0 0 1px #000}
+.band .x{position:absolute;right:9px;top:0;font-size:14px}
+.body{padding:10px 12px 12px;text-shadow:0 0 1px #000}
+.body>div{margin-bottom:7px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row.mid{gap:14px;margin-top:8px}
+.btn{display:inline-block;padding:3px 14px;font-weight:600}
+.dd{display:inline-flex;align-items:center;justify-content:space-between;width:150px;padding:3px 8px}
+.arr{font-size:10px;margin-left:8px}
+.tabs{display:flex;gap:3px;padding-top:2px}
+.tab{padding:3px 12px 4px}
+.tbl{font-size:.95em}
+.th,.tr{display:flex;justify-content:space-between;padding:3px 8px}
+.th{font-weight:600}
+.cbw{display:inline-flex;align-items:center;gap:6px}
+.cb{display:inline-flex;width:15px;height:15px;align-items:center;justify-content:center;font-size:12px;font-weight:700;line-height:1}
+.bar{display:inline-block;width:130px;height:14px;position:relative}
+.bar>span{display:block;height:100%}
+.icon{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;background:#050505;color:#d0221b;font:700 20px Georgia,serif;text-shadow:none}
+.icon.big{width:40px;height:40px;font-size:26px}
+.keys{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:10px;font-size:12px;color:#c4c6d6}
+.keys i{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:4px;border:1px solid #444}
+.face{font-size:12px;color:#9a9db2;margin:6px 0 0}
+.note{font-size:12px;color:#d9b36a;margin:4px 0 0}
+.opt .tag{display:inline-block;min-width:26px;text-align:center;background:#ffd100;color:#111;border-radius:3px;margin-right:6px}
+.nums{font-size:13px;color:#d6d8e6;margin:8px 0 0}
+.ruleline{display:flex;gap:10px;align-items:center;margin-top:8px;font-size:12px;color:#9a9db2}
+.rulesw{width:90px;flex:none;border:1px solid #333}
+.rulesw div{height:12px}
+table.n{border-collapse:collapse;margin:10px 0;font-size:13px}
+table.n td,table.n th{border:1px solid #2c2e3c;padding:5px 9px;text-align:left;vertical-align:top}
+table.n th{background:#1d1f2c;color:#fff}
+.irow{display:grid;grid-template-columns:260px 210px 170px 210px 170px;gap:14px;align-items:center;padding:12px;background:#1a1c2a;margin-bottom:8px;border-radius:4px}
+.irow.ref{opacity:.95}
+.iname p{font-size:12px;color:#9a9db2;margin:4px 0 0}
+.ic{display:flex;gap:8px;align-items:center}
+.icbox{width:64px;height:64px;display:flex;align-items:center;justify-content:center;border:1px solid #2c2e3c}
+.iclab{font-size:12px}
+.icr{font-size:12px;color:#c4c6d6}
+.reply{background:#1a1c2a;padding:12px 18px;border-left:3px solid #ffd100}
+.reply li{margin:3px 0}
+</style></head>
+<body><main>
+<h1>Ka0s skins: header and icon border sign-off</h1>
+<p>Smoke round 4, item R4-MOCK (bundle <code>docs/2026-11-03-SMOKE_ROUND4</code>, owner feedback items 4 and 6). Every value on this page is a token
+read from <code>LibKa0s/LibKa0s/SkinDefs.lua</code> (DEFS_MINOR 26) and <code>SkinDefsOthers.lua</code> (minor 8) on branch
+<code>feat/2026-11-01-full-skinning</code>: both files were loaded under a stub LibStub in lua5.1 and each skin resolved as
+<code>Skin:ResolveSkin</code> does (Ka0s Default's tokens with the skin's own over them, <code>false</code> dropped). Nothing is
+guessed; the only stand-ins are client art CSS cannot draw, and each is captioned.</p>
+<ul>
+<li>Registered skins, in registration order: Ka0s Default, Obsidian, Azeroth, Glass, High Contrast, Ember, WoW Default, WoW Midnight, WoW Forever. No other skin is registered. The EllesmereUI source (<code>eui</code>)
+is a source, not a registered skin, and is not shown.</li>
+<li>Alphas composite over a dark game-world backdrop, <code>#1a1c2a</code>, so translucent skins (Glass, Ka0s Default) look as they do in game.
+The contrast figures below were measured over black, as LibKa0s' tests measure them.</li>
+<li>The header band is painted once, at <code>title.height</code> 30 px, as windows that pass <code>noTopBar</code> paint it and as the Showroom will
+once R4-ST4 fixes its double paint. Today's Showroom stacks <code>title.bg</code> twice, so Glass's 0.10 white band and Ka0s Default's
+0.90 black band read denser in <code>/skintester</code> than here.</li>
+<li>Fonts are the system UI face here. The in-game face and sizes are under each card (sizes on this page are 1.1x the token size,
+for legibility). Window text is outlined in game (<code>font.outline</code> OUTLINE); a faint outline stands in for it here.</li>
+</ul>
+
+<h2>1. Every skin, header and main elements</h2>
+<p>Each card: the window edge (<code>win.border</code>, <code>win.borderSize</code>, <code>win.inner</code> 1 px inside it), a 30 px header band
+(<code>title.bg</code>, or the <code>title.bgTop</code> to <code>title.bgBottom</code> gradient; <code>title.text</code>; <code>title.align</code>; close glyph in
+<code>close.rest</code>), then body and dim text, a button and a primary button, a dropdown and its arrow (<code>icon.arrow</code>), a tab strip
+(selected first), a table header with a plain, a striped and a selected row, a checkbox, a statusbar (<code>bar.bg</code>, <code>bar.fill</code>,
+<code>bar.border</code> when <code>bar.borderStyle</code> is not None) and an icon with its 1 px <code>icon.border</code>.</p>
+<div class="grid world">
+<figure class="card"><figcaption><b>Ka0s Default</b> <span class="k">ka0s</span><br><span class="desc">Today&#x27;s look: dark panels, hard 1px black edges, gold titles.</span></figcaption>
+<div class="win" style="width:440px;background:rgba(15,15,20,0.92);border:1px solid #000000;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(61,61,69,0.85);border-radius:0px"></div><div class="band" style="background:rgba(0,0,0,0.9);text-align:center;color:#FFD100;font-size:15.4px">Ka0s Default<span class="x" style="color:#B2B2B8">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E6E6E6">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B2B2B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:rgba(51,41,8,0.95);border:1px solid rgba(255,209,0,0.8);color:#FFD100;border-radius:0px">Apply</span><span class="dd" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#E6E6E6">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,209,0,0.16)"><span class="tab" style="background:rgba(46,46,46,0.9);border:1px solid transparent;box-shadow:inset 0 -2px 0 #FFD100;color:#FFD100">General</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Display</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.04);color:#FFD100"><span>Name <b style="color:#FFD100">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E6E6E6"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.03);color:#E6E6E6"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#E6E6E6"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E6E6E6"><span class="cb" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(0,0,0,0.5);border:none;"><span style="width:65%;background:#338CF2"></span></span><span class="icon" style="box-shadow:0 0 0 1px #000000">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:rgba(15,15,20,0.92)"></i><code>win.bg</code> #0F0F14@0.92</span><span><i style="background:#000000"></i><code>win.border</code> #000000 1px flat</span><span><i style="background:rgba(0,0,0,0.9)"></i><code>title.bg</code> #000000@0.9</span><span><i style="background:#FFD100"></i><code>title.text</code> #FFD100</span><span><i style="background:#000000"></i><code>icon.border</code> #000000 Solid 1px</span></div><p class="face">In game: Ka0s Prototype 12 / Ka0s Prototype 14, OUTLINE; bar texture Ka0s Default</p></figure><figure class="card"><figcaption><b>Obsidian</b> <span class="k">obsidian</span><br><span class="desc">True black and flat, hairline edges, one cool blue accent.</span></figcaption>
+<div class="win" style="width:440px;background:#0A0A0B;border:1px solid #202024;border-radius:0px">
+  <div class="band" style="background:#1E1E22;text-align:center;color:#2A86D1;font-size:16.0px">Obsidian<span class="x" style="color:#9B9BA4">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E8E8EC">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#9B9BA4">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:#141416;border:1px solid #2A2A30;color:#E8E8EC;border-radius:0px">Refresh</span><span class="btn" style="background:#2A86D1;border:1px solid #4DB8FF;color:#FFFFFF;border-radius:0px">Apply</span><span class="dd" style="background:#040405;border:1px solid #26262B;color:#E8E8EC">Ka0s skins<span class="arr" style="color:#4DB8FF">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid #4A4A54"><span class="tab" style="background:rgba(0,0,0,0);border:1px solid transparent;box-shadow:inset 0 -2px 0 #4DB8FF;color:#F2F2F4">General</span><span class="tab" style="background:rgba(0,0,0,0);border:1px solid transparent;color:#9B9BA4">Display</span><span class="tab" style="background:rgba(0,0,0,0);border:1px solid transparent;color:#9B9BA4">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:#101012;color:#4DB8FF"><span>Name <b style="color:#F2F2F4">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E8E8EC"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.09);color:#E8E8EC"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(77,184,255,0.14);color:#E8E8EC"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E8E8EC"><span class="cb" style="background:#040405;border:1px solid #34343B;color:#4DB8FF">&#10003;</span>Show border</span><span class="bar" style="background:rgba(20,20,22,0.8);border:none;"><span style="width:65%;background:#4DB8FF"></span></span><span class="icon" style="box-shadow:0 0 0 1px #34343B">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:#0A0A0B"></i><code>win.bg</code> #0A0A0B</span><span><i style="background:#202024"></i><code>win.border</code> #202024 1px flat</span><span><i style="background:#1E1E22"></i><code>title.bg</code> #1E1E22</span><span><i style="background:#2A86D1"></i><code>title.text</code> #2A86D1</span><span><i style="background:#34343B"></i><code>icon.border</code> #34343B Solid 1px</span></div><p class="face">In game: Ka0s Expressway 12 / Ka0s Expressway 14.5, OUTLINE; bar texture Ka0s Matte</p></figure><figure class="card"><figcaption><b>Azeroth</b> <span class="k">azeroth</span><br><span class="desc">Dark tooled leather, parchment text, gold and a red wax seal, Open Sans type.</span></figcaption>
+<div class="win" style="width:440px;background:#2B1D12;border:1px solid #6B4A22;border-radius:0px">
+  <div class="inner" style="border:1px solid #8A6A36;border-radius:0px"></div><div class="band" style="background:#1A110A;text-align:center;color:#F5C542;font-size:13.2px">Azeroth<span class="x" style="color:#F5C542">&#10005;</span></div>
+  <div class="body" style="font-size:12.1px">
+    <div style="color:#E9DDBC">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B8A07A">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:linear-gradient(#5A3D1D,#3A2614);border:1px solid #24160A;color:#F2E3BD;border-radius:0px">Refresh</span><span class="btn" style="background:linear-gradient(#A3241A,#5E1009);border:1px solid #E2B659;color:#FFD866;border-radius:0px">Apply</span><span class="dd" style="background:#1C130B;border:1px solid #6B4A22;color:#E9DDBC">Ka0s skins<span class="arr" style="color:#E2B659">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid #6B4A22"><span class="tab" style="background:#7A1A10;border:1px solid #24160A;color:#FFD866">General</span><span class="tab" style="background:#3A2614;border:1px solid #24160A;color:#CDB78A">Display</span><span class="tab" style="background:#3A2614;border:1px solid #24160A;color:#CDB78A">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:#3A2614;color:#E2B659"><span>Name <b style="color:#E9DDBC">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E9DDBC"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(233,221,188,0.11);color:#E9DDBC"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(163,36,26,0.35);color:#E9DDBC"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E9DDBC"><span class="cb" style="background:#1C130B;border:1px solid #8A6A36;color:#E2B659">&#10003;</span>Show border</span><span class="bar" style="background:rgba(26,17,10,0.8);border:1px solid #6B4A22;"><span style="width:65%;background:#C0392B"></span></span><span class="icon" style="box-shadow:0 0 0 1px #8A6A36">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:#2B1D12"></i><code>win.bg</code> #2B1D12</span><span><i style="background:#6B4A22"></i><code>win.border</code> #6B4A22 1px flat</span><span><i style="background:#1A110A"></i><code>title.bg</code> #1A110A</span><span><i style="background:#F5C542"></i><code>title.text</code> #F5C542</span><span><i style="background:#8A6A36"></i><code>icon.border</code> #8A6A36 Solid 1px</span></div><p class="face">In game: Ka0s Open Sans Semibold 11 / Ka0s Open Sans Bold 12, OUTLINE; bar texture Ka0s Parchment</p></figure><figure class="card"><figcaption><b>Glass</b> <span class="k">glass</span><br><span class="desc">Translucent frosted panels with rounded corners and a lilac accent.</span></figcaption>
+<div class="win" style="width:440px;background:rgba(18,22,34,0.88);border:1px solid rgba(255,255,255,0.18);border-radius:8px">
+  <div class="band" style="background:rgba(255,255,255,0.1);text-align:center;color:#FFFFFF;font-size:14.3px">Glass<span class="x" style="color:#C9CFDB">&#10005;</span></div>
+  <div class="body" style="font-size:12.1px">
+    <div style="color:#F2F4F8">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#C9CFDB">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.22);color:#F2F4F8;border-radius:0px">Refresh</span><span class="btn" style="background:#B69CFF;border:1px solid #B69CFF;color:#1A1033;border-radius:0px">Apply</span><span class="dd" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.18);color:#F2F4F8">Ka0s skins<span class="arr" style="color:#B69CFF">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,255,255,0.22)"><span class="tab" style="background:rgba(182,156,255,0.1);border:1px solid transparent;box-shadow:inset 0 -2px 0 #B69CFF;color:#FFFFFF">General</span><span class="tab" style="background:rgba(0,0,0,0);border:1px solid transparent;color:#C9CFDB">Display</span><span class="tab" style="background:rgba(0,0,0,0);border:1px solid transparent;color:#C9CFDB">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.06);color:#B69CFF"><span>Name <b style="color:#FFFFFF">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#F2F4F8"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.09);color:#F2F4F8"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(182,156,255,0.24);color:#F2F4F8"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#F2F4F8"><span class="cb" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.3);color:#B69CFF">&#10003;</span>Show border</span><span class="bar" style="background:rgba(255,255,255,0.08);border:none;"><span style="width:65%;background:#B69CFF"></span></span><span class="icon" style="box-shadow:0 0 0 1px rgba(255,255,255,0.18)">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:rgba(18,22,34,0.88)"></i><code>win.bg</code> #121622@0.88</span><span><i style="background:rgba(255,255,255,0.18)"></i><code>win.border</code> #FFFFFF@0.18 8px nine:Ka0s Glass</span><span><i style="background:rgba(255,255,255,0.1)"></i><code>title.bg</code> #FFFFFF@0.1</span><span><i style="background:#FFFFFF"></i><code>title.text</code> #FFFFFF</span><span><i style="background:rgba(255,255,255,0.18)"></i><code>icon.border</code> #FFFFFF@0.18 Solid 1px</span></div><p class="face">In game: Ka0s Avant Garde 11 / Ka0s Avant Garde 13, OUTLINE; bar texture Ka0s Glass Bar</p><p class="note">Window edge is the "Ka0s Glass" nine-slice (win.borderStyle, 8 px, radius 8), drawn here as a 1 px win.border with rounded corners.</p></figure><figure class="card"><figcaption><b>High Contrast</b> <span class="k">contrast</span><br><span class="desc">Black and white with yellow focus, crisp 1px edges.</span></figcaption>
+<div class="win" style="width:440px;background:#000000;border:1px solid #FFFFFF;border-radius:0px">
+  <div class="band" style="background:#1F1F1F;text-align:center;color:#FFE600;font-size:13.8px">High Contrast<span class="x" style="color:#FFFFFF">&#10005;</span></div>
+  <div class="body" style="font-size:11.6px">
+    <div style="color:#FFFFFF">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#E0E0E0">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:#000000;border:1px solid #FFFFFF;color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:#000000;border:1px solid #FFE600;color:#FFE600;border-radius:0px">Apply</span><span class="dd" style="background:#000000;border:1px solid #FFFFFF;color:#FFFFFF">Ka0s skins<span class="arr" style="color:#FFE600">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid #FFFFFF"><span class="tab" style="background:#000000;border:1px solid #FFFFFF;box-shadow:inset 0 -2px 0 #FFE600;color:#FFE600">General</span><span class="tab" style="background:#000000;border:1px solid #FFFFFF;color:#FFFFFF">Display</span><span class="tab" style="background:#000000;border:1px solid #FFFFFF;color:#FFFFFF">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:#1A1A1A;color:#FFE600"><span>Name <b style="color:#FFFFFF">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#FFFFFF"><span>Plain row</span><span>12</span></div><div class="tr" style="background:#222222;color:#FFFFFF"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:#000000;box-shadow:inset 0 0 0 1px #FFE600;color:#FFFFFF"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#FFFFFF"><span class="cb" style="background:#000000;border:1px solid #FFFFFF;color:#FFE600">&#10003;</span>Show border</span><span class="bar" style="background:rgba(26,26,26,0.85);border:1px solid #FFFFFF;"><span style="width:65%;background:#FFE600"></span></span><span class="icon" style="box-shadow:0 0 0 1px #E0E0E0">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:#000000"></i><code>win.bg</code> #000000</span><span><i style="background:#FFFFFF"></i><code>win.border</code> #FFFFFF 1px flat</span><span><i style="background:#1F1F1F"></i><code>title.bg</code> #1F1F1F</span><span><i style="background:#FFE600"></i><code>title.text</code> #FFE600</span><span><i style="background:#E0E0E0"></i><code>icon.border</code> #E0E0E0 Solid 1px</span></div><p class="face">In game: Ka0s Doris PP 10.5 / Ka0s Doris PP 12.5, OUTLINE; bar texture Ka0s Solid</p></figure><figure class="card"><figcaption><b>Ember</b> <span class="k">ember</span><br><span class="desc">Charred browns lit by an orange accent, Emblem type.</span></figcaption>
+<div class="win" style="width:440px;background:rgba(26,14,10,0.95);border:1px solid #6A2E17;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(201,138,58,0.45);border-radius:0px"></div><div class="band" style="background:linear-gradient(#3A1A0F,#24100A);text-align:center;color:#FFB45A;font-size:13.8px">Ember<span class="x" style="color:#C7A993">&#10005;</span></div>
+  <div class="body" style="font-size:12.1px">
+    <div style="color:#F4E7DC">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#C7A993">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:linear-gradient(#4A2012,#2A120A);border:1px solid #8A3C1C;color:#FFCF9A;border-radius:0px">Refresh</span><span class="btn" style="background:linear-gradient(#E0662A,#A63D12);border:1px solid #FF9A5A;color:#FFFFFF;border-radius:0px">Apply</span><span class="dd" style="background:#140A07;border:1px solid #5A2A16;color:#F4E7DC">Ka0s skins<span class="arr" style="color:#FF7A33">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid #6A2E17"><span class="tab" style="background:#4A2012;border:1px solid #5A2A16;box-shadow:inset 0 -2px 0 #FF7A33;color:#FFB45A">General</span><span class="tab" style="background:#2A140C;border:1px solid #5A2A16;color:#C7A993">Display</span><span class="tab" style="background:#2A140C;border:1px solid #5A2A16;color:#C7A993">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,122,51,0.08);color:#FFB45A"><span>Name <b style="color:#FF7A33">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#F4E7DC"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.09);color:#F4E7DC"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,122,51,0.18);color:#F4E7DC"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#F4E7DC"><span class="cb" style="background:#140A07;border:1px solid #8A3C1C;color:#FF7A33">&#10003;</span>Show border</span><span class="bar" style="background:rgba(20,10,7,0.8);border:none;"><span style="width:65%;background:#FF7A33"></span></span><span class="icon" style="box-shadow:0 0 0 1px #6A2E17">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:rgba(26,14,10,0.95)"></i><code>win.bg</code> #1A0E0A@0.95</span><span><i style="background:#6A2E17"></i><code>win.border</code> #6A2E17 1px flat</span><span><i style="background:linear-gradient(#3A1A0F,#24100A)"></i><code>title.bg</code> #3A1A0F &gt; #24100A</span><span><i style="background:#FFB45A"></i><code>title.text</code> #FFB45A</span><span><i style="background:#6A2E17"></i><code>icon.border</code> #6A2E17 Solid 1px</span></div><p class="face">In game: Ka0s Emblem 11 / Ka0s Emblem 12.5, OUTLINE; bar texture Ka0s Forge</p></figure><figure class="card"><figcaption><b>WoW Default</b> <span class="k">wow</span><br><span class="desc">The vanilla client: dialog-box border, red buttons, gold text.</span></figcaption>
+<div class="win" style="width:440px;background:#1E1C19;border:6px ridge #8c8579;border-radius:0px">
+  <div class="band" style="background:linear-gradient(#4B4B4B,#252525);text-align:center;color:#FFD100;font-size:14.9px">WoW Default<span class="x" style="color:#D9D9D9">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#FFFFFF">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B8B8B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:linear-gradient(#B3200F,#640C05);border:1px solid #1A0805;color:#FFD100;border-radius:0px">Refresh</span><span class="btn" style="background:linear-gradient(#D42A16,#7E1007);border:1px solid #E0B040;color:#FFFFFF;border-radius:0px">Apply</span><span class="dd" style="background:#000000;border:1px solid #7A7A7A;color:#FFFFFF">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid #6E6E6E"><span class="tab" style="background:#4A4A4A;border:2px solid #7A7A7A;color:#FFFFFF">General</span><span class="tab" style="background:#262626;border:2px solid #7A7A7A;color:#C9B048">Display</span><span class="tab" style="background:#262626;border:2px solid #7A7A7A;color:#C9B048">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.07);color:#FFD100"><span>Name <b style="color:#FFFFFF">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#FFFFFF"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.09);color:#FFFFFF"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#FFFFFF"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#FFFFFF"><span class="cb" style="background:#111111;border:1px solid #5a5a5a;color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(30,28,25,0.7);border:2px solid #6E6E6E;"><span style="width:65%;background:#C9A24A"></span></span><span class="icon" style="box-shadow:0 0 0 1px #9A9A9A">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:#1E1C19"></i><code>win.bg</code> #1E1C19</span><span><i style="background:#FFFFFF"></i><code>win.border</code> #FFFFFF 32px nine:Blizzard Dialog</span><span><i style="background:linear-gradient(#4B4B4B,#252525)"></i><code>title.bg</code> #4B4B4B &gt; #252525</span><span><i style="background:#FFD100"></i><code>title.text</code> #FFD100</span><span><i style="background:#9A9A9A"></i><code>icon.border</code> #9A9A9A Solid 1px</span></div><p class="face">In game: Ka0s Ubuntu 12 / Ka0s Ubuntu 13.5, OUTLINE; bar texture Blizzard</p><p class="note">Window edge is the client's Blizzard Dialog nine-slice (32 px, tint white) over the tiled UI-DialogBox-Background-Dark; tabs use UI-OptionsFrame-ActiveTab art and the checkbox UI-CheckBox art. CSS cannot draw client art: those parts are generic stand-ins, not token values.</p></figure><figure class="card"><figcaption><b>WoW Midnight</b> <span class="k">midnight</span><br><span class="desc">Night blue and violet under a gold edge, centered Segoe UI titles.</span></figcaption>
+<div class="win" style="width:440px;background:linear-gradient(#171A2E,#0F1020);border:2px solid #B08A3E;border-radius:0px">
+  <div class="inner" style="border:1px solid #3D2F12;border-radius:0px"></div><div class="band" style="background:linear-gradient(#2A2347,#17142B);text-align:center;color:#F6D27A;font-size:14.3px">WoW Midnight<span class="x" style="color:#F6D27A">&#10005;</span></div>
+  <div class="body" style="font-size:12.7px">
+    <div style="color:#F2EEF8">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B4AFC8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:linear-gradient(#3A2F6B,#1D1838);border:1px solid #B08A3E;color:#F6D27A;border-radius:0px">Refresh</span><span class="btn" style="background:linear-gradient(#7A5AD6,#3F2C86);border:1px solid #F6D27A;color:#FFFFFF;border-radius:0px">Apply</span><span class="dd" style="background:#08091A;border:1px solid #5A4A26;color:#F2EEF8">Ka0s skins<span class="arr" style="color:#B48CFF">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid #4A3D1E"><span class="tab" style="background:#2C2550;border:1px solid #5A4A26;box-shadow:inset 0 -2px 0 #B48CFF;color:#F6D27A">General</span><span class="tab" style="background:#1A1730;border:1px solid #5A4A26;color:#B4AFC8">Display</span><span class="tab" style="background:#1A1730;border:1px solid #5A4A26;color:#B4AFC8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(180,140,255,0.08);color:#F6D27A"><span>Name <b style="color:#B48CFF">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#F2EEF8"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.09);color:#F2EEF8"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(180,140,255,0.2);color:#F2EEF8"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#F2EEF8"><span class="cb" style="background:#08091A;border:1px solid #B08A3E;color:#F6D27A">&#10003;</span>Show border</span><span class="bar" style="background:rgba(8,9,26,0.8);border:1px solid #B08A3E;"><span style="width:65%;background:#B48CFF"></span></span><span class="icon" style="box-shadow:0 0 0 1px #5A4A26">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:linear-gradient(#171A2E,#0F1020)"></i><code>win.bg</code> #171A2E &gt; #0F1020</span><span><i style="background:#B08A3E"></i><code>win.border</code> #B08A3E 2px flat</span><span><i style="background:linear-gradient(#2A2347,#17142B)"></i><code>title.bg</code> #2A2347 &gt; #17142B</span><span><i style="background:#F6D27A"></i><code>title.text</code> #F6D27A</span><span><i style="background:#5A4A26"></i><code>icon.border</code> #5A4A26 Solid 1px</span></div><p class="face">In game: Ka0s Segoe UI Semibold 11.5 / Ka0s Segoe UI Bold 13, OUTLINE; bar texture Ka0s Satin</p></figure><figure class="card"><figcaption><b>WoW Forever</b> <span class="k">forever</span><br><span class="desc">Warm charcoal, black title bars with centered white titles, tan accent.</span></figcaption>
+<div class="win" style="width:440px;background:linear-gradient(#2E251C,#18120D);border:1px solid #3A3530;border-radius:0px">
+  <div class="band" style="background:#050505;text-align:center;color:#FFFFFF;font-size:14.9px">WoW Forever<span class="x" style="color:#FFFFFF">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#FFFFFF">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#A39E97">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:#1F1D1B;border:1px solid #48433D;color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:#9C7A58;border:1px solid #C9A07A;color:#FFFFFF;border-radius:0px">Apply</span><span class="dd" style="background:#0A0908;border:1px solid #3E3934;color:#FFFFFF">Ka0s skins<span class="arr" style="color:#C9A07A">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid #48433D"><span class="tab" style="background:rgba(0,0,0,0.4);border:1px solid transparent;box-shadow:inset 0 -2px 0 #C9A07A;color:#FFFFFF">General</span><span class="tab" style="background:rgba(0,0,0,0);border:1px solid transparent;color:#A39E97">Display</span><span class="tab" style="background:rgba(0,0,0,0);border:1px solid transparent;color:#A39E97">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(0,0,0,0.35);color:#C9A07A"><span>Name <b style="color:#FFFFFF">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#FFFFFF"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.1);color:#FFFFFF"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(201,160,122,0.16);color:#FFFFFF"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#FFFFFF"><span class="cb" style="background:#0A0908;border:1px solid #8A7A52;color:#C9A07A">&#10003;</span>Show border</span><span class="bar" style="background:rgba(10,9,8,0.8);border:none;"><span style="width:65%;background:#C9A07A"></span></span><span class="icon" style="box-shadow:0 0 0 1px #3A3530">?</span></div>
+  </div>
+</div>
+<div class="keys"><span><i style="background:linear-gradient(#2E251C,#18120D)"></i><code>win.bg</code> #2E251C &gt; #18120D</span><span><i style="background:#3A3530"></i><code>win.border</code> #3A3530 1px flat</span><span><i style="background:#050505"></i><code>title.bg</code> #050505</span><span><i style="background:#FFFFFF"></i><code>title.text</code> #FFFFFF</span><span><i style="background:#3A3530"></i><code>icon.border</code> #3A3530 Solid 1px</span></div><p class="face">In game: Ka0s Fira Sans Medium 12 / Ka0s Fira Sans SemiBold 13.5, OUTLINE; bar texture Ka0s Classic</p></figure>
+</div>
+
+<h2>2. Sign-off: Ka0s Default's header</h2>
+<p>Image 8: Ka0s Default's band disappears into its body; Azeroth and Ember (images 9 and 10) read as a distinct band. The change is one token,
+<code>title.bg</code> in SkinDefs.lua (KA0S table), with no paint code change. Numbers: the band composited over the window over black, the largest
+channel gap from the body (#0E0E12), the gap between the <code>divider</code> and the band, and the WCAG contrast of the gold title (#FFD100) on the band.
+The test floor (test_skin_defs.lua, "a window's header stands off its content") is a band gap of at least .05 and a rule gap of at least .10.</p>
+<div class="grid world">
+<figure class="card opt"><figcaption><b class="tag">Now</b> title.bg #000000 @ 0.90 (shipped)</figcaption>
+<div class="win" style="width:440px;background:rgba(15,15,20,0.92);border:1px solid #000000;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(61,61,69,0.85);border-radius:0px"></div><div class="band" style="background:rgba(0,0,0,0.9);text-align:center;color:#FFD100;font-size:15.4px">Ka0s Default, option Now<span class="x" style="color:#B2B2B8">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E6E6E6">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B2B2B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:rgba(51,41,8,0.95);border:1px solid rgba(255,209,0,0.8);color:#FFD100;border-radius:0px">Apply</span><span class="dd" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#E6E6E6">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,209,0,0.16)"><span class="tab" style="background:rgba(46,46,46,0.9);border:1px solid transparent;box-shadow:inset 0 -2px 0 #FFD100;color:#FFD100">General</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Display</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.04);color:#FFD100"><span>Name <b style="color:#FFD100">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E6E6E6"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.03);color:#E6E6E6"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#E6E6E6"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E6E6E6"><span class="cb" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(0,0,0,0.5);border:none;"><span style="width:65%;background:#338CF2"></span></span><span class="icon" style="box-shadow:0 0 0 1px #000000">?</span></div>
+  </div>
+</div>
+<div class="ruleline"><div class="rulesw"><div style="background:rgba(0,0,0,0.9)"></div><div style="height:1px;background:rgba(61,61,69,0.85)"></div><div style="background:rgba(15,15,20,0.92)"></div></div><span>band, then 1 px <code>divider</code> (#3D3D45@0.85), then body: what a window with a <code>frame.divider</code> draws. The Showroom draws no divider.</span></div>
+<p class="nums">Band composites to #010102 over the #0E0E12 body: gap .065, darker than the body. Title CR 14.3. Passes the .05 test floor but reads as black on near-black (image 8).</p></figure><figure class="card opt"><figcaption><b class="tag">A</b> Dark yellow #2B2306, opaque. Lead&#x27;s recommendation</figcaption>
+<div class="win" style="width:440px;background:rgba(15,15,20,0.92);border:1px solid #000000;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(61,61,69,0.85);border-radius:0px"></div><div class="band" style="background:#2B2306;text-align:center;color:#FFD100;font-size:15.4px">Ka0s Default, option A<span class="x" style="color:#B2B2B8">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E6E6E6">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B2B2B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:rgba(51,41,8,0.95);border:1px solid rgba(255,209,0,0.8);color:#FFD100;border-radius:0px">Apply</span><span class="dd" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#E6E6E6">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,209,0,0.16)"><span class="tab" style="background:rgba(46,46,46,0.9);border:1px solid transparent;box-shadow:inset 0 -2px 0 #FFD100;color:#FFD100">General</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Display</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.04);color:#FFD100"><span>Name <b style="color:#FFD100">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E6E6E6"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.03);color:#E6E6E6"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#E6E6E6"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E6E6E6"><span class="cb" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(0,0,0,0.5);border:none;"><span style="width:65%;background:#338CF2"></span></span><span class="icon" style="box-shadow:0 0 0 1px #000000">?</span></div>
+  </div>
+</div>
+<div class="ruleline"><div class="rulesw"><div style="background:#2B2306"></div><div style="height:1px;background:rgba(61,61,69,0.85)"></div><div style="background:rgba(15,15,20,0.92)"></div></div><span>band, then 1 px <code>divider</code> (#3D3D45@0.85), then body: what a window with a <code>frame.divider</code> draws. The Showroom draws no divider.</span></div>
+<p class="nums">Gap .113 from the body; rule gap .217; gold title CR 10.7. Passes. Olive-gold band tied to the gold title and primary button; about 1.7x Obsidian&#x27;s gap.</p></figure><figure class="card opt"><figcaption><b class="tag">B</b> Stronger dark yellow #332908, opaque (= Ka0s Default btnPrimary.bg)</figcaption>
+<div class="win" style="width:440px;background:rgba(15,15,20,0.92);border:1px solid #000000;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(61,61,69,0.85);border-radius:0px"></div><div class="band" style="background:#332908;text-align:center;color:#FFD100;font-size:15.4px">Ka0s Default, option B<span class="x" style="color:#B2B2B8">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E6E6E6">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B2B2B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:rgba(51,41,8,0.95);border:1px solid rgba(255,209,0,0.8);color:#FFD100;border-radius:0px">Apply</span><span class="dd" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#E6E6E6">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,209,0,0.16)"><span class="tab" style="background:rgba(46,46,46,0.9);border:1px solid transparent;box-shadow:inset 0 -2px 0 #FFD100;color:#FFD100">General</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Display</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.04);color:#FFD100"><span>Name <b style="color:#FFD100">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E6E6E6"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.03);color:#E6E6E6"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#E6E6E6"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E6E6E6"><span class="cb" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(0,0,0,0.5);border:none;"><span style="width:65%;background:#338CF2"></span></span><span class="icon" style="box-shadow:0 0 0 1px #000000">?</span></div>
+  </div>
+</div>
+<div class="ruleline"><div class="rulesw"><div style="background:#332908"></div><div style="height:1px;background:rgba(61,61,69,0.85)"></div><div style="background:rgba(15,15,20,0.92)"></div></div><span>band, then 1 px <code>divider</code> (#3D3D45@0.85), then body: what a window with a <code>frame.divider</code> draws. The Showroom draws no divider.</span></div>
+<p class="nums">Gap .145; title CR 9.8. Passes. A primary button placed in a title bar would share the band fill; only its gold edge separates it.</p></figure><figure class="card opt"><figcaption><b class="tag">C</b> Obsidian grey #1E1E22, opaque (Obsidian&#x27;s exact title.bg)</figcaption>
+<div class="win" style="width:440px;background:rgba(15,15,20,0.92);border:1px solid #000000;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(61,61,69,0.85);border-radius:0px"></div><div class="band" style="background:#1E1E22;text-align:center;color:#FFD100;font-size:15.4px">Ka0s Default, option C<span class="x" style="color:#B2B2B8">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E6E6E6">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B2B2B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:rgba(51,41,8,0.95);border:1px solid rgba(255,209,0,0.8);color:#FFD100;border-radius:0px">Apply</span><span class="dd" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#E6E6E6">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,209,0,0.16)"><span class="tab" style="background:rgba(46,46,46,0.9);border:1px solid transparent;box-shadow:inset 0 -2px 0 #FFD100;color:#FFD100">General</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Display</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.04);color:#FFD100"><span>Name <b style="color:#FFD100">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E6E6E6"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.03);color:#E6E6E6"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#E6E6E6"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E6E6E6"><span class="cb" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(0,0,0,0.5);border:none;"><span style="width:65%;background:#338CF2"></span></span><span class="icon" style="box-shadow:0 0 0 1px #000000">?</span></div>
+  </div>
+</div>
+<div class="ruleline"><div class="rulesw"><div style="background:#1E1E22"></div><div style="height:1px;background:rgba(61,61,69,0.85)"></div><div style="background:rgba(15,15,20,0.92)"></div></div><span>band, then 1 px <code>divider</code> (#3D3D45@0.85), then body: what a window with a <code>frame.divider</code> draws. The Showroom draws no divider.</span></div>
+<p class="nums">Gap .062; rule gap .107; title CR 11.4. Passes, just. The lightest grey today&#x27;s divider (#3D3D45@.85, #36363D composited) allows.</p></figure><figure class="card opt"><figcaption><b class="tag">D</b> Grey #2A2A30 with divider raised to #55555F</figcaption>
+<div class="win" style="width:440px;background:rgba(15,15,20,0.92);border:1px solid #000000;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(61,61,69,0.85);border-radius:0px"></div><div class="band" style="background:#2A2A30;text-align:center;color:#FFD100;font-size:15.4px">Ka0s Default, option D<span class="x" style="color:#B2B2B8">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E6E6E6">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B2B2B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:rgba(51,41,8,0.95);border:1px solid rgba(255,209,0,0.8);color:#FFD100;border-radius:0px">Apply</span><span class="dd" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#E6E6E6">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,209,0,0.16)"><span class="tab" style="background:rgba(46,46,46,0.9);border:1px solid transparent;box-shadow:inset 0 -2px 0 #FFD100;color:#FFD100">General</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Display</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.04);color:#FFD100"><span>Name <b style="color:#FFD100">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E6E6E6"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.03);color:#E6E6E6"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#E6E6E6"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E6E6E6"><span class="cb" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(0,0,0,0.5);border:none;"><span style="width:65%;background:#338CF2"></span></span><span class="icon" style="box-shadow:0 0 0 1px #000000">?</span></div>
+  </div>
+</div>
+<div class="ruleline"><div class="rulesw"><div style="background:#2A2A30"></div><div style="height:1px;background:#55555F"></div><div style="background:rgba(15,15,20,0.92)"></div></div><span>band, then 1 px <code>divider</code> (#55555F), then body: what a window with a <code>frame.divider</code> draws. The Showroom draws no divider.</span></div>
+<p class="nums">Gap .115; title CR 9.8; rule gap .184 with #55555F (.052 with today&#x27;s divider, which fails). Moving divider also moves Core.SKIN.divider (Core.lua, pinned equal by test_skin.lua), every Core.ApplySkin divider and the Widgets menu rule.</p></figure><figure class="card opt"><figcaption><b class="tag">E</b> Gradient #3A2F0A to #1F1905 (title.bgTop / bgBottom), title.bg the blend #2C2408</figcaption>
+<div class="win" style="width:440px;background:rgba(15,15,20,0.92);border:1px solid #000000;border-radius:0px">
+  <div class="inner" style="border:1px solid rgba(61,61,69,0.85);border-radius:0px"></div><div class="band" style="background:linear-gradient(#3A2F0A,#1F1905);text-align:center;color:#FFD100;font-size:15.4px">Ka0s Default, option E<span class="x" style="color:#B2B2B8">&#10005;</span></div>
+  <div class="body" style="font-size:13.2px">
+    <div style="color:#E6E6E6">Body text: 1,284 records, 3 sources</div>
+    <div style="color:#B2B2B8">Dim text: last seen 3 min ago</div>
+    <div class="row"><span class="btn" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFFFFF;border-radius:0px">Refresh</span><span class="btn" style="background:rgba(51,41,8,0.95);border:1px solid rgba(255,209,0,0.8);color:#FFD100;border-radius:0px">Apply</span><span class="dd" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#E6E6E6">Ka0s skins<span class="arr" style="color:#FFD100">&#9660;</span></span></div>
+    <div class="tabs" style="border-bottom:1px solid rgba(255,209,0,0.16)"><span class="tab" style="background:rgba(46,46,46,0.9);border:1px solid transparent;box-shadow:inset 0 -2px 0 #FFD100;color:#FFD100">General</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Display</span><span class="tab" style="background:linear-gradient(rgba(38,38,38,0.85),rgba(26,26,26,0.85));border:1px solid transparent;color:#B2B2B8">Alerts</span></div>
+    <div class="tbl"><div class="th" style="background:rgba(255,255,255,0.04);color:#FFD100"><span>Name <b style="color:#FFD100">&#9650;</b></span><span>Count</span></div><div class="tr" style="color:#E6E6E6"><span>Plain row</span><span>12</span></div><div class="tr" style="background:rgba(255,255,255,0.03);color:#E6E6E6"><span>Striped row (list.stripe)</span><span>7</span></div><div class="tr" style="background:rgba(255,209,0,0.18);color:#E6E6E6"><span>Selected row (list.sel)</span><span>3</span></div></div>
+    <div class="row mid"><span class="cbw" style="color:#E6E6E6"><span class="cb" style="background:rgba(26,26,31,0.9);border:1px solid rgba(61,61,69,0.9);color:#FFD100">&#10003;</span>Show border</span><span class="bar" style="background:rgba(0,0,0,0.5);border:none;"><span style="width:65%;background:#338CF2"></span></span><span class="icon" style="box-shadow:0 0 0 1px #000000">?</span></div>
+  </div>
+</div>
+<div class="ruleline"><div class="rulesw"><div style="background:linear-gradient(#3A2F0A,#1F1905)"></div><div style="height:1px;background:rgba(61,61,69,0.85)"></div><div style="background:rgba(15,15,20,0.92)"></div></div><span>band, then 1 px <code>divider</code> (#3D3D45@0.85), then body: what a window with a <code>frame.divider</code> draws. The Showroom draws no divider.</span></div>
+<p class="nums">Gap .119 (blend, investigation); recomputed here: .117, rule gap .209, gold title CR 10.5 on the blend (9.0 at the top, 12.0 at the bottom). Ember / WoW Default / WoW Midnight style. MultiMeters&#x27; header strip draws only the flat blend.</p></figure>
+</div>
+<table class="n">
+<tr><th>Option</th><th>Band (composited)</th><th>Gap from body</th><th>Rule gap</th><th>Gold title contrast</th><th>Test floor</th></tr>
+<tr><td>Now</td><td>#010102 (darker)</td><td>.065</td><td>.233*</td><td>14.3</td><td>passes, reads black on near-black</td></tr>
+<tr><td>A #2B2306</td><td>#2B2306</td><td>.113</td><td>.217</td><td>10.7</td><td>passes</td></tr>
+<tr><td>B #332908</td><td>#332908</td><td>.145</td><td>.209*</td><td>9.8</td><td>passes</td></tr>
+<tr><td>C #1E1E22</td><td>#1E1E22</td><td>.062</td><td>.107</td><td>11.4</td><td>passes, just</td></tr>
+<tr><td>D #2A2A30 + divider #55555F</td><td>#2A2A30</td><td>.115</td><td>.184 (.052 with today's divider: fails)</td><td>9.8</td><td>passes only with the divider move</td></tr>
+<tr><td>E #3A2F0A to #1F1905</td><td>blend #2C2408</td><td>.119 (.117*)</td><td>.209*</td><td>10.5* (9.0 top, 12.0 bottom)</td><td>passes</td></tr>
+</table>
+<p style="font-size:12px;color:#9a9db2">Figures from inputs/INVESTIGATION.md (skin-headers). * recomputed for this page with the same helpers (over, apart, contrast from test_skin_defs.lua) where the investigation gave none.</p>
+<h3>What else the header choice moves</h3>
+<ul>
+<li><b>MultiMeters' meter header strip</b> follows <code>title.bg</code> (Window_Header.lua, flat SetColorTexture while <code>header.bgColorFromSkin</code> is on), so the in-combat meter header turns olive (A, B, E) or grey (C, D) under Ka0s Default. It ignores the gradient pair, so under E it draws the flat blend #2C2408. MultiMeters' <code>NS.SKIN_FALLBACK</code> copy of <code>title.bg</code> (core/SkinSetup.lua) moves in the same sweep, or its test goes red after the re-vendor.</li>
+<li>Every window that paints S.Shell or S.TitleBar: every addon's SkinSetup, BankLedger, LootHistory, DropWatcher, MultiMeters, PGFE, QuickComms modal and WhatGroup's FrameSkin windows, and the Showroom. The settings panel's page header uses <code>title.text</code> and <code>title.rule</code>, not <code>title.bg</code>, so it does not change.</li>
+<li>QuickComms' pad header band (<code>qc.bandBg</code>) follows <code>title.bg</code> but defaults to clear under Ka0s Default, so it does not change.</li>
+<li>D also moves <code>divider</code>, which must move Core.SKIN.divider with it: every Core.ApplySkin divider and the Widgets menu rule brighten to #55555F.</li>
+<li>B equals Ka0s Default's primary button fill, so a primary button in a title bar would sit on its own colour, separated only by its gold edge.</li>
+<li>Optional: the Ka0s Default picker swatch (second of four, #000000) can become the new header colour.</li>
+</ul>
+
+<h2>3. Sign-off: icon borders</h2>
+<p>Images 19 to 21: the 1 px icon outline is drawn correctly in every skin; only its colour, <code>icon.border</code>, differs. It shows only when it is
+lighter than both the window around it and the icon's near-black art. Each row shows the icon in the skin's window and over the world backdrop
+(the HUD case), current and proposed. Contrast is WCAG, the composited edge against the window, then against the black art field
+(inputs/INVESTIGATION.md, icon-borders; Obsidian, the owner's good example, measures 1.6).</p>
+<p style="font-size:12px;color:#9a9db2">In each pair of squares: left, the icon inside the skin's window (<code>win.bg</code>); right, the icon on the HUD over the world backdrop (#1a1c2a).</p>
+<div class="irow"><div class="iname"><b>Ka0s Default</b><p>Ka0s Default&#x27;s EDGE grey (#3D3D45) lifted one step, Obsidian&#x27;s tone.</p></div>
+<div class="ic"><div class="icbox" style="background:rgba(15,15,20,0.92)"><span class="icon big" style="box-shadow:0 0 0 1px #000000">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #000000">?</span></div><div class="iclab">Current<br><code>#000000</code></div></div><div class="icr">Contrast against window / art:<br><b>1.09 / 1.00 (invisible)</b></div>
+<div class="ic"><div class="icbox" style="background:rgba(15,15,20,0.92)"><span class="icon big" style="box-shadow:0 0 0 1px #4D4D57">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #4D4D57">?</span></div><div class="iclab">Proposed<br><code>#4D4D57</code></div></div><div class="icr">Contrast against window / art:<br><b>about 2.3 / 2.5</b></div></div><div class="irow"><div class="iname"><b>Glass</b><p>A new literal in HUD_LOOK.glass.icon; GLASS_EDGE stays, the window border uses it.</p></div>
+<div class="ic"><div class="icbox" style="background:rgba(18,22,34,0.88)"><span class="icon big" style="box-shadow:0 0 0 1px rgba(255,255,255,0.18)">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px rgba(255,255,255,0.18)">?</span></div><div class="iclab">Current<br><code>#FFFFFF@0.18</code></div></div><div class="icr">Contrast against window / art:<br><b>about 1.7 / 1.96 (in game it reads #242424 on #0B0C22: faint)</b></div>
+<div class="ic"><div class="icbox" style="background:rgba(18,22,34,0.88)"><span class="icon big" style="box-shadow:0 0 0 1px rgba(255,255,255,0.35)">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px rgba(255,255,255,0.35)">?</span></div><div class="iclab">Proposed<br><code>#FFFFFF@0.35</code></div></div><div class="icr">Contrast against window / art:<br><b>about 3.2 / 3.6</b></div></div><div class="irow"><div class="iname"><b>WoW Forever</b><p>A literal in HUD_LOOK.forever.icon; FV_EDGE stays, the window border uses it.</p></div>
+<div class="ic"><div class="icbox" style="background:linear-gradient(#2E251C,#18120D)"><span class="icon big" style="box-shadow:0 0 0 1px #3A3530">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #3A3530">?</span></div><div class="iclab">Current<br><code>#3A3530</code></div></div><div class="icr">Contrast against window / art:<br><b>1.24 against the window (nearly invisible)</b></div>
+<div class="ic"><div class="icbox" style="background:linear-gradient(#2E251C,#18120D)"><span class="icon big" style="box-shadow:0 0 0 1px #5A5048">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #5A5048">?</span></div><div class="iclab">Proposed<br><code>#5A5048</code></div></div><div class="icr">Contrast against window / art:<br><b>about 1.9 / 2.7</b></div></div><div class="irow"><div class="iname"><b>Ember</b><p>#8A3C1C is Ember&#x27;s own bar.border.</p></div>
+<div class="ic"><div class="icbox" style="background:rgba(26,14,10,0.95)"><span class="icon big" style="box-shadow:0 0 0 1px #6A2E17">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #6A2E17">?</span></div><div class="iclab">Current<br><code>#6A2E17</code></div></div><div class="icr">Contrast against window / art:<br><b>1.83 / 2.02 (weak)</b></div>
+<div class="ic"><div class="icbox" style="background:rgba(26,14,10,0.95)"><span class="icon big" style="box-shadow:0 0 0 1px #8A3C1C">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #8A3C1C">?</span></div><div class="iclab">Proposed<br><code>#8A3C1C</code></div></div><div class="icr">Contrast against window / art:<br><b>about 2.5 / 2.7</b></div></div><div class="irow"><div class="iname"><b>WoW Midnight</b><p>Optional.</p></div>
+<div class="ic"><div class="icbox" style="background:linear-gradient(#171A2E,#0F1020)"><span class="icon big" style="box-shadow:0 0 0 1px #5A4A26">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #5A4A26">?</span></div><div class="iclab">Current<br><code>#5A4A26</code></div></div><div class="icr">Contrast against window / art:<br><b>2.0 / 2.4 (visible but dim)</b></div>
+<div class="ic"><div class="icbox" style="background:linear-gradient(#171A2E,#0F1020)"><span class="icon big" style="box-shadow:0 0 0 1px #7A6532">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #7A6532">?</span></div><div class="iclab">Proposed<br><code>#7A6532</code></div></div><div class="icr">Contrast against window / art:<br><b>about 3.0 / 3.7</b></div></div><div class="irow ref"><div class="iname"><b>Obsidian (reference, unchanged)</b><p>The owner's good example (image 21).</p></div>
+<div class="ic"><div class="icbox" style="background:#0A0A0B"><span class="icon big" style="box-shadow:0 0 0 1px #34343B">?</span></div><div class="icbox world"><span class="icon big" style="box-shadow:0 0 0 1px #34343B">?</span></div><div class="iclab">Current<br><code>#34343B</code></div></div><div class="icr">1.60 / 1.70</div><div></div><div></div></div>
+<p>Unchanged under every option: Obsidian #34343B, Azeroth #8A6A36, High Contrast #E0E0E0, WoW Default #9A9A9A.</p>
+<h3>What else the icon border choice moves</h3>
+<ul>
+<li><b>Option 1, one token (<code>icon.border</code>).</b> The same token is the HUD icon edge in every host that follows the skin: AuraMaster (Style_Border), KickCD (IconGrid_Render, Castbar_Skin), DropWatcher (IconStyle), QuickComms (IconStyle), DpsRace (Results_Gear), and ConsumableMaster's button border (<code>cm.buttonBorder</code>). Under Ka0s Default those edges go from black to #4D4D57; in Glass, Ember, Forever and Midnight they lighten as shown. DpsRace's and QuickComms' library-absent fallback copies of <code>{0,0,0,1}</code> move to the new grey too. Consistent with Obsidian, whose HUD edges are already grey.</li>
+<li><b>Option 2, a separate <code>icon.outline</code> token.</b> S.IconBorder reads <code>icon.outline</code> first, falling back to <code>icon.border</code>; the HUD hosts keep today's edges (black under Ka0s Default, which reads well over the game world). Caveat: S.SquareIcon draws its own 1 px edge straight from <code>icon.border</code>, so it would need the same fallback or keep the faint edge underneath.</li>
+<li>The EllesmereUI source derives <code>icon.border</code> from ElvUI's panel colour, so neither option changes its outlines.</li>
+</ul>
+
+<h2>4. How to reply</h2>
+<div class="reply"><ol>
+<li><b>Header:</b> A, B, C, D, E, or Now (keep). Add "flat" or "gradient" if you want E's shape in another colour. Example: "Header: A".</li>
+<li><b>Picker swatch:</b> "Swatch: header" (second swatch becomes the new header colour) or "Swatch: keep".</li>
+<li><b>Icon borders, which skins:</b> "Icon borders: proposed, all skins" (Ka0s Default, Glass, Forever, Ember, Midnight), or name them, e.g. "Icon borders: proposed, Ka0s Default + Glass".</li>
+<li><b>Icon borders, scope:</b> "one token" (option 1) (HUD edges change too) or "icon.outline" (option 2: window outlines only, HUD stays).</li>
+<li>Full example: "Header: A; Swatch: header; Icon borders: proposed, all skins, one token".</li>
+</ol></div>
+</main></body></html>
