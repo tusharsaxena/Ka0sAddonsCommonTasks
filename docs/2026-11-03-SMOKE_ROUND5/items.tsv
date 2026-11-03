@@ -15,3 +15,4 @@ R5-DR2	M2	DpsRace	/dr sim opens idle with scenario dropdown + Start; 15 s race i
 R5-QC1	M2	QuickComms	Pad header gets the title band on its own tokens; section bands none; left text
 R5-PG1	M2	PremadeGroupsFilterExtension	Header title vertically centred with the collapse arrow on the band
 R5-GATE	M3	Ka0sAddonsCommonTasks	06_SMOKE_TESTS, 99_REPORT, checkpoints, push
+R5-PG2	M2	PremadeGroupsFilterExtension	Collapsed panel is exactly the band and its edge, no strip below the border in any skin (img 59-61)
