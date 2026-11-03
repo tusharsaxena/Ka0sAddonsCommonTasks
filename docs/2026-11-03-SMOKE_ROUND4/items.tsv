@@ -22,3 +22,7 @@ R4-GATE	M3	Ka0sAddonsCommonTasks	Green loop, 06_SMOKE_TESTS.md, 99_REPORT.md, pu
 R4-SEP	M2	*	No separator line under any window header in any addon (main, debug, debug copy, skin selector, export, every window), like the Skin Tester showroom (img 23-29)
 R4-ZOOM	M2	*	Every HUD icon with its own edge crops the art >= 0.07 per side, no native rounded border showing; verify each site, fix where short
 R4-DR7	M2	DpsRace	Your best tooltip drops the top 3 damaging abilities (img 30); consumables and the rest stay
+R4-L4	M2b	LibKa0s	S.IconBorder opts.hud draws in icon.border so HUD icons keep black edges (R4_ADDENDUM_HUD_ICON_EDGE.md)
+R4-REL3	M2b	LibKa0s	Re-cut local v1.85.0 after R4-L4
+R4-RV3	M2b	*	Re-vendor after R4-L4, gate green
+R4-HUD	M2b	*	HUD IconBorder sites (DpsRace HUD rows and chart, MultiMeters rows, PFE cast icon) pass hud = true
