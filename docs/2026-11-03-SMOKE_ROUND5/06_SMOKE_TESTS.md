@@ -129,3 +129,13 @@ exempt.
 | QC ICONS-7 | Ignore settings panel unticked; Choose icon… > Game icons; the footer preview; the popup chooser; the Groups row and Preview table; Markers and Glyphs; switch skins; tick the box | Game icons cropped inside a 1 px outline; markers, glyphs and the speech bubble whole with no outline; the outline follows the skin; ticked keeps the crop only | |
 | LH SKIN-51 (id list part) | Ignore settings panel off; General > Filters > Blacklist and Currency blacklist with entries; type in the add box; turn the box on | Entries and suggestions cropped with a 1 px gray outline; cropped only when the box is on | |
 | AM SKIN-51 | General > Spell categories, a container's Filters aura id list, and their add boxes; switch skins; scroll and remove a row | Spell icons cropped and edged in the window outline, following the skin; no stray edge left on another row or a suggestion with no icon | |
+
+## 8. Follow-up after the gate: the PGFE collapsed strip (R5-PG2) and the DpsRace EllesmereUI pane height (R5-DR1)
+
+These rows landed after R5-GATE (PremadeGroupsFilterExtension 2d3ca07, DpsRace fc3f3e6). They supersede the
+"not yet built" PG row in item 2.
+
+| ID | Do | Pass | Result |
+|---|---|---|---|
+| PG SKIN-51 | Open PGF on Dungeons and collapse the panel. Under each of the nine skins: Ka0s Default, Ember and WoW Midnight first (images 59 to 61), then Obsidian, Azeroth, Glass, High Contrast, WoW Default, WoW Forever; expand and collapse again; EllesmereUI painting the panel; `/dump PremadeGroupsFilterExtensionPanel:GetHeight()` collapsed under Ka0s Default | The bottom border is the panel's last line: no strip of black, body or band color below it, and the band fills the space between the top and bottom borders, in every skin and after re-collapsing. Under EllesmereUI the collapsed panel is its 25 px bar, nothing below it. The dump reads 32. Fail: any strip below the bottom border, or a Lua error | |
+| DR SM-DR-R5DR1B | With EllesmereUI loaded, its third-party skinning on and DPS Race in its list, set General > *Skin* > *Skin source* to *EllesmereUI*; `/dr results` with a few runs; look at the foot of the *Runs* list and its detail pane, then *Insights*; drag the bottom edge taller and shorter; then *Ka0s skins* under Ka0s Default and WoW Midnight (its 2 px edge) and look again | Under EllesmereUI's 25 px bar the *Runs* list, the detail pane and the *Insights* charts reach the footer rule, with no empty strip of body color (about 5 px) between the last row and the rule; the same under the Ka0s skins and on every resize | |
