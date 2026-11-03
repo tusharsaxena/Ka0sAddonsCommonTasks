@@ -1,1 +1,2 @@
 id	reason
+R3-DEFER	No code: SF-DR-9 deferred by the owner; comment posted on LibKa0s#70 on 2026-11-03 (issuecomment-6596076999) with the owner's permission, the issue stays open. Proof: gh issue view 70 --repo tusharsaxena/LibKa0s --json comments --jq ".comments[].body" | grep -c deferred
