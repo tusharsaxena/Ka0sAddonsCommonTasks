@@ -5,3 +5,4 @@ R6-REL	M1	LibKa0s	Re-cut local tag v1.85.0 with a recorded release battery
 R6-RV	M2	*	Re-vendor LibKa0s v1.85.0 in all 16 addons
 R6-PV	M2	*	Wire spec.preview per addon (mode table in 00_PLAN.md); PGFE documented none
 R6-GATE	M3	Ka0sAddonsCommonTasks	Smoke list, report, checkpoint, push
+R6-MM2	M2	MultiMeters	Export (chat) header glyph drawn at the same size as the other header glyphs (img 67)
