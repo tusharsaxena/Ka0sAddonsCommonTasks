@@ -27,3 +27,12 @@ Owner's words, verbatim:
   owner approves a preview of every site first (R6_RENAME_PREVIEW.md).
 - **Finish:** `/dev-copilot:wow-automated-tests` per addon, `/dev-copilot:sync-docs` per repo, then `/dev-copilot:finalize`
   across every repo. The owner's "Do a finalize" is the go-ahead to merge.
+
+## Later instruction (owner, 2026-11-04, verbatim)
+
+> At the end of this workflow, after finalize, please close all github issues that have been done
+
+- **R6-ISSUES:** after finalize, sweep the open issues in every collection repo and close each one the merged work
+  resolved (commit or bundle evidence, or a `state:done` label), with a comment naming the commit. Issues that are only
+  partly done stay open and are reported: LibKa0s#70 (SF-DR-9, deferred) and #74 (filed this round). GitHub writes are
+  spaced out.

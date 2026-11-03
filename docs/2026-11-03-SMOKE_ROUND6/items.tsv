@@ -10,3 +10,4 @@ R6-SIM-STD	M4	WowAddonStandards	Rule: a Sim checkbox next to Test in every addon
 R6-SIM-L	M4	LibKa0s	MasterControls Sim checkbox next to Test, driven by host is/toggle hooks
 R6-SIM	M4	*	Wire the Sim checkbox in every addon with a sim mode
 R6-NAME	M5	*	Drop Ka0s from each addon README only (owner, 2026-11-04); everything else keeps Ka0s
+R6-ISSUES	M6	Ka0sAddonsCommonTasks	After finalize, close every GitHub issue the merged work resolved, spaced out; report partial ones
