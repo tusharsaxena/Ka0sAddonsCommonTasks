@@ -14,3 +14,6 @@ R6-ISSUES	M6	Ka0sAddonsCommonTasks	After finalize, close every GitHub issue the 
 R6-REL2	M4	LibKa0s	Re-cut local tag v1.85.0 after the Sim checkbox
 R6-RV2	M4	*	Re-vendor LibKa0s v1.85.0 in all 16 addons after R6-SIM-L
 R6-PF1	M4	PartyFrameEnhanced	CastBars.lua:120 nil unit when switching to a profile stored unlocked (R6 review note), fix if reachable in game
+R6-AT	M6	*	Recorded /dev-copilot:wow-automated-tests run in each of the 16 addons (Outfitter excluded)
+R6-SD	M6	*	/dev-copilot:sync-docs in the 16 addons, LibKa0s and WowAddonStandards, including the reviewers' stale-doc leftovers
+R6-FIN	M6	*	Finalize: merge --no-ff into master in dependency order (merge subject "R6-FIN: ..."), push master and notes, push tag v1.85.0, delete the run's branches, stashes and worktrees
