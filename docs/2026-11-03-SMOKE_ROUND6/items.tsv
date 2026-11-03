@@ -6,3 +6,7 @@ R6-RV	M2	*	Re-vendor LibKa0s v1.85.0 in all 16 addons
 R6-PV	M2	*	Wire spec.preview per addon (mode table in 00_PLAN.md); PGFE documented none
 R6-GATE	M3	Ka0sAddonsCommonTasks	Smoke list, report, checkpoint, push
 R6-MM2	M2	MultiMeters	Export (chat) header glyph drawn at the same size as the other header glyphs (img 67)
+R6-SIM-STD	M4	WowAddonStandards	Rule: a Sim checkbox next to Test in every addon with a sim mode
+R6-SIM-L	M4	LibKa0s	MasterControls Sim checkbox next to Test, driven by host is/toggle hooks
+R6-SIM	M4	*	Wire the Sim checkbox in every addon with a sim mode
+R6-NAME	M5	*	Drop Ka0s from every addon display name (folders unchanged), after the owner approves the preview
