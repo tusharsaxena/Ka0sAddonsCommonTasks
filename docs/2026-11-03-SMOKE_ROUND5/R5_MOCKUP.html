@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Round 5: Ka0s Default header, a bit darker</title>
+<style>
+  :root { --body: #0e0e12; --gold: #ffd100; --text: #e8e8ea; --dim: #9a9aa2; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 28px 32px 40px; background: #3b2a55; font: 14px/1.45 "Segoe UI", system-ui, sans-serif; color: #f2f2f4; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  p.lead { margin: 0 0 22px; max-width: 900px; color: #ddd6ea; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(420px, 1fr)); gap: 26px 28px; max-width: 1180px; }
+  .card h2 { font-size: 15px; margin: 0 0 8px; display: flex; gap: 10px; align-items: baseline; }
+  .card h2 .tag { font-size: 12px; font-weight: 600; padding: 1px 7px; border-radius: 3px; background: #ffd10022; color: #ffd100; }
+  .card .hex { font: 12px/1.4 Consolas, monospace; color: #cfc8dc; margin: 6px 0 0; }
+  .win { border: 1px solid #000; background: var(--body); box-shadow: 0 0 0 1px #34343c inset; }
+  .band { height: 30px; margin: 1px 1px 0; display: flex; align-items: center; justify-content: center; position: relative; }
+  .band .t { color: var(--gold); font-weight: 600; font-size: 13.5px; letter-spacing: .2px; }
+  .band .x { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #e6e6e6; font-size: 16px; }
+  .tabs { display: flex; gap: 4px; padding: 6px 6px 0; }
+  .tab { font-size: 12.5px; padding: 6px 16px; background: #1a1a20; color: #d8d8dc; }
+  .tab.on { color: var(--gold); box-shadow: inset 0 -2px 0 var(--gold); background: #22222a; }
+  table { width: calc(100% - 12px); margin: 6px; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; color: var(--gold); font-weight: 600; padding: 3px 6px; background: #15151b; }
+  td { padding: 3px 6px; color: var(--text); }
+  tr:nth-child(even) td { background: #14141a; }
+  .loss { color: #ff4b4b; } .gain { color: #3fd46a; } .unc { color: #1eff00; }
+  .foot { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--dim); padding: 6px 8px; background: #0a0a0d; }
+  .note { margin-top: 26px; max-width: 1180px; color: #ddd6ea; font-size: 13px; }
+  .note b { color: #fff; }
+</style>
+</head>
+<body>
+<h1>Round 5, item 1: Ka0s Default header, a bit darker</h1>
+<p class="lead">Each window is the Loot History layout under Ka0s Default. Only the header band changes: a vertical gradient from the top stop to the bottom stop, with the gold title. The game renders these colours a little darker than a browser does, so compare the shades against each other, not against your screenshot. Pick one letter. Only Ka0s Default changes, as you asked.</p>
+<div class="grid" id="grid"></div>
+<p class="note"><b>What else changes with it:</b> the skin picker's second swatch takes the flat blend, and MultiMeters' meter header (which round 5 also moves to the Loot History geometry, item 2) takes the same gradient. Gold title contrast is 9:1 or better in every option, so the text stays easy to read.</p>
+<script>
+const OPTS = [
+  { k: 'Today (round 4, option E)', tag: 'current', top: '#3A2F0A', bot: '#1F1905', blend: '#2C2408' },
+  { k: 'A: subtle, about 20% darker', tag: '', top: '#322808', bot: '#1B1604', blend: '#271F06' },
+  { k: 'B: medium, about 35-40% darker', tag: 'recommended', top: '#2C2307', bot: '#181304', blend: '#221B06' },
+  { k: 'C: strong, about 50% darker', tag: '', top: '#262006', bot: '#141103', blend: '#1D1805' },
+]
+const rows = [
+  ['03-Nov-2026', '17:09', '<span class="loss">&#9660; Loss</span>', 'Potion of Recklessness', '-1', 'Consumed'],
+  ['03-Nov-2026', '17:04', '<span class="loss">&#9660; Loss</span>', '<span class="unc">Thalassian Phoenix Oil</span>', '-1', 'Consumed'],
+  ['31-Oct-2026', '20:06', '<span class="gain">&#9650; Gain</span>', 'Gold', '+230g', 'Warband Withdraw'],
+  ['31-Oct-2026', '19:51', '<span class="gain">&#9650; Gain</span>', 'Healthstone', '+1', 'Other'],
+  ['31-Oct-2026', '19:47', '<span class="gain">&#9650; Gain</span>', 'Gold', '+254g', 'Mythic+'],
+]
+const grid = document.getElementById('grid')
+for (const o of OPTS) {
+  const c = document.createElement('div'); c.className = 'card'
+  c.innerHTML = `<h2>${o.k}${o.tag ? `<span class="tag">${o.tag}</span>` : ''}</h2>
+  <div class="win">
+    <div class="band" style="background: linear-gradient(${o.top}, ${o.bot})"><span class="t">KaOs Loot History</span><span class="x">&#10005;</span></div>
+    <div class="tabs"><span class="tab on">History</span><span class="tab">Insights</span><span class="tab">Timeline</span></div>
+    <table><tr><th>Date</th><th>Time</th><th>Direction</th><th>Item</th><th>Qty</th><th>Source</th></tr>
+    ${rows.map(r => `<tr>${r.map(x => `<td>${x}</td>`).join('')}</tr>`).join('')}</table>
+    <div class="foot"><span>Showing 1032 of 5738</span><span>Database ~2.2 MB</span></div>
+  </div>
+  <div class="hex">top ${o.top} &rarr; bottom ${o.bot} &middot; flat blend ${o.blend}</div>`
+  grid.appendChild(c)
+}
+</script>
+</body>
+</html>
