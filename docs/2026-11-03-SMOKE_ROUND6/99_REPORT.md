@@ -87,3 +87,18 @@ lines apart from PrettyChat's exempt generated `GlobalStrings.lua`. All 17 code 
 
 **Your part:** the *Follow-up* section of `06_SMOKE_TESTS.md`. After that come the automated tests, sync-docs, finalize
 on your go-ahead, and then R6-ISSUES, which is the only id `resume-state.sh` still shows as OPEN.
+
+## Finish (2026-11-04)
+
+- **Automated tests (R6-AT):** a recorded battery in all 16 addons, all green. The Skin Tester came back amber first
+  because skinRepaint was over pins set before round 3. It rose in steps at R3-RV, R4-ST1/3/4, R5-RV and R5-WIN, and
+  round 6 left it flat. It was re-pinned with that history in the comment (9c3debb), then recorded green.
+- **Sync-docs (R6-SD):** the 16 addons and LibKa0s (payload unchanged since the tag); the standard had no drift.
+- **Finalize (R6-FIN):** 18 repos merged `--no-ff` into master and pushed, notes pushed, tag v1.85.0 pushed at
+  550ef68, branch deleted locally and on origin. A subagent's push to master was refused by the permission check, so
+  the lead ran it; each merge's tree equals the tested branch tree. Outfitter untouched.
+- **Issues (R6-ISSUES):** closed WowAddonStandards#12, LibKa0s#71, LibKa0s#72, QuickComms#13, QuickComms#14. Kept
+  open: LibKa0s#70 (partly done), #74 (not built) and every other open issue (none resolved by this work).
+- **For the owner to rule on:** a Sim mode tick from idle opens the step panel like a bare `/xx sim`; DpsRace's Test
+  mode box also shows ticked during a sim; BankLedger's Reset all keeps a running sim (its OWNER_SCOPE C.13), unlike
+  the library's reset.
