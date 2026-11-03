@@ -28,10 +28,10 @@ The local tag v1.85.0 is at **2a78817** (R4-REL3, the fifteenth re-cut). That is
 
 **DONE 2026-11-03 15:22**, by a lead subagent, with the owner logged out and approving. The race records went from 79 to 32. The 47 dropped were 33 schema 1 records (no consumables, talents or timeline) and 14 schema 2 records (no consumables or timeline). One unused gear loadout was swept. Bests are computed at runtime, so no index needed fixing. The backup is `DpsRace.lua.bak-20261103-152208`, next to the file. Logged as `R4-SVCLEAN` in `checkpoints.tsv`.
 
-Observed at this gate, for the lead: the SavedVariables folder also holds `DpsRace.lua.bak-20261103-164909`, and `DpsRace.lua` was last written at 16:49. This gate did not open or touch either file.
+**Second pass, DONE 2026-11-03 16:49**, on the owner's answer ("Yes i want those dropped too"), with WoW not running: the 9 schema 3 records (all three captures, no gear stats) were dropped too, so the file keeps only the 23 schema 4 records (Aellâ 19, Helyâ 2, Lânfear 2, Trâxex none). Boards 253 cleave 60 s and 120 s lose their best; the other four keep theirs. Two gear loadouts and one talent loadout were swept. The backup of the 32-record file is `DpsRace.lua.bak-20261103-164909`. Logged as `R4-SVCLEAN2` in `checkpoints.tsv`.
 
 ## Open items
 
-- **Owner question:** should the 9 schema 3 records also be dropped? They have all three captures but no gear stats.
+- ~~Owner question: drop the 9 schema 3 records?~~ Answered yes; done in the second pass above.
 - **Owed by you:** the smoke run in `06_SMOKE_TESTS.md`, then the go-ahead. After that come `/dev-copilot:finalize`, the push of tag v1.85.0, and closing LibKa0s #71 and #72, spaced apart (#70 stays open). Then the cleanup of branches, stashes and worktrees.
 - `exceptions.tsv` needs no row: every M2 and M2b id landed a commit.
