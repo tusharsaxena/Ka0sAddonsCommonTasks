@@ -1,0 +1,55 @@
+id	milestone	repo	title
+SF-L1	M1	LibKa0s	Skin picker's long tooltips wrap to several rows, not one wide line (img 20)
+SF-L2	M1	LibKa0s	Table headers in the skin's color with the sort arrow in another color (img 24 Obsidian, 25 Glass, 26 Forever)
+SF-L3	M1	LibKa0s	Alternating row colors in every skin: Obsidian and High Contrast have none (img 53, 54)
+SF-L4	M1	LibKa0s	All skins: visible header and content separation and a separator line; Obsidian's rule brighter at skin level (img 65-69)
+SF-L5	M1	LibKa0s	High Contrast window border thinner across the board; check MultiMeters img 61 is this
+SF-REL	M1	LibKa0s	Re-cut local v1.85.0
+SF-RV	M2	AbsorbTracker	Re-vendor the re-cut into all 16 addons, one sweep, one commit per repo
+SF-QC-1	M2	QuickComms	Merge Scale in and out, and their fade versions; migrate stored picks
+SF-QC-2	M2	QuickComms	Swap the Outward and Inward spiral labels
+SF-QC-3	M2	QuickComms	WoW Default pad gets the border texture the Skin Tester shows (img 14)
+SF-ST-1	M2	LibKa0sSkinTester	Dropdown option to see the EllesmereUI skin
+SF-AT-1	M2	AbsorbTracker	High Contrast truncates the value text (img 22, counter 23)
+SF-BL-1	M2	BankLedger	Insights elements grow on every skin change, on all skins after (img 27, 29)
+SF-AM-1	M2	AuraMaster	Default text glow black in all skins (img 31-33, like 34)
+SF-AM-2	M2	AuraMaster	Bars: dark background and border in every skin, using that skin's textures, like Ka0s Default; Ka0s Default gets a black border (img 35, 36)
+SF-AM-3	M2	AuraMaster	Defaults off for Bar fill, Text font and Icon border use-skin-color (img 38-40); accepted deviation
+SF-CM-1	M2	ConsumableMaster	Bar border inconsistent across skins (img 42-50)
+SF-MM-1	M2	MultiMeters	Window title left aligned again (img 55)
+SF-MM-2	M2	MultiMeters	Cell borders off by default; right img 56, 57, 59; wrong 58, 60, 62; accepted deviation
+SF-MM-3	M2	MultiMeters	Bar background opacity 15% for a new profile, not moved by a skin (img 63)
+SF-MM-4	M2	MultiMeters	Bars overflow the window while dragging (img 64)
+SF-MM-5	M2	MultiMeters	Export glyph chat-text
+SF-DR-1	M2	DpsRace	Elapsed and time left clocks inherit the font from the skin (img 18)
+SF-DR-2	M2	DpsRace	File a GitHub issue: keep the Damage profile across sessions, which implies saving it (img 16)
+SF-GATE	M2	Ka0sAddonsCommonTasks	Final gates, one review, checkpoint and push
+SF-L6	M3	LibKa0s	#72: MakeResizable restores a frame's anchors after a grip drag, keeping the new size; windows behave as before
+SF-L7	M3	LibKa0s	#71: S.Dropdown handles WowStyle1DropdownTemplate: flat skinned control, Background faded, Arrow not tinted gold, label stays input.text on hover and press
+SF-L8	M3	LibKa0s	#70: line chart docs and skin tokens confirmed, an area-fill mode added, register row retired
+SF-PG-1	M3	PremadeGroupsFilterExtension	#71: drop the opts.stock and dd.arrow workaround
+SF-ST-2	M3	LibKa0sSkinTester	#71 and #72: drop the workarounds, ST-D2's included, and sample the area chart
+SF-DR-9	M3	DpsRace	#70: Damage profile moves onto the library's line chart with its area fill; same look
+SF-F1	M3	LibKa0s	Right-click on test and sim strips opens a context menu: end test or sim, and more (img 51, 52)
+SF-F2	M3	LibKa0s	Minimap menu gains an action opening the skin selector
+SF-DR-3	M3	DpsRace	Everything under the tab viewer scoped to that tab, charts, tables, up to recent bests (img 15)
+SF-DR-4	M3	DpsRace	An Overall tab scoping across all tabs
+SF-DR-5	M3	DpsRace	Late-cast ignore list becomes a new tab on the Race page (img 17)
+SF-DR-6	M3	DpsRace	New-best toast moves to the Race page (img 19)
+SF-DR-7	M3	DpsRace	Default toast sound Applause: Blizzard's if built in, else vendored as Ka0s Applause
+SF-DR-8	M3	DpsRace	Sim mode shows the Sim stepper window alongside the race window
+SF-AT-2	M3	AbsorbTracker	/at sim, modeled on DpsRace's sim with these changes
+SF-KC-1	M3	KickCD	Sim step with both target and focus casting
+SF-F-REC	M3	Ka0sAddonsCommonTasks	Re-cut, re-vendor, gates, smoke list, push
+SG-L1	M4	LibKa0s	Launcher menu: Sim mode where the addon has one, Open settings for all, one checkbox behavior for every row (img 72)
+SG-L2	M4	LibKa0s	Every addon appears twice among minimap buttons: find the cause, fix it (img 74, 75)
+SG-L3	M4	LibKa0s	One-time skin selector popup on the next release, once per account, not per addon
+SG-REL	M4	LibKa0s	Re-cut local v1.85.0 with a full release battery
+SG-RV	M4	AbsorbTracker	Re-vendor into 16 addons with launcher wiring for Sim mode
+SG-AT-1	M4	AbsorbTracker	/at sim gets the library Sim stepper window like MultiMeters (img 76)
+SG-DR-1	M4	DpsRace	/dr sim does not start by itself
+SG-SIM	M4	DpsRace	Every sim respects the step duration setting: DpsRace, AbsorbTracker, BankLedger, DropWatcher, KickCD, LootHistory, MultiMeters
+SG-MM-1	M4	MultiMeters	Column headers still overflow the window while dragging; cells are fixed (img 77)
+SG-DR-2	M4	DpsRace	Elapsed and Left clocks really follow the skin's font (img 78-80 all draw the same face)
+SG-DR-3	M4	DpsRace	Insights opens on Overall, remembers the last tab within the session, no SavedVariable
+SG-GATE	M4	Ka0sAddonsCommonTasks	Review, gates, smoke list, push

@@ -1,0 +1,19 @@
+id	milestone	repo	title
+R6-STD	M1	WowAddonStandards	New rule: the skin picker's preview (auto-enter when hidden, eye toggles, restore on every close; test > unlock > window; documented no-preview addons), version bump
+R6-L1	M1	LibKa0s	Picker preview contract spec.preview {mode, enter, exit, isActive, isShown}: auto-enter on a fresh show when hidden, eye toggles with a lit state and on/off tips, closed() restores the opening state on every route
+R6-REL	M1	LibKa0s	Re-cut local tag v1.85.0 with a recorded release battery
+R6-RV	M2	*	Re-vendor LibKa0s v1.85.0 in all 16 addons
+R6-PV	M2	*	Wire spec.preview per addon (mode table in 00_PLAN.md); PGFE documented none
+R6-GATE	M3	Ka0sAddonsCommonTasks	Smoke list, report, checkpoint, push
+R6-MM2	M2	MultiMeters	Export (chat) header glyph drawn at the same size as the other header glyphs (img 67)
+R6-SIM-STD	M4	WowAddonStandards	Rule: a Sim checkbox next to Test in every addon with a sim mode
+R6-SIM-L	M4	LibKa0s	MasterControls Sim checkbox next to Test, driven by host is/toggle hooks
+R6-SIM	M4	*	Wire the Sim checkbox in every addon with a sim mode
+R6-NAME	M5	*	Drop Ka0s from each addon README only (owner, 2026-11-04); everything else keeps Ka0s
+R6-ISSUES	M6	Ka0sAddonsCommonTasks	After finalize, close every GitHub issue the merged work resolved, spaced out; report partial ones
+R6-REL2	M4	LibKa0s	Re-cut local tag v1.85.0 after the Sim checkbox
+R6-RV2	M4	*	Re-vendor LibKa0s v1.85.0 in all 16 addons after R6-SIM-L
+R6-PF1	M4	PartyFrameEnhanced	CastBars.lua:120 nil unit when switching to a profile stored unlocked (R6 review note), fix if reachable in game
+R6-AT	M6	*	Recorded /dev-copilot:wow-automated-tests run in each of the 16 addons (Outfitter excluded)
+R6-SD	M6	*	/dev-copilot:sync-docs in the 16 addons, LibKa0s and WowAddonStandards, including the reviewers' stale-doc leftovers
+R6-FIN	M6	*	Finalize: merge --no-ff into master in dependency order (merge subject "R6-FIN: ..."), push master and notes, push tag v1.85.0, delete the run's branches, stashes and worktrees

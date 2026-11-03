@@ -1,0 +1,2 @@
+id	reason
+R6-FIN	Its commits are merge commits on master; resume-state.sh reads master..feat/2026-11-01-full-skinning, which no longer exists. Proof: for r in WowAddonStandards LibKa0s <16 addons> Ka0sAddonsCommonTasks; do git -C ../../../$r log master --merges --grep "R6-FIN:" --oneline; done

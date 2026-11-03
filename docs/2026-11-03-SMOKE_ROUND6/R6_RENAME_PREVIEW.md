@@ -1,0 +1,1480 @@
+# Rename preview: drop Ka0s from every addon's display name (R6-NAME)
+
+Read-only survey wf_202592e9-dbd, 2026-11-04. Nothing has been renamed. Folder names, SavedVariables names, global frame names, slash commands, binding ids and the launcher's internal `name` (the minimap position key) stay as they are.
+
+## Names
+
+| Addon (folder) | Today | New | Sites | Files |
+|---|---|---|---|---|
+| AbsorbTracker | Ka0s Absorb Tracker | Absorb Tracker | 53 | 24 |
+| AuraMaster | Ka0s Aura Master | Aura Master | 52 | 29 |
+| BankLedger | Ka0s Bank Ledger | Bank Ledger | 86 | 33 |
+| ConsumableMaster | Ka0s Consumable Master | Consumable Master | 60 | 29 |
+| DpsRace | Ka0s DPS Race | DPS Race | 62 | 37 |
+| DropWatcher | Ka0s Drop Watcher | Drop Watcher | 63 | 34 |
+| KickCD | Ka0s KickCD | KickCD | 82 | 37 |
+| LibKa0sSkinTester | Ka0s Skin Tester | Skin Tester | 53 | 27 |
+| LootHistory | Ka0s Loot History | Loot History | 84 | 35 |
+| MultiMeters | Ka0s Multi Meters | Multi Meters | 76 | 37 |
+| PanelMaster | Ka0s Panel Master | Panel Master | 70 | 30 |
+| PartyFrameEnhanced | Ka0s Party Frame Enhanced | Party Frame Enhanced | 43 | 21 |
+| PremadeGroupsFilterExtension | Ka0s Premade Groups Filter Extension | Premade Groups Filter Extension | 48 | 32 |
+| PrettyChat | Ka0s |cffff0000P|cffff9900r|cffffff00e|cff00ff00t|cff00fffft | Pretty Chat | 73 | 28 |
+| QuickComms | Ka0s Quick Comms | Quick Comms | 90 | 42 |
+| WhatGroup | Ka0s WhatGroup | WhatGroup | 76 | 36 |
+
+## What stays (not an addon name)
+
+- LibKa0s, its folder and its API names.
+- The skins and media: Ka0s Default, Ka0s Prototype, Ka0s Ubuntu and the rest. These are LibSharedMedia keys stored in SavedVariables.
+- The collection wording: "Apply to all Ka0s addons", "Ka0s skins", "Copy to every Ka0s addon", "Other Ka0s addons".
+- Frozen bundles: docs/audits, docs/reviews, docs/automated-tests, docs/perf-analysis, docs/revendor.
+
+## Upstream
+
+- WowAddonStandards launcher-§1 and anti-pattern #84 require the `Ka0s <Name>` label, and NEW_ADDON_CONTEXT.md prescribes `## Title: Ka0s <Name>`. Both change to the plain name in the same step.
+- LibKa0s: only comments, plus one error string in Slash.lua:362-368 and DebugLog.lua:244 that prescribe the `Ka0s <Name>` spelling. The library never adds Ka0s itself; every name comes from the host.
+
+## Every site, per addon
+
+### AbsorbTracker: Ka0s Absorb Tracker → Absorb Tracker
+
+- **docs** (33)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Absorb Tracker → # CLAUDE.md — Absorb Tracker
+  - `DEPENDENCIES.md:3`: ...build, run, test or release **Ka0s Absorb Tracker**, with commands → ...build, run, test or release **Absorb Tracker**, with commands
+  - `docs/ARCHITECTURE.md:3`: Orient-yourself map for **Ka0s Absorb Tracker** (modular layout). → Orient-yourself map for **Absorb Tracker** (modular layout).
+  - `docs/testing.md:3`: How to verify Ka0s Absorb Tracker. → How to verify Absorb Tracker.
+  - `docs/common-tasks.md:193`: The Blizzard Settings tree shows the new sub-page under "Ka0s Absorb Tracker" on next `/reload`. → ... under "Absorb Tracker" ...
+  - `docs/launcher.md:15`: Its **`label` is `Ka0s Absorb Tracker`** — the brand name in plain text → Its **`label` is `Absorb Tracker`** — the brand name in plain text (also reword 'beside the other ten Ka0s addons' rationale at :16-17 if th
+  - `docs/launcher.md:39`: The client's own context menu, titled `Ka0s Absorb Tracker` → titled `Absorb Tracker`
+  - `docs/launcher.md:43`: Ka0s Absorb Tracker → Absorb Tracker
+  - `docs/launcher.md:77`: Ka0s Absorb Tracker  v<version>       version: the TOC's `## Version` → Absorb Tracker  v<version>       ...
+  - `docs/debug.md:76`: `==== Ka0s Absorb Tracker diagnostics begin ====` → `==== Absorb Tracker diagnostics begin ====`
+  - `docs/debug.md:92`: `==== Ka0s Absorb Tracker diagnostics end: N line(s) ====` → `==== Absorb Tracker diagnostics end: N line(s) ====`
+  - `docs/module-map.md:816`: Helpers.BuildMainContent(ctx)                  -- top-level "Ka0s Absorb Tracker" page builder; → -- top-level "Absorb Tracker" page builder;
+  - `docs/module-map.md:933`: `Helpers.BuildMainContent(ctx)` — top-level "Ka0s Absorb Tracker" page builder → top-level "Absorb Tracker" page builder
+  - `docs/module-map.md:904`: core/LauncherSetup.lua row: may spell the label `Ka0s Absorb Tracker` (long line; check when editing) → replace any `Ka0s Absorb Tracker` with `Absorb Tracker`; keep LibKa0s-Launcher-1.0
+  - `docs/scope.md:59`: The "Ka0s Absorb Tracker" parent renders a logo + the TOC `Notes` blurb → The "Absorb Tracker" parent renders ...
+  - `docs/settings-panel.md:20`: the top-level "Ka0s Absorb Tracker" page as a spec → the top-level "Absorb Tracker" page as a spec
+  - `docs/settings-panel.md:32`: `NS.Constants.BRAND` (`"Ka0s Absorb Tracker"`) and `"AbsorbTrackerMainPanel"`. → `NS.Constants.BRAND` (`"Absorb Tracker"`) and `"AbsorbTrackerMainPanel"`.
+  - `docs/settings-panel.md:77`: ┌─ Ka0s Absorb Tracker (about page: logo + Notes + slash command list) ┐ → ┌─ Absorb Tracker (about page: logo + Notes + slash command list) ─────┐ (re-pad box art)
+  - `docs/settings-panel.md:104`: `"Ka0s Absorb Tracker ▸ <Page>"` for sub-pages → `"Absorb Tracker ▸ <Page>"` for sub-pages
+  - `docs/settings-panel.md:362`: *Ka0s Absorb Tracker* on its own line above the dropdown (`frame.ownerLabel`... → *Absorb Tracker* on its own line above the dropdown ...
+  - `docs/settings-panel.md:452`: ## About page (top-level "Ka0s Absorb Tracker") → ## About page (top-level "Absorb Tracker")
+  - `docs/slash-dispatch.md:58`: | `brandName` | `NS.Constants.BRAND`, the plain-text `Ka0s Absorb Tracker`, and the **same string** the LDB object carries as `label`. | → ... the plain-text `Absorb Tracker`, ...
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Absorb Tracker → # Smoke tests — Absorb Tracker
+  - `docs/smoke-tests.md:49`: SLASH-1 ... opens on the **Ka0s Absorb Tracker** landing page → **Absorb Tracker** landing page
+  - `docs/smoke-tests.md:65`: PANEL-1 ... Blizzard Settings opens on **Ka0s Absorb Tracker** → **Absorb Tracker**
+  - `docs/smoke-tests.md:66`: PANEL-2 ... Open the **Ka0s Absorb Tracker** parent page → **Absorb Tracker** parent page
+  - `docs/smoke-tests.md:117`: COMBAT-4 ... Esc → Options → AddOns → **Ka0s Absorb Tracker** → **Absorb Tracker**
+  - `docs/smoke-tests.md:193`: SKIN-17 ... **Ka0s Absorb Tracker** on its own line above the dropdown → **Absorb Tracker** on its own line
+  - `docs/smoke-tests.md:205`: SKIN-29 ... Ka0s Absorb Tracker on its name line → Absorb Tracker on its name line
+  - `docs/smoke-tests.md:240`: LAUNCH-3 ... context menu titled `Ka0s Absorb Tracker` → titled `Absorb Tracker`
+  - `docs/smoke-tests.md:246`: LAUNCH-9 ... its row reads `Ka0s Absorb Tracker` in plain text → its row reads `Absorb Tracker`
+  - `docs/smoke-tests.md:281`: DIAG-19 ... `==== Ka0s Absorb Tracker diagnostics begin ====` ... `==== Ka0s Absorb Tracker diagnostics end: N line(s) =` → `==== Absorb Tracker diagnostics begin ====` / `==== Absorb Tracker diagnostics end: ...`
+  - `docs/smoke-tests.md:283`: DIAG-21 ... above `==== Ka0s Absorb Tracker diagnostics begin ====` → `==== Absorb Tracker diagnostics begin ====`
+- **other** (4)
+  - `core/Constants.lua:64`: C.BRAND = "Ka0s Absorb Tracker" → C.BRAND = "Absorb Tracker"  (single brand constant; feeds LDB label core/LauncherSetup.lua:126, launcher menu/tooltip title, settings parent
+  - `core/Constants.lua:56`: comment block above C.BRAND (lines 56-63) describing the brand → no text change needed unless it spells the name; review wording only
+  - `core/EnvSetup.lua:27`: -- a hand-typed literal. Here those read "AbsorbTracker", "Ka0s Absorb Tracker" and "[AT]", and only → -- a hand-typed literal. Here those read "AbsorbTracker", "Absorb Tracker" and "[AT]", and only
+  - `settings/About.lua:3`: -- Top-level "Ka0s Absorb Tracker" page builder. Logo, addon Notes → -- Top-level "Absorb Tracker" page builder. Logo, addon Notes
+- **readme** (2)
+  - `README.md:1`: # Ka0s Absorb Tracker → # Absorb Tracker
+  - `README.md:9`: Ka0s Absorb Tracker shows your absorb shields as a movable bar. → Absorb Tracker shows your absorb shields as a movable bar.
+- **tests** (13)
+  - `tests/run.lua:1`: -- Headless test runner for Ka0s Absorb Tracker. → -- Headless test runner for Absorb Tracker.
+  - `tests/wow_mock.lua:1`: -- Ka0s Absorb Tracker's WoW-API mock: ... → -- Absorb Tracker's WoW-API mock: ...
+  - `tests/perf.lua:344`: print(("Ka0s Absorb Tracker \226\128\148 offline perf  (v%s, label '%s')") → print(("Absorb Tracker \226\128\148 offline perf  (v%s, label '%s')")
+  - `tests/test_envsetup.lua:39`: -- ... "AbsorbTracker", "Ka0s Absorb Tracker" and the "[AT]" chat prefix are → "AbsorbTracker", "Absorb Tracker" and ...
+  - `tests/test_helpers.lua:75`: -- The header FontString gets the "Ka0s Absorb Tracker > Page" breadcrumb → "Absorb Tracker > Page" breadcrumb
+  - `tests/test_launcher.lua:138`: assertEqual(object.label, "Ka0s Absorb Tracker", "the brand name, `Ka0s <Name>`") → assertEqual(object.label, "Absorb Tracker", "the brand name, `<Name>`")
+  - `tests/test_launcher.lua:167`: assertEqual(NS.Constants.BRAND, "Ka0s Absorb Tracker", "and that constant is the plain-text brand") → assertEqual(NS.Constants.BRAND, "Absorb Tracker", ...)
+  - `tests/test_launcher.lua:168`: assertEqual(NS.Launcher:Object().label, "Ka0s Absorb Tracker", "which is what the object carries") → "Absorb Tracker"
+  - `tests/test_launcher.lua:257`: assertEqual(menu.titles[1], "Ka0s Absorb Tracker", "the menu is titled with the brand label") → "Absorb Tracker"
+  - `tests/test_launcher.lua:423`: assertEqual(lines[1], "Ka0s Absorb Tracker  v" .. tocVersion(), ...) → "Absorb Tracker  v" .. tocVersion()
+  - `tests/test_launcher.lua:440`: assertEqual(lines[1], "Ka0s Absorb Tracker", "no manifest, no version") → "Absorb Tracker"
+  - `tests/test_launcher.lua:442`: assertEqual(hover()[1], "Ka0s Absorb Tracker  v" .. tocVersion()) → "Absorb Tracker  v" .. tocVersion()
+  - `tests/test_optionssetup.lua:373`: assertEqual(T.mocks.__mainPanel.name, "Ka0s Absorb Tracker", → assertEqual(T.mocks.__mainPanel.name, "Absorb Tracker",
+- **toc-title** (1)
+  - `AbsorbTracker.toc:2`: ## Title: Ka0s Absorb Tracker → ## Title: Absorb Tracker
+- **Risks noted**
+  - The standard pins the Ka0s prefix: launcher-§1 MUST says the LDB `label` is `Ka0s <Name>` (anti-pattern #84), NEW_ADDON_CONTEXT.md:93,195,644,932,961 prescribe `## Title: Ka0s <Name>`, parentTitle, picker title and brandName as `Ka0s <Name>`, and launcher-§6 sets BINDING_HEADER to `Ka0s <Name>`. Unless WowAddonStandards changes first, the rename becomes an audit finding. The comments in core/Const
+  - Tests pin the literal: tests/test_launcher.lua:138,167,168,257,423,440,442 and tests/test_optionssetup.lua:373 go red until they are updated in the same commit. test_diagnostics.lua:298, test_slashgate.lua:187,253 and tests/run.lua:96 read NS.Constants.BRAND, so they follow the constant automatically.
+  - The settings category name is the brand (parentTitle = NS.Constants.BRAND), so the Blizzard Settings/AddOns tree entry moves from the K block to the A block. The panel is opened by its registered category object and mainPanelName, not by its name string, so nothing should break; still verify `/at`, `/at config` and the launcher left-click in game.
+  - The AddOns list sorts by the TOC Title, so the addon moves position there. Broker displays (Titan, Bazooka, ElvUI) sort by label, so it no longer groups with the other Ka0s rows.
+  - The diagnostics begin/end markers change text. Anything that greps old pasted reports for `==== Ka0s Absorb Tracker diagnostics` will miss new ones.
+  - CurseForge: X-Curse-Project-ID 1450165 is unaffected, but the CurseForge project display name is set on the site, not from the repo, so the owner has to rename it by hand. The README H1 feeds the project description.
+  - No Addon compartment entry exists (no AddonCompartmentFunc in the TOC, and the vendored LibKa0s registers none), so there is nothing to rename there.
+  - Do not touch the skin source/key value "ka0s" in defaults/Profile.lua:139 and core/SkinSetup.lua:87. It is stored in AbsorbTrackerDB, so renaming it would orphan every saved skin choice.
+  - Do not rename the Ka0s_AbsorbTracker_* bus messages (core/Bus.lua). They are identifiers, and a partial rename would break the AceEvent message wiring.
+  - The docs/settings-panel.md:77 ASCII box art needs re-padding after the shorter name.
+
+### AuraMaster: Ka0s Aura Master → Aura Master
+
+- **chat-prefix** (1)
+  - `settings/Slash.lua:566`: brandName    = "Ka0s Aura Master", → brandName    = "Aura Master",  (drives the 'X is disabled — enable it with /am enable' refusal line)
+- **docs** (26)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Aura Master → # CLAUDE.md — Aura Master
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Aura Master → # Dependencies — Aura Master
+  - `docs/ARCHITECTURE.md:1`: # Architecture — Ka0s Aura Master → # Architecture — Aura Master
+  - `docs/ARCHITECTURE.md:8`: Ka0s Aura Master draws player-built aura **containers**. → Aura Master draws player-built aura **containers**.
+  - `docs/known-limitations.md:1`: # Known limitations — Ka0s Aura Master → # Known limitations — Aura Master
+  - `docs/performance.md:3`: How much Ka0s Aura Master costs, → How much Aura Master costs,
+  - `docs/scope.md:3`: What Ka0s Aura Master is for, → What Aura Master is for,
+  - `docs/testing.md:3`: How to verify Ka0s Aura Master (testing-§6). → How to verify Aura Master (testing-§6).
+  - `docs/debug.md:65`: [Diag] ==== Ka0s Aura Master diagnostics begin ==== → [Diag] ==== Aura Master diagnostics begin ====
+  - `docs/debug.md:88`: [Diag] ==== Ka0s Aura Master diagnostics end: 143 line(s) ==== → [Diag] ==== Aura Master diagnostics end: 143 line(s) ====
+  - `docs/slash-dispatch.md:77`: [AM] Ka0s Aura Master is disabled — enable it with /am enable → [AM] Aura Master is disabled — enable it with /am enable
+  - `docs/settings-panel.md:14`: | Ka0s Aura Master (landing) | → | Aura Master (landing) |
+  - `docs/settings-panel.md:956`: | Label | `Ka0s Aura Master` — the **brand name in plain text** (launcher-§1)... → | Label | `Aura Master` — the **brand name in plain text** (launcher-§1)...
+  - `docs/settings-panel.md:958`: titled `Ka0s Aura Master`, with one checkbox per pair → titled `Aura Master`, with one checkbox per pair
+  - `docs/settings-panel.md:959`: `Ka0s Aura Master  v<version>` → `Aura Master  v<version>`
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Aura Master → # Smoke tests — Aura Master
+  - `docs/smoke-tests.md:141`: Settings opens at **Ka0s Aura Master** → Settings opens at **Aura Master**
+  - `docs/smoke-tests.md:193`: each answers only `Ka0s Aura Master is` (wraps to next line) → each answers only `Aura Master is`
+  - `docs/smoke-tests.md:201`: Settings opens at **Ka0s Aura (wraps: Master**) → Settings opens at **Aura Master** (rejoin the wrapped line)
+  - `docs/smoke-tests.md:298`: → *Ka0s Aura (wraps: Master*) → → *Aura Master*
+  - `docs/smoke-tests.md:302`: Hover it → the title **Ka0s Aura (wraps: Master**) → Hover it → the title **Aura Master**
+  - `docs/smoke-tests.md:308`: Settings opens at **Ka0s Aura (wraps: Master**) → Settings opens at **Aura Master**
+  - `docs/smoke-tests.md:312`: a menu titled **Ka0s Aura Master** → a menu titled **Aura Master**
+  - `docs/smoke-tests.md:333`: add *Ka0s (wraps: Aura Master* as a plugin, line 334) → add *Aura Master* as a plugin
+  - `docs/smoke-tests.md:419`: `/am lock` answers `Ka0s Aura Master is disabled — enable it with /am enable` → `/am lock` answers `Aura Master is disabled — enable it with /am enable`
+  - `docs/smoke-tests.md:600`: disabled line (`Ka0s Aura Master is disabled — enable it with /am enable`) → disabled line (`Aura Master is disabled — enable it with /am enable`)
+- **launcher** (1)
+  - `core/LauncherSetup.lua:102`: label = "Ka0s Aura Master", → label = "Aura Master",
+- **other** (1)
+  - `core/LauncherSetup.lua:101`: -- saved position by; `Ka0s Aura Master` is the name a player reads. Two fields, two jobs. → -- saved position by; `Aura Master` is the name a player reads. Two fields, two jobs.
+- **picker-title** (1)
+  - `core/SkinSetup.lua:102`: local BRAND = "Ka0s Aura Master" → local BRAND = "Aura Master"  (Skin:RegisterOwner label at :586, shown in the skin picker / copy-to-other-addons list)
+- **readme** (2)
+  - `README.md:1`: # Ka0s Aura Master → # Aura Master
+  - `README.md:9`: Ka0s Aura Master lets you build your own buff and debuff displays. → Aura Master lets you build your own buff and debuff displays.
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:18`: local PARENT_TITLE = "Ka0s Aura Master" → local PARENT_TITLE = "Aura Master"
+- **tests** (17)
+  - `tests/run.lua:1`: -- Headless test runner for Ka0s Aura Master. → -- Headless test runner for Aura Master.
+  - `tests/run.lua:63`: brand       = "Ka0s Aura Master", → brand       = "Aura Master",
+  - `tests/perf.lua:315`: print(("Ka0s Aura Master — offline perf  (v%s, label '%s')"):format(...)) → print(("Aura Master — offline perf  (v%s, label '%s')"):format(...))
+  - `tests/wow_mock.lua:1`: -- tests/wow_mock.lua — Ka0s Aura Master's WoW-API mock → -- tests/wow_mock.lua — Aura Master's WoW-API mock
+  - `tests/test_diagnostics.lua:107`: "[Diag] ==== Ka0s Aura Master diagnostics begin ====" → "[Diag] ==== Aura Master diagnostics begin ===="
+  - `tests/test_diagnostics.lua:109`: "==== Ka0s Aura Master diagnostics end: (%d+) line%(s%) ====" → "==== Aura Master diagnostics end: (%d+) line%(s%) ===="
+  - `tests/test_diagnostics.lua:197`: "[Diag] ==== Ka0s Aura Master diagnostics begin ====" → "[Diag] ==== Aura Master diagnostics begin ===="
+  - `tests/test_diagnostics.lua:206`: "[Diag] ==== Ka0s Aura Master diagnostics end: " .. total → "[Diag] ==== Aura Master diagnostics end: " .. total
+  - `tests/test_disabled.lua:123`: local REFUSAL = "Ka0s Aura Master is disabled — enable it with /am enable" → local REFUSAL = "Aura Master is disabled — enable it with /am enable"
+  - `tests/test_redraw.lua:19`: local REFUSAL = "Ka0s Aura Master is disabled — enable it with /am enable" → local REFUSAL = "Aura Master is disabled — enable it with /am enable"
+  - `tests/test_skin_verb.lua:13`: local REFUSAL = "Ka0s Aura Master is disabled — enable it with /am enable" → local REFUSAL = "Aura Master is disabled — enable it with /am enable"
+  - `tests/test_slash_verbs.lua:836`: local REFUSAL = "Ka0s Aura Master is disabled — enable it with /am enable" → local REFUSAL = "Aura Master is disabled — enable it with /am enable"
+  - `tests/test_launcher.lua:219`: assertEqual(m.titles[1], "Ka0s Aura Master", "the plain-text label") → assertEqual(m.titles[1], "Aura Master", "the plain-text label")
+  - `tests/test_launcher.lua:373`: "Ka0s Aura Master  v9.8.7", → "Aura Master  v9.8.7",
+  - `tests/test_skinsetup.lua:49`: assertEqual(Skin:OwnerLabel(OWNER), "Ka0s Aura Master", ...) → assertEqual(Skin:OwnerLabel(OWNER), "Aura Master", ...)
+  - `tests/test_envsetup.lua:30`: local asked = reader(arm.m, { Title = "Ka0s Aura Master" }) → local asked = reader(arm.m, { Title = "Aura Master" })  (stub fixture; optional but keeps it truthful)
+  - `tests/test_envsetup.lua:31`: assertEqual(arm.NS.Meta("Title"), "Ka0s Aura Master", arm.name) → assertEqual(arm.NS.Meta("Title"), "Aura Master", arm.name)
+- **toc-title** (1)
+  - `AuraMaster.toc:2`: ## Title: Ka0s Aura Master → ## Title: Aura Master
+- **window-title** (1)
+  - `core/DebugLogSetup.lua:142`: brandName = "Ka0s Aura Master", → brandName = "Aura Master",  (diagnostics begin/end markers; console title at :138 is already "Aura Master")
+- **Risks noted**
+  - Tests pin the brand: test_diagnostics (4 asserts), test_disabled/test_redraw/test_skin_verb/test_slash_verbs REFUSAL constants, test_launcher:219,373, test_skinsetup:49, tests/run.lua:63 kit diagnostics brand. All must change in the same commit as the source constants or the suite goes red.
+  - Settings category: PARENT_TITLE (settings/OptionsSetup.lua:18) is the Blizzard Settings category name. Opening uses the registered category object/ID (tests/test_anchors_handle.lua mocks Settings.OpenToCategory by id), so likely safe, but confirm LibKa0s-Options does not key anything persisted (e.g. last-opened page) by the title string.
+  - Sort order: dropping 'Ka0s ' moves the addon from the K block to A in the AddOns list and Settings tree; it no longer groups with siblings. Owner should expect this (smoke PANEL-27/334 text about grouping with the other Ka0s addons in a broker display becomes stale).
+  - Skin owner label (core/SkinSetup.lua:586 label = BRAND) is shown in other addons' 'Copy to every Ka0s addon' confirmation; all addons should rename in the same release so the list reads consistently.
+  - One-brand-spelling rule: Slash brandName, Launcher label, DebugLog brandName, Skin BRAND, and PARENT_TITLE must stay identical (comment at settings/Slash.lua:563-565); change all five together.
+  - Line-wrapped occurrences in docs/smoke-tests.md (lines 193, 201, 298, 302, 308, 333) are split across two lines, so a naive single-line sed misses them.
+  - LibDBIcon saved position is keyed by name = addonName (folder), not label, so the minimap button position survives. SavedVariables are keyed by folder name, unaffected.
+  - CurseForge project title lives on the website (project 1698345), not in .pkgmeta; owner must rename it there separately if desired.
+  - docs/smoke-tests.md rows are owner-marked results; editing names in passed rows rewrites historical evidence text - consider editing only the step text, not results.
+
+### BankLedger: Ka0s Bank Ledger → Bank Ledger
+
+- **docs** (38)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Bank Ledger → # CLAUDE.md — Bank Ledger
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Bank Ledger → # Dependencies — Bank Ledger
+  - `docs/ARCHITECTURE.md:1`: # Architecture — Ka0s Bank Ledger → # Architecture — Bank Ledger
+  - `docs/ARCHITECTURE.md:12`: | Folder / TOC `Title` | `BankLedger` / `Ka0s Bank Ledger` | → | Folder / TOC `Title` | `BankLedger` / `Bank Ledger` |
+  - `docs/ARCHITECTURE.md:189`: It was `Ka0s Bank Ledger` before adoption. → keep (history of the old registration name)
+  - `docs/ARCHITECTURE.md:190`: | Broker label | `Ka0s Bank Ledger` — the **brand name in plain text** (`launcher-§1`) ... It read `Bank Ledger` until the v2.54.0 amendment → | Broker label | `Bank Ledger` — ... ; add: it read `Ka0s Bank Ledger` from the v2.54.0 amendment until the <date> rename |
+  - `docs/ARCHITECTURE.md:193`: titled `Ka0s Bank Ledger` → titled `Bank Ledger`
+  - `docs/ARCHITECTURE.md:194`: `Ka0s Bank Ledger  v<version>` → `Bank Ledger  v<version>`
+  - `docs/ARCHITECTURE.md:217`: Options → Keybindings → Ka0s Bank Ledger → Options → Keybindings → Bank Ledger
+  - `docs/module-map.md:18`: this addon registered as "Ka0s Bank Ledger" before adoption → keep (history)
+  - `docs/debug.md:151`: `==== Ka0s Bank Ledger diagnostics begin ====` → `==== Bank Ledger diagnostics begin ====`
+  - `docs/debug.md:165`: `==== Ka0s Bank Ledger diagnostics end: N line(s) ====` → `==== Bank Ledger diagnostics end: N line(s) ====`
+  - `docs/performance.md:1`: # Performance — Ka0s Bank Ledger → # Performance — Bank Ledger
+  - `docs/profiles.md:33`: **Settings → AddOns → Ka0s Bank Ledger → Profiles** → **Settings → AddOns → Bank Ledger → Profiles**
+  - `docs/slash-dispatch.md:116`: `[BL] Ka0s Bank Ledger is disabled — enable it with /bl enable` → `[BL] Bank Ledger is disabled — enable it with /bl enable`
+  - `docs/slash-dispatch.md:131`: (Options → Keybindings → Ka0s Bank Ledger, ... → (Options → Keybindings → Bank Ledger, ...
+  - `docs/settings-panel.md:101`: Options → Keybindings → Ka0s Bank Ledger → Options → Keybindings → Bank Ledger
+  - `docs/settings-panel.md:275`: Options → Keybindings → Ka0s Bank Ledger or on General > → Options → Keybindings → Bank Ledger or on General >
+  - `docs/scope.md:9`: | Folder / TOC `Title` | `BankLedger` / `Ka0s Bank Ledger` | → | Folder / TOC `Title` | `BankLedger` / `Bank Ledger` |
+  - `docs/testing.md:1`: # Testing — Ka0s Bank Ledger → # Testing — Bank Ledger
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Bank Ledger → # Smoke tests — Bank Ledger
+  - `docs/smoke-tests.md:54`: Hover it → `Ka0s Bank Ledger  v<version>` → Hover it → `Bank Ledger  v<version>`
+  - `docs/smoke-tests.md:59`: a menu titled Ka0s Bank Ledger with four → a menu titled Bank Ledger with four
+  - `docs/smoke-tests.md:108`: `Ka0s Bank Ledger is disabled — enable it with → `Bank Ledger is disabled — enable it with
+  - `docs/smoke-tests.md:117`: line, `Ka0s Bank Ledger is disabled — enable it with /bl enable` → line, `Bank Ledger is disabled — enable it with /bl enable`
+  - `docs/smoke-tests.md:124`: a section titled **Ka0s Bank Ledger** holds **Toggle ledger window** → a section titled **Bank Ledger** holds ...
+  - `docs/smoke-tests.md:131`: Options → Keybindings → Ka0s Bank Ledger → the same key → Options → Keybindings → Bank Ledger → the same key
+  - `docs/smoke-tests.md:150`: one line saying Ka0s Bank Ledger is disabled → one line saying Bank Ledger is disabled
+  - `docs/smoke-tests.md:260`: Settings ▸ AddOns ▸ Ka0s Bank Ledger ▸ General ▸ History → Settings ▸ AddOns ▸ Bank Ledger ▸ General ▸ History
+  - `docs/smoke-tests.md:301`: Settings ▸ AddOns ▸ Ka0s Bank Ledger ▸ Profiles → Settings ▸ AddOns ▸ Bank Ledger ▸ Profiles
+  - `docs/smoke-tests.md:887`: `[Diag] ==== Ka0s Bank Ledger → `[Diag] ==== Bank Ledger
+  - `docs/smoke-tests.md:893`: `[Diag] ==== Ka0s Bank Ledger diagnostics end: N line(s) ====` → `[Diag] ==== Bank Ledger diagnostics end: N line(s) ====`
+  - `docs/smoke-tests.md:1207`: Turn Ka0s Bank Ledger off in EllesmereUI's Third-Party list → Turn Bank Ledger off in EllesmereUI's Third-Party list (EllesmereUI lists by TOC Title, so it changes too)
+  - `docs/smoke-tests.md:1428`: installation of Ka0s Bank Ledger (expected in libs/LibKa0s) → installation of Bank Ledger (expected in libs/LibKa0s)
+  - `docs/smoke-tests.md:1433`: missing from this installation of Ka0s Bank Ledger (expected in libs/LibKa0s) → missing from this installation of Bank Ledger (expected in libs/LibKa0s)
+  - `docs/smoke-tests.md:1440`: this installation of Ka0s Bank Ledger (expected → this installation of Bank Ledger (expected
+  - `docs/superpowers/plans/2026-07-27-insights-panel-overhaul.md:10`: from Ka0s Bank Ledger entirely → KEEP: dated executed plan, frozen record
+  - `docs/superpowers/specs/2026-07-26-session-window-and-insights-design.md:56`: | 0 | Title `Ka0s Bank Ledger - Current Banking Session` | → KEEP: dated spec, frozen record
+- **launcher** (1)
+  - `core/LauncherSetup.lua:95`: NS.BRAND_NAME = "Ka0s Bank Ledger" → NS.BRAND_NAME = "Bank Ledger"  (the one brand constant: it feeds the LDB label (:216), the library tooltip title, the right-click menu title
+- **other** (8)
+  - `core/CoreSetup.lua:38`: NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Ka0s Bank Ledger " .. → NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Bank Ledger " ..  (the second, early brand literal, by design
+  - `core/LauncherSetup.lua:36`: -- `addonName` ... "BankLedger", not "Ka0s Bank Ledger" → -- ... "BankLedger", not "Bank Ledger" (comment)
+  - `core/LauncherSetup.lua:41`: -- THE HAND-ROLLED OBJECT USED "Ka0s Bank Ledger", so this IS a rename → leave as history (it describes the pre-adoption registration name), or reword to "the brand name"
+  - `core/LauncherSetup.lua:84`: -- ... `Ka0s <Name>`, plain text, no escape sequence of any kind. → -- ... `<Name>`, plain text, no escape sequence of any kind.
+  - `core/LauncherSetup.lua:215`: -- identifier, `Ka0s Bank Ledger` is a name. Two fields, two jobs. → -- identifier, `Bank Ledger` is a name. Two fields, two jobs.
+  - `core/EnvSetup.lua:23`: -- "Ka0s Bank Ledger", and only the first is the folder. → -- "Bank Ledger", and only the first is the folder. (comment; note the Title then reads close to the folder name, the point of the comment s
+  - `core/MediaSetup.lua:23`: -- those three happen to read "BankLedger", "BankLedger" and "Ka0s Bank Ledger" here → -- ... "BankLedger", "BankLedger" and "Bank Ledger" here
+  - `defaults/Profile.lua:79`: -- the collection owner's call of 2026-10-27, as Ka0s Loot History ships it) → -- ... as Loot History ships it) (sibling addon's name, renamed in the same sweep; comment only)
+- **picker-title** (3)
+  - `docs/settings-panel.md:137`: with the addon's name, **Ka0s Bank Ledger**, on its → with the addon's name, **Bank Ledger**, on its
+  - `docs/smoke-tests.md:146`: **Ka0s Bank Ledger** under its title → **Bank Ledger** under its title
+  - `docs/smoke-tests.md:1233`: **Ka0s Bank Ledger** on its own line under the title → **Bank Ledger** on its own line under the title
+- **readme** (4)
+  - `README.md:1`: # Ka0s Bank Ledger → # Bank Ledger
+  - `README.md:9`: Ka0s Bank Ledger is a passbook for your banks. → Bank Ledger is a passbook for your banks.
+  - `README.md:52`: under Options → Keybindings → Ka0s Bank Ledger, or → under Options → Keybindings → Bank Ledger, or
+  - `README.md:78`: Settings → AddOns → Ka0s Bank Ledger → **Profiles** → Settings → AddOns → Bank Ledger → **Profiles**
+- **settings-category** (3)
+  - `settings/OptionsSetup.lua:23`: -- and every sub-page's "Ka0s Bank Ledger ▸ <page>" breadcrumb. → -- and every sub-page's "Bank Ledger ▸ <page>" breadcrumb. (comment; the live value is PARENT_TITLE = NS.BRAND_NAME at :24)
+  - `settings/Panel.lua:19`: --     ("Ka0s Bank Ledger ▸ General"), a Defaults button, and a gold divider. → --     ("Bank Ledger ▸ General"), ... (comment)
+  - `docs/smoke-tests.md:160`: Settings ▸ AddOns ▸ Ka0s Bank Ledger → General → Settings ▸ AddOns ▸ Bank Ledger → General
+- **tests** (25)
+  - `tests/run.lua:1`: -- Headless test runner for Ka0s Bank Ledger. → -- Headless test runner for Bank Ledger.
+  - `tests/wow_mock.lua:1`: -- Ka0s Bank Ledger's half of the WoW-API mock → -- Bank Ledger's half of the WoW-API mock
+  - `tests/test_diagnostics.lua:20`: local BRAND = "Ka0s Bank Ledger" → local BRAND = "Bank Ledger"
+  - `tests/test_envsetup.lua:35`: "BankLedger", "Ka0s Bank Ledger" and "BL" are all live strings → "BankLedger", "Bank Ledger" and "BL" are all live strings (comment)
+  - `tests/test_keybinds.lua:5`: shows a "Ka0s Bank Ledger" section → shows a "Bank Ledger" section (comment)
+  - `tests/test_launcher.lua:189`: -- addon used to register as "Ka0s Bank Ledger", which is the TITLE. → keep (history) or "used to register under its title"
+  - `tests/test_launcher.lua:233`: assertEqual(obj.label, "Ka0s Bank Ledger") → assertEqual(obj.label, "Bank Ledger")
+  - `tests/test_launcher.lua:248`: assertEqual(label, "Ka0s Bank Ledger", "`Ka0s <Name>`, the addon's brand name") → assertEqual(label, "Bank Ledger", "`<Name>`, the addon's brand name")
+  - `tests/test_launcher.lua:261`: assertTrue(src:find('NS.BRAND_NAME = "Ka0s Bank Ledger"', 1, true) ~= nil, → assertTrue(src:find('NS.BRAND_NAME = "Bank Ledger"', 1, true) ~= nil,
+  - `tests/test_launcher.lua:279`: -- Dies under: any core/, settings/ or modules/ file putting "Ka0s Bank Ledger" back in code. → -- ... putting "Bank Ledger" back in code.
+  - `tests/test_launcher.lua:280`: local BRAND = "Ka0s Bank Ledger" → local BRAND = "Bank Ledger"  (RISK: the scan then also matches settings/Schema.lua:349 addonName = "Bank Ledger" and core/DebugLogSetup.lua:
+  - `tests/test_launcher.lua:364`: assertEqual(menu.titles[1], "Ka0s Bank Ledger", "the menu's title is the brand name") → assertEqual(menu.titles[1], "Bank Ledger", ...)
+  - `tests/test_launcher.lua:525`: assertEqual(lines[1], "Ka0s Bank Ledger  v" .. NS.Version(), ...) → assertEqual(lines[1], "Bank Ledger  v" .. NS.Version(), ...)
+  - `tests/test_launcher.lua:856`: assertEqual(NS.BRAND_NAME, "Ka0s Bank Ledger") → assertEqual(NS.BRAND_NAME, "Bank Ledger")
+  - `tests/test_libka0s_slash.lua:370`: .. "of Ka0s Bank Ledger (expected in libs/LibKa0s), so the slash help index ... → .. "of Bank Ledger (expected in libs/LibKa0s), ...
+  - `tests/test_libka0s_slash.lua:378`: .. "of Ka0s Bank Ledger (expected in libs/LibKa0s), so the slash help index ... → .. "of Bank Ledger (expected in libs/LibKa0s), ...
+  - `tests/test_libka0s.lua:94`: -- ... and the TOC's `## Title`, "Ka0s Bank Ledger". → -- ... and the TOC's `## Title`, "Bank Ledger". (comment)
+  - `tests/test_libka0s.lua:228`: .. "Ka0s Bank Ledger (expected in libs/LibKa0s); running on reduced built-in fallbacks.") → .. "Bank Ledger (expected in libs/LibKa0s); running on reduced built-in fallbacks.")
+  - `tests/test_libka0s.lua:238`: local EXPECTED = "The LibKa0s library is missing from this installation of Ka0s Bank Ledger " → local EXPECTED = "The LibKa0s library is missing from this installation of Bank Ledger "
+  - `tests/test_libka0s.lua:586`: .. "of Ka0s Bank Ledger (expected in libs/LibKa0s), so the debug console window is unavailable.") → .. "of Bank Ledger (expected in libs/LibKa0s), ...")
+  - `tests/test_panel.lua:24`: assertTrue(mocks.__settingsPanels["Ka0s Bank Ledger"] ~= nil, "landing page") → assertTrue(mocks.__settingsPanels["Bank Ledger"] ~= nil, "landing page")
+  - `tests/test_panel.lua:42`: for _, name in ipairs({ "Ka0s Bank Ledger", "General" }) do → for _, name in ipairs({ "Bank Ledger", "General" }) do
+  - `tests/test_panel.lua:51`: local p = panel("Ka0s Bank Ledger") → local p = panel("Bank Ledger")
+  - `tests/test_panel.lua:64`: local ok, err = pcall(S.renderPage, "Ka0s Bank Ledger") → local ok, err = pcall(S.renderPage, "Bank Ledger")
+  - `tests/test_panel.lua:124`: for _, name in ipairs({ "Ka0s Bank Ledger", "General" }) do → for _, name in ipairs({ "Bank Ledger", "General" }) do
+- **toc-title** (1)
+  - `BankLedger.toc:2`: ## Title: Ka0s Bank Ledger → ## Title: Bank Ledger
+- **window-title** (3)
+  - `docs/windows.md:123`: *Ka0s Bank Ledger - Simulation* → *Bank Ledger - Simulation*
+  - `docs/smoke-tests.md:804`: a second window, Ka0s Bank Ledger - → a second window, Bank Ledger -
+  - `docs/smoke-tests.md:981`: *Ka0s Bank Ledger - Simulation* → *Bank Ledger - Simulation*
+- **Risks noted**
+  - The TOC Title is the settings category key: settings/OptionsSetup.lua:24 PARENT_TITLE = NS.BRAND_NAME registers the parent category, and tests/test_panel.lua:24,42,51,64,124 look it up by 'Ka0s Bank Ledger'; these must move with the constant
+  - tests/test_launcher.lua:270-290 'brand literal spelled only at NS.BRAND_NAME and the missing-library clause' scans core/, settings/, modules/ code for the brand string. Once BRAND becomes 'Bank Ledger' it will also match settings/Schema.lua:349 (addonName = "Bank Ledger") and core/DebugLogSetup.lua:98 (title = "Bank Ledger") and fail; either point those at NS.BRAND_NAME (DebugLogSetup's table load
+  - The standard pins the form: launcher-§1 (and the test message at tests/test_launcher.lua:248) says the brand is `Ka0s <Name>`; docs/ARCHITECTURE.md:190 records the v2.54.0 amendment that changed 'Bank Ledger' to 'Ka0s Bank Ledger'. WowAddonStandards launcher-§1 needs an amendment first or the next standards audit flags every addon
+  - Settings tree / AddOns list sort order changes: 'Bank Ledger' sorts under B instead of with the other Ka0s addons under K; Keybindings sort is load order so unaffected
+  - EllesmereUI's Third-Party list and the skin picker show the brand label (core/SkinSetup.lua:783); smoke rows SKIN-13 and the picker rows must be rewritten
+  - The diagnostics report markers ('==== <brand> diagnostics begin ====') change; any saved/pasted reports or perf/diagnostic parsers matching the old marker will not match
+  - No SavedVariables are keyed by the display name (BankLedgerDB, LDB/LibDBIcon registration uses the folder name 'BankLedger'), so no migration is needed
+  - The CurseForge project name (X-Curse-Project-ID 1629058) is set on the website, not in .pkgmeta; renaming it there is a manual owner step
+  - No Addon compartment entry exists (no AddonCompartmentFunc in the TOC, none in LibKa0s Launcher), so nothing to change there
+  - A parallel workflow is editing these repos; recheck line numbers before applying
+
+### ConsumableMaster: Ka0s Consumable Master → Consumable Master
+
+- **chat-prefix** (2)
+  - `settings/Slash.lua:432`: HELP_HEADER     = "|cffffd100Ka0s Consumable Master|r v%s \226\128\148 slash commands", → HELP_HEADER     = "|cffffd100Consumable Master|r v%s \226\128\148 slash commands",
+  - `settings/Slash.lua:589`: brandName    = "Ka0s Consumable Master", → brandName    = "Consumable Master",
+- **curseforge** (1)
+  - `.pkgmeta:1`: # Packager config for Ka0s Consumable Master. → # Packager config for Consumable Master.
+- **docs** (24)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Consumable Master → # CLAUDE.md — Consumable Master
+  - `CLAUDE.md:3`: **Ka0s Consumable Master** — an auto-managed consumable-macro addon → **Consumable Master** — an auto-managed consumable-macro addon
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Consumable Master → # Dependencies — Consumable Master
+  - `docs/ARCHITECTURE.md:3`: Orient-yourself map for **Ka0s Consumable Master**. → Orient-yourself map for **Consumable Master**.
+  - `docs/ARCHITECTURE.md:325`: file load, labeled *Ka0s Consumable Master*, → file load, labeled *Consumable Master*,
+  - `docs/module-map.md:691`: label (`Ka0s Consumable Master`) → label (`Consumable Master`)
+  - `docs/module-map.md:831`: labeled `Ka0s Consumable Master`, → labeled `Consumable Master`,
+  - `docs/debug.md:118`: `[Diag] ==== Ka0s Consumable Master diagnostics begin ====` and `... diagnostics end → `[Diag] ==== Consumable Master diagnostics begin ====` and `... diagnostics end
+  - `docs/slash-dispatch.md:171`: Ka0s Consumable Master v1.8.0 — slash commands (alias: /consumablemaster) → Consumable Master v1.8.0 — slash commands (alias: /consumablemaster)
+  - `docs/slash-dispatch.md:262`: The refusal reads `Ka0s Consumable Master is disabled — enable it with /cm enable` → The refusal reads `Consumable Master is disabled — enable it with /cm enable`
+  - `docs/settings-panel.md:281`: Ka0s Consumable Master   (launcher context-menu title) → Consumable Master
+  - `docs/settings-panel.md:296`: Ka0s Consumable Master  v<the TOC's ## Version> → Consumable Master  v<the TOC's ## Version>
+  - `docs/testing.md:1`: # Testing & verification — Ka0s Consumable Master → # Testing & verification — Consumable Master
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Consumable Master → # Smoke tests — Consumable Master
+  - `docs/smoke-tests.md:77`: `Ka0s Consumable Master is disabled — enable it with /cm enable` → `Consumable Master is disabled — enable it with /cm enable`
+  - `docs/smoke-tests.md:87`: it lands on the **Ka0s Consumable Master** parent page → it lands on the **Consumable Master** parent page
+  - `docs/smoke-tests.md:91`: the header reads `Ka0s Consumable Master › <Page>` → the header reads `Consumable Master › <Page>`
+  - `docs/smoke-tests.md:439`: context menu titled `Ka0s Consumable Master` → context menu titled `Consumable Master`
+  - `docs/smoke-tests.md:449`: click Ka0s Consumable Master → it is listed → click Consumable Master → it is listed
+  - `docs/smoke-tests.md:451`: `Ka0s Consumable Master  v<TOC version>` → `Consumable Master  v<TOC version>`
+  - `docs/smoke-tests.md:511`: `[Diag] ==== Ka0s Consumable Master diagnostics begin ====` to `[Diag] ==== Ka0s Con...` → `[Diag] ==== Consumable Master diagnostics begin ====` to `[Diag] ==== Consumable Master diagnostics end ====`
+  - `docs/smoke-tests.md:629`: **Ka0s Consumable Master** on its own line above the dropdown → **Consumable Master** on its own line above the dropdown
+  - `docs/smoke-tests.md:594`: a second Ka0s addon that uses skins (Ka0s
+Loot History, or the Ka0s Skin Tester) → a second Ka0s addon that uses skins (Loot History, or the Skin Tester)
+  - `docs/smoke-tests.md:691`: → Ka0s Consumable Master is absent from the AddOns list → → Consumable Master is absent from the AddOns list
+- **launcher** (2)
+  - `core/LauncherSetup.lua:141`: label = "Ka0s Consumable Master", → label = "Consumable Master",
+  - `core/LauncherSetup.lua:121`: -- THE ADDON'S BRAND NAME IN PLAIN TEXT, `Ka0s <Name>` (launcher-§1). ... (comment block 121-140, incl. 'filed one of them under A while the → Rewrite comment to the new rule: brand name is `<Name>` without the Ka0s prefix; '`ConsumableMaster` is an identifier; `Consumable Master` i
+- **other** (4)
+  - `core/DebugLogSetup.lua:241`: brandName   = "Ka0s Consumable Master", → brandName   = "Consumable Master",
+  - `core/DebugLogSetup.lua:236`: -- `Ka0s <Name>` both report markers carry -- the same string settings/Slash.lua → -- `<Name>` both report markers carry -- the same string settings/Slash.lua
+  - `.luacheckrc:1`: -- Luacheck configuration for Ka0s Consumable Master. → -- Luacheck configuration for Consumable Master.
+  - `settings/Panel.lua:127`: -- Vertical rhythm, matched to Ka0s KickCD's settings pages (the house → -- Vertical rhythm, matched to KickCD's settings pages (the house
+- **picker-title** (1)
+  - `core/SkinSetup.lua:115`: local LABEL = "Ka0s Consumable Master" → local LABEL = "Consumable Master"
+- **readme** (2)
+  - `README.md:1`: # Ka0s Consumable Master → # Consumable Master
+  - `README.md:9`: Ka0s Consumable Master is an auto-managed consumable macro addon. → Consumable Master is an auto-managed consumable macro addon.
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:45`: local PANEL_TITLE = L["Ka0s Consumable Master"] → local PANEL_TITLE = L["Consumable Master"]
+- **tests** (22)
+  - `tests/test_launcher.lua:84`: t.eq(label, "Ka0s Consumable Master", "the brand name, spelled the collection's way") → t.eq(label, "Consumable Master", ...)
+  - `tests/test_launcher.lua:82`: -- `Ka0s <Name>` verbatim (launcher-§1), so the eleven group together under K → -- `<Name>` verbatim, no Ka0s prefix (launcher-§1 as revised)
+  - `tests/test_launcher.lua:69`: t.eq(object.label, "Ka0s Consumable Master", "a display prints the brand name") → t.eq(object.label, "Consumable Master", ...)
+  - `tests/test_launcher.lua:100`: t.truthy(src:find('label = "Ka0s Consumable Master"', 1, true) ~= nil, → t.truthy(src:find('label = "Consumable Master"', 1, true) ~= nil,
+  - `tests/test_launcher.lua:204`: t.eqList(m.titles, { "Ka0s Consumable Master" }, "titled with the brand name") → t.eqList(m.titles, { "Consumable Master" }, ...)
+  - `tests/test_launcher.lua:658`: "Ka0s Consumable Master  v" .. v, → "Consumable Master  v" .. v,
+  - `tests/test_disabled.lua:451`: :format("Ka0s Consumable Master", "/cm enable") → :format("Consumable Master", "/cm enable")
+  - `tests/test_disabled.lua:456`: t.eq(KCM.Launcher:Object().label, "Ka0s Consumable Master", "one brand spelling") → t.eq(KCM.Launcher:Object().label, "Consumable Master", ...)
+  - `tests/test_disabled.lua:457`: t.truthy(line:find("Ka0s Consumable Master", 1, true) ~= nil, ...) → t.truthy(line:find("Consumable Master", 1, true) ~= nil, ...)
+  - `tests/test_diagnostics.lua:105`: "==== Ka0s Consumable Master diagnostics begin ====" → "==== Consumable Master diagnostics begin ===="
+  - `tests/test_locale.lua:320`: {"settings/Slash.lua", "|cffffd100Ka0s Consumable Master|r v%s \\226\\128\\148 slash commands", "LIB DESCRIPTOR"}, → {"settings/Slash.lua", "|cffffd100Consumable Master|r v%s \\226\\128\\148 slash commands", "LIB DESCRIPTOR"},
+  - `tests/test_locale.lua:328`: {"settings/Slash.lua", "Ka0s Consumable Master", "LIB DESCRIPTOR"}, → {"settings/Slash.lua", "Consumable Master", "LIB DESCRIPTOR"}, (note: 'Consumable Master' is now also a routed L[] key in modules/MacroBar.l
+  - `tests/test_slashsetup.lua:106`: t.truthy(header:find("|cffffd100Ka0s Consumable Master|r", 1, true), → t.truthy(header:find("|cffffd100Consumable Master|r", 1, true),
+  - `tests/test_slash_degraded.lua:150`: local brand, verb = "Ka0s Consumable Master", "/cm enable" → local brand, verb = "Consumable Master", "/cm enable"
+  - `tests/test_skin.lua:32`: t.eq(Skin and Skin:OwnerLabel(OWNER), "Ka0s Consumable Master", "the tab and the copy print the brand") → t.eq(Skin and Skin:OwnerLabel(OWNER), "Consumable Master", ...)
+  - `tests/test_settingsui.lua:230`: t.eq(ctx.panel.titleText, "Ka0s Consumable Master |A:common-icon-forwardarrow:16:16|a Macro Bar", → t.eq(ctx.panel.titleText, "Consumable Master |A:common-icon-forwardarrow:16:16|a Macro Bar",
+  - `tests/test_settingsui.lua:232`: local main = H.CreatePanel("KCMAboutPanel", "Ka0s Consumable Master", { isMain = true }) → local main = H.CreatePanel("KCMAboutPanel", "Consumable Master", { isMain = true })
+  - `tests/test_settingsui.lua:233`: t.eq(main.panel.titleText, "Ka0s Consumable Master", → t.eq(main.panel.titleText, "Consumable Master",
+  - `tests/test_settingsui.lua:268`: H.CreatePanel("KCMAboutPanel", "Ka0s Consumable Master", { isMain = true })) → H.CreatePanel("KCMAboutPanel", "Consumable Master", { isMain = true }))
+  - `tests/test_settingsui.lua:292`: H.CreatePanel("KCMAboutPanel", "Ka0s Consumable Master", { isMain = true })) → H.CreatePanel("KCMAboutPanel", "Consumable Master", { isMain = true }))
+  - `tests/run.lua:610`: brand       = "Ka0s Consumable Master", → brand       = "Consumable Master",
+  - `tests/perf.lua:307`: realprint(("Ka0s Consumable Master \226\128\148 offline perf  (v%s, label '%s')") → realprint(("Consumable Master \226\128\148 offline perf  (v%s, label '%s')")
+- **toc-title** (1)
+  - `ConsumableMaster.toc:2`: ## Title: Ka0s Consumable Master → ## Title: Consumable Master
+- **Risks noted**
+  - The standard's launcher-§1 currently MANDATES the broker label be `Ka0s <Name>` (cited in core/LauncherSetup.lua:121, tests/test_launcher.lua:82, test_locale.lua:321-327); the upstream rule in WowAddonStandards must be revised first or the rename is a deviation
+  - Tests pin the brand literally in ~10 files (test_launcher, test_disabled, test_diagnostics, test_locale, test_slashsetup, test_slash_degraded, test_skin, test_settingsui, run.lua Kit.diagnostics brand, perf.lua); test_launcher.lua:100 greps the source text of core/LauncherSetup.lua for the exact literal; test_disabled pins Launcher label == Slash brandName - every copy must change in one commit
+  - test_locale.lua:328 lists 'Consumable Master' as an unrouted LIB DESCRIPTOR literal in settings/Slash.lua, but after rename the string equals the routed L["Consumable Master"] key used in modules/MacroBar.lua:273,311; check the gate does not misclassify
+  - settings/OptionsSetup.lua:45 PANEL_TITLE is the Settings category name (via parentTitle) - the AddOns list entry moves from the K group to C; any OpenToCategory lookup by name follows PANEL_TITLE so stays consistent
+  - Broker displays sort alphabetically: the collection stops grouping under K (the stated reason for launcher-§1)
+  - Skin picker/Skin tab LABEL (core/SkinSetup.lua:115) is the owner label other addons' 'Apply to all' confirmation prints
+  - No AddonCompartment entry in the TOC (no AddonCompartmentFunc), so nothing to rename there; the compartment is not used
+  - CurseForge project 1522944's display name is set on the website, not in .pkgmeta; owner must rename it there manually
+  - No SavedVariables keyed by the display name; folder name, package-as and SV names unchanged so profiles survive
+
+### DpsRace: Ka0s DPS Race → DPS Race
+
+- **chat-prefix** (2)
+  - `core/CoreSetup.lua:13`: NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Ka0s DPS Race " → NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of DPS Race "
+  - `modules/Format.lua:219`: return (NS.StoodDownRefusal and NS.StoodDownRefusal()) or L["Ka0s DPS Race is turned off."] → ... or L["DPS Race is turned off."]
+- **docs** (33)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s DPS Race → # CLAUDE.md — DPS Race
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s DPS Race → # Dependencies — DPS Race
+  - `docs/ARCHITECTURE.md:1`: # Ka0s DPS Race — Architecture → # DPS Race — Architecture
+  - `docs/ARCHITECTURE.md:13`: Ka0s DPS Race is a timed DPS race against training dummies → DPS Race is a timed DPS race against training dummies
+  - `docs/known-limitations.md:1`: # Ka0s DPS Race — Known Limitations → # DPS Race — Known Limitations
+  - `docs/common-tasks.md:3`: Recipes for the changes made most often in Ka0s DPS Race. → Recipes for the changes made most often in DPS Race.
+  - `docs/debug.md:3`: The debug surfaces of Ka0s DPS Race: → The debug surfaces of DPS Race:
+  - `docs/debug.md:70`: `[Diag] ==== Ka0s DPS Race diagnostics begin ====` → `[Diag] ==== DPS Race diagnostics begin ====`
+  - `docs/debug.md:80`: `[Diag] ==== Ka0s DPS Race diagnostics end: N line(s) ====` → `[Diag] ==== DPS Race diagnostics end: N line(s) ====`
+  - `docs/data-flow.md:3`: How Ka0s DPS Race works, as pipelines → How DPS Race works, as pipelines
+  - `docs/data-flow.md:527`: ... 147.6K DPS (Ka0s DPS Race) → ... 147.6K DPS (DPS Race)
+  - `docs/profiles.md:3`: Ka0s DPS Race uses AceDB profiles → DPS Race uses AceDB profiles
+  - `docs/schema.md:3`: What Ka0s DPS Race persists → What DPS Race persists
+  - `docs/schema.md:25`: | `enabled` | `true` | *Enable Ka0s DPS Race* | → | `enabled` | `true` | *Enable DPS Race* |
+  - `docs/scope.md:3`: What Ka0s DPS Race is for → What DPS Race is for
+  - `docs/settings-panel.md:3`: How Ka0s DPS Race is configured. The panel lives under the game's **Settings → AddOns → Ka0s DPS (Race**) → How DPS Race is configured. The panel lives under the game's **Settings → AddOns → DPS Race**
+  - `docs/settings-panel.md:55`: | Enable Ka0s DPS Race | `enabled` | checkbox | → | Enable DPS Race | `enabled` | checkbox |
+  - `docs/settings-panel.md:118`: with *Ka0s DPS Race* on its own line above the skin dropdown → with *DPS Race* on its own line above the skin dropdown
+  - `docs/settings-panel.md:142`: Options -> Keybindings -> Ka0s DPS Race → Options -> Keybindings -> DPS Race
+  - `docs/settings-panel.md:368`: **Options → Keybindings → Ka0s DPS Race** → **Options → Keybindings → DPS Race**
+  - `docs/slash-dispatch.md:46`: `Ka0s DPS Race is disabled — enable it with /dr enable` → `DPS Race is disabled — enable it with /dr enable`
+  - `docs/slash-dispatch.md:93`: `Ka0s DPS Race version X` → `DPS Race version X`
+  - `docs/testing.md:3`: How to verify Ka0s DPS Race (testing-§6). → How to verify DPS Race (testing-§6).
+  - `docs/performance.md:3`: How much Ka0s DPS Race costs → How much DPS Race costs
+  - `docs/smoke-tests.md:64`: the AddOns list shows *Ka0s DPS Race* with the logo icon → the AddOns list shows *DPS Race* with the logo icon
+  - `docs/smoke-tests.md:72`: *Ka0s DPS Race* is there before the panel was ever opened → *DPS Race* is there before the panel was ever opened
+  - `docs/smoke-tests.md:96`: *Options → Keybindings → Ka0s DPS Race* → *Options → Keybindings → DPS Race*
+  - `docs/smoke-tests.md:103`: A section titled *Ka0s DPS Race* holds *Toggle race HUD* → A section titled *DPS Race* holds *Toggle race HUD*
+  - `docs/smoke-tests.md:189`: ... DPS (Ka0s DPS Race)* → ... DPS (DPS Race)*
+  - `docs/smoke-tests.md:215`: begin and end markers naming *Ka0s DPS Race* → begin and end markers naming *DPS Race*
+  - `docs/smoke-tests.md:649`: with *Ka0s DPS Race* on its own line above the dropdown → with *DPS Race* on its own line above the dropdown (passed rows are history; owner may prefer to leave executed rows and add a new rename sm
+  - `docs/brainstorm/mockup/README.md:1`: # Ka0s DPS Race — UX mockups (PvE v0.1.0) → leave (historical mockup) or # DPS Race — UX mockups (PvE v0.1.0)
+  - `docs/brainstorm/mockup/index.html:6`: <title>Ka0s DPS Race</title> → leave (historical mockup); also lines 11, 256, 487, 489, 537, 678 carry 'Ka0s DPS Race' - recommend leaving the mockup frozen
+- **launcher** (1)
+  - `core/LauncherSetup.lua:90`: label   = L["Ka0s DPS Race"],          -- the brand in plain text, never the TOC Title (launcher-§1) → label   = L["DPS Race"], (LDB/minimap/Addon compartment label via LibKa0s-Launcher; no AddonCompartment lines in the TOC)
+- **locale** (3)
+  - `locales/enUS.lua:13`: L["Ka0s DPS Race"] = "Ka0s DPS Race" → L["DPS Race"] = "DPS Race" (rename key; update both LauncherSetup call sites)
+  - `locales/enUS.lua:100`: L["Ka0s DPS Race is turned off."] = "Ka0s DPS Race is turned off." → L["DPS Race is turned off."] = "DPS Race is turned off." (and modules/Format.lua:219)
+  - `locales/enUS.lua:560`: L["(Ka0s DPS Race)"] = "(Ka0s DPS Race)" → L["(DPS Race)"] = "(DPS Race)" (share line suffix; and modules/Share.lua:70). Note the share line then reads "DPS Race 3:00 ... DPS (DPS Rac
+- **other** (6)
+  - `core/Namespace.lua:11`: NS.BRAND = "Ka0s DPS Race" → NS.BRAND = "DPS Race" (one change covers: settings parent category title settings/OptionsSetup.lua:16 parentTitle = NS.BRAND; skin owner lab
+  - `core/Namespace.lua:9`: -- The brand in PLAIN TEXT (launcher-§1): the launcher label, the disabled refusal line, the debug → comment unchanged (no name in it)
+  - `core/LauncherSetup.lua:54`: rawset(_G, "BINDING_HEADER_DPSRACE", L["Ka0s DPS Race"]) → rawset(_G, "BINDING_HEADER_DPSRACE", L["DPS Race"])  (Keybindings section title)
+  - `modules/Share.lua:56`: --- "DPS Race 3:00 · Cleave x5 · Destruction 313 · 26.56M · 147.6K DPS (Ka0s DPS Race)". → --- "DPS Race 3:00 · Cleave x5 · Destruction 313 · 26.56M · 147.6K DPS (DPS Race)".
+  - `modules/Share.lua:70`: return clean(table.concat(parts, MIDDOT) .. " " .. L["(Ka0s DPS Race)"]) → return clean(table.concat(parts, MIDDOT) .. " " .. L["(DPS Race)"])
+  - `Bindings.xml:7`: Keybindings shows a "Ka0s DPS Race" section with no blank row. → Keybindings shows a "DPS Race" section with no blank row.
+- **readme** (2)
+  - `README.md:1`: # Ka0s DPS Race → # DPS Race
+  - `README.md:32`: Set them in Options -> Keybindings -> Ka0s DPS Race, or in General > Keybindings → Set them in Options -> Keybindings -> DPS Race, or in General > Keybindings
+- **settings-category** (1)
+  - `settings/General.lua:51`: addonName        = NS.BRAND,          -- the Enable row reads "Enable Ka0s DPS Race" → comment: -- the Enable row reads "Enable DPS Race"
+- **tests** (13)
+  - `tests/run.lua:218`: brand       = "Ka0s DPS Race", → brand       = "DPS Race",
+  - `tests/wow_mock.lua:38`: Title   = "Ka0s DPS Race", → Title   = "DPS Race",
+  - `tests/perf.lua:280`: print(("Ka0s DPS Race \226\128\148 offline perf  (v%s, label '%s')"):format(...)) → print(("DPS Race \226\128\148 offline perf  (v%s, label '%s')"):format(...))
+  - `tests/test_disabled.lua:60`: DISABLED_LINE_FORMAT:format("Ka0s DPS Race", "/dr enable") → DISABLED_LINE_FORMAT:format("DPS Race", "/dr enable")
+  - `tests/test_keybinds.lua:72`: assertEqual(T.mocks._G.BINDING_HEADER_DPSRACE, "Ka0s DPS Race") → assertEqual(T.mocks._G.BINDING_HEADER_DPSRACE, "DPS Race")
+  - `tests/test_launcher.lua:23`: assertEqual(obj.label, "Ka0s DPS Race") → assertEqual(obj.label, "DPS Race")
+  - `tests/test_launcher.lua:44`: assertEqual(menu.titles[1], "Ka0s DPS Race") → assertEqual(menu.titles[1], "DPS Race")
+  - `tests/test_launcher.lua:108`: assertEqual(env.BINDING_HEADER_DPSRACE, "Ka0s DPS Race") → assertEqual(env.BINDING_HEADER_DPSRACE, "DPS Race")
+  - `tests/test_schema.lua:24`: assertEqual(NS.FindSchemaRow("enabled").label, "Enable Ka0s DPS Race") → assertEqual(NS.FindSchemaRow("enabled").label, "Enable DPS Race")
+  - `tests/test_share.lua:45`: "DPS Race 3:00 \194\183 Cleave ... 147.6K DPS (Ka0s DPS Race)") → "... 147.6K DPS (DPS Race)")
+  - `tests/test_share.lua:56`: find("DPS \194\183 incomplete (Ka0s DPS Race)", 1, true) → find("DPS \194\183 incomplete (DPS Race)", 1, true)
+  - `tests/test_skinsetup.lua:18`: local BRAND = "Ka0s DPS Race" → local BRAND = "DPS Race"
+  - `tests/test_skin_verb.lua:115`: DISABLED_LINE_FORMAT:format("Ka0s DPS Race", "/dr enable") → DISABLED_LINE_FORMAT:format("DPS Race", "/dr enable")
+- **toc-title** (1)
+  - `DpsRace.toc:2`: ## Title: Ka0s DPS Race → ## Title: DPS Race
+- **Risks noted**
+  - NS.BRAND (core/Namespace.lua:11) fans out to the settings parent category title (settings/OptionsSetup.lua:16 parentTitle), skin owner label (SkinSetup.lua:634), debug console/diagnostics markers, perf panel title, the slash disabled/version lines and the Enable row label; all tests that pin these must move in the same commit (tests/run.lua:218, test_skinsetup.lua:18/95, test_schema.lua:24, test_d
+  - Settings category: the panel is registered by parentTitle; if LibKa0s-Options opens/finds the category by title, renaming is fine as long as everything reads NS.BRAND (mainPanelName DpsRaceMainPanel is the stable key, unchanged)
+  - Sort order: the AddOns list, the Settings > AddOns tree and the Keybindings sections sort by title; 'DPS Race' moves from K to D among the addons
+  - Share line: the chat suffix becomes '(DPS Race)', so the posted line reads 'DPS Race 3:00 ... DPS (DPS Race)' - repetitive; owner may want a different suffix
+  - Locale keys change (L["Ka0s DPS Race"] etc.): enUS.lua is the only locale, so no stale translations, but every L[...] call site must change with the key
+  - Skin picker: 'Apply to all Ka0s addons' confirmation names owners by label; the label changes for other addons' confirmations too
+  - No AddonCompartment TOC fields; the compartment entry comes from LibKa0s-Launcher's label, so it follows core/LauncherSetup.lua:90
+  - Not on CurseForge yet (TOC '# X-Curse-Project-ID: not published'), so no project-name rename needed
+  - Executed smoke rows (docs/smoke-tests.md) record past passes; rewriting their expected text alters the record - consider new rename smoke rows instead
+  - Another workflow is editing this repo on feat/2026-11-01-full-skinning right now; line numbers may drift
+
+### DropWatcher: Ka0s Drop Watcher → Drop Watcher
+
+- **docs** (43)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Drop Watcher → # CLAUDE.md — Drop Watcher
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Drop Watcher → # Dependencies — Drop Watcher
+  - `docs/ARCHITECTURE.md:1`: # Architecture — Ka0s Drop Watcher → # Architecture — Drop Watcher
+  - `docs/common-tasks.md:1`: # Common tasks — Ka0s Drop Watcher → # Common tasks — Drop Watcher
+  - `docs/compat-layer.md:1`: # Compat layer — Ka0s Drop Watcher → # Compat layer — Drop Watcher
+  - `docs/data-flow.md:1`: # Data flow — Ka0s Drop Watcher → # Data flow — Drop Watcher
+  - `docs/debug.md:1`: # Debug — Ka0s Drop Watcher → # Debug — Drop Watcher
+  - `docs/design-readings.md:1`: # Design readings — Ka0s Drop Watcher → # Design readings — Drop Watcher
+  - `docs/known-limitations.md:1`: # Known limitations — Ka0s Drop Watcher → # Known limitations — Drop Watcher
+  - `docs/midnight-quirks.md:1`: # Midnight quirks — Ka0s Drop Watcher → # Midnight quirks — Drop Watcher
+  - `docs/module-map.md:1`: # Module map — Ka0s Drop Watcher → # Module map — Drop Watcher
+  - `docs/module-map.md:107`: `title` (`Ka0s Drop Watcher - Simulation`) → `title` (`Drop Watcher - Simulation`)
+  - `docs/performance.md:1`: # Performance — Ka0s Drop Watcher → # Performance — Drop Watcher
+  - `docs/profiles.md:1`: # Profiles — Ka0s Drop Watcher → # Profiles — Drop Watcher
+  - `docs/schema.md:1`: # Schema — Ka0s Drop Watcher → # Schema — Drop Watcher
+  - `docs/scope.md:1`: # Scope — Ka0s Drop Watcher → # Scope — Drop Watcher
+  - `docs/testing.md:1`: # Testing — Ka0s Drop Watcher → # Testing — Drop Watcher
+  - `docs/slash-dispatch.md:1`: # Slash dispatch — Ka0s Drop Watcher → # Slash dispatch — Drop Watcher
+  - `docs/slash-dispatch.md:32`: prints the one refusal line, `Ka0s Drop Watcher is disabled — → prints the one refusal line, `Drop Watcher is disabled —
+  - `docs/settings-panel.md:1`: # Settings panel — Ka0s Drop Watcher → # Settings panel — Drop Watcher
+  - `docs/settings-panel.md:16`: | Ka0s Drop Watcher (landing) | → | Drop Watcher (landing) |
+  - `docs/settings-panel.md:53`: | Enable Ka0s Drop Watcher (`enabled`) | → | Enable Drop Watcher (`enabled`) |
+  - `docs/settings-panel.md:65`: Options → Keybindings → Ka0s Drop → Options → Keybindings → Drop (line 66 continues 'Watcher')
+  - `docs/settings-panel.md:106`: with **Ka0s Drop Watcher** on its own line above a dropdown of the skins → with **Drop Watcher** on its own line above a dropdown of the skins
+  - `docs/settings-panel.md:129`: Options → Keybindings → Ka0s Drop Watcher → Options → Keybindings → Drop Watcher
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Drop Watcher → # Smoke tests — Drop Watcher
+  - `docs/smoke-tests.md:18`: Options → Keybindings's own Ka0s Drop Watcher section → Options → Keybindings's own Drop Watcher section
+  - `docs/smoke-tests.md:67`: the tooltip reads `Ka0s Drop Watcher  v1.0.0` → the tooltip reads `Drop Watcher  v1.0.0`
+  - `docs/smoke-tests.md:149`: Ka0s Drop Watcher lists `Toggle Drop Watcher window` → Drop Watcher lists `Toggle Drop Watcher window`
+  - `docs/smoke-tests.md:162`: a section titled `Ka0s Drop Watcher` holds one row → a section titled `Drop Watcher` holds one row
+  - `docs/smoke-tests.md:167`: Settings → Ka0s Drop → Settings → Drop
+  - `docs/smoke-tests.md:255`: Neither mentions `Reset every Ka0s Drop Watcher setting`. → Neither mentions `Reset every Drop Watcher setting`.
+  - `docs/smoke-tests.md:279`: Settings → AddOns → Ka0s Drop Watcher → the logo once → Settings → AddOns → Drop Watcher → the logo once
+  - `docs/smoke-tests.md:361`: Settings → Ka0s Drop Watcher → Profiles → Settings → Drop Watcher → Profiles
+  - `docs/smoke-tests.md:378`: `/dw show` and `/dw test` answer `Ka0s Drop Watcher → `/dw show` and `/dw test` answer `Drop Watcher
+  - `docs/smoke-tests.md:433`: exactly `Ka0s Drop Watcher is disabled — enable it with /dw enable` → exactly `Drop Watcher is disabled — enable it with /dw enable`
+  - `docs/smoke-tests.md:518`: both markers naming Ka0s Drop → both markers naming Drop
+  - `docs/smoke-tests.md:645`: the gold `Ka0s Drop Watcher` title → the gold `Drop Watcher` title
+  - `docs/smoke-tests.md:747`: its gold `Ka0s Drop Watcher` title sits centered → its gold `Drop Watcher` title sits centered
+  - `docs/smoke-tests.md:2762`: the panel `Ka0s Drop Watcher - Simulation` → the panel `Drop Watcher - Simulation`
+  - `docs/smoke-tests.md:3181`: shows **Ka0s Drop Watcher** on its own line above the skin → shows **Drop Watcher** on its own line above the skin
+  - `docs/smoke-tests.md:2438`: beside Ka0s DPS Race (AT-A3) → beside DPS Race (AT-A3) (sibling addon display name, rename only if DpsRace is renamed too)
+  - `docs/smoke-tests.md:2450`: with Ka0s DPS Race enabled → with DPS Race enabled
+- **locale** (2)
+  - `locales/enUS.lua:47`: L["Open the Ka0s Drop Watcher settings panel"] = "Open the Ka0s Drop Watcher settings panel" → L["Open the Drop Watcher settings panel"] = "Open the Drop Watcher settings panel"
+  - `settings/Slash.lua:30`: {"config",   L["Open the Ka0s Drop Watcher settings panel"], → {"config",   L["Open the Drop Watcher settings panel"],
+- **other** (3)
+  - `core/Namespace.lua:13`: NS.BRAND = "Ka0s Drop Watcher" → NS.BRAND = "Drop Watcher"  (single source: feeds LDB/launcher label core/LauncherSetup.lua:87, addon compartment via LibKa0s-Launcher, BINDI
+  - `modules/SimPanel.lua:11`: --   title      `Ka0s Drop Watcher - Simulation` → --   title      `Drop Watcher - Simulation`
+  - `.luacheckrc:1`: -- .luacheckrc — lint config for Ka0s Drop Watcher (lint). → -- .luacheckrc — lint config for Drop Watcher (lint).
+- **readme** (3)
+  - `README.md:1`: # Ka0s Drop Watcher → # Drop Watcher
+  - `README.md:49`: Bind a key under Options → Keybindings → Ka0s Drop Watcher if you like → Bind a key under Options → Keybindings → Drop Watcher if you like
+  - `README.md:67`: Everything else is in **Settings → AddOns → Ka0s Drop Watcher** → Everything else is in **Settings → AddOns → Drop Watcher**
+- **tests** (11)
+  - `tests/run.lua:4`: -- Headless test runner for Ka0s Drop Watcher, on the shared LibKa0s test kit → -- Headless test runner for Drop Watcher, on the shared LibKa0s test kit
+  - `tests/run.lua:180`: brand       = "Ka0s Drop Watcher", → brand       = "Drop Watcher",
+  - `tests/test_harness.lua:69`: assertEqual(field(fields, "Title"), "Ka0s Drop Watcher") → assertEqual(field(fields, "Title"), "Drop Watcher")
+  - `tests/test_setup.lua:294`: assertEqual(obj.label, "Ka0s Drop Watcher") → assertEqual(obj.label, "Drop Watcher")
+  - `tests/test_setup.lua:319`: assertEqual(root.title, "Ka0s Drop Watcher") → assertEqual(root.title, "Drop Watcher")
+  - `tests/test_sim_panel.lua:90`: assertEqual(F.title(), "Ka0s Drop Watcher - Simulation") → assertEqual(F.title(), "Drop Watcher - Simulation")
+  - `tests/test_sim_panel.lua:162`: assertEqual(m.simPanel.title:GetText(), "Ka0s Drop Watcher - Simulation") → assertEqual(m.simPanel.title:GetText(), "Drop Watcher - Simulation")
+  - `tests/test_window_shell.lua:43`: assertEqual(textOf(f.title), "Ka0s Drop Watcher") → assertEqual(textOf(f.title), "Drop Watcher")
+  - `tests/test_bindings.lua:249`: -- red under: the host's own "Reset every Ka0s Drop Watcher setting..." lead (pre-020) → -- red under: the host's own "Reset every Drop Watcher setting..." lead (pre-020)
+  - `tests/perf.lua:195`: print(("Ka0s Drop Watcher \226\128\148 offline perf  (v%s, label '%s')") → print(("Drop Watcher \226\128\148 offline perf  (v%s, label '%s')")
+  - `tests/wow_mock.lua:6`: -- This file adds what Ka0s Drop Watcher reads that the base deliberately leaves out → -- This file adds what Drop Watcher reads that the base deliberately leaves out
+- **toc-title** (1)
+  - `DropWatcher.toc:2`: ## Title: Ka0s Drop Watcher → ## Title: Drop Watcher
+- **Risks noted**
+  - Tests pin the brand: tests/run.lua:180 (brand passed to kit), test_harness.lua:69 (TOC Title), test_setup.lua:294,319 (launcher label, settings root title), test_sim_panel.lua:90,162, test_window_shell.lua:43 - must change with NS.BRAND and TOC in one commit or the suite goes red
+  - Settings category key: settings/OptionsSetup.lua:102 parentTitle = NS.BRAND registers the Blizzard settings category by name; anything opening the panel by title (Settings.OpenToCategory by name, kit asserts) moves with it. Keybindings section header (BINDING_HEADER_DROPWATCHER) also changes text
+  - Skin picker: Skin:RegisterOwner label = NS.BRAND (core/SkinSetup.lua:778) - picker queue/'Other Ka0s addons' lists are keyed by addonName (DropWatcher), label is display-only; verify no stored setting keyed by label
+  - modules/CompactChrome.lua:383 'compact and L["Drop Watcher"] or NS.BRAND' - after rename both branches read 'Drop Watcher', so compact and full titles become identical (intended per spec? confirm with owner; branch becomes redundant)
+  - Locale key change L["Open the Ka0s Drop Watcher settings panel"] must update both enUS.lua:47 and the lookup at settings/Slash.lua:30 together (missing-key fallbacks / locale-parity tests)
+  - Sort order: AddOns list and Settings tree sort by Title; 'Drop Watcher' moves from the K block to D, no longer grouped with the other Ka0s addons
+  - CurseForge project (X-Curse-Project-ID 1748054) display name is set on the website, not in .pkgmeta (package-as: DropWatcher stays); owner must rename the project page manually if wanted
+  - SavedVariables are not keyed by the display name (DropWatcherDB) - no migration needed
+  - docs/smoke-tests.md has historical rows that quote the old name; rewriting those that were already executed may conflict with the frozen-record convention - limit to the live description lines
+  - Another workflow is concurrently editing this repo on feat/2026-11-01-full-skinning; line numbers may shift
+
+### KickCD: Ka0s KickCD → KickCD
+
+- **chat-prefix** (1)
+  - `settings/Slash.lua:490`: brandName = "Ka0s KickCD", → brandName = "KickCD",  (disabled-refusal line "KickCD is disabled — enable it with /kcd enable")
+- **docs** (39)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s KickCD → # CLAUDE.md — KickCD
+  - `DEPENDENCIES.md:3`: Everything you need installed to build, run, test or release **Ka0s KickCD**, with commands that → Everything you need installed to build, run, test or release **KickCD**, with commands that
+  - `docs/ARCHITECTURE.md:3`: Orient-yourself map for **Ka0s KickCD**. → Orient-yourself map for **KickCD**.
+  - `docs/ARCHITECTURE.md:96`: **Naming.** The display name in the addon list and Settings panel is `Ka0s KickCD` (the colored `## Title` in `KickCD.toc`). Everything mach → **Naming.** The display name in the addon list and Settings panel is `KickCD` (the `## Title` in `KickCD.toc`), the same string as the folde
+  - `docs/ARCHITECTURE.md:231`: ... opens the client's context menu (`MenuUtil.CreateContextMenu`), titled `Ka0s KickCD` ... → ... titled `KickCD` ...
+  - `docs/ARCHITECTURE.md:417`: picker (`O.SkinPicker`), titled *Choose a skin* with **Ka0s KickCD** on its own line above the → picker (`O.SkinPicker`), titled *Choose a skin* with **KickCD** on its own line above the
+  - `docs/module-map.md:436`: the lazily-built DIALOG-strata window "Ka0s KickCD — Debug" (global frame `KickCDDebugWindow`) → the lazily-built DIALOG-strata window "KickCD — Debug" (global frame `KickCDDebugWindow`)
+  - `docs/icon-grid.md:27`: a centered gold label naming the addon and the unit (`Ka0s KickCD — Target` / `— Focus`) → a centered gold label naming the addon and the unit (`KickCD — Target` / `— Focus`)
+  - `docs/debug.md:28`: | `/kcd debug window` | Toggles the console window: "Ka0s KickCD — Debug", `KickCDDebugWindow`. | → | `/kcd debug window` | Toggles the console window: "KickCD — Debug", `KickCDDebugWindow`. |
+  - `docs/debug.md:51`: - **The report's brand and sections.** The descriptor's `brandName` is `Ka0s KickCD`, which both → - **The report's brand and sections.** The descriptor's `brandName` is `KickCD`, which both
+  - `docs/debug.md:180`: | Begin marker | `Diag` | the library | `==== Ka0s KickCD diagnostics begin ====` | → | Begin marker | `Diag` | the library | `==== KickCD diagnostics begin ====` |
+  - `docs/debug.md:196`: | End marker | `Diag` | the library | `==== Ka0s KickCD diagnostics end: N line(s) ====`, counting both markers | → | End marker | `Diag` | the library | `==== KickCD diagnostics end: N line(s) ====`, counting both markers |
+  - `docs/scope.md:13`: Display name in the addon list and the Settings panel: `Ka0s KickCD` (the colored `## Title` field in `KickCD.toc`). The folder, addon ID, s → Display name in the addon list and the Settings panel: `KickCD` (the `## Title` field in `KickCD.toc`), the same as the folder and addon ID;
+  - `docs/testing.md:191`: (`frame.ownerLabel`, *Ka0s KickCD*), Apply, close and gear, with no eye. → (`frame.ownerLabel`, *KickCD*), Apply, close and gear, with no eye.
+  - `docs/testing.md:443`: the DIALOG-strata "Ka0s KickCD — Debug" wind[ow] → the DIALOG-strata "KickCD — Debug" window
+  - `docs/slash-dispatch.md:24`: lands the user on the **Ka0s KickCD parent page** (logo + slash-command list) → lands the user on the **KickCD parent page** (logo + slash-command list)
+  - `docs/slash-dispatch.md:338`: | `window` | Toggle the on-screen debug console window — the DIALOG-strata "Ka0s KickCD — Debug" panel → | `window` | Toggle the on-screen debug console window — the DIALOG-strata "KickCD — Debug" panel
+  - `docs/settings-panel.md:5`: Four pages sit under **Ka0s KickCD** in the game's own settings. → Four pages sit under **KickCD** in the game's own settings.
+  - `docs/test-cases.md:1797`: - the broker label is the BRAND NAME in plain text, `Ka0s KickCD` → - the broker label is the BRAND NAME in plain text, `KickCD`
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s KickCD → # Smoke tests — KickCD
+  - `docs/smoke-tests.md:116`: confirm the character-select AddOns list shows **Ka0s KickCD** enabled → confirm the character-select AddOns list shows **KickCD** enabled
+  - `docs/smoke-tests.md:155`: same logo beside Ka0s KickCD. Result: pass (owner-marked 2026-10-10) → same logo beside KickCD. (result line kept; the row should be re-smoked after the rename)
+  - `docs/smoke-tests.md:156`: - **INSTALL-11. The button's tooltip.** Hover it → `Ka0s KickCD  v<version>`, `Enabled: Yes`, → - **INSTALL-11. The button's tooltip.** Hover it → `KickCD  v<version>`, `Enabled: Yes`,
+  - `docs/smoke-tests.md:163`: In Titan Panel, Bazooka or ElvUI's data texts add Ka0s KickCD → the → In Titan Panel, Bazooka or ElvUI's data texts add KickCD → the
+  - `docs/smoke-tests.md:169`: Out of combat type `/kcd` → the settings panel opens on the Ka0s KickCD → Out of combat type `/kcd` → the settings panel opens on the KickCD
+  - `docs/smoke-tests.md:217`: `Ka0s KickCD is disabled — enable it with /kcd enable`, and nothing else; → `KickCD is disabled — enable it with /kcd enable`, and nothing else;
+  - `docs/smoke-tests.md:241`: Settings → AddOns → Ka0s KickCD → exactly **General · Grid · → Settings → AddOns → KickCD → exactly **General · Grid ·
+  - `docs/smoke-tests.md:244`: Click Ka0s KickCD itself → the logo and the slash command list. → Click KickCD itself → the logo and the slash command list.
+  - `docs/smoke-tests.md:433`: Open another addon's options page first, then Ka0s KickCD → → Open another addon's options page first, then KickCD →
+  - `docs/smoke-tests.md:509`: Right-click the button → a menu titled Ka0s KickCD with exactly two → Right-click the button → a menu titled KickCD with exactly two
+  - `docs/smoke-tests.md:536`: In combat, Game Menu → Options → AddOns → Ka0s KickCD, → In combat, Game Menu → Options → AddOns → KickCD,
+  - `docs/smoke-tests.md:852`: both strips ("Ka0s KickCD — Target" / "— Focus") sit fully above their labels → both strips ("KickCD — Target" / "— Focus") sit fully above their labels
+  - `docs/smoke-tests.md:1078`: a gold "Ka0s KickCD — Debug" title on a dark gold band, → a gold "KickCD — Debug" title on a dark gold band,
+  - `docs/smoke-tests.md:1109`: `==== Ka0s KickCD diagnostics begin ====`; → `==== KickCD diagnostics begin ====`;
+  - `docs/smoke-tests.md:1111`: (`==== Ka0s KickCD diagnostics end: N line(s) ====`), no `|c` escapes, → (`==== KickCD diagnostics end: N line(s) ====`), no `|c` escapes,
+  - `docs/smoke-tests.md:1220`: `/kcd lock` → `Ka0s KickCD is disabled — enable it with /kcd enable`. → `/kcd lock` → `KickCD is disabled — enable it with /kcd enable`.
+  - `docs/smoke-tests.md:1481`: already in the profile's skin: **Ka0s KickCD** whole on its own line, then → already in the profile's skin: **KickCD** whole on its own line, then
+  - `docs/smoke-tests.md:1545`: (**Choose a skin**, **Ka0s KickCD** above the dropdown) → (**Choose a skin**, **KickCD** above the dropdown)
+  - `docs/smoke-tests.md:1560`: unlocked drag strips ("Ka0s KickCD — Target", "— Focus" and both cast bars) → unlocked drag strips ("KickCD — Target", "— Focus" and both cast bars)
+- **launcher** (1)
+  - `core/LauncherSetup.lua:126`: label = "Ka0s KickCD", → label = "KickCD",
+- **locale** (1)
+  - `locales/enUS.lua:28`: L["Ka0s KickCD"]                 = "Ka0s KickCD" → L["KickCD"]                      = "KickCD"
+- **other** (5)
+  - `core/LauncherSetup.lua:108`: -- THE BRAND NAME IN PLAIN TEXT, `Ka0s <Name>` (launcher-§1, standard → -- THE BRAND NAME IN PLAIN TEXT, `<Name>` (launcher-§1, standard ... once the standard drops the prefix)
+  - `core/LauncherSetup.lua:125`: -- `KickCD` is an identifier, `Ka0s KickCD` is a name. Two fields, two jobs. → -- `name` is the folder identifier, `label` the display name; here both read `KickCD`, but they stay two fields with two jobs.
+  - `core/DebugLogSetup.lua:188`: brandName = "Ka0s KickCD", → brandName = "KickCD",  (diagnostics report begin/end markers)
+  - `core/DebugLogSetup.lua:182`: -- The library appends its own " — Debug", giving "Ka0s KickCD — Debug", → -- The library appends its own " — Debug", giving "KickCD — Debug",
+  - `core/EnvSetup.lua:32`: -- ("Ka0s KickCD") and not a hand-typed literal. Only the first of those three → -- ("KickCD") and not a hand-typed literal. Only the first of those three
+- **picker-title** (1)
+  - `core/SkinSetup.lua:606`: label = L["Ka0s KickCD"], → label = L["KickCD"],
+- **readme** (1)
+  - `README.md:1`: # Ka0s KickCD → # KickCD
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:153`: parentTitle   = "Ka0s KickCD", → parentTitle   = "KickCD",
+- **tests** (28)
+  - `tests/run.lua:437`: brand       = "Ka0s KickCD", → brand       = "KickCD",
+  - `tests/perf.lua:345`: print(("Ka0s KickCD \226\128\148 offline perf  (v%s, label '%s')"):format(NS.VERSION, opts.label)) → print(("KickCD \226\128\148 offline perf  (v%s, label '%s')"):format(NS.VERSION, opts.label))
+  - `tests/test_debuglogsetup.lua:84`: assertEqual(f.titleText, "Ka0s KickCD \226\128\148 Debug") → assertEqual(f.titleText, "KickCD \226\128\148 Debug")
+  - `tests/test_debuglogsetup.lua:356`: local title = "Ka0s KickCD" .. D:Text("TITLE_SUFFIX") → local title = "KickCD" .. D:Text("TITLE_SUFFIX")
+  - `tests/test_debuglogsetup.lua:357`: assertEqual(title, "Ka0s KickCD \226\128\148 Debug", → assertEqual(title, "KickCD \226\128\148 Debug",
+  - `tests/test_disabled.lua:406`: local expected = Sl.DISABLED_LINE_FORMAT:format("Ka0s KickCD", "/kcd enable") → local expected = Sl.DISABLED_LINE_FORMAT:format("KickCD", "/kcd enable")
+  - `tests/test_disabled.lua:442`: assertTrue(D:FindLine("Ka0s KickCD diagnostics end:") ~= nil, "the report reached its end") → assertTrue(D:FindLine("KickCD diagnostics end:") ~= nil, "the report reached its end")
+  - `tests/test_diagnostics.lua:384`: assertTrue(lines[20]:find("Ka0s KickCD diagnostics end: 20 line(s)", 1, true) ~= nil, lines[20]) → assertTrue(lines[20]:find("KickCD diagnostics end: 20 line(s)", 1, true) ~= nil, lines[20])
+  - `tests/test_envsetup.lua:24`: -- the "[KCD]" prefix or the "Ka0s KickCD" title. A wrong name reads another addon's manifest, → -- the "[KCD]" prefix or the "KickCD" title. A wrong name reads another addon's manifest,
+  - `tests/test_envsetup.lua:27`: assertEqual(NS.Meta("Title"), "Ka0s KickCD") → assertEqual(NS.Meta("Title"), "KickCD")
+  - `tests/test_envsetup.lua:78`: assertEqual(inst.NS.Meta("Title"), "Ka0s KickCD") → assertEqual(inst.NS.Meta("Title"), "KickCD")
+  - `tests/test_icongrid_handle.lua:57`: assertEqual(inst.handle.__label, NS.L["Ka0s KickCD"] .. " — " .. NS.L["Target"]) → assertEqual(inst.handle.__label, NS.L["KickCD"] .. " — " .. NS.L["Target"])
+  - `tests/test_icongrid_handle.lua:157`: -- top of each other -- "Ka0s KickCD — Target" and "Target" in the same place. → -- top of each other -- "KickCD — Target" and "Target" in the same place.
+  - `tests/test_launcher.lua:68`: test("the broker label is the BRAND NAME in plain text, `Ka0s KickCD`", function() → test("the broker label is the BRAND NAME in plain text, `KickCD`", function()
+  - `tests/test_launcher.lua:77`: assertEqual(obj.label, "Ka0s KickCD") → assertEqual(obj.label, "KickCD")
+  - `tests/test_launcher.lua:94`: assertTrue(body:find('label = "Ka0s KickCD"', 1, true) ~= nil, → assertTrue(body:find('label = "KickCD"', 1, true) ~= nil,
+  - `tests/test_launcher.lua:226`: assertEqual(m.titles[1], "Ka0s KickCD", "titled with the plain-text label") → assertEqual(m.titles[1], "KickCD", "titled with the plain-text label")
+  - `tests/test_launcher.lua:399`: assertEqual(lines[1], "Ka0s KickCD  v" .. NS.Version(), "the title carries the TOC's version") → assertEqual(lines[1], "KickCD  v" .. NS.Version(), "the title carries the TOC's version")
+  - `tests/test_launcher.lua:432`: assertEqual(tooltipLines(inst)[1], "Ka0s KickCD  v" .. tocVersion) → assertEqual(tooltipLines(inst)[1], "KickCD  v" .. tocVersion)
+  - `tests/test_launcher.lua:446`: assertEqual(lines[1], "Ka0s KickCD  v" .. NS.Version()) → assertEqual(lines[1], "KickCD  v" .. NS.Version())
+  - `tests/test_locale.lua:417`: {"settings/Slash.lua", "Ka0s KickCD", "LIB DESCRIPTOR"}, → {"settings/Slash.lua", "KickCD", "LIB DESCRIPTOR"},
+  - `tests/test_locale.lua:420`: {"settings/OptionsSetup.lua", "Ka0s KickCD", "LIB DESCRIPTOR"}, → {"settings/OptionsSetup.lua", "KickCD", "LIB DESCRIPTOR"},
+  - `tests/test_perfsetup.lua:114`: -- ("Ka0s KickCD"), which is what a rename reaches for first. Passed → -- ("KickCD"), which is what a rename reaches for first. Passed
+  - `tests/test_perfsetup.lua:573`: assertTrue(title:find("Ka0s KickCD", 1, true) == 1, → assertTrue(title:find("KickCD", 1, true) == 1,
+  - `tests/test_options_panel.lua:594`: -- `[Cfg] help art:` debug line. Neither parentTitle ("Ka0s KickCD") nor → -- `[Cfg] help art:` debug line. Neither parentTitle ("KickCD") nor
+  - `tests/test_skin_picker.lua:260`: assertEqual(label, "Ka0s KickCD") → assertEqual(label, "KickCD")
+  - `tests/test_slash_degraded.lua:187`: local expected = Sl.DISABLED_LINE_FORMAT:format("Ka0s KickCD", "/kcd enable") → local expected = Sl.DISABLED_LINE_FORMAT:format("KickCD", "/kcd enable")
+  - `tests/test_skinsetup.lua:62`: assertEqual(Skin:OwnerLabel(OWNER), "Ka0s KickCD", "the copy confirmation names the addon by its brand") → assertEqual(Skin:OwnerLabel(OWNER), "KickCD", "the copy confirmation names the addon by its brand")
+- **toc-title** (1)
+  - `KickCD.toc:2`: ## Title: Ka0s KickCD → ## Title: KickCD
+- **window-title** (3)
+  - `modules/IconGrid_Handle.lua:59`: return ("%s — %s"):format(L["Ka0s KickCD"], (unit == "target") and L["Target"] or L["Focus"]) → return ("%s — %s"):format(L["KickCD"], (unit == "target") and L["Target"] or L["Focus"])  (drag strip label: "KickCD — Target")
+  - `core/DebugLogSetup.lua:184`: title = "Ka0s KickCD", → title = "KickCD",
+  - `core/PerfSetup.lua:74`: title   = "Ka0s KickCD", → title   = "KickCD",
+- **Risks noted**
+  - New display name 'KickCD' equals the folder/addon id; core/LauncherSetup.lua's long comment (108-125) and docs/ARCHITECTURE.md:96, docs/scope.md:13 argue the two must stay distinct strings ('KickCD is an identifier, Ka0s KickCD is a name'). They still stay separate fields (name=addonName, label literal), but that prose needs rewriting, not a token swap
+  - launcher-§1 (standard v2.54.0) states the broker label is 'Ka0s <Name>'; the WowAddonStandards rule (and any kit contract checking the brand) must be amended upstream first, or the audit flags the addon
+  - Tests pin the name in about 30 assertions (test_launcher, test_envsetup reads the real TOC Title, test_debuglogsetup, test_disabled, test_diagnostics, test_skin_picker, test_skinsetup, test_slash_degraded, test_perfsetup:573, test_icongrid_handle, test_locale:417/420 literal allowlist, tests/run.lua:437 Kit.diagnostics.brand). TOC, locale key, descriptors and tests must change in one commit or the
+  - Locale key L["Ka0s KickCD"] (locales/enUS.lua:28) is used by core/SkinSetup.lua:606 and modules/IconGrid_Handle.lua:59 and tests; renaming the key needs all three updated together. Any non-enUS locale file would need it too (only enUS exists)
+  - Diagnostics report markers change ('==== KickCD diagnostics begin ===='); anything that scrapes old pasted reports by brand would miss new ones
+  - Settings parentTitle changes the Settings > AddOns tree label and breadcrumbs; sort position in the AddOns list and settings tree moves from 'Ka0s ...' grouping to plain alphabetic 'KickCD' (still under K, but no longer grouped with the other Ka0s-prefixed addons)
+  - Skin picker queue / 'Copy to every Ka0s addon' confirmation lists owners by OwnerLabel; ordering among owners may shift
+  - LibDBIcon position is keyed by the folder name (name=addonName), not the label, so the minimap button position is NOT affected; Titan/Bazooka broker entries are keyed by the LDB object name (folder), so saved broker configs survive
+  - No SavedVariables key is the display name, so no migration needed
+  - CurseForge project name (project 1530802) is set on the website, not in the repo; renaming it there is a manual owner step
+  - docs/smoke-tests.md rows marked 'Result: pass (owner-marked ...)' whose expected text changes (INSTALL-11, SLASH-1, PANEL-1/2, STATE-9, DEBUG markers, SKIN picker rows) should be re-smoked by the owner after the rename
+
+### LibKa0sSkinTester: Ka0s Skin Tester → Skin Tester
+
+- **chat-prefix** (1)
+  - `settings/SchemaSetup.lua:39`: local BRAND = "Ka0s Skin Tester" → local BRAND = "Skin Tester" (schema error/print prefixes at :129,140,144,147,219)
+- **docs** (18)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Skin Tester → # CLAUDE.md — Skin Tester
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Skin Tester → # Dependencies — Skin Tester
+  - `docs/ARCHITECTURE.md:3`: What Ka0s Skin Tester is, as built. → What Skin Tester is, as built.
+  - `docs/profiles.md:3`: Settings -> AddOns -> Ka0s Skin Tester -> Profiles → Settings -> AddOns -> Skin Tester -> Profiles
+  - `docs/settings-panel.md:3`: Settings -> AddOns -> Ka0s Skin Tester, built by `LibKa0s-Options-1.0`. → Settings -> AddOns -> Skin Tester, built by `LibKa0s-Options-1.0`.
+  - `docs/settings-panel.md:8`: - **Ka0s Skin Tester** (landing): → - **Skin Tester** (landing):
+  - `docs/settings-panel.md:116`: Ka0s Skin Tester, or on General -> Keybindings here. → Skin Tester, or on General -> Keybindings here.
+  - `docs/testing.md:1`: # Testing — Ka0s Skin Tester → # Testing — Skin Tester
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Skin Tester → # Smoke tests — Skin Tester
+  - `docs/smoke-tests.md:31`: Ka0s Skin Tester is listed in Settings -> AddOns → Skin Tester is listed in Settings -> AddOns
+  - `docs/smoke-tests.md:49`: ("Choose a skin", "Ka0s Skin Tester" above → ("Choose a skin", "Skin Tester" above
+  - `docs/smoke-tests.md:65`: Open Settings -> AddOns -> Ka0s Skin Tester. → Open Settings -> AddOns -> Skin Tester.
+  - `docs/smoke-tests.md:74`: Options -> Keybindings -> Ka0s Skin Tester. → Options -> Keybindings -> Skin Tester.
+  - `docs/smoke-tests.md:77`: AddOns -> Ka0s Skin Tester -> Sample controls. → AddOns -> Skin Tester -> Sample controls.
+  - `docs/smoke-tests.md:157`: Settings -> AddOns -> Ka0s Skin Tester -> Sample controls. → Settings -> AddOns -> Skin Tester -> Sample controls.
+  - `docs/smoke-tests.md:226`: A window titled "Ka0s Skin Tester — Skin showroom" → A window titled "Skin Tester — Skin showroom"
+  - `docs/smoke-tests.md:381`: "Ka0s Skin Tester" on its own line in the heading color above the dropdown → "Skin Tester" on its own line in the heading color above the dropdown
+  - `docs/smoke-tests.md:492`: (not the Ka0s Skin Tester landing page) → (not the Skin Tester landing page)
+- **locale** (2)
+  - `locales/enUS.lua:21`: L["Open the Ka0s Skin Tester settings"]      = "Open the Ka0s Skin Tester settings" → L["Open the Skin Tester settings"] = "Open the Skin Tester settings" (key also used at settings/Slash.lua:29)
+  - `settings/Slash.lua:29`: {"config",      L["Open the Ka0s Skin Tester settings"],       function() runConfig() end}, → {"config",      L["Open the Skin Tester settings"],       function() runConfig() end},
+- **other** (3)
+  - `core/Namespace.lua:11`: NS.BRAND_NAME = "Ka0s Skin Tester" → NS.BRAND_NAME = "Skin Tester" (single source for: launcher/LDB label core/LauncherSetup.lua:53, LDB tooltip header, launcher menu title, per
+  - `modules/ShowroomFonts.lua:37`: "Ka0s Skin Tester  12,345  0:42  98%  +5.0%", → "Skin Tester  12,345  0:42  98%  +5.0%", (width corpus sample; changes measured /st widths ratios)
+  - `Bindings.xml:2`: ... the player picks one under Options, Keybindings, Ka0s Skin Tester, or on the General page's Keybindings tab ... (XML comment) → ... Options, Keybindings, Skin Tester, ...
+- **readme** (5)
+  - `README.md:1`: # Ka0s Skin Tester → # Skin Tester
+  - `README.md:8`: Ka0s Skin Tester is a fitting room for the Ka0s skins. → Skin Tester is a fitting room for the Ka0s skins.
+  - `README.md:22`: with "Ka0s Skin Tester" on its own line above the list → with "Skin Tester" on its own line above the list
+  - `README.md:32`: (the Ka0s Skin Tester header) → (the Skin Tester header)
+  - `README.md:34`: Everything else is in Settings, AddOns, Ka0s Skin Tester, and `/st help` lists the slash commands. → Everything else is in Settings, AddOns, Skin Tester, and `/st help` lists the slash commands.
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:227`: parentTitle = "Ka0s Skin Tester", → parentTitle = "Skin Tester", (or NS.BRAND_NAME)
+- **tests** (22)
+  - `tests/run.lua:4`: -- Headless test runner for Ka0s Skin Tester, on the shared LibKa0s test kit → -- Headless test runner for Skin Tester, on the shared LibKa0s test kit
+  - `tests/run.lua:115`: brand       = "Ka0s Skin Tester", → brand       = "Skin Tester",
+  - `tests/perf.lua:231`: print(("Ka0s Skin Tester \226\128\148 offline perf  (v%s, label '%s')"):format( → print(("Skin Tester \226\128\148 offline perf  (v%s, label '%s')"):format(
+  - `tests/test_disabled.lua:25`: local REFUSAL = "Ka0s Skin Tester is disabled" → local REFUSAL = "Skin Tester is disabled"
+  - `tests/test_diagnostics.lua:10`: local BEGIN = "[Diag] ==== Ka0s Skin Tester diagnostics begin ====" → local BEGIN = "[Diag] ==== Skin Tester diagnostics begin ===="
+  - `tests/test_keybinds.lua:6`: -- row), so Options -> Keybindings shows a "Ka0s Skin Tester" section. → -- row), so Options -> Keybindings shows a "Skin Tester" section.
+  - `tests/test_keybinds.lua:116`: assertEqual(NS.BRAND_NAME, "Ka0s Skin Tester", "the brand (launcher-§1)") → assertEqual(NS.BRAND_NAME, "Skin Tester", "the brand (launcher-§1)")
+  - `tests/test_launcher.lua:98`: assertEqual(object.label, "Ka0s Skin Tester") → assertEqual(object.label, "Skin Tester")
+  - `tests/test_launcher.lua:112`: assertEqual(mock.ldbObjects[NAME].label, "Ka0s Skin Tester", → assertEqual(mock.ldbObjects[NAME].label, "Skin Tester",
+  - `tests/test_launcher.lua:230`: assertEqual(menu.titles[1], "Ka0s Skin Tester", "titled with the label") → assertEqual(menu.titles[1], "Skin Tester", "titled with the label")
+  - `tests/test_launcher.lua:338`: assertEqual(rawget(_G, "BINDING_HEADER_LIBKA0SSKINTESTER"), "Ka0s Skin Tester", → assertEqual(rawget(_G, "BINDING_HEADER_LIBKA0SSKINTESTER"), "Skin Tester",
+  - `tests/test_launcher.lua:453`: "Ka0s Skin Tester  v0.1.0", → "Skin Tester  v0.1.0",
+  - `tests/test_launcher.lua:471`: "Ka0s Skin Tester  v0.1.0", → "Skin Tester  v0.1.0",
+  - `tests/test_launcher.lua:484`: assertEqual(plain(hover(mock.ldbObjects[NAME]))[1], "Ka0s Skin Tester  v9.8.7") → assertEqual(plain(hover(mock.ldbObjects[NAME]))[1], "Skin Tester  v9.8.7")
+  - `tests/test_envsetup.lua:40`: -- name has to come from the host's first vararg. "LibKa0sSkinTester", "Ka0s Skin Tester" and "[ST]" → -- ... "LibKa0sSkinTester", "Skin Tester" and "[ST]"
+  - `tests/test_libka0s.lua:184`: assertEqual(mock.frames["LibKa0sSkinTesterDebugWindow"].titleText, "Ka0s Skin Tester \226\128\148 Debug") → assertEqual(mock.frames["LibKa0sSkinTesterDebugWindow"].titleText, "Skin Tester \226\128\148 Debug")
+  - `tests/test_libka0s.lua:290`: -- client's blue disc. It must be the first vararg -- the folder -- and never the "Ka0s Skin Tester" → -- ... and never the "Skin Tester"
+  - `tests/test_libka0s.lua:863`: -- red under: the launcher's old `or "Ka0s Skin Tester is disabled."` fallback, or a stub that → -- red under: the launcher's old `or "Skin Tester is disabled."` fallback, or a stub that
+  - `tests/test_libka0s.lua:893`: assertEqual(Sl:DisabledLine(), Sl.__disabledLineFormat:format("Ka0s Skin Tester", "/st enable"), → assertEqual(Sl:DisabledLine(), Sl.__disabledLineFormat:format("Skin Tester", "/st enable"),
+  - `tests/test_panel.lua:83`: assertEqual(mock.categories[1].label, "Ka0s Skin Tester") → assertEqual(mock.categories[1].label, "Skin Tester")
+  - `tests/test_showroom_widgets.lua:346`: assertEqual(f.ownerLabel:GetText(), "Ka0s Skin Tester") → assertEqual(f.ownerLabel:GetText(), "Skin Tester")
+  - `tests/test_skin_picker.lua:161`: assertEqual(f.ownerLabel:GetText(), "Ka0s Skin Tester") → assertEqual(f.ownerLabel:GetText(), "Skin Tester")
+- **toc-title** (1)
+  - `LibKa0sSkinTester.toc:2`: ## Title: Ka0s Skin Tester → ## Title: Skin Tester
+- **Risks noted**
+  - ~50 test assertions pin the literal 'Ka0s Skin Tester' (test_launcher, test_keybinds, test_panel, test_libka0s, test_disabled, test_diagnostics, test_skin_picker, test_showroom_widgets, run.lua brand); they must move in the same commit or the suite goes red
+  - test_launcher.lua:341 asserts modules/Showroom.lua literally contains 'BINDING_HEADER_LIBKA0SSKINTESTER = NS.BRAND_NAME' -- keep reading the constant, do not inline a literal
+  - Three independent literals hold the brand: core/Namespace.lua:11 NS.BRAND_NAME, settings/OptionsSetup.lua:227 parentTitle, settings/SchemaSetup.lua:39 BRAND -- missing one leaves the settings category or schema error prefix still saying Ka0s; consider pointing the latter two at NS.BRAND_NAME
+  - Locale key change (locales/enUS.lua:21) must match settings/Slash.lua:29 exactly or the help line falls back/missing
+  - modules/ShowroomFonts.lua:37 is a width-measurement corpus line: changing it shifts every /st widths ratio and any test/smoke row that pins measured widths (check test_showroom_fonts)
+  - Sort order: in Settings -> AddOns, the AddOns list, Keybindings and the LibKa0s skin picker's owner list (label = NS.BRAND_NAME registered via Skin:RegisterOwner), the addon moves from among the 'Ka0s ...' entries to under 'S'
+  - Settings category is registered by title; OpenSettings should be using the category ID, but verify nothing opens the panel by the old title string
+  - SavedVariables are keyed by folder (LibKa0sSkinTesterDB), so profiles are unaffected -- do NOT rename them
+  - Keybinding header is the global BINDING_HEADER_LIBKA0SSKINTESTER; only its value changes, keys survive; renaming the global or the button would unbind players
+  - Never published on CurseForge, so no CurseForge project name to change; .pkgmeta package-as is the folder and stays
+  - Owner-marked smoke rows in docs/smoke-tests.md quote the old name; editing expected text is fine but must not alter recorded results
+  - Another workflow is editing this repo on feat/2026-11-01-full-skinning concurrently; apply the rename as the last step, re-grep then
+
+### LootHistory: Ka0s Loot History → Loot History
+
+- **chat-prefix** (1)
+  - `core/CoreSetup.lua:50`: NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Ka0s Loot History " .. → NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Loot History " ..
+- **docs** (54)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Loot History → # CLAUDE.md — Loot History
+  - `DEPENDENCIES.md:3`: Everything you need installed to run, develop, test or release **Ka0s Loot History**, with commands → ... release **Loot History**, with commands
+  - `docs/ARCHITECTURE.md:1`: # ARCHITECTURE — Ka0s Loot History → # ARCHITECTURE — Loot History
+  - `docs/ARCHITECTURE.md:11`: **Ka0s Loot History** passively records every item the player loots above a configurable → **Loot History** passively records ...
+  - `docs/ARCHITECTURE.md:168`: ... in Options -> Keybindings -> Ka0s Loot History, a section of its own ... → ... Options -> Keybindings -> Loot History, a section of its own ...
+  - `docs/compat-layer.md:5`: ... Ka0s Loot History targets Retail, so `Compat.lua` never reads ... → ... Loot History targets Retail ...
+  - `docs/data-flow.md:3`: Ka0s Loot History's core subsystem. → Loot History's core subsystem.
+  - `docs/debug.md:175`: | (begin) | `==== Ka0s Loot History diagnostics begin ====` | → | (begin) | `==== Loot History diagnostics begin ====` |
+  - `docs/debug.md:192`: | (end) | `==== Ka0s Loot History diagnostics end: N line(s) ====` ... → | (end) | `==== Loot History diagnostics end: N line(s) ====` ...
+  - `docs/midnight-quirks.md:3`: ... behaviors that Ka0s Loot History handles. → ... behaviors that Loot History handles.
+  - `docs/performance.md:3`: Ka0s Loot History is wired into **`LibKa0s-Perf-1.0`** → Loot History is wired into **`LibKa0s-Perf-1.0`**
+  - `docs/module-map.md:29`: ... `Ka0s Loot History  v<version>` (`NS.Version()`, the TOC's) ... → ... `Loot History  v<version>` ...
+  - `docs/module-map.md:77`: Ka0s Loot History (AceAddon: NS promoted in place) → Loot History (AceAddon: NS promoted in place)
+  - `docs/module-map.md:342`: ... (LibDBIcon keys the button's saved position by it; the old key was the literal "Ka0s Loot History", ...) → KEEP as written (historical fact about the old LibDBIcon key), optionally add 'the display name is now Loot History'
+  - `docs/profiles.md:3`: Ka0s Loot History keeps its settings in AceDB profiles ... → Loot History keeps its settings ...
+  - `docs/profiles.md:38`: **Settings → AddOns → Ka0s Loot History → Profiles** → **Settings → AddOns → Loot History → Profiles**
+  - `docs/slash-dispatch.md:141`: ... built by `LibKa0s-Slash-1.0` from `NS.BRAND` and the slash — `Ka0s Loot History is disabled ...` → ... `Loot History is disabled ...`
+  - `docs/scope.md:3`: What Ka0s Loot History is, what's in scope, and what's not. → What Loot History is, ...
+  - `docs/scope.md:5`: ## What Ka0s Loot History is → ## What Loot History is
+  - `docs/scope.md:7`: Ka0s Loot History is a WoW addon with two responsibilities ... → Loot History is a WoW addon ...
+  - `docs/scope.md:13`: Display name in the addon list and the Settings panel: `Ka0s Loot History`. The folder, addon ID, slash commands ... stay unprefixed `LootHi → Display name in the addon list and the Settings panel: `Loot History` (the Ka0s prefix dropped 2026-11). The folder, addon ID, slash command
+  - `docs/settings-panel.md:7`: * A **parent category** ("Ka0s Loot History") renders the **landing page** → * A **parent category** ("Loot History") ...
+  - `docs/settings-panel.md:8`: ... Its header reads `Ka0s Loot History |A forwardarrow|a General` ... → ... `Loot History |A forwardarrow|a General` ...
+  - `docs/settings-panel.md:24`: Settings live at **Settings > AddOns > Ka0s Loot History** (or `/lh config`) → **Settings > AddOns > Loot History**
+  - `docs/settings-panel.md:35`: ... the same key as Options > Keybindings > Ka0s Loot History ... → ... Options > Keybindings > Loot History ...
+  - `docs/settings-panel.md:184`: ... The tab and Options -> Keybindings -> Ka0s Loot History read and write ... → ... Options -> Keybindings -> Loot History ...
+  - `docs/settings-panel.md:188`: ... with **Ka0s Loot History** (the owner's label, `frame.ownerLabel`) on its own line above the dropdown ... → ... with **Loot History** (the owner's label ...) ...
+  - `docs/settings-panel.md:210`: ... set in Options -> Keybindings -> Ka0s Loot History (a section of its own ... → ... Options -> Keybindings -> Loot History ...
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Loot History → # Smoke tests — Loot History
+  - `docs/smoke-tests.md:106`: ... AddOns list shows **Ka0s Loot History** enabled ... → ... shows **Loot History** enabled ...
+  - `docs/smoke-tests.md:111`: ... and **Ka0s Loot\nHistory** (wraps to line 112) → **Loot History** (reflow 111-112)
+  - `docs/smoke-tests.md:149`: ... each opens Settings on the Ka0s Loot History landing page ... → ... on the Loot History landing page ...
+  - `docs/smoke-tests.md:202`: for Ka0s Loot History, on the skin you wear ... → for Loot History, ...
+  - `docs/smoke-tests.md:213`: AddOns → **Ka0s Loot History** → both land on the same category ... → AddOns → **Loot History** → ...
+  - `docs/smoke-tests.md:220`: **PANEL-3. General header and strip.** Open **General** → header `Ka0s Loot History ▸ General` ... → ... header `Loot History ▸ General` ...
+  - `docs/smoke-tests.md:424`: **PROFILE-1. ...** Open **Settings → AddOns → Ka0s Loot History → Profiles** → ... **Settings → AddOns → Loot History → Profiles**
+  - `docs/smoke-tests.md:488`: ... `/lh show` answers `Ka0s Loot History is ... → ... `Loot History is ...
+  - `docs/smoke-tests.md:592`: **Ka0s Loot History ▸ General** (then **Profiles**) ... → **Loot History ▸ General** ...
+  - `docs/smoke-tests.md:968`: Open Esc > Options > AddOns > Ka0s\nLoot History (wraps to 969) → Open Esc > Options > AddOns > Loot History (reflow 968-969)
+  - `docs/smoke-tests.md:1278`: **LAUNCH-2. Tooltip.** ... `Ka0s Loot History  v<TOC version>`, → `Loot History  v<TOC version>`,
+  - `docs/smoke-tests.md:1285`: **LAUNCH-4. The right-click menu.** Right-click → a menu titled `Ka0s Loot History` ... → ... a menu titled `Loot History` ...
+  - `docs/smoke-tests.md:1313`: AddOns > Ka0s Loot History lists `Toggle Loot History window` ... → AddOns > Loot History lists ...
+  - `docs/smoke-tests.md:1315`: now sits in a section of its own, Options -> Keybindings -> Ka0s Loot History ... → ... Options -> Keybindings -> Loot History ...
+  - `docs/smoke-tests.md:1333`: Keybindings → a section titled **Ka0s Loot History** (no longer under AddOns) ... → ... a section titled **Loot History** ...
+  - `docs/smoke-tests.md:1342`: Ka0s Loot History shows it; set a second key there ... → Loot History shows it; ...
+  - `docs/smoke-tests.md:1431`: ... `[Diag] ==== Ka0s Loot History diagnostics begin ====` ... → `[Diag] ==== Loot History diagnostics begin ====`
+  - `docs/smoke-tests.md:1432`: `==== Ka0s Loot History diagnostics end: N line(s) ====` ... → `==== Loot History diagnostics end: N line(s) ====`
+  - `docs/smoke-tests.md:1440`: ... `[Diag] ==== Ka0s Loot History ... → `[Diag] ==== Loot History ...
+  - `docs/smoke-tests.md:1946`: docked beside the History window, titled *Ka0s Loot History - Simulation* ... → titled *Loot History - Simulation*
+  - `docs/smoke-tests.md:2224`: ... (not in the middle), with **Ka0s Loot History** whole → with **Loot History** whole
+  - `docs/smoke-tests.md:2231`: ... Fail: a centered window, no **Ka0s Loot History** line → no **Loot History** line
+  - `docs/smoke-tests.md:2232`: ... the old **Choose a skin for Ka0s Loot History** ... → keep (it names an old, retired title as a fail condition) or change to 'Choose a skin for Loot History'
+  - `docs/smoke-tests.md:2466`: `[LH] The LibKa0s library is missing from this installation of Ka0s Loot History (expected in → ... installation of Loot History (expected in
+  - `docs/smoke-tests.md:2470`: missing from this installation of Ka0s Loot History (expected in libs/LibKa0s); ... → ... installation of Loot History ...
+- **other** (5)
+  - `core/Namespace.lua:13`: NS.BRAND = "Ka0s Loot History" → NS.BRAND = "Loot History"  (single source: feeds LDB label core/LauncherSetup.lua:141, BINDING_HEADER_LOOTHISTORY core/LauncherSetup.lua:101
+  - `settings/Slash.lua:9`: text = "Delete ALL Ka0s Loot History records? This cannot be undone.", → text = "Delete ALL Loot History records? This cannot be undone.",
+  - `modules/SimPanel.lua:12`: --   title      `Ka0s Loot History - Simulation` → --   title      `Loot History - Simulation`
+  - `settings/Panel.lua:16`: --     header ("Ka0s Loot History ▸ General"), a Defaults button, and a gold divider. → --     header ("Loot History ▸ General"), a Defaults button, and a gold divider.
+  - `core/EnvSetup.lua:23`: -- and not a hand-typed literal. Here those read "LootHistory" and "Ka0s Loot History", and only the → -- ... Here those read "LootHistory" and "Loot History", and only the
+- **readme** (3)
+  - `README.md:1`: # Ka0s Loot History → # Loot History
+  - `README.md:9`: Ka0s Loot History is a passive loot tracker for World of Warcraft: Midnight. ... → Loot History is a passive loot tracker for World of Warcraft: Midnight. ...
+  - `README.md:54`: ... Set it in Options > Keybindings > Ka0s Loot History, or on General > Keybindings ... → ... Set it in Options > Keybindings > Loot History, or on General > Keybindings ...
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:215`: parentTitle   = "Ka0s Loot History", → parentTitle   = "Loot History",  (Settings > AddOns category + General header 'Loot History > General'; could read NS.BRAND instead)
+- **tests** (18)
+  - `tests/test_launcher.lua:496`: assertEqual(label, "Ka0s Loot History", "the LDB label must be the addon's brand name") → assertEqual(label, "Loot History", ...)
+  - `tests/test_launcher.lua:483`: -- collection in Titan Panel or as eleven unrelated addons. §1 fixes it at `Ka0s <Name>`. → update comment to the new launcher-§1 wording once the standard drops the prefix
+  - `tests/test_launcher.lua:152`: assertEqual(object.label, "Ka0s Loot History", "what a broker display prints") → assertEqual(object.label, "Loot History", ...)
+  - `tests/test_launcher.lua:641`: assertTrue(Loader.readFile("core/LauncherSetup.lua"):find('"Ka0s Loot History"', 1, true) == nil, → find('"Loot History"', ...) (else the guard goes vacuous)
+  - `tests/test_panel.lua:56`: assertEqual(mocks.__mainPanel.name, "Ka0s Loot History") → assertEqual(mocks.__mainPanel.name, "Loot History")
+  - `tests/test_diagnostics.lua:15`: local BRAND = "Ka0s Loot History" → local BRAND = "Loot History"
+  - `tests/test_disabled.lua:606`: if D.buffer[i]:find("Ka0s Loot History diagnostics begin", 1, true) then began = i end → find("Loot History diagnostics begin", ...)
+  - `tests/test_disabled.lua:607`: if D.buffer[i]:find("Ka0s Loot History diagnostics end:", 1, true) then ended = i end → find("Loot History diagnostics end:", ...)
+  - `tests/test_libka0s.lua:161`: "The LibKa0s library is missing from this installation of Ka0s Loot History " .. → "... installation of Loot History " ..
+  - `tests/test_libka0s.lua:235`: -- The FOLDER name specifically: "LootHistory", not the "Ka0s Loot History" title and not the → -- ... not the "Loot History" title ...
+  - `tests/test_libka0s.lua:586`: -- first vararg, not a typed string: "Ka0s Loot History" here would build a path to nothing, and → -- ... "Loot History" here would build ...
+  - `tests/test_sim_panel.lua:96`: assertEqual(Host.PANEL.title(), "Ka0s Loot History - Simulation") → assertEqual(Host.PANEL.title(), "Loot History - Simulation")
+  - `tests/test_sim_panel.lua:170`: assertEqual(panel().title:GetText(), "Ka0s Loot History - Simulation") → ... "Loot History - Simulation")
+  - `tests/test_sim_slash.lua:194`: assertTrue(lines[1]:find("Ka0s Loot History is disabled", 1, true) ~= nil, lines[1]) → find("Loot History is disabled", ...)
+  - `tests/test_slash_verbs.lua:208`: return NS.PREFIX .. " Ka0s Loot History is disabled \226\128\148 " → return NS.PREFIX .. " Loot History is disabled \226\128\148 "
+  - `tests/test_envsetup.lua:36`: -- has to come from the host. "LootHistory", "Ka0s Loot History" and "/lh" are all live strings in → -- ... "LootHistory", "Loot History" and "/lh" ...
+  - `tests/run.lua:1`: -- Headless test runner for Ka0s Loot History. → -- Headless test runner for Loot History.
+  - `tests/perf.lua:135`: print(("Ka0s Loot History \226\128\148 offline perf  (v%s, label '%s')"):format(...)) → print(("Loot History \226\128\148 offline perf ..."):format(...))
+- **toc-title** (1)
+  - `LootHistory.toc:2`: ## Title: Ka0s Loot History → ## Title: Loot History
+- **window-title** (1)
+  - `modules/Browser.lua:984`: title:SetText("Ka0s Loot History") → title:SetText("Loot History")  (or NS.BRAND)
+- **Risks noted**
+  - Name collision: 'Loot History' is the same as Blizzard's built-in Group Loot History window (GroupLootHistoryFrame, titled 'Loot History'), so players may confuse the two in the Keybindings section header (BINDING_HEADER_LOOTHISTORY = NS.BRAND), the settings tree and chat lines. Worth asking the owner whether a different name is wanted, e.g. keeping a qualifier.
+  - The standard conflicts: launcher-§1 fixes the LDB label at 'Ka0s <Name>' (tests/test_launcher.lua:482-487 cites it). WowAddonStandards needs to change first, or the audit flags a deviation. The same applies to any brand/TOC Title rule in the standard.
+  - Tests that pin the name and go red until updated: tests/test_launcher.lua:152,496 (641 still passes but goes vacuous), test_panel.lua:56, test_diagnostics.lua:15, test_disabled.lua:606-607, test_libka0s.lua:161, test_sim_panel.lua:96,170, test_sim_slash.lua:194, test_slash_verbs.lua:208. tests/test_launcher.lua:497 (label ~= folder 'LootHistory') still passes because of the space.
+  - Sort order moves from K to L in the AddOns list, the Settings > AddOns tree, the Keybindings sections, the skin-picker queue (if it orders by label) and broker displays (Titan Panel). The 'collection sorts together' rationale in tests/test_launcher.lua:483-485 goes away.
+  - LibDBIcon and both LDB registrations use the folder name addonName (core/LauncherSetup.lua:136), so the minimap position is safe. The broker label changes, so a Titan Panel row is renamed (its saved settings are keyed by the LDB object name 'LootHistory', which is unchanged).
+  - The settings category is registered under parentTitle (settings/OptionsSetup.lua:215), but Panel:Open goes through the library's category object, not a name string, so opening still works. Any external macro or /run that opens it by the 'Ka0s Loot History' name would break.
+  - No SavedVariables are keyed by the display name. Skin owner registration uses addonName (core/SkinSetup.lua:749); only its label changes.
+  - The CurseForge project name/slug (X-Curse-Project-ID 1607560) is changed on the website, not in the repo. .pkgmeta package-as: LootHistory is the folder name and is unchanged.
+  - The diagnostics begin/end markers change text. Docs and tests that grep for them need to change together (docs/debug.md:175,192; docs/smoke-tests.md:1431-1440).
+  - The owner says to rename README/docs, so docs/scope.md:13 (which records the 'Ka0s ' display-name decision) should be rewritten, not just search-replaced.
+  - Another workflow is editing this repo on feat/2026-11-01-full-skinning. Line numbers here are a snapshot and may drift.
+
+### MultiMeters: Ka0s Multi Meters → Multi Meters
+
+- **chat-prefix** (2)
+  - `settings/Slash.lua:330`: brandName = L["Ka0s Multi Meters"], → brandName = L["Multi Meters"], (the disabled-refusal line 'X is disabled - enable it with /mm enable')
+  - `core/CoreSetup.lua:55`: NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Ka0s Multi Meters " .. → NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Multi Meters " ..
+- **docs** (38)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Multi Meters → # CLAUDE.md — Multi Meters
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Multi Meters → # Dependencies — Multi Meters
+  - `docs/ARCHITECTURE.md:3`: Orient-yourself map for **Ka0s Multi Meters**. → Orient-yourself map for **Multi Meters**.
+  - `docs/ARCHITECTURE.md:302`: Ka0s Multi Meters wears a LibKa0s skin (skinning-§1 to §7) → Multi Meters wears a LibKa0s skin ...
+  - `docs/ARCHITECTURE.md:416`: "Ka0s Multi Meters", on its own line above the dropdown (OptionsSkinPicker minor 2) → "Multi Meters", on its own line above the dropdown ...
+  - `docs/scope.md:3`: What Ka0s Multi Meters is, what is in scope → What Multi Meters is, what is in scope
+  - `docs/scope.md:21`: display name `Ka0s Multi Meters` → display name `Multi Meters`
+  - `docs/message-bus.md:3`: > Ka0s Multi Meters. Part of the doc set mapped in → > Multi Meters. Part of the doc set mapped in
+  - `docs/disabled-state.md:3`: > Ka0s Multi Meters. Part of the doc set mapped in → > Multi Meters. Part of the doc set mapped in
+  - `docs/disabled-state.md:128`: Keybindings → Ka0s Multi Meters, is a feature surface too → Keybindings → Multi Meters, is a feature surface too
+  - `docs/profiles.md:3`: > Ka0s Multi Meters. Part of the doc set mapped in → > Multi Meters. Part of the doc set mapped in
+  - `docs/texture-paths.md:3`: > Ka0s Multi Meters. Part of the doc set mapped in → > Multi Meters. Part of the doc set mapped in
+  - `docs/slash-dispatch.md:3`: > Ka0s Multi Meters. Part of the doc set mapped in → > Multi Meters. Part of the doc set mapped in
+  - `docs/slash-dispatch.md:182`: `Ka0s Multi Meters is disabled — enable it with /mm enable` → `Multi Meters is disabled — enable it with /mm enable`
+  - `docs/debug.md:224`: markers carrying the brand (`Ka0s Multi Meters`) → markers carrying the brand (`Multi Meters`)
+  - `docs/testing.md:39`: What stays in `tests/run.lua` is only what is genuinely Ka0s Multi Meters': → ... genuinely Multi Meters': ...
+  - `docs/settings-panel.md:230`: the title is *Ka0s Multi Meters* and the → the title is *Multi Meters* and the
+  - `docs/settings-panel.md:239`: Right-click opens the client's context menu, titled *Ka0s Multi Meters* → ... titled *Multi Meters*
+  - `docs/settings-panel.md:64`: the same one Options → Keybindings → Ka0s Multi Meters edits → ... Options → Keybindings → Multi Meters edits
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Multi Meters → # Smoke tests — Multi Meters
+  - `docs/smoke-tests.md:3`: These are the in-client checks for **Ka0s Multi Meters** → ... for **Multi Meters**
+  - `docs/smoke-tests.md:61`: the character-select AddOns list shows **Ka0s Multi Meters** enabled → ... shows **Multi Meters** enabled
+  - `docs/smoke-tests.md:198`: panel on the **Ka0s Multi Meters** landing page → panel on the **Multi Meters** landing page
+  - `docs/smoke-tests.md:244`: titled *Ka0s Multi Meters* with four checkboxes → titled *Multi Meters* with four checkboxes
+  - `docs/smoke-tests.md:254`: Key Bindings → AddOns lists a *Ka0s Multi Meters* header → ... lists a *Multi Meters* header
+  - `docs/smoke-tests.md:260`: (*Ka0s Multi Meters is disabled - enable it with /mm enable*) → (*Multi Meters is disabled - enable it with /mm enable*)
+  - `docs/smoke-tests.md:270`: Keybindings shows a section titled *Ka0s Multi Meters* → ... titled *Multi Meters*
+  - `docs/smoke-tests.md:276`: Options → Keybindings → Ka0s Multi Meters shows it → Options → Keybindings → Multi Meters shows it
+  - `docs/smoke-tests.md:301`: Settings → AddOns → Ka0s Multi Meters → the tree reads General → Settings → AddOns → Multi Meters → ...
+  - `docs/smoke-tests.md:476`: open Settings → AddOns → Ka0s Multi Meters from the Blizzard sidebar → ... → Multi Meters ...
+  - `docs/smoke-tests.md:652`: Open another addon's options page, then Ka0s Multi Meters → → ... then Multi Meters →
+  - `docs/smoke-tests.md:1553`: `==== Ka0s Multi Meters diagnostics begin ====` → `==== Multi Meters diagnostics begin ====`
+  - `docs/smoke-tests.md:1555`: `==== Ka0s Multi Meters diagnostics end: N line(s) ====` → `==== Multi Meters diagnostics end: N line(s) ====`
+  - `docs/smoke-tests.md:1694`: library is missing from this installation of Ka0s Multi Meters (expected in libs/LibKa0s) → ... installation of Multi Meters ...
+  - `docs/smoke-tests.md:1947`: **Ka0s Multi Meters** on → **Multi Meters** on
+  - `docs/smoke-tests.md:1975`: Ka0s Multi Meters ticked in its third-party list → Multi Meters ticked ... (EllesmereUI lists by TOC Title, so this changes in game too)
+  - `docs/smoke-tests.md:1978`: Untick Ka0s Multi Meters in EllesmereUI's third-party list → Untick Multi Meters in EllesmereUI's third-party list
+  - `docs/smoke-tests.md:2030`: Settings → Ka0s Multi Meters → Skin → the picker → Settings → Multi Meters → Skin → the picker
+- **launcher** (1)
+  - `core/LauncherSetup.lua:326`: label = L["Ka0s Multi Meters"], → label = L["Multi Meters"], (LDB label, minimap tooltip title, right-click menu title)
+- **locale** (1)
+  - `locales/enUS.lua:49`: L["Ka0s Multi Meters"] = "Ka0s Multi Meters" → Delete this key and point its readers at the existing L["Multi Meters"] (enUS.lua:62), or keep the key and set the value to "Multi Meters". 
+- **other** (9)
+  - `core/LauncherSetup.lua:166`: rawset(_G, "BINDING_HEADER_MULTIMETERS", L["Ka0s Multi Meters"]) → rawset(_G, "BINDING_HEADER_MULTIMETERS", L["Multi Meters"]) (the Keybindings section title; the global name stays)
+  - `core/LauncherSetup.lua:124`: -- the player picks one under Options -> Keybindings -> Ka0s Multi Meters, ... → -- ... Options -> Keybindings -> Multi Meters ...
+  - `core/LauncherSetup.lua:226`: --     Ka0s Multi Meters  v<version>      label + `version` → --     Multi Meters  v<version>      label + `version`
+  - `core/LauncherSetup.lua:325`: -- saved position by. `MultiMeters` is an identifier, `Ka0s Multi Meters` is a name. → -- ... `MultiMeters` is an identifier, `Multi Meters` is a name.
+  - `core/DebugLogSetup.lua:380`: brandName = "Ka0s Multi Meters", → brandName = "Multi Meters", (diagnostics begin/end markers)
+  - `core/DebugLogSetup.lua:376`: -- The library appends its own " — Debug", giving "Ka0s Multi Meters — Debug". → -- ... giving "Multi Meters — Debug".
+  - `core/EnvSetup.lua:46`: -- hand-typed literal. Here those three read "MultiMeters", "[MM]" and "Ka0s
+-- Multi Meters" → -- ... "MultiMeters", "[MM]" and "Multi
+-- Meters" (comment, lines 46-47)
+  - `core/LifecycleSetup.lua:7`: -- player who unticks *Enable Ka0s Multi Meters* has asked for the outcome they → -- player who unticks *Enable Multi Meters* ... (the live label is already L["Enable Multi Meters"])
+  - `Bindings.xml:8`: the player picks one under Options -> Keybindings -> Ka0s Multi Meters, or on General > → ... Options -> Keybindings -> Multi Meters, ... (XML comment)
+- **picker-title** (1)
+  - `core/SkinSetup.lua:742`: label  = "Ka0s Multi Meters", → label  = "Multi Meters", (skin owner label: picker title line and copy confirmation)
+- **readme** (2)
+  - `README.md:1`: # Ka0s Multi Meters → # Multi Meters
+  - `README.md:46`: *Toggle meter windows*, under Options → Keybindings → Ka0s Multi Meters, or on General → Keybindings → ... Options → Keybindings → Multi Meters, ...
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:147`: parentTitle   = "Ka0s Multi Meters", → parentTitle   = "Multi Meters",
+- **tests** (18)
+  - `tests/run.lua:461`: brand       = "Ka0s Multi Meters", → brand       = "Multi Meters",
+  - `tests/test_diagnostics.lua:43`: local BRAND = "Ka0s Multi Meters" → local BRAND = "Multi Meters" (plus the comment at :77)
+  - `tests/test_launchersetup.lua:94`: assertEqual(label, "Ka0s Multi Meters") → assertEqual(label, "Multi Meters")
+  - `tests/test_launchersetup.lua:101`: -- by. `MultiMeters` is an identifier; `Ka0s Multi Meters` is a name. → -- ... `Multi Meters` is a name.
+  - `tests/test_launchersetup.lua:118`: assertEqual(broker(inst).label, "Ka0s Multi Meters") → assertEqual(broker(inst).label, "Multi Meters")
+  - `tests/test_launchersetup.lua:294`: assertEqual(menu.titles[1], "Ka0s Multi Meters", "the menu is titled with the brand label") → assertEqual(menu.titles[1], "Multi Meters", ...)
+  - `tests/test_launchersetup.lua:480`: "Ka0s Multi Meters  v9.8.7", → "Multi Meters  v9.8.7",
+  - `tests/test_launchersetup.lua:494`: assertEqual(tooltipLines(inst)[1], "Ka0s Multi Meters  v4.3.2-tt") → assertEqual(tooltipLines(inst)[1], "Multi Meters  v4.3.2-tt")
+  - `tests/test_launchersetup.lua:894`: assertEqual(rawget(env, "BINDING_HEADER_MULTIMETERS"), "Ka0s Multi Meters") → ... "Multi Meters")
+  - `tests/test_launchersetup.lua:951`: brand    = inst.NS.L["Ka0s Multi Meters"], → brand    = inst.NS.L["Multi Meters"],
+  - `tests/test_disabled.lua:165`: :format(inst.NS.L["Ka0s Multi Meters"], "/mm enable") → :format(inst.NS.L["Multi Meters"], "/mm enable") (and the comment at :102 'Enable Ka0s Multi Meters' -> 'Enable Multi Meters')
+  - `tests/test_slash_refusal.lua:179`: :format(NS.L["Ka0s Multi Meters"], "/mm enable") → :format(NS.L["Multi Meters"], "/mm enable")
+  - `tests/test_skinsetup.lua:81`: assertEqual(Skin:OwnerLabel(OWNER), "Ka0s Multi Meters", "the copy confirmation names the brand") → assertEqual(Skin:OwnerLabel(OWNER), "Multi Meters", ...)
+  - `tests/test_locale.lua:59`: for _, key in ipairs({ "", "%s", "Column %d", "Ka0s Multi Meters", "1234" }) do → Replace "Ka0s Multi Meters" with "Multi Meters" (passthrough sample key)
+  - `tests/wow_mock.lua:1111`: Title   = "Ka0s Multi Meters", → Title   = "Multi Meters", (mock TOC metadata; also the header comment at :3)
+  - `tests/perf.lua:850`: print(("Ka0s Multi Meters \226\128\148 offline perf  (v%s, label '%s')") → print(("Multi Meters \226\128\148 offline perf ...")
+  - `tests/test_envsetup.lua:80`: -- folder its copy sits in, so the host supplies the name. "MultiMeters", "Ka0s Multi Meters" → -- ... "MultiMeters", "Multi Meters" (comment)
+  - `tests/test_perfsetup.lua:158`: -- luck, and `title` here is "Ka0s Multi Meters", which is what a future → -- ... `title` here is "Multi Meters", ... (comment)
+- **toc-title** (1)
+  - `MultiMeters.toc:2`: ## Title: Ka0s Multi Meters → ## Title: Multi Meters
+- **window-title** (2)
+  - `core/DebugLogSetup.lua:377`: title = "Ka0s Multi Meters", → title = "Multi Meters", (debug console window 'Multi Meters — Debug')
+  - `core/PerfSetup.lua:84`: title   = "Ka0s Multi Meters", → title   = "Multi Meters", (perf harness report title)
+- **Risks noted**
+  - Locale key: L["Ka0s Multi Meters"] (enUS.lua:49) is used as a key by LauncherSetup.lua:166,326, Slash.lua:330 and tests. If the key is retired in favor of the existing L["Multi Meters"] (enUS.lua:62), every reader and test must move together; if test_locale checks for unused or duplicate keys, a leftover key fails it.
+  - Many tests pin the brand string. These include tests/run.lua:461 (kit diagnostics brand), test_diagnostics:43, test_launchersetup (94,118,294,480,494,894,951), test_skinsetup:81, test_disabled:165, test_slash_refusal:179, test_locale:59 and wow_mock:1111. All must change with the code or the suite goes red.
+  - Collision: the brand becomes 'Multi Meters', which is the same string the window header default already uses (Schema.lua:159 window.name default, Window_Header.lua:448, Database.lua:232 'Multi Meters #%d'), the export head (Export.lua:472) and the MasterControls addonName (Schema_Compose.lua:547). No functional clash, but code comments and tests that tell the brand apart from the window name by st
+  - Settings category: parentTitle 'Ka0s Multi Meters' (OptionsSetup.lua:147) is the Blizzard Settings category name. If anything opens the panel by that name, not by the returned category ID, it has to change too. The landing page in the AddOns list also sorts differently: 'Multi Meters' moves from K to M.
+  - The Keybindings section title changes (BINDING_HEADER_MULTIMETERS value). The binding name 'CLICK MultiMetersToggleWindows:LeftButton' must NOT change, or every player's key unbinds (Bindings.xml:8 warns about this).
+  - The skin owner label (SkinSetup.lua:742) feeds LibKa0s 'Copy to every Ka0s addon' confirmations and the first-run picker queue, and the skin picker title appears in the image-based smoke rows (SKIN-*). Expect owner re-smoke.
+  - EllesmereUI's third-party list probably shows the TOC Title, so the owner's smoke instructions at smoke-tests.md:1975/1978 change wording. SavedVariables are keyed by folder, so the rename loses no data.
+  - The CurseForge project name is not in the repo (.pkgmeta has only package-as: MultiMeters, and the TOC has X-Curse-Project-ID 1690082). Renaming the CurseForge project page is a manual owner step outside the repo.
+  - Another workflow is editing this repo right now on feat/2026-11-01-full-skinning. Line numbers may drift before the rename runs, so re-grep at execution time.
+
+### PanelMaster: Ka0s Panel Master → Panel Master
+
+- **chat-prefix** (1)
+  - `core/CoreSetup.lua:31`: NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Ka0s Panel Master " .. → NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Panel Master " ..
+- **docs** (27)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Panel Master → # CLAUDE.md — Panel Master
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Panel Master → # Dependencies — Panel Master
+  - `docs/ARCHITECTURE.md:1`: # Architecture — Ka0s Panel Master → # Architecture — Panel Master
+  - `docs/ARCHITECTURE.md:173`: | The broker label | `core/LauncherSetup.lua` | `Ka0s Panel Master` — the **brand name in plain text** (`launcher-§1`) ... → | The broker label | `core/LauncherSetup.lua` | `Panel Master` — the **brand name in plain text** ...
+  - `docs/testing.md:1`: # Testing — Ka0s Panel Master → # Testing — Panel Master
+  - `docs/debug.md:68`: | Begin marker | the library | `==== Ka0s Panel Master diagnostics begin ====` | → | Begin marker | the library | `==== Panel Master diagnostics begin ====` |
+  - `docs/debug.md:81`: | End marker | the library | `==== Ka0s Panel Master diagnostics end: N line(s) ====`, counting both markers | → `==== Panel Master diagnostics end: N line(s) ====`
+  - `docs/settings-panel.md:9`: - **Ka0s Panel Master** (parent) — logo, tagline, the generated slash-command list. → - **Panel Master** (parent) — ...
+  - `docs/settings-panel.md:25`: prose (standard v2.41.0). Open the pages with `/pm config`, or find **Ka0s Panel Master** in the → ... or find **Panel Master** in the
+  - `docs/settings-panel.md:30`: | Ka0s Panel Master | The landing page — ... → | Panel Master | The landing page — ...
+  - `docs/settings-panel.md:39`: | Master controls | Enable Ka0s Panel Master | Master switch. ... → | Master controls | Enable Panel Master | Master switch. ...
+  - `docs/settings-panel.md:210`: | Enable Ka0s Panel Master | General visibility | → | Enable Panel Master | General visibility |
+  - `docs/slash-dispatch.md:42`: `NS.Schema.ENABLED_PATH` — `settings.enabled`, the very path the *Enable Ka0s Panel Master* → ... the *Enable Panel Master*
+  - `docs/slash-dispatch.md:73`: The refusal line is **the collection's, not this addon's** — `Ka0s Panel Master is disabled — enable → ... — `Panel Master is disabled — enable
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Panel Master → # Smoke tests — Panel Master
+  - `docs/smoke-tests.md:104`: - **SLASH-1. Bare `/pm`.** `/pm` → the settings window opens on the **Ka0s Panel Master** landing → ... opens on the **Panel Master** landing (and reset Result to not run)
+  - `docs/smoke-tests.md:501`: - **PANEL-3. Master controls in the canonical order.** Two per line: **Enable Ka0s Panel Master | → ... **Enable Panel Master |
+  - `docs/smoke-tests.md:509`: `Ka0s Panel Master ▸ General` match the other Ka0s addons' pages. Result: pass (owner-marked 2026-10-10) → `Panel Master ▸ General` match the other Ka0s addons' pages. (Result: re-open, not run)
+  - `docs/smoke-tests.md:765`: `[PM] Ka0s Panel Master is disabled — enable it with /pm enable`, and no panel: confirm with → `[PM] Panel Master is disabled — enable it with /pm enable`, ...
+  - `docs/smoke-tests.md:849`: `==== Ka0s Panel Master diagnostics begin ====` to `==== Ka0s Panel Master diagnostics end: N → `==== Panel Master diagnostics begin ====` to `==== Panel Master diagnostics end: N
+  - `docs/smoke-tests.md:935`: Blizzard icon, not a blank square), and the same logo beside **Ka0s Panel Master** in Esc ▸ AddOns. → ... beside **Panel Master** in Esc ▸ AddOns.
+  - `docs/smoke-tests.md:939`: - **LAUNCH-3. Right-click Locked.** Right-click → a menu titled **Ka0s Panel Master** with exactly two → ... a menu titled **Panel Master** with exactly two
+  - `docs/smoke-tests.md:950`: - **LAUNCH-5. The tooltip.** Hover → `Ka0s Panel Master  v<the TOC version>`, `Enabled: Yes` (green), → Hover → `Panel Master  v<the TOC version>`, ...
+  - `docs/smoke-tests.md:971`: - **LAUNCH-12. Broker rows.** Only with Titan Panel, ElvUI or Bazooka → a row labeled **Ka0s Panel
+  Master** in plain text → ... a row labeled **Panel Master** in plain text
+  - `docs/smoke-tests.md:987`: is missing from this installation of Ka0s Panel Master (expected in libs/LibKa0s); running on → is missing from this installation of Panel Master (expected in libs/LibKa0s); running on
+  - `docs/smoke-tests.md:1178`: way up the screen: **Ka0s Panel Master** on its own line, in full, above a dropdown showing the → way up the screen: **Panel Master** on its own line, ...
+  - `docs/smoke-tests.md:1255`: picker shows **Ka0s Panel Master** in full, and the console's title bar and buttons fit. → picker shows **Panel Master** in full, ...
+- **launcher** (4)
+  - `core/LauncherSetup.lua:173`: -- NS.PREFIX ("[PM]"), not the `## Title` ("Ka0s Panel Master"), not a hand-typed literal that goes → -- NS.PREFIX ("[PM]"), not the `## Title` ("Panel Master"), ...
+  - `core/LauncherSetup.lua:176`: -- THE BRAND NAME IN PLAIN TEXT -- `Ka0s <Name>` (launcher-§1). ... (lines 176-181: 'a display sorting its plugins alphabetically now files  → -- THE BRAND NAME IN PLAIN TEXT -- `<Name>` (launcher-§1). Drop the 'files all eleven together under K' rationale (no longer true)
+  - `core/LauncherSetup.lua:185`: -- collection does -- Ka0s Pretty Chat's is `Ka0s |cffff0000P|cffff9900r|cffffff00e|...` -- which a → -- collection does -- Pretty Chat's is `|cffff0000P|cffff9900r|cffffff00e|...` -- (match PrettyChat's new Title)
+  - `core/LauncherSetup.lua:192`: -- `Ka0s Panel Master` is a name. Two fields, two jobs. → -- `Panel Master` is a name. Two fields, two jobs.
+- **other** (12)
+  - `core/Namespace.lua:34`: NS.BRAND = "Ka0s Panel Master" → NS.BRAND = "Panel Master" (single source feeding: LDB label core/LauncherSetup.lua:199, debug-console brandName/diagnostics markers core/Deb
+  - `core/Namespace.lua:22`: -- The BRAND NAME in plain text — `Ka0s <Name>`, no escape sequence of any kind (launcher-§1). → -- The BRAND NAME in plain text — `<Name>`, no escape sequence of any kind (launcher-§1). (wording must follow the upstream launcher-§1 chan
+  - `core/Namespace.lua:26`: -- prints (settings/Slash.lua, slash-commands-§7); and the composed *Enable Ka0s Panel Master* row's → -- ... the composed *Enable Panel Master* row's
+  - `core/Namespace.lua:32`: -- is plain text. It is not the folder name either: `PanelMaster` is an identifier, `Ka0s Panel
+-- Master` is a name. → ... `PanelMaster` is an identifier, `Panel Master` is a name.
+  - `settings/Slash.lua:104`: text = "Delete ALL Ka0s Panel Master panels in the profile \"%s\"? Every character using this profile loses them. This cannot be undone.", → text = "Delete ALL Panel Master panels in the profile \"%s\"? ..."
+  - `settings/Slash.lua:392`: -- write `NS.Schema.ENABLED_PATH` -- the very path the Master controls *Enable Ka0s Panel Master* → -- ... *Enable Panel Master*
+  - `settings/Schema.lua:248`: -- the *Enable Ka0s Panel Master* checkbox composed below, and `/pm enable` and `/pm disable` in → -- the *Enable Panel Master* checkbox composed below, ...
+  - `settings/Schema.lua:747`: -- THE LATCH, not a repaint (slash-commands-§7). This row is the one stored path the *Enable Ka0s → -- ... the *Enable Panel Master* (comment wraps to next line)
+  - `core/LifecycleSetup.lua:81`: --- own: `settings.enabled` is the one path the *Enable Ka0s Panel Master* checkbox, `/pm enable` → --- own: `settings.enabled` is the one path the *Enable Panel Master* checkbox, `/pm enable`
+  - `core/LifecycleSetup.lua:163`: --- *Enable Ka0s (wraps to line 164: Panel Master* row's onChange) → --- *Enable Panel Master* row's onChange
+  - `core/EnvSetup.lua:23`: -- "[PM]" and "Ka0s Panel Master", and only the first is the folder. → -- "[PM]" and "Panel Master", and only the first is the folder.
+  - `tools/artwork/artwork_cleaner.py:2`: """Turn ordinary artwork into the 32-bit TGA Ka0s Panel Master renders. → """Turn ordinary artwork into the 32-bit TGA Panel Master renders.
+- **readme** (3)
+  - `README.md:1`: # Ka0s Panel Master → # Panel Master
+  - `README.md:9`: Ka0s Panel Master draws plain backdrop panels behind your UI, so separate frames read as deliberate → Panel Master draws plain backdrop panels behind your UI, so separate frames read as deliberate
+  - `README.md:7`: ![Tests](https://img.shields.io/badge/Tests-1162%2F1162_passing-green) → unchanged text, but the count must be refreshed by sync-docs if the rename adds/removes tests
+- **settings-category** (3)
+  - `settings/OptionsSetup.lua:181`: parentTitle   = "Ka0s Panel Master", → parentTitle   = "Panel Master", (better: NS.BRAND)
+  - `settings/OptionsSetup.lua:180`: -- "Ka0s Panel Master ▸ General" renders byte-for-byte as before. → -- "Panel Master ▸ General" renders byte-for-byte as before.
+  - `settings/Panel.lua:18`: --     ("Ka0s Panel Master ▸ General"), a Defaults button, and a gold divider. → --     ("Panel Master ▸ General"), a Defaults button, and a gold divider.
+- **tests** (18)
+  - `tests/run.lua:1`: -- Headless test runner for Ka0s Panel Master. → -- Headless test runner for Panel Master.
+  - `tests/test_launcher.lua:96`: assertEqual(object.label, "Ka0s Panel Master") → assertEqual(object.label, "Panel Master")
+  - `tests/test_launcher.lua:88`: -- launcher-§1 ... (lines 88-93: rationale about "Absorb Tracker", "Ka0s KickCD", "Ka0s Pretty Chat" and filing under K) → rewrite the comment to the new launcher-§1 rule (no Ka0s prefix); drop the sort-under-K rationale
+  - `tests/test_launcher.lua:60`: -- `## Title` ("Ka0s Panel Master"), both of which exist here and are both wrong for this job. → -- `## Title` ("Panel Master"), ...
+  - `tests/test_launcher.lua:153`: assertEqual(menu.titles[1], "Ka0s Panel Master", "the menu is not titled with the label") → assertEqual(menu.titles[1], "Panel Master", ...)
+  - `tests/test_launcher.lua:314`: "Ka0s Panel Master  v" .. tocVersion(), → "Panel Master  v" .. tocVersion(),
+  - `tests/test_launcher.lua:379`: "Ka0s Panel Master  v" .. tocVersion(), → "Panel Master  v" .. tocVersion(),
+  - `tests/test_diagnostics.lua:66`: assertEqual(texts[1], "==== Ka0s Panel Master diagnostics begin ====") → assertEqual(texts[1], "==== Panel Master diagnostics begin ====")
+  - `tests/test_diagnostics.lua:67`: assertTrue(texts[#texts]:find("^==== Ka0s Panel Master diagnostics end: %d+ line%(s%) ====$") ~= nil, → ...find("^==== Panel Master diagnostics end: %d+ line%(s%) ====$")...
+  - `tests/test_libka0s_degraded.lua:28`: local EXPECTED = "The LibKa0s library is missing from this installation of Ka0s Panel Master " .. → local EXPECTED = "The LibKa0s library is missing from this installation of Panel Master " ..
+  - `tests/test_libka0s.lua:504`: for _, name in ipairs({ "Ka0s Panel Master", "General", "Panels", "Profiles" }) do → for _, name in ipairs({ "Panel Master", "General", "Panels", "Profiles" }) do
+  - `tests/test_panel.lua:26`: for _, name in ipairs({ "Ka0s Panel Master", "General", "Panels", "Profiles" }) do → for _, name in ipairs({ "Panel Master", "General", "Panels", "Profiles" }) do
+  - `tests/test_panel.lua:36`: assertTrue(T.mocks.__settingsPanels["Ka0s Panel Master"] ~= nil, → assertTrue(T.mocks.__settingsPanels["Panel Master"] ~= nil,
+  - `tests/test_panel.lua:182`: assertTrue(T.mocks.__settingsPanels["Ka0s Panel Master"] ~= P.general.panel) → assertTrue(T.mocks.__settingsPanels["Panel Master"] ~= P.general.panel)
+  - `tests/test_panel.lua:192`: if ctx.panel == T.mocks.__settingsPanels["Ka0s Panel Master"] then main = ctx end → if ctx.panel == T.mocks.__settingsPanels["Panel Master"] then main = ctx end
+  - `tests/test_schema.lua:360`: { path = "settings.enabled",    label = "Enable Ka0s Panel Master" }, → { path = "settings.enabled",    label = "Enable Panel Master" },
+  - `tests/test_envsetup.lua:34`: -- "Ka0s Panel Master" and "[PM]" are all live strings in this repo and only the first is the → -- "Panel Master" and "[PM]" are all live strings ...
+  - `tests/test_slash.lua:798`: -- *Enable Ka0s Panel Master* checkbox writes -- so the two surfaces cannot show the player two → -- *Enable Panel Master* checkbox writes -- ...
+- **toc-title** (1)
+  - `PanelMaster.toc:2`: ## Title: Ka0s Panel Master → ## Title: Panel Master
+- **window-title** (1)
+  - `core/DebugLogSetup.lua:152`: -- `==== Ka0s Panel Master diagnostics begin ====`, where `title` alone would drop the Ka0s. → -- `==== Panel Master diagnostics begin ====` (brandName and title now read the same; the 'would drop the Ka0s' rationale goes)
+- **Risks noted**
+  - launcher-§1 upstream rule: the standard (and the comments at core/Namespace.lua:22, core/LauncherSetup.lua:176-181, tests/test_launcher.lua:88-93) mandates the broker label be `Ka0s <Name>` so every Ka0s addon sorts together under K; the rename contradicts it, so WowAddonStandards launcher-§1 (and any audit check) must change first or the audit flags a deviation
+  - Sort order: broker displays (Titan/ElvUI/Bazooka), Esc > AddOns list and the Settings > AddOns category tree will now file it under P instead of grouped under K with the other Ka0s addons
+  - Settings category key: the Blizzard settings category is registered by parentTitle (settings/OptionsSetup.lua:181); tests key __settingsPanels by the literal name (tests/test_panel.lua:36,182,192; test_libka0s.lua:504) and the breadcrumb 'Panel Master ▸ General' changes. Check that /pm config opens by category object/ID, not by the string name
+  - Tests pinning the name will go red until updated together: test_launcher.lua:96,153,314,379; test_diagnostics.lua:66-67; test_libka0s_degraded.lua:28; test_panel.lua:26,36,182,192; test_libka0s.lua:504; test_schema.lua:360. Tests that compare against NS.BRAND (test_launcher:328, test_slash:1005-1009, test_skin_picker:231, test_skinsetup:88, test_libka0s:137, test_surface_parity:202) follow automat
+  - parentTitle at settings/OptionsSetup.lua:181 is a second literal separate from NS.BRAND; editing one and not the other splits the landing title from the label, so wire it to NS.BRAND or edit both
+  - Diagnostics begin/end markers change (`==== Panel Master diagnostics ... ====`); any tool or doc that parses a pasted diagnostics dump by the old marker breaks
+  - Owner-marked smoke rows (SLASH-1, PANEL-3, LAUNCH-2/3/5/12, DEGRADED, skin picker 1178/1255) describe the old name; their Results must be re-opened rather than left as pass
+  - CurseForge project name/slug (X-Curse-Project-ID 1642836) is set on the website, not in the repo; .pkgmeta has no name field. Renaming the CF project is a manual owner step, and README badges keyed by project id are unaffected
+  - SavedVariables (PanelMasterDB), LibDBIcon saved position (keyed by folder name `PanelMaster`), Bus message ids and StaticPopup keys are not keyed by the display name, so no data migration is needed
+  - Another workflow is editing this repo on feat/2026-11-01-full-skinning right now; line numbers may shift before the rename is applied, so it must run as the final step on a fresh grep
+
+### PartyFrameEnhanced: Ka0s Party Frame Enhanced → Party Frame Enhanced
+
+- **chat-prefix** (1)
+  - `settings/Slash.lua:485`: brandName    = "Ka0s Party Frame Enhanced", → brandName    = "Party Frame Enhanced", (the disabled-gate line "%s is disabled — enable it with /pfe enable")
+- **docs** (22)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Party Frame Enhanced → # CLAUDE.md — Party Frame Enhanced
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Party Frame Enhanced → # Dependencies — Party Frame Enhanced
+  - `docs/ARCHITECTURE.md:1`: # Architecture — Ka0s Party Frame Enhanced → # Architecture — Party Frame Enhanced
+  - `docs/ARCHITECTURE.md:177`: | Label | `Ka0s Party Frame Enhanced` — the **brand name in plain text** (launcher-§1). ... so it carries the shared `Ka0s ` prefix and **no → | Label | `Party Frame Enhanced` — the **brand name in plain text** (launcher-§1). ... **no escape sequence** (drop the shared-prefix clause
+  - `docs/ARCHITECTURE.md:180`: | Tooltip | ... `Ka0s Party Frame Enhanced  v<## Version>`, ... → `Party Frame Enhanced  v<## Version>`
+  - `docs/ARCHITECTURE.md:395`: file load, labeled *Ka0s Party Frame Enhanced*, with its read and write seams (`NS.SkinChoice`, → file load, labeled *Party Frame Enhanced*, with its read and write seams (`NS.SkinChoice`,
+  - `docs/ARCHITECTURE.md:484`: (OptionsSkinPicker minor 2) the window is titled *Choose a skin* and the brand, *Ka0s Party Frame → (OptionsSkinPicker minor 2) the window is titled *Choose a skin* and the brand, *Party Frame (line 485 'Enhanced*' unchanged; reflow)
+  - `docs/settings-panel.md:9`: **Ka0s Party Frame Enhanced**, is the parent category rather than a subcategory page: the logo, the TOC → **Party Frame Enhanced**, is the parent category rather than a subcategory page: the logo, the TOC
+  - `docs/debug.md:167`: | (begin) | `Diag` | `==== Ka0s Party Frame Enhanced diagnostics begin ====` | → | (begin) | `Diag` | `==== Party Frame Enhanced diagnostics begin ====` |
+  - `docs/debug.md:178`: | (end) | `Diag` | `==== Ka0s Party Frame Enhanced diagnostics end: N line(s) ====`, with `N` counting both markers | → | (end) | `Diag` | `==== Party Frame Enhanced diagnostics end: N line(s) ====`, with `N` counting both markers |
+  - `docs/testing.md:3`: How to verify Ka0s Party Frame Enhanced. The two automated gates must be green **before every → How to verify Party Frame Enhanced. The two automated gates must be green **before every
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Party Frame Enhanced → # Smoke tests — Party Frame Enhanced
+  - `docs/smoke-tests.md:52`: - **INSTALL-3. AddOn-list logo.** At character select, open the AddOn list → **Ka0s Party Frame → - **INSTALL-3. AddOn-list logo.** At character select, open the AddOn list → **Party Frame (line 53 unchanged)
+  - `docs/smoke-tests.md:87`: opens, with **Ka0s Party Frame Enhanced** above its dropdown, exactly as on a new profile; preview, → opens, with **Party Frame Enhanced** above its dropdown, exactly as on a new profile; preview,
+  - `docs/smoke-tests.md:96`: - **PANEL-1. Landing page.** Out of combat, `/pfe config` → Settings opens on **Ka0s Party Frame → - **PANEL-1. Landing page.** Out of combat, `/pfe config` → Settings opens on **Party Frame (line 97 unchanged)
+  - `docs/smoke-tests.md:230`: (*Ka0s Party Frame Enhanced is disabled — enable it with /pfe enable*), and the box snaps back to → (*Party Frame Enhanced is disabled — enable it with /pfe enable*), and the box snaps back to
+  - `docs/smoke-tests.md:425`: - **LAUNCH-2. The status tooltip.** Hover → `Ka0s Party Frame Enhanced  v<the TOC version>`, → - **LAUNCH-2. The status tooltip.** Hover → `Party Frame Enhanced  v<the TOC version>`,
+  - `docs/smoke-tests.md:435`: *Ka0s Party Frame Enhanced*, with exactly two checkboxes, *Enabled* (ticked) and *Locked* (ticked), → *Party Frame Enhanced*, with exactly two checkboxes, *Enabled* (ticked) and *Locked* (ticked),
+  - `docs/smoke-tests.md:565`: there, above `==== Ka0s Party Frame Enhanced diagnostics begin ====`; the report ends with → there, above `==== Party Frame Enhanced diagnostics begin ====`; the report ends with
+  - `docs/smoke-tests.md:566`: `==== Ka0s Party Frame Enhanced diagnostics end: N line(s) ====`; one chat line reads `Diagnostic → `==== Party Frame Enhanced diagnostics end: N line(s) ====`; one chat line reads `Diagnostic
+  - `docs/smoke-tests.md:761`: window titled **Choose a skin** opens about three quarters of the way up the screen, with **Ka0s → window titled **Choose a skin** opens about three quarters of the way up the screen, with **Party Frame (reflow with line 762 'Party Frame E
+  - `docs/smoke-tests.md:750`: loaded (Loot History, or the Ka0s Skin Tester) → the button confirms, naming it; accept → both wear → loaded (Loot History, or the Skin Tester) → ... (only if LibKa0sSkinTester is also renamed in this sweep)
+- **launcher** (1)
+  - `core/LauncherSetup.lua:66`: label = "Ka0s Party Frame Enhanced", → label = "Party Frame Enhanced",
+- **other** (1)
+  - `core/LauncherSetup.lua:57`: -- PLAIN TEXT -- `Ka0s <Name>` -- so this addon's row files beside the other ten under K rather (comment block 55-63 explaining the Ka0s pre → Rewrite the comment: plain-text brand name `<Name>`, no Ka0s prefix (row files under P); depends on the launcher-§1 standard change
+- **picker-title** (1)
+  - `core/SkinSetup.lua:78`: local BRAND = "Ka0s Party Frame Enhanced" → local BRAND = "Party Frame Enhanced" (Skin:RegisterOwner label at :479, the skin picker's owner line and the Copy-to-every-addon confirmatio
+- **readme** (2)
+  - `README.md:1`: # Ka0s Party Frame Enhanced → # Party Frame Enhanced
+  - `README.md:65`: Everything else is under Settings → AddOns → Ka0s Party Frame Enhanced, which `/pfe` opens, and → Everything else is under Settings → AddOns → Party Frame Enhanced, which `/pfe` opens, and
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:41`: parentTitle   = "Ka0s Party Frame Enhanced", → parentTitle   = "Party Frame Enhanced",
+- **tests** (12)
+  - `tests/run.lua:1`: -- Headless test runner for Ka0s Party Frame Enhanced.  Run from the repo root:  lua tests/run.lua → -- Headless test runner for Party Frame Enhanced.  Run from the repo root:  lua tests/run.lua
+  - `tests/run.lua:59`: brand       = "Ka0s Party Frame Enhanced", → brand       = "Party Frame Enhanced",
+  - `tests/perf.lua:322`: print(("Ka0s Party Frame Enhanced \226\128\148 offline perf  (v%s, label '%s')"):format(NS.version, opts.label)) → print(("Party Frame Enhanced \226\128\148 offline perf  (v%s, label '%s')"):format(NS.version, opts.label))
+  - `tests/wow_mock.lua:1`: -- Ka0s Party Frame Enhanced's WoW-API mock: the shared base (tests/_kit/mock_base.lua) plus the APIs → -- Party Frame Enhanced's WoW-API mock: the shared base (tests/_kit/mock_base.lua) plus the APIs
+  - `tests/test_diagnostics.lua:70`: assertEqual(lines[1], "[Diag] ==== Ka0s Party Frame Enhanced diagnostics begin ====", → assertEqual(lines[1], "[Diag] ==== Party Frame Enhanced diagnostics begin ====",
+  - `tests/test_disabled.lua:283`: assertTrue(wrote:find("Ka0s Party Frame Enhanced diagnostics begin", 1, true) ~= nil, → assertTrue(wrote:find("Party Frame Enhanced diagnostics begin", 1, true) ~= nil,
+  - `tests/test_launcher.lua:36`: assertEqual(obj.label, "Ka0s Party Frame Enhanced") → assertEqual(obj.label, "Party Frame Enhanced")
+  - `tests/test_launcher.lua:65`: assertEqual(label, "Ka0s Party Frame Enhanced") → assertEqual(label, "Party Frame Enhanced")
+  - `tests/test_launcher.lua:75`: assertTrue(label:find("Ka0s ", 1, true) == 1, "the brand prefix every row in the display shares") → Remove the prefix assertion, or invert it: assertTrue(label:find("Ka0s", 1, true) == nil, "no Ka0s prefix")
+  - `tests/test_launcher.lua:149`: assertEqual(m.titles[1], "Ka0s Party Frame Enhanced", "titled with the label") → assertEqual(m.titles[1], "Party Frame Enhanced", "titled with the label")
+  - `tests/test_launcher.lua:311`: assertEqual(lines[1], "Ka0s Party Frame Enhanced  v" .. tocVersion()) → assertEqual(lines[1], "Party Frame Enhanced  v" .. tocVersion())
+  - `tests/test_skinsetup.lua:68`: assertEqual(Skin:OwnerLabel(OWNER), "Ka0s Party Frame Enhanced", "the copy confirmation names the brand") → assertEqual(Skin:OwnerLabel(OWNER), "Party Frame Enhanced", "the copy confirmation names the brand")
+- **toc-title** (1)
+  - `PartyFrameEnhanced.toc:2`: ## Title: Ka0s Party Frame Enhanced → ## Title: Party Frame Enhanced
+- **window-title** (1)
+  - `core/DebugLogSetup.lua:101`: brandName = "Ka0s Party Frame Enhanced", → brandName = "Party Frame Enhanced", (diagnostics begin/end markers)
+- **Risks noted**
+  - launcher-§1 of the standard (and anti-pattern #84) mandates the LDB label be 'Ka0s <Name>' so the collection groups under K in broker displays; tests/test_launcher.lua:75 asserts the 'Ka0s ' prefix. The rename needs the standard amended first, and the broker rows will then sort under P.
+  - The settings category parentTitle (settings/OptionsSetup.lua:41) is the key Settings uses to register the category; any code or other addon opening the panel by the title string (rather than the stored category ID) would break. NS.OpenOptionsPanel should go through the library's stored category, but verify. The Settings > AddOns tree and the AddOns list will now sort under P rather than K.
+  - Tests that pin the brand: tests/run.lua:59 (Kit.diagnostics brand), test_diagnostics.lua:70, test_disabled.lua:283, test_launcher.lua:36,65,75,149,311, test_skinsetup.lua:68. All must change in the same commit or the suite goes red.
+  - Diagnostics begin/end markers change text; old pasted reports keep the old marker (cosmetic only).
+  - SavedVariables are keyed by folder name (PartyFrameEnhancedDB) and the skin owner is registered by addonName, not BRAND, so no SV migration is needed. Do NOT rename Ka0s_PartyFrameEnhanced_* bus messages, 'ka0s' skin keys or 'Ka0s Prototype' font keys, because stored profiles and tests depend on them.
+  - CurseForge project 1698335's display name is set on the CurseForge site, not in .pkgmeta; the owner has to rename it by hand there if wanted.
+  - docs/ARCHITECTURE.md:177 and the core/LauncherSetup.lua:55-63 comment explain the Ka0s prefix rule; leaving them would contradict the new label.
+  - Another workflow is editing this repo on feat/2026-11-01-full-skinning right now; line numbers may drift before the rename step runs, so re-grep at apply time.
+
+### PremadeGroupsFilterExtension: Ka0s Premade Groups Filter Extension → Premade Groups Filter Extension
+
+- **addon-compartment** (1)
+  - `core/LauncherSetup.lua:50`: label = "Ka0s Premade Groups Filter Extension", → label = "Premade Groups Filter Extension",
+- **chat-prefix** (3)
+  - `settings/SchemaSetup.lua:12`: local BRAND = "Ka0s Premade Groups Filter Extension"  (error strings :89-:107, :174) → local BRAND = "Premade Groups Filter Extension"
+  - `settings/Slash.lua:105`: return DISABLED_LINE_FORMAT:format("Ka0s Premade Groups Filter Extension", "/pgfe enable") → return DISABLED_LINE_FORMAT:format("Premade Groups Filter Extension", "/pgfe enable")
+  - `core/CoreSetup.lua:11`: :format("Ka0s Premade Groups Filter Extension")  (NS.LIBKA0S_MISSING message) → :format("Premade Groups Filter Extension")
+- **docs** (25)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Premade Groups Filter Extension → # CLAUDE.md — Premade Groups Filter Extension
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Premade Groups Filter Extension → # Dependencies — Premade Groups Filter Extension
+  - `docs/ARCHITECTURE.md:1`: # Architecture — Ka0s Premade Groups Filter Extension → # Architecture — Premade Groups Filter Extension
+  - `docs/ARCHITECTURE.md:380`: -- [pgfe] begin: managed by Ka0s PGF Extension (Apply rewrites, Clear removes) → -- [pgfe] begin: managed by PGF Extension (Apply rewrites, Clear removes) (only if Expression.lua:14 changes)
+  - `docs/common-tasks.md:1`: # Common tasks — Ka0s Premade Groups Filter Extension → # Common tasks — Premade Groups Filter Extension
+  - `docs/profiles.md:1`: # Profiles — Ka0s Premade Groups Filter Extension → # Profiles — Premade Groups Filter Extension
+  - `docs/profiles.md:8`: - **Where:** Settings → AddOns → Ka0s Premade Groups Filter Extension → Profiles (AceDBOptions), or → - **Where:** Settings → AddOns → Premade Groups Filter Extension → Profiles (AceDBOptions), or
+  - `docs/performance.md:1`: # Performance — Ka0s Premade Groups Filter Extension → # Performance — Premade Groups Filter Extension
+  - `docs/data-flow.md:1`: # Data flow — Ka0s Premade Groups Filter Extension → # Data flow — Premade Groups Filter Extension
+  - `docs/scope.md:1`: # Scope — Ka0s Premade Groups Filter Extension → # Scope — Premade Groups Filter Extension
+  - `docs/schema.md:1`: # Schema — Ka0s Premade Groups Filter Extension → # Schema — Premade Groups Filter Extension
+  - `docs/module-map.md:1`: # Module map — Ka0s Premade Groups Filter Extension → # Module map — Premade Groups Filter Extension
+  - `docs/testing.md:1`: # Testing — Ka0s Premade Groups Filter Extension → # Testing — Premade Groups Filter Extension
+  - `docs/slash-dispatch.md:1`: # Slash dispatch — Ka0s Premade Groups Filter Extension → # Slash dispatch — Premade Groups Filter Extension
+  - `docs/debug.md:1`: # Debug — Ka0s Premade Groups Filter Extension → # Debug — Premade Groups Filter Extension
+  - `docs/debug.md:37`: The library writes the markers (`Ka0s Premade Groups Filter Extension`), the identity header's → The library writes the markers (`Premade Groups Filter Extension`), the identity header's
+  - `docs/settings-panel.md:1`: # Settings panel — Ka0s Premade Groups Filter Extension → # Settings panel — Premade Groups Filter Extension
+  - `docs/settings-panel.md:3`: Registered eagerly as **Settings → AddOns → Ka0s Premade Groups Filter Extension**; page bodies → Registered eagerly as **Settings → AddOns → Premade Groups Filter Extension**; page bodies
+  - `docs/settings-panel.md:10`: | Ka0s Premade Groups Filter Extension (landing) | Logo, the TOC notes, ... → | Premade Groups Filter Extension (landing) | Logo, the TOC notes, ...
+  - `docs/settings-panel.md:28`: - *Enable Ka0s Premade Groups Filter Extension* → `enabled` (profile). → - *Enable Premade Groups Filter Extension* → `enabled` (profile).
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Premade Groups Filter Extension → # Smoke tests — Premade Groups Filter Extension
+  - `docs/smoke-tests.md:64`: - **PANEL-1. Landing page.** Settings → AddOns → Ka0s Premade Groups Filter Extension → the logo, → - **PANEL-1. Landing page.** Settings → AddOns → Premade Groups Filter Extension → the logo,
+  - `docs/smoke-tests.md:128`: `Ka0s Premade Groups Filter Extension` markers and logging is now on; → `Premade Groups Filter Extension` markers and logging is now on;
+  - `docs/smoke-tests.md:252`: - **APPLY-22. Title, flush.** The title reads *Ka0s Premade Groups Filter Extension*, centered. → - **APPLY-22. Title, flush.** The title reads *Premade Groups Filter Extension*, centered.
+  - `docs/smoke-tests.md:375`: library's skin picker shows once, titled **Choose a skin**, with *Ka0s Premade Groups Filter / Extension* in full on its own line (the roste → ... with *Premade Groups Filter Extension* in full on its own line ... (and reword 'the roster's longest name' if no longer true)
+- **locale** (3)
+  - `settings/Slash.lua:25`: {"config",   L["Open the Ka0s Premade Groups Filter Extension settings panel"], → {"config",   L["Open the Premade Groups Filter Extension settings panel"],
+  - `locales/enUS.lua:27`: L["Open the Ka0s Premade Groups Filter Extension settings panel"] = → L["Open the Premade Groups Filter Extension settings panel"] =
+  - `locales/enUS.lua:28`: "Open the Ka0s Premade Groups Filter Extension settings panel" → "Open the Premade Groups Filter Extension settings panel"
+- **other** (3)
+  - `settings/Slash.lua:132`: brandName    = "Ka0s Premade Groups Filter Extension", → brandName    = "Premade Groups Filter Extension",
+  - `modules/Expression.lua:14`: Expression.MARK_BEGIN  = "-- [pgfe] begin: managed by Ka0s PGF Extension (Apply rewrites, Clear removes)" → Expression.MARK_BEGIN  = "-- [pgfe] begin: managed by PGF Extension (Apply rewrites, Clear removes)" (safe: the matcher P_BEGIN at :18 keys 
+  - `.luacheckrc:1`: -- .luacheckrc — lint config for Ka0s Premade Groups Filter Extension (lint). → -- .luacheckrc — lint config for Premade Groups Filter Extension (lint).
+- **picker-title** (1)
+  - `core/SkinSetup.lua:92`: local BRAND = "Ka0s Premade Groups Filter Extension"  (label = BRAND at :500, the skin picker line and copy-to-all confirmation) → local BRAND = "Premade Groups Filter Extension"
+- **readme** (2)
+  - `README.md:1`: # Ka0s Premade Groups Filter Extension → # Premade Groups Filter Extension
+  - `README.md:78`: ... under Settings → AddOns → Ka0s Premade Groups Filter Extension → General → Region tags ... → ... under Settings → AddOns → Premade Groups Filter Extension → General → Region tags ...
+- **settings-category** (2)
+  - `settings/OptionsSetup.lua:101`: parentTitle = "Ka0s Premade Groups Filter Extension", → parentTitle = "Premade Groups Filter Extension",
+  - `settings/Panel.lua:55`: addonName        = "Ka0s Premade Groups Filter Extension",  (MasterControls: drives the 'Enable <name>' checkbox label) → addonName        = "Premade Groups Filter Extension",
+- **tests** (5)
+  - `tests/test_panel_layout.lua:646`: assertEqual(f.__title, "Ka0s Premade Groups Filter Extension") → assertEqual(f.__title, "Premade Groups Filter Extension")
+  - `tests/test_skinsetup.lua:18`: local BRAND = "Ka0s Premade Groups Filter Extension"  (asserted against Skin:OwnerLabel at :80) → local BRAND = "Premade Groups Filter Extension"
+  - `tests/run.lua:88`: brand       = "Ka0s Premade Groups Filter Extension",  (Kit.diagnostics brand, matched against debug-log markers) → brand       = "Premade Groups Filter Extension",
+  - `tests/run.lua:4`: -- Headless test runner for Ka0s Premade Groups Filter Extension, on the shared LibKa0s test kit → -- Headless test runner for Premade Groups Filter Extension, on the shared LibKa0s test kit
+  - `tests/perf.lua:330`: print(("Ka0s Premade Groups Filter Extension \226\128\148 offline perf  (v%s, label '%s')"):format( → print(("Premade Groups Filter Extension \226\128\148 offline perf  (v%s, label '%s')"):format(
+- **toc-title** (1)
+  - `PremadeGroupsFilterExtension.toc:2`: ## Title: Ka0s Premade Groups Filter Extension → ## Title: Premade Groups Filter Extension
+- **window-title** (2)
+  - `locales/enUS.lua:69`: L.PANEL_TITLE           = "Ka0s Premade Groups Filter Extension"  (attached panel title, modules/Panel.lua:1045) → L.PANEL_TITLE           = "Premade Groups Filter Extension"
+  - `core/DebugLogSetup.lua:11`: local BRAND = "Ka0s Premade Groups Filter Extension"  (debug console title :86, brandName :110, log markers) → local BRAND = "Premade Groups Filter Extension"
+- **Risks noted**
+  - Settings tree / AddOns list sort order: the category moves from under K ('Ka0s ...') to P ('Premade Groups Filter Extension'); it will now sort right next to the Premade Groups Filter dependency it extends and may be confused with it
+  - Name collision with the parent: 'Premade Groups Filter Extension' reads as part of Premade Groups Filter (PGF) itself; the Ka0s prefix was the only brand marker distinguishing it
+  - Tests pin the brand: tests/test_panel_layout.lua:646 (panel title), tests/test_skinsetup.lua:18/:80 (Skin:OwnerLabel), tests/run.lua:88 (Kit.diagnostics brand matched against debug-log markers written from core/DebugLogSetup.lua BRAND) - all must move in the same commit as the code or the suite goes red
+  - BRAND string is duplicated in 7 code places (CoreSetup, LauncherSetup, DebugLogSetup, SkinSetup, SchemaSetup, OptionsSetup, Panel, Slash x2) plus L.PANEL_TITLE; missing one leaves a mixed name. Consider a single NS.BRAND constant
+  - Locale key change: L['Open the Ka0s Premade Groups Filter Extension settings panel'] is a key-as-text entry; the key at settings/Slash.lua:25 and locales/enUS.lua:27 must change together (a locale key-parity test may check this)
+  - Expression MARK_BEGIN (modules/Expression.lua:14) is written into the user's PGF Advanced Filter Expression; matching uses only the '-- [pgfe] begin' prefix (P_BEGIN :18), so changing the trailing text is safe for existing stored blocks, but existing users keep the old text until their next Apply. Leaving it unchanged is also acceptable
+  - Settings category is registered by parentTitle; mainPanelName (PremadeGroupsFilterExtensionParentPanel) stays, so OpenSettings by frame name is unaffected, but any code that opens by category title string would need checking
+  - docs/smoke-tests.md:375 claims this is 'the roster's longest name' for the skin picker width; after the rename that may no longer be true, so the smoke row's wording needs a re-check
+  - CurseForge project name (X-Curse-Project-ID 1736636) is set on the website, not in the repo; the owner must rename it there separately if wanted
+  - Another workflow is concurrently editing this repo on feat/2026-11-01-full-skinning; the rename should land after it to avoid conflicts
+
+### PrettyChat: Ka0s |cffff0000P|cffff9900r|cffffff00e|cff00ff00t|cff00fffft|cff4a86e8y |cff0000ffC|cff9900ffh|cffff00ffa|cffefefeft|r → Pretty Chat
+
+- **chat-prefix** (2)
+  - `settings/Slash.lua:168`: local BRAND_NAME = "Ka0s Pretty Chat" → local BRAND_NAME = "Pretty Chat"
+  - `core/CoreSetup.lua:35`: NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Ka0s Pretty Chat " .. → NS.LIBKA0S_MISSING = "The LibKa0s library is missing from this installation of Pretty Chat " ..
+- **docs** (33)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Pretty Chat → # CLAUDE.md — Pretty Chat
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Pretty Chat → # Dependencies — Pretty Chat
+  - `docs/ARCHITECTURE.md:3`: Orient-yourself map for **Ka0s Pretty Chat**. → Orient-yourself map for **Pretty Chat**.
+  - `docs/ARCHITECTURE.md:52`: *"The LibKa0s library is missing from this installation of Ka0s Pretty Chat (expected in libs/LibKa0s)"* → *"The LibKa0s library is missing from this installation of Pretty Chat (expected in libs/LibKa0s)"*
+  - `docs/ARCHITECTURE.md:67`: drawn enabled or disabled: `Ka0s Pretty Chat  v<version>`, `Enabled: Yes|No` → drawn enabled or disabled: `Pretty Chat  v<version>`, `Enabled: Yes|No`
+  - `docs/ARCHITECTURE.md:365`: | `toc-file-§1` | `## Title:` keeps its rainbow ... rather than normalized to `Ka0s Pretty Chat` / `add1kted2ka0s` | → | `toc-file-§1` | `## Title:` keeps its rainbow ... rather than normalized to `Pretty Chat` / `add1kted2ka0s` | (Author casing aDd1kTeD2Ka0s
+  - `docs/settings-panel.md:3`: PrettyChat appears under **Ka0s Pretty Chat**; → PrettyChat appears under **Pretty Chat**;
+  - `docs/settings-panel.md:48`: The parent page renders its title plain (`"Ka0s Pretty Chat"`) ... `"Ka0s Pretty Chat ▸ Categories"` → The parent page renders its title plain (`"Pretty Chat"`) ... `"Pretty Chat ▸ Categories"`
+  - `docs/settings-panel.md:201`: *Choose a skin* and puts this addon's label, *Ka0s Pretty Chat* (`Skin:OwnerLabel`) → *Choose a skin* and puts this addon's label, *Pretty Chat* (`Skin:OwnerLabel`)
+  - `docs/slash-dispatch.md:42`: `brandName`, the plain-text `Ka0s Pretty Chat` that is also the launcher's broker → `brandName`, the plain-text `Pretty Chat` that is also the launcher's broker
+  - `docs/debug.md:155`: | (begin) | `Diag` | `==== Ka0s Pretty Chat diagnostics begin ====` | → | (begin) | `Diag` | `==== Pretty Chat diagnostics begin ====` |
+  - `docs/debug.md:166`: `==== Ka0s Pretty Chat diagnostics end: N line(s) ====` → `==== Pretty Chat diagnostics end: N line(s) ====`
+  - `docs/performance.md:3`: **Ka0s Pretty Chat brackets nothing: it costs nothing measurable while you play.** → **Pretty Chat brackets nothing: it costs nothing measurable while you play.**
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Pretty Chat → # Smoke tests — Pretty Chat
+  - `docs/smoke-tests.md:115`: the settings panel on the Ka0s Pretty Chat landing page → the settings panel on the Pretty Chat landing page
+  - `docs/smoke-tests.md:168`: `/pc config` → Ka0s Pretty Chat selected in the left list → `/pc config` → Pretty Chat selected in the left list
+  - `docs/smoke-tests.md:169`: landing page shown, headed `Ka0s Pretty Chat` with no breadcrumb. → landing page shown, headed `Pretty Chat` with no breadcrumb.
+  - `docs/smoke-tests.md:180`: Open each sub-page → `Ka0s Pretty Chat ▸ General`, → Open each sub-page → `Pretty Chat ▸ General`,
+  - `docs/smoke-tests.md:181`: `Ka0s Pretty Chat ▸ Categories`, `Ka0s Pretty Chat ▸ Profiles` → `Pretty Chat ▸ Categories`, `Pretty Chat ▸ Profiles`
+  - `docs/smoke-tests.md:309`: Settings ▸ AddOns ▸ Ka0s Pretty Chat ▸ Profiles → Settings ▸ AddOns ▸ Pretty Chat ▸ Profiles
+  - `docs/smoke-tests.md:367`: `Ka0s Pretty Chat is disabled — enable it with /pc enable` → `Pretty Chat is disabled — enable it with /pc enable`
+  - `docs/smoke-tests.md:387`: click Ka0s Pretty Chat in the AddOns list → click Pretty Chat in the AddOns list
+  - `docs/smoke-tests.md:541`: beside Ka0s Pretty Chat in the AddOns list. → beside Pretty Chat in the AddOns list.
+  - `docs/smoke-tests.md:546`: a menu titled Ka0s Pretty Chat with one → a menu titled Pretty Chat with one
+  - `docs/smoke-tests.md:552`: Hover the button → `Ka0s Pretty Chat  v<version>` → Hover the button → `Pretty Chat  v<version>`
+  - `docs/smoke-tests.md:564`: the label Ka0s Pretty Chat, with no empty value cell → the label Pretty Chat, with no empty value cell
+  - `docs/smoke-tests.md:572`: `[Diag] ==== Ka0s Pretty Chat diagnostics begin ====` → `[Diag] ==== Pretty Chat diagnostics begin ====`
+  - `docs/smoke-tests.md:573`: `[Diag] ==== Ka0s Pretty Chat diagnostics end: N line(s) ====` → `[Diag] ==== Pretty Chat diagnostics end: N line(s) ====`
+  - `docs/smoke-tests.md:718`: `[PC] The LibKa0s library is missing from this installation of Ka0s Pretty Chat (expected in libs/LibKa0s); ...` → `[PC] The LibKa0s library is missing from this installation of Pretty Chat (expected in libs/LibKa0s); ...`
+  - `docs/smoke-tests.md:876`: titled *Choose a skin*, with **Ka0s Pretty Chat** whole on its own line → titled *Choose a skin*, with **Pretty Chat** whole on its own line
+  - `docs/smoke-tests.md:905`: **Ka0s Pretty Chat** is listed in EllesmereUI's third-party addons → **Pretty Chat** is listed in EllesmereUI's third-party addons
+  - `docs/smoke-tests.md:956`: one line saying Ka0s Pretty\n  Chat is disabled (wraps onto line 957) → one line saying Pretty\n  Chat is disabled
+  - `docs/smoke-tests.md:961`: the debug console's title (`Ka0s Pretty Chat`) and its copy window's title → the debug console's title (`Pretty Chat`) and its copy window's title (note: DebugLogSetup.lua:192 title is already "Pretty Chat", so this s
+- **launcher** (1)
+  - `core/LauncherSetup.lua:148`: label = "Ka0s Pretty Chat", → label = "Pretty Chat",
+- **other** (8)
+  - `core/LauncherSetup.lua:126`: -- THE BRAND NAME, IN PLAIN TEXT — `Ka0s <Name>` (launcher-§1). ... (comment block 126-147, incl. 'A display sorting alphabetically files `A → -- THE BRAND NAME, IN PLAIN TEXT — `<Name>` (launcher-§1 as revised upstream); rewrite the sort-order rationale and line 137 to quote the ne
+  - `core/LauncherSetup.lua:24`: -- row for Ka0s Pretty Chat reads exactly that: `Enabled`. It is FRAMELESS → -- row for Pretty Chat reads exactly that: `Enabled`. It is FRAMELESS
+  - `core/LauncherSetup.lua:176`: -- The tooltip's title reads `Ka0s Pretty Chat  v<version>`. The TOC's own → -- The tooltip's title reads `Pretty Chat  v<version>`. The TOC's own
+  - `settings/Slash.lua:165`: -- The plain-text `Ka0s <Name>` both arms name the addon by: the live descriptor's → -- The plain-text `<Name>` both arms name the addon by: the live descriptor's
+  - `core/DebugLogSetup.lua:216`: brandName   = "Ka0s Pretty Chat", → brandName   = "Pretty Chat",
+  - `core/DebugLogSetup.lua:210`: -- The diagnostics report (debug-logging-§14). `brandName` is the plain-text `Ka0s <Name>` → -- The diagnostics report (debug-logging-§14). `brandName` is the plain-text `<Name>`
+  - `core/EnvSetup.lua:29`: -- "/pc" and "Ka0s |cffff0000P|cffff9900r|…|r", and only the first is the folder. → -- "/pc" and "|cffff0000P|cffff9900r|…|r", and only the first is the folder.
+  - `.luacheckrc:1`: -- Luacheck configuration for Ka0s Pretty Chat. → -- Luacheck configuration for Pretty Chat.
+- **picker-title** (1)
+  - `core/SkinSetup.lua:82`: local LABEL = "Ka0s Pretty Chat" → local LABEL = "Pretty Chat"
+- **readme** (1)
+  - `README.md:1`: # Ka0s Pretty Chat → # Pretty Chat
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:291`: parentTitle = "Ka0s Pretty Chat", → parentTitle = "Pretty Chat",
+- **tests** (25)
+  - `tests/wow_mock.lua:106`: Title       = "Ka0s Pretty Chat", → Title       = "Pretty Chat",
+  - `tests/run.lua:3`: -- Headless test runner for Ka0s Pretty Chat, on the shared LibKa0s test kit → -- Headless test runner for Pretty Chat, on the shared LibKa0s test kit
+  - `tests/run.lua:70`: brand       = "Ka0s Pretty Chat", → brand       = "Pretty Chat",
+  - `tests/test_panel.lua:56`: t.eq(env._settings.categories[1].name, "Ka0s Pretty Chat", "the parent carries the brand title") → t.eq(env._settings.categories[1].name, "Pretty Chat", ...)
+  - `tests/test_panel.lua:95`: "Ka0s Pretty Chat |A:common-icon-forwardarrow:16:16|a " .. page[2], → "Pretty Chat |A:common-icon-forwardarrow:16:16|a " .. page[2],
+  - `tests/test_profiles.lua:74`: "Ka0s Pretty Chat |A:common-icon-forwardarrow:16:16|a " .. inst.NS.L["Profiles"], → "Pretty Chat |A:common-icon-forwardarrow:16:16|a " .. inst.NS.L["Profiles"],
+  - `tests/test_launcher.lua:114`: t.eq(object.label, "Ka0s Pretty Chat", "the brand name, spelled as the collection spells it") → t.eq(object.label, "Pretty Chat", ...)
+  - `tests/test_launcher.lua:224`: t.eq(table.concat(m.titles, "|"), "Ka0s Pretty Chat", "titled with the plain-text label") → t.eq(table.concat(m.titles, "|"), "Pretty Chat", ...)
+  - `tests/test_launcher.lua:225`: -- The standard's ADDONS.md row for Ka0s Pretty Chat: `Enabled`. A frameless → -- The standard's ADDONS.md row for Pretty Chat: `Enabled`. A frameless
+  - `tests/test_launcher.lua:343`: "Ka0s Pretty Chat  v" .. version, → "Pretty Chat  v" .. version,
+  - `tests/test_launcher.lua:355`: t.eq(title, "Ka0s Pretty Chat  v" .. inst.NS.Version(), → t.eq(title, "Pretty Chat  v" .. inst.NS.Version(),
+  - `tests/test_launcher.lua:370`: "Ka0s Pretty Chat  v" .. tocVersion(), → "Pretty Chat  v" .. tocVersion(),
+  - `tests/test_skinsetup.lua:53`: t.eq(Skin:OwnerLabel(OWNER), "Ka0s Pretty Chat", "the copy confirmation names the addon by its brand") → t.eq(Skin:OwnerLabel(OWNER), "Pretty Chat", ...)
+  - `tests/test_diagnostics.lua:77`: D.buffer[#D.buffer]:find("Ka0s Pretty Chat diagnostics end:", 1, true) → D.buffer[#D.buffer]:find("Pretty Chat diagnostics end:", 1, true)
+  - `tests/test_diagnostics.lua:90`: D.buffer[#D.buffer]:find("Ka0s Pretty Chat diagnostics end:", 1, true) → D.buffer[#D.buffer]:find("Pretty Chat diagnostics end:", 1, true)
+  - `tests/test_diagnostics.lua:114`: t.eq(lines[1], "[Diag] ==== Ka0s Pretty Chat diagnostics begin ====", "the begin marker") → t.eq(lines[1], "[Diag] ==== Pretty Chat diagnostics begin ====", ...)
+  - `tests/test_diagnostics.lua:115`: lines[#lines]:find("==== Ka0s Pretty Chat diagnostics end: " .. #lines .. " line(s) ====", → lines[#lines]:find("==== Pretty Chat diagnostics end: " .. #lines .. " line(s) ====",
+  - `tests/test_libka0s.lua:809`: "The LibKa0s library is missing from this installation of Ka0s Pretty Chat " .. → "The LibKa0s library is missing from this installation of Pretty Chat " ..
+  - `tests/test_envsetup.lua:44`: -- copy sits in. "PrettyChat" is the folder; "Ka0s Pretty Chat" is the ## Title and → -- copy sits in. "PrettyChat" is the folder; "Pretty Chat" is the ## Title and
+  - `tests/test_locale.lua:261`: {"settings/OptionsSetup.lua", "Ka0s Pretty Chat", → {"settings/OptionsSetup.lua", "Pretty Chat",
+  - `tests/test_locale.lua:263`: {"core/LauncherSetup.lua", "Ka0s Pretty Chat", → {"core/LauncherSetup.lua", "Pretty Chat",
+  - `tests/test_locale.lua:266`: {"settings/Slash.lua", "Ka0s Pretty Chat", → {"settings/Slash.lua", "Pretty Chat",
+  - `tests/test_locale.lua:293`: {"core/SkinSetup.lua", "Ka0s Pretty Chat", → {"core/SkinSetup.lua", "Pretty Chat",
+  - `tests/test_locale.lua:300`: {"core/DebugLogSetup.lua", "Ka0s Pretty Chat", → {"core/DebugLogSetup.lua", "Pretty Chat", (now duplicates the line-290 'Pretty Chat' title entry for the same file; merge or keep both reaso
+  - `tests/test_locale.lua:347`: {"core/CoreSetup.lua", "The LibKa0s library is missing from this installation of Ka0s Pretty Chat ", → {"core/CoreSetup.lua", "The LibKa0s library is missing from this installation of Pretty Chat ",
+- **toc-title** (1)
+  - `PrettyChat.toc:2`: ## Title: Ka0s |cffff0000P|cffff9900r|cffffff00e|cff00ff00t|cff00fffft|cff4a86e8y |cff0000ffC|cff9900ffh|cffff00ffa|cffefefeft|r → ## Title: |cffff0000P|cffff9900r|cffffff00e|cff00ff00t|cff00fffft|cff4a86e8y |cff0000ffC|cff9900ffh|cffff00ffa|cffefefeft|r
+- **Risks noted**
+  - Tests pin the brand byte-for-byte: tests/test_panel.lua:56,95, test_profiles.lua:74, test_launcher.lua:114,224,343,355,370, test_skinsetup.lua:53, test_diagnostics.lua:77,90,114,115, test_libka0s.lua:809, tests/run.lua:70 (kit diagnostics brand), tests/wow_mock.lua:106 Title. All must move in the same commit as the six source literals.
+  - tests/test_locale.lua RESIDUE allow-list keys on exact (file, string) pairs; after rename core/DebugLogSetup.lua will have two 'Pretty Chat' entries (title at ~290 and brandName at 300). Check whether the residue checker requires uniqueness or counts occurrences, or the locale suite may fail.
+  - Brand literal is duplicated in 6 source places (OptionsSetup.lua:291, LauncherSetup.lua:148, Slash.lua:168, SkinSetup.lua:82, DebugLogSetup.lua:216, CoreSetup.lua:35); missing one gives mismatched launcher/slash/diagnostics names.
+  - Upstream standard: launcher-§1 prescribes `Ka0s <Name>` for the broker label, and LauncherSetup.lua:126-147 / Slash.lua:165 / DebugLogSetup.lua:210 comments cite that rule. The standard (WowAddonStandards launcher-§1, ADDONS.md rows, toc-file-§1 deviation text) must be revised first or the addon becomes non-compliant; ARCHITECTURE.md:365 deviation row must be reworded.
+  - Sort order: the Blizzard AddOns list and the Settings > AddOns tree sort by Title/category name; PrettyChat moves from the K group to P. Broker displays (Titan etc.) also re-sort. Settings category is registered by name via parentTitle; opening uses the stored category object, so /pc config should still work, but any other addon/macro opening by name 'Ka0s Pretty Chat' breaks.
+  - TOC Title with color escapes: dropping the leading 'Ka0s ' leaves the title starting with an escape; client sorts AddOns list on raw Title, so escaped titles may sort unexpectedly (stripped vs raw).
+  - LibDBIcon saved position is keyed by `name = addonName` (folder), not the label, so minimap position survives. SavedVariables (PrettyChatDB) not keyed by display name; no migration needed.
+  - Skin picker / EllesmereUI provider name the owner by `label` (SkinSetup.lua:82); EllesmereUI third-party addon list entry changes; no stored key depends on it (owner key is separate).
+  - CurseForge project name (ID 919766) is external and not in the repo; renaming the project page is a manual owner step.
+  - docs/smoke-tests.md:961 already stale (console title is 'Pretty Chat' since DebugLogSetup.lua:192); smoke rows LAUNCH-3/4, PANEL-1/3, PROFILE-1, DIAG need re-running by the owner after rename.
+
+### QuickComms: Ka0s Quick Comms → Quick Comms
+
+- **docs** (56)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s Quick Comms → # CLAUDE.md — Quick Comms
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s Quick Comms → # Dependencies — Quick Comms
+  - `docs/test-cases.md:1186`: - dial: Bindings.xml is Toggle Comms Pads, then Open Comms Dial 1 to 4, all in the Ka0s Quick Comms category → ... all in the Quick Comms category (must match the renamed test name in tests/test_dial.lua:380)
+  - `docs/ARCHITECTURE.md:1`: # Architecture — Ka0s Quick Comms → # Architecture — Quick Comms
+  - `docs/ARCHITECTURE.md:43`: Keybindings → Ka0s Quick Comms or on the General page's Keybindings tab → Keybindings → Quick Comms ...
+  - `docs/module-map.md:1`: # Module map — Ka0s Quick Comms → # Module map — Quick Comms
+  - `docs/module-map.md:90`: key bindings menu draws them in a Ka0s Quick Comms section of their own → ... in a Quick Comms section of their own
+  - `docs/schema.md:1`: # Schema — Ka0s Quick Comms → # Schema — Quick Comms
+  - `docs/schema.md:46`: Options → Keybindings → Ka0s Quick Comms → Open Comms Dial <n> → Options → Keybindings → Quick Comms → Open Comms Dial <n>
+  - `docs/slash-dispatch.md:1`: # Slash dispatch — Ka0s Quick Comms → # Slash dispatch — Quick Comms
+  - `docs/slash-dispatch.md:27`: set in Options → Keybindings → Ka0s Quick Comms or on General → Keybindings → Options → Keybindings → Quick Comms ...
+  - `docs/slash-dispatch.md:31`: the one refusal line, `Ka0s Quick Comms is disabled — → `Quick Comms is disabled —
+  - `docs/settings-panel.md:1`: # Settings panel — Ka0s Quick Comms → # Settings panel — Quick Comms
+  - `docs/settings-panel.md:8`: | Ka0s Quick Comms (landing) | The logo, ... → | Quick Comms (landing) | ...
+  - `docs/settings-panel.md:32`: | Enable Ka0s Quick Comms (`enabled`) | → | Enable Quick Comms (`enabled`) |
+  - `docs/settings-panel.md:42`: Keybindings → Ka0s Quick Comms, or General → Keybindings → Keybindings → Quick Comms, ...
+  - `docs/settings-panel.md:111`: titled *Choose a skin*, with "Ka0s Quick\nComms" on its own line (wraps to 112) → with "Quick Comms" on its own line
+  - `docs/settings-panel.md:145`: WoW's Options → Keybindings → Ka0s Quick Comms read and write → → Quick Comms
+  - `docs/settings-panel.md:379`: the window title "Ka0s Quick Comms" → the window title "Quick Comms"
+  - `docs/settings-panel.md:398`: window   the settings template's window, in the skin, titled Ka0s Quick Comms → titled Quick Comms
+  - `docs/settings-panel.md:471`: titled "Ka0s Quick Comms", its close → titled "Quick Comms"
+  - `docs/settings-panel.md:479`: window   the settings template's window, in the skin, titled Ka0s Quick Comms → titled Quick Comms
+  - `docs/settings-panel.md:822`: Keybindings → Ka0s Quick Comms or on the General page > Keybindings → Keybindings → Quick Comms ...
+  - `docs/compat-layer.md:1`: # Compat layer — Ka0s Quick Comms → # Compat layer — Quick Comms
+  - `docs/common-tasks.md:1`: # Common tasks — Ka0s Quick Comms → # Common tasks — Quick Comms
+  - `docs/debug.md:1`: # Debug — Ka0s Quick Comms → # Debug — Quick Comms
+  - `docs/data-flow.md:1`: # Data flow — Ka0s Quick Comms → # Data flow — Quick Comms
+  - `docs/known-limitations.md:1`: # Known limitations — Ka0s Quick Comms → # Known limitations — Quick Comms
+  - `docs/performance.md:1`: # Performance — Ka0s Quick Comms → # Performance — Quick Comms
+  - `docs/taint.md:1`: # Taint notes — Ka0s Quick Comms → # Taint notes — Quick Comms
+  - `docs/testing.md:1`: # Testing — Ka0s Quick Comms → # Testing — Quick Comms
+  - `docs/scope.md:1`: # Scope — Ka0s Quick Comms → # Scope — Quick Comms
+  - `docs/profiles.md:1`: # Profiles — Ka0s Quick Comms → # Profiles — Quick Comms
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s Quick Comms → # Smoke tests — Quick Comms
+  - `docs/smoke-tests.md:31`: item 015: the Ka0s Quick Comms section of its own → the Quick Comms section of its own
+  - `docs/smoke-tests.md:57`: the tooltip reads `Ka0s Quick Comms  v1.0.0` → the tooltip reads `Quick Comms  v1.0.0`
+  - `docs/smoke-tests.md:75`: Settings → AddOns → Ka0s Quick Comms → the logo once → Settings → AddOns → Quick Comms → ...
+  - `docs/smoke-tests.md:78`: Enable Ka0s Quick Comms beside → Enable Quick Comms beside
+  - `docs/smoke-tests.md:89`: Settings → Ka0s Quick Comms → Profiles → Settings → Quick Comms → Profiles
+  - `docs/smoke-tests.md:121`: `Ka0s Quick Comms is disabled — enable it with /qc enable` → `Quick Comms is disabled — enable it with /qc enable`
+  - `docs/smoke-tests.md:143`: both markers naming Ka0s Quick\nComms (wraps to 144) → both markers naming Quick Comms
+  - `docs/smoke-tests.md:410`: the window title "Ka0s Quick Comms" in the top bar → the window title "Quick Comms"
+  - `docs/smoke-tests.md:475`: "Ka0s Quick Comms" in the top bar → "Quick Comms" in the top bar
+  - `docs/smoke-tests.md:710`: `Ka0s Quick Comms - Preview` → `Quick Comms - Preview`
+  - `docs/smoke-tests.md:780`: `Ka0s Quick Comms - Preview: <group>` → `Quick Comms - Preview: <group>`
+  - `docs/smoke-tests.md:811`: Options → Keybindings → Ka0s Quick Comms → Open Comms Dial 1 → → Quick Comms →
+  - `docs/smoke-tests.md:859`: Keybindings → Ka0s Quick Comms → bind Open Comms Dial 1 to TAB → → Quick Comms →
+  - `docs/smoke-tests.md:1215`: Options → Keybindings → AddOns → Ka0s Quick Comms → bind → → Quick Comms →
+  - `docs/smoke-tests.md:1226`: Options → Keybindings → Ka0s Quick Comms lists Toggle Comms → → Quick Comms lists
+  - `docs/smoke-tests.md:1236`: a section titled **Ka0s Quick Comms** holds → a section titled **Quick Comms** holds
+  - `docs/smoke-tests.md:1244`: Options → Keybindings → Ka0s Quick Comms shows P → → Quick Comms shows P
+  - `docs/smoke-tests.md:1273`: Settings → Ka0s Quick Comms → General → → Settings → Quick Comms → General →
+  - `docs/smoke-tests.md:1709`: pick skins on Settings → Ka0s Quick Comms → General → **Skin** → Settings → Quick Comms → General → **Skin**
+  - `docs/smoke-tests.md:1794`: the title "Ka0s Quick\nComms" (wraps to 1795) → the title "Quick Comms"
+  - `docs/smoke-tests.md:1878`: with **Ka0s Quick Comms** on its own line above the dropdown → with **Quick Comms** on its own line
+  - `docs/smoke-tests.md:1945`: **Choose a skin** window opens with **Ka0s Quick Comms** on its own line → with **Quick Comms** on its own line
+- **locale** (4)
+  - `locales/enUS.lua:38`: L["Open the Ka0s Quick Comms settings panel"] = "Open the Ka0s Quick Comms settings panel" → L["Open the Quick Comms settings panel"] = "Open the Quick Comms settings panel"
+  - `settings/Slash.lua:28`: {"config",   L["Open the Ka0s Quick Comms settings panel"], → {"config",   L["Open the Quick Comms settings panel"],
+  - `locales/enUS.lua:978`: L["An imported dial's key ... set it in Options, Keybindings, Ka0s Quick Comms, Open Comms Dial."] = → L["An imported dial's key ... set it in Options, Keybindings, Quick Comms, Open Comms Dial."] =
+  - `locales/enUS.lua:979`: "An imported dial's key ... Options, Keybindings, Ka0s Quick Comms, Open Comms Dial." → "An imported dial's key ... Options, Keybindings, Quick Comms, Open Comms Dial." (and its caller key, grep the old key in settings/)
+- **other** (8)
+  - `core/Namespace.lua:13`: NS.BRAND = "Ka0s Quick Comms" → NS.BRAND = "Quick Comms" (single source: feeds LDB/launcher label core/LauncherSetup.lua:50, settings parentTitle settings/OptionsSetup.lua:
+  - `Bindings.xml:2`: <!-- Ka0s Quick Comms (launcher-§6): every binding sits in the addon's own category ... → <!-- Quick Comms (launcher-§6): ... (comment only)
+  - `.luacheckrc:1`: -- .luacheckrc — lint config for Ka0s Quick Comms (lint). → -- .luacheckrc — lint config for Quick Comms (lint).
+  - `modules/Dial.lua:19`: -- ... Open Comms Dial <place> under Ka0s Quick Comms in Options -> → -- ... under Quick Comms in Options -> (comment)
+  - `settings/Dials.lua:35`: -- Options -> Keybindings -> Ka0s Quick Comms or on the General page > Keybindings → -- Options -> Keybindings -> Quick Comms ... (comment)
+  - `settings/CalloutPopup.lua:5`: --     window   Blizzard's settings window (title "Ka0s Quick Comms") → (title "Quick Comms") (comment)
+  - `settings/IconBrowser.lua:6`: --     window   settings/ModalWindow.lua's (the callout popup's chrome), title "Ka0s Quick Comms" → title "Quick Comms" (comment)
+  - `settings/Panel.lua:88`: -- a key set here shows in Options -> Keybindings -> Ka0s Quick Comms and the other way round. → -> Quick Comms (comment)
+- **readme** (5)
+  - `README.md:1`: # Ka0s Quick Comms → # Quick Comms
+  - `README.md:48`: Options → Keybindings → Ka0s Quick Comms → Options → Keybindings → Quick Comms
+  - `README.md:73`: **Settings → AddOns → Ka0s Quick Comms** → **Settings → AddOns → Quick Comms**
+  - `README.md:102`: tick **Enable Ka0s Quick Comms** on the General page → tick **Enable Quick Comms** on the General page
+  - `README.md:105`: WoW's Options → Keybindings → Ka0s Quick Comms → WoW's Options → Keybindings → Quick Comms
+- **tests** (16)
+  - `tests/run.lua:4`: -- Headless test runner for Ka0s Quick Comms, on the shared LibKa0s test kit → -- Headless test runner for Quick Comms, on the shared LibKa0s test kit
+  - `tests/run.lua:155`: brand       = "Ka0s Quick Comms", → brand       = "Quick Comms",
+  - `tests/perf.lua:220`: print(("Ka0s Quick Comms \226\128\148 offline perf  (v%s, label '%s')")... → print(("Quick Comms \226\128\148 offline perf ...")
+  - `tests/test_harness.lua:67`: assertEqual(field(fields, "Title"), "Ka0s Quick Comms") → assertEqual(field(fields, "Title"), "Quick Comms")
+  - `tests/test_setup.lua:195`: assertEqual(obj.label, "Ka0s Quick Comms") → assertEqual(obj.label, "Quick Comms")
+  - `tests/test_setup.lua:220`: assertEqual(root.title, "Ka0s Quick Comms") → assertEqual(root.title, "Quick Comms")
+  - `tests/test_skinsetup.lua:19`: local BRAND = "Ka0s Quick Comms" → local BRAND = "Quick Comms"
+  - `tests/test_disabled.lua:130`: m.prints[1]:find("Ka0s Quick Comms is disabled", 1, true) → find("Quick Comms is disabled", 1, true)
+  - `tests/test_disabled.lua:344`: if line:find("Ka0s Quick Comms is disabled", 1, true) then → if line:find("Quick Comms is disabled", 1, true) then
+  - `tests/test_callout_popup.lua:621`: assertEqual(Pop.frame.NineSlice.Text.text, "Ka0s Quick Comms", ...) → assertEqual(..., "Quick Comms", ...)
+  - `tests/test_icon_browser.lua:80`: assertEqual(B.frame.NineSlice.Text.text, "Ka0s Quick Comms", ...) → assertEqual(..., "Quick Comms", ...)
+  - `tests/test_dial.lua:380`: test("dial: Bindings.xml is Toggle Comms Pads, then Open Comms Dial 1 to 4, all in the Ka0s Quick Comms category" → ... all in the Quick Comms category"
+  - `tests/test_dial.lua:402`: assertEqual(rawget(_G, "BINDING_HEADER_QUICKCOMMS"), "Ka0s Quick Comms") → assertEqual(rawget(_G, "BINDING_HEADER_QUICKCOMMS"), "Quick Comms")
+  - `tests/test_preview_window.lua:51`: "Ka0s Quick Comms - Preview" → "Quick Comms - Preview"
+  - `tests/test_preview_window.lua:326`: "Ka0s Quick Comms - Preview: Raid only" → "Quick Comms - Preview: Raid only"
+  - `tests/wow_mock.lua:6`: -- This file adds what Ka0s Quick Comms reads that the base deliberately leaves out → -- This file adds what Quick Comms reads ...
+- **toc-title** (1)
+  - `QuickComms.toc:2`: ## Title: Ka0s Quick Comms → ## Title: Quick Comms
+- **Risks noted**
+  - NS.BRAND (core/Namespace.lua:13) is the single code source; changing it ripples to ~14 tests pinning the literal (test_harness:67 pins TOC Title, test_setup:195 LDB label, :220 settings root title, test_skinsetup:19, test_disabled:130/344, test_callout_popup:621, test_icon_browser:80, test_dial:402, test_preview_window:51/326, tests/run.lua:155 brand) - TOC Title, NS.BRAND and tests must change in
+  - tests/test_dial.lua:380 test name is mirrored in docs/test-cases.md:1186; if a test-case catalog parity check exists, both must change together
+  - Locale keys are the English text: renaming the key at locales/enUS.lua:38 and :978 requires renaming every L[...] caller (settings/Slash.lua:28 and the dial import caller); a missed caller falls back/warns
+  - Settings category is registered by name (parentTitle = NS.BRAND, settings/OptionsSetup.lua:122); OpenSettings goes through the library's stored category, but any other code or user macro opening the panel by the literal 'Ka0s Quick Comms' name would break
+  - Sort order changes: the AddOns list, Settings > AddOns tree and the minimap/LDB lists will move QuickComms from among the 'Ka0s ...' block to under Q; keybinding section header (BINDING_HEADER_QUICKCOMMS) text changes but Keybindings sort is by load order
+  - Diagnostics markers (core/DebugLogSetup.lua:116 brandName) change text; any external parser of old reports keyed on 'Ka0s Quick Comms' would miss
+  - No SavedVariables are keyed by the display name (QuickCommsDB, LibDBIcon hide in db.global.minimap), so no migration is needed
+  - CurseForge project name (X-Curse-Project-ID 1765410) is set on the website, not in the repo; .pkgmeta package-as: QuickComms is the folder and stays - the owner must rename the CurseForge project title manually if wanted
+  - No Addon compartment entry exists (no AddonCompartmentFunc in the TOC, none registered in libs/LibKa0s or core), so nothing to rename there
+  - Another workflow is editing this repo now (feat/2026-11-01-full-skinning); line numbers may shift before the rename runs
+
+### WhatGroup: Ka0s WhatGroup → WhatGroup
+
+- **chat-prefix** (2)
+  - `settings/Slash.lua:199`: return DISABLED_LINE_FORMAT:format("Ka0s WhatGroup", "/wg enable") → return DISABLED_LINE_FORMAT:format("WhatGroup", "/wg enable")
+  - `settings/SchemaSetup.lua:39`: local BRAND = "Ka0s WhatGroup" → local BRAND = "WhatGroup" (prefixes schema error/print lines at :129,:140,:144,:147,:219)
+- **docs** (33)
+  - `CLAUDE.md:1`: # CLAUDE.md — Ka0s WhatGroup → # CLAUDE.md — WhatGroup
+  - `DEPENDENCIES.md:1`: # Dependencies — Ka0s WhatGroup → # Dependencies — WhatGroup
+  - `docs/ARCHITECTURE.md:3`: Orient-yourself map for **Ka0s WhatGroup**. → Orient-yourself map for **WhatGroup**.
+  - `docs/ARCHITECTURE.md:395`: (`"General"`, `"Master controls"`, `"Ka0s WhatGroup"`) → (`"General"`, `"Master controls"`, `"WhatGroup"`)
+  - `docs/ARCHITECTURE.md:404`: label ... **`Ka0s WhatGroup`** (launcher-§1); menu titled `Ka0s WhatGroup`; tooltip `Ka0s WhatGroup  v<TOC version>` → all three -> `WhatGroup`
+  - `docs/ARCHITECTURE.md:509`: `"Ka0s WhatGroup"` is the brand ... Five keys that no `L[…]` ever read — `"Ka0s WhatGroup"` → `"WhatGroup"` (both)
+  - `docs/performance.md:3`: **Ka0s WhatGroup brackets nothing, and this page is why.** → **WhatGroup brackets nothing, and this page is why.**
+  - `docs/module-map.md:11`: `NS.BRAND_NAME` (`Ka0s WhatGroup`, launcher-§1) → `NS.BRAND_NAME` (`WhatGroup`, launcher-§1)
+  - `docs/module-map.md:16`: ("General", "Master controls", "Ka0s WhatGroup") → ("General", "Master controls", "WhatGroup")
+  - `docs/module-map.md:18`: `## Title` reads "Ka0s WhatGroup" → `## Title` reads "WhatGroup"
+  - `docs/module-map.md:23`: `brandName` (`Ka0s WhatGroup`, in both markers) → `brandName` (`WhatGroup`, in both markers)
+  - `docs/module-map.md:24`: `label` (**`Ka0s WhatGroup`**, the brand name in plain text — launcher-§1 → `label` (**`WhatGroup`**, ...)
+  - `docs/settings-panel.md:121`: `"Ka0s WhatGroup <atlas-chevron> "` breadcrumb prefix → `"WhatGroup <atlas-chevron> "` breadcrumb prefix
+  - `docs/settings-panel.md:251`: Ka0s WhatGroup        ← parent canvas-layout category → WhatGroup             ← parent canvas-layout category
+  - `docs/settings-panel.md:258`: title reads `Ka0s WhatGroup`; `Ka0s WhatGroup <atlas-chevron> General`; `Ka0s WhatGroup <atlas-chevron> Profiles` → `WhatGroup`, `WhatGroup <atlas-chevron> General`, `WhatGroup <atlas-chevron> Profiles`
+  - `docs/settings-panel.md:533`: Keybindings → **Ka0s WhatGroup** as **Toggle group popup** → Keybindings → **WhatGroup** as **Toggle group popup**
+  - `docs/debug.md:28`: the console window, "Ka0s WhatGroup — Debug" → the console window, "WhatGroup — Debug"
+  - `docs/debug.md:93`: `==== Ka0s WhatGroup diagnostics begin ====` → `==== WhatGroup diagnostics begin ====`
+  - `docs/debug.md:104`: `==== Ka0s WhatGroup diagnostics end: N line(s) ====` → `==== WhatGroup diagnostics end: N line(s) ====`
+  - `docs/debug-content.md:24`: - `title = "Ka0s WhatGroup"` — the bare brand → - `title = "WhatGroup"` — the bare brand
+  - `docs/debug-content.md:46`: - `brandName = "Ka0s WhatGroup"` — the full brand → - `brandName = "WhatGroup"` — the full brand
+  - `docs/midnight-quirks.md:24`: Settings.RegisterCanvasLayoutCategory(parentPanel, "Ka0s WhatGroup") → Settings.RegisterCanvasLayoutCategory(parentPanel, "WhatGroup")
+  - `docs/midnight-quirks.md:38`: Settings.RegisterCanvasLayoutCategory(panel, "Ka0s WhatGroup") → Settings.RegisterCanvasLayoutCategory(panel, "WhatGroup")
+  - `docs/midnight-quirks.md:40`: Settings.OpenToCategory("Ka0s WhatGroup > General")        -- WRONG → Settings.OpenToCategory("WhatGroup > General")        -- WRONG
+  - `docs/midnight-quirks.md:188`: Ka0s KickCD (`.../GIT/KickCD`) is the source pattern → KickCD (`.../GIT/KickCD`) is the source pattern
+  - `docs/common-tasks.md:166`: **The Ace3 stack** is vendored verbatim from Ka0s KickCD: → **The Ace3 stack** is vendored verbatim from KickCD:
+  - `docs/module-map.md:119`: Libs are copied as-is from Ka0s KickCD → Libs are copied as-is from KickCD
+  - `docs/scope.md:45`: Copied verbatim from Ka0s KickCD → Copied verbatim from KickCD
+  - `docs/slash-dispatch.md:157`: - **`brandName`** — the plain-text `Ka0s WhatGroup` → - **`brandName`** — the plain-text `WhatGroup`
+  - `docs/testing.md:1`: # Testing — Ka0s WhatGroup → # Testing — WhatGroup
+  - `docs/smoke-tests.md:1`: # Smoke tests — Ka0s WhatGroup → # Smoke tests — WhatGroup
+  - `docs/smoke-tests.md:85`: Settings on the **Ka0s WhatGroup** landing page → **WhatGroup** (same swap on every expected-text row: :208, :217, :264, :280, :317, :419, :562, :588, :591, :596, :602, :607, :628, :634, :69
+  - `docs/smoke-tests.md:893`: (Ka0s Loot History or the Ka0s Skin Tester) → (Loot History or the Skin Tester)
+- **launcher** (1)
+  - `core/LauncherSetup.lua:115`: comment block :115-:131 explaining label = brand `Ka0s <Name>` per launcher-§1, citing Ka0s Pretty Chat's colored Title (:123-:124) → reword to the new un-prefixed brand rule once the standard's launcher-§1 changes; 'Ka0s Pretty Chat' -> 'Pretty Chat'
+- **locale** (2)
+  - `locales/enUS.lua:111`: L["Open the Ka0s WhatGroup settings"] = "Open the Ka0s WhatGroup settings" → L["Open the WhatGroup settings"] = "Open the WhatGroup settings"
+  - `locales/enUS.lua:89`: -- "Ka0s WhatGroup" is the brand (the TOC Title and the Blizzard category label, → -- "WhatGroup" is the brand (the TOC Title and the Blizzard category label,
+- **other** (8)
+  - `core/CoreSetup.lua:39`: NS.BRAND_NAME = "Ka0s WhatGroup" → NS.BRAND_NAME = "WhatGroup" (the one constant feeding the launcher/LDB label core/LauncherSetup.lua:132, the right-click menu title and tool
+  - `core/DebugLogSetup.lua:197`: brandName   = "Ka0s WhatGroup", → brandName   = "WhatGroup", (diagnostics begin/end markers)
+  - `settings/Slash.lua:47`: {"config",   L["Open the Ka0s WhatGroup settings"], → {"config",   L["Open the WhatGroup settings"],
+  - `settings/Slash.lua:119`: -- ... `brandName`, the plain-text `Ka0s WhatGroup` that → -- ... `brandName`, the plain-text `WhatGroup` that
+  - `settings/Slash.lua:266`: brandName = "Ka0s WhatGroup", → brandName = "WhatGroup",
+  - `core/WhatGroup.lua:493`: -- Register the Settings panel at login so the "Ka0s WhatGroup" entry shows → -- Register the Settings panel at login so the "WhatGroup" entry shows
+  - `core/EnvSetup.lua:24`: -- and not a hand-typed literal. Here those read "WhatGroup" and "Ka0s WhatGroup", and only the → -- reword: folder and Title now both read "WhatGroup"
+  - `.luacheckrc:1`: -- .luacheckrc — lint config for the Ka0s WhatGroup addon (lint). → -- .luacheckrc — lint config for the WhatGroup addon (lint).
+- **readme** (3)
+  - `README.md:1`: # Ka0s WhatGroup → # WhatGroup
+  - `README.md:36`: Options → Keybindings → **Ka0s WhatGroup** → Options → Keybindings → **WhatGroup**
+  - `README.md:40`: Everything else is on the **Ka0s WhatGroup** page in Settings → AddOns → Everything else is on the **WhatGroup** page in Settings → AddOns
+- **settings-category** (1)
+  - `settings/OptionsSetup.lua:226`: parentTitle = "Ka0s WhatGroup", → parentTitle = "WhatGroup",
+- **tests** (24)
+  - `tests/run.lua:4`: -- Headless test runner for Ka0s WhatGroup, on the shared LibKa0s test kit → -- Headless test runner for WhatGroup, on the shared LibKa0s test kit
+  - `tests/run.lua:124`: brand       = "Ka0s WhatGroup", → brand       = "WhatGroup",
+  - `tests/perf.lua:319`: print(("Ka0s WhatGroup \226\128\148 offline perf  (v%s, label '%s')"):format( → print(("WhatGroup \226\128\148 offline perf  (v%s, label '%s')"):format(
+  - `tests/test_diagnostics.lua:14`: local BEGIN = "[Diag] ==== Ka0s WhatGroup diagnostics begin ====" → local BEGIN = "[Diag] ==== WhatGroup diagnostics begin ===="
+  - `tests/test_disabled.lua:360`: local BEGIN = "[Diag] ==== Ka0s WhatGroup diagnostics begin ====" → local BEGIN = "[Diag] ==== WhatGroup diagnostics begin ===="
+  - `tests/test_envsetup.lua:40`: -- name has to come from the host's first vararg. "WhatGroup", "Ka0s WhatGroup" and "[WG]" → reword: folder and brand now coincide
+  - `tests/test_keybinds.lua:6`: so Options -> Keybindings shows a "Ka0s WhatGroup" section → shows a "WhatGroup" section
+  - `tests/test_keybinds.lua:116`: assertEqual(NS.BRAND_NAME, "Ka0s WhatGroup", "the brand (launcher-§1)") → assertEqual(NS.BRAND_NAME, "WhatGroup", "the brand (launcher-§1)")
+  - `tests/test_launcher.lua:93`: comment: `Ka0s <Name>` is what makes the collection read as one collection → reword to the new brand rule
+  - `tests/test_launcher.lua:98`: assertEqual(object.label, "Ka0s WhatGroup") → assertEqual(object.label, "WhatGroup")
+  - `tests/test_launcher.lua:100`: assertTrue(object.label ~= NAME, "the folder name is the registration NAME, not the label") → must be dropped or rewritten: NAME (:19) is "WhatGroup", so label == folder name after the rename and this assertion goes red
+  - `tests/test_launcher.lua:110`: m.metadata.Title = "Ka0s |cffff0000W|cffff9900h|cffffff00at|rGroup" → m.metadata.Title = "|cffff0000W|cffff9900h|cffffff00at|rGroup" (fixture; optional)
+  - `tests/test_launcher.lua:112`: assertEqual(mock.ldbObjects[NAME].label, "Ka0s WhatGroup", → assertEqual(mock.ldbObjects[NAME].label, "WhatGroup",
+  - `tests/test_launcher.lua:235`: assertEqual(menu.titles[1], "Ka0s WhatGroup", "titled with the label") → assertEqual(menu.titles[1], "WhatGroup", "titled with the label")
+  - `tests/test_launcher.lua:393`: assertEqual(rawget(_G, "BINDING_HEADER_WHATGROUP"), "Ka0s WhatGroup", → assertEqual(rawget(_G, "BINDING_HEADER_WHATGROUP"), "WhatGroup",
+  - `tests/test_launcher.lua:537`: "Ka0s WhatGroup  v1.6.0", → "WhatGroup  v1.6.0", (also :556, :582)
+  - `tests/test_launcher.lua:597`: assertEqual(plain(hover(mock.ldbObjects[NAME]))[1], "Ka0s WhatGroup  v9.8.7") → assertEqual(plain(hover(mock.ldbObjects[NAME]))[1], "WhatGroup  v9.8.7")
+  - `tests/test_launcher.lua:774`: -- The shape that surprised Ka0s Consumable Master: → -- The shape that surprised Consumable Master:
+  - `tests/test_libka0s.lua:196`: assertEqual(mock.frames["WhatGroupDebugWindow"].titleText, "Ka0s WhatGroup \226\128\148 Debug") → assertEqual(mock.frames["WhatGroupDebugWindow"].titleText, "WhatGroup \226\128\148 Debug")
+  - `tests/test_libka0s.lua:302`: -- ... never the "Ka0s WhatGroup" brand, which builds a well-formed path to a file that does not exist → reword (brand and folder now identical)
+  - `tests/test_libka0s.lua:873`: -- ... `or "Ka0s WhatGroup is disabled."` fallback → `or "WhatGroup is disabled."`
+  - `tests/test_libka0s.lua:903`: assertEqual(Sl:DisabledLine(), Sl.__disabledLineFormat:format("Ka0s WhatGroup", "/wg enable"), → ...:format("WhatGroup", "/wg enable"),
+  - `tests/test_panel.lua:83`: assertEqual(mock.categories[1].label, "Ka0s WhatGroup") → assertEqual(mock.categories[1].label, "WhatGroup")
+  - `tests/test_slash.lua:649`: config   = "Open the Ka0s WhatGroup settings", → config   = "Open the WhatGroup settings",
+- **toc-title** (1)
+  - `WhatGroup.toc:2`: ## Title: Ka0s WhatGroup → ## Title: WhatGroup
+- **window-title** (1)
+  - `core/DebugLogSetup.lua:157`: title = "Ka0s WhatGroup", → title = "WhatGroup", (console reads "WhatGroup — Debug")
+- **Risks noted**
+  - After the rename the brand equals the folder name 'WhatGroup': tests/test_launcher.lua:100 asserts label ~= NAME and will go red; tests/test_launcher.lua:93-113, test_libka0s.lua:302 and test_envsetup.lua:40 exist to tell brand from folder and lose their discriminating power, so rewrite them rather than just swapping strings
+  - The brand rule is the standard's launcher-§1 (label = `Ka0s <Name>`, standard v2.54.0); WowAddonStandards must change first or the addon falls out of compliance and a standards audit flags it
+  - Settings category label (parentTitle) changes: the AddOns tree sort moves the entry from the K group to W, and anything opening by name string ('Ka0s WhatGroup > ...') breaks; the addon opens through the category object, but check LibKa0s Options for name-keyed lookups
+  - Keybindings section BINDING_HEADER_WHATGROUP and the AddOns list (TOC Title) re-sort under W, no longer next to the other Ka0s addons (memory note: the Keybindings sort follows load order)
+  - Diagnostics begin/end markers change ('==== WhatGroup diagnostics begin ===='), so any tool that splits multi-addon reports on the old marker needs updating; tests/test_diagnostics.lua:14 and test_disabled.lua:360 pin it
+  - The skin picker's 'naming <brand>' line and its queue use the label from NS.BRAND_NAME; the queue is keyed by addonName (folder), so it is unaffected
+  - Locale key 'Open the Ka0s WhatGroup settings' is the key itself: rename the key in locales/enUS.lua:111, settings/Slash.lua:47 and tests/test_slash.lua:649 together
+  - docs/smoke-tests.md has rows the owner already marked passed, quoting the old text (e.g. :602); changing their expected text alters a record, so the owner should decide whether to edit them or add new rows
+  - The CurseForge project display name (ID 1489907) is set on the website, not in the repo, so the owner must rename it there
+  - README test badge (README.md:7) count changes if any test is added or removed during the rename
+

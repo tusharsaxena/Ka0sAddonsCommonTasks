@@ -1,0 +1,18 @@
+id	milestone	repo	title
+R5-L1	M1	LibKa0s	Ka0s Default header option C (#262006 to #141103, blend #1D1805, swatch 2)
+R5-L2	M1	LibKa0s	Shell top band draws above a backdrop window's fill; toasts opt out; library windows get the band
+R5-L3	M1	LibKa0s	Band frame; every header child centred on the band in every skin (EllesmereUI 25 px bar)
+R5-L4	M1	LibKa0s	Skin picker list and other library pullouts close on an outside press
+R5-L5	M1	LibKa0s	Library-drawn icons cropped >= 0.07 and edged; icon rule documented
+R5-REL	M1	LibKa0s	Re-cut local v1.85.0 with a recorded release battery
+R5-RV	M2	*	Re-vendor LibKa0s after M1, gate green
+R5-WIN	M2	*	Every window matches LootHistory's edge/gap/header and centres its header children (items 2 and 5)
+R5-DD	M2	*	Host custom pullouts close on an outside press (item 6 sweep)
+R5-ICON	M2	*	Standalone icons cropped and edged (outline in windows, icon.border on HUD/toasts); inline icons cropped
+R5-MM1	M2	MultiMeters	Meter header strip at Shell's inset with the title gradient; collapsed = band; fallback title.bg
+R5-DR1	M2	DpsRace	Header band on every window; HUD title left-aligned in every skin (3a)
+R5-DR2	M2	DpsRace	/dr sim opens idle with scenario dropdown + Start; 15 s race in real time; real speed after the buzzer
+R5-QC1	M2	QuickComms	Pad header gets the title band on its own tokens; section bands none; left text
+R5-PG1	M2	PremadeGroupsFilterExtension	Header title vertically centred with the collapse arrow on the band
+R5-GATE	M3	Ka0sAddonsCommonTasks	06_SMOKE_TESTS, 99_REPORT, checkpoints, push
+R5-PG2	M2	PremadeGroupsFilterExtension	Collapsed panel is exactly the band and its edge, no strip below the border in any skin (img 59-61)

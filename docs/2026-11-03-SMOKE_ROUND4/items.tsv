@@ -1,0 +1,28 @@
+id	milestone	repo	title
+R4-L1	M1	LibKa0s	AceGUI Dropdown, Ka0sMedia_Font and Ka0sMedia_Statusbar pullouts close on a press outside them (GLOBAL_MOUSE_DOWN at AceGUI's SetFocus seam), Ka0s-owned surfaces only (img 1)
+R4-REL	M1	LibKa0s	Re-cut local v1.85.0 with a recorded release battery
+R4-RV	M1	*	Re-vendor LibKa0s into the 16 addons (never Outfitter), repin tests, gate green
+R4-ST1	M1	LibKa0sSkinTester	Default skin.ignorePanel off in the tester only, recorded as an accepted deviation, docs and smoke steps reworded (img 2, 3)
+R4-ST2	M1	LibKa0sSkinTester	TreeGroup sample keeps its 120 height (SetAutoAdjustHeight false, as PrettyChat) and shows a placeholder page (img 4-7)
+R4-ST3	M1	LibKa0sSkinTester	Remove the duplicate IconBorder sample beside the Waiting for the pull box (img 22)
+R4-ST4	M1	LibKa0sSkinTester	Showroom Shell takes noTopBar so title.bg is not painted twice
+R4-DR1	M1	DpsRace	Centre the KPI blocks horizontally: running tiles, Results detail, Delta + New best as a centred pair (img 11, 12)
+R4-DR2	M1	DpsRace	Equal spacing between every launcher block, extra space above Arm Race (img 13)
+R4-DR3	M1	DpsRace	Your best label reads just "Your best" (img 14)
+R4-DR4	M1	DpsRace	Your best card: consumables used (icons, xN, names in tooltip; blank if none) replace the top ability (img 15)
+R4-DR5	M1	DpsRace	Arm button reads just "Arm Race" (img 16)
+R4-DR6	M1	DpsRace	/dr sim gets a Racing step between Race starts and Buzzer, ~10 s of dense damage events (img 17, 18)
+R4-MM1	M1	MultiMeters	Sim fight steps (Pull Trash, Pull Speaker and every scenario's fight) last ~10 s with dense ticks; labels show the wall duration
+R4-MOCK	M1	Ka0sAddonsCommonTasks	HTML mockup of every skin's header and main elements, Ka0s Default header and icon border candidates, for owner sign-off
+R4-L2	M2	LibKa0s	Ka0s Default header = option E gradient #3A2F0A->#1F1905 (title.bg #2C2408), swatch 2 = header (R4_SIGNOFF.md) + MultiMeters fallback copy
+R4-L3	M2	LibKa0s	New icon.outline token for S.IconBorder/SquareIcon outlines, proposed colours in all skins; icon.border (HUD edges) unchanged (R4_SIGNOFF.md scope answer)
+R4-REL2	M2	LibKa0s	Re-cut local v1.85.0 after M2
+R4-RV2	M2	*	Re-vendor after M2, gate green
+R4-GATE	M3	Ka0sAddonsCommonTasks	Green loop, 06_SMOKE_TESTS.md, 99_REPORT.md, push
+R4-SEP	M2	*	No separator line under any window header in any addon (main, debug, debug copy, skin selector, export, every window), like the Skin Tester showroom (img 23-29)
+R4-ZOOM	M2	*	Every HUD icon with its own edge crops the art >= 0.07 per side, no native rounded border showing; verify each site, fix where short
+R4-DR7	M2	DpsRace	Your best tooltip drops the top 3 damaging abilities (img 30); consumables and the rest stay
+R4-L4	M2b	LibKa0s	S.IconBorder opts.hud draws in icon.border so HUD icons keep black edges (R4_ADDENDUM_HUD_ICON_EDGE.md)
+R4-REL3	M2b	LibKa0s	Re-cut local v1.85.0 after R4-L4
+R4-RV3	M2b	*	Re-vendor after R4-L4, gate green
+R4-HUD	M2b	*	HUD IconBorder sites (DpsRace HUD rows and chart, MultiMeters rows, PFE cast icon) pass hud = true
