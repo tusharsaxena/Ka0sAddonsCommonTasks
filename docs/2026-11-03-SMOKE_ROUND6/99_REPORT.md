@@ -57,3 +57,33 @@ tree is clean, and the tag is not pushed.
 - **Reviews:** 43 of the 51 R6 commits carry a `refs/notes/ka0s-review` note, and the notes are pushed with the branches.
 - **exceptions.tsv:** no row is needed. Every M1 to M3 id has a commit in each repo it applies to, PGFE's R6-PV included.
 - **Your part:** run the smoke list in `06_SMOKE_TESTS.md`, then give the go-ahead. R6-GATE (M3) is this commit.
+
+## Follow-up (2026-11-04): the Sim checkbox, the export glyph, the PFE fix, the README names
+
+55 more commits in 18 repos, all on `feat/2026-11-01-full-skinning` and now pushed. Nothing is merged, no tag is pushed
+and no version is bumped. Outfitter was not touched.
+
+- **R6-SIM-STD (2):** standard v2.99.0, options-ui-§15. Every addon with an in-game simulator shows a *Sim mode* box
+  next to *Test mode*, or next to *Lock frame* where there is no Test mode row. The second commit fixes wording only.
+- **R6-SIM-L (1) and R6-REL2 (3):** OptionsCompose minor 19 draws the box from the host's `isSimMode` and `toggleSim`,
+  so a tick is a bare `/xx sim` and an untick stops the sim. `masterRows` was split back to CCN 15. Local tag v1.85.0
+  is re-cut for the eighteenth time at **550ef68**, which is LibKa0s HEAD, and it is still not pushed. Release battery
+  `docs/automated-tests/20261104-024106/` has max CCN 15 and none over.
+- **R6-RV2 (17):** all 16 addons re-vendored. The vendored `libs/LibKa0s` (media aside) and `tests/_kit` match LibKa0s
+  HEAD in every one. The nine addons with no sim each add a "no Sim mode box" smoke row.
+- **R6-SIM (14):** the box is wired in all 7 sim addons, AT, BL, DR, DW, KC, LH and MM, each with a red-first test and a
+  smoke row. AT and KC place it beside Lock frame.
+- **R6-MM2 (1):** the MultiMeters export bubble's padded art is cropped, so it draws at its neighbours' size (WIN-58).
+- **R6-PF1 (1):** a PFE profile switch from preview no longer paints the cast bars from the profile it left
+  (`CastBars.lua:120`, CAST-8).
+- **R6-NAME (16):** README.md only. Each README's title, and its opening line where that line names the addon, drops
+  Ka0s. Every R6-NAME commit touches `README.md` alone.
+- **Reviews:** 52 of the 55 commits carry a `refs/notes/ka0s-review` note. The three R6-REL2 commits do not.
+- **exceptions.tsv:** no row is needed. Every follow-up id has a commit in each repo it applies to.
+
+**Totals** (fresh, one repo at a time through ka0s-bounded). LibKa0s: 4069 passed, 0 failed, 3 skipped, lint 0/0 in
+298 files. The 16 addons: 22861 passed, 0 failed, 16 skipped, and luacheck 0/0 in every repo. No Lua file is over 1500
+lines apart from PrettyChat's exempt generated `GlobalStrings.lua`. All 17 code repos: 26930 passed, 0 failed.
+
+**Your part:** the *Follow-up* section of `06_SMOKE_TESTS.md`. After that come the automated tests, sync-docs, finalize
+on your go-ahead, and then R6-ISSUES, which is the only id `resume-state.sh` still shows as OPEN.
