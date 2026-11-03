@@ -36,3 +36,10 @@ Owner's words, verbatim:
   resolved (commit or bundle evidence, or a `state:done` label), with a comment naming the commit. Issues that are only
   partly done stay open and are reported: LibKa0s#70 (SF-DR-9, deferred) and #74 (filed this round). GitHub writes are
   spaced out.
+
+## Scope note (owner, 2026-11-04, verbatim)
+
+> Note - ignore the Outfitter repo from this sweep - that is currently being converted to a Ka0s addon by a separate agent
+
+- Every finish step skips ../Outfitter: the automated tests, sync-docs, finalize (no merge, push or branch cleanup there)
+  and R6-ISSUES (no issue closed there). This is the same rule the whole run already follows.
