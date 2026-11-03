@@ -1,0 +1,7 @@
+id	milestone	repo	title
+R6-STD	M1	WowAddonStandards	New rule: the skin picker's preview (auto-enter when hidden, eye toggles, restore on every close; test > unlock > window; documented no-preview addons), version bump
+R6-L1	M1	LibKa0s	Picker preview contract spec.preview {mode, enter, exit, isActive, isShown}: auto-enter on a fresh show when hidden, eye toggles with a lit state and on/off tips, closed() restores the opening state on every route
+R6-REL	M1	LibKa0s	Re-cut local tag v1.85.0 with a recorded release battery
+R6-RV	M2	*	Re-vendor LibKa0s v1.85.0 in all 16 addons
+R6-PV	M2	*	Wire spec.preview per addon (mode table in 00_PLAN.md); PGFE documented none
+R6-GATE	M3	Ka0sAddonsCommonTasks	Smoke list, report, checkpoint, push
