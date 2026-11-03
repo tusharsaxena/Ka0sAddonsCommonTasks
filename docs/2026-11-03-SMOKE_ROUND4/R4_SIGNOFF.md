@@ -26,3 +26,18 @@ the reference: no line), 28 (Skin Tester debug), 29 (WhatGroup).
 - **R4-SEP no header separator:** no line under the title band in any window of any addon (main windows, debug
   and debug copy windows, skin selectors, export/copy windows, every other window). The Skin Tester showroom is the
   reference. Settings pages' `title.rule` is not a window header and stays unless it draws under a window title.
+
+## Scope answer (owner, 2026-11-03, supersedes the lead's one-token call)
+
+> I prefer the HUD icons to keep black edges, without showing the rounded native blizzard icon borders (we had
+> earlier set zoom to 0.07, but verify that)
+
+- **R4-L3 becomes mockup option 2:** a new token `icon.outline` carries the proposed colours (Ka0s Default #4D4D57,
+  Glass white 0.35, Forever #5A5048, Ember #8A3C1C, Midnight #7A6532; the other skins take their current
+  `icon.border`). `S.IconBorder` (and `S.SquareIcon`'s own edge) read `icon.outline` first, then `icon.border`.
+  `icon.border` is unchanged, so the HUD hosts keep today's edges (black under Ka0s Default). Host fallback copies
+  stay as they are.
+- **R4-ZOOM (verify, fix where short):** every HUD icon in every host that draws its own edge (AuraMaster, KickCD
+  icon grid and castbar, DropWatcher, QuickComms, DpsRace, ConsumableMaster, MultiMeters, PartyFrameEnhanced,
+  WhatGroup, AbsorbTracker, any other) crops the art by at least 0.07 per side, so Blizzard's rounded native edge
+  never shows inside the black edge. Report each icon site and its crop.

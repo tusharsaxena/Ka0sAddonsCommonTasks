@@ -15,8 +15,9 @@ R4-DR6	M1	DpsRace	/dr sim gets a Racing step between Race starts and Buzzer, ~10
 R4-MM1	M1	MultiMeters	Sim fight steps (Pull Trash, Pull Speaker and every scenario's fight) last ~10 s with dense ticks; labels show the wall duration
 R4-MOCK	M1	Ka0sAddonsCommonTasks	HTML mockup of every skin's header and main elements, Ka0s Default header and icon border candidates, for owner sign-off
 R4-L2	M2	LibKa0s	Ka0s Default header = option E gradient #3A2F0A->#1F1905 (title.bg #2C2408), swatch 2 = header (R4_SIGNOFF.md) + MultiMeters fallback copy
-R4-L3	M2	LibKa0s	Icon borders proposed in all skins (Ka0s Default #4D4D57, Glass .35, Forever #5A5048, Ember #8A3C1C, Midnight #7A6532), one token icon.border, host fallbacks moved (R4_SIGNOFF.md)
+R4-L3	M2	LibKa0s	New icon.outline token for S.IconBorder/SquareIcon outlines, proposed colours in all skins; icon.border (HUD edges) unchanged (R4_SIGNOFF.md scope answer)
 R4-REL2	M2	LibKa0s	Re-cut local v1.85.0 after M2
 R4-RV2	M2	*	Re-vendor after M2, gate green
 R4-GATE	M3	Ka0sAddonsCommonTasks	Green loop, 06_SMOKE_TESTS.md, 99_REPORT.md, push
 R4-SEP	M2	*	No separator line under any window header in any addon (main, debug, debug copy, skin selector, export, every window), like the Skin Tester showroom (img 23-29)
+R4-ZOOM	M2	*	Every HUD icon with its own edge crops the art >= 0.07 per side, no native rounded border showing; verify each site, fix where short
