@@ -47,13 +47,13 @@ closed. The box starts unticked.
 
 | Addon | Slash, scenario, window | Full steps | 1 Tick | 2 X | 3 Run, close | 4 Untick running | 5 Launcher |
 |---|---|---|---|---|---|---|---|
-| AbsorbTracker | `/at sim`, `fight`, the *Absorb Tracker - Simulation* step window | AT SIM-2, SIM-3 | | | | | |
-| BankLedger | `/bl sim`, `bank`, the step panel | BL SIM-15, SIM-16 | | | | | |
-| DpsRace | `/dr sim`, `newbest`, the *DPS Race - Simulation* window | DR SM-DR-R5DR2, SM-DR-R6SIM, SM-DR-R7SIM | | | | | |
-| DropWatcher | `/dw sim`, `key`, the Simulation panel | DW SIM-19, SIM-20 | | | | | |
-| KickCD | `/kcd sim`, `pull`, the step panel (`/kcd sim panel` also hides it) | KC SIM-17, SIM-18 | | | | | |
-| LootHistory | `/lh sim`, `loot`, the sim panel | LH SIM-13, SIM-14 | | | | | |
-| MultiMeters | `/mm sim`, `dungeon`, the step panel | MM SIM-16 | | | | | |
+| AbsorbTracker | `/at sim`, `fight`, the *Absorb Tracker - Simulation* step window | AT SIM-2, SIM-3 | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) |
+| BankLedger | `/bl sim`, `bank`, the step panel | BL SIM-15, SIM-16 | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) |
+| DpsRace | `/dr sim`, `newbest`, the *DPS Race - Simulation* window | DR SM-DR-R5DR2, SM-DR-R6SIM, SM-DR-R7SIM | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) |
+| DropWatcher | `/dw sim`, `key`, the Simulation panel | DW SIM-19, SIM-20 | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) |
+| KickCD | `/kcd sim`, `pull`, the step panel (`/kcd sim panel` also hides it) | KC SIM-17, SIM-18 | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) |
+| LootHistory | `/lh sim`, `loot`, the sim panel | LH SIM-13, SIM-14 | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) |
+| MultiMeters | `/mm sim`, `dungeon`, the step panel | MM SIM-16 | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) | Pass (owner) |
 
 Also check in every block that **Escape** on the open, idle window unticks the box, the same as the X does.
 In combat the box stays unticked and no sim starts. After a `/reload` the box is unticked.

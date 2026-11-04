@@ -6,3 +6,4 @@ R7-PG	M2	PremadeGroupsFilterExtension	/pgfe test: panel alone, centred, Apply di
 R7-RD	M2	*	Every addon README Usage names /<slash> skin and what it does
 R7-GATE	M3	Ka0sAddonsCommonTasks	Smoke list, report, checkpoint, push
 R7-RD2	M2	LibKa0sSkinTester AuraMaster	README Usage rewritten to about five paragraphs (documentation-§1), nothing lost; owner: "Do the usage section rewrite as well please, as a part of this run"
+R7-PG2	M2	PremadeGroupsFilterExtension	Test-mode panel alone must look like the docked panel (width, scale, header band, centred title, arrow, row layout); owner screenshots inputs/images/71-74.png
