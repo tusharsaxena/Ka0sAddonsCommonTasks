@@ -52,3 +52,13 @@ version is bumped. The smoke list is `06_SMOKE_TESTS.md`, and nothing on it is m
   because PGFE has a new `eye.tga`.
 - **Pushed:** the branch and `refs/notes/ka0s-review` in all 19 repos; none refused.
 - **Your part:** smoke, then the go-ahead to merge. After the merge, delete this run's branches.
+
+## Addendum: R7-RD2, the Usage rewrite
+
+The owner asked for it after the gate ("Do the usage section rewrite as well please, as a part of this run").
+LibKa0sSkinTester (8516f52, 1b2fa87, aa07bff) and AuraMaster (4c5ad5a, f411e42) now have five-paragraph README Usage
+sections, with the detail moved to their existing docs/settings-panel.md and docs/scope.md. The independent review
+restored one dropped fact in each repo and corrected two claims that had been carried over from the old text. AuraMaster's
+said a skin "never changes your colors or borders", but by default it sets font colors, shadows and border styles. The
+Skin Tester's said Ignore fonts covers every string, but the per-skin face lines keep their fonts. Gates: Skin Tester 886
+passed, AuraMaster 2355 passed, luacheck 0/0. Both are pushed. There is no in-game step.
