@@ -1,0 +1,7 @@
+id	milestone	repo	title
+R7-STD	M1	WowAddonStandards	Sim box checked iff sim window shown or sim running; PGFE preview mode test (no-preview list empty); README Usage names /<slash> skin; version bump
+R7-L1	M1	LibKa0s	Sim row contract docs (isSimMode = window shown or running; untick closes the window), tests; code only if unavoidable
+R7-SIM	M2	*	Sim addons: isSimMode = window shown or running, refresh on window show/hide, untick stops and hides (AT BL DR DW KCD LH MM)
+R7-PG	M2	PremadeGroupsFilterExtension	/pgfe test: panel alone, centred, Apply disabled, session-only; Test mode box; launcher; spec.preview mode test
+R7-RD	M2	*	Every addon README Usage names /<slash> skin and what it does
+R7-GATE	M3	Ka0sAddonsCommonTasks	Smoke list, report, checkpoint, push
