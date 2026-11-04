@@ -1,0 +1,3 @@
+id	reason
+R7-RD	WhatGroup only: its README Usage already named /wg skin and said what the picker does (preview on pick, test mode when the popup is closed, the eye, Apply), so the builder changed nothing there; the other 15 addons carry an R7-RD commit. Proof: git -C ../../../WhatGroup log --oneline master..feat/2026-11-04-smoke-round7 | wc -l (0) && awk '/^## Usage/{p=1;next} /^## /{p=0} p' ../../../WhatGroup/README.md | grep -c '/wg skin' (1)
+R7-FIN	The finish is the merge commits on master in 18 repos, which sit outside master..branch, so no branch commit carries the id; resume-state.sh reads OPEN for every item once the branches are merged and deleted. Proof: git -C ../../../WowAddonStandards log -1 --format=%s e8b6e94 | grep -c '^R7-FIN: ' (1)
