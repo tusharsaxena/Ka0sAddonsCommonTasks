@@ -73,3 +73,19 @@ ran over the arrow. The fix is in PremadeGroupsFilterExtension fe487b9 and e3288
 the last docked width, then PGF's desired width, then 420. It also matches the dialog's scale, and drops back to scale 1
 when docked. The title is the plain one, so the greyed Apply and Clear are what mark the mode. Gate: 544 passed, 0
 failed; luacheck 0/0. The new smoke check is PG-12. The owner reported that the Sim mode checks pass (2026-11-04).
+
+## Finish
+
+On 2026-11-04 the owner reported "works as expected, smoke tests all pass" and asked for sync-docs, then the finalize.
+Every check in 06_SMOKE_TESTS.md is marked as passed, and so is each addon's R7 rows (R7-SMOKE). R7-SD ran in all 18
+repos and every gate was green. First, the standard was rebased onto master. The Outfitter merge had already brought in
+v2.99.1, so v2.100.0 now sits above it and the v2.99.1 entry moved to CHANGELOG.md. Next, R7-FIN merged everything
+--no-ff with each merge tree equal to its branch tree: WowAddonStandards e8b6e94, LibKa0s 06eae81, LibKa0sSkinTester
+9e7da7b, AbsorbTracker b79b6ac, AuraMaster 6f21878, BankLedger bfc2aee, ConsumableMaster 2dbbbcd, DpsRace 2e27c30,
+DropWatcher e0e3567, KickCD 4ca8ffa, LootHistory 0c05279, MultiMeters 2353197, PanelMaster 90e983f, PartyFrameEnhanced
+9e6ea5c, PremadeGroupsFilterExtension 2147456, PrettyChat bec670f, QuickComms b5e9a8b. WhatGroup had no commits, so its
+branch was simply deleted. GitHub answered 500 on five master pushes, and they went through on the retry. Master and
+the notes are pushed. The branches are deleted locally and on origin, and the standards worktree is removed. No tag was
+pushed, because LibKa0s is unchanged at v1.85.0. No addon version was bumped, and Outfitter was not touched. Two items
+are left for later. LibKa0s's tests/test_launcher.lua is past its 1200-line trigger (1218). The library comments at
+OptionsCompose.lua:457/975 and SIM_TIP still describe isSimMode as "whether the sim runs".
