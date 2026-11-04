@@ -16,10 +16,10 @@ Out of combat. Start with the Group Finder closed and test mode off.
 
 | # | Do | Pass when | Result |
 |---|---|---|---|
-| PG-1 | `/pgfe test` (PG TEST-1) | One chat line says test mode is on. The filter panel shows on its own in the middle of the screen, titled *(test mode)*, with your current filters. | |
+| PG-1 | `/pgfe test` (PG TEST-1) | One chat line says test mode is on. The filter panel shows on its own in the middle of the screen with its plain title and your current filters (R7-PG2 dropped the *(test mode)* suffix). | |
 | PG-2 | Hover **Apply** and **Clear** (PG TEST-1) | Both are grayed out, and the tooltip says PGF's window is not showing its Dungeons filters. | |
 | PG-3 | `/pgfe test` again, then `/pgfe test on`, `on`, `off` (PG TEST-1) | The first turns it off and the panel goes. Then: on, still on, off. A `/reload` with it on comes back off. | |
-| PG-4 | `/pgfe test`, then open the Group Finder on Dungeons; close it (PG TEST-2) | The panel docks under PGF's dialog with its plain title and Apply works. When you close the Group Finder, the panel is back alone in the middle with Apply grayed. | |
+| PG-4 | `/pgfe test`, then open the Group Finder on Dungeons; close it (PG TEST-2) | The panel docks under PGF's dialog and Apply works. When you close the Group Finder, the panel is back alone in the middle with Apply grayed. | |
 | PG-5 | Settings, General, *Master controls*: tick and untick **Test mode**; right-click the minimap button (PG TEST-3) | The box shows and hides the panel. The launcher has a **Test mode** entry that agrees with the box and toggles it. The tooltip reads `Test mode: On/Off`. | |
 | PG-6 | With test mode on, pull a target dummy (PG TEST-4) | "Test mode ended: combat started." The panel goes and the box reads off. `/pgfe test` in combat is refused. | |
 | PG-7 | Test mode off, the Group Finder closed: `/pgfe skin` (PG SKIN-53) | The picker shows in front with a lit eye. The panel shows alone, in test mode, behind it. Hovering or selecting a skin previews it on the panel. | |
@@ -27,6 +27,7 @@ Out of combat. Start with the Group Finder closed and test mode off.
 | PG-9 | Close the picker with **Apply**, then reopen and close with the **X**, then reopen and close with **Escape** (PG SKIN-52) | After every close the panel is gone and test mode is off. Apply keeps the pick. The X and Escape put the stored skin back. | |
 | PG-10 | Open the Group Finder on Dungeons, then `/pgfe skin`, then close the picker (PG SKIN-53) | Nothing opens or moves: the panel is already docked, the eye is dimmed and test mode stays off. After the close, PGF's dialog and the panel are still open. | |
 | PG-11 | `/pgfe test` first, then `/pgfe skin`, then close the picker (PG SKIN-54) | The eye is lit and nothing else moves. After the close the panel stays up in test mode until you turn it off. | |
+| PG-12 | Group Finder closed: `/pgfe test`; collapse and expand it with the arrow; then open the Group Finder on Dungeons (PG TEST-5, R7-PG2) | Alone, the panel looks like the docked one (your screenshot 74): the same width and scale, the skin's header band, a centred title clear of the arrow, and no row overlapping another. Collapsed, it is the same title strip as docked. Docked again, nothing moves. | |
 
 ## 2. The Sim mode box (seven addons)
 

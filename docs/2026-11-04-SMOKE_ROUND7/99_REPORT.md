@@ -62,3 +62,14 @@ restored one dropped fact in each repo and corrected two claims that had been ca
 said a skin "never changes your colors or borders", but by default it sets font colors, shadows and border styles. The
 Skin Tester's said Ignore fonts covers every string, but the per-skin face lines keep their fonts. Gates: Skin Tester 886
 passed, AuraMaster 2355 passed, luacheck 0/0. Both are pushed. There is no in-game step.
+
+## Addendum: R7-PG2, the test-mode panel looks like the docked panel
+
+Owner: "This is PGFE test mode looks like in-game - not at all like the actual window" (inputs/images/71-74.png).
+
+The cause: alone, the panel took its width from PGF's hidden dialog. That dialog is 300 wide by its template, and PGF
+only widens it to 420 on the dungeon panel. As a result, the rows built for 420 overlapped, and the "(test mode)" title
+ran over the arrow. The fix is in PremadeGroupsFilterExtension fe487b9 and e32885f (review). Alone, the panel now uses
+the last docked width, then PGF's desired width, then 420. It also matches the dialog's scale, and drops back to scale 1
+when docked. The title is the plain one, so the greyed Apply and Clear are what mark the mode. Gate: 544 passed, 0
+failed; luacheck 0/0. The new smoke check is PG-12. The owner reported that the Sim mode checks pass (2026-11-04).
