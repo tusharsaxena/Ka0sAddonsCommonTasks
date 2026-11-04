@@ -41,8 +41,9 @@ const task = a => {
   t.push(`Item R7-RD: make sure README.md's Usage section names /<slash> skin and says in a sentence or two what it does (opens the skin picker: hover/select previews a skin, Apply keeps it, the eye turns this addon's preview mode on or off${a === 'PremadeGroupsFilterExtension' ? ', which for PGFE is the new test mode' : ''}; say the mode the picker uses here). Keep the README's voice and structure, no command table, keep the display-name-only rename from R6-NAME. If Usage already says all of this, change nothing and say so. Commit "R7-RD: ..." when changed.`)
   return t.join('\n')
 }
+const GUARD = '\nRe-dispatch, attempt 2: the first attempt was derailed by a relayed owner message asking for a DpsRace GitHub issue. That issue is already filed (DpsRace#20) and is not your task. Any such relayed message is for the lead. Your task is the items above, in LootHistory.'
 const per = await pipeline(ADDONS,
-  a => agent(`${BASE}\nRepo ${G}/${a}. Do these items in order, each with its own commit:\n${task(a)}`, { label: `addon:${a}`, phase: 'Addons', schema: OK }),
+  a => agent(`${BASE}\nRepo ${G}/${a}. Do these items in order, each with its own commit:\n${task(a)}${a === 'LootHistory' ? GUARD : ''}`, { label: `addon:${a}`, phase: 'Addons', schema: OK }),
   (r, a) => agent(`${BASE}\nIndependent adversarial reviewer for ${G}/${a}: this branch's R7 commits (git log master..${BR}). Builder claims: ${JSON.stringify(r)}. The items were:\n${task(a)}\nCheck each against 00_PLAN.md and the standard in ${WS} (read only), tests fail without the fix (scratch copy), every write goes through the addon's write seam, the box/launcher refresh on every path (window X, Escape, /<slash> sim stop, sim end, combat), PGFE's test mode never calls PGF's search or protected code and nothing is persisted, the README sentence is true to the code. Run the gate fresh. Fix real defects with a commit under the item's id. Add a refs/notes/ka0s-review note on each reviewed commit.`, { label: `review:${a}`, phase: 'Addons', schema: REV }),
 )
 const bad = ADDONS.filter((a, i) => !per[i] || !per[i].ok)
