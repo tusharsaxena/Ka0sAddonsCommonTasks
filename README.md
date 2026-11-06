@@ -29,6 +29,7 @@ Everything else has somewhere better to live.
 ## Layout
 
 ```
+DEPENDENCIES.md             the workspace's toolchain: git, zsh/bash, gh, plus what each bundle's helpers need
 docs/
   <YYYY-MM-DD>-<TOPIC>/     one dated bundle per cross-repo exercise
 journal/
