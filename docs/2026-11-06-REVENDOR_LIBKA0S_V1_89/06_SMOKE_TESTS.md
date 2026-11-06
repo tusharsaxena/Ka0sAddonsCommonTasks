@@ -9,3 +9,5 @@ The owner runs these in the client and records the result. Nothing here is marke
 | SM-03 | MultiMeters | Click a window's segment line: the shown segment (a stored one, Current or Overall) carries a **tick**. Pick another, reopen, and the tick follows | |
 | SM-04 | DropWatcher | Compact layout, then Filters ▾: a menu with Quality, Content, Character and Sort, each opening a child. Ticks match the full bar's dropdowns, a multi-select pick keeps the menu open and updates the `Filters · N` count and the list, Sort ticks one choice, a press outside closes it, and switching back to the full layout shows the same choices | |
 | SM-05 | DpsRace | A new-best toast still shows, one at a time, as before | |
+| SM-06 | LibKa0sSkinTester | Showroom: the cascade sample opens a child level beside its row, with the submenu arrow and a ticked row, and it follows each skin (cycle through a few). The parent stays drawn | |
+| SM-07 | DropWatcher | History tab: right-click a row, and the menu is the skinned Ka0s menu with the same entry, which still works | |

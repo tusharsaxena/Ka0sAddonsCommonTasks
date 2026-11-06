@@ -20,3 +20,5 @@ V89A-DR	M2	DpsRace	Adopt Widgets 23 submenu rows in NS.OpenMenu (drop the in-pla
 V89A-MM	M2	MultiMeters	Adopt Widgets 23 radio/selected tick on the skinned segment menu	V89-MM	S	SM-03
 V89A-DW	M2	DropWatcher	Adopt Widgets 23 cascade for compact Filters (replace the Filters panel)	V89-DW	L	SM-04
 V89-FIN	M3	Ka0sAddonsCommonTasks	Record the run (99_REPORT, checkpoints)	M2	S	-
+V89A-ST	M2	LibKa0sSkinTester	Showroom sample of a skinned W.ContextMenu cascade (lead's call, M1_LEAD_CALLS.md)	V89-ST	S	SM-06
+V89A-DWH	M2	DropWatcher	History row menu onto W.ContextMenu (lead's call, M1_LEAD_CALLS.md)	V89-DW	S	SM-07
