@@ -1,1 +1,2 @@
 milestone	date	evidence	heads
+M1	2026-11-07	standard v2.103.0 (WFP-ST-01..05, 8 commits); task review + fix round 1, re-review 6/6 addressed; check-standard.sh 8/8 ok (libka0s-counts drift 67→71 fixed)	WowAddonStandards 1fb5f02 (pushed branch)
