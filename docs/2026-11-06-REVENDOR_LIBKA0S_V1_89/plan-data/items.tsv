@@ -1,0 +1,22 @@
+id	milestone	repo	title	deps	effort	smoke
+V89-AT	M1	AbsorbTracker	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-AM	M1	AuraMaster	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-BL	M1	BankLedger	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-CM	M1	ConsumableMaster	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-DR	M1	DpsRace	Re-vendor LibKa0s v1.85.0 -> v1.89.0 (+ Toast stub SetStack/Visible/FrameFor)	-	S	SM-01 SM-05
+V89-DW	M1	DropWatcher	Re-vendor LibKa0s v1.88.0 -> v1.89.0 (+ Step 0 base correction paragraph)	-	S	SM-01
+V89-KC	M1	KickCD	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-ST	M1	LibKa0sSkinTester	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-LH	M1	LootHistory	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-MM	M1	MultiMeters	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PM	M1	PanelMaster	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PFE	M1	PartyFrameEnhanced	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PGFE	M1	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PC	M1	PrettyChat	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-QC	M1	QuickComms	Re-vendor LibKa0s v1.86.0 -> v1.89.0	-	S	SM-01
+V89-WG	M1	WhatGroup	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-OR	M1	OutfitterReborn	Already at v1.89.0: verify payload matches, no bundle (exception)	-	XS	-
+V89A-DR	M2	DpsRace	Adopt Widgets 23 submenu rows in NS.OpenMenu (drop the in-place level reopen)	V89-DR	M	SM-02
+V89A-MM	M2	MultiMeters	Adopt Widgets 23 radio/selected tick on the skinned segment menu	V89-MM	S	SM-03
+V89A-DW	M2	DropWatcher	Adopt Widgets 23 cascade for compact Filters (replace the Filters panel)	V89-DW	L	SM-04
+V89-FIN	M3	Ka0sAddonsCommonTasks	Record the run (99_REPORT, checkpoints)	M2	S	-

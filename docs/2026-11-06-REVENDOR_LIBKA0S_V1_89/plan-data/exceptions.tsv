@@ -1,0 +1,2 @@
+id	reason	proof
+V89-OR	OutfitterReborn already vendors v1.89.0 (bundle docs/revendor/2026-11-06-v1.89.0, commit 7f512f0 lineage); nothing to copy	S=$(mktemp -d); git -C ../LibKa0s archive v1.89.0 LibKa0s testkit | tar -x -C $S; diff -rq $S/testkit ../OutfitterReborn/tests/_kit \&\& ! diff -rq $S/LibKa0s ../OutfitterReborn/libs/LibKa0s | grep -v "Only in .*/media/icons"
