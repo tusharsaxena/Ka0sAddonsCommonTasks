@@ -14,7 +14,7 @@ Measured on 2026-11-06 from the tracked files (`git ls-files`).
 | Tool | Needed for | Evidence | Install (WSL2 / Ubuntu) | Verify |
 |---|---|---|---|---|
 | **git** | Everything. A bundle's progress is computed from git, not from a status table (`CLAUDE.md`, *Resumable, checkpointed plans*). | every bundle's `resume-state.sh` | `sudo apt install -y git` | `git --version` |
-| **zsh** and **bash** | Running a bundle's `resume-state.sh`. Most start `#!/bin/zsh`, a few `#!/bin/bash`. | `head -1 docs/*/resume-state.sh` | `sudo apt install -y zsh` (bash is preinstalled) | `zsh --version` |
+| **zsh** and **bash** | Running a bundle's `resume-state.sh`. Most start `#!/bin/zsh`; the bundles from 2026-10-31 on start `#!/bin/bash` or `#!/usr/bin/env bash`, and the newest keep it under `plan-data/`. | `head -1 docs/*/resume-state.sh docs/*/plan-data/resume-state.sh` | `sudo apt install -y zsh` (bash is preinstalled) | `zsh --version` |
 | **gh** (GitHub CLI), authenticated | The `/dev-copilot:*` issue commands and the issue passes these bundles record; `gh auth login` once per machine. | the issue-pass bundles, e.g. `docs/2026-10-01-GITHUB_ISSUE_PASS/` | see <https://github.com/cli/cli/blob/trunk/docs/install_linux.md> | `gh auth status` |
 
 ## Needed only to re-run a specific bundle's helpers
