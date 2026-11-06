@@ -25,8 +25,8 @@ its own header names.
 | Tool | Which helpers | Install | Verify |
 |---|---|---|---|
 | **python3** (standard library) | `docs/*/plan-data/**/*.py` | preinstalled on Ubuntu | `python3 --version` |
-| **fontTools** | the font-metrics helpers in `docs/2026-10-30-SKIN_FONTS_AND_FEEDBACK/plan-data/` and `docs/2026-10-31-FONT_PICKERS_AND_SKIN_FACES/plan-data/`, and `docs/2026-10-25-SKINNING/plan-data/tools/assemble.py` | `pip install --user fonttools` | `python3 -c "import fontTools"` |
-| **lua5.1** | the census scripts in `docs/2026-10-01-GITHUB_ISSUE_PASS/plan-data/` and `docs/2026-10-02-LIBKA0S_CENSUS_ADOPTION/plan-data/`, run from the LibKa0s repo root (each says so in its header) | `sudo apt install -y lua5.1` | `lua5.1 -v` |
+| **fontTools** | the font-metrics helpers in `docs/2026-10-30-SKIN_FONTS_AND_FEEDBACK/plan-data/` and `docs/2026-10-31-FONT_PICKERS_AND_SKIN_FACES/plan-data/`, and `docs/2026-10-25-SKINNING/plan-data/tools/assemble.py` | `sudo apt install -y python3-fonttools` (Ubuntu's Python is PEP 668 externally managed, so a bare `pip install --user` is refused) | `python3 -c "import fontTools"` |
+| **lua5.1** | the census scripts in `docs/2026-10-01-GITHUB_ISSUE_PASS/plan-data/`, `docs/2026-10-02-LIBKA0S_CENSUS_ADOPTION/plan-data/`, `docs/2026-10-22-LIBKA0S_ISSUES_45_58/plan-data/census-v1.75.0/` and `docs/2026-10-31-FINDINGS_REMEDIATION/plan-data/census-v1.83.0/`, run from the LibKa0s repo root (the 2026-10-01 header says so; the later copies keep its logic) | `sudo apt install -y lua5.1` | `lua5.1 -v` |
 
 ## Not used here
 
