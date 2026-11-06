@@ -1,0 +1,17 @@
+AbsorbTracker  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@1d7ac3e  ok
+AuraMaster  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@146d913  ok
+BankLedger  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@7579910  ok
+ConsumableMaster  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@88cbaf4  ok
+DpsRace  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@359f6eb  ok
+DropWatcher  2026-11-05-v1.88.0  base v1.85.0  vendored-before v1.87.0@59e323d  MISMATCH: bundle base v1.85.0, provenance before 59e323d was v1.87.0
+KickCD  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@da85d57  ok
+LibKa0sSkinTester  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@0cbd665  ok
+LootHistory  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@6fe5d26  ok
+MultiMeters  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@b7f93a8  ok
+OutfitterReborn  2026-11-06-v1.89.0  base v1.87.0  vendored-before v1.87.0@7f512f0  ok
+PanelMaster  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@2cac205  ok
+PartyFrameEnhanced  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@5f06c5b  ok
+PremadeGroupsFilterExtension  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@29ac441  ok
+PrettyChat  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@3e13b4c  ok
+QuickComms  2026-11-04-v1.86.0  base v1.85.0  vendored-before v1.85.0@7398649  ok
+WhatGroup  2026-11-01-v1.85.0  base v1.84.0  vendored-before v1.84.0@ca3ad1c  ok

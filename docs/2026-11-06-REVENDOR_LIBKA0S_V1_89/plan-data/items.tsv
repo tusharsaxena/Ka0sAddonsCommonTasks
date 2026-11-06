@@ -1,0 +1,66 @@
+id	milestone	repo	title	deps	effort	smoke
+V89-AT	M1	AbsorbTracker	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-AM	M1	AuraMaster	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-BL	M1	BankLedger	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-CM	M1	ConsumableMaster	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-DR	M1	DpsRace	Re-vendor LibKa0s v1.85.0 -> v1.89.0 (+ Toast stub SetStack/Visible/FrameFor)	-	S	SM-01 SM-05
+V89-DW	M1	DropWatcher	Re-vendor LibKa0s v1.88.0 -> v1.89.0 (+ Step 0 base correction paragraph)	-	S	SM-01
+V89-KC	M1	KickCD	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-ST	M1	LibKa0sSkinTester	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-LH	M1	LootHistory	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-MM	M1	MultiMeters	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PM	M1	PanelMaster	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PFE	M1	PartyFrameEnhanced	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PGFE	M1	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-PC	M1	PrettyChat	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-QC	M1	QuickComms	Re-vendor LibKa0s v1.86.0 -> v1.89.0	-	S	SM-01
+V89-WG	M1	WhatGroup	Re-vendor LibKa0s v1.85.0 -> v1.89.0	-	S	SM-01
+V89-OR	M1	OutfitterReborn	Already at v1.89.0: verify payload matches, no bundle (exception)	-	XS	-
+V89A-DR	M2	DpsRace	Adopt Widgets 23 submenu rows in NS.OpenMenu (drop the in-place level reopen)	V89-DR	M	SM-02
+V89A-MM	M2	MultiMeters	Adopt Widgets 23 radio/selected tick on the skinned segment menu	V89-MM	S	SM-03
+V89A-DW	M2	DropWatcher	Adopt Widgets 23 cascade for compact Filters (replace the Filters panel)	V89-DW	L	SM-04
+V89-FIN	M3	Ka0sAddonsCommonTasks	Record the run (99_REPORT, checkpoints)	M2	S	-
+V89A-ST	M2	LibKa0sSkinTester	Showroom sample of a skinned W.ContextMenu cascade (lead's call, M1_LEAD_CALLS.md)	V89-ST	S	SM-06
+V89A-DWH	M2	DropWatcher	History row menu onto W.ContextMenu (lead's call, M1_LEAD_CALLS.md)	V89-DW	S	SM-07
+SF1-L1	M4	LibKa0s	Widgets edges one physical pixel	-	M	SM-09
+SF1-L2	M4	LibKa0s	RegisterOwner Scope opt-out honoured by __copySkinTo	-	M	SM-09
+SF1-L3	M4	LibKa0s	Release v1.90.0 (local tag)	-	M	SM-09
+SF1-RV-AT	M5	AbsorbTracker	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-AM	M5	AuraMaster	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-BL	M5	BankLedger	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-CM	M5	ConsumableMaster	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-DR	M5	DpsRace	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-DW	M5	DropWatcher	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-KC	M5	KickCD	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-ST	M5	LibKa0sSkinTester	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-LH	M5	LootHistory	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-MM	M5	MultiMeters	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-OR	M5	OutfitterReborn	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PM	M5	PanelMaster	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PFE	M5	PartyFrameEnhanced	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PGFE	M5	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PC	M5	PrettyChat	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-QC	M5	QuickComms	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-WG	M5	WhatGroup	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-CM	M5	ConsumableMaster	Ka0s Default button border follows icon.border	SF1-RV-CM	S	SM-08
+SF1-ST	M5	LibKa0sSkinTester	Register with the Scope opt-out	SF1-RV-ST	S	SM-10
+SF1-DR	M5	DpsRace	Column headers without the grey lines (match LootHistory)	SF1-RV-DR	S	SM-11
+SF2-L1	M6	LibKa0s	Menu divider, ReorderList row box, DragHandle strip one physical pixel	-	S	SM-12
+SF2-L2	M6	LibKa0s	Refresh v1.90.0 (move the local tag)	SF2-L1	XS	SM-12
+SF2-RV-AT	M6	AbsorbTracker	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-AM	M6	AuraMaster	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-BL	M6	BankLedger	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-CM	M6	ConsumableMaster	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-DR	M6	DpsRace	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-DW	M6	DropWatcher	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-KC	M6	KickCD	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-ST	M6	LibKa0sSkinTester	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-LH	M6	LootHistory	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-MM	M6	MultiMeters	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-OR	M6	OutfitterReborn	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-PM	M6	PanelMaster	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-PFE	M6	PartyFrameEnhanced	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-PGFE	M6	PremadeGroupsFilterExtension	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-PC	M6	PrettyChat	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-QC	M6	QuickComms	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
+SF2-RV-WG	M6	WhatGroup	Refresh LibKa0s v1.90.0	SF2-L2	XS	SM-12
