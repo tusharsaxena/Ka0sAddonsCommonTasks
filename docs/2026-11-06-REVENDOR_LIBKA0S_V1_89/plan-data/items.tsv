@@ -22,3 +22,26 @@ V89A-DW	M2	DropWatcher	Adopt Widgets 23 cascade for compact Filters (replace the
 V89-FIN	M3	Ka0sAddonsCommonTasks	Record the run (99_REPORT, checkpoints)	M2	S	-
 V89A-ST	M2	LibKa0sSkinTester	Showroom sample of a skinned W.ContextMenu cascade (lead's call, M1_LEAD_CALLS.md)	V89-ST	S	SM-06
 V89A-DWH	M2	DropWatcher	History row menu onto W.ContextMenu (lead's call, M1_LEAD_CALLS.md)	V89-DW	S	SM-07
+SF1-L1	M4	LibKa0s	Widgets edges one physical pixel	-	M	SM-09
+SF1-L2	M4	LibKa0s	RegisterOwner Scope opt-out honoured by __copySkinTo	-	M	SM-09
+SF1-L3	M4	LibKa0s	Release v1.90.0 (local tag)	-	M	SM-09
+SF1-RV-AT	M5	AbsorbTracker	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-AM	M5	AuraMaster	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-BL	M5	BankLedger	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-CM	M5	ConsumableMaster	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-DR	M5	DpsRace	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-DW	M5	DropWatcher	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-KC	M5	KickCD	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-ST	M5	LibKa0sSkinTester	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-LH	M5	LootHistory	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-MM	M5	MultiMeters	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-OR	M5	OutfitterReborn	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PM	M5	PanelMaster	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PFE	M5	PartyFrameEnhanced	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PGFE	M5	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-PC	M5	PrettyChat	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-QC	M5	QuickComms	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-RV-WG	M5	WhatGroup	Re-vendor LibKa0s v1.90.0	SF1-L3	S	SM-09
+SF1-CM	M5	ConsumableMaster	Ka0s Default button border follows icon.border	SF1-RV-CM	S	SM-08
+SF1-ST	M5	LibKa0sSkinTester	Register with the Scope opt-out	SF1-RV-ST	S	SM-10
+SF1-DR	M5	DpsRace	Column headers without the grey lines (match LootHistory)	SF1-RV-DR	S	SM-11

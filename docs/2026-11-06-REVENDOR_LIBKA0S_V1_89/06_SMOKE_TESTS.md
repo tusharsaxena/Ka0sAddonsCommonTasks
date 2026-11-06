@@ -11,3 +11,12 @@ The owner runs these in the client and records the result. Nothing here is marke
 | SM-05 | DpsRace | A new-best toast still shows, one at a time, as before | |
 | SM-06 | LibKa0sSkinTester | Showroom: the cascade sample opens a child level beside its row, with the submenu arrow and a ticked row, and it follows each skin (cycle through a few). The parent stays drawn | |
 | SM-07 | DropWatcher | History tab: right-click a row, and the menu is the skinned Ka0s menu with the same entry, which still works | |
+
+## SF1 additions (after the owner's first feedback, `SF1_SMOKE_FEEDBACK.md`)
+
+| ID | Addon | Check | Result |
+|---|---|---|---|
+| SM-08 | ConsumableMaster | Ka0s Default on an untouched profile: each bar button has a **thin dark** edge like Obsidian, not a white one. Show border off still removes it | |
+| SM-09 | all | Every window dropdown, search box and opened menu has a crisp 1 px edge on all four sides, as in LootHistory. Check DropWatcher, DpsRace, LootHistory, BankLedger and the others, in several skins and after a UI-scale change | |
+| SM-10 | LibKa0sSkinTester + any addon | Run Apply to all (or a Skin-tab copy) from another Ka0s addon: the tester's AceGUI "(Scope: panel)" cells stay painted, and its Ignore settings panel stays unticked | |
+| SM-11 | DpsRace (+ any addon fixed in SF1-DR) | Results column headers: no grey line above or below, the same as LootHistory | |
