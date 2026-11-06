@@ -1,0 +1,23 @@
+id	milestone	repo	title	deps	effort	smoke
+FU-L1	M1	LibKa0s	LineChart lines one physical pixel	-	S	SM-1
+FU-L2	M1	LibKa0s	Peel Core, Widgets, SkinPaintExtras, test_toast below 1000	FU-L1	L	SM-2
+FU-L3	M1	LibKa0s	Release v1.91.0 (local tag)	FU-L2	M	SM-2
+FU-DC1	M1	dev-copilot	No positional params in command specs; roster regex; regression test; 2.7.1	-	M	-
+FU-RV-AT	M2	AbsorbTracker	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-AM	M2	AuraMaster	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-BL	M2	BankLedger	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-CM	M2	ConsumableMaster	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-DR	M2	DpsRace	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-DW	M2	DropWatcher	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-KC	M2	KickCD	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-ST	M2	LibKa0sSkinTester	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-LH	M2	LootHistory	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-MM	M2	MultiMeters	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-OR	M2	OutfitterReborn	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-PM	M2	PanelMaster	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-PFE	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-PGFE	M2	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-PC	M2	PrettyChat	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-QC	M2	QuickComms	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-RV-WG	M2	WhatGroup	Re-vendor LibKa0s v1.91.0	FU-L3	S	SM-2
+FU-FIN	FIN	Ka0sAddonsCommonTasks	Record the finish	M2	S	-
