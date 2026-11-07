@@ -1,0 +1,82 @@
+id	milestone	repo	title	deps	effort	smoke
+WFP-PLAN	M0	Ka0sAddonsCommonTasks	Commit the plan bundle	-	S	-
+WFP-ST-01	M1	WowAddonStandards	Roster Clients column	WFP-PLAN	S	-
+WFP-ST-02	M1	WowAddonStandards	New clients section + index	WFP-ST-01	M	-
+WFP-ST-03	M1	WowAddonStandards	Rewrite Retail-only rules + anti-patterns + close open evolution	WFP-ST-02	L	-
+WFP-ST-04	M1	WowAddonStandards	Playbooks and context pack	WFP-ST-03	M	-
+WFP-ST-05	M1	WowAddonStandards	Release v2.103.0	WFP-ST-04	S	-
+WFP-GATE-A	M1	WowAddonStandards	Owner-approved merge to master	WFP-ST-05	S	-
+WFP-LK-01	M2	LibKa0s	Kit client profiles (KA0S_KIT_CLIENT)	WFP-GATE-A	M	-
+WFP-LK-02	M2	LibKa0s	Compat IsForever/IsRetail/ClientKey/ForClient (minor 2)	WFP-LK-01	M	-
+WFP-LK-03	M2	LibKa0s	clients gating in Options registry	WFP-LK-02	M	-
+WFP-LK-04	M2	LibKa0s	clients gating in Slash, Launcher, Keybinds	WFP-LK-02	M	-
+WFP-LK-05	M2	LibKa0s	Spec readers on Forever	WFP-LK-02	S	SM-F1
+WFP-LK-06	M2	LibKa0s	Static missing-global check (SHOULD, else issue)	WFP-LK-01	L	-
+WFP-LK-07	M2	LibKa0s	Release v1.92.0 (local tag)	WFP-LK-03,WFP-LK-04,WFP-LK-05,WFP-LK-06	S	-
+WFP-DC-01	M3	dev-copilot	Roster Clients reader	WFP-GATE-A	S	-
+WFP-DC-02	M3	dev-copilot	wow-bump-interface per client	WFP-DC-01	M	-
+WFP-DC-03	M3	dev-copilot	wow-new-addon dual by default	WFP-DC-01	S	-
+WFP-DC-04	M3	dev-copilot	bump-version + automated-tests both profiles	WFP-DC-01	S	-
+WFP-DC-05	M3	dev-copilot	Review agent and WoW profile docs	WFP-DC-01	M	-
+WFP-DC-06	M3	dev-copilot	CurseForge journal Forever versions	-	S	-
+WFP-DC-07	M3	dev-copilot	Release 2.8.0	WFP-DC-02,WFP-DC-03,WFP-DC-04,WFP-DC-05,WFP-DC-06	S	-
+WFP-GATE-B	M3	dev-copilot	Owner-approved merge to master + plugin reload	WFP-DC-07	S	-
+WFP-ACE-00	M4	Ka0sAddonsCommonTasks	Ace3 ac3d1225 fetch + Retail profile-key proof	WFP-PLAN	M	SM-R3
+WFP-ACE-AT	M4	AbsorbTracker	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-AT	M4	AbsorbTracker	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-AT,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-AM	M4	AuraMaster	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-AM	M4	AuraMaster	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-AM,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-BL	M4	BankLedger	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-BL	M4	BankLedger	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-BL,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-CM	M4	ConsumableMaster	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-CM	M4	ConsumableMaster	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-CM,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-DR	M4	DpsRace	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-DR	M4	DpsRace	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-DR,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-DW	M4	DropWatcher	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-DW	M4	DropWatcher	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-DW,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-KC	M4	KickCD	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-KC	M4	KickCD	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-KC,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-ST	M4	LibKa0sSkinTester	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-ST	M4	LibKa0sSkinTester	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-ST,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-LH	M4	LootHistory	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-LH	M4	LootHistory	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-LH,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-MM	M4	MultiMeters	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-MM	M4	MultiMeters	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-MM,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-OR	M4	OutfitterReborn	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-OR	M4	OutfitterReborn	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-OR,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-PM	M4	PanelMaster	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-PM	M4	PanelMaster	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-PM,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-PFE	M4	PartyFrameEnhanced	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-PFE	M4	PartyFrameEnhanced	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-PFE,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-PGFE	M4	PremadeGroupsFilterExtension	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-PGFE	M4	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-PGFE,WFP-LK-07,WFP-GATE-B	S	SM-R4,SM-F2
+WFP-ACE-PC	M4	PrettyChat	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-PC	M4	PrettyChat	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-PC,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-QC	M4	QuickComms	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-QC	M4	QuickComms	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-QC,WFP-LK-07,WFP-GATE-B	S	SM-R5
+WFP-ACE-WG	M4	WhatGroup	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
+WFP-RV-WG	M4	WhatGroup	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-WG,WFP-LK-07,WFP-GATE-B	S	SM-R4,SM-F2
+WFP-SMOKE	M5	Ka0sAddonsCommonTasks	Record owner smoke	-	S	SM-*
+WFP-FIN	M5	Ka0sAddonsCommonTasks	Finalize on go-ahead + report	WFP-SMOKE	M	-
+WFP-FIX-01	M5	DpsRace	Sim mode shows the test-mode strip	WFP-RV-DR	S	-
+WFP-FIX-02	M5	LibKa0s	Sim strip label SIM everywhere (library part)	-	S	-
+WFP-LK-08	M5	LibKa0s	Peel OptionsTabs header block + sub-strip	-	M	-
+WFP-LK-09	M5	LibKa0s	Release v1.93.0 (local tag)	WFP-LK-06,WFP-LK-08,WFP-FIX-02	S	-
+WFP-RV2-AT	M5	AbsorbTracker	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-AM	M5	AuraMaster	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-BL	M5	BankLedger	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-CM	M5	ConsumableMaster	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-DR	M5	DpsRace	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-DW	M5	DropWatcher	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-KC	M5	KickCD	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-ST	M5	LibKa0sSkinTester	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-LH	M5	LootHistory	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-MM	M5	MultiMeters	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-OR	M5	OutfitterReborn	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PM	M5	PanelMaster	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PFE	M5	PartyFrameEnhanced	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PGFE	M5	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PC	M5	PrettyChat	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-QC	M5	QuickComms	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-WG	M5	WhatGroup	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-REVIEW	M5	Ka0sAddonsCommonTasks	Whole-branch final review (most capable model)	WFP-RV2-*	M	-
