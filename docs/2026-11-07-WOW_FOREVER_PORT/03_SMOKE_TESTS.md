@@ -17,6 +17,6 @@ with the run branch checked out in every `GIT/<Addon>` folder the game loads.
 
 | ID | Client | Check | Result |
 |---|---|---|---|
-| SM-R6 | Retail | DPS Race: `/dr sim`. The HUD **and** the Results window show the cyan **SIM** strip, never the yellow test strip. The sim window title reads "DPS Race - SIM". `/dr test` alone still shows the test strip. | pending |
-| SM-R7 | Retail | Run a sim in BankLedger, DropWatcher, LootHistory, MultiMeters, AbsorbTracker and KickCD. Each strip and sim-panel title reads **SIM**, and each strip's prose ends with the addon's `/<slash> sim stop`. | pending |
-| SM-R8 | Retail | OutfitterReborn, with `/console loadDeprecationFallbacks 0` and a `/reload`: an outfit that sets an action-bar page switches the page on wear and restores the original page on unwear. Set the CVar back afterwards. | pending |
+| SM-R6 | Retail | DPS Race: `/dr sim`. The HUD **and** the Results window show the cyan **SIM** strip, never the yellow test strip. The sim window title reads "DPS Race - SIM". `/dr test` alone still shows the test strip. | **pass** (owner, 2026-11-07, after merge) |
+| SM-R7 | Retail | Run a sim in BankLedger, DropWatcher, LootHistory, MultiMeters, AbsorbTracker and KickCD. Each strip and sim-panel title reads **SIM**, and each strip's prose ends with the addon's `/<slash> sim stop`. | **pass** (owner, 2026-11-07, after merge) |
+| SM-R8 | Retail | OutfitterReborn, with `/console loadDeprecationFallbacks 0` and a `/reload`: an outfit that sets an action-bar page switches the page on wear and restores the original page on unwear. Set the CVar back afterwards. | **pass** (owner, 2026-11-07, after merge) |

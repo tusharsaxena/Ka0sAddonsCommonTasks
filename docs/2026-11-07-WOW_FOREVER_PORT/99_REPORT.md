@@ -14,7 +14,7 @@ Finished on 2026-11-07. Every item in `plan-data/items.tsv` landed. `WFP-LK-06` 
 ## Verification
 
 - Owner smoke: SM-R1 to R5 passed. SM-F1 was recorded (`C_SpecializationInfo.GetSpecialization()` returns 1 on Forever). SM-F2 was waived.
-- SM-R6, SM-R7 and SM-R8 (the M5 follow-ups) were **not run before the merge**. The owner gave the go-ahead with them pending, and they stay pending in `03_SMOKE_TESTS.md`.
+- SM-R6, SM-R7 and SM-R8 (the M5 follow-ups) ran after the merge and **passed** (owner, 2026-11-07); see `03_SMOKE_TESTS.md`.
 - Every reviewed task passed its review, after fix rounds where there were any. The whole-branch final review, on the most capable model, returned "Ready after fixes". One fix wave followed, and a scoped re-review found every item addressed.
 - Merge gates, run at finalize on the merge result: every addon had 0 failed tests and luacheck 0/0 (totals per repo are in the finalize log in the session). LibKa0s: 4262 passed, 0 failed under both profiles.
 
