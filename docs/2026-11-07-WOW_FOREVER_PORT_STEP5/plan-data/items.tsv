@@ -3,3 +3,8 @@ W1-AT-01	W1	AbsorbTracker	Port to Retail + Forever: TOC, README, DEPENDENCIES, A
 W1-ST-01	W1	LibKa0sSkinTester	Port to Retail + Forever: TOC, README, DEPENDENCIES, ARCHITECTURE, gate, smoke, inventory	-	S	FOREVER-*	00_CLASSIFICATION group 2
 W1-STD-01	W1	WowAddonStandards	Roster: AbsorbTracker and Skin Tester Clients to Retail · Forever	W1-AT-01,W1-ST-01	XS	-	clients-§2
 W1-REC	W1	Ka0sAddonsCommonTasks	Step-5 bundle: classification, wave-1 plan, smoke, report	-	XS	-	owner 2026-11-07
+W2-PM-01	W2	PanelMaster	Port to Retail + Forever: re-vendor v1.94.0, default skin, strata guard, port items	-	S	FOREVER-*	00_CLASSIFICATION group 3
+W2-PC-01	W2	PrettyChat	Port to Retail + Forever: re-vendor v1.94.0, default skin, Forever format-string seed list, names	-	M	FOREVER-*	00_CLASSIFICATION group 3
+W2-PF-01	W2	PartyFrameEnhanced	Port to Retail + Forever: re-vendor v1.94.0, default skin, Edit Mode and unit frames, name labels	-	M	FOREVER-*	00_CLASSIFICATION group 3
+W2-STD-01	W2	WowAddonStandards	Roster: the three Clients rows to Retail · Forever	W2-PM-01,W2-PC-01,W2-PF-01	XS	-	clients-§2
+W2-REC	W2	Ka0sAddonsCommonTasks	Wave-2 plan, smoke run sheet, report	-	XS	-	owner 2026-11-08
