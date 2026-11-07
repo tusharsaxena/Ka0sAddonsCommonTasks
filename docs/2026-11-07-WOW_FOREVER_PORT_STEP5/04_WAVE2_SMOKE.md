@@ -26,4 +26,17 @@ All three checkouts are on `feat/2026-11-08-forever-port-wave2`, so the Retail c
 
 ## Results
 
-Owed. Record them here as well as on the addons' `Result:` lines once the owner has run them.
+**Passed**, by the owner on 2026-11-08: "all the checks are done, and all have passed, working beuatifully in
+forever". PanelMaster FOREVER-1..12, PrettyChat FOREVER-1..14 and PartyFrameEnhanced FOREVER-1..16 are recorded as
+passed on the addons' `Result:` lines (each addon's `W2-SMOKE` commit).
+
+On the way, two Forever-only incidents, neither a defect:
+
+- **PrettyChat's first-run skin picker did not show** on the first Forever login, while PanelMaster's and
+  PartyFrameEnhanced's did. Its profile had recorded the picker as seen. The likeliest cause is the library's
+  "Apply to all Ka0s addons" button, which by design dismisses every picker still queued behind the one on screen
+  and runs its close. PrettyChat loads after the other two, so its picker was queued. `/pc resetall` showed it
+  normally, so the picker itself works on Forever.
+- **The owner's Retail PanelMaster Default profile was copied to Forever** at the owner's request: 9 panels, all on
+  UIParent, LibKa0s media only, neither client setting a custom UI scale. Forever's character key and global
+  settings were kept, and the old file was backed up beside it.
