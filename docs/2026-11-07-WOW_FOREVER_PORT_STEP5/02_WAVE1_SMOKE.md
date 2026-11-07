@@ -33,4 +33,7 @@ The checks cover the open questions in the research report that these two addons
 
 ## Results
 
-Owed. Record them here as well as on the addons' `Result:` lines once the owner has run them.
+**Passed**, by the owner on 2026-11-08: "both absorbtracker and skintester work perfectly!". AbsorbTracker
+FOREVER-1..14 and Skin Tester FOREVER-1..12 are recorded as passed on the addons' `Result:` lines (commits `fb0963c`,
+`f2e408a`). New checks owed since then: AbsorbTracker FOREVER-15 and Skin Tester FOREVER-13 (the default skin per
+client, `W1_DEFAULT_SKIN_AND_FOREVER_NAMES.md`).
