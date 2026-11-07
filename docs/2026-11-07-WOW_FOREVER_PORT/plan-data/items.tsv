@@ -56,5 +56,27 @@ WFP-ACE-QC	M4	QuickComms	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
 WFP-RV-QC	M4	QuickComms	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-QC,WFP-LK-07,WFP-GATE-B	S	SM-R5
 WFP-ACE-WG	M4	WhatGroup	Vendor Ace3 ac3d1225	WFP-ACE-00	S	SM-R1,SM-R2
 WFP-RV-WG	M4	WhatGroup	Re-vendor LibKa0s v1.92.0 + standard v2.103.0	WFP-ACE-WG,WFP-LK-07,WFP-GATE-B	S	SM-R4,SM-F2
-WFP-SMOKE	M5	Ka0sAddonsCommonTasks	Record owner smoke	WFP-RV-*	S	SM-*
+WFP-SMOKE	M5	Ka0sAddonsCommonTasks	Record owner smoke	-	S	SM-*
 WFP-FIN	M5	Ka0sAddonsCommonTasks	Finalize on go-ahead + report	WFP-SMOKE	M	-
+WFP-FIX-01	M5	DpsRace	Sim mode shows the test-mode strip	WFP-RV-DR	S	-
+WFP-FIX-02	M5	LibKa0s	Sim strip label SIM everywhere (library part)	-	S	-
+WFP-LK-08	M5	LibKa0s	Peel OptionsTabs header block + sub-strip	-	M	-
+WFP-LK-09	M5	LibKa0s	Release v1.93.0 (local tag)	WFP-LK-06,WFP-LK-08,WFP-FIX-02	S	-
+WFP-RV2-AT	M5	AbsorbTracker	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-AM	M5	AuraMaster	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-BL	M5	BankLedger	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-CM	M5	ConsumableMaster	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-DR	M5	DpsRace	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-DW	M5	DropWatcher	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-KC	M5	KickCD	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-ST	M5	LibKa0sSkinTester	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-LH	M5	LootHistory	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-MM	M5	MultiMeters	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-OR	M5	OutfitterReborn	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PM	M5	PanelMaster	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PFE	M5	PartyFrameEnhanced	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PGFE	M5	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-PC	M5	PrettyChat	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-QC	M5	QuickComms	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-RV2-WG	M5	WhatGroup	Re-vendor LibKa0s v1.93.0 + align sim-strip prose	WFP-LK-09	S	-
+WFP-REVIEW	M5	Ka0sAddonsCommonTasks	Whole-branch final review (most capable model)	WFP-RV2-*	M	-
