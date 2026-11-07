@@ -59,7 +59,21 @@ not a full audit.
 - PartyFrameEnhanced `modules/TargetFrames.lua:82`, `:227`, `UnitButtons.lua:133`, `PetFrames.lua:91`, `StandIn.lua:247`
 - KickCD `modules/Castbar_Debug.lua:70`; LibKa0s `Perf.lua:439-440` (the perf report's character and realm)
 
-**A library helper, recommended for the first name-keyed port.** Most of these addons already route the call
-through their own `core/Compat.lua`, so the natural fix is in LibKa0s Compat: `UnitFullName(unit)` and
-`CharacterKey()` / `RealmKey()`, mirroring AceDB 40's derivation and gated on `RegionalUniqueNamesEnabled`. Each
-port then adopts it. It is not built yet, because wave 1 has no consumer.
+**A library helper (recommended at first for the first name-keyed port).** Most of these addons already route
+the call through their own `core/Compat.lua`, so the natural fix is in LibKa0s Compat.
+
+## The owner's calls (2026-11-08)
+
+> 1. Build it now
+> 2. Realm key "PVP" is fine
+
+- **Built.** LibKa0s `2d2be05` (`W1-LK-02`), in the re-cut local tag `v1.94.0`, Compat minor 4: `RegionalNames()`,
+  `UnitCharacterName(unit)`, `CharacterKey()`, `RealmKey()`. They mirror AceDB 40's key block, decide by
+  `RegionalUniqueNamesEnabled`, and never concatenate a secret. Retail answers are `UnitName`'s own values,
+  `"Name - Realm"` and `GetRealmName()`. Five new test cases; 4270 passed / 0 failed under both profiles. Re-vendored
+  into AbsorbTracker (`03998d9`) and the Skin Tester (`5d96db0`), neither of which calls them. Each port above swaps
+  its call sites onto them.
+- **The ruleset is the realm key** for stored realm data too, so two PvP realms share `"PvP"`. The standard records
+  both in client-quirks-§5 and library-stack-§7 (WowAddonStandards `W1-STD-04`).
+- **Default-skin smoke passed:** the owner's "default skin tests check" covers AbsorbTracker FOREVER-15 and Skin
+  Tester FOREVER-13, recorded on their `Result:` lines.
