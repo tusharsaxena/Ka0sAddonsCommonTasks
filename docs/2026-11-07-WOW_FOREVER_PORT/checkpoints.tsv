@@ -1,3 +1,4 @@
 milestone	date	evidence	heads
 M1	2026-11-07	standard v2.103.0 (WFP-ST-01..05, 8 commits); task review + fix round 1, re-review 6/6 addressed; check-standard.sh 8/8 ok (libka0s-counts drift 67→71 fixed)	WowAddonStandards 1fb5f02 (pushed branch)
 M3	2026-11-07	dev-copilot 2.8.0 (WFP-DC-01..07); review spec ok, quality approved (3 minors deferred); pytest 143 passed	dev-copilot 009bb33 (pushed branch)
+M2	2026-11-07	LibKa0s v1.92.0 (WFP-LK-01..05,07; LK-06 → #77): Compat minor 2, kit rev 52, clients gating in Options/Slash/Launcher/Keybinds; reviews clean after 1 fix round; tests 4239/0/3 retail + forever, luacheck 0/0 in 317 files	LibKa0s d690237 (pushed branch; tag v1.92.0 LOCAL)
