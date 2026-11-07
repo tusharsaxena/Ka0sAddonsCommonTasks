@@ -44,3 +44,22 @@ With `16001` in each TOC, the kit's Forever missing-globals suite passed in all 
 
 - Owner smoke: `04_WAVE2_SMOKE.md`.
 - The owner's go-ahead to merge the five branches (`/dev-copilot:finalize`).
+
+## Finish (2026-11-08)
+
+The owner reported every wave-2 check passed on Forever ("working beuatifully in forever", recorded in
+`04_WAVE2_SMOKE.md` and each addon's `W2-SMOKE` commit), then said "yes merge wave 2". `/dev-copilot:finalize`
+merged `feat/2026-11-08-forever-port-wave2` with `--no-ff` into `master` in five repos, pushed each, and deleted
+the branch locally and on origin. Each merge result was gated before its push: PanelMaster 1201 / 0 failed,
+PrettyChat 694 / 0 and PartyFrameEnhanced 657 / 0 under both kit profiles, luacheck 0/0, no vendor drift, and
+`check-standard.sh` all passed. No tag, no version bump, no release.
+
+| Repo | Pushed `master` |
+|---|---|
+| PanelMaster | `c2244af` |
+| PrettyChat | `24a2d9d` |
+| PartyFrameEnhanced | `a725418` |
+| WowAddonStandards | `80da664` |
+| Ka0sAddonsCommonTasks | this record's merge |
+
+Five of the collection's addons now ship Retail · Forever. Next: group 4 (MultiMeters, QuickComms, KickCD, DpsRace).
