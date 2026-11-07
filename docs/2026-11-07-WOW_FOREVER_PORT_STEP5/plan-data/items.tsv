@@ -1,0 +1,5 @@
+id	milestone	repo	title	deps	effort	smoke	source
+W1-AT-01	W1	AbsorbTracker	Port to Retail + Forever: TOC, README, DEPENDENCIES, ARCHITECTURE, gate, smoke, inventory	-	S	FOREVER-*	00_CLASSIFICATION group 2
+W1-ST-01	W1	LibKa0sSkinTester	Port to Retail + Forever: TOC, README, DEPENDENCIES, ARCHITECTURE, gate, smoke, inventory	-	S	FOREVER-*	00_CLASSIFICATION group 2
+W1-STD-01	W1	WowAddonStandards	Roster: AbsorbTracker and Skin Tester Clients to Retail · Forever	W1-AT-01,W1-ST-01	XS	-	clients-§2
+W1-REC	W1	Ka0sAddonsCommonTasks	Step-5 bundle: classification, wave-1 plan, smoke, report	-	XS	-	owner 2026-11-07
