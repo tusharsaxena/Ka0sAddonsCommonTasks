@@ -31,3 +31,23 @@ With the TOC change, both addons' kit suite `test_client_globals.lua` now checks
 - The owner's go-ahead to merge the four branches (`/dev-copilot:finalize`).
 - The CurseForge packaging test, one alpha tag of AbsorbTracker, which waits for the owner. The Skin Tester is never
   published.
+
+## Finish (2026-11-08)
+
+On the owner's go-ahead ("Go ahead"), `/dev-copilot:finalize` merged `feat/2026-11-07-forever-port-wave1` with
+`--no-ff` into `master` in five repos, pushed each, and deleted the branch locally and on origin. LibKa0s's tag
+**`v1.94.0`** is pushed. Every merge result was gated before its push: LibKa0s 4270 / 0 failed under both kit
+profiles, AbsorbTracker 1065 / 0, the Skin Tester 899 / 0, luacheck 0/0 in each, vendor drift empty, and
+`check-standard.sh` all passed (standard v2.104.0). All wave-1 smoke has passed, including the follow-ups in
+`W1_DEFAULT_SKIN_AND_FOREVER_NAMES.md` and `W1_FOREVER_NAME_PROBE.md`.
+
+| Repo | Pushed `master` |
+|---|---|
+| LibKa0s | `40e0010` |
+| WowAddonStandards | `3e72e46` |
+| AbsorbTracker | `5533711` |
+| LibKa0sSkinTester | `ef53889` |
+| Ka0sAddonsCommonTasks | this record's merge |
+
+Not done here: no addon version bump and no release. The CurseForge packaging test (one AbsorbTracker alpha tag)
+still waits for the owner. Next: group 3 (PanelMaster, PrettyChat, PartyFrameEnhanced).
