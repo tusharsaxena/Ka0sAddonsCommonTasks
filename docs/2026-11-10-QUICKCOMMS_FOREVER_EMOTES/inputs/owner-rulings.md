@@ -20,6 +20,7 @@ QuickComms#15 is titled "Support emotes" and every other field is TBD.
 | R6 | What does an emote callout do? | "Both kinds (custom /e and built in emotes). Also build a seed list of common emotes that can be used in the open world as well" |
 | R7 | Chat line and emote on one press? | "One action per callout, but add a GH issue to do both. Also GH issue to use the ping system, and add target raid markers. A message can combine all" |
 | R8 | SkinTester's Ignore settings panel? | "Default on, keep toggle" (so the showroom's panel samples stay skinned, as the option said) |
+| R9 | (mid-run) DpsRace | "mark dpsrace as Retail only - there are no training dummies in forever so this makes no sense", then "make that change in the forever port documentation and in ADDONS.md and anywhere else it may be needed". Done as `QFE-DPS` in DpsRace (TOC gating, README, DEPENDENCIES, scope) and WowAddonStandards (roster), plus amendments to the step-5 classification and the port design |
 
 ## Calls Claude made after the questions (the owner said to decide the rest)
 

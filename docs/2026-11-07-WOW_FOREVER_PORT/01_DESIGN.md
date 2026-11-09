@@ -30,6 +30,8 @@ a time, each with its own owner decision.
 - **Seed lists are per client.** That covers spells, items, talents and similar seeded data, and the actions built
   on them. Forever gets its own lists, not filtered Retail lists.
 - **WhatGroup and PremadeGroupsFilterExtension stay Retail-only** for now. They are not ported.
+  *Amended 2026-11-10:* **DpsRace is Retail-only too**, by the owner's ruling ("there are no training dummies in
+  forever so this makes no sense"); recorded in `../2026-11-07-WOW_FOREVER_PORT_STEP5/00_CLASSIFICATION.md` §1.
 - **The standard changes** to allow dual-client support.
 - **Ace3 is vendored from untagged master** at commit **`ac3d1225`** (2026-10-28, the master head on 2026-11-07), and
   there is **no shim**. The reason is to get CheckBox v27, ColorPicker v29 and the AceDB Forever profile-key scheme

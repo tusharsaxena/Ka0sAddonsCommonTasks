@@ -17,3 +17,4 @@ QFE-DOCS	M5	QuickComms	README, smoke-tests Forever + emote sections, test-cases 
 QFE-REV	M5	QuickComms	Independent review of the branch (all repos) and its fixes	QFE-DOCS,QFE-ST2	M	-	guidelines
 QFE-STD	M5	WowAddonStandards	Roster QuickComms to Retail · Forever; clients section names LibKa0s Role; standard version bump	QFE-REV	XS	-	clients-§2
 QFE-SMOKE	M6	Ka0sAddonsCommonTasks	Smoke run sheet; owner results recorded	QFE-STD	XS	-	owner
+QFE-DPS	M0	DpsRace	DpsRace Retail-only: TOC load gating, README, DEPENDENCIES, scope (also a WowAddonStandards roster commit and CommonTasks doc amendments)	-	XS	-	R9

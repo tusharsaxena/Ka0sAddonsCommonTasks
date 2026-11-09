@@ -18,6 +18,6 @@ while IFS=$'\t' read -r id ms repo title deps rest; do
   printf '%-11s %-4s %-22s %-11s %s\n' "$id" "$ms" "$repo" "$state" "$title"
 done < "$HERE/items.tsv"
 echo "---- $done / $total done"
-for r in QuickComms LibKa0s LibKa0sSkinTester WowAddonStandards Ka0sAddonsCommonTasks; do
+for r in QuickComms DpsRace LibKa0s LibKa0sSkinTester WowAddonStandards Ka0sAddonsCommonTasks; do
   printf '%-22s branch=%s dirty=%s\n' "$r" "$(git -C "$GIT/$r" branch --show-current)" "$(git -C "$GIT/$r" status --porcelain | wc -l)"
 done
