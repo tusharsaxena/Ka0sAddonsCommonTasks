@@ -30,6 +30,7 @@ to classify them; it is not a copy of the roster.
 |---|---|
 | WhatGroup | Retail-only by the owner's ruling of 2026-11-07. It reads `C_LFGList` applications and search results, and Forever does not load Retail's group finder. Already carries the load-gating lines. |
 | PremadeGroupsFilterExtension | Same ruling and cause. It extends `LFGListFrame`/`PVEFrame`, which do not exist on Forever. Its `defaults/Realms.lua` seed and M+ filters are Retail-only. Already load-gated. |
+| DpsRace | Retail-only by the owner's ruling of 2026-11-10: "there are no training dummies in forever so this makes no sense". It races against a training dummy, and Forever has none. Gets the load-gating lines (`DpsRace` and `WowAddonStandards` commits `QFE-DPS`, Ka0sAddonsCommonTasks `docs/2026-11-10-QUICKCOMMS_FOREVER_EMOTES/`). Before the ruling it was in group 4: The meter engine ports. The seeds do not: the dummy catalog (Retail creature IDs, by rule only measured in game, so the owner captures Forever's), the hearthstone list from Retail DB2 exports, the spec references and the secret spec icon. |
 
 ## 2. No changes except the TOC
 
@@ -53,7 +54,6 @@ to classify them; it is not a copy of the roster.
 | MultiMeters | `C_DamageMeter` loads on Forever, so the core works. About 50 `specIconID` reads, which Forever makes secret, each need a guard; the Delve content type is gated off; the chat reports need a check. |
 | QuickComms | The engine is client-neutral. The seeds are all Retail: the M+ builtin, the battleground and arena builtins, and `defaults/GameIds_Instances.lua` (derived from Retail's Encounter Journal). Forever needs its own instance, battleground and arena lists, and the M+ builtin gated off. Also 2 strata reads and 28 spec references. |
 | KickCD | `C_CooldownViewer` and `C_Spell` cooldowns exist on Forever, but `defaults/Spells.lua` is keyed by Retail spec IDs (Forever's differ: Warrior 1491), and the spells differ. A Forever interrupt list per class and spec, and a per-class check of the Cooldown Manager. |
-| DpsRace | The meter engine ports. The seeds do not: the dummy catalog (Retail creature IDs, by rule only measured in game, so the owner captures Forever's), the hearthstone list from Retail DB2 exports, the spec references and the secret spec icon. |
 
 ## 5. High changes
 
@@ -67,6 +67,8 @@ to classify them; it is not a copy of the roster.
 | OutfitterReborn | Built on Forever's redrawn character frame (71 frame references). `EquipmentManager_UnpackLocation` is gone, `C_EquipmentSet` is unverified, transmog is off, talents and specs differ, and `defaults/Zones.lua` is Retail battleground and arena maps. One two-value `UnitName` call and one strata read. |
 
 ## Order
+
+**Amended 2026-11-10:** DpsRace left group 4 for section 1 (Retail-only) by the owner's ruling; group 4 is now MultiMeters, QuickComms and KickCD.
 
 Port in group order: group 2 first, then group 3, group 4 and group 5. In group 5, ConsumableMaster and AuraMaster
 are mostly a seed-data question, so the first thing to settle there is whether Forever data exports exist.

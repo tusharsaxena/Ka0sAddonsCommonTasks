@@ -1,0 +1,20 @@
+id	milestone	repo	title	deps	effort	smoke	source
+QFE-REC	M0	Ka0sAddonsCommonTasks	Bundle: rulings, design, plan, manifest, resume script	-	XS	-	owner 2026-11-10
+QFE-ISS	M0	QuickComms	File the three follow-up issues (combined actions, pings, raid markers); no commit, see exceptions.tsv	-	XS	-	R7
+QFE-LK1	M1	LibKa0s	Role module LibKa0s-Role-1.0: Spec, SpecsForClass, Resolve (override/assigned/talents/spec/saved), SetOverride, Groups; tests both profiles; docs/api	-	M	QF-ROLE-*	R3 R5 C1 C2
+QFE-LK2	M1	LibKa0s	v1.95.0: CHANGELOG, version, adoption docs, local tag (not pushed)	QFE-LK1	XS	-	R3
+QFE-ST1	M2	LibKa0sSkinTester	Remove the Sample controls page (panel, schema rows, tests, docs)	-	S	ST-*	request
+QFE-ST2	M2	LibKa0sSkinTester	Ignore settings panel defaults on, toggle kept; drop the documented deviation	-	XS	ST-*	R8
+QFE-F1	M3	QuickComms	Re-vendor LibKa0s v1.95.0, NS.DEFAULT_SKIN, strata guard	QFE-LK2	S	FOREVER-*	4.1
+QFE-F2	M3	QuickComms	Port items: TOC dual interface, README, DEPENDENCIES, ARCHITECTURE client table, gate both profiles	QFE-F1	S	FOREVER-*	4.1
+QFE-F3	M3	QuickComms	Content kinds per client and the hidden rows/values/built-ins on Forever; Forever place lists (dungeons, raids, instances, BGs)	QFE-F1	M	FOREVER-*	4.2 4.3 R1 R2 C3
+QFE-F4	M3	QuickComms	Identity via Compat.CharacterKey/name helpers; spec and role via LibKa0s Role; Role override dropdown; why/diagnostics	QFE-F1	M	FOREVER-*	4.4 R3 R5
+QFE-F5	M3	QuickComms	/qc probe and /qc probe clear into global.probes	QFE-F4	S	FOREVER-*	4.5 C4
+QFE-E1	M4	QuickComms	Emote channel kind (/e, EMOTE)	QFE-F1	S	EMOTE-*	5.1
+QFE-E2	M4	QuickComms	Game emote callouts: token field, client command map, bake, echo, editor picker	QFE-E1	M	EMOTE-*	5.1 5.2
+QFE-E3	M4	QuickComms	Emotes built-in group seed + schema step for existing profiles	QFE-E2	S	EMOTE-*	5.3 C5
+QFE-DOCS	M5	QuickComms	README, smoke-tests Forever + emote sections, test-cases regenerated, docs sync	QFE-F5,QFE-E3	S	-	4.1
+QFE-REV	M5	QuickComms	Independent review of the branch (all repos) and its fixes	QFE-DOCS,QFE-ST2	M	-	guidelines
+QFE-STD	M5	WowAddonStandards	Roster QuickComms to Retail · Forever; clients section names LibKa0s Role; standard version bump	QFE-REV	XS	-	clients-§2
+QFE-SMOKE	M6	Ka0sAddonsCommonTasks	Smoke run sheet; owner results recorded	QFE-STD	XS	-	owner
+QFE-DPS	M0	DpsRace	DpsRace Retail-only: TOC load gating, README, DEPENDENCIES, scope (also a WowAddonStandards roster commit and CommonTasks doc amendments)	-	XS	-	R9

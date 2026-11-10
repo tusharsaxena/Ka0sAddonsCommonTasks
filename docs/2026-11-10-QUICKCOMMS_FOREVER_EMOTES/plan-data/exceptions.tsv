@@ -1,0 +1,2 @@
+id	repo	claim	proof
+QFE-ISS	QuickComms	Follow-up issues #16 #17 #18 filed 2026-11-10	gh -R tusharsaxena/QuickComms issue view 16 --json title && gh -R tusharsaxena/QuickComms issue view 17 --json title && gh -R tusharsaxena/QuickComms issue view 18 --json title
