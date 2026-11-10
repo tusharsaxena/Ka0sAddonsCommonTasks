@@ -6,3 +6,4 @@ M3	2026-11-10	QuickComms 1737/0/1 of 1738 both profiles at F5; luacheck 0/0 in 1
 M4	2026-11-10	QuickComms 1764/0/1 of 1765 both profiles; luacheck 0/0 in 172; largest file locales/enUS.lua 1459	QuickComms a90a16b
 QFE-DPS	2026-11-10	DpsRace 1457/0/1; luacheck 0/0	DpsRace a597eaf; WowAddonStandards 4301cab; CommonTasks be4d49c
 M5	2026-11-10	LibKa0s 4300/0/3 of 4303 both profiles, release run 20261110-090851 green (0 over CCN 15), tag v1.95.0 re-cut local at 9645d18; QuickComms 1768/0/1 of 1769 both profiles, luacheck 0/0 in 172; standard v2.105.0 check-standard all ok; review 10 findings, 10 fixed	LibKa0s 9645d18; QuickComms 48c8d25; WowAddonStandards 15b60ae; LibKa0sSkinTester ff32e0a; DpsRace a597eaf
+M6	2026-11-10	finalized on owner go-ahead, smoke owed; standard renumbered v2.107.0	LibKa0s 4d3e6c3 (v1.95.0 pushed); LibKa0sSkinTester 6ac344a; QuickComms a9fcab6; DpsRace 1ff5057; WowAddonStandards a96a7db

@@ -23,3 +23,18 @@ What happened during the run that the frozen plan does not say. Newest last.
   settings panel* now show it ticked.
 - `resume-state.sh` counts `QFE-SMOKE` done once the sheet is committed. The smoke itself is owed until
   the owner's results are in `06_SMOKE_TESTS.md`.
+- **Finalize, 2026-11-10, on the owner's "merge all changes", before any smoke result was recorded.**
+  The owner's smoke in `06_SMOKE_TESTS.md` is still owed. Merged `--no-ff` into master and pushed:
+  LibKa0s `4d3e6c3` (tag `v1.95.0` pushed, at `9645d18`), LibKa0sSkinTester `6ac344a`, QuickComms `a9fcab6`,
+  DpsRace `1ff5057`, WowAddonStandards `a96a7db`, then this repo. The finalize doc sync added `QFE-FIN`
+  commits in LibKa0s (README counts and versions), QuickComms (vendored-version mentions, the
+  `char.role.last` line, a stale emote test name) and DpsRace (the test badge).
+- **The standard's version moved.** While the run was open, another session released standard v2.105.0
+  (single-client addons, the `Forever` Clients value) and v2.106.0 (the suite pins *Ignore settings panel*
+  on). The owner chose to renumber: this run's standard release is **v2.107.0**, merged over both.
+  Everything above that says "standard v2.105.0" means v2.107.0.
+- **Slip, recovered:** during the finalize a mis-chained command deleted this repo's remote feature branch.
+  It was pushed back at the same commit (`5ddc3a2`) within the minute. Nothing was lost.
+- **Open after the run:** v2.105.0's clients-§7 asks a single-client addon to record its reason in its
+  README **and** `docs/ARCHITECTURE.md`. DpsRace recorded it in README, DEPENDENCIES and `docs/scope.md`,
+  so its ARCHITECTURE line is owed. QuickComms#15 is left open until the owner's smoke.
