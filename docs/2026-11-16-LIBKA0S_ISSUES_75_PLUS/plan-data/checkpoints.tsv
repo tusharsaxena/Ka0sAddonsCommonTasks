@@ -1,1 +1,2 @@
 milestone	date	evidence	heads
+CP-A	2026-11-16	LibKa0s 4870 pass/0 fail/3 skip of 4873, luacheck 0/0 in 368 files, kit sync ok, max file 1399; release battery docs/automated-tests/20261116-184422 green (0 over CCN 15, no .lua change since); local tag v1.105.0 -> 79b1d9c4 (not pushed); standard check-standard all pass (v2.113.0 free on origin, origin at v2.112.2); dev-copilot 8 suites ok, 14 overlays, manifests parse	LibKa0s 79b1d9c4, WowAddonStandards 1ccd401, dev-copilot d510e3f (pushed)
