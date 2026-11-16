@@ -13,8 +13,8 @@ while IFS=$'\t' read -r id ms repo title deps rest; do
   total=$((total+1)); d="$GIT/$repo"; state=TODO; pat="(^|\+ )$id(:| \+)"
   if cut -f1 "$HERE/exceptions.tsv" | grep -qx "$id"; then state=DONE-EXC
   elif git -C "$d" rev-parse -q --verify "$BR" >/dev/null 2>&1 &&
-       git -C "$d" log "$BR" --since=2026-11-16 --format=%s | grep -qE "$pat"; then state=DONE
-  elif git -C "$d" log "$(defbr "$d")" --since=2026-11-16 --format=%s 2>/dev/null | grep -qE "$pat"; then state=DONE-MERGED
+       git -C "$d" log "$BR" --since=2026-11-16T00:00 --format=%s | grep -qE "$pat"; then state=DONE
+  elif git -C "$d" log "$(defbr "$d")" --since=2026-11-16T00:00 --format=%s 2>/dev/null | grep -qE "$pat"; then state=DONE-MERGED
   fi
   case $state in DONE*) done=$((done+1));; esac
   printf '%-7s %-3s %-29s %-11s %s\n' "$id" "$ms" "$repo" "$state" "${title:0:70}"
