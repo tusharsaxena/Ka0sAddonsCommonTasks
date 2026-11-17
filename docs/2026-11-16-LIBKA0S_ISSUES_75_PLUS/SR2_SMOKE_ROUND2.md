@@ -52,12 +52,36 @@ exists on `feat/2026-11-16-libka0s-75-plus` in its repo.
    their border (Azeroth's gold inner rule, Ember's amber inner rule composited over its edge). Popup, menu and
    tooltip edges are not changed; any still above 1px are listed as an owner call.
 
+## The owner's answers to round 1's four calls (2026-11-17)
+
+The owner took the lead's recommendation on all four.
+
+1. **HUD drag-strip tooltips stay beside the strip** (Aura Master, Absorb Tracker, Consumable Master, Kick CD).
+   No change.
+2. **Skill Master's block-header marks rest gray**, like every title-bar control. No change; the round 2 gold
+   rest (R8-3) is superseded.
+3. **Footer buttons follow ruling 4.** **SR2-L3:** a library window's footer button keeps its hover glow and
+   its label turns `text.link` under the pointer, held to the same floor as the title bar (ΔE00 ≥ 20 against
+   its rest label in every skin). **SR2-STD:** the standard's v2.113.0 wording (unreleased) covers footer
+   buttons.
+4. **Skin Tester's Ignore settings panel defaults to off.** **SR2-STP:** `defaults/Profile.lua` sets
+   `ignorePanel = false`, so its "(Scope: panel)" samples show skinned by default. Other addons keep their own
+   default.
+
+## Owner call this round surfaced
+
+- Popup and menu edges are still 2px in Azeroth and WoW Midnight. (Glass and WoW Default draw theirs from
+  nine-slice art.) Bring them to 1px too?
+
 ## Items
 
 | Id | Repo | What |
 |---|---|---|
 | SR2-L1 | LibKa0s | Title-bar hover ΔE00 ≥ 20 in every skin; Azeroth, Glass, Midnight and Forever raised to ≥ 25 |
 | SR2-L2 | LibKa0s | Window edges 1px like WoW Forever in Midnight, Azeroth and Ember |
+| SR2-L3 | LibKa0s | Footer button hover: glow kept, label `text.link`, ΔE00 ≥ 20 in every skin |
+| SR2-STD | WowAddonStandards | v2.113.0 (unreleased) wording covers footer buttons |
+| SR2-STP | LibKa0sSkinTester | Ignore settings panel defaults to off |
 | SR2-REL | LibKa0s | v1.105.0 release record amended (unreleased), release battery re-run |
 | SR2-<ABBR> | each addon | Re-copy the re-cut tag; gate under every roster client |
 | SR2-SMOKE | CommonTasks | The re-smoke sheet, `SR2_SMOKE.md` |
