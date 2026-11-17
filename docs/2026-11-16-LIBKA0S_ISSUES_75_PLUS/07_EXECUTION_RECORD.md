@@ -45,6 +45,22 @@ What actually happened, against `01_EXECUTION_PLAN.md`, which stays as it was wr
     (`rm <path> && git checkout -- <path>`) and then gated green.
 - **RV-LH** was finished on the corrected kit (`678a737`). Its leak gate passes at the default budget.
 
+- **Smoke round 1 (2026-11-17, 00:20–02:10).** SR-L1..L4, SR-REL and SR-STD in the libraries, then SR-<ABBR> in all 19
+  addons (`SR1_SMOKE_ROUND1.md`); checkpoint CP-SR1. The owner passed `SR1_SMOKE.md` with two pieces of feedback.
+- **Smoke round 2 (2026-11-17, 09:10–12:30).** `SR2_SMOKE_ROUND2.md`:
+  - **Hover:** a title-bar hover at least 20 CIEDE2000 off its rest in every skin. The owner's good/bad split fell
+    exactly on that line.
+  - **Edges:** 1px flat edges everywhere a skin does not draw them from art.
+  - **Footer and primary buttons:** footer button labels hover in color; primary buttons hover by their fill
+    (owner option C).
+  - **Skin Tester:** Ignore settings panel defaults to off.
+  - **Owner calls:** HUD strip tooltips stay beside the strip; Skill Master's block-header marks rest gray.
+  - **Addons:** five addon suites were re-pinned (BankLedger, MultiMeters, SkillMaster, QuickComms, LootHistory). No
+    test was weakened; each assumption was rebuilt with a test-local skin, or followed the suite's own floor rule.
+    Checkpoint CP-SR2.
+  - **AuraMaster:** its own session merged `master` into the run branch three times (`b29ccb3`, `a956d12`, `4d697f9`) to
+    load new presets in game; none touched `libs/` or `tests/_kit/`.
+
 ## Smoke checks added during execution
 
 `06_SMOKE_TESTS.md` is unchanged. These belong with it:
