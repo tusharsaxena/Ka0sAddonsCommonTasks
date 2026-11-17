@@ -78,6 +78,17 @@ The owner took the lead's recommendation on all four.
   draws. Nine-slice art edges (Glass, WoW Default) are untouched. A test pins it: every skin's flat window,
   popup, menu and tooltip edge is 1px.
 
+## Primary buttons (SR2-L3 review call, answered 2026-11-17)
+
+SR2-L3 exempted four skins' primary buttons (the skin picker's Apply) from the hover floor. On a bright
+primary fill, the only label that is both legible and 20 ΔE00 away is near-black. The four are Obsidian
+10.8, Glass 11.1, Ember 0.0 and WoW Forever 11.9. The owner chose option **C**.
+
+**SR2-L5:** a primary button hovers by changing its **fill**, not its label. The glow stays; the label
+keeps `btnPrimary.text`. A new `btnPrimary.hoverBg`, set per skin in its own palette, must be at least 20 ΔE00
+from `btnPrimary.bg`, with the label legible on it (at least the rest's contrast, or 4.5:1). The SR2-L3
+exemption ends. **SR2-STD** follows the wording.
+
 ## Items
 
 | Id | Repo | What |
@@ -86,6 +97,7 @@ The owner took the lead's recommendation on all four.
 | SR2-L2 | LibKa0s | Window edges 1px like WoW Forever in Midnight, Azeroth and Ember |
 | SR2-L3 | LibKa0s | Footer button hover: glow kept, label `text.link`, ΔE00 ≥ 20 in every skin |
 | SR2-L4 | LibKa0s | Every flat popup, menu and tooltip edge 1px (art edges untouched) |
+| SR2-L5 | LibKa0s | Primary buttons hover by fill (`btnPrimary.hoverBg`), ΔE00 ≥ 20, exemption ended |
 | SR2-STD | WowAddonStandards | v2.113.0 (unreleased) wording covers footer buttons |
 | SR2-STP | LibKa0sSkinTester | Ignore settings panel defaults to off |
 | SR2-REL | LibKa0s | v1.105.0 release record amended (unreleased), release battery re-run |
