@@ -82,3 +82,25 @@ phase [3] (`03_ADOPTION_PLAN.md`). Nothing was interviewed and nothing was filed
 
 Pushing the tag, merging and closing the built issues wait for the owner's smoke and go-ahead (`RESUME.md`
 step 5). Fetch WowAddonStandards and renumber v2.113.0 first if another session has released it.
+
+## Finalize (2026-11-17)
+
+The owner gave the go-ahead to merge **before** the re-smoke: "go ahead and merge, ill do the smoke tests later".
+**`SR2_SMOKE.md` is still owed** (8 checks); its result is recorded there when the owner runs it, and any
+failure becomes a follow-up on `master`.
+
+- **Standard number:** origin was still at v2.112.2, so v2.113.0 kept its number.
+- **Merges, `--no-ff`, in dependency order:** LibKa0s `7ea9d273`, then the 19 addons (AT `a2e0029`, AM `e2d12b8`,
+  BL `22299f3`, CT `e2276bd` on `main`, CM `04611e0`, DR `0c466e2`, DW `7ad3c0d`, KC `0f2af93`, ST `2a371f6`,
+  LH `ca64804`, MM `b11fc1d`, OR `20bc4d9`, PM `b37cf68`, PFE `4e5f2e0`, PGFE `7714718`, PC `0ef8cfa`,
+  QC `51692bb`, SM `aa06a14` on `main`, WG `a4d451c`), then WowAddonStandards `1f5767f` and dev-copilot `67914af`.
+  No default branch had moved, so every merge's tree equals the run branch head the lead gated at CP-SR2;
+  the gates were not re-run on identical trees. `check-standard` passed on the standard's merge.
+- **Docs:** each item moved its docs in its own commit; no separate `/dev-copilot:sync-docs` pass was run.
+- **Tags pushed:** LibKa0s `v1.105.0` (at `043842d0`), WowAddonStandards `v2.113.0` (annotated, on the merge).
+  dev-copilot 2.10.1 is untagged, as before.
+- **Issues (LibKa0s):** closed as `state:done` with evidence: #75, #78, #80, #81, #82, #84, #87, #90. #78's
+  M-5 was closed as will-not-do inside the issue. Commented and left open (`state:triaged`) for adoption: #79,
+  #86, #92. #88 and #89 are untouched (adoption only).
+- **Cleanup:** every run branch deleted, local and remote, in all 23 repos. DropWatcher ran in its main checkout
+  (no worktree was left); no run stash exists.
