@@ -72,6 +72,11 @@ The owner took the lead's recommendation on all four.
 
 - Popup and menu edges are still 2px in Azeroth and WoW Midnight. (Glass and WoW Default draw theirs from
   nine-slice art.) Bring them to 1px too?
+  **Answered (2026-11-17): yes, for every skin that does not draw its border from art.** **SR2-L4:** every
+  flat popup, menu and tooltip edge is 1px. That means Azeroth's popup, menu and tooltip edges, WoW Midnight's
+  popup and menu edges, and WoW Default's declared-but-unread 2px tooltip edge, so the declaration matches what
+  draws. Nine-slice art edges (Glass, WoW Default) are untouched. A test pins it: every skin's flat window,
+  popup, menu and tooltip edge is 1px.
 
 ## Items
 
@@ -80,6 +85,7 @@ The owner took the lead's recommendation on all four.
 | SR2-L1 | LibKa0s | Title-bar hover ΔE00 ≥ 20 in every skin; Azeroth, Glass, Midnight and Forever raised to ≥ 25 |
 | SR2-L2 | LibKa0s | Window edges 1px like WoW Forever in Midnight, Azeroth and Ember |
 | SR2-L3 | LibKa0s | Footer button hover: glow kept, label `text.link`, ΔE00 ≥ 20 in every skin |
+| SR2-L4 | LibKa0s | Every flat popup, menu and tooltip edge 1px (art edges untouched) |
 | SR2-STD | WowAddonStandards | v2.113.0 (unreleased) wording covers footer buttons |
 | SR2-STP | LibKa0sSkinTester | Ignore settings panel defaults to off |
 | SR2-REL | LibKa0s | v1.105.0 release record amended (unreleased), release battery re-run |
