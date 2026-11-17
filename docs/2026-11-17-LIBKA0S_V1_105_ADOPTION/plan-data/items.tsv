@@ -43,3 +43,21 @@ AD-86-QC	B	QuickComms	#86 W.HeaderButtons on own windows (settings mark) and the
 AD-86-SM	B	SkillMaster	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
 AD-86-WG	B	WhatGroup	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
 AD-SMOKE-B	B	Ka0sAddonsCommonTasks	Wave B smoke sheet and checkpoint
+AD-92-AT	C	AbsorbTracker	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-AM	C	AuraMaster	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-BL	C	BankLedger	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-CT	C	CombatTrail	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-CM	C	ConsumableMaster	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-DR	C	DpsRace	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-DW	C	DropWatcher	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-KC	C	KickCD	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-ST	C	LibKa0sSkinTester	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-LH	C	LootHistory	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-MM	C	MultiMeters	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-OR	C	OutfitterReborn	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-PGFE	C	PremadeGroupsFilterExtension	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-PC	C	PrettyChat	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-QC	C	QuickComms	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-SM	C	SkillMaster	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-WG	C	WhatGroup	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-SMOKE-C	C	Ka0sAddonsCommonTasks	Wave C smoke sheet and checkpoint
