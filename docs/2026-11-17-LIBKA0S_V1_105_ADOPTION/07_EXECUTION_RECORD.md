@@ -49,3 +49,26 @@
 - **Checkpoint CP-B:** the lead re-gated all 16 addons under each client they ship. All had 0 failed, luacheck 0/0,
   no vendored file changed, and no .lua file over 1500 lines (largest DpsRace 1486). The branches are pushed. The
   smoke sheet is `B_SMOKE.md`.
+
+## Wave C (2026-11-17 to 2026-11-18)
+
+- **Outage:** at about 23:00 on 2026-11-17 the WSL D: mount went to "Input/output error" mid-run, and every agent
+  stopped. Absorb Tracker and PGF Extension were committed; nine addons held half-done, uncommitted edits. When D:
+  came back, every touched repo passed `git fsck`. The first run's agent results were lost with its temp folder.
+- **Resume:** `plan-data/wave-c-resume-workflow.js` is a copy of `wave-c-workflow.js` (left unchanged) that tells
+  each agent to read and continue the half-done tree, never discard it. Run `wf_5328a36b-96e`: 46 agents, no
+  errors. 16 addons built, 13 reviews with findings, every finding fixed (four reviews asked for changes: Aura
+  Master, Combat Trail, Multi Meters, Outfitter Reborn).
+- **Not applicable:** Pretty Chat. Its only own tooltip is on the Settings canvas (`exceptions.tsv`).
+- **Owner rulings built:** Aura Master option B (cursor choice dropped, migrated to Bottom left); Multi Meters
+  option A ("Beside the window" default, "Beside, prefer left"; every saved value migrated).
+- **Owner calls raised** (current behavior kept until ruled; listed in `C_SMOKE.md`): Outfitter Reborn TP4 (does
+  the character sheet count as part of the window group), Skill Master SM-TIP-7 (block-header marks keep the
+  above-the-mark tooltip by smoke round 1 ruling 3), Dps Race HUD (beside rather than the attach fallback, DR-03).
+- **Notes from agents:** Loot History's leak gate has almost no headroom (about 255.8 of 256 MB), with library-side
+  retention through Skin owner listeners; Multi Meters places beside without a size inside the addon, and a size
+  override in LibKa0s-Tooltip-1.0 could be a later follow-up. Neither is filed yet.
+- **Checkpoint CP-C:** the lead re-gated all 17 addons under each client they ship: 0 failed everywhere, luacheck
+  0/0, no vendored file changed, no .lua file over 1500 lines in a touched addon (largest Dps Race 1489; Pretty
+  Chat's generated GlobalStrings.lua predates the run and was not touched). The 16 branches are pushed. The smoke
+  sheet is `C_SMOKE.md`.
