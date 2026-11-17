@@ -1,0 +1,25 @@
+id	wave	repo	title
+AD-DS-MM	A	MultiMeters	Default skin in the profile defaults (skinning-§2)
+AD-DS-PGFE	A	PremadeGroupsFilterExtension	Default skin in the profile defaults (skinning-§2)
+AD-DS-WG	A	WhatGroup	Default skin in the profile defaults (skinning-§2)
+AD-88-AT	A	AbsorbTracker	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-AM	A	AuraMaster	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-KC	A	KickCD	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-BL	A	BankLedger	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-CT	A	CombatTrail	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-DR	A	DpsRace	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-LH	A	LootHistory	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-ST	A	LibKa0sSkinTester	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-MM	A	MultiMeters	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-OR	A	OutfitterReborn	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-SM	A	SkillMaster	#88 docked test/sim strip (dock=title / dock=hud)
+AD-89-AM	A	AuraMaster	#89 W.Footer 24 px
+AD-89-BL	A	BankLedger	#89 W.Footer 24 px
+AD-89-CT	A	CombatTrail	#89 W.Footer 24 px
+AD-89-DR	A	DpsRace	#89 W.Footer 24 px
+AD-89-LH	A	LootHistory	#89 W.Footer 24 px
+AD-89-ST	A	LibKa0sSkinTester	#89 W.Footer 24 px
+AD-89-MM	A	MultiMeters	#89 W.Footer 24 px
+AD-89-OR	A	OutfitterReborn	#89 W.Footer 24 px
+AD-89-SM	A	SkillMaster	#89 W.Footer 24 px
+AD-SMOKE-A	A	Ka0sAddonsCommonTasks	Wave A smoke sheet and checkpoint

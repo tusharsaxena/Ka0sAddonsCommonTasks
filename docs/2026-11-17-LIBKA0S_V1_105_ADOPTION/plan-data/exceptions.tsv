@@ -1,0 +1,2 @@
+id	reason	proof
+AD-88-ST	Ruling 3: the showroom strips are widget specimens, not test-data markers	grep -n TestStrip ../LibKa0sSkinTester/modules/ShowroomOverlays.lua
