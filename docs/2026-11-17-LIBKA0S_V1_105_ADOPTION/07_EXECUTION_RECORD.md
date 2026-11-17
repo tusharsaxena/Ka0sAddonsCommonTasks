@@ -38,3 +38,14 @@
     **"Beside, prefer left"**.
   - Every saved value migrates to the default.
   - The offset X/Y settings stay as a nudge.
+
+## Wave B (2026-11-17)
+
+- **Build:** one agent per addon (19), each with an independent review. Every review finding was fixed in the same
+  run: 16 addons have commits, and two reviews asked for changes (Absorb Tracker docs, Multi Meters).
+- **Not applicable:** Panel Master, Party Frame Enhanced and Pretty Chat own no titled window and no drag strip.
+- **Library finding:** LibKa0s#96. `DragHandle:ApplyLevel` does not re-level the new settings mark. The smoke check
+  BAR-23 (Absorb Tracker) watches for it.
+- **Checkpoint CP-B:** the lead re-gated all 16 addons under each client they ship. All had 0 failed, luacheck 0/0,
+  no vendored file changed, and no .lua file over 1500 lines (largest DpsRace 1486). The branches are pushed. The
+  smoke sheet is `B_SMOKE.md`.

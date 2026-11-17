@@ -1,3 +1,6 @@
 id	reason	proof
 AD-88-ST	Ruling 3: the showroom strips are widget specimens, not test-data markers	grep -n TestStrip ../LibKa0sSkinTester/modules/ShowroomOverlays.lua
 AD-89-MM	The meter window draws no footer: the session line sits in the title band and the body is pinned to the frame bottom (wave A agent and review agree)	grep -n -i "footer" ../../../../MultiMeters/modules/Window_Frame.lua | head
+AD-86-PM	No window with title marks and no LibKa0s DragHandle (wave B agent, checked in code)	git -C ../PanelMaster ls-files "*.lua" | grep -v -e ^libs/ -e ^tests/_kit/ | xargs grep -n -E "HeaderButtons|DragHandle\(|TitleBar\(|MakeCloseButton\("
+AD-86-PFE	No window with title marks and no LibKa0s DragHandle (wave B agent, checked in code)	git -C ../PartyFrameEnhanced ls-files "*.lua" | grep -v -e ^libs/ -e ^tests/_kit/ | xargs grep -n -E "HeaderButtons|DragHandle\(|TitleBar\(|MakeCloseButton\("
+AD-86-PC	No window with title marks and no LibKa0s DragHandle (wave B agent, checked in code)	git -C ../PrettyChat ls-files "*.lua" | grep -v -e ^libs/ -e ^tests/_kit/ | xargs grep -n -E "HeaderButtons|DragHandle\(|TitleBar\(|MakeCloseButton\("
