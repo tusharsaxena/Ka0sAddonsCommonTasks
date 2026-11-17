@@ -1,0 +1,41 @@
+id	milestone	repo	title	deps	effort	smoke	source
+REC-00	M0	Ka0sAddonsCommonTasks	Bundle: rulings, design, plan, manifest, resume script	-	S	-	owner 2026-11-16
+ISS-00	M0	LibKa0s	GitHub: #75 note half 1 done; #76 evidence comment; #85 adoption note; #91 close + file dev-copilot and LibKa0s follow-ups; #83 untouched (no commit, exceptions.tsv)	-	XS	-	R6
+LK-P1	M1	LibKa0s	Peel OptionsSkinPicker.lua on its queue seam (no behavior change)	-	S	-	R9 M1
+LK-P2	M1	LibKa0s	Peel tests/test_launcher.lua under its 1200 trigger	-	XS	-	R9 M2
+LK-P3	M1	LibKa0s	Peel tests/test_debuglog.lua: core-skew cases to test_debuglog_coreskew.lua	-	XS	-	R1
+LK-75	M2	LibKa0s	#75 kit: strong hold while a frame has a raw event registration; regression test; kit rev 57	-	S	-	R1
+LK-78	M2	LibKa0s	#78 SimPanel default title PANEL_TITLE "%s - SIM"; Sim minor	-	XS	-	R1
+LK-82	M2	LibKa0s	#82 + #84 skin contrast: icon.hot/list.hover/stripe values, HC exemption, red-first contrast floors in test_skin_defs	-	M	SM-82 SM-84	R5
+LK-79	M3	LibKa0s	#79 D:Report, D:Serialize, plain-text Copy buffer with colored __view; stub members; docs	LK-P3	M	SM-79	R3
+LK-90	M3	LibKa0s	#90 console status line onto W.Footer 24 px (mono counter, text.muted, 4-line min); DebugLog key 23.11.1.5	LK-79	S	SM-90	R1 R9
+LK-92A	M4	LibKa0s	#92 new major LibKa0s-Tooltip-1.0: placers, solvers, TIP_GAP, kit mock_screen, tests, docs	LK-75	M	-	R2
+LK-92B	M4	LibKa0s	#92 move library sites onto the placers (IconBrowser, Dropdown, Reorder, SimPanel, DragHandle+peel, Charts ctx seam, Launcher drawTooltip, skin picker); grep guard	LK-92A LK-P1	M	SM-92	R2 R9
+LK-86	M5	LibKa0s	#86 W.HeaderButtons (extras, settings, close) + Core settings registry from Launcher; migrate library windows	LK-92B LK-90	M	SM-86	R4 R9
+LK-81	M5	LibKa0s	#81 Launcher extraEntries (max 2, between Show window and Open settings); one-consumer ruling recorded	LK-86 LK-P2	S	SM-81	R4
+LK-80	M6	LibKa0s	#80 W.Bar in WidgetsBar.lua (presets, pool helpers, owner repaint); one-consumer ruling recorded	LK-82	M	-	R4
+LK-87	M6	LibKa0s	#87 Sim.SAMPLE retail/forever + Sim.Sample(client); stub members; docs	LK-78	S	-	R6
+LK-REL	M7	LibKa0s	v1.105.0 release record: version block, docs/api, members JSON, CONSUMERS, CHANGELOG, automated-tests bundle, test-cases, local tag	LK-80 LK-87 LK-81	M	-	R9 §5
+STD-01	M7	WowAddonStandards	ADDONS.md: add Ka0s Combat Trail	-	XS	-	owner 2026-11-16
+STD-02	M7	WowAddonStandards	v2.113.0: rules for #79 #86 #81 #82 #87 #90 #92 wording, #78 M-2 M-4, owed-at-adoption clause, changelog + context pack	LK-REL STD-01	M	-	design §4
+DC-78	M7	dev-copilot	#78 nits: releases report game-versions column; no hard-coded interface numbers in bump-version profile; patch release	-	S	-	R1
+ST-82	M8	LibKa0sSkinTester	Skin Tester hot-state sample row (#82 smoke)	RV-ST	S	SM-82	R5 D-9
+RV-AT	M8	AbsorbTracker	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R7
+RV-AM	M8	AuraMaster	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R7
+RV-BL	M8	BankLedger	Re-vendor v1.105.0 + gate fixes + Ka0s Default fallbacks + bundle	LK-REL	S	SM-RV	R7
+RV-CT	M8	CombatTrail	Re-vendor v1.105.0 + gate fixes + stripe default (#84) + bundle	LK-REL	S	SM-RV SM-84	R7
+RV-CM	M8	ConsumableMaster	Re-vendor v1.105.0 + gate fixes (color-pin tests via view) + bundle	LK-REL	S	SM-RV	R7 R3
+RV-DR	M8	DpsRace	Re-vendor v1.105.0 + gate fixes + stripe default (#84) + bundle	LK-REL	S	SM-RV	R7
+RV-KC	M8	KickCD	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R7
+RV-ST	M8	LibKa0sSkinTester	Re-vendor v1.105.0 + loader list + gate fixes + bundle	LK-REL	S	SM-RV	R7
+RV-LH	M8	LootHistory	Re-vendor v1.105.0 + gate fixes + Ka0s Default fallbacks + bundle	LK-REL	S	SM-RV	R7
+RV-MM	M8	MultiMeters	Re-vendor v1.105.0 + gate fixes (Compat, font pin) + bundle	LK-REL	S	SM-RV	R8
+RV-OR	M8	OutfitterReborn	Re-vendor v1.105.0 + gate fixes + of.bar.worn to text.accent + bundle	LK-REL	S	SM-RV	R8 R5
+RV-PM	M8	PanelMaster	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R8
+RV-PFE	M8	PartyFrameEnhanced	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R8
+RV-PGFE	M8	PremadeGroupsFilterExtension	Re-vendor v1.105.0 + loader list + Compat + gate fixes + bundle	LK-REL	S	SM-RV	R8
+RV-PC	M8	PrettyChat	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R8
+RV-QC	M8	QuickComms	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R8
+RV-SM	M8	SkillMaster	Re-vendor v1.105.0 + gate fixes + bundle	LK-REL	S	SM-RV	R8
+RV-WG	M8	WhatGroup	Re-vendor v1.105.0 + loader list + Compat + gate fixes + bundle	LK-REL	S	SM-RV	R8
+RV-DW	M8	DropWatcher	Re-vendor v1.105.0 last (worktree if the other session's branch is still checked out) + gate fixes + bundle	LK-REL	S	SM-RV	R8

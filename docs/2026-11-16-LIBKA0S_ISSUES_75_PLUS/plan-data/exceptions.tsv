@@ -1,0 +1,2 @@
+id	claim	proof
+ISS-00	GitHub only: #75/#76/#85 comments (2026-11-15 21:29-21:30Z); #91 closed state:done with mapping comment; follow-ups dev-copilot#1 and LibKa0s#93 filed; #83 untouched	(cd ../LibKa0s && gh issue view 91 --json state,labels && gh issue view 93 --json title && gh issue view 75 --json comments --jq ".comments[-1].createdAt") && (cd ../dev-copilot && gh issue view 1 --json title)
