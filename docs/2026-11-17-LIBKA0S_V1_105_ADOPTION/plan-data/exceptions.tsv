@@ -1,2 +1,3 @@
 id	reason	proof
 AD-88-ST	Ruling 3: the showroom strips are widget specimens, not test-data markers	grep -n TestStrip ../LibKa0sSkinTester/modules/ShowroomOverlays.lua
+AD-89-MM	The meter window draws no footer: the session line sits in the title band and the body is pinned to the frame bottom (wave A agent and review agree)	grep -n -i "footer" ../../../../MultiMeters/modules/Window_Frame.lua | head

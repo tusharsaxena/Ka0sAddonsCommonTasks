@@ -1,1 +1,2 @@
 milestone	date	evidence	heads
+CP-A	2026-11-17	24/24 wave A items (2 exceptions); 13 reviews (2 changes fixed) + follow-up round in 9 addons; lead re-gate 0 failed under every client, luacheck 0/0, no libs/ or tests/_kit/ change, max .lua 1486; LibKa0s#95 filed	AT 84068c4 AM 5e4a7f9 KC ca0bb71 BL f95aa37 CT 00267fd DR 6c20909 LH 1fe28f1 ST 6aebbc4 MM e944ddb OR ba35233 SM d676341 PGFE 950e08b WG b496a3e (all pushed)
