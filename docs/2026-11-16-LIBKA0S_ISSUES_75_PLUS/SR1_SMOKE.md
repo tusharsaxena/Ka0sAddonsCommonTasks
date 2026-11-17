@@ -30,3 +30,10 @@ the addon ships on both. The checks in `06_SMOKE_TESTS.md` that passed in round 
    controls only. Extend it to footer buttons?
 4. **Skin Tester dropdowns** (round 1 item 1): unchanged. They are stock while Scope → Ignore settings panel is
    on, which is the default. Flip that default?
+
+## Owner result (2026-11-17)
+
+**Passed.** The owner reported "Smoke tests passed" for this sheet, apart from the feedback recorded in
+`SR2_SMOKE_ROUND2.md`: the hover colors in Azeroth, Glass, WoW Midnight and WoW Forever, and window border
+thickness. The four owner calls above were answered there as well. The owner did not report Retail and
+Forever separately, so this records one result for the sheet.
