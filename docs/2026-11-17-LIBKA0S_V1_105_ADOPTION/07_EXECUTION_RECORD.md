@@ -25,3 +25,16 @@
 - **Checkpoint CP-A:** the lead re-gated all 13 addons under each client they ship. All had 0 failed, luacheck 0/0,
   no vendored file changed, and no .lua file over 1500 lines (largest DpsRace `modules/Hud_States.lua` 1486).
   The run branches are pushed. The smoke sheet is `A_SMOKE.md`.
+
+## Owner rulings for wave C (2026-11-17)
+
+- **Aura Master `tooltipAnchor`, option B.** The aura buttons' tooltips are placed by the client
+  (`SetTooltipAnchorPoint`), so standalone-windows *What it does not bind* (v2.112.1) puts them out of scope. The
+  owner still wants "At the cursor" gone. The setting keeps its six edge and corner choices and drops
+  `ANCHOR_CURSOR`. A saved `ANCHOR_CURSOR` migrates to the default, `ANCHOR_BOTTOMLEFT`.
+- **Multi Meters `window.tooltip.anchor`, option A.** A meter row is a body element, so its tooltip opens beside
+  the window group.
+  - The choices become **"Beside the window"** (the default: right, flipping left when there is no room) and
+    **"Beside, prefer left"**.
+  - Every saved value migrates to the default.
+  - The offset X/Y settings stay as a nudge.
