@@ -61,3 +61,68 @@ AD-92-QC	C	QuickComms	#92 tooltip placers (PlaceBeside / PlaceAttached), no curs
 AD-92-SM	C	SkillMaster	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
 AD-92-WG	C	WhatGroup	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
 AD-SMOKE-C	C	Ka0sAddonsCommonTasks	Wave C smoke sheet and checkpoint
+AD-79-AT	D	AbsorbTracker	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-AT	D	AbsorbTracker	#87 shared sample characters via Sim.Sample(client)
+AD-82-AT	D	AbsorbTracker	#82 host *.hot owner tokens at the new contrast floors
+AD-79-AM	D	AuraMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-AM	D	AuraMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-AM	D	AuraMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-BL	D	BankLedger	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-BL	D	BankLedger	#87 shared sample characters via Sim.Sample(client)
+AD-82-BL	D	BankLedger	#82 host *.hot owner tokens at the new contrast floors
+AD-79-CT	D	CombatTrail	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-CT	D	CombatTrail	#87 shared sample characters via Sim.Sample(client)
+AD-82-CT	D	CombatTrail	#82 host *.hot owner tokens at the new contrast floors
+AD-79-CM	D	ConsumableMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-CM	D	ConsumableMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-CM	D	ConsumableMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-DR	D	DpsRace	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-DR	D	DpsRace	#87 shared sample characters via Sim.Sample(client)
+AD-82-DR	D	DpsRace	#82 host *.hot owner tokens at the new contrast floors
+AD-79-DW	D	DropWatcher	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-DW	D	DropWatcher	#87 shared sample characters via Sim.Sample(client)
+AD-82-DW	D	DropWatcher	#82 host *.hot owner tokens at the new contrast floors
+AD-79-KC	D	KickCD	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-KC	D	KickCD	#87 shared sample characters via Sim.Sample(client)
+AD-82-KC	D	KickCD	#82 host *.hot owner tokens at the new contrast floors
+AD-79-ST	D	LibKa0sSkinTester	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-ST	D	LibKa0sSkinTester	#87 shared sample characters via Sim.Sample(client)
+AD-82-ST	D	LibKa0sSkinTester	#82 host *.hot owner tokens at the new contrast floors
+AD-79-LH	D	LootHistory	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-LH	D	LootHistory	#87 shared sample characters via Sim.Sample(client)
+AD-82-LH	D	LootHistory	#82 host *.hot owner tokens at the new contrast floors
+AD-79-MM	D	MultiMeters	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-MM	D	MultiMeters	#87 shared sample characters via Sim.Sample(client)
+AD-82-MM	D	MultiMeters	#82 host *.hot owner tokens at the new contrast floors
+AD-79-OR	D	OutfitterReborn	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-OR	D	OutfitterReborn	#87 shared sample characters via Sim.Sample(client)
+AD-82-OR	D	OutfitterReborn	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PM	D	PanelMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PM	D	PanelMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-PM	D	PanelMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PFE	D	PartyFrameEnhanced	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PFE	D	PartyFrameEnhanced	#87 shared sample characters via Sim.Sample(client)
+AD-82-PFE	D	PartyFrameEnhanced	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PGFE	D	PremadeGroupsFilterExtension	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PGFE	D	PremadeGroupsFilterExtension	#87 shared sample characters via Sim.Sample(client)
+AD-82-PGFE	D	PremadeGroupsFilterExtension	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PC	D	PrettyChat	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PC	D	PrettyChat	#87 shared sample characters via Sim.Sample(client)
+AD-82-PC	D	PrettyChat	#82 host *.hot owner tokens at the new contrast floors
+AD-79-QC	D	QuickComms	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-QC	D	QuickComms	#87 shared sample characters via Sim.Sample(client)
+AD-82-QC	D	QuickComms	#82 host *.hot owner tokens at the new contrast floors
+AD-79-SM	D	SkillMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-SM	D	SkillMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-SM	D	SkillMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-WG	D	WhatGroup	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-WG	D	WhatGroup	#87 shared sample characters via Sim.Sample(client)
+AD-82-WG	D	WhatGroup	#82 host *.hot owner tokens at the new contrast floors
+AD-80-SM	D	SkillMaster	#80 NS.Bar -> W.Bar, delete modules/Bar.lua, remap bonus tokens
+AD-81-SM	D	SkillMaster	#81 launcher extraEntries: Journal
+AD-81-STD	D	WowAddonStandards	#81 ADDONS.md launcher column gains '· Journal' for Skill Master
+AD-85-DR	D	DpsRace	#85 Callout major replaces modules/Countdown.lua
+AD-85-DW	D	DropWatcher	#85 Callout: not now (recorded on LibKa0s#85)
+AD-85-QC	D	QuickComms	#85 Callout: not now (recorded on LibKa0s#85)
+AD-85-SM	D	SkillMaster	#85 Callout: never (recorded on LibKa0s#85)
+AD-SMOKE-D	D	Ka0sAddonsCommonTasks	Wave D smoke sheet and checkpoint
