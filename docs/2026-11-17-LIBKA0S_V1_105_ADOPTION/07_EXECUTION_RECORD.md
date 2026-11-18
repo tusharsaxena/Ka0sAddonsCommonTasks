@@ -72,3 +72,24 @@
   0/0, no vendored file changed, no .lua file over 1500 lines in a touched addon (largest Dps Race 1489; Pretty
   Chat's generated GlobalStrings.lua predates the run and was not touched). The 16 branches are pushed. The smoke
   sheet is `C_SMOKE.md`.
+
+## Wave D (2026-11-18)
+
+- **Manifest:** 65 items (`0b8ec65`): #79, #87 and #82 in all 19 addons, AD-80-SM, AD-81-SM, AD-81-STD, AD-85-DR/DW/QC/SM
+  and the checkpoint. Run `wf_d6ff4ee7-f70` (`plan-data/wave-d-workflow.js`): 56 agents, no errors, no library
+  blocker. 18 addons had commits and were reviewed; six reviews asked for changes (Combat Trail, Dps Race, Drop
+  Watcher, Multi Meters, Outfitter Reborn, Party Frame Enhanced), and every finding was fixed or answered.
+- **Built:** report verbs onto `D:Report` in 17 addons (none in PGF Extension or What Group); shared sample
+  characters in 10 (BL, CT, DR, DW, KC, LH, MM, OR, QC, SM, WG); row floors in Drop Watcher (expanded-row wash) and
+  Multi Meters (stripe .08, hover .15); Skill Master on `W.Bar` with a Journal launcher entry; Dps Race's countdown on
+  LibKa0s-Callout-1.0 (`modules/Countdown.lua` deleted).
+- **Standard:** v2.113.1 on the run branch (`b537b06`): Skill Master's launcher column lists Journal. Renumber before
+  finalize if origin/master has moved.
+- **Not applicable:** 29 rows in `exceptions.tsv`, each with the agent's proof command. The #85 decisions (Dps Race
+  adopted; Drop Watcher and Quick Comms not now; Skill Master never) are recorded on LibKa0s#85.
+- **Owner calls:** 14, listed in `D_SMOKE.md` (report routing edges, sample-character choices, real names in docs,
+  the Multi Meters and Drop Watcher row tints, the Dps Race countdown's look).
+- **Checkpoint CP-D:** the lead re-gated all 19 addons under each client they ship: 30 runs with 0 failed, luacheck
+  0/0, no vendored file changed, no authored .lua over 1500 lines (largest Dps Race 1489). The 19 run branches and the
+  standard's are pushed (three new on GitHub: Panel Master, Party Frame Enhanced, Pretty Chat). The smoke sheet is
+  `D_SMOKE.md`.
