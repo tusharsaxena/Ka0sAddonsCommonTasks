@@ -80,7 +80,7 @@
   blocker. 18 addons had commits and were reviewed; six reviews asked for changes (Combat Trail, Dps Race, Drop
   Watcher, Multi Meters, Outfitter Reborn, Party Frame Enhanced), and every finding was fixed or answered.
 - **Built:** report verbs onto `D:Report` in 17 addons (none in PGF Extension or What Group); shared sample
-  characters in 10 (BL, CT, DR, DW, KC, LH, MM, OR, QC, SM, WG); row floors in Drop Watcher (expanded-row wash) and
+  characters in 12 (BL, CT, DR, DW, KC, LH, MM, OR, PFE, QC, SM, WG); row floors in Drop Watcher (expanded-row wash) and
   Multi Meters (stripe .08, hover .15); Skill Master on `W.Bar` with a Journal launcher entry; Dps Race's countdown on
   LibKa0s-Callout-1.0 (`modules/Countdown.lua` deleted).
 - **Standard:** v2.113.1 on the run branch (`b537b06`): Skill Master's launcher column lists Journal. Renumber before
