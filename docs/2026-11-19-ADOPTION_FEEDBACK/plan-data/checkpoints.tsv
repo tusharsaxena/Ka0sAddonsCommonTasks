@@ -1,1 +1,2 @@
 date	checkpoint	evidence	heads
+2026-11-19	CP-1	all 21 repos green on every shipped client (LibKa0s 4949/0/3; addons per 99_EXECUTION_RECORD.md CP-1), luacheck 0/0, test-cases in step; tags not pushed	LibKa0s 87ae35f3, WowAddonStandards 3668b89, AT 37a8638, AM ffeaa16, BL 20320f7, CT d3c6c9b, CM a4330fd, DW 53e1804, KC 5f9d0c5, ST 06f8d8a, LH d8437af, MM 5ff37cf, OR 7295c27, PM 0f4a663, PFE 132b941, PGFE ccae1e7, PC 0085585, QC b62f263, RM c56ef85, SM 3932243, WG 70616c3
