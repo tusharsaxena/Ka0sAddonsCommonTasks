@@ -22,3 +22,9 @@ Run each check on Retail and WoW Forever wherever the addon ships on both. Check
 - The HUD drag strips of Aura Master, Absorb Tracker, Consumable Master and Kick CD keep their tooltip
   **beside** the strip.
 - Skill Master's block-header marks rest **gray**.
+
+## Owner result (2026-11-17)
+
+**Passed.** The owner reported "all pass" for this sheet after the run had been merged, which the owner had
+approved before the re-smoke. The owner did not report Retail and Forever separately, so this records one
+result for all eight checks.

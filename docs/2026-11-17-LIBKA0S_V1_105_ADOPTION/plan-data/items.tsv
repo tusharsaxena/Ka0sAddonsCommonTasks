@@ -1,0 +1,128 @@
+id	wave	repo	title
+AD-DS-MM	A	MultiMeters	Default skin in the profile defaults (skinning-§2)
+AD-DS-PGFE	A	PremadeGroupsFilterExtension	Default skin in the profile defaults (skinning-§2)
+AD-DS-WG	A	WhatGroup	Default skin in the profile defaults (skinning-§2)
+AD-88-AT	A	AbsorbTracker	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-AM	A	AuraMaster	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-KC	A	KickCD	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-BL	A	BankLedger	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-CT	A	CombatTrail	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-DR	A	DpsRace	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-LH	A	LootHistory	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-ST	A	LibKa0sSkinTester	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-MM	A	MultiMeters	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-OR	A	OutfitterReborn	#88 docked test/sim strip (dock=title / dock=hud)
+AD-88-SM	A	SkillMaster	#88 docked test/sim strip (dock=title / dock=hud)
+AD-89-AM	A	AuraMaster	#89 W.Footer 24 px
+AD-89-BL	A	BankLedger	#89 W.Footer 24 px
+AD-89-CT	A	CombatTrail	#89 W.Footer 24 px
+AD-89-DR	A	DpsRace	#89 W.Footer 24 px
+AD-89-LH	A	LootHistory	#89 W.Footer 24 px
+AD-89-ST	A	LibKa0sSkinTester	#89 W.Footer 24 px
+AD-89-MM	A	MultiMeters	#89 W.Footer 24 px
+AD-89-OR	A	OutfitterReborn	#89 W.Footer 24 px
+AD-89-SM	A	SkillMaster	#89 W.Footer 24 px
+AD-SMOKE-A	A	Ka0sAddonsCommonTasks	Wave A smoke sheet and checkpoint
+AD-86-AT	B	AbsorbTracker	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-AM	B	AuraMaster	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-BL	B	BankLedger	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-CT	B	CombatTrail	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-CM	B	ConsumableMaster	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-DR	B	DpsRace	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-DW	B	DropWatcher	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-KC	B	KickCD	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-ST	B	LibKa0sSkinTester	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-LH	B	LootHistory	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-MM	B	MultiMeters	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-OR	B	OutfitterReborn	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-PM	B	PanelMaster	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-PFE	B	PartyFrameEnhanced	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-PGFE	B	PremadeGroupsFilterExtension	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-PC	B	PrettyChat	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-QC	B	QuickComms	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-SM	B	SkillMaster	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-86-WG	B	WhatGroup	#86 W.HeaderButtons on own windows (settings mark) and the drag-handle settings mark
+AD-SMOKE-B	B	Ka0sAddonsCommonTasks	Wave B smoke sheet and checkpoint
+AD-92-AT	C	AbsorbTracker	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-AM	C	AuraMaster	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-BL	C	BankLedger	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-CT	C	CombatTrail	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-CM	C	ConsumableMaster	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-DR	C	DpsRace	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-DW	C	DropWatcher	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-KC	C	KickCD	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-ST	C	LibKa0sSkinTester	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-LH	C	LootHistory	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-MM	C	MultiMeters	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-OR	C	OutfitterReborn	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-PGFE	C	PremadeGroupsFilterExtension	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-PC	C	PrettyChat	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-QC	C	QuickComms	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-SM	C	SkillMaster	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-92-WG	C	WhatGroup	#92 tooltip placers (PlaceBeside / PlaceAttached), no cursor or corner anchors
+AD-SMOKE-C	C	Ka0sAddonsCommonTasks	Wave C smoke sheet and checkpoint
+AD-79-AT	D	AbsorbTracker	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-AT	D	AbsorbTracker	#87 shared sample characters via Sim.Sample(client)
+AD-82-AT	D	AbsorbTracker	#82 host *.hot owner tokens at the new contrast floors
+AD-79-AM	D	AuraMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-AM	D	AuraMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-AM	D	AuraMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-BL	D	BankLedger	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-BL	D	BankLedger	#87 shared sample characters via Sim.Sample(client)
+AD-82-BL	D	BankLedger	#82 host *.hot owner tokens at the new contrast floors
+AD-79-CT	D	CombatTrail	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-CT	D	CombatTrail	#87 shared sample characters via Sim.Sample(client)
+AD-82-CT	D	CombatTrail	#82 host *.hot owner tokens at the new contrast floors
+AD-79-CM	D	ConsumableMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-CM	D	ConsumableMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-CM	D	ConsumableMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-DR	D	DpsRace	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-DR	D	DpsRace	#87 shared sample characters via Sim.Sample(client)
+AD-82-DR	D	DpsRace	#82 host *.hot owner tokens at the new contrast floors
+AD-79-DW	D	DropWatcher	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-DW	D	DropWatcher	#87 shared sample characters via Sim.Sample(client)
+AD-82-DW	D	DropWatcher	#82 host *.hot owner tokens at the new contrast floors
+AD-79-KC	D	KickCD	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-KC	D	KickCD	#87 shared sample characters via Sim.Sample(client)
+AD-82-KC	D	KickCD	#82 host *.hot owner tokens at the new contrast floors
+AD-79-ST	D	LibKa0sSkinTester	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-ST	D	LibKa0sSkinTester	#87 shared sample characters via Sim.Sample(client)
+AD-82-ST	D	LibKa0sSkinTester	#82 host *.hot owner tokens at the new contrast floors
+AD-79-LH	D	LootHistory	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-LH	D	LootHistory	#87 shared sample characters via Sim.Sample(client)
+AD-82-LH	D	LootHistory	#82 host *.hot owner tokens at the new contrast floors
+AD-79-MM	D	MultiMeters	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-MM	D	MultiMeters	#87 shared sample characters via Sim.Sample(client)
+AD-82-MM	D	MultiMeters	#82 host *.hot owner tokens at the new contrast floors
+AD-79-OR	D	OutfitterReborn	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-OR	D	OutfitterReborn	#87 shared sample characters via Sim.Sample(client)
+AD-82-OR	D	OutfitterReborn	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PM	D	PanelMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PM	D	PanelMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-PM	D	PanelMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PFE	D	PartyFrameEnhanced	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PFE	D	PartyFrameEnhanced	#87 shared sample characters via Sim.Sample(client)
+AD-82-PFE	D	PartyFrameEnhanced	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PGFE	D	PremadeGroupsFilterExtension	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PGFE	D	PremadeGroupsFilterExtension	#87 shared sample characters via Sim.Sample(client)
+AD-82-PGFE	D	PremadeGroupsFilterExtension	#82 host *.hot owner tokens at the new contrast floors
+AD-79-PC	D	PrettyChat	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-PC	D	PrettyChat	#87 shared sample characters via Sim.Sample(client)
+AD-82-PC	D	PrettyChat	#82 host *.hot owner tokens at the new contrast floors
+AD-79-QC	D	QuickComms	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-QC	D	QuickComms	#87 shared sample characters via Sim.Sample(client)
+AD-82-QC	D	QuickComms	#82 host *.hot owner tokens at the new contrast floors
+AD-79-SM	D	SkillMaster	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-SM	D	SkillMaster	#87 shared sample characters via Sim.Sample(client)
+AD-82-SM	D	SkillMaster	#82 host *.hot owner tokens at the new contrast floors
+AD-79-WG	D	WhatGroup	#79 report verbs on D:Report (debug console, one chat pointer)
+AD-87-WG	D	WhatGroup	#87 shared sample characters via Sim.Sample(client)
+AD-82-WG	D	WhatGroup	#82 host *.hot owner tokens at the new contrast floors
+AD-80-SM	D	SkillMaster	#80 NS.Bar -> W.Bar, delete modules/Bar.lua, remap bonus tokens
+AD-81-SM	D	SkillMaster	#81 launcher extraEntries: Journal
+AD-81-STD	D	WowAddonStandards	#81 ADDONS.md launcher column gains '· Journal' for Skill Master
+AD-85-DR	D	DpsRace	#85 Callout major replaces modules/Countdown.lua
+AD-85-DW	D	DropWatcher	#85 Callout: not now (recorded on LibKa0s#85)
+AD-85-QC	D	QuickComms	#85 Callout: not now (recorded on LibKa0s#85)
+AD-85-SM	D	SkillMaster	#85 Callout: never (recorded on LibKa0s#85)
+AD-SMOKE-D	D	Ka0sAddonsCommonTasks	Wave D smoke sheet and checkpoint
