@@ -39,7 +39,7 @@ Master's anchors.
 | Kick CD | CAST-20, CAST-21, GRID-23, GRID-25 | The cast bar's and grids' strips. The Target bar's X also hides a linked Focus bar |
 | Loot History | HIST-50, HIST-51, ICON-7, SLASH-11 | The history browser's header lock mark, `/lh lock` and `/lh unlock` |
 | Quick Comms | PAD-18 to PAD-24 | Each pad's strip and header row carry lock, settings and close. Close hides that pad, per profile (a pad closed in one profile stays shown in another), and `/qc show` brings it back. In test mode the X says the pad hides when test mode ends |
-| Range Master | ANCHOR-9 | The anchor strip's marks, gear and X |
+| Range Master | ANCHOR-10 (ANCHOR-9 on the run branch; renumbered at the merge, see the execution record) | The anchor strip's marks, gear and X |
 | Skill Master (Forever) | SM-WIN-6 to SM-WIN-10, SM-DISP-64, SM-DISP-65 | The main window resize grip appears only while unlocked, snaps to the step grid and is capped by Master scale. The LDB tooltip never resizes. Set waypoint places a TomTom waypoint when TomTom is loaded, and leaves an earlier native pin alone |
 | Skin Tester | SHOW-56 | The showroom strip specimen shows the three marks |
 | WhatGroup | POPUP-14, SKIN-38, SLASH-13 | The popup's header lock mark and `/wg lock`. The bottom Close stays (a recorded deviation) |
@@ -48,3 +48,9 @@ Master's anchors.
 Multi Meters, Outfitter Reborn, Panel Master, Party Frame Enhanced and PGF Extension only
 re-vendored (and recorded a waiver row where ruled). They have no new checks: a clean load with no
 Lua error is the check.
+
+## Result
+
+**Passed in the client, 2026-11-19 (the owner): "smoke tests pass, go ahead and merge".** That covers every check
+above, including the AuraMaster preset-picker repro for LibKa0s#95. Combat Trail's call-out deviation row
+(LibKa0s#100) merges as written; the owner gave no separate ruling on it.

@@ -123,3 +123,38 @@ Skill Master ships WoW Forever only.
 WowAddonStandards `3668b89` passes `check-standard`. All 21 run branches are pushed with their `ka0s-review` notes
 where they exist. No tag is pushed: LibKa0s v1.107.0 is local, and the standard's v2.115.0 is cut at finalize.
 The owner's smoke sheet is `SMOKE.md`.
+
+## Finalized (2026-11-19, on the owner's go-ahead)
+
+The owner reported every SMOKE.md check passed and said to merge (see `SMOKE.md` → *Result*). This finalize did not
+run `/dev-copilot:sync-docs` over the 22 repos. Each item's agent and its independent review already brought the
+docs in step, and CP-1's gate checked the generated counts. No repo was left with a doc change.
+
+- **Order.** LibKa0s, then WowAddonStandards, then the 19 addons, then this repo. Every merge is `--no-ff`. Each
+  repo's vendored `libs/LibKa0s/` and `tests/_kit/` match LibKa0s master in content, apart from the declared icon
+  and sound prunes.
+- **Gate evidence.** On 21 of the repos, origin's default branch had not moved since the run branched. For those
+  the merge tree was checked to be identical to the branch tree gated at CP-1 (`git diff --quiet <branch> HEAD`).
+- **LibKa0s**: merge `140d56df`, tag **v1.107.0** pushed (at `87ae35f3`). LibKa0s#95 and #96 were closed with a
+  comment and `state:done`. LibKa0s#99 and #100 stay open.
+- **WowAddonStandards**: merge `f236fa0`, tag **v2.115.0** pushed (annotated, on the merge, as v2.113.0 is). No
+  other session had taken v2.115.0.
+- **Addons**: AbsorbTracker `030d6e9`, AuraMaster `178c309`, BankLedger `3205b7f`, CombatTrail `0ee871e`,
+  ConsumableMaster `75f87d6`, DropWatcher `755157c`, KickCD `dd9c401`, LibKa0sSkinTester `d9b1ed9`,
+  LootHistory `97cec5e`, MultiMeters `c9cba61`, OutfitterReborn `2755a0d`, PanelMaster `b1871ec`,
+  PartyFrameEnhanced `9f8147c`, PremadeGroupsFilterExtension `64f274f`, PrettyChat `5103580`, QuickComms
+  `0af3a12`, SkillMaster `21a93dd`, WhatGroup `dd61034`.
+- **RangeMaster** (`1d3d059`): its master had taken three merges from the other session (bandsets-rail,
+  nameplates-except-target, beyond-shows-oor), 11 commits. The merge ran in the scratch worktree at a detached
+  `origin/master`, so the main checkout was not touched until a clean fast-forward. Only docs conflicted:
+  - Both sides had added smoke check ANCHOR-9. Master's "All nameplates except target" keeps the number, and the
+    strip marks check becomes **ANCHOR-10**.
+  - The README badge and `docs/test-cases.md` were regenerated from the merged suite: 744 cases.
+  - The merge gate was 744/0/1 on Retail and Forever, luacheck 0/0, with no vendor drift.
+- **AF-DEFBR**: CombatTrail and SkillMaster were renamed `main` → `master` on GitHub, and their checkouts follow
+  `origin/master`. Every collection repo now reports `master` as its GitHub default, DpsRace included. Neither repo
+  named `main` in its files.
+- **AF-DR-ARCH**: the DpsRace GitHub repo is archived (an exceptions row, with no commit possible). It was fully
+  pushed first. The local checkout is kept.
+- **Clean-up**: every run branch is deleted locally and on origin, and the scratch RangeMaster worktree is removed.
+  The run made no stashes.

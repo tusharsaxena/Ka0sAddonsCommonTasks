@@ -16,7 +16,7 @@ them as `../<Repo>`.
   the collection. Leave them alone. `DpsRace` is retired (merged into Combat Trail, 2026-11-19; its GitHub repo is
   archived): keep its checkout and its journal history, but leave it out of every sweep.
 - Every collection repo's default branch is `master` (PremadeGroupsFilterExtension was renamed from `main` on
-  2026-10-24). Still detect it per repo rather than assuming. This repo's default branch is `master`.
+  2026-10-24, CombatTrail and SkillMaster on 2026-11-19). Still detect it per repo rather than assuming. This repo's default branch is `master`.
 
 Each repo has its own `CLAUDE.md`, and that file governs work inside the repo: its green gate, its
 standards-compliance rules and its conventions. When you work in `../<Repo>`, follow that repo's
