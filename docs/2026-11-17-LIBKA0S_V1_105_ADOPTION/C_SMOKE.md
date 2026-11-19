@@ -23,7 +23,7 @@ and on WoW Forever too where the addon ships there (**R·F**). Skill Master ship
 | Combat Trail (R·F) | SM-CT-H3, SM-CT-H18, SM-CT-N20, SM-CT-R28, SM-CT-R29, SM-CT-T15, SM-CT-RM96 | HUD lanes, Results, Timeline and Race tooltips beside their windows; chart hovers no longer at the cursor | |
 | Consumable Master (R·F) | BAR-41, BAR-42, BAR-9, BAR-10, BAR-40 | Macro bar and flyout entry tooltips beside the bar or flyout | |
 | Dps Race | SM-DR-AD92RUN, SM-DR-AD92DET, SM-DR-AD92CMP, SM-DR-AD92TL, SM-DR-AD92GV, SM-DR-AD92INS, SM-DR-AD92HUD, SM-DR-UT75, SM-DR-SF9 | Every window's body tooltips beside it; board tabs above; HUD spell rows beside the HUD (a recorded deviation, see the execution record) | |
-| Drop Watcher (R·F) | FEED-109, FEED-110, FEED-111 (FEED-26, FEED-27, FEED-29, COMPACT-7 superseded) | Content beside the window group, chrome above, Insights marks beside the window | |
+| Drop Watcher (R·F) | FEED-109, FEED-110, FEED-111 (FEED-26, FEED-27, FEED-29, COMPACT-7 superseded) | Content beside the window group, chrome above, Insights marks beside the window | PASS (owner, 2026-11-19) |
 | Kick CD | GRID-24, GRID-17, GRID-23, CAST-10, CAST-15, CAST-20, LAYER-9 | Icon grid tooltips beside the grid, including late growth | |
 | Skin Tester (R·F) | SHOW-55 | The Overlays sample tooltip opens beside the showroom | |
 | Loot History | HIST-49, TL-19, LED-14, INS-18, TL-15 | History, Timeline, Ledger and Insights tooltips beside the browser; late growth | |

@@ -21,7 +21,7 @@ and on WoW Forever too where the addon ships there (**R·F**). Skill Master ship
 | Combat Trail (R·F) | SM-CT-H17, SM-CT-R27, SM-CT-T12, SM-CT-T13, SM-CT-T14, SM-CT-RM95, SM-CT-RM49, SM-CT-RM67 | All six windows; the HUD reads Results, Race, Lock, Settings, Close | |
 | Consumable Master (R·F) | BAR-40, BAR-10, BAR-38, SKIN-4 | The gear on the macro bar's drag strip | |
 | Dps Race | SM-DR-AD86HUD, SM-DR-AD86RES, SM-DR-AD86TL, SM-DR-AD86GV, SM-DR-AD86SK, H6 | All four windows; the HUD reads Results, lock, settings, close | |
-| Drop Watcher (R·F) | FEED-108 | Every window's marks with settings | |
+| Drop Watcher (R·F) | FEED-108 | Every window's marks with settings | PASS (owner, 2026-11-19) |
 | Kick CD | GRID-23, CAST-20, SKIN-46, SKIN-47 | The gear on the icon grid and cast bar drag strips | |
 | Skin Tester (R·F) | SHOW-54, SHOW-50 | Showroom: settings · close | |
 | Loot History | HIST-47, HIST-48, HIST-22 | History and export windows: settings · close | |

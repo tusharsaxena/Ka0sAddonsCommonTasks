@@ -93,3 +93,16 @@
   0/0, no vendored file changed, no authored .lua over 1500 lines (largest Dps Race 1489). The 19 run branches and the
   standard's are pushed (three new on GitHub: Panel Master, Party Frame Enhanced, Pretty Chat). The smoke sheet is
   `D_SMOKE.md`.
+
+## Drop Watcher merged ahead of the run (2026-11-19)
+
+- **Why:** the owner reported that Jade, an Uncommon crafting reagent, never reached Drop Watcher's feed. The fix is
+  DW-RG1 (`f86b48f`): crafting reagents, the Trade Goods class, are their own item kind, on by default, and still
+  held to the minimum quality. The owner then chose to merge Drop Watcher's whole run branch rather than DW-RG1 alone.
+- **Merged:** `0290fa8`, `--no-ff` into Drop Watcher's master, gated (Retail 2646/0, Forever 2538/0, luacheck 0/0)
+  and pushed. The run branch is deleted locally and on origin. The other 21 repos stay on the run branch.
+  `resume-state.sh` reports Drop Watcher's items as DONE-MERGED, so finalize must skip Drop Watcher.
+- **Smoke:** the owner reported on 2026-11-19 that Drop Watcher's wave B, C and D checks (FEED-108; FEED-109 to
+  FEED-111; SLASH-10, SLASH-5, STATE-11, SKIN-52) and COLL-10 (DW-RG1) passed. The sheets record PASS. Drop Watcher's
+  own `docs/smoke-tests.md` Result lines are not written yet, because its working tree is on another session's
+  `feat/2026-11-19-revendor-libka0s-v1.106.0` branch.

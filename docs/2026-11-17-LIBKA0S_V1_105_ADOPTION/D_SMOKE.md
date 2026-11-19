@@ -21,7 +21,7 @@ and on WoW Forever too where the addon ships there (**R·F**). Skill Master ship
 | Combat Trail (R·F) | SM-CT-N21, SM-CT-D13, SM-CT-S12, SM-CT-D2, SM-CT-M6, SM-CT-P9 | `/ct ignore list`, `/ct dummy show` and `/ct race ignore show` are reports; the mock fights use the shared hunter and pet (Mockfang, alt pet Mockclaw) | |
 | Consumable Master (R·F) | SLASH-18, SLASH-17 | `dump` and the list verbs go through the library's Report and serializer | |
 | Dps Race | SM-DR-AD79IG, SM-DR-AD79EM, SM-DR-AD79TD, SM-DR-AD79CP, SM-DR-AD87, SM-DR-AD85A, SM-DR-AD85B, SM-DR-AD85C, SM-DR-AD85D | Ignore lists are reports; shared sample names; **the race's final-seconds countdown is now LibKa0s Callout** (gold, same position, new font and slam in place of Blizzard's BigGold digits) | |
-| Drop Watcher (R·F) | SLASH-10, SLASH-5, STATE-11, SKIN-52 | `/dw scan` and other reports; shared sample names (the seeded crowd stays); an expanded row's wash clears the new row floors under Ka0s Default | |
+| Drop Watcher (R·F) | SLASH-10, SLASH-5, STATE-11, SKIN-52 | `/dw scan` and other reports; shared sample names (the seeded crowd stays); an expanded row's wash clears the new row floors under Ka0s Default | PASS (owner, 2026-11-19) |
 | Kick CD | DIAG-49, DIAG-1, DIAG-2, DIAG-5, DEGRADED-15, DEGRADED-17, SIM-20, SIM-14, SIM-10 | `/kcd spells list` and the `/kcd debug …` dumps are reports; the sim uses shared names | |
 | Skin Tester (R·F) | SLASH-6 | `/st widths` is a report | |
 | Loot History | LED-7, TM-3, SIM-15, SIM-5 | `/lh holdings <query>` is a report (every match); the `<Class>-Ravencrest` characters are the shared set and the sim alt is on Samplerealm | |
