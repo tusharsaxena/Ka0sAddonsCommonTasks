@@ -1,0 +1,51 @@
+id	milestone	repo	title
+AF-LK-01	M1	LibKa0s	DragHandle marks: [?][settings][close] order, settings+close default on, tighter gap, window-header tints
+AF-LK-02	M1	LibKa0s	DragHandle tooltip always above the strip (tooltipPlace no longer moves a strip tooltip)
+AF-DR-LK	M1	LibKa0s	DpsRace retired: CONSUMERS and live docs
+AF-LK-03	M1	LibKa0s	Release v1.107.0: automated-tests record, CHANGELOG, local tag
+AF-STD-01	M1	WowAddonStandards	HUD header rule (primary: close+settings+lock; secondary: close; controls never in a footer) and the strip mark order
+AF-STD-02	M1	WowAddonStandards	DpsRace retired from ADDONS.md and every live mention
+AF-STD-03	M1	WowAddonStandards	Release record: version, changelog, context pack
+AF-DR-DC	M1	dev-copilot	DpsRace retired: live mentions in the plugin
+AF-DR-CT	M1	Ka0sAddonsCommonTasks	DpsRace retired: live CommonTasks docs
+AF-RV-AT	M2	AbsorbTracker	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-AM	M2	AuraMaster	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-BL	M2	BankLedger	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-CT	M2	CombatTrail	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-CM	M2	ConsumableMaster	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-DW	M2	DropWatcher	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-KC	M2	KickCD	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-ST	M2	LibKa0sSkinTester	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-LH	M2	LootHistory	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-MM	M2	MultiMeters	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-OR	M2	OutfitterReborn	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-PM	M2	PanelMaster	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-PFE	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-PGFE	M2	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-PC	M2	PrettyChat	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-QC	M2	QuickComms	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-RM	M2	RangeMaster	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-SM	M2	SkillMaster	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-RV-WG	M2	WhatGroup	Re-vendor LibKa0s v1.107.0 and the standard reference
+AF-STRIP-AT	M2	AbsorbTracker	Drag strips: wire settings and close on every strip, drop the strip tooltipPlace hook
+AF-STRIP-AM	M2	AuraMaster	Drag strips: wire settings and close on every strip, drop the strip tooltipPlace hook
+AF-STRIP-CM	M2	ConsumableMaster	Drag strips: wire settings and close on every strip, drop the strip tooltipPlace hook
+AF-STRIP-KC	M2	KickCD	Drag strips: wire settings and close on every strip, drop the strip tooltipPlace hook
+AF-STRIP-QC	M2	QuickComms	Drag strips: wire settings and close on every strip, drop the strip tooltipPlace hook
+AF-STRIP-RM	M2	RangeMaster	Drag strips: wire settings and close on every strip, drop the strip tooltipPlace hook
+AF-HDR-BL	M2	BankLedger	Ledger browser header lock (settings.locked) + /bl lock
+AF-HDR-LH	M2	LootHistory	History browser header lock (settings.locked) + /lh lock
+AF-HDR-QC	M2	QuickComms	Pad header: settings, lock and close (per-pad hide, restorable)
+AF-HDR-WG	M2	WhatGroup	Group popup header lock + /wg lock; bottom Close kept as a deviation row
+AF-WVR-ST	M2	LibKa0sSkinTester	Deviation row: the showroom has no lock (dev tool)
+AF-WVR-OR	M2	OutfitterReborn	Deviation row: the docked outfit window has no lock
+AF-WVR-SM	M2	SkillMaster	Deviation row: detached and group windows have no close (dock is the way back)
+AF-WVR-PGFE	M2	PremadeGroupsFilterExtension	Deviation row: the docked filter panel has no close
+AF-CT-TEX	M2	CombatTrail	Every bar takes the active skin's statusbar texture by default (HUD, Results, Compare, Timeline)
+AF-SM-RESIZE	M2	SkillMaster	Main window drag resizer, gated by /sm lock and the lock mark; the LDB tooltip never resizes
+AF-SM-TOMTOM	M2	SkillMaster	Set waypoint with TomTom installed: place a TomTom waypoint (native pin otherwise)
+AF-DW-TIP	M2	DropWatcher	Tooltips flush to the main window unless that overlaps the Rolls companion, then beside it as today
+AF-DW-ROLLHDR	M2	DropWatcher	Roll popup companion: a small Drop Watcher header in the main header style, no controls
+AF-SMOKE	M3	Ka0sAddonsCommonTasks	Checkpoint CP-1: re-gate, push, smoke sheet, execution record
+AF-DR-ARCH	M4	DpsRace	Archive the DpsRace GitHub repo (after merge)
+AF-DEFBR	M4	Ka0sAddonsCommonTasks	Default branch master for every collection repo (CombatTrail and SkillMaster are main)
