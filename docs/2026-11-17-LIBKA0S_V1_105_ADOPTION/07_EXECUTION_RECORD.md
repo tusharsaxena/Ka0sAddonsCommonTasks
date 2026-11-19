@@ -106,3 +106,18 @@
   FEED-111; SLASH-10, SLASH-5, STATE-11, SKIN-52) and COLL-10 (DW-RG1) passed. The sheets record PASS. Drop Watcher's
   own `docs/smoke-tests.md` Result lines are not written yet, because its working tree is on another session's
   `feat/2026-11-19-revendor-libka0s-v1.106.0` branch.
+
+## Finalized (2026-11-19)
+
+- **Smoke:** the owner reported that every wave A–D check passed (2026-11-19) and gave the go-ahead to merge.
+- **After CP-D:** another session re-vendored LibKa0s v1.106.0 (Widgets minor 28) onto every run branch, and onto Drop
+  Watcher's own `feat/2026-11-19-revendor-libka0s-v1.106.0`. That was the only commit after CP-D. The lead re-gated all
+  19 trees under every client they ship: 0 failed everywhere and luacheck 0/0.
+- **Merged `--no-ff` and pushed**, with the run branch deleted locally and on origin: AbsorbTracker e16da97, AuraMaster
+  adba7af, BankLedger 97a25e5, CombatTrail 5d554ca (main), ConsumableMaster 4e6b02e, DpsRace 19be1ed, KickCD eaa08e4,
+  LibKa0sSkinTester c20eab5, LootHistory e599597, MultiMeters 4685314, OutfitterReborn bbbbaca, PanelMaster 94f16f3,
+  PartyFrameEnhanced 0bf054d, PremadeGroupsFilterExtension a9f07d2, PrettyChat adf11ea, QuickComms 67e3dc6,
+  SkillMaster ea2d7bf (main), WhatGroup 9aad0d3. Also Drop Watcher's v1.106.0 branch (510c600). WowAddonStandards had
+  already been merged by another session (c4a76a5).
+- **Issues closed as adopted:** LibKa0s #79, #85, #86, #88, #89, #92.
+- **Owner feedback on the smoke** opens the next run: `docs/2026-11-19-ADOPTION_FEEDBACK/`.
