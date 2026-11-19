@@ -1,0 +1,3 @@
+id	reason	proof
+AF-DR-DC	dev-copilot names no addon: it reads the roster from ADDONS.md, so retiring DpsRace there retires it here	grep -rn -i "dpsrace\|dps race" ../../../../dev-copilot --exclude-dir=.git | wc -l
+AF-DR-ARCH	Archiving is a GitHub setting with no commit; the archived repo is read-only, so no AF-DR-ARCH commit can land in it	gh repo view tusharsaxena/DpsRace --json isArchived -q .isArchived
