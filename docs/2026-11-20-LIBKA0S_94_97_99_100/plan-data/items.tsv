@@ -1,0 +1,53 @@
+id	milestone	repo	title
+SD-PLAN	M0	Ka0sAddonsCommonTasks	Run bundle: plan, resume state, items
+SD-AUDIT	M0	Ka0sAddonsCommonTasks	#97 skin-defaults audit bundle (docs/2026-11-20-SKIN_DEFAULTS_AUDIT), frozen
+SD-RULE	M0	Ka0sAddonsCommonTasks	Owner rulings on the unclear audit rows, recorded in the run bundle
+SD-LK-94	M1	LibKa0s	Footer lays out only the shown marks; re-lays on a mark show/hide
+SD-LK-99	M1	LibKa0s	DragHandleTip: above the nearest readable ancestor when the strip rect reads secret
+SD-LK-100	M1	LibKa0s	Callout passes onClose and onSettings to its drag strip
+SD-LK-97	M1	LibKa0s	Library skin-default gaps from the audit
+SD-LK-GUARD	M1	LibKa0s	Kit guard: a skinned surface draws the active skin statusbar texture
+SD-LK-REL	M1	LibKa0s	Release v1.108.0: automated-tests record, CHANGELOG, local tag
+SD-STD	M1	WowAddonStandards	Skinning rule for option defaults following the skin and the guard; release
+SD-RV-AT	M2	AbsorbTracker	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-AT	M2	AbsorbTracker	#97 skin-default gap fixes and guard declaration
+SD-RV-AM	M2	AuraMaster	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-AM	M2	AuraMaster	#97 skin-default gap fixes and guard declaration
+SD-RV-BL	M2	BankLedger	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-BL	M2	BankLedger	#97 skin-default gap fixes and guard declaration
+SD-RV-CT	M2	CombatTrail	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-CT	M2	CombatTrail	#97 skin-default gap fixes and guard declaration
+SD-RV-CM	M2	ConsumableMaster	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-CM	M2	ConsumableMaster	#97 skin-default gap fixes and guard declaration
+SD-RV-DW	M2	DropWatcher	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-DW	M2	DropWatcher	#97 skin-default gap fixes and guard declaration
+SD-RV-KC	M2	KickCD	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-KC	M2	KickCD	#97 skin-default gap fixes and guard declaration
+SD-RV-ST	M2	LibKa0sSkinTester	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-ST	M2	LibKa0sSkinTester	#97 skin-default gap fixes and guard declaration
+SD-RV-LH	M2	LootHistory	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-LH	M2	LootHistory	#97 skin-default gap fixes and guard declaration
+SD-RV-MM	M2	MultiMeters	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-MM	M2	MultiMeters	#97 skin-default gap fixes and guard declaration
+SD-RV-OR	M2	OutfitterReborn	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-OR	M2	OutfitterReborn	#97 skin-default gap fixes and guard declaration
+SD-RV-PM	M2	PanelMaster	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-PM	M2	PanelMaster	#97 skin-default gap fixes and guard declaration
+SD-RV-PFE	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-PFE	M2	PartyFrameEnhanced	#97 skin-default gap fixes and guard declaration
+SD-RV-PGFE	M2	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-PGFE	M2	PremadeGroupsFilterExtension	#97 skin-default gap fixes and guard declaration
+SD-RV-PC	M2	PrettyChat	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-PC	M2	PrettyChat	#97 skin-default gap fixes and guard declaration
+SD-RV-QC	M2	QuickComms	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-QC	M2	QuickComms	#97 skin-default gap fixes and guard declaration
+SD-RV-RM	M2	RangeMaster	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-RM	M2	RangeMaster	#97 skin-default gap fixes and guard declaration
+SD-RV-SM	M2	SkillMaster	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-SM	M2	SkillMaster	#97 skin-default gap fixes and guard declaration
+SD-RV-WG	M2	WhatGroup	Re-vendor LibKa0s v1.108.0 and the standard
+SD-SK-WG	M2	WhatGroup	#97 skin-default gap fixes and guard declaration
+SD-CT-100	M2	CombatTrail	Call-out strip close and settings wired; deviation row removed
+SD-AM-99	M2	AuraMaster	Secret-rect strip tooltip via the readable-ancestor fallback; known limitation removed
+SD-DW-94	M2	DropWatcher	Footer status line uses the freed width (smoke check)
+SD-CP1	CP	Ka0sAddonsCommonTasks	CP-1: re-gate all repos, push branches, SMOKE.md, execution record
