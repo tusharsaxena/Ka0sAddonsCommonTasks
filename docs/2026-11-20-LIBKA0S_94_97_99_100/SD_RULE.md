@@ -45,3 +45,12 @@ Combat Trail rows SD-SK-CT.3 and SD-SK-CT.6 had no U row and stand as GAP.
   measuring only labels and widths that read secret, not every row where the host gives a width. That fixes MultiMeters'
   in-combat segment picker without clipping long labels in menus whose width is only a floor. The owner accepted the
   narrower form. MultiMeters still drops its client-menu fallback (SD-SK-MM).
+- **Combat Trail's Race call-out defaults (owner, 2026-11-20 20:50), item SD-CT-DEF.** From the owner's screenshot of
+  Race mode > Callout. Combat Trail's defaults become: animation Slam, hold 1.5 s, glow behind the text on, Glow color
+  on with the swatch black, Use class color off, **Use the skin's color off**, intensity 100%, thickness 2 px, X offset
+  1, Y offset 1. Compared with the library's v1.108.0 defaults, three keys differ: `glowThickness` 1 → 2, `glowY` -1 → 1,
+  and `glowColorFromSkin` true → false. The last one overrides U-1 for this host's glow color only; the font, outline and
+  shadow still follow the skin. The change lands in Combat Trail as host defaults over the rows from `SchemaRows`, so
+  the library and its local tag v1.108.0 stay as they are (Combat Trail is the only addon that creates a call-out).
+  Combat Trail's U-1 one-time move must not move `glowColorFromSkin`. Built after the SD-SK-CT build and review finish,
+  so it does not collide with that work.
