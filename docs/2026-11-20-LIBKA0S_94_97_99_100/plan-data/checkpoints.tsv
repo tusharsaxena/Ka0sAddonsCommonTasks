@@ -1,2 +1,3 @@
 checkpoint	date	evidence
 CP-1	2026-11-21	All 22 repos gated on every shipped client, all green (LibKa0s 5076/0 both clients; 19 addons 0 failed; standard check exit 0; luacheck 0/0 everywhere). Heads: LibKa0s 56c20b76 (tag v1.108.0 local), WowAddonStandards 4bfa42c (tag v2.116.0 local), CombatTrail 888d391, SkillMaster 3b04e20, others per 99_EXECUTION_RECORD.md. Run branches + refs/notes/ka0s-review pushed. Owner smoke owed (SMOKE.md).
+FIN	2026-11-21	merged+pushed 22 repos; tags v1.108.0 (4ed6c5c7) and v2.116.0 (4bfa42c) pushed; merge trees identical to CP-1 trees; smoke deferred by owner

@@ -133,14 +133,30 @@ None of these blocks the merge. They are recorded here so they are not lost.
 - **WhatGroup.** The degraded popup's edge test would also pass on master. The kit's
   `test_skin_values` is the check that catches the change.
 
+## Finalize (2026-11-21)
+
+The owner gave the go-ahead to finalize with the smoke test deferred ("ill do smoke tests later, finalize").
+
+- **LibKa0s:** the CHANGELOG [1.108.0] line and the README line named standard v2.115.0; both now name v2.116.0
+  (`4ed6c5c7`, documentation only, outside the vendored payload). The local tag v1.108.0 moved onto that commit before
+  it was pushed.
+- **Before merging:** fetched every repo. No `master` had moved since the run branched, and no remote held v1.108.0 or
+  v2.116.0, so nothing was renumbered. Every addon's `libs/LibKa0s/` and `tests/_kit/` matched the library's source
+  (only the pruned media differs).
+- **Merged `--no-ff` and pushed**, in dependency order. Each merge tree is identical to its CP-1-gated branch tree (empty
+  `git diff`), so the CP-1 gate table stands for the merged `master`.
+  - LibKa0s `3c4dc2a1` and tag v1.108.0; WowAddonStandards `9596b2e` (`check-standard.sh` exit 0 on the merge) and tag
+    v2.116.0.
+  - The 19 addons: AbsorbTracker `75ba748`, AuraMaster `82fe433`, BankLedger `7289d03`, CombatTrail `67744f0`,
+    ConsumableMaster `cf11acd`, DropWatcher `cbcc45b`, KickCD `97370c5`, LibKa0sSkinTester `c9fd474`, LootHistory
+    `5a812b6`, MultiMeters `9b9fbe1`, OutfitterReborn `9b8372e`, PanelMaster `2eeb850`, PartyFrameEnhanced `ce7fab1`,
+    PremadeGroupsFilterExtension `f428471`, PrettyChat `d7d0c22`, QuickComms `3cb9823`, RangeMaster `05d5c8f`,
+    SkillMaster `5557cd0`, WhatGroup `c0286d8`.
+  - This repo last.
+- **Closed:** LibKa0s#94, #97, #99, #100 and SkillMaster#9, each with a comment that the smoke test is still to run.
+- The run branches were deleted, local and remote. No addon version was bumped.
+
 ## Still owed
 
-- The owner's smoke test (`SMOKE.md`).
-- At finalize:
-  - correct the LibKa0s CHANGELOG [1.108.0] line that still names standard v2.115.0 instead of
-    v2.116.0;
-  - fetch, and renumber if another session has released a tag, then push tags v1.108.0 and v2.116.0;
-  - merge `--no-ff` in dependency order;
-  - close #94, #97, #99 and #100, and SkillMaster#9;
-  - delete the run branches.
-- No addon version is bumped in this run.
+- The owner's smoke test (`SMOKE.md`). A failure found there is a follow-up fix on `master`, not a reopened
+  run.
