@@ -38,3 +38,10 @@ owner took **every recommendation as written** (2026-11-20), with one change to 
 | U-31 | **Changed by the owner:** SkillMaster's trainer popup cards get a `list.hover` wash (not the journal rows). Filed as SkillMaster#9, **and built in this run** under SD-SK-SM | SD-SK-SM |
 
 Combat Trail rows SD-SK-CT.3 and SD-SK-CT.6 had no U row and stand as GAP.
+
+## Later rulings
+
+- **U-21, narrowed (owner, 2026-11-20 18:00).** As built in SD-LK-97 Batch B (`0a80ef32`, `fb5b1b2c`), the dropdown skips
+  measuring only labels and widths that read secret, not every row where the host gives a width. That fixes MultiMeters'
+  in-combat segment picker without clipping long labels in menus whose width is only a floor. The owner accepted the
+  narrower form. MultiMeters still drops its client-menu fallback (SD-SK-MM).
