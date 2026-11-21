@@ -1,0 +1,43 @@
+id	milestone	repo	title
+FU-PLAN	M0	Ka0sAddonsCommonTasks	Run bundle: plan, resume state, items
+FU-STD-ROSTER	M1	WowAddonStandards	ADDONS.md Notes: CombatTrail and SkillMaster default to master (renamed 2026-11-19)
+FU-STD-QK	M1	WowAddonStandards	Land feat/2026-11-10-per-client-quirks (forever-quirks catalog) renumbered onto master
+FU-STD-REL	M1	WowAddonStandards	Standard v2.117.0: changelog, stamps, check-standard, local tag
+FU-DC-QK	M1	dev-copilot	Land feat/2026-11-10-per-client-quirks (per-client quirks files) renumbered, naming standard v2.117.0
+FU-DC-ROSTER	M1	dev-copilot	roster_clients.py: default roster from the cwd repo's parent, not the plugin root; test
+FU-DC-REL	M1	dev-copilot	dev-copilot 2.11.0 release record
+FU-LK-CALLOUT	M1	LibKa0s	Peel Callout.lua on its recorded seam below the band trigger
+FU-LK-COMPOSE	M1	LibKa0s	Peel OptionsCompose.lua on its recorded seam (Master controls block)
+FU-LK-PAINTCTL	M1	LibKa0s	Peel SkinPaintControls.lua on its recorded seam
+FU-LK-KITDOC	M1	LibKa0s	testkit/README.md: suite count and consumer count
+FU-LK-CONSUMERS	M1	LibKa0s	Regenerate docs/api/CONSUMERS.md (stamped v1.83.0)
+FU-LK-REL	M1	LibKa0s	LibKa0s v1.109.0: release record, built to standard v2.117.0, local tag
+FU-RV-AT	M2	AbsorbTracker	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-AM	M2	AuraMaster	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-BL	M2	BankLedger	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-CT	M2	CombatTrail	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-CM	M2	ConsumableMaster	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-DW	M2	DropWatcher	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-KC	M2	KickCD	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-ST	M2	LibKa0sSkinTester	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-LH	M2	LootHistory	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-MM	M2	MultiMeters	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-OR	M2	OutfitterReborn	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-PM	M2	PanelMaster	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-PFE	M2	PartyFrameEnhanced	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-PGFE	M2	PremadeGroupsFilterExtension	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-PC	M2	PrettyChat	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-QC	M2	QuickComms	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-RM	M2	RangeMaster	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-SM	M2	SkillMaster	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-RV-WG	M2	WhatGroup	Re-vendor LibKa0s v1.109.0 and standard v2.117.0 (per-client quirks files)
+FU-LH-BROWSER	M2	LootHistory	Peel modules/Browser.lua (1477) on its recorded seam, the view layer
+FU-ST-PERF	M2	LibKa0sSkinTester	skinRepaint perf ceiling: bisect the rise and re-pin with the reason
+FU-DX-MM	M2	MultiMeters	Dead export NS.__WindowSection
+FU-DX-KC	M2	KickCD	NS.RefreshOptionsPanel has no caller though its comments name callers: wire or remove
+FU-DX-CT	M2	CombatTrail	Dead export NS.ShowCopy and its comments; SkinSetup cites a missing tests/test_skin.lua
+FU-DX-DW	M2	DropWatcher	Dead exports P.Ticking, W.IsMasterLootKey, WF.SegmentTip
+FU-DX-RM	M2	RangeMaster	Dead exports Container.PreviewKind, Container.ShowsAll, Frame.__waiting, Preview.__drawn
+FU-DX-SM	M2	SkillMaster	Dead exports R.Opens, J.SelectedFilter
+FU-CP1	M3	Ka0sAddonsCommonTasks	CP-1: every repo green on each shipped client, record
+FU-FIN	M3	Ka0sAddonsCommonTasks	Finalize: merge, push, tags, branch cleanup
