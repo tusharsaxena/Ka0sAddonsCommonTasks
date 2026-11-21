@@ -1,0 +1,18 @@
+DIFF	ITEM_BIND_TO_ACCOUNT	F:12676 "Binds to Account"	L:12255 "Binds to Warband"
+DIFF	ITEM_BIND_TO_ACCOUNT_UNTIL_EQUIP	F:12677 "Binds to Account until equipped"	L:12256 "Binds to Warband until equipped"
+DIFF	ITEM_BIND_TO_BNETACCOUNT	F:12678 "Binds to Account"	L:12257 "Binds to Warband"
+DIFF	LOOT_HISTORY_INFO_TEXT	F:13856 "Loot rolls from group content are displayed here"	L:13362 "Loot rolls from dungeons and raids are displayed here"
+DIFF	LOOT_MASTER_LOOTER	F:13889 "Loot: Master Loot"	L:13395 "Loot: Guild Master Loot"
+DIFF	LOOT_ROLL_GREED	F:13910 "|HlootHistory:%d|h[Loot]|h: %s has selected Greed for: %s"	L:13416 "%s has selected Greed for: %s"
+DIFF	LOOT_ROLL_GREED_SELF	F:13911 "|HlootHistory:%d|h[Loot]|h: You have selected Greed for: %s"	L:13417 "|HlootHistory:%d|h[Loot]|h: You have selected Greed for: %s |HlootHistory:%d|h|cnLOOT_LINK_COLOR:[View Loot Rolls]|r|h"
+DIFF	LOOT_ROLL_NEED	F:13920 "|HlootHistory:%d|h[Loot]|h: %s has selected Need for: %s"	L:13426 "%s has selected Need for: %s"
+DIFF	LOOT_ROLL_NEED_SELF	F:13921 "|HlootHistory:%d|h[Loot]|h: You have selected Need for: %s"	L:13427 "|HlootHistory:%d|h[Loot]|h: You have selected Need for: %s |HlootHistory:%d|h|cnLOOT_LINK_COLOR:[View Loot Rolls]|r|h"
+DIFF	LOOT_ROLL_NEED_SELF_OFF_SPEC	F:13922 "|HlootHistory:%d|h[Loot]|h: You have selected Need for: %s"	L:13428 "|HlootHistory:%d|h[Loot]|h: You have selected Need (Off-Spec) for: %s |HlootHistory:%d|h|cnLOOT_LINK_COLOR:[View Loot Rolls]|r|h"
+DIFF	LOOT_ROLL_PASSED	F:13923 "|HlootHistory:%d|h[Loot]|h: %s passed on: %s"	L:13429 "%s passed on: %s"
+DIFF	LOOT_ROLL_PASSED_SELF	F:13926 "|HlootHistory:%d|h[Loot]|h: You passed on: %s"	L:13432 "|HlootHistory:%d|h[Loot]|h: You passed on: %s |HlootHistory:%d|h|cnLOOT_LINK_COLOR:[View Loot Rolls]|r|h"
+DIFF	LOOT_ROLL_PASSED_SELF_AUTO	F:13927 "|HlootHistory:%d|h[Loot]|h: You automatically passed on: %s because you cannot loot that item."	L:13433 "|HlootHistory:%d|h[Loot]|h: You automatically passed on: %s because you cannot loot that item. |HlootHistory:%d|h|
+DIFF	LOOT_ROLL_ROLLED_GREED	F:13929 "|HlootHistory:%d|h[Loot]|h: Greed Roll - %d for %s by %s"	L:13435 "Greed Roll - %d for %s by %s"
+DIFF	LOOT_ROLL_ROLLED_NEED	F:13930 "|HlootHistory:%d|h[Loot]|h: Need Roll - %d for %s by %s"	L:13436 "Need Roll - %d for %s by %s"
+FOREVER_ONLY	LOOT_ROLL_ROLLED_TRANSMOG	F:13932 "|HlootHistory:%d|h[Loot]|h: Transmog Roll - %d for %s by %s"	L:- 
+DIFF	LOOT_ROLL_WON	F:13934 "|HlootHistory:%d|h[Loot]|h: %s won: %s"	L:13439 "%s won: %s"
+DIFF	LOOT_ROLL_YOU_WON	F:13940 "|HlootHistory:%d|h[Loot]|h: You won: %s"	L:13445 "You won: %s"
