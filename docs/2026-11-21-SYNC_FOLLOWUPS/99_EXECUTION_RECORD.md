@@ -96,3 +96,15 @@ Every repo was tested on each client it ships, and every run passed:
 - **LH-BROWSER-3:** changing the minimum-quality setting re-filters the open window. A profile switch re-reads the
   geometry and the saved view.
 - **ALL-1:** every addon loads with no Lua error on each client it ships. The library peels change no behavior.
+
+## Finalize (2026-11-21)
+
+- **Pre-merge check:** every repo was fetched first. No `master` had moved and no remote held v1.109.0 or v2.117.0.
+- **Merged `--no-ff` and pushed in dependency order.** Each merge tree is identical to its CP-1-gated branch.
+  - WowAddonStandards `4828484` and tag v2.117.0.
+  - dev-copilot `608c076`. This repo has no release tags. The owner updates the installed plugin to 2.11.0.
+  - LibKa0s `69113559` and tag v1.109.0.
+  - The 19 addons, then this repo. `refs/notes/ka0s-review` was pushed everywhere.
+- **Deleted:** the run branch (local only, never pushed) in all 23 repos, and the landed
+  `feat/2026-11-10-per-client-quirks` branches (local and remote) with their two worktrees under `#Worktrees/`.
+- No addon version was bumped. The smoke checks above are still the owner's.
