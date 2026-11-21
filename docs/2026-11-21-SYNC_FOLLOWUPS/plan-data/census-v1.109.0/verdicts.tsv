@@ -197,3 +197,155 @@ Options	lib	KEYBIND_STRINGS	documented	it holds the default strings a host overr
 Options	lib	SKIN_PICKER_STRINGS	documented	it holds the default strings a host overrides through `spec.strings`, never by name	no host call	
 Options	instance	AppearanceRows	documented	`AppearanceTab` calls it; a host takes the tab whole, and the hits are degradation stubs	stubs only	
 Options	instance	KeybindRows	documented	`KeybindingsTab` calls it; a host takes the tab whole, and the hits are degradation stubs	stubs only	
+Core	lib	HasSettings	documented	it is the published question a window's settings mark or a host suite asks before offering the mark; no library file calls it either, so it is kept for the published surface	no host calls it; the library's own suite (tests/test_header_buttons.lua) is its only reader	
+Core	lib	RegisterSettingsOpener	documented	LibKa0s-Launcher-1.0's `New` registers every host's `openSettings` through it (Launcher.lua:308), so all nineteen hosts reach it without naming it	internal only: called by Launcher:New for every host	
+Core	descriptor	Hide	documented	it is no descriptor field: the scan's `d.Hide` is `hideHeaderRule`'s local `d`, a window's divider texture (Core.lua:131), which the rule hides on every skin pass	scan artifact; `d` there is a texture, not a descriptor	
+Tooltip	lib	CLOSE_STRINGS	documented	it is the English fallback `CloseTip` answers for every library close; hosts translate per owner through `SetCloseTip`	internal only: read by `lib.CloseTip` (Tooltip.lua:464)	
+Tooltip	lib	GroupOf	documented	`PlaceBeside` resolves a group through it whenever a host passes none (Tooltip.lua:290)	internal only; DropWatcher's `RT.GroupOf` (modules/RowTooltip.lua:101) is its own resolver for its docked panels, handed to `PlaceBeside` as an explicit group, not a copy of this one	
+Tooltip	lib	SetCloseTip	documented	it is the per-owner translation hook for the close's words; every host is content with the English fallback	no host calls it; the library's own suite is its only caller	
+Role	lib	TALENT_GROUP_ROLE	documented	the talent rung of the Forever role ladder reads it (Role.lua:336), published read-only so a host's probe can show the seed	internal only: read through its local alias	
+Toast	descriptor	soundFile	by-hand		Combat Trail passes it through `NS.NewToast(d)` (core/ToastSetup.lua), a wrapper whose table the scan does not trace to `Toast:New`	CombatTrail modules/BestToast.lua:366
+Toast	descriptor	stackGap	by-hand		DropWatcher passes it through `NS.NewToast(d)` (core/ToastSetup.lua), a wrapper whose table the scan does not trace to `Toast:New`	DropWatcher modules/Toast.lua:551
+Toast	descriptor	stackGrow	by-hand		both pass it through their `NS.NewToast(d)` wrappers (core/ToastSetup.lua), whose tables the scan does not trace to `Toast:New`	DropWatcher modules/Toast.lua:549;QuickComms modules/AutoThank_Toast.lua:202
+Callout	lib	ANIMS	documented	it is the `anim` setting's valid list, read by the validator and the settings section's Animation row	internal only (Callout.lua:307, 835)	
+Callout	lib	CHANNELS	documented	it is the `channel` setting's valid list, read by the validator and the Sound tab's channel row	internal only (Callout.lua:308); the name hits are Combat Trail's own `Share.CHANNELS` and other addons' locals	
+Callout	lib	DEFAULTS	documented	`Get` falls back to it and a host off the write route seeds from it; Combat Trail is on the route and seeds from `SchemaRows`' defaults instead, as the document says a routed host does	internal only; read by Combat Trail's tests (tests/test_countdown.lua) to hold its seeded profile to it	
+Callout	lib	FOLLOW_FROM	documented	`FollowKeys` compares against it (Callout.lua:1071); Combat Trail reaches it through `MoveToSkin`	internal only	
+Callout	lib	FONT_DEFAULT	documented	the font resolver falls back to it, and the font row leads with it (`FONT_FACES`)	internal only (Callout.lua:480, CalloutSettings.lua:250)	
+Callout	lib	FONT_FACES	documented	the settings section's font row leads with it (CalloutSettings.lua:281)	internal only	
+Callout	lib	FONT_GAME	documented	it is the `font` value that draws the game's face, read by the resolver and the font row	internal only (Callout.lua:479, CalloutSettings.lua:279)	
+Callout	lib	FONT_SKIN	documented	it is the `font` default and `MoveToSkin`'s font write, read by the resolver and the font row	internal only; Skill Master's `FONT_SKIN` (settings/Trainers.lua:67) is a WaypointArrow settings word, not this	
+Callout	lib	FROM_SKIN	documented	it is the `outline` value that follows the skin, the default and `MoveToSkin`'s write	internal only; every host name hit is LibKa0s-Skin-1.0's `FROM_SKIN` or a host stub's copy of it	
+Callout	lib	FollowKeys	documented	`MoveToSkin` runs on it (Callout.lua:1082), and Combat Trail calls `MoveToSkin` (core/Database.lua:104)	internal only	
+Callout	lib	GLOWS	documented	it is the retired minor-2 glow choice's values, `GLOW_LEGACY`'s keys; no setting takes them and `-1.0` is additive-only	no reader at all, inside the library or out: kept for the published surface	
+Callout	lib	KINDS	documented	the color rows and the kind validator read it	internal only (Callout.lua:128, CalloutSettings.lua:481); read by Combat Trail's tests (tests/test_callout_settings.lua:55) to count the rows	
+Callout	lib	LINES	documented	it is every file a voice pack carries, published so a host's suite can check the packs it ships	read by Combat Trail's tests only (tests/test_countdown.lua:156); the library builds it from `STOCK_ORDER` and `MAX_FROM`	
+Callout	lib	MAX_FROM	documented	the validator, the number lines and the speakFrom row read it; Combat Trail states its own countdown bound and its suite holds the two equal	internal only; read by Combat Trail's tests (tests/test_countdown.lua:358)	
+Callout	lib	MEANING	documented	a meaning kind at its default draws its owner's token through it (Callout.lua:439)	internal only	
+Callout	lib	OFF	documented	it is the silent `voice` value, read by the validator, the voice list and the sound path	internal only; the name hits are other tables' `OFF`	
+Callout	lib	OUTLINES	documented	it is the `outline` setting's valid list	internal only (Callout.lua:302)	
+Callout	lib	PACKS	documented	the voice list, the pack resolver and the `packs` filter read it; Combat Trail names its packs in `d.packs`	internal only; read by Combat Trail's tests (tests/test_countdown.lua:152) to hold `NS.CALLOUT_PACKS` to it	
+Callout	lib	PLAY_COUNTDOWN	documented	it is the Play list's countdown choice, read by the settings section	internal only (CalloutSettings.lua:295); read by Combat Trail's tests (tests/test_countdown.lua:176)	
+Callout	lib	SETTINGS	documented	it is the sorted key list `Get` and `Set` take, published for a host suite or diagnostics	no reader outside its own definition (Callout.lua:314); the name hits are other majors' `SETTINGS`	
+Callout	lib	SETTINGS_SIDE_TABS	documented	the one-tab layout draws its side tabs from it (CalloutSettings.lua:674)	internal only	
+Callout	lib	SETTINGS_STRINGS	documented	it is the English fallback for every settings word; a host overrides by key through `opts.L`	internal only (CalloutSettings.lua:203)	
+Callout	lib	SETTINGS_TABS	documented	the three-tab layout draws its tabs from it (CalloutSettings.lua:737)	internal only	
+Callout	lib	SIZE_MAX	documented	the size validator and slider read it	internal only (Callout.lua:302, CalloutSettings.lua:398)	
+Callout	lib	SIZE_MIN	documented	the size validator and slider read it	internal only (Callout.lua:302, CalloutSettings.lua:398)	
+Callout	lib	SOUND_EXT	documented	the pack player joins every line to it (CalloutSound.lua:66)	internal only; read by Combat Trail's tests (tests/test_countdown.lua:157)	
+Callout	lib	STOCK	documented	the stock call-outs, read by the route's leaf checks, the texts rows and the Play list	internal only (CalloutRoute.lua:73, CalloutSettings.lua:296)	
+Callout	lib	STOCK_ORDER	documented	`LINES`, the route's whole-table writes and the Play list run in its order	internal only (Callout.lua:166, CalloutRoute.lua:130)	
+Callout	lib	STRATA	documented	the frame takes it (Callout.lua:733); Combat Trail cites the tier in a comment (core/Constants.lua:41) rather than reading it	internal only; the name hits are other majors' and hosts' `STRATA`	
+Callout	lib	TTS	documented	it is the text-to-speech `voice` value, read by the validator, the voice list and the settings section	internal only (Callout.lua:282, CalloutSettings.lua:446)	
+Callout	lib	WIDTH	documented	the frame's width (Callout.lua:642)	internal only; the name hits are other tables' `WIDTH`	
+Callout	descriptor	colorEncode	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:96
+Callout	descriptor	db	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:90
+Callout	descriptor	label	documented	it is the drag strip's text, `"Call-out"` by default; Combat Trail keeps the default	no descriptor passes it (CombatTrail modules/Countdown.lua:88 and core/CalloutSetup.lua:90-95 are the only fields set)	
+Callout	descriptor	name	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:89
+Callout	descriptor	path	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:94
+Callout	descriptor	set	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:95
+Callout	descriptor	soundsBase	documented	it overrides the pack folder `addon` implies, for a host that keeps its packs elsewhere; Combat Trail keeps them in the vendored payload	no descriptor passes it	
+Callout	descriptor	vendorPath	documented	it is for a host that vendors the payload somewhere other than `libs\LibKa0s`; Combat Trail uses the default	no descriptor passes it	
+WaypointArrow	lib	ARRIVE	documented	it is the arrival distance a descriptor's `arrive` overrides (WaypointArrow.lua:833)	internal only; Skill Master keeps the default	
+WaypointArrow	lib	ART	documented	the art box's drawn size, read by the layout (WaypointArrow.lua:210, 590)	internal only; Skill Master's `C.ART` (modules/Chrome.lua:114) is its own control-strip pitch	
+WaypointArrow	lib	COMPACT_FROM	documented	`FormatDistance` switches to compact from it (WaypointArrow.lua:280)	internal only	
+WaypointArrow	lib	DEFAULTS	documented	`Get` falls back to it and a host seeds its paths from it	internal only; read by Skill Master's tests (tests/test_round8.lua:670, tests/test_round9.lua:81) to hold its seeded profile to it	
+WaypointArrow	lib	DEFAULT_POINT	documented	the position resolver falls back to it (WaypointArrow.lua:499)	internal only	
+WaypointArrow	lib	DEFAULT_STYLE	documented	`DEFAULTS.style` is it (WaypointArrow.lua:123)	internal only	
+WaypointArrow	lib	DISTANCE_UNITS	documented	the `distanceUnits` validator and its settings row read it	internal only (WaypointArrow.lua:201, WaypointArrowSettings.lua:137)	
+WaypointArrow	lib	Distance	documented	the measure runs on it (WaypointArrow.lua:810), published pure for a suite	internal only; Skill Master's `NS.Trainers.Distance` (modules/Trainers.lua:150) is its own trainer-popup measure	
+WaypointArrow	lib	DistanceUnitsValues	documented	`SettingsRows` builds the Distance units row from it (WaypointArrowSettings.lua:302)	internal only; Skill Master takes the row through `SettingsRows`	
+WaypointArrow	lib	FAR	documented	it is the fade's far edge a descriptor's `far` overrides	internal only (WaypointArrow.lua:237, 1264)	
+WaypointArrow	lib	FLAGS_FROM_SKIN	documented	it is the `fontFlags` default and the value read as the skin's outline	internal only (WaypointArrow.lua:129, 663)	
+WaypointArrow	lib	FONT_DEFAULT	documented	it is the `font` default and the font row's fallback	internal only (WaypointArrow.lua:128, WaypointArrowSettings.lua:200)	
+WaypointArrow	lib	FONT_FLAGS	documented	it is the `fontFlags` valid list and the Font flags row's values	internal only (WaypointArrow.lua:195); Skill Master's `FONT_FLAGS` (settings/Trainers.lua:61) is a settings word it hands `SettingsRows`	
+WaypointArrow	lib	FONT_SIZE_MAX	documented	the font size validator and slider read it	internal only (WaypointArrow.lua:192, WaypointArrowSettings.lua:220)	
+WaypointArrow	lib	FONT_SIZE_MIN	documented	the font size validator and slider read it	internal only (WaypointArrow.lua:192, WaypointArrowSettings.lua:220)	
+WaypointArrow	lib	Fade	documented	the color fade runs on it (WaypointArrow.lua:755), published pure for a suite	internal only	
+WaypointArrow	lib	FormatDistance	documented	the text runs on it whenever `d.format` answers no string (WaypointArrow.lua:766)	internal only; Skill Master overrides its words through `d.strings`	
+WaypointArrow	lib	GROUND	documented	it is the ground sheet's layout, read by `GroundFrame` and `GroundTexCoord`	internal only (WaypointArrow.lua:257, 263)	
+WaypointArrow	lib	GroundFrame	documented	the ground style picks its frame through it (WaypointArrow.lua:732), published pure for a suite	internal only	
+WaypointArrow	lib	GroundTexCoord	documented	the ground style cuts its frame through it (WaypointArrow.lua:733), published pure for a suite	internal only	
+WaypointArrow	lib	HIT_PAD	documented	the hit rect's layout reads it (WaypointArrow.lua:575, 590)	internal only	
+WaypointArrow	lib	IsStyle	documented	it is the published style predicate; the library validates `style` through its own list	no reader outside its own definition (WaypointArrow.lua:1269); the library's suite is its only caller: kept for the published surface	
+WaypointArrow	lib	MEDIA_DIR	documented	the art path is built from it (WaypointArrow.lua:393)	internal only	
+WaypointArrow	lib	MENU_ITEMS	documented	it names the stock menu items' ids in order for a host's `menuItems` to place its own among them; Skill Master finds them by id instead	no reader at all, inside the library or out (WaypointArrow.lua:154): kept for the published surface	
+WaypointArrow	lib	MapWorldPos	documented	it is the published alias of the measure's own local (`mapWorld`, WaypointArrow.lua:329)	internal only, through the local; Skill Master's `NS.Compat.MapWorldPos` (core/Compat.lua:406) is its own	
+WaypointArrow	lib	Mix	documented	the color fade runs on it (WaypointArrow.lua:755), published pure for a suite	internal only	
+WaypointArrow	lib	NEAR	documented	it is the fade's near edge a descriptor's `near` overrides	internal only (WaypointArrow.lua:237, 1264)	
+WaypointArrow	lib	POSITION_MAX	documented	the `x`/`y` validators and the Position block's sliders read it	internal only (WaypointArrow.lua:202)	
+WaypointArrow	lib	POSITION_MIN	documented	the `x`/`y` validators and the Position block's sliders read it	internal only (WaypointArrow.lua:202)	
+WaypointArrow	lib	PlayerFacing	documented	it is the published alias of the measure's own local (`facing`, WaypointArrow.lua:329)	internal only, through the local	
+WaypointArrow	lib	PlayerWorldPos	documented	it is the published alias of the measure's own local (`playerWorld`, WaypointArrow.lua:329)	internal only, through the local; Skill Master's `NS.Compat.PlayerWorldPos` (core/Compat.lua:421) is its own	
+WaypointArrow	lib	Rotation	documented	the measure runs on it (WaypointArrow.lua:811), published pure for a suite	internal only; read by Skill Master's tests (tests/test_round6.lua:1169)	
+WaypointArrow	lib	SAMPLE_ROTATION	documented	the sample's angle (WaypointArrow.lua:815)	internal only; read by Skill Master's tests (tests/test_round6.lua:1363)	
+WaypointArrow	lib	SAMPLE_YARDS	documented	the sample's distance (WaypointArrow.lua:815)	internal only; read by Skill Master's tests (tests/test_round6.lua:1362)	
+WaypointArrow	lib	SCALE_MAX	documented	the scale validator and slider read it	internal only (WaypointArrow.lua:189, WaypointArrowSettings.lua:172)	
+WaypointArrow	lib	SCALE_MIN	documented	the scale validator and slider read it	internal only (WaypointArrow.lua:189, WaypointArrowSettings.lua:172)	
+WaypointArrow	lib	SCALE_STEP	documented	the scale slider's step (WaypointArrowSettings.lua:172)	internal only	
+WaypointArrow	lib	SETTINGS	documented	`Configure` and `ConfigureFrom` walk it (WaypointArrow.lua:1115, 1126)	internal only; Skill Master reaches it through `ConfigureFrom`	
+WaypointArrow	lib	SETTINGS_STRINGS	documented	it is the English fallback for every settings word; Skill Master overrides by key through `SettingsRows`' `L` (settings/Trainers.lua:44, keyed as it)	internal only (WaypointArrowSettings.lua:115)	
+WaypointArrow	lib	SHADOW_BOX	documented	the raised style's shadow canvas (WaypointArrow.lua:710)	internal only	
+WaypointArrow	lib	SHADOW_OFFSET	documented	the raised style's shadow offset (WaypointArrow.lua:711)	internal only	
+WaypointArrow	lib	SHARE_LEAD	documented	the menu's Share in chat opens the chat box with it (WaypointArrow.lua:942)	internal only	
+WaypointArrow	lib	SKIN_FAR	documented	"Use the skin's colors" reads the far token through it (WaypointArrow.lua:382)	internal only	
+WaypointArrow	lib	SKIN_NEAR	documented	"Use the skin's colors" reads the near token through it (WaypointArrow.lua:382)	internal only	
+WaypointArrow	lib	STRATA	documented	the frame takes it unless `d.strata` says otherwise; Skill Master passes its own `strata`	internal only (WaypointArrow.lua:539); the name hits are other majors' and hosts' `STRATA`	
+WaypointArrow	lib	STRINGS	documented	it is the English fallback for the distance, the sample and the menu; Skill Master overrides by key through `d.strings` (modules/WaypointArrow.lua:216)	internal only (WaypointArrow.lua:277, 897)	
+WaypointArrow	lib	STYLES	documented	the style validator, `IsStyle` and the style row read it	internal only (WaypointArrow.lua:1269, WaypointArrowSettings.lua:126)	
+WaypointArrow	lib	ShareText	documented	the menu's Share in chat builds its `/way` line through it (WaypointArrow.lua:982), published pure for a suite	internal only	
+WaypointArrow	lib	StyleValues	documented	`SettingsRows` builds the style row from it (WaypointArrowSettings.lua:156)	internal only; Skill Master takes the row through `SettingsRows`	
+WaypointArrow	lib	TEXT_GAP	documented	the text's layout reads it (WaypointArrow.lua:575, 577)	internal only	
+WaypointArrow	lib	TEXT_POSITIONS	documented	the `textPosition` validator and its row read it	internal only (WaypointArrow.lua:199, WaypointArrowSettings.lua:136)	
+WaypointArrow	lib	TEXT_ROOM	documented	the text's layout reads it (WaypointArrow.lua:577)	internal only	
+WaypointArrow	lib	TextPositionValues	documented	`SettingsRows` builds the Text position row from it (WaypointArrowSettings.lua:295)	internal only; Skill Master takes the row through `SettingsRows`	
+WaypointArrow	lib	UNITS	documented	the art's design box, read by every unit-sized measure (WaypointArrow.lua:210, 690)	internal only; Skill Master's `UNITS` (settings/Trainers.lua:75) is a settings word	
+WaypointArrow	descriptor	arrive	documented	it overrides `ARRIVE` per instance (or `false` never arrives); Skill Master keeps the default	no descriptor passes it (Skill Master's one `Arrow:New`, modules/WaypointArrow.lua:209)	
+WaypointArrow	descriptor	canDrag	documented	it is the host's drag gate; Skill Master leaves it out on purpose, the arrow's own `lock` being its one gate (modules/WaypointArrow.lua:211, round 9, R9-1)	no descriptor passes it; the omission is recorded at the call	
+WaypointArrow	descriptor	far	documented	it overrides `FAR` per instance; Skill Master keeps the default	no descriptor passes it	
+WaypointArrow	descriptor	format	documented	it replaces the distance text; Skill Master changes only the words, through `strings`	no descriptor passes it	
+WaypointArrow	descriptor	mediaBase	documented	it is for a host whose art sits outside the vendored payload; Skill Master passes `addon`	no descriptor passes it	
+WaypointArrow	descriptor	menu	documented	`false` turns the right-click menu off; Skill Master keeps the menu and adds items through `menuItems`	no descriptor passes it	
+WaypointArrow	descriptor	near	documented	it overrides `NEAR` per instance; Skill Master keeps the default	no descriptor passes it	
+WaypointArrow	descriptor	onMoved	documented	it is the drag-end callback for a host off the write route; Skill Master is on `paths` and `set`, which the document says need no `onMoved`	no descriptor passes it	
+WaypointArrow	descriptor	parent	documented	it reparents the frame off `UIParent`; Skill Master keeps `UIParent`	no descriptor passes it	
+WaypointArrow	descriptor	point	documented	it is the saved position for a host off the write route; Skill Master configures `x` and `y` through `paths`, which win over it	no descriptor passes it	
+WaypointArrow	descriptor	vendorPath	documented	it is for a host that vendors the payload somewhere other than `libs\LibKa0s`; Skill Master uses the default	no descriptor passes it	
+Charts	lib	RangeScale	documented	the range chart scales through it (ChartsRender.lua:452), published pure for a suite	internal only	
+Charts	lib	StripLabels	documented	the strip chart picks its shown labels through it (ChartsRender.lua:552), published pure for a suite	internal only	
+Charts	lib	StripSlots	documented	the strip chart lays its slots out through it (ChartsRender.lua:551), published pure for a suite	internal only	
+Charts	lib	tipText	documented	it is the default tooltip every card, bar and chip takes when a host gives none (ChartsRender.lua:266, 327, 481)	internal only; DropWatcher's `tipText` (tests/run.lua:101) is its own test helper	
+Media	lib	ICONS	documented	it is the icon catalog `Icon` resolves against (Media.lua:374, 388)	internal only; read by five hosts' tests (BankLedger, LibKa0sSkinTester, LootHistory, PrettyChat, RangeMaster tests/test_mediasetup.lua) to hold their pruned `media/icons/` to it	
+Media	lib	ICON_SETS	documented	it is the icon sets' credits table, from which the catalog's set membership is built (Media.lua:367)	internal only	
+Media	lib	IconAuthor	documented	LibKa0s-IconBrowser-1.0 shows each Game-icons mark's author through it (IconBrowserSources.lua:336), the attribution the set's license asks for	internal only, from another major	
+Skin	lib	CLIENT_DEFAULTS	documented	the per-client default skin is read from it (Skin.lua:316)	internal only; read by host tests only	
+Skin	lib	RETIRED_FONTS	documented	the font resolver reads it to draw a retired face's successor (Skin.lua:336); a host's migration that rewrites a stored face holds its own one-row copy, frozen with the migration step, rather than reading the live table	internal only; fifteen hosts carry a local `RETIRED_FONTS` copy in `core/Database.lua` or `core/Database_Migrations.lua` (for example PartyFrameEnhanced core/Database.lua:147, WhatGroup core/Database.lua:30)	
+Widgets	lib	BAR	documented	it is the bar widget's presets and shade tiers, read by every bar the library builds (WidgetsBar.lua:82)	internal only; Skill Master's degradation stub mirrors it (core/WidgetsSetup.lua:97) and its tests read it	
+Widgets	lib	BarCompute	documented	every bar's geometry is computed through it (WidgetsBar.lua:463, 596), published pure for a suite	internal only; read by host tests only	
+Widgets	lib	BarShade	documented	a segmented bar's tier shade is computed through it (WidgetsBar.lua:446)	internal only; Skill Master's `BarShade` (core/WidgetsSetup.lua:93) is its library-absent stub	
+Widgets	lib	DRAG_HANDLE_STRINGS	documented	it is the English fallback for the drag strip's mark tooltips (WidgetsDragHandleTip.lua:204)	internal only	
+Widgets	lib	HEADER_STRINGS	documented	it is the English fallback for the header bar's settings mark (WidgetsHeader.lua:81)	internal only; read by WhatGroup's tests (tests/test_frame_header.lua:109)	
+Widgets	lib	HeaderButton	documented	the header bar builds every mark through it (WidgetsHeader.lua:242, 298); hosts take the marks through the header bar	internal only	
+Widgets	lib	OwnerWarnings	documented	it is a diagnostic hook that reports widgets built with no skin owner inside a skinned window; no host has wired it	no reader at all, inside the library or out (Widgets.lua:231; Charts.lua:420 cites it in a comment): kept for the published surface	
+Widgets	descriptor	clear	by-hand		a `dock = "hud"` field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:672), neither of which the scan treats as a descriptor literal	AbsorbTracker modules/Bar.lua:199;AuraMaster modules/Anchors.lua:1201;KickCD modules/SimStrip.lua:93;RangeMaster modules/Container.lua:632
+Widgets	descriptor	dock	by-hand		a field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:730), neither of which the scan treats as a descriptor literal; DropWatcher, LootHistory and Combat Trail set it in their `NS.MakeTestStrip` wrappers	AbsorbTracker modules/Bar.lua:197;AuraMaster modules/Anchors.lua:1201;BankLedger modules/Browser.lua:759;CombatTrail core/WidgetsSetup.lua:116;DropWatcher core/WidgetsSetup.lua:116;KickCD modules/SimStrip.lua:93;LootHistory core/WidgetsSetup.lua:333;MultiMeters modules/Window_Frame.lua:221;OutfitterReborn modules/Window.lua:142;RangeMaster modules/Container.lua:632;SkillMaster modules/MainWindow.lua:318
+Widgets	descriptor	gap	by-hand		a `dock = "hud"` field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:693); DropWatcher's wrapper forwards a `gap` no caller sets, so it is not counted	AuraMaster modules/Anchors.lua:1201;KickCD modules/SimStrip.lua:93;RangeMaster modules/Container.lua:632
+Widgets	descriptor	inset	documented	it insets a title-docked strip from the window's edge while the title bar is hidden; every host docks at the default 0	no `TestStrip` options or `DockTestStrip` spec passes it	
+Widgets	descriptor	onOffset	by-hand		a `dock = "title"` field of `TestStrip`'s options (Widgets.lua:742); Combat Trail's wrapper forwards an `onOffset` none of its callers sets, so it is not counted	BankLedger modules/Browser.lua:759;DropWatcher modules/Window.lua:377;LootHistory modules/Browser.lua:1026;MultiMeters modules/Window_Frame.lua:222
+Widgets	descriptor	onSettings	documented	it is `CopyWindow`'s settings mark; no host's copy window shows one, so the mark falls back to the opener the launcher registered	no `CopyWindow` passes it; AbsorbTracker's `onSettings` (modules/Bar.lua:149) goes to `DragHandle`'s options table, an alias of its `settings` (WidgetsDragHandle.lua:576), outside this definition	
+Widgets	descriptor	target	by-hand		a `dock = "hud"` field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:673), neither of which the scan treats as a descriptor literal	AbsorbTracker modules/Bar.lua:198;AuraMaster modules/Anchors.lua:1201;DropWatcher modules/RollPopup.lua:430;KickCD modules/SimStrip.lua:93;RangeMaster modules/Container.lua:632
+Widgets	descriptor	titleBar	by-hand		a `dock = "title"` field of `TestStrip`'s options (Widgets.lua:714), which the scan does not treat as a descriptor literal	BankLedger modules/Browser.lua:759;CombatTrail modules/Results.lua:552;DropWatcher modules/Window.lua:377;LootHistory modules/Browser.lua:1026;MultiMeters modules/Window_Frame.lua:221;OutfitterReborn modules/Window.lua:142;SkillMaster modules/MainWindow.lua:318
+Widgets	descriptor	window	by-hand		a `dock = "title"` field of `TestStrip`'s options (Widgets.lua:716), which the scan does not treat as a descriptor literal	BankLedger modules/Browser.lua:759;CombatTrail modules/Results.lua:552;DropWatcher modules/Window.lua:377;LootHistory modules/Browser.lua:1026;MultiMeters modules/Window_Frame.lua:221;SkillMaster modules/MainWindow.lua:318
+DebugLog	descriptor	onSettings	documented	it overrides the console's settings mark; every host keeps the default, the opener its launcher registered	no descriptor passes it	
+Launcher	descriptor	entryClients	documented	it limits a menu entry to some clients; every roster addon's entries are for each client it ships	no descriptor passes it	
+Launcher	descriptor	owner	documented	it names a skin owner other than `d.name`, for whom the opener is also registered; every host's owner is its folder	no descriptor passes it	
+Options	lib	SKIN_NOTICE_VERSION	documented	the skin picker's one-time notice is stamped with it (OptionsSkinPicker.lua:1332)	internal only; read by Combat Trail's test harness (tests/run.lua:72)	
+IconBrowser	lib	BUILTIN_TABS	documented	the browser builds its built-in tabs from it (IconBrowserSources.lua:485)	internal only	
+IconBrowser	lib	GLYPH_LABELS	documented	the glyph tab labels each glyph through it (IconBrowserSources.lua:266)	internal only	
+IconBrowser	lib	MacroIcons	documented	the game tab lists the client's macro icons through it (IconBrowserSources.lua:348)	internal only	
+IconBrowser	lib	SKIN_TOKENS	documented	the browser registers its own skin tokens from it (IconBrowserWindow.lua:134)	internal only; the name hits are each host's own `NS.SKIN_TOKENS`	
+IconBrowser	lib	STRINGS	documented	it is the English fallback for every browser word; Quick Comms overrides by key through the descriptor's `L` (settings/IconBrowser.lua:62)	no host reads the table by name; the name hits are other majors' `STRINGS`	
+IconBrowser	lib	Sources	documented	it is the browser's tab sources, kept across a minor upgrade (IconBrowserSources.lua:121)	internal only	
+IconBrowser	lib	WOWHEAD_ICONS	documented	the browser's Wowhead link opens it (IconBrowser.lua:702)	internal only	
+Perf	descriptor	onSettings	documented	it overrides the perf panel's settings mark; every host keeps the default, the opener its launcher registered	no descriptor passes it	
+Sim	lib	SAMPLE	documented	`Sample(client)` copies from it (Sim.lua:351); a host takes its copy through `Sample`	internal only; read by host tests only (BankLedger, DropWatcher, SkillMaster), which hold their library-absent fallbacks to it	
