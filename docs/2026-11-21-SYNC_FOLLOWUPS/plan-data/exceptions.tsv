@@ -1,1 +1,2 @@
 id	proof	why
+FU-DX-MM	grep -n "__WindowSection" ../MultiMeters/tests/test_windows_rail.lua   # line 122: the member is a live test seam	Not dead: tests/test_windows_rail.lua:122 reads it on both loads; kept, no commit (reviewed)
