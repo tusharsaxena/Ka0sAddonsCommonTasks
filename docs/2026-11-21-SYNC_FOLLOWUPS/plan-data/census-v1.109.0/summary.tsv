@@ -1,0 +1,826 @@
+major	kind	member	call	namecall	duplicate	stub	other	test	callHosts	namecallHosts
+LibKa0s-Core-1.0	lib	ApplySkin	13	28	9	32	72	114	AuraMaster,BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,WhatGroup
+LibKa0s-Core-1.0	lib	ClassColor	7	39	3	8	9	27	AuraMaster,CombatTrail,MultiMeters,PartyFrameEnhanced,RangeMaster,SkillMaster	AuraMaster,BankLedger,CombatTrail,DropWatcher,MultiMeters,PartyFrameEnhanced
+LibKa0s-Core-1.0	lib	HasSettings	0	0	0	0	0	0		
+LibKa0s-Core-1.0	lib	IsConcatSafe	18	11	0	37	15	97	AbsorbTracker,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,MultiMeters,PremadeGroupsFilterExtension
+LibKa0s-Core-1.0	lib	MakeCloseButton	17	23	19	37	70	174	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AuraMaster,BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Core-1.0	lib	MakeResizable	8	15	2	9	27	52	BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,QuickComms,SkillMaster	BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,SkillMaster
+LibKa0s-Core-1.0	lib	New	19	239	39	29	578	1103	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Core-1.0	lib	OpenSettings	1	27	10	0	14	60	AuraMaster	CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,PremadeGroupsFilterExtension,QuickComms,SkillMaster,WhatGroup
+LibKa0s-Core-1.0	lib	RGBA	4	7	0	2	43	49	ConsumableMaster,MultiMeters,QuickComms	MultiMeters
+LibKa0s-Core-1.0	lib	RaiseStaticPopups	4	4	0	2	3	5	AuraMaster,CombatTrail,OutfitterReborn,RangeMaster	CombatTrail,OutfitterReborn
+LibKa0s-Core-1.0	lib	RegisterSettingsOpener	0	0	0	0	0	0		
+LibKa0s-Core-1.0	lib	ResolveColor	11	31	1	9	22	22	AbsorbTracker,AuraMaster,ConsumableMaster,DropWatcher,KickCD,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster	AbsorbTracker,AuraMaster,DropWatcher,KickCD,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster
+LibKa0s-Core-1.0	lib	SECRET	4	3	0	12	76	338	AbsorbTracker,KickCD,MultiMeters,RangeMaster	AbsorbTracker,KickCD,MultiMeters
+LibKa0s-Core-1.0	lib	SKIN	11	8	0	27	151	69	AuraMaster,CombatTrail,DropWatcher,LibKa0sSkinTester,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,DropWatcher,LootHistory,MultiMeters,QuickComms
+LibKa0s-Core-1.0	lib	SafeRegisterEvent	19	89	1	30	26	73	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Core-1.0	lib	SafeRegisterEvents	14	4	1	15	3	12	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster	PartyFrameEnhanced,PrettyChat,SkillMaster
+LibKa0s-Core-1.0	lib	SafeRegisterUnitEvent	14	30	1	15	6	17	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,CombatTrail,KickCD,LootHistory,OutfitterReborn,PartyFrameEnhanced,QuickComms,SkillMaster
+LibKa0s-Core-1.0	lib	SafeToString	19	91	0	102	39	193	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Core-1.0	descriptor	Hide	0	0	0	0	0	0		
+LibKa0s-Core-1.0	descriptor	prefix	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Core-1.0	descriptor	sep	1	0	0	0	0	0	PrettyChat	
+LibKa0s-Core-1.0	descriptor	sink	6	0	0	0	0	0	ConsumableMaster,DropWatcher,LibKa0sSkinTester,PremadeGroupsFilterExtension,QuickComms,WhatGroup	
+LibKa0s-Tooltip-1.0	lib	AttachTitleTip	8	0	0	0	4	6	BankLedger,CombatTrail,MultiMeters,SkillMaster	
+LibKa0s-Tooltip-1.0	lib	CLOSE_STRINGS	0	0	0	0	0	0		
+LibKa0s-Tooltip-1.0	lib	CloseTip	3	0	0	0	2	0	BankLedger,MultiMeters	
+LibKa0s-Tooltip-1.0	lib	GroupOf	0	2	1	0	12	11		DropWatcher
+LibKa0s-Tooltip-1.0	lib	Own	7	10	3	0	19	18	CombatTrail,ConsumableMaster,MultiMeters,QuickComms,RangeMaster	AuraMaster,BankLedger,DropWatcher,QuickComms
+LibKa0s-Tooltip-1.0	lib	PlaceAttached	12	4	2	0	24	66	CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,OutfitterReborn,QuickComms,SkillMaster	AuraMaster,BankLedger,KickCD,SkillMaster
+LibKa0s-Tooltip-1.0	lib	PlaceBeside	21	6	1	0	28	79	CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,KickCD,SkillMaster
+LibKa0s-Tooltip-1.0	lib	PlaceLauncher	1	1	1	0	3	5	SkillMaster	SkillMaster
+LibKa0s-Tooltip-1.0	lib	Replace	2	2	0	0	59	23	LootHistory,OutfitterReborn	KickCD
+LibKa0s-Tooltip-1.0	lib	SetCloseTip	0	0	0	0	1	0		
+LibKa0s-Tooltip-1.0	lib	SetGroup	2	5	3	0	6	9	ConsumableMaster	CombatTrail,LootHistory,MultiMeters
+LibKa0s-Tooltip-1.0	lib	TIP_GAP	7	7	0	0	32	48	CombatTrail,LibKa0sSkinTester,MultiMeters,QuickComms,RangeMaster,WhatGroup	BankLedger,CombatTrail,DropWatcher,KickCD,SkillMaster
+LibKa0s-Env-1.0	lib	GetAddOnMetadata	19	36	1	0	19	140	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Env-1.0	lib	GetPlayerMapID	2	0	0	0	0	3	BankLedger,LootHistory	
+LibKa0s-Env-1.0	lib	GetZone	2	0	0	0	0	3	BankLedger,LootHistory	
+LibKa0s-Env-1.0	lib	Version	19	58	21	25	96	315	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Compat-1.0	lib	CanAccess	6	34	0	0	19	75	AuraMaster,CombatTrail,DropWatcher,MultiMeters,OutfitterReborn,RangeMaster	AuraMaster,CombatTrail,MultiMeters,OutfitterReborn
+LibKa0s-Compat-1.0	lib	CharacterKey	7	2	2	0	7	18	DropWatcher,MultiMeters,PremadeGroupsFilterExtension,QuickComms,WhatGroup	DropWatcher,QuickComms
+LibKa0s-Compat-1.0	lib	ClientKey	7	39	3	0	19	101	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,OutfitterReborn,QuickComms,RangeMaster	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,OutfitterReborn,QuickComms,RangeMaster
+LibKa0s-Compat-1.0	lib	ForClient	6	69	2	0	20	54	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,OutfitterReborn,RangeMaster	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,OutfitterReborn
+LibKa0s-Compat-1.0	lib	GetSpecialization	10	16	0	0	17	74	CombatTrail,ConsumableMaster,DropWatcher,KickCD,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,RangeMaster	CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms
+LibKa0s-Compat-1.0	lib	GetSpecializationInfo	10	13	1	0	18	85	CombatTrail,ConsumableMaster,DropWatcher,KickCD,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,RangeMaster	CombatTrail,ConsumableMaster,KickCD,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms
+LibKa0s-Compat-1.0	lib	GetSpellCooldown	2	5	1	0	8	97	KickCD,WhatGroup	ConsumableMaster,KickCD
+LibKa0s-Compat-1.0	lib	GetSpellInfo	4	36	1	0	30	157	AuraMaster,KickCD,MultiMeters,RangeMaster	AuraMaster,CombatTrail,ConsumableMaster,KickCD,MultiMeters,RangeMaster
+LibKa0s-Compat-1.0	lib	GetSpellName	3	17	0	0	8	128	ConsumableMaster,LootHistory,WhatGroup	CombatTrail,ConsumableMaster,LootHistory,OutfitterReborn,SkillMaster,WhatGroup
+LibKa0s-Compat-1.0	lib	GetSpellTexture	3	14	0	0	10	76	KickCD,MultiMeters,WhatGroup	CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,SkillMaster,WhatGroup
+LibKa0s-Compat-1.0	lib	IsForever	4	14	3	0	3	89	AuraMaster,CombatTrail,DropWatcher,RangeMaster	CombatTrail,DropWatcher,RangeMaster
+LibKa0s-Compat-1.0	lib	IsRetail	4	1	2	0	3	39	AuraMaster,CombatTrail,DropWatcher,RangeMaster	CombatTrail
+LibKa0s-Compat-1.0	lib	IsSafeKey	7	74	0	0	14	58	AuraMaster,CombatTrail,DropWatcher,MultiMeters,OutfitterReborn,QuickComms,RangeMaster	AuraMaster,CombatTrail,DropWatcher,MultiMeters,OutfitterReborn,QuickComms,RangeMaster
+LibKa0s-Compat-1.0	lib	IsSecret	12	192	1	0	40	118	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,WhatGroup	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,WhatGroup
+LibKa0s-Compat-1.0	lib	RealmKey	4	1	0	0	3	10	CombatTrail,MultiMeters,PremadeGroupsFilterExtension,WhatGroup	CombatTrail
+LibKa0s-Compat-1.0	lib	RegionalNames	6	14	1	0	7	18	DropWatcher,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,WhatGroup	DropWatcher,OutfitterReborn,QuickComms
+LibKa0s-Compat-1.0	lib	UnitCharacterName	9	18	4	0	16	31	CombatTrail,DropWatcher,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,WhatGroup	CombatTrail,DropWatcher,OutfitterReborn,PartyFrameEnhanced
+LibKa0s-Role-1.0	lib	Groups	6	37	5	2	191	224	DropWatcher,QuickComms	CombatTrail,DropWatcher,QuickComms,SkillMaster
+LibKa0s-Role-1.0	lib	Resolve	3	100	19	19	141	342	DropWatcher,QuickComms	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Role-1.0	lib	SetOverride	4	38	0	0	51	33	DropWatcher,QuickComms	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Role-1.0	lib	Spec	3	20	3	0	89	74	DropWatcher,QuickComms	AuraMaster,DropWatcher,LootHistory
+LibKa0s-Role-1.0	lib	SpecsForClass	2	1	1	0	2	1	QuickComms	QuickComms
+LibKa0s-Role-1.0	lib	TALENT_GROUP_ROLE	0	0	0	0	1	0		
+LibKa0s-Lifecycle-1.0	lib	HOLD_DISABLED	21	43	0	13	6	34	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Lifecycle-1.0	lib	HOLD_PERF	12	1	0	10	2	113	AuraMaster,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	RangeMaster
+LibKa0s-Lifecycle-1.0	lib	New	16	242	39	29	578	1103	AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Lifecycle-1.0	instance	Hold	0	5	5	34	98	113		CombatTrail,DropWatcher,QuickComms
+LibKa0s-Lifecycle-1.0	instance	Holds	30	0	0	19	5	32	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Lifecycle-1.0	instance	IsDown	41	16	1	17	5	65	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	KickCD
+LibKa0s-Lifecycle-1.0	instance	IsHeld	14	0	0	19	1	33	AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Lifecycle-1.0	instance	PrintHolds	0	0	0	17	3	6		
+LibKa0s-Lifecycle-1.0	instance	Reevaluate	13	11	2	18	18	20	AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,MultiMeters,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,WhatGroup	AuraMaster,KickCD
+LibKa0s-Lifecycle-1.0	instance	Release	0	18	10	33	72	201		AbsorbTracker,DropWatcher,KickCD,MultiMeters,PartyFrameEnhanced,QuickComms
+LibKa0s-Lifecycle-1.0	instance	Set	34	288	31	45	852	3412	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Lifecycle-1.0	instance	name	0	978	7	301	8969	13604		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Lifecycle-1.0	descriptor	debug	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	name	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	print	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	standDown	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Lifecycle-1.0	descriptor	standUp	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Bus-1.0	lib	Catalog	15	6	1	11	42	67	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	PanelMaster
+LibKa0s-Bus-1.0	lib	New	10	248	39	29	578	1103	AbsorbTracker,CombatTrail,ConsumableMaster,DropWatcher,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Bus-1.0	instance	NewTarget	31	4	0	11	3	50	CombatTrail,ConsumableMaster,DropWatcher,OutfitterReborn,PartyFrameEnhanced,QuickComms	AbsorbTracker,MultiMeters,RangeMaster,SkillMaster
+LibKa0s-Bus-1.0	instance	StandDown	6	44	36	27	95	108	CombatTrail,ConsumableMaster,DropWatcher,OutfitterReborn,PartyFrameEnhanced,QuickComms	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Bus-1.0	instance	StandUp	6	35	24	29	63	72	CombatTrail,ConsumableMaster,DropWatcher,OutfitterReborn,PartyFrameEnhanced,QuickComms	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Bus-1.0	descriptor	isDown	10	0	0	0	0	0	AbsorbTracker,CombatTrail,ConsumableMaster,DropWatcher,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Bus-1.0	descriptor	name	10	0	0	0	0	0	AbsorbTracker,CombatTrail,ConsumableMaster,DropWatcher,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Schema-1.0	lib	New	20	238	39	29	578	1103	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	lib	Read	20	29	23	7	364	172	AbsorbTracker,AuraMaster,CombatTrail,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,RangeMaster,SkillMaster	AbsorbTracker,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-Schema-1.0	lib	SameValue	2	15	14	4	6	20	AuraMaster,BankLedger	AbsorbTracker,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	lib	SplitPath	6	48	18	6	3	12	AuraMaster,CombatTrail,KickCD,MultiMeters,OutfitterReborn,SkillMaster	AbsorbTracker,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	lib	Write	9	34	19	4	127	33	AbsorbTracker,AuraMaster,CombatTrail,KickCD,PanelMaster,PartyFrameEnhanced,RangeMaster	AbsorbTracker,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	instance	AddRows	18	21	17	2	7	18	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,RangeMaster,SkillMaster	ConsumableMaster,DropWatcher,LibKa0sSkinTester,PanelMaster,PremadeGroupsFilterExtension,QuickComms,WhatGroup
+LibKa0s-Schema-1.0	instance	AllRows	9	9	16	4	3	35	AbsorbTracker,BankLedger,OutfitterReborn,PrettyChat,RangeMaster	ConsumableMaster,KickCD,OutfitterReborn,PanelMaster,PrettyChat
+LibKa0s-Schema-1.0	instance	ApplyDefault	16	51	18	17	51	132	AbsorbTracker,BankLedger,CombatTrail,KickCD,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PrettyChat,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	instance	BulkAdd	2	1	14	2	5	7	AuraMaster,PrettyChat	PanelMaster
+LibKa0s-Schema-1.0	instance	BulkBegin	21	22	16	7	8	37	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,RangeMaster,SkillMaster	ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,WhatGroup
+LibKa0s-Schema-1.0	instance	BulkEnd	21	22	16	7	11	44	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,RangeMaster,SkillMaster	ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,WhatGroup
+LibKa0s-Schema-1.0	instance	BulkRun	14	10	16	7	6	12	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,RangeMaster,SkillMaster	DropWatcher,LibKa0sSkinTester,LootHistory,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,QuickComms,WhatGroup
+LibKa0s-Schema-1.0	instance	ConsumeResetCount	4	15	14	2	9	10	AbsorbTracker,KickCD,PartyFrameEnhanced,RangeMaster	AbsorbTracker,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,WhatGroup
+LibKa0s-Schema-1.0	instance	CountOffDefault	1	0	14	2	2	6	PrettyChat	
+LibKa0s-Schema-1.0	instance	Default	2	8	15	15	753	2114	BankLedger,PanelMaster	BankLedger,CombatTrail,DropWatcher,LootHistory,OutfitterReborn,QuickComms
+LibKa0s-Schema-1.0	instance	FindRow	40	55	16	12	22	350	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,RangeMaster,SkillMaster	BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,WhatGroup
+LibKa0s-Schema-1.0	instance	Get	21	536	52	19	150	2303	AbsorbTracker,BankLedger,CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,RangeMaster,SkillMaster	AbsorbTracker,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	instance	InBulk	4	1	14	2	3	17	AuraMaster,SkillMaster	PartyFrameEnhanced
+LibKa0s-Schema-1.0	instance	Reindex	1	0	14	2	5	15	AuraMaster	
+LibKa0s-Schema-1.0	instance	ResetCounted	5	7	14	2	9	5	AbsorbTracker,KickCD,PartyFrameEnhanced,RangeMaster,SkillMaster	ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,PremadeGroupsFilterExtension,QuickComms,WhatGroup
+LibKa0s-Schema-1.0	instance	Set	29	293	31	45	852	3412	AbsorbTracker,BankLedger,CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Schema-1.0	instance	SetMany	5	9	15	5	42	133	ConsumableMaster,MultiMeters,OutfitterReborn,PanelMaster,SkillMaster	ConsumableMaster,KickCD,OutfitterReborn,PanelMaster,PrettyChat
+LibKa0s-Schema-1.0	instance	Validate	11	11	19	2	21	33	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,OutfitterReborn,PanelMaster,PartyFrameEnhanced,RangeMaster,SkillMaster	AuraMaster,DropWatcher,LibKa0sSkinTester,LootHistory,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,WhatGroup
+LibKa0s-Schema-1.0	descriptor	L	4	0	0	0	0	0	BankLedger,LootHistory,MultiMeters,PanelMaster	
+LibKa0s-Schema-1.0	descriptor	resetExempt	16	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Schema-1.0	descriptor	rows	20	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Schema-1.0	descriptor	writeThrough	14	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Pool-1.0	lib	Acquire	52	26	15	0	32	70	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster	BankLedger,DropWatcher,KickCD,MultiMeters,OutfitterReborn,RangeMaster,SkillMaster
+LibKa0s-Pool-1.0	lib	AcquireKeyed	3	0	4	0	2	8	KickCD,RangeMaster	
+LibKa0s-Pool-1.0	lib	Counts	2	3	14	0	10	86	LootHistory	DropWatcher
+LibKa0s-Pool-1.0	lib	CountsKeyed	3	0	4	0	1	7	KickCD,RangeMaster	
+LibKa0s-Pool-1.0	lib	New	43	215	39	29	578	1103	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Pool-1.0	lib	NewKeyed	4	0	4	0	1	5	KickCD,RangeMaster	
+LibKa0s-Pool-1.0	lib	ReleaseAll	56	13	12	0	15	44	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster	BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,OutfitterReborn,SkillMaster
+LibKa0s-Pool-1.0	lib	ReleaseAllKeyed	5	0	4	0	4	6	KickCD,RangeMaster	
+LibKa0s-Item-1.0	lib	BonusIDsFromLink	4	1	3	0	6	35	BankLedger,LootHistory,OutfitterReborn	OutfitterReborn
+LibKa0s-Item-1.0	lib	ItemIDFromLink	20	1	5	0	5	36	BankLedger,ConsumableMaster,DropWatcher,LootHistory,OutfitterReborn	OutfitterReborn
+LibKa0s-Item-1.0	lib	LoadItem	6	0	3	0	8	22	BankLedger,DropWatcher,LootHistory	
+LibKa0s-Item-1.0	lib	QualityFromLink	2	0	3	0	8	9	DropWatcher,LootHistory	
+LibKa0s-Item-1.0	lib	QualityLabel	22	0	3	0	7	26	BankLedger,DropWatcher,LootHistory	
+LibKa0s-Glow-1.0	lib	Start	4	22	19	0	145	353	DropWatcher,KickCD,QuickComms	AuraMaster,CombatTrail,DropWatcher,KickCD,OutfitterReborn,RangeMaster
+LibKa0s-Glow-1.0	lib	Stop	4	79	14	1	145	338	DropWatcher,KickCD,QuickComms	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Toast-1.0	lib	DURATION	0	2	0	0	4	18		QuickComms
+LibKa0s-Toast-1.0	lib	HEIGHT	0	26	0	0	84	92		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,RangeMaster,SkillMaster
+LibKa0s-Toast-1.0	lib	MAX_QUEUE	0	5	0	0	2	6		DropWatcher,QuickComms
+LibKa0s-Toast-1.0	lib	New	4	254	39	29	578	1103	CombatTrail,DropWatcher,QuickComms,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Toast-1.0	lib	POINT	0	4	0	6	35	100		DropWatcher
+LibKa0s-Toast-1.0	lib	PREVIEW	1	0	0	0	71	17	CombatTrail	
+LibKa0s-Toast-1.0	lib	STACK_GAP	1	0	0	0	3	0	DropWatcher	
+LibKa0s-Toast-1.0	lib	STRATA	0	93	0	0	72	115		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Toast-1.0	lib	WIDTH	0	52	0	0	98	55		CombatTrail,DropWatcher,OutfitterReborn,SkillMaster
+LibKa0s-Toast-1.0	descriptor	build	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	debug	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	defaultPosition	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	draggable	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	duration	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	getPosition	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	height	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	maxQueue	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	name	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	owner	4	0	0	0	0	0	CombatTrail,DropWatcher,QuickComms,SkillMaster	
+LibKa0s-Toast-1.0	descriptor	scale	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	setPosition	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	sound	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	soundFile	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	soundKit	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	stack	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Toast-1.0	descriptor	stackGap	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	stackGrow	0	0	0	0	0	0		
+LibKa0s-Toast-1.0	descriptor	width	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Callout-1.0	lib	ANIMS	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	CHANNELS	0	2	0	0	21	2		CombatTrail
+LibKa0s-Callout-1.0	lib	DEFAULTS	0	6	0	1	32	12		DropWatcher
+LibKa0s-Callout-1.0	lib	FOLLOW_FROM	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	FONT_DEFAULT	0	0	0	0	2	0		
+LibKa0s-Callout-1.0	lib	FONT_FACES	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	FONT_GAME	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	FONT_SKIN	0	0	0	0	1	0		
+LibKa0s-Callout-1.0	lib	FROM_SKIN	0	16	0	59	16	64		AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,OutfitterReborn,PartyFrameEnhanced,QuickComms
+LibKa0s-Callout-1.0	lib	FollowKeys	0	0	0	0	1	0		
+LibKa0s-Callout-1.0	lib	GLOWS	0	0	0	0	7	0		
+LibKa0s-Callout-1.0	lib	GLOW_LEGACY	1	0	0	0	0	0	CombatTrail	
+LibKa0s-Callout-1.0	lib	KINDS	0	7	0	0	17	17		CombatTrail,DropWatcher,QuickComms
+LibKa0s-Callout-1.0	lib	LINES	0	2	0	1	27	16		DropWatcher
+LibKa0s-Callout-1.0	lib	MAX_FROM	0	0	0	0	2	1		
+LibKa0s-Callout-1.0	lib	MEANING	0	0	0	0	2	0		
+LibKa0s-Callout-1.0	lib	MigrateGlow	1	0	0	0	3	0	CombatTrail	
+LibKa0s-Callout-1.0	lib	MoveToSkin	2	0	0	0	2	0	CombatTrail	
+LibKa0s-Callout-1.0	lib	New	1	257	39	29	578	1103	CombatTrail	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Callout-1.0	lib	OFF	0	10	0	8	70	109		QuickComms
+LibKa0s-Callout-1.0	lib	OUTLINES	0	0	0	0	2	0		
+LibKa0s-Callout-1.0	lib	PACKS	0	0	0	0	1	10		
+LibKa0s-Callout-1.0	lib	PLAY_COUNTDOWN	0	0	0	0	0	2		
+LibKa0s-Callout-1.0	lib	SETTINGS	0	2	0	1	38	17		PanelMaster
+LibKa0s-Callout-1.0	lib	SETTINGS_SIDE_TABS	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	SETTINGS_STRINGS	0	0	0	0	3	0		
+LibKa0s-Callout-1.0	lib	SETTINGS_TABS	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	SIZE_MAX	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	SIZE_MIN	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	SOUND_EXT	0	0	0	0	0	2		
+LibKa0s-Callout-1.0	lib	STOCK	0	0	0	0	3	1		
+LibKa0s-Callout-1.0	lib	STOCK_ORDER	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	lib	STRATA	0	93	0	0	72	115		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Callout-1.0	lib	TTS	0	0	0	0	4	0		
+LibKa0s-Callout-1.0	lib	WIDTH	0	52	0	0	98	55		CombatTrail,DropWatcher,OutfitterReborn,SkillMaster
+LibKa0s-Callout-1.0	descriptor	addon	1	0	0	0	0	0	CombatTrail	
+LibKa0s-Callout-1.0	descriptor	colorEncode	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	descriptor	db	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	descriptor	debug	1	0	0	0	0	0	CombatTrail	
+LibKa0s-Callout-1.0	descriptor	label	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	descriptor	name	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	descriptor	packs	1	0	0	0	0	0	CombatTrail	
+LibKa0s-Callout-1.0	descriptor	path	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	descriptor	set	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	descriptor	skin	1	0	0	0	0	0	CombatTrail	
+LibKa0s-Callout-1.0	descriptor	soundsBase	0	0	0	0	0	0		
+LibKa0s-Callout-1.0	descriptor	vendorPath	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	ARRIVE	0	0	0	0	0	1		
+LibKa0s-WaypointArrow-1.0	lib	ART	0	4	0	0	26	10		CombatTrail,OutfitterReborn,SkillMaster
+LibKa0s-WaypointArrow-1.0	lib	COMPACT_FROM	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	DEFAULTS	0	6	0	1	32	12		DropWatcher
+LibKa0s-WaypointArrow-1.0	lib	DEFAULT_POINT	0	3	0	0	2	0		QuickComms
+LibKa0s-WaypointArrow-1.0	lib	DEFAULT_STYLE	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	DISTANCE_UNITS	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	Distance	0	4	3	0	14	10		CombatTrail,SkillMaster
+LibKa0s-WaypointArrow-1.0	lib	DistanceUnitsValues	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	FAR	0	0	0	0	7	10		
+LibKa0s-WaypointArrow-1.0	lib	FLAGS_FROM_SKIN	0	3	0	0	0	0		ConsumableMaster
+LibKa0s-WaypointArrow-1.0	lib	FONT_DEFAULT	0	0	0	0	2	0		
+LibKa0s-WaypointArrow-1.0	lib	FONT_FLAGS	0	1	0	5	4	19		QuickComms
+LibKa0s-WaypointArrow-1.0	lib	FONT_SIZE_MAX	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	FONT_SIZE_MIN	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	Fade	0	0	0	0	43	14		
+LibKa0s-WaypointArrow-1.0	lib	FormatDistance	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	GROUND	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	GroundFrame	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	GroundTexCoord	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	HIT_PAD	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	IsStyle	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	MEDIA_DIR	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	MENU_ITEMS	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	MapWorldPos	0	3	1	0	3	4		SkillMaster
+LibKa0s-WaypointArrow-1.0	lib	Mix	0	0	0	0	1	1		
+LibKa0s-WaypointArrow-1.0	lib	NEAR	0	0	0	0	9	17		
+LibKa0s-WaypointArrow-1.0	lib	New	1	257	39	29	578	1103	SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-WaypointArrow-1.0	lib	POSITION_MAX	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	POSITION_MIN	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	PlayerFacing	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	PlayerWorldPos	0	1	1	0	2	4		SkillMaster
+LibKa0s-WaypointArrow-1.0	lib	Rotation	0	0	0	0	10	3		
+LibKa0s-WaypointArrow-1.0	lib	SAMPLE_ROTATION	0	0	0	0	0	1		
+LibKa0s-WaypointArrow-1.0	lib	SAMPLE_YARDS	0	0	0	0	0	1		
+LibKa0s-WaypointArrow-1.0	lib	SCALE_MAX	0	0	0	0	2	0		
+LibKa0s-WaypointArrow-1.0	lib	SCALE_MIN	0	0	0	0	2	0		
+LibKa0s-WaypointArrow-1.0	lib	SCALE_STEP	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	SETTINGS	0	2	0	1	38	17		PanelMaster
+LibKa0s-WaypointArrow-1.0	lib	SETTINGS_STRINGS	0	0	0	0	3	0		
+LibKa0s-WaypointArrow-1.0	lib	SHADOW_BOX	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	SHADOW_OFFSET	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	SHARE_LEAD	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	SKIN_FAR	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	SKIN_NEAR	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	STRATA	0	93	0	0	72	115		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-WaypointArrow-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-WaypointArrow-1.0	lib	STYLES	0	7	0	0	11	23		AuraMaster,QuickComms
+LibKa0s-WaypointArrow-1.0	lib	SettingsRows	2	1	2	0	2	1	SkillMaster	SkillMaster
+LibKa0s-WaypointArrow-1.0	lib	ShareText	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	StyleValues	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	TEXT_GAP	0	7	0	0	2	1		CombatTrail,DropWatcher
+LibKa0s-WaypointArrow-1.0	lib	TEXT_POSITIONS	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	TEXT_ROOM	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	THROTTLE	1	9	0	0	6	15	SkillMaster	DropWatcher,SkillMaster
+LibKa0s-WaypointArrow-1.0	lib	TextPositionValues	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	lib	UNITS	0	11	0	0	18	40		AbsorbTracker,AuraMaster,RangeMaster
+LibKa0s-WaypointArrow-1.0	descriptor	addon	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	arrive	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	canDrag	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	debug	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	far	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	format	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	mediaBase	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	menu	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	menuItems	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	name	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	near	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	onArrive	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	onClear	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	onClick	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	onEnter	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	onLeave	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	onMoved	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	onSampleClear	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	parent	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	paths	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	point	0	0	0	0	0	0		
+LibKa0s-WaypointArrow-1.0	descriptor	set	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	skin	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	strata	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	strings	1	0	0	0	0	0	SkillMaster	
+LibKa0s-WaypointArrow-1.0	descriptor	vendorPath	0	0	0	0	0	0		
+LibKa0s-Charts-1.0	lib	K	12	2	0	0	289	236	CombatTrail,DropWatcher,LootHistory	LootHistory
+LibKa0s-Charts-1.0	lib	New	3	255	39	29	578	1103	CombatTrail,DropWatcher,LootHistory	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Charts-1.0	lib	OTHER	1	8	0	1	54	251	LootHistory	CombatTrail,LootHistory
+LibKa0s-Charts-1.0	lib	RangeScale	0	0	0	0	0	0		
+LibKa0s-Charts-1.0	lib	StackSegments	1	2	1	0	2	12	LootHistory	BankLedger
+LibKa0s-Charts-1.0	lib	StripLabels	0	0	0	0	0	0		
+LibKa0s-Charts-1.0	lib	StripSlots	0	0	0	0	0	0		
+LibKa0s-Charts-1.0	lib	fitFontSize	1	0	0	0	0	0	LootHistory	
+LibKa0s-Charts-1.0	lib	tipText	0	0	0	0	0	40		
+LibKa0s-Charts-1.0	lib	truncate	1	0	0	0	11	3	CombatTrail	
+LibKa0s-Media-1.0	lib	BACKGROUNDS	0	0	0	0	3	0		
+LibKa0s-Media-1.0	lib	BORDERS	0	0	0	0	1	0		
+LibKa0s-Media-1.0	lib	Background	0	5	1	0	197	90		DropWatcher,PartyFrameEnhanced
+LibKa0s-Media-1.0	lib	Border	0	5	3	0	210	144		CombatTrail,PartyFrameEnhanced,RangeMaster
+LibKa0s-Media-1.0	lib	FONTS	0	0	0	0	14	37		
+LibKa0s-Media-1.0	lib	Font	19	76	3	20	574	317	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,RangeMaster
+LibKa0s-Media-1.0	lib	ICONS	0	0	0	0	49	43		
+LibKa0s-Media-1.0	lib	ICON_SETS	0	0	0	0	0	0		
+LibKa0s-Media-1.0	lib	Icon	19	168	22	0	373	697	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Media-1.0	lib	IconAuthor	0	0	0	0	0	0		
+LibKa0s-Media-1.0	lib	RegisterLSM	19	0	0	0	14	14	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Media-1.0	lib	TEXTURES	0	0	0	0	0	5		
+LibKa0s-Media-1.0	lib	Texture	0	12	2	2	89	207		ConsumableMaster,OutfitterReborn,QuickComms
+LibKa0s-Media-1.0	lib	VENDOR_PATH	0	0	0	0	0	2		
+LibKa0s-Skin-1.0	lib	AliasAceType	1	0	0	0	4	5	AuraMaster	
+LibKa0s-Skin-1.0	lib	CLIENT_DEFAULTS	0	0	0	0	0	4		
+LibKa0s-Skin-1.0	lib	Color	0	162	7	19	283	408		AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Skin-1.0	lib	DEFAULT	2	11	0	19	115	59	CombatTrail,LootHistory	CombatTrail
+LibKa0s-Skin-1.0	lib	DefaultSkin	17	0	0	0	26	34	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Skin-1.0	lib	DrawsKey	1	0	0	0	1	5	PremadeGroupsFilterExtension	
+LibKa0s-Skin-1.0	lib	FROM_SKIN	1	15	0	59	16	64	PartyFrameEnhanced	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,OutfitterReborn,QuickComms
+LibKa0s-Skin-1.0	lib	FollowOnce	16	0	0	0	25	11	AbsorbTracker,AuraMaster,ConsumableMaster,DropWatcher,KickCD,MultiMeters,PartyFrameEnhanced,QuickComms	
+LibKa0s-Skin-1.0	lib	For	19	25	4	0	260	195	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AuraMaster,CombatTrail,QuickComms,SkillMaster
+LibKa0s-Skin-1.0	lib	GetChoice	6	2	0	0	0	135	LibKa0sSkinTester,PremadeGroupsFilterExtension,QuickComms,SkillMaster	LibKa0sSkinTester
+LibKa0s-Skin-1.0	lib	GetEUIStatus	4	0	0	0	4	6	PremadeGroupsFilterExtension,QuickComms	
+LibKa0s-Skin-1.0	lib	GetIgnore	20	2	0	0	13	57	AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat,QuickComms,RangeMaster	LibKa0sSkinTester
+LibKa0s-Skin-1.0	lib	GetOutline	0	1	0	0	0	102		LibKa0sSkinTester
+LibKa0s-Skin-1.0	lib	GetOverride	0	0	0	0	0	36		
+LibKa0s-Skin-1.0	lib	GetSkin	0	0	0	0	0	14		
+LibKa0s-Skin-1.0	lib	IsFromSkin	0	0	0	0	0	0		
+LibKa0s-Skin-1.0	lib	IsOwner	1	0	0	0	0	23	LibKa0sSkinTester	
+LibKa0s-Skin-1.0	lib	OUTLINE_DEFAULT	0	0	0	0	25	23		
+LibKa0s-Skin-1.0	lib	OUTLINE_MODES	0	0	0	0	20	19		
+LibKa0s-Skin-1.0	lib	OnLooksChanged	0	72	2	19	133	87		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Skin-1.0	lib	OnRelease	18	0	0	0	69	61	AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LootHistory,PremadeGroupsFilterExtension,QuickComms,SkillMaster	
+LibKa0s-Skin-1.0	lib	OnReloadRequest	0	0	0	0	0	7		
+LibKa0s-Skin-1.0	lib	OwnerLabel	0	0	0	0	0	16		
+LibKa0s-Skin-1.0	lib	Owners	0	0	0	0	2	0		
+LibKa0s-Skin-1.0	lib	PaintAce	26	0	0	0	44	27	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,PanelMaster,PremadeGroupsFilterExtension,QuickComms,RangeMaster,WhatGroup	
+LibKa0s-Skin-1.0	lib	PaintAceTree	38	0	0	0	19	22	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Skin-1.0	lib	PendingReload	3	0	0	0	0	1	LibKa0sSkinTester,PremadeGroupsFilterExtension	
+LibKa0s-Skin-1.0	lib	RETIRED_FONTS	0	12	0	0	33	0		AuraMaster,ConsumableMaster,KickCD,MultiMeters
+LibKa0s-Skin-1.0	lib	RegisterOwner	19	0	0	0	27	45	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Skin-1.0	lib	RegisterSkin	0	0	0	0	1	45		
+LibKa0s-Skin-1.0	lib	Repaint	0	2	3	0	38	13		RangeMaster
+LibKa0s-Skin-1.0	lib	ResetToSkin	20	0	0	0	34	31	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,MultiMeters,QuickComms,RangeMaster	
+LibKa0s-Skin-1.0	lib	Resolve	0	103	19	19	141	342		AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Skin-1.0	lib	ResolveSkin	8	4	0	0	2	120	AuraMaster,CombatTrail,KickCD,LootHistory	LibKa0sSkinTester
+LibKa0s-Skin-1.0	lib	SCHEMA	0	1	0	1	31	27		LibKa0sSkinTester
+LibKa0s-Skin-1.0	lib	SOURCES	0	2	0	0	12	11		DropWatcher
+LibKa0s-Skin-1.0	lib	SetChoice	19	0	0	0	101	422	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Skin-1.0	lib	SetIgnore	38	0	0	0	26	131	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Skin-1.0	lib	SetOutline	38	0	0	0	53	60	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Skin-1.0	lib	SetOverride	38	4	0	0	51	33	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	DropWatcher,QuickComms
+LibKa0s-Skin-1.0	lib	Skins	42	5	0	0	6	69	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	LibKa0sSkinTester
+LibKa0s-Skin-1.0	lib	Token	6	39	0	34	63	251	CombatTrail,OutfitterReborn	AbsorbTracker,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,QuickComms,SkillMaster
+LibKa0s-Skin-1.0	lib	Track	0	2	2	0	96	37		QuickComms,RangeMaster
+LibKa0s-Skin-1.0	lib	Untrack	5	1	1	0	15	7	CombatTrail,ConsumableMaster,KickCD,MultiMeters,QuickComms	RangeMaster
+LibKa0s-Skin-1.0	lib	VOCAB	0	0	0	19	2	17		
+LibKa0s-Skin-1.0	lib	WriteChoice	0	0	0	0	0	60		
+LibKa0s-Skin-1.0	lib	byOwner	0	0	0	0	0	2		
+LibKa0s-Skin-1.0	lib	euiFacade	0	0	0	0	0	0		
+LibKa0s-Skin-1.0	lib	euiPainted	0	0	0	0	0	0		
+LibKa0s-Skin-1.0	lib	euiRefused	2	0	0	0	0	0	CombatTrail,OutfitterReborn	
+LibKa0s-Skin-1.0	lib	euiRegistered	0	0	0	0	0	0		
+LibKa0s-Skin-1.0	lib	facades	0	0	0	0	0	1		
+LibKa0s-Skin-1.0	lib	owners	0	0	0	0	15	86		
+LibKa0s-Skin-1.0	lib	painted	0	4	0	1	273	739		CombatTrail,PremadeGroupsFilterExtension,QuickComms
+LibKa0s-Skin-1.0	lib	prim	0	0	0	0	4	13		
+LibKa0s-Skin-1.0	lib	shared	0	4	0	28	836	921		CombatTrail
+LibKa0s-Skin-1.0	lib	skins	0	0	0	4	162	193		
+LibKa0s-Skin-1.0	descriptor	addonName	0	0	0	0	0	0		
+LibKa0s-Skin-1.0	descriptor	thirdPartySkinAddons	0	0	0	0	0	0		
+LibKa0s-Skin-1.0	descriptor	thirdPartySkinsOff	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	lib	AUTOCOMPLETE	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	lib	AcquireBar	1	0	1	0	2	8	SkillMaster	
+LibKa0s-Widgets-1.0	lib	Autocomplete	4	2	0	0	4	52	BankLedger,LootHistory	LibKa0sSkinTester
+LibKa0s-Widgets-1.0	lib	BAR	0	5	0	1	81	41		CombatTrail
+LibKa0s-Widgets-1.0	lib	Bar	5	21	4	1	795	643	RangeMaster,SkillMaster	CombatTrail,OutfitterReborn,PartyFrameEnhanced
+LibKa0s-Widgets-1.0	lib	BarCompute	0	0	0	0	0	6		
+LibKa0s-Widgets-1.0	lib	BarFormatTimer	1	0	1	0	1	6	SkillMaster	
+LibKa0s-Widgets-1.0	lib	BarShade	0	0	1	0	2	2		
+LibKa0s-Widgets-1.0	lib	BarStyle	2	17	1	32	25	38	RangeMaster,SkillMaster	LibKa0sSkinTester,SkillMaster
+LibKa0s-Widgets-1.0	lib	BarText	4	0	0	0	3	3	SkillMaster	
+LibKa0s-Widgets-1.0	lib	ChartMath	0	0	0	0	0	2		
+LibKa0s-Widgets-1.0	lib	CloseMenu	14	25	7	0	35	64	BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,SkillMaster	CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms
+LibKa0s-Widgets-1.0	lib	ContextMenu	12	4	4	0	30	90	CombatTrail,DropWatcher,MultiMeters,OutfitterReborn,QuickComms,SkillMaster	DropWatcher,LibKa0sSkinTester
+LibKa0s-Widgets-1.0	lib	CopyWindow	9	3	1	0	11	17	BankLedger,CombatTrail,LootHistory,MultiMeters,QuickComms	LibKa0sSkinTester,LootHistory
+LibKa0s-Widgets-1.0	lib	DRAG_HANDLE	6	0	0	0	7	27	AbsorbTracker,AuraMaster,KickCD,QuickComms	
+LibKa0s-Widgets-1.0	lib	DRAG_HANDLE_STRINGS	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	lib	DockTestStrip	4	2	0	0	0	7	AuraMaster,RangeMaster	KickCD
+LibKa0s-Widgets-1.0	lib	DragHandle	12	2	1	0	34	69	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,QuickComms,RangeMaster	LibKa0sSkinTester
+LibKa0s-Widgets-1.0	lib	Dropdown	14	5	0	19	116	319	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster	AuraMaster,LibKa0sSkinTester
+LibKa0s-Widgets-1.0	lib	FOOTER	8	0	0	0	41	53	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,OutfitterReborn,RangeMaster,SkillMaster	
+LibKa0s-Widgets-1.0	lib	Footer	14	3	2	18	61	61	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,OutfitterReborn,RangeMaster,SkillMaster	LibKa0sSkinTester,SkillMaster
+LibKa0s-Widgets-1.0	lib	HEADER	5	22	0	0	63	54	CombatTrail,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,SkillMaster	BankLedger,CombatTrail,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms
+LibKa0s-Widgets-1.0	lib	HEADER_STRINGS	0	0	0	0	1	2		
+LibKa0s-Widgets-1.0	lib	HeaderButton	0	0	0	0	5	3		
+LibKa0s-Widgets-1.0	lib	HeaderButtons	20	12	4	0	97	101	AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	DropWatcher,LibKa0sSkinTester,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms
+LibKa0s-Widgets-1.0	lib	IconText	2	1	1	0	4	5	OutfitterReborn	OutfitterReborn
+LibKa0s-Widgets-1.0	lib	LINE_CHART	1	0	0	0	1	1	LootHistory	
+LibKa0s-Widgets-1.0	lib	LineChart	3	2	0	0	3	6	LootHistory	LibKa0sSkinTester
+LibKa0s-Widgets-1.0	lib	OwnerWarnings	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	lib	ROW_BOX	6	0	0	0	7	12	ConsumableMaster,KickCD,LootHistory,SkillMaster	
+LibKa0s-Widgets-1.0	lib	ReleaseBars	1	0	1	0	2	5	SkillMaster	
+LibKa0s-Widgets-1.0	lib	ReorderList	15	2	0	0	19	68	ConsumableMaster,KickCD,LootHistory,QuickComms,RangeMaster,SkillMaster	ConsumableMaster,MultiMeters
+LibKa0s-Widgets-1.0	lib	SearchBox	5	3	0	0	11	42	BankLedger,DropWatcher,LootHistory	LibKa0sSkinTester,PremadeGroupsFilterExtension
+LibKa0s-Widgets-1.0	lib	TEST_STRIP	3	0	0	0	6	21	DropWatcher,MultiMeters,OutfitterReborn	
+LibKa0s-Widgets-1.0	lib	TestStrip	22	4	2	0	27	62	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,RangeMaster,SkillMaster	KickCD,LibKa0sSkinTester
+LibKa0s-Widgets-1.0	descriptor	addonName	6	0	0	0	0	0	BankLedger,CombatTrail,LibKa0sSkinTester,LootHistory,MultiMeters,QuickComms	
+LibKa0s-Widgets-1.0	descriptor	anchorTo	4	0	0	0	0	0	BankLedger,CombatTrail,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	applySkin	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	backdrop	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	clear	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	dock	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	editWidth	1	0	0	0	0	0	MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	font	3	0	0	0	0	0	BankLedger,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	fontSize	2	0	0	0	0	0	LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	gap	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	height	3	0	0	0	0	0	CombatTrail,LibKa0sSkinTester,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	hoverXs	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	inset	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	integer	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	makeCloseButton	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	markers	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	name	5	0	0	0	0	0	BankLedger,CombatTrail,LibKa0sSkinTester,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	onOffset	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	onSettings	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	scrollName	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	series	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	target	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	title	5	0	0	0	0	0	BankLedger,CombatTrail,LibKa0sSkinTester,LootHistory,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	titleBar	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	width	3	0	0	0	0	0	CombatTrail,LibKa0sSkinTester,MultiMeters	
+LibKa0s-Widgets-1.0	descriptor	window	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	xMax	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	xMin	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	yMax	0	0	0	0	0	0		
+LibKa0s-Widgets-1.0	descriptor	yMin	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	lib	AT_ENABLE_MAX	0	0	0	0	1	1		
+LibKa0s-DebugLog-1.0	lib	BUFFER_SLACK	0	0	0	0	0	1		
+LibKa0s-DebugLog-1.0	lib	DIAG_MAX_LINES	0	0	0	0	1	1		
+LibKa0s-DebugLog-1.0	lib	DIAG_MAX_PER_LIST	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	lib	FormatColored	1	0	0	6	0	62	ConsumableMaster	
+LibKa0s-DebugLog-1.0	lib	FormatPlain	1	0	0	8	0	79	ConsumableMaster	
+LibKa0s-DebugLog-1.0	lib	GATE_MAX_KEYS	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	lib	MAX_BUFFER	0	0	0	0	1	8		
+LibKa0s-DebugLog-1.0	lib	MakeCloseButton	0	40	19	37	70	174		AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	lib	New	19	239	39	29	578	1103	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-DebugLog-1.0	lib	Serialize	1	1	0	29	8	19	ConsumableMaster	ConsumableMaster
+LibKa0s-DebugLog-1.0	lib	TIME_COPY	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	instance	Add	28	88	10	23	420	429	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PrettyChat,QuickComms,RangeMaster,SkillMaster	BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,SkillMaster
+LibKa0s-DebugLog-1.0	instance	BufferSize	0	0	0	15	1	72		
+LibKa0s-DebugLog-1.0	instance	BuildDiagnostics	0	0	0	21	0	38		
+LibKa0s-DebugLog-1.0	instance	Clear	1	50	18	19	266	603	ConsumableMaster	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster
+LibKa0s-DebugLog-1.0	instance	ConsoleCheckbox	15	0	0	16	10	42	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,LibKa0sSkinTester,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	instance	CopyText	0	0	0	7	1	29		
+LibKa0s-DebugLog-1.0	instance	Debug	19	975	0	74	236	656	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	instance	DebugAtEnable	49	30	1	33	9	21	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,SkillMaster
+LibKa0s-DebugLog-1.0	instance	DebugChanged	26	29	1	29	22	28	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LootHistory,PartyFrameEnhanced,PremadeGroupsFilterExtension
+LibKa0s-DebugLog-1.0	instance	DebugForget	11	7	1	20	3	3	AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,PartyFrameEnhanced,PremadeGroupsFilterExtension,WhatGroup	BankLedger,ConsumableMaster,LootHistory,PartyFrameEnhanced
+LibKa0s-DebugLog-1.0	instance	DebugOnce	22	27	3	31	15	47	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,PanelMaster,PartyFrameEnhanced,RangeMaster
+LibKa0s-DebugLog-1.0	instance	DebugVerb	9	0	0	24	5	36	CombatTrail,DropWatcher,LibKa0sSkinTester,OutfitterReborn,PanelMaster,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-DebugLog-1.0	instance	FindLine	0	0	0	15	1	118		
+LibKa0s-DebugLog-1.0	instance	Hide	9	903	27	24	514	1317	BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	instance	IsEnabled	5	40	3	39	21	234	AuraMaster,CombatTrail,ConsumableMaster,PrettyChat	AbsorbTracker,CombatTrail,ConsumableMaster,DropWatcher,KickCD,PartyFrameEnhanced,QuickComms,SkillMaster
+LibKa0s-DebugLog-1.0	instance	IsShown	25	389	15	39	34	3824	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,QuickComms,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	instance	LastLine	0	0	0	15	0	53		
+LibKa0s-DebugLog-1.0	instance	MakeCloseButton	0	40	19	37	70	174		AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	instance	RefreshHeader	1	0	0	17	1	11	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	Report	22	11	2	29	198	104	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,QuickComms,SkillMaster	CombatTrail,ConsumableMaster,KickCD,PremadeGroupsFilterExtension
+LibKa0s-DebugLog-1.0	instance	RunDiagnostics	25	4	0	29	10	85	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	ConsumableMaster,KickCD
+LibKa0s-DebugLog-1.0	instance	Serialize	1	1	0	29	8	19	ConsumableMaster	ConsumableMaster
+LibKa0s-DebugLog-1.0	instance	SetEnabled	15	64	8	39	54	402	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,LootHistory,MultiMeters,PartyFrameEnhanced,PrettyChat,WhatGroup	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,SkillMaster
+LibKa0s-DebugLog-1.0	instance	Show	29	543	26	22	1577	1932	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,QuickComms,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	instance	ShowCopy	1	0	2	17	7	33	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	Text	0	282	6	52	525	490		AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-DebugLog-1.0	instance	Toggle	20	39	21	20	341	405	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,QuickComms,SkillMaster
+LibKa0s-DebugLog-1.0	instance	UpdateScrollBar	1	0	0	17	1	23	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	UpdateStatus	1	0	0	17	1	18	ConsumableMaster	
+LibKa0s-DebugLog-1.0	instance	buffer	0	0	0	21	43	657		
+LibKa0s-DebugLog-1.0	descriptor	L	10	0	0	0	0	0	AbsorbTracker,AuraMaster,DropWatcher,LibKa0sSkinTester,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	addonName	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	applySkin	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	brandName	18	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	diagnostics	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	diagnosticsEnablesLogging	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	font	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	fontSize	1	0	0	0	0	0	ConsumableMaster	
+LibKa0s-DebugLog-1.0	descriptor	initSummary	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	isEnabled	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	makeCloseButton	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	name	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	onClear	3	0	0	0	0	0	AuraMaster,ConsumableMaster,MultiMeters	
+LibKa0s-DebugLog-1.0	descriptor	onSettings	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	onVisibilityChanged	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	print	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	safeToString	16	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	setEnabled	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	skin	0	0	0	0	0	0		
+LibKa0s-DebugLog-1.0	descriptor	slash	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-DebugLog-1.0	descriptor	title	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	lib	CommandRows	2	7	0	5	2	13	ConsumableMaster,KickCD	ConsumableMaster,KickCD
+LibKa0s-Slash-1.0	lib	DISABLED_LINE_FORMAT	3	0	0	52	17	68	LootHistory,OutfitterReborn,PanelMaster	
+LibKa0s-Slash-1.0	lib	FindCommand	2	7	0	3	2	12	ConsumableMaster,KickCD	ConsumableMaster,KickCD
+LibKa0s-Slash-1.0	lib	FormatKV	11	6	0	8	1	47	AbsorbTracker,AuraMaster,DropWatcher,LibKa0sSkinTester,LootHistory,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,WhatGroup	PanelMaster
+LibKa0s-Slash-1.0	lib	FormatRow	2	0	0	8	8	29	AbsorbTracker,PartyFrameEnhanced	
+LibKa0s-Slash-1.0	lib	FormatValue	18	10	4	4	9	27	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,WhatGroup	AuraMaster,LootHistory,PanelMaster,PrettyChat
+LibKa0s-Slash-1.0	lib	LIVE_VERBS	12	2	0	8	55	47	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PrettyChat,RangeMaster,WhatGroup	CombatTrail,OutfitterReborn
+LibKa0s-Slash-1.0	lib	New	14	244	39	29	578	1103	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,RangeMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Slash-1.0	lib	ParseBool	2	1	1	1	1	12	ConsumableMaster,MultiMeters	PanelMaster
+LibKa0s-Slash-1.0	lib	ParseValue	5	0	0	8	4	7	AuraMaster,BankLedger,ConsumableMaster,KickCD,PanelMaster	
+LibKa0s-Slash-1.0	lib	ProfileNames	2	0	0	0	0	2	AbsorbTracker	
+LibKa0s-Slash-1.0	lib	STRINGS	1	0	0	5	20	191	LootHistory	
+LibKa0s-Slash-1.0	lib	SplitVerb	6	10	0	5	4	16	AbsorbTracker,ConsumableMaster,KickCD	ConsumableMaster,KickCD
+LibKa0s-Slash-1.0	instance	BuildListLines	3	2	1	10	1	49	BankLedger,LootHistory,PanelMaster	MultiMeters
+LibKa0s-Slash-1.0	instance	CliGet	24	3	0	10	9	40	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,RangeMaster,SkillMaster,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliList	19	3	0	10	3	14	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliProfile	20	3	1	15	16	56	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliReset	18	3	0	10	8	39	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,RangeMaster,SkillMaster,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliResetAll	0	6	3	11	26	64		BankLedger,LootHistory
+LibKa0s-Slash-1.0	instance	CliSet	24	11	0	16	34	118	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,RangeMaster,SkillMaster,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	CliVersion	13	3	0	14	0	15	BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,QuickComms,SkillMaster,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	DisabledLine	17	13	1	35	20	125	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,RangeMaster
+LibKa0s-Slash-1.0	instance	HelpHeader	1	0	0	8	0	23	LootHistory	
+LibKa0s-Slash-1.0	instance	HelpRows	3	0	0	19	2	28	LootHistory,MultiMeters,PanelMaster	
+LibKa0s-Slash-1.0	instance	LandingRows	19	12	0	27	11	54	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,RangeMaster
+LibKa0s-Slash-1.0	instance	OnSlash	19	20	2	23	11	909	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,RangeMaster
+LibKa0s-Slash-1.0	instance	PrintHelp	22	3	0	48	3	34	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,LootHistory,PanelMaster
+LibKa0s-Slash-1.0	instance	ProfileSwitch	6	0	1	20	6	40	AbsorbTracker,BankLedger,ConsumableMaster,LootHistory,PanelMaster,PartyFrameEnhanced	
+LibKa0s-Slash-1.0	instance	SetRowAnnotator	2	0	0	15	0	0	AbsorbTracker,AuraMaster	
+LibKa0s-Slash-1.0	instance	Text	3	279	6	52	525	490	LootHistory,PanelMaster,PrettyChat	AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Slash-1.0	descriptor	L	5	0	0	0	0	0	ConsumableMaster,KickCD,LibKa0sSkinTester,PanelMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	aliases	9	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,KickCD,MultiMeters,PartyFrameEnhanced,RangeMaster,SkillMaster	
+LibKa0s-Slash-1.0	descriptor	allRows	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	applyDefault	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	brandName	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	bulkBegin	11	0	0	0	0	0	AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Slash-1.0	descriptor	bulkEnd	11	0	0	0	0	0	AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Slash-1.0	descriptor	colorDecode	2	0	0	0	0	0	AuraMaster,ConsumableMaster	
+LibKa0s-Slash-1.0	descriptor	colorEncode	2	0	0	0	0	0	AuraMaster,ConsumableMaster	
+LibKa0s-Slash-1.0	descriptor	commands	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	debug	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	findRow	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	format	10	0	0	0	0	0	AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,PrettyChat,QuickComms	
+LibKa0s-Slash-1.0	descriptor	get	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	groupKey	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	isEnabled	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	liveVerbs	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	parse	9	0	0	0	0	0	AuraMaster,BankLedger,ConsumableMaster,KickCD,LibKa0sSkinTester,PanelMaster,PrettyChat,QuickComms,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	print	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	profiles	16	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	set	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	slash	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	slashAliases	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Slash-1.0	descriptor	version	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	lib	New	19	239	39	29	578	1103	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Launcher-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-Launcher-1.0	instance	IsRegistered	7	1	0	15	0	67	AbsorbTracker,DropWatcher,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,WhatGroup	BankLedger
+LibKa0s-Launcher-1.0	instance	IsShown	9	405	15	39	34	3824	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Launcher-1.0	instance	Object	0	0	2	15	8	140		
+LibKa0s-Launcher-1.0	instance	Register	19	58	25	27	133	464	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Launcher-1.0	instance	SetShown	19	396	2	27	23	81	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Launcher-1.0	descriptor	L	0	0	0	0	0	0		
+LibKa0s-Launcher-1.0	descriptor	debug	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	debugAtEnable	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	entryClients	0	0	0	0	0	0		
+LibKa0s-Launcher-1.0	descriptor	extraEntries	1	0	0	0	0	0	SkillMaster	
+LibKa0s-Launcher-1.0	descriptor	icon	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	isEnabled	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	isLocked	15	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	isTestMode	11	0	0	0	0	0	AuraMaster,BankLedger,DropWatcher,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	label	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	minimap	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	name	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	onTooltipShow	3	0	0	0	0	0	BankLedger,LootHistory,OutfitterReborn	
+LibKa0s-Launcher-1.0	descriptor	openSettings	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	openSkinPicker	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	owner	0	0	0	0	0	0		
+LibKa0s-Launcher-1.0	descriptor	print	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	setEnabled	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Launcher-1.0	descriptor	version	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	lib	APPEARANCE_STRINGS	0	0	0	1	1	1		
+LibKa0s-Options-1.0	lib	KEYBIND_STRINGS	0	0	0	0	0	9		
+LibKa0s-Options-1.0	lib	LAYOUT	0	7	0	2	74	106		PartyFrameEnhanced
+LibKa0s-Options-1.0	lib	New	19	239	39	29	578	1103	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Options-1.0	lib	PatchAlwaysShowScrollbar	0	0	0	16	3	25		
+LibKa0s-Options-1.0	lib	SKIN_NOTICE_VERSION	0	0	0	0	17	2		
+LibKa0s-Options-1.0	lib	SKIN_PICKER_STRINGS	0	0	0	0	8	17		
+LibKa0s-Options-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-Options-1.0	instance	AceGUI	11	63	0	29	766	984	AuraMaster,BankLedger,PanelMaster,PremadeGroupsFilterExtension,QuickComms,WhatGroup	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Options-1.0	instance	AddSpacer	33	28	0	19	6	12	AuraMaster,BankLedger,LootHistory,MultiMeters,PremadeGroupsFilterExtension,PrettyChat,SkillMaster,WhatGroup	ConsumableMaster,DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	AppearanceRows	1	0	1	31	1	14	CombatTrail	
+LibKa0s-Options-1.0	instance	AppearanceTab	18	1	1	23	39	30	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	ConsumableMaster
+LibKa0s-Options-1.0	instance	AttachTooltip	30	70	1	18	9	35	AbsorbTracker,AuraMaster,ConsumableMaster,KickCD,MultiMeters,PanelMaster,PrettyChat,SkillMaster,WhatGroup	ConsumableMaster,DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	BANNER_H	5	0	0	6	5	31	AbsorbTracker,PanelMaster	
+LibKa0s-Options-1.0	instance	BUTTON_PAIR_REL	7	9	0	7	19	38	AuraMaster,LootHistory,PanelMaster	ConsumableMaster,DropWatcher,PanelMaster,QuickComms
+LibKa0s-Options-1.0	instance	BarGroup	10	0	0	16	5	21	AbsorbTracker,AuraMaster,CombatTrail,KickCD,PanelMaster,PartyFrameEnhanced,SkillMaster	
+LibKa0s-Options-1.0	instance	BorderGroup	21	5	1	16	12	23	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,OutfitterReborn,PanelMaster,PartyFrameEnhanced,RangeMaster,SkillMaster	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	BuildLandingPage	17	3	0	5	18	61	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	ConsumableMaster,MultiMeters
+LibKa0s-Options-1.0	instance	CHROME_GAP	0	2	0	7	1	25		QuickComms
+LibKa0s-Options-1.0	instance	CLASS_COLOR_NOTE	3	1	0	4	3	28	AuraMaster,PanelMaster	ConsumableMaster
+LibKa0s-Options-1.0	instance	ChoiceGrid	2	0	0	20	6	4	AuraMaster	
+LibKa0s-Options-1.0	instance	ClearScroll	32	3	0	21	43	66	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	QuickComms
+LibKa0s-Options-1.0	instance	ColorPair	19	13	1	16	12	17	AbsorbTracker,AuraMaster,CombatTrail,KickCD,OutfitterReborn,PartyFrameEnhanced,RangeMaster,SkillMaster	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	CreateOptionsPanel	19	9	0	33	14	56	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,CombatTrail,KickCD,MultiMeters,OutfitterReborn,PartyFrameEnhanced,RangeMaster,SkillMaster
+LibKa0s-Options-1.0	instance	CreatePanel	61	8	1	20	24	102	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	Drawer	0	1	0	38	9	19		QuickComms
+LibKa0s-Options-1.0	instance	EnsureDefaultsButton	2	0	2	18	13	22	LibKa0sSkinTester,WhatGroup	
+LibKa0s-Options-1.0	instance	EnsureScroll	39	16	1	31	15	26	AbsorbTracker,AuraMaster,BankLedger,ConsumableMaster,KickCD,LootHistory,MultiMeters,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,RangeMaster,SkillMaster,WhatGroup	ConsumableMaster,DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	FONT_FLAGS	0	1	0	5	4	19		QuickComms
+LibKa0s-Options-1.0	instance	FONT_FLAGS_SORT	0	0	0	4	0	16		
+LibKa0s-Options-1.0	instance	FontGroup	15	5	1	17	13	18	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,OutfitterReborn,PartyFrameEnhanced,RangeMaster,SkillMaster	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	HideSkinPicker	22	72	19	32	70	239	AuraMaster,BankLedger,CombatTrail,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Options-1.0	instance	ID_NAME_HINT	0	0	0	24	2	4		
+LibKa0s-Options-1.0	instance	IdInput	1	1	0	20	7	21	KickCD	ConsumableMaster
+LibKa0s-Options-1.0	instance	IdList	8	2	0	23	49	111	AuraMaster,BankLedger,CombatTrail,LootHistory	DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	InlineButtonPair	26	8	1	19	11	18	AuraMaster,BankLedger,CombatTrail,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,RangeMaster	DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	KEYBINDS_UNCHANGED	10	0	0	25	3	21	BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,QuickComms,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	instance	KeybindRows	0	0	0	31	1	32		
+LibKa0s-Options-1.0	instance	KeybindingsTab	10	0	0	32	11	12	BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,QuickComms,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	instance	LSMValues	5	1	1	16	31	59	AbsorbTracker,CombatTrail,MultiMeters,RangeMaster	MultiMeters
+LibKa0s-Options-1.0	instance	LabelFont	1	8	4	21	7	16	PanelMaster	ConsumableMaster,KickCD,QuickComms
+LibKa0s-Options-1.0	instance	MASTER_GROUP	18	3	0	14	5	59	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	LootHistory,QuickComms
+LibKa0s-Options-1.0	instance	MasterControls	14	6	1	28	40	71	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,ConsumableMaster,PanelMaster,PrettyChat
+LibKa0s-Options-1.0	instance	NavRail	4	0	0	27	8	20	AuraMaster,KickCD,MultiMeters,RangeMaster	
+LibKa0s-Options-1.0	instance	OpenOptionsPanel	26	42	0	24	46	297	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Options-1.0	instance	PADDING_X	2	0	0	2	8	32	PanelMaster	
+LibKa0s-Options-1.0	instance	PageBanner	7	3	0	20	25	46	AuraMaster,CombatTrail,KickCD,MultiMeters,RangeMaster	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	PageHeader	5	1	0	20	16	22	AbsorbTracker,KickCD,PanelMaster,SkillMaster	QuickComms
+LibKa0s-Options-1.0	instance	PatchAlwaysShowScrollbar	0	0	0	16	3	25		
+LibKa0s-Options-1.0	instance	PositionBlock	2	1	1	19	0	15	CombatTrail	QuickComms
+LibKa0s-Options-1.0	instance	ROW_VSPACER	7	6	0	8	17	46	AuraMaster,BankLedger,PrettyChat,WhatGroup	QuickComms
+LibKa0s-Options-1.0	instance	RefreshAllPanels	27	13	1	18	21	145	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,RangeMaster,SkillMaster	ConsumableMaster,DropWatcher,KickCD
+LibKa0s-Options-1.0	instance	RefreshPanel	37	14	0	15	14	48	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	BankLedger,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,QuickComms,SkillMaster
+LibKa0s-Options-1.0	instance	RefreshScalars	32	5	1	16	19	83	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,PrettyChat,QuickComms,SkillMaster,WhatGroup	ConsumableMaster,DropWatcher,KickCD
+LibKa0s-Options-1.0	instance	RegisterOptionsPage	32	49	3	23	19	33	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	AbsorbTracker,AuraMaster,CombatTrail,KickCD,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Options-1.0	instance	RenderField	6	7	1	18	16	38	PanelMaster,PremadeGroupsFilterExtension,PrettyChat	DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	RenderGrid	20	16	0	18	24	19	AuraMaster,ConsumableMaster,KickCD,MultiMeters,RangeMaster	DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	RenderRows	20	10	0	18	30	53	AuraMaster,CombatTrail,KickCD,LootHistory,MultiMeters	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	RenderSchema	0	0	0	21	17	25		
+LibKa0s-Options-1.0	instance	RenderTabbedSchema	27	3	0	36	70	92	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	ResetAllTooltip	10	0	0	28	5	25	BankLedger,DropWatcher,LibKa0sSkinTester,LootHistory,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	instance	ResolveId	5	1	0	22	4	9	AuraMaster,CombatTrail	ConsumableMaster
+LibKa0s-Options-1.0	instance	RestoreAllDefaults	28	7	5	21	60	209	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	DropWatcher,LibKa0sSkinTester,PremadeGroupsFilterExtension,QuickComms,WhatGroup
+LibKa0s-Options-1.0	instance	RestoreDefaults	19	8	4	12	44	194	AbsorbTracker,AuraMaster,CombatTrail,DropWatcher,KickCD,MultiMeters,OutfitterReborn,PartyFrameEnhanced,RangeMaster,SkillMaster	BankLedger,LootHistory,PanelMaster,QuickComms
+LibKa0s-Options-1.0	instance	SECTION_HEADING_H	1	1	0	7	12	32	PanelMaster	PanelMaster
+LibKa0s-Options-1.0	instance	Section	25	12	4	18	71	114	AuraMaster,ConsumableMaster,MultiMeters,PremadeGroupsFilterExtension,RangeMaster,SkillMaster	ConsumableMaster,DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	SelectTab	6	12	7	27	26	285	AuraMaster,CombatTrail,KickCD,MultiMeters,RangeMaster	BankLedger,DropWatcher,LootHistory,SkillMaster
+LibKa0s-Options-1.0	instance	SessionCheckbox	2	0	0	18	6	21	CombatTrail,ConsumableMaster	
+LibKa0s-Options-1.0	instance	SetChromeHeight	0	0	0	20	1	3		
+LibKa0s-Options-1.0	instance	SetRenderer	52	7	2	20	55	46	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	ConsumableMaster,QuickComms
+LibKa0s-Options-1.0	instance	SideTabs	1	0	0	27	1	0	RangeMaster	
+LibKa0s-Options-1.0	instance	SkinNotice	27	24	1	18	0	0	AuraMaster,BankLedger,CombatTrail,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat	AbsorbTracker,ConsumableMaster,DropWatcher,KickCD,PremadeGroupsFilterExtension,QuickComms,RangeMaster,WhatGroup
+LibKa0s-Options-1.0	instance	SkinPicker	22	16	1	31	58	163	AuraMaster,BankLedger,CombatTrail,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,SkillMaster	AbsorbTracker,ConsumableMaster,DropWatcher,KickCD,PremadeGroupsFilterExtension,QuickComms,RangeMaster,WhatGroup
+LibKa0s-Options-1.0	instance	SkinVerb	16	13	1	27	50	159	AuraMaster,BankLedger,CombatTrail,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,SkillMaster	AbsorbTracker,ConsumableMaster,DropWatcher,KickCD,PremadeGroupsFilterExtension,QuickComms,RangeMaster,WhatGroup
+LibKa0s-Options-1.0	instance	StrataTooltip	7	3	0	27	6	25	AuraMaster,CombatTrail,PanelMaster,PartyFrameEnhanced,RangeMaster,SkillMaster	MultiMeters,PanelMaster
+LibKa0s-Options-1.0	instance	SubTabStrip	2	2	0	14	2	11	BankLedger,LootHistory	DropWatcher
+LibKa0s-Options-1.0	instance	TAB_H	0	5	0	6	19	37		DropWatcher
+LibKa0s-Options-1.0	instance	TabStrip	8	3	0	23	17	76	KickCD,LootHistory,MultiMeters,PanelMaster,PrettyChat	ConsumableMaster
+LibKa0s-Options-1.0	instance	TextRow	66	36	0	10	6	25	AuraMaster,BankLedger,CombatTrail,KickCD,MultiMeters,PremadeGroupsFilterExtension,PrettyChat,RangeMaster,SkillMaster	DropWatcher,QuickComms
+LibKa0s-Options-1.0	instance	UnnamedCandidates	0	0	0	21	0	2		
+LibKa0s-Options-1.0	instance	VISIBILITY_SORT	0	0	0	4	0	16		
+LibKa0s-Options-1.0	instance	VISIBILITY_VALUES	0	0	0	4	0	16		
+LibKa0s-Options-1.0	descriptor	addonName	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	afterRestoreAll	0	0	0	0	0	0		
+LibKa0s-Options-1.0	descriptor	allRows	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	applyDefault	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	buildMain	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	bulkBegin	17	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	bulkEnd	17	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	colorDecode	11	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Options-1.0	descriptor	colorEncode	11	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,KickCD,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Options-1.0	descriptor	debug	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	get	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	getLSM	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	mainPanelName	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	onAceGUI	11	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,KickCD,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,RangeMaster,SkillMaster	
+LibKa0s-Options-1.0	descriptor	parentTitle	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	print	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	resetProfile	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	rowsForPage	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	scheduleTimer	15	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Options-1.0	descriptor	set	19	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	skipRestoreAll	18	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-Options-1.0	descriptor	sliderCommit	1	0	0	0	0	0	ConsumableMaster	
+LibKa0s-Options-1.0	descriptor	validate	17	0	0	0	0	0	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup	
+LibKa0s-IconBrowser-1.0	lib	BUILTIN_TABS	0	0	0	0	0	1		
+LibKa0s-IconBrowser-1.0	lib	ColorFrom	1	0	1	0	4	1	QuickComms	
+LibKa0s-IconBrowser-1.0	lib	GLYPH_LABELS	0	0	0	0	0	0		
+LibKa0s-IconBrowser-1.0	lib	IsGlyph	2	15	3	0	3	20	OutfitterReborn,QuickComms	OutfitterReborn,QuickComms
+LibKa0s-IconBrowser-1.0	lib	MacroIcons	0	0	0	0	1	2		
+LibKa0s-IconBrowser-1.0	lib	New	4	254	39	29	578	1103	OutfitterReborn,QuickComms	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-IconBrowser-1.0	lib	SKIN_TOKENS	0	29	0	16	14	31		AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,MultiMeters,OutfitterReborn,PartyFrameEnhanced,PrettyChat,QuickComms,WhatGroup
+LibKa0s-IconBrowser-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-IconBrowser-1.0	lib	Sources	0	0	0	0	13	2		
+LibKa0s-IconBrowser-1.0	lib	Tint	2	4	3	0	14	9	OutfitterReborn,QuickComms	OutfitterReborn,QuickComms
+LibKa0s-IconBrowser-1.0	lib	ValidColor	3	2	1	0	4	5	OutfitterReborn,QuickComms	OutfitterReborn
+LibKa0s-IconBrowser-1.0	lib	WOWHEAD_ICONS	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	lib	DEFAULT_RING	0	0	0	0	0	2		
+LibKa0s-Perf-1.0	lib	EncodeJSON	1	0	0	0	0	18	SkillMaster	
+LibKa0s-Perf-1.0	lib	New	14	244	39	29	578	1103	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Perf-1.0	lib	SCHEMA	0	1	0	1	31	27		LibKa0sSkinTester
+LibKa0s-Perf-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-Perf-1.0	instance	Announce	0	4	1	0	58	31		AuraMaster
+LibKa0s-Perf-1.0	instance	BuildRecord	0	1	1	0	0	26		LootHistory
+LibKa0s-Perf-1.0	instance	Cancel	0	111	13	0	172	144		AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Perf-1.0	instance	Close	0	31	15	4	152	198		AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,LootHistory,OutfitterReborn,PanelMaster,QuickComms
+LibKa0s-Perf-1.0	instance	Context	0	16	5	0	9	41		BankLedger,CombatTrail,DropWatcher,SkillMaster
+LibKa0s-Perf-1.0	instance	ContextLines	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	EXPERIMENTS	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	EncodeJSON	1	0	0	0	0	18	SkillMaster	
+LibKa0s-Perf-1.0	instance	FormatReport	0	0	0	0	0	3		
+LibKa0s-Perf-1.0	instance	HidePanel	0	19	1	1	3	64		AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster
+LibKa0s-Perf-1.0	instance	IsPanelShown	0	22	0	1	0	84		AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,SkillMaster
+LibKa0s-Perf-1.0	instance	LABELS	0	10	0	0	39	26		CombatTrail,DropWatcher,KickCD,PremadeGroupsFilterExtension
+LibKa0s-Perf-1.0	instance	Log	0	12	2	0	134	34		DropWatcher,SkillMaster
+LibKa0s-Perf-1.0	instance	MarkReviewed	0	0	0	0	0	1		
+LibKa0s-Perf-1.0	instance	Measure	0	4	1	0	26	14		AuraMaster,LibKa0sSkinTester
+LibKa0s-Perf-1.0	instance	Note	122	13	5	15	141	212	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	AuraMaster,CombatTrail,DropWatcher,MultiMeters,WhatGroup
+LibKa0s-Perf-1.0	instance	OnCommand	16	0	3	17	2	42	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	instance	Open	0	69	25	5	545	781		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Perf-1.0	instance	PanelIsActionable	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	PanelStateOf	0	0	0	0	0	2		
+LibKa0s-Perf-1.0	instance	Progress	0	0	0	0	80	1		
+LibKa0s-Perf-1.0	instance	RefreshPanel	0	51	0	15	14	48		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Perf-1.0	instance	Reset	0	11	13	19	732	647		CombatTrail,ConsumableMaster,MultiMeters,PanelMaster,RangeMaster,SkillMaster
+LibKa0s-Perf-1.0	instance	Resume	0	21	53	0	72	307		BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,SkillMaster
+LibKa0s-Perf-1.0	instance	SCHEMA	0	1	0	1	31	27		LibKa0sSkinTester
+LibKa0s-Perf-1.0	instance	STEPS	0	0	0	0	22	16		
+LibKa0s-Perf-1.0	instance	Save	0	8	7	0	166	230		CombatTrail,LibKa0sSkinTester,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,WhatGroup
+LibKa0s-Perf-1.0	instance	ShowPanel	0	20	4	1	12	47		AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster
+LibKa0s-Perf-1.0	instance	Start	0	26	19	0	145	353		AuraMaster,CombatTrail,DropWatcher,KickCD,OutfitterReborn,QuickComms,RangeMaster
+LibKa0s-Perf-1.0	instance	StatusLines	0	0	0	0	0	1		
+LibKa0s-Perf-1.0	instance	Stop	0	83	14	1	145	338		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Perf-1.0	instance	Suspend	0	15	60	0	63	240		CombatTrail,KickCD,MultiMeters,OutfitterReborn
+LibKa0s-Perf-1.0	instance	TogglePanel	0	6	0	0	0	1		BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,SkillMaster
+LibKa0s-Perf-1.0	instance	Usage	0	22	1	0	202	136		CombatTrail
+LibKa0s-Perf-1.0	instance	armed	1	7	2	1	358	746	ConsumableMaster	DropWatcher,KickCD
+LibKa0s-Perf-1.0	instance	context	0	2	4	0	319	255		BankLedger
+LibKa0s-Perf-1.0	instance	descriptor	0	0	0	12	433	1022		
+LibKa0s-Perf-1.0	instance	label	1	681	8	50	4347	5293	ConsumableMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Perf-1.0	instance	name	0	978	7	301	8969	13604		AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Perf-1.0	instance	on	122	30	4	476	16539	16677	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	CombatTrail,DropWatcher,KickCD,MultiMeters,RangeMaster,SkillMaster
+LibKa0s-Perf-1.0	instance	recording	1	3	0	3	87	209	ConsumableMaster	CombatTrail
+LibKa0s-Perf-1.0	instance	ringMax	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	instance	run	1	32	51	30	1548	2740	ConsumableMaster	AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,MultiMeters,OutfitterReborn,PrettyChat,QuickComms,RangeMaster,SkillMaster
+LibKa0s-Perf-1.0	instance	slash	0	3	0	107	837	1891		QuickComms
+LibKa0s-Perf-1.0	instance	title	0	375	11	39	1841	2188		AuraMaster,BankLedger,CombatTrail,DropWatcher,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PremadeGroupsFilterExtension,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Perf-1.0	descriptor	L	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	addonName	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	buckets	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	decorate	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	lifecycle	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	log	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	name	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	onChange	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	onSettings	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	print	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	ring	0	0	0	0	0	0		
+LibKa0s-Perf-1.0	descriptor	showLog	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	slash	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	sv	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	title	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Perf-1.0	descriptor	version	14	0	0	0	0	0	AbsorbTracker,AuraMaster,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PartyFrameEnhanced,QuickComms,RangeMaster,SkillMaster	
+LibKa0s-Sim-1.0	lib	New	10	248	39	29	578	1103	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Sim-1.0	lib	NewSeam	9	0	0	0	5	8	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	
+LibKa0s-Sim-1.0	lib	SAMPLE	0	7	0	0	28	18		AuraMaster,CombatTrail
+LibKa0s-Sim-1.0	lib	STRINGS	0	1	0	5	20	191		LootHistory
+LibKa0s-Sim-1.0	lib	Sample	8	5	5	0	62	106	BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,SkillMaster,WhatGroup	CombatTrail
+LibKa0s-Sim-1.0	instance	AddListener	11	5	0	0	2	2	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	CombatTrail,DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	After	12	91	7	1	178	210	BankLedger,DropWatcher,KickCD,MultiMeters	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,OutfitterReborn,PanelMaster,PartyFrameEnhanced,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,WhatGroup
+LibKa0s-Sim-1.0	instance	DeliverForCleanup	5	0	6	0	2	2	DropWatcher,KickCD	
+LibKa0s-Sim-1.0	instance	Fire	36	12	7	0	140	188	BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters	ConsumableMaster,DropWatcher,SkillMaster
+LibKa0s-Sim-1.0	instance	HidePanel	12	7	1	1	3	64	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	CombatTrail,DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	IsActive	71	45	12	1	17	346	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	CombatTrail,DropWatcher,KickCD,LootHistory,OutfitterReborn,PartyFrameEnhanced,PremadeGroupsFilterExtension,RangeMaster,SkillMaster
+LibKa0s-Sim-1.0	instance	IsDelivering	8	4	0	0	2	14	BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters	DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	IsPanelShown	12	10	0	1	0	84	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,SkillMaster	CombatTrail,DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	Keys	0	6	9	0	30	58		BankLedger,LootHistory,MultiMeters,QuickComms,SkillMaster
+LibKa0s-Sim-1.0	instance	Live	0	38	12	0	70	72		BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,QuickComms,SkillMaster
+LibKa0s-Sim-1.0	instance	OnStop	18	5	0	0	10	2	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	CombatTrail,DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	OnStopGuarded	4	4	0	0	4	1	BankLedger,DropWatcher,MultiMeters	DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	PanelRows	0	0	6	0	4	40		
+LibKa0s-Sim-1.0	instance	Pause	2	5	3	0	11	18	BankLedger,MultiMeters	DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	RefreshPanel	2	49	0	15	14	48	BankLedger,MultiMeters	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LibKa0sSkinTester,LootHistory,MultiMeters,PanelMaster,PremadeGroupsFilterExtension,PrettyChat,QuickComms,RangeMaster,SkillMaster,WhatGroup
+LibKa0s-Sim-1.0	instance	ResetPanelPosition	3	4	0	0	0	5	BankLedger,DropWatcher,MultiMeters	DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	Restart	2	4	0	0	7	12	BankLedger,MultiMeters	DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	Resume	2	19	53	0	72	307	BankLedger,MultiMeters	CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,OutfitterReborn,SkillMaster
+LibKa0s-Sim-1.0	instance	Run	3	25	8	6	133	461	BankLedger,MultiMeters,RangeMaster	AbsorbTracker,AuraMaster,BankLedger,CombatTrail,ConsumableMaster,DropWatcher,KickCD,LootHistory,OutfitterReborn,PremadeGroupsFilterExtension,SkillMaster
+LibKa0s-Sim-1.0	instance	RunVerb	26	16	10	3	10	76	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	CombatTrail,LootHistory,OutfitterReborn,RangeMaster
+LibKa0s-Sim-1.0	instance	Session	34	10	9	0	119	73	BankLedger,DropWatcher,KickCD,MultiMeters,SkillMaster	BankLedger,DropWatcher,MultiMeters
+LibKa0s-Sim-1.0	instance	SetProvider	0	9	7	0	9	19		BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,SkillMaster
+LibKa0s-Sim-1.0	instance	ShowPanel	13	7	4	1	12	47	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	CombatTrail,DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	Start	2	24	19	0	145	353	DropWatcher,RangeMaster	AuraMaster,CombatTrail,DropWatcher,KickCD,OutfitterReborn,QuickComms,RangeMaster
+LibKa0s-Sim-1.0	instance	Status	14	12	14	0	72	201	BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,SkillMaster	CombatTrail,DropWatcher,LootHistory,OutfitterReborn,PartyFrameEnhanced
+LibKa0s-Sim-1.0	instance	Step	0	5	7	0	59	170		AuraMaster,CombatTrail,QuickComms
+LibKa0s-Sim-1.0	instance	Steps	9	0	7	1	2	30	BankLedger,DropWatcher,LootHistory	
+LibKa0s-Sim-1.0	instance	Stop	25	58	14	1	145	338	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster,SkillMaster	AuraMaster,CombatTrail,DropWatcher,KickCD,LootHistory,OutfitterReborn,QuickComms,SkillMaster
+LibKa0s-Sim-1.0	instance	TogglePanel	2	4	0	0	0	1	BankLedger,MultiMeters	DropWatcher,KickCD,LootHistory,SkillMaster
+LibKa0s-Sim-1.0	instance	Unwrapped	0	2	7	0	8	28		MultiMeters,SkillMaster
+LibKa0s-Sim-1.0	descriptor	L	5	0	0	0	0	0	BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters	
+LibKa0s-Sim-1.0	descriptor	addonName	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	check	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	close	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	debug	7	0	0	0	0	0	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	deliver	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	footer	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	gate	4	0	0	0	0	0	BankLedger,CombatTrail,LootHistory,MultiMeters	
+LibKa0s-Sim-1.0	descriptor	isStoodDown	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	name	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	onClick	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	panel	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	play	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	prepare	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	print	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	refusal	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	rows	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	scenarios	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	seam	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	slash	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	statusLine	2	0	0	0	0	0	DropWatcher,MultiMeters	
+LibKa0s-Sim-1.0	descriptor	stepDelay	8	0	0	0	0	0	AbsorbTracker,BankLedger,CombatTrail,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	stopText	7	0	0	0	0	0	AbsorbTracker,BankLedger,DropWatcher,KickCD,LootHistory,MultiMeters,RangeMaster	
+LibKa0s-Sim-1.0	descriptor	title	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	tooltip	0	0	0	0	0	0		
+LibKa0s-Sim-1.0	descriptor	usage	3	0	0	0	0	0	CombatTrail,DropWatcher,LootHistory	
+LibKa0s-Sim-1.0	descriptor	verbs	2	0	0	0	0	0	DropWatcher,LootHistory	
+LibKa0s-Sim-1.0	descriptor	why	2	0	0	0	0	0	DropWatcher,LootHistory	
