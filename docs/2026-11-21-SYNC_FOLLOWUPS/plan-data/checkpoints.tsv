@@ -1,0 +1,2 @@
+checkpoint	date	evidence
+CP-1	2026-11-21	All repos green on every shipped client (LibKa0s 5076/0 both; 19 addons 0 failed; check-standard all passed; dev-copilot 8 suites OK; luacheck 0/0). Heads: std 88c73b3 (tag v2.117.0 local), dev-copilot 59009aa, LibKa0s d5b62f35 (tag v1.109.0 local). Smoke owed (99_EXECUTION_RECORD.md).

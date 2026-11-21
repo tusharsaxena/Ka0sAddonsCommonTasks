@@ -1,0 +1,351 @@
+major	kind	member	verdict	kept_because	evidence	hand_hosts
+Lifecycle	instance	Hold	documented	every host drives the latch through `Set(key, on)`, which calls `Hold`/`Release`; the two remain the primitive pair `Set` is defined by	stubs only (18 stub lines across 6 hosts)	
+Lifecycle	instance	Release	documented	every host drives the latch through `Set(key, on)`, which calls `Hold`/`Release`; LibKa0s-Perf-1.0 releases its `perf` hold through it	stubs only; the 7 name hits are other tables' `Release`	
+Lifecycle	instance	PrintHolds	documented	it is the latch's chat readout for a host verb that wants one; hosts report holds through their diagnostics sections instead	stubs only	
+Lifecycle	instance	name	documented	it is the descriptor's `name` mirrored for the edge lines and for a suite to assert identity	instance data field	
+Schema	lib	STRINGS	documented	it is the English fallback every refusal resolves through; hosts override by key through the descriptor's `L`	no host reads the table by name	
+Media	lib	FONTS	documented	it is the catalog `Font` and `RegisterLSM` read; all eleven hosts reach it through those two	no host reads the table by name	
+Media	lib	TEXTURES	documented	it is the catalog `Texture` and `RegisterLSM` read, and `RegisterLSM` registers every entry for LibSharedMedia pickers	no host reads the table by name	
+Media	lib	Texture	documented	`RegisterLSM` publishes the same textures to LibSharedMedia, which is how hosts offer them; a host drawing one directly needs a path	ConsumableMaster's two `Texture` hits are its own `MacroDisplay.Texture`	
+Media	lib	VENDOR_PATH	documented	it is the default every Media reader falls back to when `vendorPath` is omitted, which every host does	default value	
+Widgets	descriptor	backdrop	documented	`CopyWindow` defaults to Core's skin; the field is the escape hatch for a window that must not wear it	no `CopyWindow` descriptor passes it	
+Widgets	descriptor	makeCloseButton	documented	DebugLog forwards its own `makeCloseButton` here so that published contract did not narrow (Widgets minor 7)	no `CopyWindow` descriptor passes it	
+Widgets	descriptor	scrollName	documented	DebugLog passes it from inside the library, so the copy window keeps its `<name>DebugCopyScroll` global	library-internal caller only	
+DebugLog	lib	AT_ENABLE_MAX	documented	it names the at-enable queue's cap (32) so tests and documents cite the number rather than restating it	tuning constant	
+DebugLog	lib	BUFFER_SLACK	documented	it names the compaction slack (128) that `Add` reads at call time	tuning constant	
+DebugLog	lib	DIAG_MAX_LINES	documented	it names the diagnostics report's line cap (1200)	tuning constant	
+DebugLog	lib	DIAG_MAX_PER_LIST	documented	it names `out:list`'s default cap (40)	tuning constant	
+DebugLog	lib	GATE_MAX_KEYS	documented	it names the change gate's key cap (256)	tuning constant	
+DebugLog	lib	MAX_BUFFER	documented	the standard fixes the line cap (3000) and host suites read it to assert the cap; no host code needs it	read by host tests only	
+DebugLog	lib	TIME_COPY	documented	it is a session-only switch for timing the copy window, flipped by hand from the client	diagnostic switch	
+DebugLog	lib	MakeCloseButton	documented	it forwards to `Core.MakeCloseButton`, which every host calls directly; the forwarder is permanent under `-1.0`'s additive-only rule	the 21 name hits are `Core.MakeCloseButton` calls	
+DebugLog	lib	STRINGS	documented	it is the English fallback for every console string; hosts override by key through the descriptor's `L`	no host reads the table by name	
+DebugLog	instance	MakeCloseButton	documented	it mirrors the lib-level forwarder onto the instance so a host holds one object	mirror of the lib-level member	
+DebugLog	instance	Text	documented	the console resolves its own strings through it; hosts resolve theirs through their own locale	the 15 name hits are `Sl:Text` (LibKa0s-Slash-1.0) calls	
+DebugLog	instance	BufferSize	documented	host suites read it to assert the kept count past the cap	read by host tests only (62 hits)	
+DebugLog	instance	BuildDiagnostics	documented	it is the diagnostics report as data, for tests; hosts run the report through `RunDiagnostics`/`DebugVerb`	read by host tests only	
+DebugLog	instance	CopyText	documented	host suites read it because the copy window's EditBox is write-only through the frame API	read by host tests only	
+DebugLog	instance	FindLine	documented	host suites use it to assert a logged line	read by host tests only (88 hits)	
+DebugLog	instance	LastLine	documented	host suites use it to assert the newest logged line	read by host tests only	
+DebugLog	instance	buffer	documented	host suites read it directly; the document calls it part of the contract	read by host tests only (478 hits)	
+DebugLog	descriptor	diagnosticsEnablesLogging	documented	it is the opt-out for a host that must not let a report turn logging on; every host keeps the default	no descriptor passes it	
+DebugLog	descriptor	makeCloseButton	documented	both former callers dropped it on purpose once the library's close became the collection's mark; the override stays for a close control different in kind	BankLedger core/DebugLogSetup.lua:146 and LootHistory core/DebugLogSetup.lua:163 record why	
+DebugLog	descriptor	skin	documented	every host takes Core's skin; the field is the override for chrome that differs in shape	no descriptor passes it (MultiMeters settings/Schema_Compose.lua:248 is a locale key)	
+Slash	instance	CliResetAll	deliberate-host-copy	the library's `resetall` verb runs it in every host that does not replace it; BankLedger and LootHistory replace it on purpose with a confirmed profile reset	LootHistory settings/Slash.lua:433-435 and BankLedger settings/Slash.lua:478-479 record why	
+Launcher	lib	STRINGS	documented	it is the English fallback for the menu and tooltip; a host overrides by key through the descriptor's `L`	no host reads the table by name	
+Launcher	instance	Object	documented	it is published for a suite to drive the shared click, and for a host with a live value to show	read by host tests only (110 hits)	
+Launcher	descriptor	L	documented	no host localizes the launcher's strings yet; it is the only route for one that does	no descriptor passes it	
+Options	lib	LAYOUT	documented	it holds the panel geometry the library draws to; the four published keys are read off the LibStub table by a host that aligns to the panel, and none does today. KickCD deleted its two copies of internal header keys rather than re-reading them (KickCD#36)	KickCD core/Constants.lua:109-116 records the deletion; no host reads the table by name	
+Options	lib	PatchAlwaysShowScrollbar	documented	`EnsureScroll` applies it to every scroll the library builds; a host calls it only for a scroll frame of its own	reached through `EnsureScroll`	
+Options	lib	STRINGS	documented	it is the English fallback for the combat lock and the other library strings	no host reads the table by name	
+Options	instance	CHROME_GAP	documented	it is published for a host that draws bespoke chrome of its own and has to know where the band ends	no host draws such chrome today	
+Options	instance	FONT_FLAGS	deliberate-host-copy	`O.FontGroup` offers it on every composed font row; MultiMeters keeps its own localized list, keyed `NONE` rather than `""`	MultiMeters settings/Schema_Compose.lua:165-184 records why	
+Options	instance	FONT_FLAGS_SORT	deliberate-host-copy	the declared order of `FONT_FLAGS`, read by `O.FontGroup`	MultiMeters settings/Schema_Compose.lua:184	
+Options	instance	ID_NAME_HINT	documented	`IdInput` reads it for its tooltip; it is published for a host's own tooltip	reached through `IdInput`	
+Options	instance	PatchAlwaysShowScrollbar	documented	the instance mirror of the lib-level patch, reached through `EnsureScroll`	reached through `EnsureScroll`	
+Options	instance	RenderSchema	documented	every host moved to `RenderTabbedSchema` and `RenderRows`; the untabbed wrapper is permanent under `-1.0`	superseded in practice	
+Options	instance	SetChromeHeight	documented	`TabStrip`, `PageBanner` and `PageHeader` reserve their band through it; a host calls it only for chrome of its own	reached through the chrome makers	
+Options	instance	TAB_H	documented	it is published for a host that measures its own strip; every host draws the library's	no host measures its own strip today	
+Options	instance	UnnamedCandidates	documented	`IdInput` calls it to ask the client for names; it is pure and published for tests	reached through `IdInput`	
+Options	instance	VISIBILITY_SORT	deliberate-host-copy	`O.MasterControls` offers it on every General page; MultiMeters keeps the library's keys with its own localized labels	MultiMeters settings/Schema_Compose.lua:602-611 records why	
+Options	instance	VISIBILITY_VALUES	deliberate-host-copy	`O.MasterControls` offers it on every General page; MultiMeters keeps the library's keys with its own localized labels	MultiMeters settings/Schema_Compose.lua:602-611 records why	
+Options	descriptor	afterRestoreAll	documented	it is the hook for reset state in neither the schema nor the profile; since window positions moved into the profile no host has any	no descriptor passes it	
+Perf	lib	DEFAULT_RING	documented	it is the capture ring's depth (10) when the descriptor omits `ring`, which every host does	default value	
+Perf	lib	EncodeJSON	documented	`dump` encodes through it; host suites call it to assert a record round-trips	read by host tests only	
+Perf	lib	SCHEMA	documented	it stamps every record and is what `docs/record-schema.md` versions; host suites assert it	read by host tests only	
+Perf	lib	STRINGS	documented	it is the English fallback for every perf string	no host reads the table by name	
+Perf	instance	Announce	documented	the perf verbs announce through it; hosts announce through their own printer	reached through `OnCommand`	
+Perf	instance	BuildRecord	documented	`finish` and `dump` build the record through it; host suites call it	reached through `OnCommand`	
+Perf	instance	Cancel	documented	the `cancel` verb runs it	reached through `OnCommand`	
+Perf	instance	Close	documented	Shape B's bracket close; every host instruments with `Note` (Shape A) instead	no host brackets with `Open`/`Close`	
+Perf	instance	Context	documented	`start` snapshots it and `report` prints it	reached through `OnCommand`	
+Perf	instance	ContextLines	documented	the chat ack and the report render `Context()` through it	reached through `OnCommand`	
+Perf	instance	EXPERIMENTS	documented	`Measure` maps `a`/`b` to an arm through it	library-internal table (not in the instance table)	
+Perf	instance	EncodeJSON	documented	the instance mirror of `lib.EncodeJSON`	read by host tests only	
+Perf	instance	FormatReport	documented	`report` renders through it; host suites call it	reached through `OnCommand`	
+Perf	instance	HidePanel	documented	the panel's own close and the perf verbs hide through it	reached through `OnCommand` and the panel	
+Perf	instance	IsPanelShown	documented	the perf verbs read it; host suites assert it	read by host tests only	
+Perf	instance	LABELS	documented	the sampler prints an arm's letter through it	library-internal table (not in the instance table)	
+Perf	instance	Log	documented	the perf verbs log through it	reached through `OnCommand`	
+Perf	instance	MarkReviewed	documented	`report` and `dump` mark themselves through it	reached through `OnCommand`	
+Perf	instance	Measure	documented	the `a`/`b` verbs arm a window through it	reached through `OnCommand`	
+Perf	instance	Open	documented	Shape B's bracket open; every host instruments with `Note` (Shape A) instead	no host brackets with `Open`/`Close`	
+Perf	instance	PanelIsActionable	documented	published for a host drawing its own chrome in `decorate`; no host does	no `decorate` host	
+Perf	instance	PanelStateOf	documented	published for a host drawing its own chrome in `decorate`; no host does	no `decorate` host	
+Perf	instance	Progress	documented	the panel renders it	reached through the panel	
+Perf	instance	RefreshPanel	documented	every state change repaints through it	reached through the library's own transitions	
+Perf	instance	Reset	documented	the `reset` verb runs it	reached through `OnCommand`	
+Perf	instance	Resume	documented	`finish` and `cancel` release the `perf` hold through it	reached through `OnCommand`	
+Perf	instance	SCHEMA	documented	the instance mirror of `lib.SCHEMA`	read by host tests only	
+Perf	instance	STEPS	documented	the panel's rows; published for a `decorate` host	reached through the panel	
+Perf	instance	Save	documented	`finish` saves through it	reached through `OnCommand`	
+Perf	instance	ShowPanel	documented	the `panel` verb and `start` show it	reached through `OnCommand`	
+Perf	instance	Start	documented	the `start` verb runs it	reached through `OnCommand`	
+Perf	instance	StatusLines	documented	a bare `perf` prints it	reached through `OnCommand`	
+Perf	instance	Stop	documented	`finish` runs it	reached through `OnCommand`	
+Perf	instance	Suspend	documented	the `b` arm takes the `perf` hold through it	reached through `OnCommand`	
+Perf	instance	TogglePanel	documented	the `panel` verb toggles through it	reached through `OnCommand`	
+Perf	instance	Usage	documented	`StatusLines` and the help verb print it	reached through `OnCommand`	
+Perf	instance	context	documented	the snapshot `Start` took, read by `report` and `BuildRecord`	instance data field (not in the instance table)	
+Perf	instance	descriptor	documented	the descriptor the probe was built from, read by the sibling files of the major	instance data field (not in the instance table)	
+Perf	instance	name	documented	the descriptor's `name`, read by the sibling files of the major	instance data field (not in the instance table)	
+Perf	instance	ringMax	documented	`Save` trims the ring to it	instance data field (not in the instance table)	
+Perf	instance	slash	documented	the panel and `Usage` print commands with it	instance data field (not in the instance table)	
+Perf	instance	title	documented	the panel title	instance data field (not in the instance table)	
+Perf	descriptor	L	documented	no host localizes the perf strings yet; it is the only route for one that does	no descriptor passes it	
+Perf	descriptor	decorate	documented	every host takes the library's panel chrome; the hook is for a host that draws its own	no descriptor passes it	
+Perf	descriptor	onChange	documented	it is the hook for a host that republishes perf state on its own bus; none does	no descriptor passes it	
+Perf	descriptor	ring	documented	every host takes the default depth of 10	no descriptor passes it	
+Widgets	lib	ChartMath	documented	published for hosts that align decorations (axis ticks, markers, their own overlays) to the chart's mapping; the chart itself reaches it internally	no host calls it; LootHistory aligns its in/out strip through the chart instance's `XToPixel` instead	
+Widgets	descriptor	hoverXs	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	descriptor	integer	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	descriptor	markers	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	descriptor	series	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	descriptor	xMax	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	descriptor	xMin	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	descriptor	yMax	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	descriptor	yMin	documented	read by the chart from the data a host hands `SetData`; LootHistory builds that data in `modules/TimelineModel.lua` and passes it through `NS.MakeLineChart`'s table, so the scan finds no literal pass	hit scan sees no descriptor literal naming it	
+Widgets	lib	AUTOCOMPLETE	documented	it is the published chrome and timing constants, so a host cites the list's defaults (debounce, row height, overlap) rather than restating them	no host reads it	
+Options	instance	Drawer	by-hand		QuickComms calls it as `H().Drawer(ctx, ...)`, where `H()` returns `Settings.Helpers`, the Options instance (settings/OptionsSetup.lua:126), a receiver the scan does not resolve; the other hosts' hits are library-absent no-op stubs	QuickComms settings/Groups_When.lua:675
+Sim	lib	STRINGS	documented	it is the English fallback every Sim, SimTimeline and SimPanel line resolves through; hosts override by key through the descriptor's `L`	no host reads the table by name; LootHistory settings/Slash.lua:233 is LibKa0s-Slash-1.0's `lib.STRINGS`	
+Sim	instance	Keys	by-hand		both diagnostics read `NS.SimSeam:Keys()`; `NS.SimSeam` is `Sim:NewSeam(...)`'s result, a receiver the scan does not resolve (it learns `:New(` only); the host defs are library-absent seam stubs and LootHistory's `Rollup:Keys` and QuickComms' `G.Keys` are their own	BankLedger modules/Diagnostics.lua:92;LootHistory modules/Diagnostics.lua:369;MultiMeters core/Diagnostics_Runtime.lua:411
+Sim	instance	Live	by-hand		every Sim host reads live game state through `NS.SimSeam:Live(...)` (a `NewSeam` result, unresolved by the scan); the host defs are library-absent seam stubs and QuickComms' `Ed.Live` is its own	BankLedger modules/SimWorld.lua:119;DropWatcher modules/LootFeed.lua:580;KickCD modules/Sim.lua:189;LootHistory modules/Sim.lua:207;MultiMeters modules/Sim.lua:131
+Sim	instance	SetProvider	by-hand		every Sim host installs its providers through `NS.SimSeam:SetProvider(...)` (a `NewSeam` result, unresolved by the scan); the host defs are library-absent seam stubs	BankLedger modules/SimWorld.lua:402;DropWatcher modules/Sim.lua:218;KickCD modules/SimWorld.lua:363;LootHistory modules/SimWorld.lua:475;MultiMeters modules/SimWorld.lua:607
+Sim	instance	Unwrapped	documented	a host suite MUST assert it empty after the whole addon loads (the Sim document's H2), and the census never counts a test	read by host tests only (all three Sim hosts); the host defs are library-absent seam stubs	
+Sim	instance	PanelRows	documented	it is what the library's own step panel draws, published pure so a suite can pin the composed rows	reached through the library's step panel; the host defs are library-absent stubs	
+Sim	instance	Step	documented	it is the one-step read beside `Steps()`; the hosts' panels and status lines read the whole list	AuraMaster's hits are `E.LuaCurveType.Step`; the host defs are library-absent stubs	
+Sim	descriptor	addonName	documented	it is a field of the Sim-private step-panel renderer (the W.StepPanel spike took outcome B, LK-11), which SimPanel.lua's own adapter fills; no host descriptor carries it	library-internal: SimPanel.lua's renderer reads `d.addonName` off the table its adapter builds (`renderer`, SimPanel.lua:827), not off the host's descriptor	
+Sim	descriptor	close	documented	it is a field of the Sim-private step-panel renderer (the W.StepPanel spike took outcome B, LK-11), which SimPanel.lua's own adapter fills; no host descriptor carries it	library-internal: SimPanel.lua's renderer reads `d.close` off the table its adapter builds (`renderer`, SimPanel.lua:827), not off the host's descriptor	
+Sim	descriptor	footer	documented	it is a field of the Sim-private step-panel renderer (the W.StepPanel spike took outcome B, LK-11), which SimPanel.lua's own adapter fills; no host descriptor carries it	library-internal: SimPanel.lua's renderer reads `d.footer` off the table its adapter builds (`renderer`, SimPanel.lua:827), not off the host's descriptor	
+Sim	descriptor	onClick	documented	it is a field of the Sim-private step-panel renderer (the W.StepPanel spike took outcome B, LK-11), which SimPanel.lua's own adapter fills; no host descriptor carries it	library-internal: SimPanel.lua's renderer reads `d.onClick` off the table its adapter builds (`renderer`, SimPanel.lua:827), not off the host's descriptor	
+Sim	descriptor	rows	documented	it is a field of the Sim-private step-panel renderer (the W.StepPanel spike took outcome B, LK-11), which SimPanel.lua's own adapter fills; no host descriptor carries it	library-internal: SimPanel.lua's renderer reads `d.rows` off the table its adapter builds (`renderer`, SimPanel.lua:827), not off the host's descriptor	
+Sim	descriptor	tooltip	documented	it is a field of the Sim-private step-panel renderer (the W.StepPanel spike took outcome B, LK-11), which SimPanel.lua's own adapter fills; no host descriptor carries it	library-internal: SimPanel.lua's renderer reads `d.tooltip` off the table its adapter builds (`renderer`, SimPanel.lua:827), not off the host's descriptor	
+Sim	descriptor	title	by-hand		the scan's `d.title` is the private renderer's; the host-facing field is `panel.title`, nested under the descriptor's `panel` table, which the scan does not enumerate (top-level keys only)	BankLedger modules/Sim.lua:291;DropWatcher modules/SimPanel.lua:118;LootHistory modules/SimPanel.lua:97;MultiMeters modules/Sim.lua:299
+Sim	descriptor	check	by-hand		the scan's `d.check` is the private renderer's; the host-facing field is `panel.check`, nested under the descriptor's `panel` table, which the scan does not enumerate (top-level keys only)	BankLedger modules/Sim.lua:304;DropWatcher modules/SimPanel.lua:129;LootHistory modules/SimPanel.lua:108;KickCD modules/Sim.lua:365;MultiMeters modules/Sim.lua:301
+Sim	instance	Pause	documented	every host drives the step machine through its `/x sim` verbs and the panel's buttons, which `RunVerb` and the panel dispatch to it inside the library	BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; DropWatcher's and LootHistory's name hits are their own stubs and other tables' members	none
+Sim	instance	Restart	documented	every host drives the step machine through its `/x sim` verbs and the panel's buttons, which `RunVerb` and the panel dispatch to it inside the library	BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; DropWatcher's and LootHistory's name hits are their own stubs and other tables' members	none
+Sim	instance	Resume	documented	every host drives the step machine through its `/x sim` verbs and the panel's buttons, which `RunVerb` and the panel dispatch to it inside the library	BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; DropWatcher's and LootHistory's name hits are their own stubs and other tables' members	none
+Sim	instance	Run	documented	every host drives the step machine through its `/x sim` verbs and the panel's buttons, which `RunVerb` and the panel dispatch to it inside the library	BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; DropWatcher's and LootHistory's name hits are their own stubs and other tables' members	none
+Sim	instance	RefreshPanel	documented	the panel refreshes on the library's own transitions and toggles through the `panel` verb that `RunVerb` dispatches	BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; the name hits are other tables' members and the other hosts' stubs	none
+Sim	instance	TogglePanel	documented	the panel refreshes on the library's own transitions and toggles through the `panel` verb that `RunVerb` dispatches	BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; the name hits are other tables' members and the other hosts' stubs	none
+Sim	instance	IsPanelShown	by-hand		BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; DropWatcher's call is real	DropWatcher modules/SimScenario.lua:197;LootHistory modules/Sim.lua:255
+Sim	instance	HidePanel	by-hand		BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; DropWatcher's call is real	DropWatcher modules/SimPanel.lua:134
+Sim	instance	ResetPanelPosition	by-hand		BankLedger's only "call" is its library-absent stub (core/SimSetup.lua:76-91, host contract H9), which the scan's block detector misses; DropWatcher's call is real	DropWatcher modules/Window.lua:861
+Skin	lib	Color	by-hand		a host reads it as `NS.Skin.Color(...)` on the view `Skin:For(owner)` returns, whose member forwards to this export (`LibKa0s/Skin.lua`'s `For`); the scan does not learn that receiver, and the stub hits are library-absent degraded views	AuraMaster core/SkinSetup.lua:159;BankLedger core/SkinSetup.lua:217;ConsumableMaster core/SkinSetup.lua:180;DropWatcher core/SkinSetup.lua:187;KickCD core/SkinSetup.lua:145;LootHistory core/Compat.lua:638;MultiMeters core/SkinSetup.lua:167;PanelMaster core/SkinSetup.lua:126;PartyFrameEnhanced modules/Anchor.lua:264;PremadeGroupsFilterExtension core/SkinSetup.lua:116;PrettyChat core/SkinSetup.lua:111;QuickComms core/SkinSetup.lua:205;WhatGroup core/SkinSetup.lua:120
+Skin	lib	OnLooksChanged	by-hand		a host reads it as `NS.Skin.OnLooksChanged(...)` on the view `Skin:For(owner)` returns, whose member forwards to this export (`LibKa0s/Skin.lua`'s `For`); the scan does not learn that receiver, and the stub hits are library-absent degraded views	AbsorbTracker core/SkinSetup.lua:345;AuraMaster modules/Anchors.lua:1068;BankLedger modules/Browser.lua:166;ConsumableMaster modules/MacroBar.lua:743;DropWatcher core/SkinSetup.lua:700;KickCD core/SkinSetup.lua:210;LibKa0sSkinTester modules/Showroom.lua:368;LootHistory modules/AnalyticsCharts.lua:473;MultiMeters modules/WindowManager.lua:561;PanelMaster modules/Unlock.lua:280;PartyFrameEnhanced modules/Anchor.lua:274;PremadeGroupsFilterExtension modules/Panel.lua:925;PrettyChat settings/Profiles.lua:69;QuickComms modules/Pad_Render.lua:90;WhatGroup modules/FrameSkin.lua:110
+Skin	lib	Resolve	by-hand		a host reads it as `NS.Skin.Resolve(...)` on the view `Skin:For(owner)` returns, whose member forwards to this export (`LibKa0s/Skin.lua`'s `For`); the scan does not learn that receiver, and the stub hits are library-absent degraded views	AbsorbTracker core/Data.lua:153;AuraMaster modules/Style.lua:62;ConsumableMaster modules/MacroBarButton.lua:87;DropWatcher modules/IconStyle.lua:97;KickCD core/SkinSetup.lua:179;MultiMeters core/SkinSetup.lua:280;PartyFrameEnhanced modules/Element.lua:121;QuickComms modules/IconStyle.lua:109
+Skin	lib	Token	by-hand		a host reads it as `NS.Skin.Token(...)` on the view `Skin:For(owner)` returns, whose member forwards to this export (`LibKa0s/Skin.lua`'s `For`); the scan does not learn that receiver, and the stub hits are library-absent degraded views	AbsorbTracker core/Data.lua:154;BankLedger modules/InsightsWidgets.lua:80;ConsumableMaster modules/MacroBarButton.lua:153;DropWatcher core/SkinSetup.lua:283;LootHistory modules/AnalyticsFormat.lua:145;PremadeGroupsFilterExtension modules/Panel.lua:682;QuickComms modules/Pad_Render.lua:449
+Skin	lib	GetOverride	documented	the settings tab and the skin picker (`OptionsAppearance.lua`, `OptionsSkinPicker.lua`) reach it for every host, so no host names it	no host calls it; read by hand	
+Skin	lib	GetSkin	documented	the settings tab and the skin picker (`OptionsAppearance.lua`, `OptionsSkinPicker.lua`) reach it for every host, so no host names it	no host calls it; read by hand	
+Skin	lib	IsFromSkin	documented	the settings tab and the skin picker (`OptionsAppearance.lua`, `OptionsSkinPicker.lua`) reach it for every host, so no host names it	no host calls it; read by hand	
+Skin	lib	OwnerLabel	documented	the settings tab and the skin picker (`OptionsAppearance.lua`, `OptionsSkinPicker.lua`) reach it for every host, so no host names it	no host calls it; read by hand	
+Skin	lib	Owners	documented	the settings tab and the skin picker (`OptionsAppearance.lua`, `OptionsSkinPicker.lua`) reach it for every host, so no host names it	no host calls it; read by hand	
+Skin	lib	WriteChoice	documented	the settings tab and the skin picker (`OptionsAppearance.lua`, `OptionsSkinPicker.lua`) reach it for every host, so no host names it	no host calls it; read by hand	
+Skin	lib	OnReloadRequest	documented	the settings tab and the skin picker (`OptionsAppearance.lua`, `OptionsSkinPicker.lua`) reach it for every host, so no host names it	no host calls it; read by hand	
+Skin	lib	OUTLINE_DEFAULT	documented	it is the constant behind the settings rows, which the library draws; the one name-only hit, if any, is a host constant of the same name	name-only hits are unrelated host tables	
+Skin	lib	OUTLINE_MODES	documented	it is the constant behind the settings rows, which the library draws; the one name-only hit, if any, is a host constant of the same name	name-only hits are unrelated host tables	
+Skin	lib	SOURCES	documented	it is the constant behind the settings rows, which the library draws; the one name-only hit, if any, is a host constant of the same name	name-only hits are unrelated host tables	
+Skin	lib	RegisterSkin	documented	the eight other skins register through it in `SkinDefs.lua`, and it is the seam a future skin would take	no host calls it; read by hand	
+Skin	lib	Repaint	documented	the library runs it on every skin change, so a host reaches it only through `SetChoice`	no host calls it; read by hand	
+Skin	lib	SCHEMA	documented	it is the token schema the skins and the suite read; the Skin Tester name-only hit is a guarded read of a table of its own	no host calls it; read by hand	
+Skin	lib	VOCAB	documented	it is the view surface every host stub is held to by its own test; the stub hits are comments naming it	stub hits are comments naming it	
+Skin	lib	Track	documented	it registers a frame the library paints itself; the QuickComms hits are its own `Slices.Track`	name-only and def hits are QuickComms own `Slices.Track`	
+Skin	lib	byOwner	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	euiFacade	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	euiPainted	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	euiRefused	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	euiRegistered	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	facades	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	owners	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	painted	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	prim	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	shared	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	skins	documented	it is state or a helper table the Skin major shares between its own files, public only by the `Kit.publicMembers` rule	name-only and stub hits are unrelated host words	
+Skin	lib	GetOutline	by-hand		Ka0s Skin Tester reads it as `lib:GetOutline(addonName)` after a type guard, a receiver the scan does not resolve	LibKa0sSkinTester modules/ShowroomFonts.lua:146
+Skin	descriptor	addonName	documented	the scan counts a read of the Options descriptor inside a Skin file; it is `lib:New`'s `addonName`, which is passed there	not a Skin descriptor field	
+Skin	descriptor	thirdPartySkinAddons	documented	the `d` read here is EllesmereUI's saved table in `SkinEUI.lua`, not a host descriptor, so no host can pass it	not a descriptor field	
+Skin	descriptor	thirdPartySkinsOff	documented	the `d` read here is EllesmereUI's saved table in `SkinEUI.lua`, not a host descriptor, so no host can pass it	not a descriptor field	
+Widgets	descriptor	hostBackdrop	documented	`CopyWindow` writes it itself from `d.backdrop`, so it is state rather than a field a host passes	not a descriptor field	
+Widgets	descriptor	applySkin	documented	it remains the whole-job hook for a host that draws `CopyWindow` its own way; every host left it at the skinning rollout for the skin owner path	no host passes it since v1.80.0	
+DebugLog	descriptor	applySkin	documented	it remains the whole-job hook for a host that draws the debug console its own way; every host left it at the skinning rollout for the skin owner path	no host passes it since v1.80.0	
+Toast	lib	DURATION	documented	a host passes `duration` as a function of its own setting	name-only hits are host constants of the same name	
+Toast	lib	HEIGHT	documented	it is the default a host overrides with `height`	name-only hits are host constants of the same name	
+Toast	lib	WIDTH	documented	it is the default a host overrides with `width`	name-only hits are host constants of the same name	
+Toast	lib	MAX_QUEUE	documented	it is the default behind `maxQueue`	name-only hits are host constants of the same name	
+Toast	lib	POINT	documented	it is the default behind `defaultPosition`	name-only hits are host constants of the same name	
+Toast	lib	STRATA	documented	it is the alert tier the shell draws at	name-only hits are host constants of the same name	
+Toast	descriptor	name	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:503
+Toast	descriptor	build	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:504
+Toast	descriptor	width	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:505
+Toast	descriptor	height	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:506
+Toast	descriptor	duration	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:509
+Toast	descriptor	scale	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:510
+Toast	descriptor	sound	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:511
+Toast	descriptor	draggable	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:513
+Toast	descriptor	getPosition	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:514
+Toast	descriptor	setPosition	by-hand		both hosts hand the literal to their `NS.NewToast` seam, which calls `Toast:New`; the scan looks only at literals beside `:New(`	DropWatcher modules/Toast.lua:515
+Toast	descriptor	debug	by-hand		DpsRace hands it to its `NS.NewToast` seam	
+Toast	descriptor	maxQueue	by-hand		Drop Watcher hands it to its `NS.NewToast` seam	DropWatcher modules/Toast.lua:507
+Toast	descriptor	defaultPosition	by-hand		Drop Watcher hands it to its `NS.NewToast` seam	DropWatcher modules/Toast.lua:508
+Toast	descriptor	soundKit	documented	it is the numeric alternative to `sound` for a host that plays a sound kit id	no host passes it	
+Media	lib	BACKGROUNDS	documented	it is the catalog `Background` reads	no host call	
+Media	lib	BORDERS	documented	it is the catalog `Border` reads	no host call	
+Media	lib	Background	documented	the Skin major reaches it, so no host names it; the name-only hits are host functions of the same name	no host call	
+Media	lib	Border	documented	the Skin major reaches it, so no host names it; the name-only hits are host functions of the same name	no host call	
+Options	lib	APPEARANCE_STRINGS	documented	it holds the default strings a host overrides through `spec.strings`, never by name	no host call	
+Options	lib	KEYBIND_STRINGS	documented	it holds the default strings a host overrides through `spec.strings`, never by name	no host call	
+Options	lib	SKIN_PICKER_STRINGS	documented	it holds the default strings a host overrides through `spec.strings`, never by name	no host call	
+Options	instance	AppearanceRows	documented	`AppearanceTab` calls it; a host takes the tab whole, and the hits are degradation stubs	stubs only	
+Options	instance	KeybindRows	documented	`KeybindingsTab` calls it; a host takes the tab whole, and the hits are degradation stubs	stubs only	
+Core	lib	HasSettings	documented	it is the published question a window's settings mark or a host suite asks before offering the mark; no library file calls it either, so it is kept for the published surface	no host calls it; the library's own suite (tests/test_header_buttons.lua) is its only reader	
+Core	lib	RegisterSettingsOpener	documented	LibKa0s-Launcher-1.0's `New` registers every host's `openSettings` through it (Launcher.lua:308), so all nineteen hosts reach it without naming it	internal only: called by Launcher:New for every host	
+Core	descriptor	Hide	documented	it is no descriptor field: the scan's `d.Hide` is `hideHeaderRule`'s local `d`, a window's divider texture (Core.lua:131), which the rule hides on every skin pass	scan artifact; `d` there is a texture, not a descriptor	
+Tooltip	lib	CLOSE_STRINGS	documented	it is the English fallback `CloseTip` answers for every library close; hosts translate per owner through `SetCloseTip`	internal only: read by `lib.CloseTip` (Tooltip.lua:464)	
+Tooltip	lib	GroupOf	documented	`PlaceBeside` resolves a group through it whenever a host passes none (Tooltip.lua:290)	internal only; DropWatcher's `RT.GroupOf` (modules/RowTooltip.lua:101) is its own resolver for its docked panels, handed to `PlaceBeside` as an explicit group, not a copy of this one	
+Tooltip	lib	SetCloseTip	documented	it is the per-owner translation hook for the close's words; every host is content with the English fallback	no host calls it; the library's own suite is its only caller	
+Role	lib	TALENT_GROUP_ROLE	documented	the talent rung of the Forever role ladder reads it (Role.lua:336), published read-only so a host's probe can show the seed	internal only: read through its local alias	
+Toast	descriptor	soundFile	by-hand		Combat Trail passes it through `NS.NewToast(d)` (core/ToastSetup.lua), a wrapper whose table the scan does not trace to `Toast:New`	CombatTrail modules/BestToast.lua:366
+Toast	descriptor	stackGap	by-hand		DropWatcher passes it through `NS.NewToast(d)` (core/ToastSetup.lua), a wrapper whose table the scan does not trace to `Toast:New`	DropWatcher modules/Toast.lua:551
+Toast	descriptor	stackGrow	by-hand		both pass it through their `NS.NewToast(d)` wrappers (core/ToastSetup.lua), whose tables the scan does not trace to `Toast:New`	DropWatcher modules/Toast.lua:549;QuickComms modules/AutoThank_Toast.lua:202
+Callout	lib	ANIMS	documented	it is the `anim` setting's valid list, read by the validator and the settings section's Animation row	internal only (Callout.lua:307, 835)	
+Callout	lib	CHANNELS	documented	it is the `channel` setting's valid list, read by the validator and the Sound tab's channel row	internal only (Callout.lua:308); the name hits are Combat Trail's own `Share.CHANNELS` and other addons' locals	
+Callout	lib	DEFAULTS	documented	`Get` falls back to it and a host off the write route seeds from it; Combat Trail is on the route and seeds from `SchemaRows`' defaults instead, as the document says a routed host does	internal only; read by Combat Trail's tests (tests/test_countdown.lua) to hold its seeded profile to it	
+Callout	lib	FOLLOW_FROM	documented	`FollowKeys` compares against it (Callout.lua:1071); Combat Trail reaches it through `MoveToSkin`	internal only	
+Callout	lib	FONT_DEFAULT	documented	the font resolver falls back to it, and the font row leads with it (`FONT_FACES`)	internal only (Callout.lua:480, CalloutSettings.lua:250)	
+Callout	lib	FONT_FACES	documented	the settings section's font row leads with it (CalloutSettings.lua:281)	internal only	
+Callout	lib	FONT_GAME	documented	it is the `font` value that draws the game's face, read by the resolver and the font row	internal only (Callout.lua:479, CalloutSettings.lua:279)	
+Callout	lib	FONT_SKIN	documented	it is the `font` default and `MoveToSkin`'s font write, read by the resolver and the font row	internal only; Skill Master's `FONT_SKIN` (settings/Trainers.lua:67) is a WaypointArrow settings word, not this	
+Callout	lib	FROM_SKIN	documented	it is the `outline` value that follows the skin, the default and `MoveToSkin`'s write	internal only; every host name hit is LibKa0s-Skin-1.0's `FROM_SKIN` or a host stub's copy of it	
+Callout	lib	FollowKeys	documented	`MoveToSkin` runs on it (Callout.lua:1082), and Combat Trail calls `MoveToSkin` (core/Database.lua:104)	internal only	
+Callout	lib	GLOWS	documented	it is the retired minor-2 glow choice's values, `GLOW_LEGACY`'s keys; no setting takes them and `-1.0` is additive-only	no reader at all, inside the library or out: kept for the published surface	
+Callout	lib	KINDS	documented	the color rows and the kind validator read it	internal only (Callout.lua:128, CalloutSettings.lua:481); read by Combat Trail's tests (tests/test_callout_settings.lua:55) to count the rows	
+Callout	lib	LINES	documented	it is every file a voice pack carries, published so a host's suite can check the packs it ships	read by Combat Trail's tests only (tests/test_countdown.lua:156); the library builds it from `STOCK_ORDER` and `MAX_FROM`	
+Callout	lib	MAX_FROM	documented	the validator, the number lines and the speakFrom row read it; Combat Trail states its own countdown bound and its suite holds the two equal	internal only; read by Combat Trail's tests (tests/test_countdown.lua:358)	
+Callout	lib	MEANING	documented	a meaning kind at its default draws its owner's token through it (Callout.lua:439)	internal only	
+Callout	lib	OFF	documented	it is the silent `voice` value, read by the validator, the voice list and the sound path	internal only; the name hits are other tables' `OFF`	
+Callout	lib	OUTLINES	documented	it is the `outline` setting's valid list	internal only (Callout.lua:302)	
+Callout	lib	PACKS	documented	the voice list, the pack resolver and the `packs` filter read it; Combat Trail names its packs in `d.packs`	internal only; read by Combat Trail's tests (tests/test_countdown.lua:152) to hold `NS.CALLOUT_PACKS` to it	
+Callout	lib	PLAY_COUNTDOWN	documented	it is the Play list's countdown choice, read by the settings section	internal only (CalloutSettings.lua:295); read by Combat Trail's tests (tests/test_countdown.lua:176)	
+Callout	lib	SETTINGS	documented	it is the sorted key list `Get` and `Set` take, published for a host suite or diagnostics	no reader outside its own definition (Callout.lua:314); the name hits are other majors' `SETTINGS`	
+Callout	lib	SETTINGS_SIDE_TABS	documented	the one-tab layout draws its side tabs from it (CalloutSettings.lua:674)	internal only	
+Callout	lib	SETTINGS_STRINGS	documented	it is the English fallback for every settings word; a host overrides by key through `opts.L`	internal only (CalloutSettings.lua:203)	
+Callout	lib	SETTINGS_TABS	documented	the three-tab layout draws its tabs from it (CalloutSettings.lua:737)	internal only	
+Callout	lib	SIZE_MAX	documented	the size validator and slider read it	internal only (Callout.lua:302, CalloutSettings.lua:398)	
+Callout	lib	SIZE_MIN	documented	the size validator and slider read it	internal only (Callout.lua:302, CalloutSettings.lua:398)	
+Callout	lib	SOUND_EXT	documented	the pack player joins every line to it (CalloutSound.lua:66)	internal only; read by Combat Trail's tests (tests/test_countdown.lua:157)	
+Callout	lib	STOCK	documented	the stock call-outs, read by the route's leaf checks, the texts rows and the Play list	internal only (CalloutRoute.lua:73, CalloutSettings.lua:296)	
+Callout	lib	STOCK_ORDER	documented	`LINES`, the route's whole-table writes and the Play list run in its order	internal only (Callout.lua:166, CalloutRoute.lua:130)	
+Callout	lib	STRATA	documented	the frame takes it (Callout.lua:733); Combat Trail cites the tier in a comment (core/Constants.lua:41) rather than reading it	internal only; the name hits are other majors' and hosts' `STRATA`	
+Callout	lib	TTS	documented	it is the text-to-speech `voice` value, read by the validator, the voice list and the settings section	internal only (Callout.lua:282, CalloutSettings.lua:446)	
+Callout	lib	WIDTH	documented	the frame's width (Callout.lua:642)	internal only; the name hits are other tables' `WIDTH`	
+Callout	descriptor	colorEncode	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:96
+Callout	descriptor	db	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:90
+Callout	descriptor	label	documented	it is the drag strip's text, `"Call-out"` by default; Combat Trail keeps the default	no descriptor passes it (CombatTrail modules/Countdown.lua:88 and core/CalloutSetup.lua:90-95 are the only fields set)	
+Callout	descriptor	name	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:89
+Callout	descriptor	path	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:94
+Callout	descriptor	set	by-hand		Combat Trail builds its call-out through `NS.NewCallout(d)` (core/CalloutSetup.lua:88), a wrapper whose table the scan does not trace to `Callout:New`	CombatTrail modules/Countdown.lua:95
+Callout	descriptor	soundsBase	documented	it overrides the pack folder `addon` implies, for a host that keeps its packs elsewhere; Combat Trail keeps them in the vendored payload	no descriptor passes it	
+Callout	descriptor	vendorPath	documented	it is for a host that vendors the payload somewhere other than `libs\LibKa0s`; Combat Trail uses the default	no descriptor passes it	
+WaypointArrow	lib	ARRIVE	documented	it is the arrival distance a descriptor's `arrive` overrides (WaypointArrow.lua:833)	internal only; Skill Master keeps the default	
+WaypointArrow	lib	ART	documented	the art box's drawn size, read by the layout (WaypointArrow.lua:210, 590)	internal only; Skill Master's `C.ART` (modules/Chrome.lua:114) is its own control-strip pitch	
+WaypointArrow	lib	COMPACT_FROM	documented	`FormatDistance` switches to compact from it (WaypointArrow.lua:280)	internal only	
+WaypointArrow	lib	DEFAULTS	documented	`Get` falls back to it and a host seeds its paths from it	internal only; read by Skill Master's tests (tests/test_round8.lua:670, tests/test_round9.lua:81) to hold its seeded profile to it	
+WaypointArrow	lib	DEFAULT_POINT	documented	the position resolver falls back to it (WaypointArrow.lua:499)	internal only	
+WaypointArrow	lib	DEFAULT_STYLE	documented	`DEFAULTS.style` is it (WaypointArrow.lua:123)	internal only	
+WaypointArrow	lib	DISTANCE_UNITS	documented	the `distanceUnits` validator and its settings row read it	internal only (WaypointArrow.lua:201, WaypointArrowSettings.lua:137)	
+WaypointArrow	lib	Distance	documented	the measure runs on it (WaypointArrow.lua:810), published pure for a suite	internal only; Skill Master's `NS.Trainers.Distance` (modules/Trainers.lua:150) is its own trainer-popup measure	
+WaypointArrow	lib	DistanceUnitsValues	documented	`SettingsRows` builds the Distance units row from it (WaypointArrowSettings.lua:302)	internal only; Skill Master takes the row through `SettingsRows`	
+WaypointArrow	lib	FAR	documented	it is the fade's far edge a descriptor's `far` overrides	internal only (WaypointArrow.lua:237, 1264)	
+WaypointArrow	lib	FLAGS_FROM_SKIN	documented	it is the `fontFlags` default and the value read as the skin's outline	internal only (WaypointArrow.lua:129, 663)	
+WaypointArrow	lib	FONT_DEFAULT	documented	it is the `font` default and the font row's fallback	internal only (WaypointArrow.lua:128, WaypointArrowSettings.lua:200)	
+WaypointArrow	lib	FONT_FLAGS	documented	it is the `fontFlags` valid list and the Font flags row's values	internal only (WaypointArrow.lua:195); Skill Master's `FONT_FLAGS` (settings/Trainers.lua:61) is a settings word it hands `SettingsRows`	
+WaypointArrow	lib	FONT_SIZE_MAX	documented	the font size validator and slider read it	internal only (WaypointArrow.lua:192, WaypointArrowSettings.lua:220)	
+WaypointArrow	lib	FONT_SIZE_MIN	documented	the font size validator and slider read it	internal only (WaypointArrow.lua:192, WaypointArrowSettings.lua:220)	
+WaypointArrow	lib	Fade	documented	the color fade runs on it (WaypointArrow.lua:755), published pure for a suite	internal only	
+WaypointArrow	lib	FormatDistance	documented	the text runs on it whenever `d.format` answers no string (WaypointArrow.lua:766)	internal only; Skill Master overrides its words through `d.strings`	
+WaypointArrow	lib	GROUND	documented	it is the ground sheet's layout, read by `GroundFrame` and `GroundTexCoord`	internal only (WaypointArrow.lua:257, 263)	
+WaypointArrow	lib	GroundFrame	documented	the ground style picks its frame through it (WaypointArrow.lua:732), published pure for a suite	internal only	
+WaypointArrow	lib	GroundTexCoord	documented	the ground style cuts its frame through it (WaypointArrow.lua:733), published pure for a suite	internal only	
+WaypointArrow	lib	HIT_PAD	documented	the hit rect's layout reads it (WaypointArrow.lua:575, 590)	internal only	
+WaypointArrow	lib	IsStyle	documented	it is the published style predicate; the library validates `style` through its own list	no reader outside its own definition (WaypointArrow.lua:1269); the library's suite is its only caller: kept for the published surface	
+WaypointArrow	lib	MEDIA_DIR	documented	the art path is built from it (WaypointArrow.lua:393)	internal only	
+WaypointArrow	lib	MENU_ITEMS	documented	it names the stock menu items' ids in order for a host's `menuItems` to place its own among them; Skill Master finds them by id instead	no reader at all, inside the library or out (WaypointArrow.lua:154): kept for the published surface	
+WaypointArrow	lib	MapWorldPos	documented	it is the published alias of the measure's own local (`mapWorld`, WaypointArrow.lua:329)	internal only, through the local; Skill Master's `NS.Compat.MapWorldPos` (core/Compat.lua:406) is its own	
+WaypointArrow	lib	Mix	documented	the color fade runs on it (WaypointArrow.lua:755), published pure for a suite	internal only	
+WaypointArrow	lib	NEAR	documented	it is the fade's near edge a descriptor's `near` overrides	internal only (WaypointArrow.lua:237, 1264)	
+WaypointArrow	lib	POSITION_MAX	documented	the `x`/`y` validators and the Position block's sliders read it	internal only (WaypointArrow.lua:202)	
+WaypointArrow	lib	POSITION_MIN	documented	the `x`/`y` validators and the Position block's sliders read it	internal only (WaypointArrow.lua:202)	
+WaypointArrow	lib	PlayerFacing	documented	it is the published alias of the measure's own local (`facing`, WaypointArrow.lua:329)	internal only, through the local	
+WaypointArrow	lib	PlayerWorldPos	documented	it is the published alias of the measure's own local (`playerWorld`, WaypointArrow.lua:329)	internal only, through the local; Skill Master's `NS.Compat.PlayerWorldPos` (core/Compat.lua:421) is its own	
+WaypointArrow	lib	Rotation	documented	the measure runs on it (WaypointArrow.lua:811), published pure for a suite	internal only; read by Skill Master's tests (tests/test_round6.lua:1169)	
+WaypointArrow	lib	SAMPLE_ROTATION	documented	the sample's angle (WaypointArrow.lua:815)	internal only; read by Skill Master's tests (tests/test_round6.lua:1363)	
+WaypointArrow	lib	SAMPLE_YARDS	documented	the sample's distance (WaypointArrow.lua:815)	internal only; read by Skill Master's tests (tests/test_round6.lua:1362)	
+WaypointArrow	lib	SCALE_MAX	documented	the scale validator and slider read it	internal only (WaypointArrow.lua:189, WaypointArrowSettings.lua:172)	
+WaypointArrow	lib	SCALE_MIN	documented	the scale validator and slider read it	internal only (WaypointArrow.lua:189, WaypointArrowSettings.lua:172)	
+WaypointArrow	lib	SCALE_STEP	documented	the scale slider's step (WaypointArrowSettings.lua:172)	internal only	
+WaypointArrow	lib	SETTINGS	documented	`Configure` and `ConfigureFrom` walk it (WaypointArrow.lua:1115, 1126)	internal only; Skill Master reaches it through `ConfigureFrom`	
+WaypointArrow	lib	SETTINGS_STRINGS	documented	it is the English fallback for every settings word; Skill Master overrides by key through `SettingsRows`' `L` (settings/Trainers.lua:44, keyed as it)	internal only (WaypointArrowSettings.lua:115)	
+WaypointArrow	lib	SHADOW_BOX	documented	the raised style's shadow canvas (WaypointArrow.lua:710)	internal only	
+WaypointArrow	lib	SHADOW_OFFSET	documented	the raised style's shadow offset (WaypointArrow.lua:711)	internal only	
+WaypointArrow	lib	SHARE_LEAD	documented	the menu's Share in chat opens the chat box with it (WaypointArrow.lua:942)	internal only	
+WaypointArrow	lib	SKIN_FAR	documented	"Use the skin's colors" reads the far token through it (WaypointArrow.lua:382)	internal only	
+WaypointArrow	lib	SKIN_NEAR	documented	"Use the skin's colors" reads the near token through it (WaypointArrow.lua:382)	internal only	
+WaypointArrow	lib	STRATA	documented	the frame takes it unless `d.strata` says otherwise; Skill Master passes its own `strata`	internal only (WaypointArrow.lua:539); the name hits are other majors' and hosts' `STRATA`	
+WaypointArrow	lib	STRINGS	documented	it is the English fallback for the distance, the sample and the menu; Skill Master overrides by key through `d.strings` (modules/WaypointArrow.lua:216)	internal only (WaypointArrow.lua:277, 897)	
+WaypointArrow	lib	STYLES	documented	the style validator, `IsStyle` and the style row read it	internal only (WaypointArrow.lua:1269, WaypointArrowSettings.lua:126)	
+WaypointArrow	lib	ShareText	documented	the menu's Share in chat builds its `/way` line through it (WaypointArrow.lua:982), published pure for a suite	internal only	
+WaypointArrow	lib	StyleValues	documented	`SettingsRows` builds the style row from it (WaypointArrowSettings.lua:156)	internal only; Skill Master takes the row through `SettingsRows`	
+WaypointArrow	lib	TEXT_GAP	documented	the text's layout reads it (WaypointArrow.lua:575, 577)	internal only	
+WaypointArrow	lib	TEXT_POSITIONS	documented	the `textPosition` validator and its row read it	internal only (WaypointArrow.lua:199, WaypointArrowSettings.lua:136)	
+WaypointArrow	lib	TEXT_ROOM	documented	the text's layout reads it (WaypointArrow.lua:577)	internal only	
+WaypointArrow	lib	TextPositionValues	documented	`SettingsRows` builds the Text position row from it (WaypointArrowSettings.lua:295)	internal only; Skill Master takes the row through `SettingsRows`	
+WaypointArrow	lib	UNITS	documented	the art's design box, read by every unit-sized measure (WaypointArrow.lua:210, 690)	internal only; Skill Master's `UNITS` (settings/Trainers.lua:75) is a settings word	
+WaypointArrow	descriptor	arrive	documented	it overrides `ARRIVE` per instance (or `false` never arrives); Skill Master keeps the default	no descriptor passes it (Skill Master's one `Arrow:New`, modules/WaypointArrow.lua:209)	
+WaypointArrow	descriptor	canDrag	documented	it is the host's drag gate; Skill Master leaves it out on purpose, the arrow's own `lock` being its one gate (modules/WaypointArrow.lua:211, round 9, R9-1)	no descriptor passes it; the omission is recorded at the call	
+WaypointArrow	descriptor	far	documented	it overrides `FAR` per instance; Skill Master keeps the default	no descriptor passes it	
+WaypointArrow	descriptor	format	documented	it replaces the distance text; Skill Master changes only the words, through `strings`	no descriptor passes it	
+WaypointArrow	descriptor	mediaBase	documented	it is for a host whose art sits outside the vendored payload; Skill Master passes `addon`	no descriptor passes it	
+WaypointArrow	descriptor	menu	documented	`false` turns the right-click menu off; Skill Master keeps the menu and adds items through `menuItems`	no descriptor passes it	
+WaypointArrow	descriptor	near	documented	it overrides `NEAR` per instance; Skill Master keeps the default	no descriptor passes it	
+WaypointArrow	descriptor	onMoved	documented	it is the drag-end callback for a host off the write route; Skill Master is on `paths` and `set`, which the document says need no `onMoved`	no descriptor passes it	
+WaypointArrow	descriptor	parent	documented	it reparents the frame off `UIParent`; Skill Master keeps `UIParent`	no descriptor passes it	
+WaypointArrow	descriptor	point	documented	it is the saved position for a host off the write route; Skill Master configures `x` and `y` through `paths`, which win over it	no descriptor passes it	
+WaypointArrow	descriptor	vendorPath	documented	it is for a host that vendors the payload somewhere other than `libs\LibKa0s`; Skill Master uses the default	no descriptor passes it	
+Charts	lib	RangeScale	documented	the range chart scales through it (ChartsRender.lua:452), published pure for a suite	internal only	
+Charts	lib	StripLabels	documented	the strip chart picks its shown labels through it (ChartsRender.lua:552), published pure for a suite	internal only	
+Charts	lib	StripSlots	documented	the strip chart lays its slots out through it (ChartsRender.lua:551), published pure for a suite	internal only	
+Charts	lib	tipText	documented	it is the default tooltip every card, bar and chip takes when a host gives none (ChartsRender.lua:266, 327, 481)	internal only; DropWatcher's `tipText` (tests/run.lua:101) is its own test helper	
+Media	lib	ICONS	documented	it is the icon catalog `Icon` resolves against (Media.lua:374, 388)	internal only; read by five hosts' tests (BankLedger, LibKa0sSkinTester, LootHistory, PrettyChat, RangeMaster tests/test_mediasetup.lua) to hold their pruned `media/icons/` to it	
+Media	lib	ICON_SETS	documented	it is the icon sets' credits table, from which the catalog's set membership is built (Media.lua:367)	internal only	
+Media	lib	IconAuthor	documented	LibKa0s-IconBrowser-1.0 shows each Game-icons mark's author through it (IconBrowserSources.lua:336), the attribution the set's license asks for	internal only, from another major	
+Skin	lib	CLIENT_DEFAULTS	documented	the per-client default skin is read from it (Skin.lua:316)	internal only; read by host tests only	
+Skin	lib	RETIRED_FONTS	documented	the font resolver reads it to draw a retired face's successor (Skin.lua:336); a host's migration that rewrites a stored face holds its own one-row copy, frozen with the migration step, rather than reading the live table	internal only; fifteen hosts carry a local `RETIRED_FONTS` copy in `core/Database.lua` or `core/Database_Migrations.lua` (for example PartyFrameEnhanced core/Database.lua:147, WhatGroup core/Database.lua:30)	
+Widgets	lib	BAR	documented	it is the bar widget's presets and shade tiers, read by every bar the library builds (WidgetsBar.lua:82)	internal only; Skill Master's degradation stub mirrors it (core/WidgetsSetup.lua:97) and its tests read it	
+Widgets	lib	BarCompute	documented	every bar's geometry is computed through it (WidgetsBar.lua:463, 596), published pure for a suite	internal only; read by host tests only	
+Widgets	lib	BarShade	documented	a segmented bar's tier shade is computed through it (WidgetsBar.lua:446)	internal only; Skill Master's `BarShade` (core/WidgetsSetup.lua:93) is its library-absent stub	
+Widgets	lib	DRAG_HANDLE_STRINGS	documented	it is the English fallback for the drag strip's mark tooltips (WidgetsDragHandleTip.lua:204)	internal only	
+Widgets	lib	HEADER_STRINGS	documented	it is the English fallback for the header bar's settings mark (WidgetsHeader.lua:81)	internal only; read by WhatGroup's tests (tests/test_frame_header.lua:109)	
+Widgets	lib	HeaderButton	documented	the header bar builds every mark through it (WidgetsHeader.lua:242, 298); hosts take the marks through the header bar	internal only	
+Widgets	lib	OwnerWarnings	documented	it is a diagnostic hook that reports widgets built with no skin owner inside a skinned window; no host has wired it	no reader at all, inside the library or out (Widgets.lua:231; Charts.lua:420 cites it in a comment): kept for the published surface	
+Widgets	descriptor	clear	by-hand		a `dock = "hud"` field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:672), neither of which the scan treats as a descriptor literal	AbsorbTracker modules/Bar.lua:199;AuraMaster modules/Anchors.lua:1201;KickCD modules/SimStrip.lua:93;RangeMaster modules/Container.lua:632
+Widgets	descriptor	dock	by-hand		a field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:730), neither of which the scan treats as a descriptor literal; DropWatcher, LootHistory and Combat Trail set it in their `NS.MakeTestStrip` wrappers	AbsorbTracker modules/Bar.lua:197;AuraMaster modules/Anchors.lua:1201;BankLedger modules/Browser.lua:759;CombatTrail core/WidgetsSetup.lua:116;DropWatcher core/WidgetsSetup.lua:116;KickCD modules/SimStrip.lua:93;LootHistory core/WidgetsSetup.lua:333;MultiMeters modules/Window_Frame.lua:221;OutfitterReborn modules/Window.lua:142;RangeMaster modules/Container.lua:632;SkillMaster modules/MainWindow.lua:318
+Widgets	descriptor	gap	by-hand		a `dock = "hud"` field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:693); DropWatcher's wrapper forwards a `gap` no caller sets, so it is not counted	AuraMaster modules/Anchors.lua:1201;KickCD modules/SimStrip.lua:93;RangeMaster modules/Container.lua:632
+Widgets	descriptor	inset	documented	it insets a title-docked strip from the window's edge while the title bar is hidden; every host docks at the default 0	no `TestStrip` options or `DockTestStrip` spec passes it	
+Widgets	descriptor	onOffset	by-hand		a `dock = "title"` field of `TestStrip`'s options (Widgets.lua:742); Combat Trail's wrapper forwards an `onOffset` none of its callers sets, so it is not counted	BankLedger modules/Browser.lua:759;DropWatcher modules/Window.lua:377;LootHistory modules/Browser.lua:1026;MultiMeters modules/Window_Frame.lua:222
+Widgets	descriptor	onSettings	documented	it is `CopyWindow`'s settings mark; no host's copy window shows one, so the mark falls back to the opener the launcher registered	no `CopyWindow` passes it; AbsorbTracker's `onSettings` (modules/Bar.lua:149) goes to `DragHandle`'s options table, an alias of its `settings` (WidgetsDragHandle.lua:576), outside this definition	
+Widgets	descriptor	target	by-hand		a `dock = "hud"` field of `TestStrip`'s options or `DockTestStrip`'s spec (Widgets.lua:673), neither of which the scan treats as a descriptor literal	AbsorbTracker modules/Bar.lua:198;AuraMaster modules/Anchors.lua:1201;DropWatcher modules/RollPopup.lua:430;KickCD modules/SimStrip.lua:93;RangeMaster modules/Container.lua:632
+Widgets	descriptor	titleBar	by-hand		a `dock = "title"` field of `TestStrip`'s options (Widgets.lua:714), which the scan does not treat as a descriptor literal	BankLedger modules/Browser.lua:759;CombatTrail modules/Results.lua:552;DropWatcher modules/Window.lua:377;LootHistory modules/Browser.lua:1026;MultiMeters modules/Window_Frame.lua:221;OutfitterReborn modules/Window.lua:142;SkillMaster modules/MainWindow.lua:318
+Widgets	descriptor	window	by-hand		a `dock = "title"` field of `TestStrip`'s options (Widgets.lua:716), which the scan does not treat as a descriptor literal	BankLedger modules/Browser.lua:759;CombatTrail modules/Results.lua:552;DropWatcher modules/Window.lua:377;LootHistory modules/Browser.lua:1026;MultiMeters modules/Window_Frame.lua:221;SkillMaster modules/MainWindow.lua:318
+DebugLog	descriptor	onSettings	documented	it overrides the console's settings mark; every host keeps the default, the opener its launcher registered	no descriptor passes it	
+Launcher	descriptor	entryClients	documented	it limits a menu entry to some clients; every roster addon's entries are for each client it ships	no descriptor passes it	
+Launcher	descriptor	owner	documented	it names a skin owner other than `d.name`, for whom the opener is also registered; every host's owner is its folder	no descriptor passes it	
+Options	lib	SKIN_NOTICE_VERSION	documented	the skin picker's one-time notice is stamped with it (OptionsSkinPicker.lua:1332)	internal only; read by Combat Trail's test harness (tests/run.lua:72)	
+IconBrowser	lib	BUILTIN_TABS	documented	the browser builds its built-in tabs from it (IconBrowserSources.lua:485)	internal only	
+IconBrowser	lib	GLYPH_LABELS	documented	the glyph tab labels each glyph through it (IconBrowserSources.lua:266)	internal only	
+IconBrowser	lib	MacroIcons	documented	the game tab lists the client's macro icons through it (IconBrowserSources.lua:348)	internal only	
+IconBrowser	lib	SKIN_TOKENS	documented	the browser registers its own skin tokens from it (IconBrowserWindow.lua:134)	internal only; the name hits are each host's own `NS.SKIN_TOKENS`	
+IconBrowser	lib	STRINGS	documented	it is the English fallback for every browser word; Quick Comms overrides by key through the descriptor's `L` (settings/IconBrowser.lua:62)	no host reads the table by name; the name hits are other majors' `STRINGS`	
+IconBrowser	lib	Sources	documented	it is the browser's tab sources, kept across a minor upgrade (IconBrowserSources.lua:121)	internal only	
+IconBrowser	lib	WOWHEAD_ICONS	documented	the browser's Wowhead link opens it (IconBrowser.lua:702)	internal only	
+Perf	descriptor	onSettings	documented	it overrides the perf panel's settings mark; every host keeps the default, the opener its launcher registered	no descriptor passes it	
+Sim	lib	SAMPLE	documented	`Sample(client)` copies from it (Sim.lua:351); a host takes its copy through `Sample`	internal only; read by host tests only (BankLedger, DropWatcher, SkillMaster), which hold their library-absent fallbacks to it	
