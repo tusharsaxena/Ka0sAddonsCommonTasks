@@ -1,1 +1,2 @@
 milestone	date	evidence	heads
+CP-1	2026-11-22	LH retail 2149/0/1 forever 2129/0/21; BL retail 1841/0/3 forever 1820/0/24; luacheck 0/0 both; TOC 120105, 16001 both; max CCN 15; LH-REV 7/9 confirmed, BL-REV 5/5	LH e204308 BL dec3063 STD 2d7a05f CT 4915238
