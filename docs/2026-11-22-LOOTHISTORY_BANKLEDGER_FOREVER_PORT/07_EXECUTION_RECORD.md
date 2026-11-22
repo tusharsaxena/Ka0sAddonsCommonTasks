@@ -182,3 +182,24 @@ Each review is a `refs/notes/ka0s-review` note on its fix commit: LootHistory `e
 - **BL smoke FOREVER-17** assumes Retail has a warband-only access point. If it has none, retire or reword the check.
 - **Roster:** KickCD and MultiMeters are the only addons still marked `Retail (port pending)`.
 - **Smoke:** see `06_SMOKE_TESTS.md`. Everything there is owed.
+
+## Finalize (2026-11-22, lead)
+
+- CP-1 passed and is logged in `checkpoints.tsv`. The feature branches and `refs/notes/ka0s-review` were pushed.
+- The finalize doc sync was content-only:
+  - LootHistory `97c33e7`: ARCHITECTURE slash row and doc map, testing.md rows and lint count.
+  - BankLedger `ae863f4`: a testing.md line.
+  - BankLedger `5ee8ce2`: three comment citations repointed from the bundle's `forever-bank.md` to `docs/forever-quirks.md`.
+  - WowAddonStandards: nothing to change.
+- Merged `--no-ff`, pushed, and the branch deleted on both sides:
+  - WowAddonStandards `6e062cf`. check-standard passed; no version bump.
+  - LootHistory `6259578`. Retail 2149/0/1, forever 2129/0/21, luacheck 0/0.
+  - BankLedger `90f6548`. Retail 1841/0/3, forever 1820/0/24, luacheck 0/0.
+  - Ka0sAddonsCommonTasks: this merge.
+- No version bump, tag or release.
+- Filed LibKa0s#101 (shared container-group and bank-readiness reader) from `inputs/LIBKA0S_ISSUE_container-groups.md`.
+- Dead export reported and not removed: LootHistory `modules/Probe.lua` `NS.Probe.IsRunning`, which only tests call.
+- Prose drift reported and not fixed: BankLedger `.luacheckrc:100-103` file counts.
+- Still owed by the owner:
+  - Create the `_forever_` AddOns symlinks for LootHistory and BankLedger. They are listed in `GIT/symlinks.txt` but are not present.
+  - Run the probe session and the checks in `06_SMOKE_TESTS.md`.
