@@ -1,0 +1,35 @@
+id	milestone	repo	title	deps
+CT-00	M0	Ka0sAddonsCommonTasks	Plan bundle: research inputs, owner rulings, design, items, resume state	-
+LH-01	M1	LootHistory	CompatClient: client routing and identity readers from LibKa0s-Compat; Compat header	CT-00
+LH-02	M1	LootHistory	Forever-shaped mock profile (BagIndex 6..23, Keyring, two-word UnitName, RegionalNames, CanViewBank(2) false); Retail mock re-checked against 12.1.5	LH-01
+LH-03	M1	LootHistory	Names: PlayerKey via CharacterKey on regional names; TradeTargetKey, QualifyName, LatestCurrencyTransfer	LH-02
+LH-04	M1	LootHistory	Default skin per client (NS.DEFAULT_SKIN)	LH-01
+LH-05	M1	LootHistory	Sample identity, test data and sim seeds per client	LH-03
+LH-06	M1	LootHistory	Warband bank Retail-only (R1); account holder and warband bound states read Account on Forever (R2)	LH-02
+LH-07	M1	LootHistory	Per-client source tables: MPLUS+keystone, BONUS_ROLL, MILLING, PROSPECTING, DECONSTRUCT absent on Forever; seed lists per client (R2, D15)	LH-02
+LH-08	M1	LootHistory	Keyring in the bags group on Forever via a per-client container table (R5)	LH-06
+LH-09	M1	LootHistory	Arm the bank part on CharacterBanker (R8, both clients)	LH-08
+LH-10	M1	LootHistory	Per-container bank readiness guard + CanViewBank(Character) + re-read cues (R8, both clients)	LH-09
+LH-11	M1	LootHistory	Money text via C_CurrencyInfo/GetMoneyString (R8); roll-won takes the link capture	LH-02
+LH-12	M1	LootHistory	Two-word name surfaces; Wowhead base per client (R7)	LH-05
+LH-13	M1	LootHistory	Probe verbs /lh debug probe (R4) + docs/forever-probes.md	LH-10
+LH-14	M1	LootHistory	Retail and WoW Forever shape: TOC 120105,16001, README, CLAUDE gate, docs, forever-quirks.md, present/absent tests, test-cases.md	LH-04,LH-07,LH-11,LH-12,LH-13
+LH-15	M1	LootHistory	smoke-tests.md WoW Forever section with absence checks	LH-14
+BL-01	M2	BankLedger	CompatClient: client routing and identity readers; Compat header	CT-00
+BL-02	M2	BankLedger	Forever-shaped mocks; sample identity per client (the 5 forever failures)	BL-01
+BL-03	M2	BankLedger	Identity: one PlayerRecordKey builder through Compat.PlayerName, Util.PlayerKey, SimWorld	BL-02
+BL-04	M2	BankLedger	Default skin per client	BL-01
+BL-05	M2	BankLedger	Warband Bank Retail-only (R1): stores, settings grid, copy, test mode, session preview, sim	BL-02
+BL-06	M2	BankLedger	Keyring in BAGS on Forever via a per-client container table (R5)	BL-05
+BL-07	M2	BankLedger	Per-container bank readiness guard + CanViewBank(Character) + BAG_CONTAINER_UPDATE/BANK_TABS_CHANGED cues (R8, both clients)	BL-06
+BL-08	M2	BankLedger	Money text via C_CurrencyInfo/GetMoneyString (R8, both clients)	BL-01
+BL-09	M2	BankLedger	Test-mode and sim seeds per client (Forever classes, bag-sized tabs)	BL-03
+BL-10	M2	BankLedger	Two-word name surfaces: char dropdown, ShortChar bars, tooltips	BL-03
+BL-11	M2	BankLedger	Wowhead base per client (R7)	BL-01
+BL-12	M2	BankLedger	Probe verbs /bl debug probe (R4) + docs/forever-probes.md	BL-07
+BL-13	M2	BankLedger	Retail and WoW Forever shape: TOC, README, CLAUDE gate, docs, forever-quirks.md, present/absent tests, test-cases.md	BL-04,BL-08,BL-09,BL-10,BL-11,BL-12
+BL-14	M2	BankLedger	smoke-tests.md WoW Forever section with absence checks	BL-13
+LH-REV	M4	LootHistory	Independent review (refs/notes/ka0s-review) and fixes	LH-15
+BL-REV	M4	BankLedger	Independent review (refs/notes/ka0s-review) and fixes	BL-14
+STD-01	M3	WowAddonStandards	ADDONS.md: LootHistory and BankLedger rows Retail · Forever	LH-REV,BL-REV
+CT-REC	M3	Ka0sAddonsCommonTasks	Execution record, smoke sheet roll-up, LibKa0s shared container-reader issue text	STD-01
