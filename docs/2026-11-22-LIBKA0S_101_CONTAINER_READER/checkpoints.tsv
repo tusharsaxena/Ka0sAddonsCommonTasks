@@ -1,0 +1,2 @@
+milestone	date	evidence	heads
+CP-M4	2026-11-22	LibKa0s 5115/0/3 both profiles; BL retail 1856/0/3 forever 1835/0/24; LH retail 2161/0/1 forever 2141/0/21; OR retail 1616/0/31 forever 1595/0/52; luacheck 0/0 in all four; vendor drift empty (pruned media only); Lua cap holds (max 1478); 18/18 items; FU-01 review 2/2 confirmed fixed, FU-02 1/1, FU-03 0/0	LK e97bf187 BL b7f2535 LH 4497d1d OR d14fd02

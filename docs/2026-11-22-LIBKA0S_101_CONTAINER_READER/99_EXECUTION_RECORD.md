@@ -136,3 +136,29 @@ Smoke checks are the owner's to run; none is marked passed here. Record each res
 | K101-S4 | Both | Second visit after moving items between bags and bank: only the real moves are recorded (the readiness memory waits for partly loaded tabs, R8). | owed |
 | K101-S5 | Retail | OutfitterReborn: with an outfit item stored in the bank, open the bank and equip that outfit; it finds the item in the bank bags and equips it. | owed |
 | K101-S6 | Forever | Same as K101-S5 on Forever. | owed |
+
+## M4: owner follow-ups F1–F3 (added after the record above)
+
+Workflow `libka0s-101-followups` (run wf_88801d33-d05). Each item had a build, an independent review and a fix pass.
+
+- **K101-FU-01 (LootHistory e73cd98, review fixes 850d2c9):** on WoW Forever a disenchanted item's loss records as
+  DECONSTRUCT again, triggered by Disenchant 13262 only. Milling, Prospecting and the Retail deconstruct spells stay
+  absent (R2). The review found 2 issues, both from one cause, and both are fixed. Giving the reason the label
+  "Disenchant" collided with the DISENCHANT gain source, which merged the two in Group by Source and listed two
+  identical entries in the Source filter. **Deviation from F1:** the Forever label is **"Disenchanted"**, matching
+  the past-tense loss labels, and a test now forbids two sources sharing one label on either client. The stored key
+  is unchanged and Retail still reads "Deconstructed". The owner should confirm the wording.
+- **K101-FU-02 (LootHistory 39a06cd, review fixes 4497d1d):** a cut-off character name shows the full name on hover,
+  on both clients. This covers the History Character cell, the Character dropdown entries and the collapsed Character
+  button. A name that fits shows nothing new. The review found 1 issue, now fixed: docs/browser.md did not describe
+  the hover.
+- **K101-FU-03 (BankLedger b7f2535):** the probe's in-combat writes are recorded as a debug-only performance-§12
+  exemption (F3). This is a docs-only change, and the review found nothing.
+- **F4 (always show the empty holder):** no change. It was already the shipped behavior.
+
+Checkpoint CP-M4 is in `checkpoints.tsv`.
+
+| Id | Client | Check | Result |
+|---|---|---|---|
+| K101-S7 | Forever | Disenchant an item. The dust is an IN row with source Disenchant, and the item is an OUT row reading "Disenchanted". Group by Source shows two groups, and the Source filter lists two distinct entries (LH smoke FOREVER-3). | owed |
+| K101-S8 | Both | Pick a two-word or long character name that gets cut off in the History Character column or the Character dropdown. Hovering shows the full name, and a name that fits shows no tooltip (LH smoke HIST-52). | owed |
