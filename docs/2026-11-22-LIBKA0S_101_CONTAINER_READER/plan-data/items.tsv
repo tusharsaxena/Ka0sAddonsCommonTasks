@@ -1,0 +1,16 @@
+id	milestone	repo	title	deps
+CT-00	M0	Ka0sAddonsCommonTasks	Plan bundle	-
+LK-01	M1	LibKa0s	Compat minor 6: ContainerGroups, CONTAINER_PATTERNS_BY_CLIENT, CanViewCharacterBank, NumPurchasedBankTabs, BankerKind, UnreadyBankContainers; tests on both profiles; API docs	CT-00
+LK-02	M1	LibKa0s	Kit Forever profile: 27-member Enum.BagIndex and C_Bank.CanViewBank; kit revision bump	LK-01
+LK-REV	M1	LibKa0s	Independent review and fixes	LK-02
+LK-REL	M1	LibKa0s	v1.110.0: changelog, manifest, versioning; local tag	LK-REV
+BL-01	M2	BankLedger	Re-vendor LibKa0s v1.110.0	LK-REL
+BL-02	M2	BankLedger	Adopt the Compat container reader and bank readiness helpers; drop the local copies	BL-01
+LH-01	M2	LootHistory	Re-vendor LibKa0s v1.110.0	LK-REL
+LH-02	M2	LootHistory	Adopt the Compat container reader and bank readiness helpers; drop the local copies	LH-01
+OR-01	M2	OutfitterReborn	Re-vendor LibKa0s v1.110.0	LK-REL
+OR-02	M2	OutfitterReborn	Adopt Compat ContainerGroups and BankerKind for BankBagIDs and IsBankerInteraction	OR-01
+BL-REV	M3	BankLedger	Independent review and fixes	BL-02
+LH-REV	M3	LootHistory	Independent review and fixes	LH-02
+OR-REV	M3	OutfitterReborn	Independent review and fixes	OR-02
+CT-REC	M3	Ka0sAddonsCommonTasks	Execution record	BL-REV,LH-REV,OR-REV
