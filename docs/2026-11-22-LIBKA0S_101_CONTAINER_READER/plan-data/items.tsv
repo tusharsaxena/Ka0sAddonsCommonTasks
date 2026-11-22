@@ -14,3 +14,6 @@ K101-BL-REV	M3	BankLedger	Independent review and fixes	K101-BL-02
 K101-LH-REV	M3	LootHistory	Independent review and fixes	K101-LH-02
 K101-OR-REV	M3	OutfitterReborn	Independent review and fixes	K101-OR-02
 K101-CT-REC	M3	Ka0sAddonsCommonTasks	Execution record	K101-BL-REV,K101-LH-REV,K101-OR-REV
+K101-FU-01	M4	LootHistory	F1: a Disenchant reason on Forever (13262 only)	K101-LH-REV
+K101-FU-02	M4	LootHistory	F2: full-name tooltip on truncated History Character cells and the dropdown, both clients	K101-FU-01
+K101-FU-03	M4	BankLedger	F3: in-combat probe writes recorded as a debug-only performance exemption	K101-BL-REV
