@@ -29,6 +29,6 @@ Ka0sAddonsCommonTasks, plus WowAddonStandards only if a standard fact moves.
 
 ## Items
 
-`plan-data/items.tsv`. Done = a commit whose subject starts `<ID>: ` on the branch. `plan-data/resume-state.sh`
+`plan-data/items.tsv`. Every id carries the prefix `K101-` (the Forever port run used the bare ids the same day). Done = a commit whose subject starts `<ID>: ` on the branch. `plan-data/resume-state.sh`
 computes progress. Gates per repo: both kit profiles where the repo ships Forever, `ka0s-bounded luacheck .` 0/0,
 the 1500-line cap and the repo's own gates (LibKa0s: its versioning, manifest and prose suites).
