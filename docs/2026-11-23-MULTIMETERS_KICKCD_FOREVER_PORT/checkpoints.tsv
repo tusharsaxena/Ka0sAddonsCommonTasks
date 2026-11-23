@@ -1,1 +1,3 @@
 milestone	date	evidence	heads
+CP-1	2026-11-23	KickCD retail 1904/0/1, forever 1894/0/11, luacheck 0/0; MultiMeters retail 2682/0/1, luacheck 0/0; no file over 1500 lines	KickCD 21c9a65, MultiMeters 414ee58 (pushed)
+CP-2	2026-11-23	review notes on both heads; KC 5 of 6 fixed (KC-REV-4 kept: live class admits its own Forever list, recorded), MM 1 of 1; KC complexity max CCN 15; roster MKF-STD-01 49145b3 pushed; SVs backed up to ~/ka0s-sv-backups/pre-mkf-switch-*; live KickCD and MultiMeters switched to the run branch for owner smoke	KickCD 21c9a65, MultiMeters 414ee58, WowAddonStandards 49145b3
