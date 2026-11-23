@@ -1,0 +1,3 @@
+id	proof
+MKF-MM-00	git -C MultiMeters merge-base --is-ancestor f1b0d79 feat/2026-11-23-multimeters-kickcd-forever-port
+MKF-KC-14	git -C KickCD grep -n "ready = (not isActive)" feat/2026-11-23-multimeters-kickcd-forever-port -- modules/Cooldowns.lua

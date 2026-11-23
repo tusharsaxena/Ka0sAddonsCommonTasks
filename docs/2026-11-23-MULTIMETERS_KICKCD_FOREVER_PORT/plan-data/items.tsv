@@ -1,0 +1,29 @@
+id	milestone	repo	title	deps
+MKF-CT-00	M0	Ka0sAddonsCommonTasks	Plan bundle: research, rulings, design, items, resume state	-
+MKF-MM-00	M1	MultiMeters	Branch from the fix branch; baseline (exceptions row)	MKF-CT-00
+MKF-MM-01	M1	MultiMeters	Retail only by decision: TOC gating, README and ARCHITECTURE reason, docs, shape test	MKF-MM-00
+MKF-MM-02	M1	MultiMeters	Secret number text follows the format setting (R3, Retail-visible)	MKF-MM-00
+MKF-MM-03	M1	MultiMeters	Only what is certain mid-fight (R4, Retail-visible)	MKF-MM-00
+MKF-MM-04	M1	MultiMeters	Smoke checks for MM-01 to MM-03; test-cases; badge	MKF-MM-01,MKF-MM-02,MKF-MM-03
+MKF-KC-01	M1	KickCD	CompatClient; Sim PURE list; static client-read test	MKF-CT-00
+MKF-KC-02	M1	KickCD	Forever mock world; fixture pins; both profiles green	MKF-KC-01
+MKF-KC-03	M1	KickCD	Availability through C_SpellBook (both clients)	MKF-KC-02
+MKF-KC-04	M1	KickCD	Namespaced spec count, spec id 0 as nil (both clients)	MKF-KC-02
+MKF-KC-05	M1	KickCD	Nil notInterruptible reads false (both clients)	MKF-KC-02
+MKF-KC-06	M1	KickCD	Secret-safe cast debug dump and whole names (both clients)	MKF-KC-02
+MKF-KC-07	M1	KickCD	Seed tool wowf flavor, rulings as data, frozen 71037 bundle	MKF-KC-02
+MKF-KC-08	M1	KickCD	Forever lists per class, Pummel first, core plus Gouge and Intercept, War Stomp; Retail list byte-identical	MKF-KC-04,MKF-KC-07
+MKF-KC-09	M1	KickCD	Rank table and resolver through every consumer; usable if any rank is	MKF-KC-03,MKF-KC-08
+MKF-KC-10	M1	KickCD	Feral Charge form override and its refresh event	MKF-KC-09
+MKF-KC-11	M1	KickCD	Absent-key seeding and customized count per client	MKF-KC-08
+MKF-KC-12	M1	KickCD	Cooldown Manager gate Retail-only; Forever admission (R8)	MKF-KC-09
+MKF-KC-13	M1	KickCD	Spells page and slash wording per client; class validation	MKF-KC-08,MKF-KC-12
+MKF-KC-14	M1	KickCD	Brightness and glow unchanged (R5): exceptions row	MKF-KC-09
+MKF-KC-15	M1	KickCD	Sim party, casts, story, off-GCD rule per client; Retail-only registrations gated	MKF-KC-09
+MKF-KC-16	M1	KickCD	Probe verbs and docs/forever-probes.md	MKF-KC-09
+MKF-KC-17	M1	KickCD	Dual-client shape: TOC, README, gates, docs, quirks, table, shape test, test-cases	MKF-KC-05,MKF-KC-06,MKF-KC-10,MKF-KC-11,MKF-KC-13,MKF-KC-15,MKF-KC-16
+MKF-KC-18	M1	KickCD	Smoke: WoW Forever section, absence and Retail regression checks	MKF-KC-17
+MKF-MM-REV	M2	MultiMeters	Independent review, verified fixes, git note	MKF-MM-04
+MKF-KC-REV	M2	KickCD	Independent review, verified fixes, git note	MKF-KC-18
+MKF-STD-01	M3	WowAddonStandards	Roster: KickCD Retail · Forever, MultiMeters Retail; no version bump	MKF-MM-REV,MKF-KC-REV
+MKF-CT-REC	M3	Ka0sAddonsCommonTasks	Execution record, smoke roll-up, issue texts	MKF-STD-01
