@@ -1,0 +1,16 @@
+id	milestone	repo	title	deps
+SRC-CT-00	M0	Ka0sAddonsCommonTasks	Plan bundle: the owner's words, the audit table, decisions, items, resume state	-
+SRC-LK-01	M1	LibKa0s	WidgetsDragHandle minor 17: a strip with the settings mark and no onRightClick answers a right-click with the mark's own action; tests, API docs	SRC-CT-00
+SRC-STD-01	M1	WowAddonStandards	Standard v2.118.0: a right-click on an unlock strip opens what its gear opens (standalone-windows, anti-pattern #123, AUDIT line, ripple)	SRC-CT-00
+SRC-LK-REL	M1	LibKa0s	v1.111.0: version lines, release record, local tag	SRC-LK-01,SRC-STD-01
+SRC-AT-01	M2	AbsorbTracker	Re-vendor LibKa0s v1.111.0 (the bar strips gain the gear's right-click, the reported bug); smoke line	SRC-LK-REL
+SRC-AM-01	M2	AuraMaster	Re-vendor LibKa0s v1.111.0; drop the container strip's redundant onRightClick (same function as its gear)	SRC-LK-REL
+SRC-CM-01	M2	ConsumableMaster	Re-vendor LibKa0s v1.111.0 (the macro bar strip gains its gear's right-click, the Macro Bar page); smoke line	SRC-LK-REL
+SRC-CTR-01	M2	CombatTrail	Re-vendor LibKa0s v1.111.0 (the call-out strip gains its gear's right-click, the Race mode Callout tab); smoke line	SRC-LK-REL
+SRC-KC-01	M2	KickCD	Re-vendor LibKa0s v1.111.0	SRC-LK-REL
+SRC-KC-02	M2	KickCD	Cast-bar and icon-grid strips drop onRightClick (it opened the root page; the gear opens the unit's entry); tests	SRC-KC-01
+SRC-ST-01	M2	LibKa0sSkinTester	Re-vendor LibKa0s v1.111.0 (the showroom's demo strip gains its gear's right-click)	SRC-LK-REL
+SRC-QC-01	M2	QuickComms	Re-vendor LibKa0s v1.111.0	SRC-LK-REL
+SRC-QC-02	M2	QuickComms	Pad strip drops onRightClick (it opened the root page; the gear opens the pad's own page); tests	SRC-QC-01
+SRC-RM-01	M2	RangeMaster	Re-vendor LibKa0s v1.111.0; drop the screen strip's redundant onRightClick (same function as its gear)	SRC-LK-REL
+SRC-CT-REC	M3	Ka0sAddonsCommonTasks	Execution record and checkpoints	SRC-AT-01,SRC-AM-01,SRC-CM-01,SRC-CTR-01,SRC-KC-02,SRC-ST-01,SRC-QC-02,SRC-RM-01
