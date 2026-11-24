@@ -1,0 +1,37 @@
+id	milestone	repo	title	deps	findings	smoke
+FB-CT-00	M0	Ka0sAddonsCommonTasks	Plan bundle: the owner's words, diagnoses, decisions, items, resume state	-	all	-
+FB-LK-01	M1	LibKa0s	Core minor 20: ClassColor/ResolveColor standIn; FollowColor class -> skin -> swatch; tests, API docs	FB-CT-00	K,P	-
+FB-LK-02	M1	LibKa0s	SkinPaintControls minor 21: a disabled primary Button paints the plain btn.* box under text.disabled; every-skin tests	FB-CT-00	O2	S-O2a
+FB-LK-03	M1	LibKa0s	WidgetsHeader minor 2 companion = true; WidgetsCopyWindow minor 7 and IconBrowserWindow minor 3 are companions	FB-CT-00	T	S-T1
+FB-LK-04	M1	LibKa0s	SkinDefsOthers minor 11: High Contrast HUD shadow 1, -1 (override removed)	FB-CT-00	A	S-A1
+FB-STD-01	M1	WowAddonStandards	Standard v2.119.0: gear on every window but a companion (companion defined, #124, AUDIT); class -> skin -> swatch and preview stand-in (options-ui-17, #125)	FB-CT-00	T,P	-
+FB-LK-REL	M1	LibKa0s	v1.112.0: version lines, release record, local tag	FB-LK-01,FB-LK-02,FB-LK-03,FB-LK-04,FB-STD-01	-	-
+FB-ST-01	M2	LibKa0sSkinTester	Re-vendor v1.112.0; ShowroomControls gains a 'Button (primary, disabled)' sample	FB-LK-REL	O2	S-O2b
+FB-KC-01	M2	KickCD	Re-vendor v1.112.0; SkinHudColor -> FollowColor (class -> skin -> swatch); preview stand-in player; UnitLabel repaints on PLAYER_TARGET_CHANGED/PLAYER_FOCUS_CHANGED; Castbar OnTargetChanged/OnFocusChanged rerun ReskinColors	FB-LK-REL	K,P	S-K1,S-K2
+FB-PFE-01	M2	PartyFrameEnhanced	Re-vendor v1.112.0; preview resolves the player stand-in (CastBars renderPreview/applyFill, reskinAll ApplyColors, TargetFrames.previewColors, PetFrames.paintPreview); ApplyColors on roster/visibility	FB-LK-REL	P	S-P1,S-P2
+FB-AT-01	M2	AbsorbTracker	Re-vendor v1.112.0; Data.lua skinColor ladder -> class -> skin -> swatch (FollowColor); stand-in while previewing	FB-LK-REL	P	S-P3
+FB-RM-01	M2	RangeMaster	Re-vendor v1.112.0; Style.lua Class mode resolves the player stand-in in test mode with no unit	FB-LK-REL	P	S-P4
+FB-CTR-01	M2	CombatTrail	Re-vendor v1.112.0; Hud_Appearance paintBackdrop paints the class color when its companion is on, whatever FromSkin says	FB-LK-REL	P	S-P5
+FB-CTR-02	M2	CombatTrail	Compare, timeline and gear windows are companions: NS.MakeHeader forwards companion, bareHeader skips settings, right = { ui.close }	FB-CTR-01	T	S-T2
+FB-SM-01	M2	SkillMaster	S4: re-vendor LibKa0s v1.112.0 (from v1.109.0); gate with KA0S_KIT_CLIENT=forever	FB-LK-REL	S4	S-S4
+FB-SM-02	M2	SkillMaster	P: BarStyle/Detached/Rows/TrainerPopup color sites class -> skin -> swatch (FollowColor)	FB-SM-01	P	S-P6
+FB-SM-03	M2	SkillMaster	T: trainer popup is a companion (Chrome.TitleMarks forwards companion, plainMarks skips settings)	FB-SM-01	T,S4	S-T3
+FB-SM-04	M2	SkillMaster	S1: per-block detached window width (layout.blocks.<id>.width) with a Blocks row and a corner resize grip; Locked refuses; merged windows use the widest member	FB-SM-01	S1	S-S1
+FB-SM-05	M2	SkillMaster	S2: test mode always shows a sample arrow (no Wanted gate, labeled when TomTom or the arrow is off, no TomTom writes); ApplySettings keeps it in test mode	FB-SM-01	S2	S-S2
+FB-SM-06	M2	SkillMaster	S3: Trainers and Waypoints page split into two tabs, Trainers and Waypoints (page key unchanged)	FB-SM-01	S3	S-S3
+FB-DW-01	M2	DropWatcher	Re-vendor v1.112.0; rolls panel, offer panel and note editor are companions (WindowTitleBar.Marks and WidgetsSetup forward companion)	FB-LK-REL	T	S-T4
+FB-BL-01	M2	BankLedger	Re-vendor v1.112.0; export modal is a companion (B:HeaderMarks opts.companion)	FB-LK-REL	T	S-T5
+FB-LH-01	M2	LootHistory	Re-vendor v1.112.0; export modal is a companion (MakeTitleMarks companion)	FB-LK-REL	T	S-T5
+FB-MM-01	M2	MultiMeters	Re-vendor v1.112.0; export modal is a companion (drop hideOnSettings, settingsTip, settingsButton)	FB-LK-REL	T	S-T5
+FB-OR-01	M2	OutfitterReborn	Re-vendor v1.112.0 (brings the disabled-primary fix); dialogs move to companion = true (NS.HeaderButtons accepts it)	FB-LK-REL	O2,T	S-O2a,S-T6
+FB-OR-02	M2	OutfitterReborn	O1: with tabs to the right (Chonky), the horizontal separator spans the whole frame width; the New outfit button stays where it is (diagnose first)	FB-OR-01	O1	S-O1
+FB-QC-01	M2	QuickComms	Re-vendor v1.112.0; call-out modal moves to companion = true	FB-LK-REL	T	S-T6
+FB-QC-02	M2	QuickComms	Q: /qc test shows a sample auto-thank toast (TEST_MODE_CHANGED listener, TH.ShowTest/HideTest, disarmed button), whether Auto-thank is on or off	FB-QC-01	Q	S-Q1
+FB-AM-01	M2	AuraMaster	Re-vendor v1.112.0 (High Contrast HUD shadow 1, -1 arrives with it); no AuraMaster code change	FB-LK-REL	A	S-A1
+FB-CM-01	M2	ConsumableMaster	Re-vendor v1.112.0; audit its windows for companions and its color ladders for the precedence	FB-LK-REL	T,P	-
+FB-PM-01	M2	PanelMaster	Re-vendor v1.112.0; audit its windows for companions and its color ladders for the precedence	FB-LK-REL	T,P	-
+FB-PGFE-01	M2	PremadeGroupsFilterExtension	Re-vendor v1.112.0 (from v1.109.0); audit windows for companions	FB-LK-REL	T	-
+FB-PC-01	M2	PrettyChat	Re-vendor v1.112.0; audit windows for companions	FB-LK-REL	T	-
+FB-WG-01	M2	WhatGroup	Re-vendor v1.112.0; audit windows for companions and its color ladders	FB-LK-REL	T,P	-
+FB-CT-SMOKE	M3	Ka0sAddonsCommonTasks	Smoke checks file for the owner (Result lines empty)	FB-ST-01,FB-KC-01,FB-PFE-01,FB-AT-01,FB-RM-01,FB-CTR-02,FB-SM-06,FB-DW-01,FB-BL-01,FB-LH-01,FB-MM-01,FB-OR-02,FB-QC-02,FB-AM-01	-	-
+FB-CT-REC	M3	Ka0sAddonsCommonTasks	Execution record: commits, gates, deviations	FB-CT-SMOKE	-	-

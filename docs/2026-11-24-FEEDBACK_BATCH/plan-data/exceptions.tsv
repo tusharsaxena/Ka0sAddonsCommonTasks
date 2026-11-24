@@ -1,0 +1,2 @@
+id	reason	proof
+FB-WG-01	Landed under two ids: FB-RV-WG (548a0f5, re-vendor v1.112.0) and FB-T-WG (761e2b5, popup keeps its gear; companion audit pinned by a test)	git -C ../WhatGroup log feat/2026-11-24-feedback-batch --format=%s | grep -cE "^FB-(RV|T)-WG: "  # expect 2
