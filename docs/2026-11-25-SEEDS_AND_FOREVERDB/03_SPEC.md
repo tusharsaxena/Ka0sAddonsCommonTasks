@@ -271,3 +271,59 @@ never overwrite an existing sheet). Its checks:
 - no ForeverDB in the addon list's loaded set at login;
 - QuickComms' Forever class picker without DK, Monk, DH or Evoker;
 - any shipped-data change an addon item made (a trainer position, a RangeMaster chip, and so on), one row each.
+
+## 8. Owner answers (2026-11-25, asked up front)
+
+These supersede anything above that conflicts with them.
+
+1. **Consumers:** "All five consumers". The adapter is adopted **in this run** by Drop Watcher, Loot History,
+   Bank Ledger, Skill Master and Outfitter Reborn (§9). §6's "file one consumer issue each" is withdrawn. §0.5's
+   "no shipped addon reads ForeverDB at runtime" becomes: five addons read it at runtime as an **optional**
+   dependency, and no player needs it installed.
+2. **Fix policy:** "Fix everything flagged". Builders apply every mismatch the evidence supports, judgment calls
+   included, each with its evidence cited in the ruling and **one smoke row per shipped-data change**. Two things
+   are not mismatches and stay as they are:
+   - an owner ruling already recorded in the repo (for example EMPTY BY DECISION, Wing Clip as the melee anchor,
+     or the neutral trainers);
+   - a candidate the data cannot decide.
+   Every judgment-call fix is listed in the item's ANALYSIS under *Judgment calls applied*, so the owner can
+   reverse any of them at smoke.
+3. **Kit regeneration:** "Regenerate". SF-LK-02 regenerates `testkit/client_globals_{live,forever}.lua` when
+   Ketho has moved. That is a kit revision inside v1.114.0, with every LibKa0s gate green and the delta recorded.
+4. **QuickComms CLASSES:** "Split per client" (SF-QC-01, as in §5).
+
+## 9. Consumer adoption (#105), one item per addon
+
+Each item waits for SF-LK-REL and runs **after** that repo's own seed item, in the same clone and on the same
+branch.
+
+**Steps, in order:**
+
+1. **Re-vendor.** Copy LibKa0s v1.114.0 from `~/ka0s-scratch/seeds/LibKa0s` (its branch head, tag `v1.114.0`)
+   following `/dev-copilot:wow-revendor-libka0s`'s rules:
+   - both payloads are copied whole, `libs/LibKa0s/` and `tests/_kit/`;
+   - the CLAUDE.md provenance line moves to v1.114.0;
+   - the icon declaration and prune are re-run;
+   - a revendor bundle goes under `docs/revendor/2026-11-25-v1.114.0/`.
+2. **Wire the adapter in:**
+   - `## OptionalDeps` gains `ForeverDB`, and `.pkgmeta` gains `optional-dependencies: [forever-db]` (check the
+     CurseForge slug, `forever-db`, against the project page link in the issue);
+   - the feature is gated on Forever (clients-§4);
+   - it reads only through `LibKa0s-ForeverDB-1.0`, and its first call is what loads;
+   - it is hidden or inert without ForeverDB, and its tooltip or settings row says it needs ForeverDB;
+   - a settings toggle, default on, sits where the addon's other display options live.
+3. **Write a characterization test first**, then the feature's tests on the kit fake (`mock_foreverdb`) with the
+   present, missing and reshaped presets, plus a Retail-profile case that proves it is inert.
+4. **Record perf.** The perf ceiling's notes record that ForeverDB is about 12 MB on disk and that the load happens
+   on first use.
+5. **Add smoke rows** to `docs/smoke-tests.md`: with ForeverDB, without it (disabled in the addon list), and on
+   Retail.
+6. **Run the repo's whole gate** on both kit profiles.
+
+| Item | Repo | The feature |
+|---|---|---|
+| SF-DW-01 | DropWatcher | **The drop card or detail view.** It shows where the item drops: up to three top sources, each with its chance. It also shows a world-drop minimum level when there is one, and "sold by" when the item is a vendor item. Members used: `ItemSources` and `NPC` (for the names). |
+| SF-LH-02 | LootHistory | **The History browser's item tooltip or detail.** It shows "Drops from" (the top 3, with chances) and "Sold by" with the lowest vendor price seen. Members used: `ItemSources`, `NPC` and `VendorPrice`. |
+| SF-BL-01 | BankLedger | **The holdings valuation.** It adds a vendor buy price (from ForeverDB) beside the client's sell price, in the item tooltip or detail and as an optional value basis where the ledger already offers one. It never replaces the client's own price. Member used: `VendorPrice`. |
+| SF-SM-02 | SkillMaster | **Recipe sources and trainer spots.** A recipe or item tooltip in the skills window gains its sources (vendor or drop). The trainer popup gains ForeverDB's map spots when the shipped data has none, never overriding shipped positions, which SF-SM-01 has already reconciled. Members used: `ItemSources`, `Spots` and `NPC`. |
+| SF-OR-02 | OutfitterReborn | **Items not in the bags.** Where the outfit window shows an item the player does not carry, which the client cannot describe until it is cached, it falls back to ForeverDB's quality and required level. The client's own answer always wins when it exists. Member used: `Item`. |

@@ -16,4 +16,9 @@ SF-GATE-01	M2	DropWatcher	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
 SF-GATE-01	M2	KickCD	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
 SF-GATE-01	M2	PrettyChat	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
 SF-GATE-01	M2	WhatGroup	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
+SF-DW-01	M2	DropWatcher	re-vendor v1.114.0 + ForeverDB drop sources on drop card/detail	SF-LK-REL,SF-GATE-01	M	SEEDS-DW-1..3	LibKa0s#105
+SF-LH-02	M2	LootHistory	re-vendor v1.114.0 + ForeverDB drops/vendor in History browser item tooltip	SF-LK-REL,SF-LH-01	M	SEEDS-LH-1..3	LibKa0s#105
+SF-BL-01	M2	BankLedger	re-vendor v1.114.0 + ForeverDB vendor buy price in valuation/tooltip	SF-LK-REL	M	SEEDS-BL-1..3	LibKa0s#105
+SF-SM-02	M2	SkillMaster	re-vendor v1.114.0 + ForeverDB recipe sources + trainer spots fallback	SF-LK-REL,SF-SM-01	M	SEEDS-SM-1..3	LibKa0s#105
+SF-OR-02	M2	OutfitterReborn	re-vendor v1.114.0 + ForeverDB quality/reqLevel fallback for items not in bags	SF-LK-REL,SF-OR-01	M	SEEDS-OR-1..3	LibKa0s#105
 SF-CT-REC	M3	Ka0sAddonsCommonTasks	execution record, smoke tests, consumer issues filed	all	S	-	LibKa0s#93,#102,#105
