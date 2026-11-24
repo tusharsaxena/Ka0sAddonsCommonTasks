@@ -160,3 +160,9 @@ The owner gave the go-ahead to finalize with the smoke test deferred ("ill do sm
 
 - The owner's smoke test (`SMOKE.md`). A failure found there is a follow-up fix on `master`, not a reopened
   run.
+
+## Smoke result (2026-11-24)
+
+The owner reported on 2026-11-24 that every check of this run on their smoke sheet passed (run "SKIN 11-20" of a
+Google Sheet copy of `Documents/Ka0sPendingSmoke-2026-11-23.csv`), recorded on the owner's word. The checks are
+listed in `SMOKE.md`'s *Smoke result (2026-11-24)*, with the ones the sheet did not carry.

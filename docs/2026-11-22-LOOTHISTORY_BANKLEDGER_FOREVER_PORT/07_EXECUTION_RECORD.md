@@ -203,3 +203,18 @@ Each review is a `refs/notes/ka0s-review` note on its fix commit: LootHistory `e
 - Still owed by the owner:
   - Create the `_forever_` AddOns symlinks for LootHistory and BankLedger. They are listed in `GIT/symlinks.txt` but are not present.
   - Run the probe session and the checks in `06_SMOKE_TESTS.md`.
+
+## Smoke result (2026-11-24)
+
+The owner reported on 2026-11-24 that every check of this run on their smoke sheet passed (a Google Sheet copy of
+`Documents/Ka0sPendingSmoke-2026-11-23.csv`), recorded on the owner's word: LH-F1 to LH-F16, BL-F1 to BL-F19, REV-1
+to REV-4, and the probe walk-through's PW-3, PW-4, PW-5, PW-6, PW-8, PW-9 and PW-11. PW-1, PW-2, PW-7 and PW-10 were
+not on the sheet. `06_SMOKE_TESTS.md`'s *Smoke result (2026-11-24)* has the detail.
+
+The owner also answered three open questions on Forever:
+
+- **LH-Q4:** a surname cannot carry a hyphen, matching the expected "no hyphen".
+- **KEY-BANK (P3):** a key can go into the bank. BankLedger already records keyring to bank as a Character Bank
+  deposit, and LootHistory has the keyring in its bags group, so the move is a plain bags-to-bank transfer. No code
+  change.
+- **LH-Q5:** Waylaid Crate 248683 opens.

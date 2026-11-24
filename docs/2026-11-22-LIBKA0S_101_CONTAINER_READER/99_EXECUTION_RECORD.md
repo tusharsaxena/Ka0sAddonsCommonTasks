@@ -130,12 +130,12 @@ Smoke checks are the owner's to run; none is marked passed here. Record each res
 
 | Id | Client | Check | Result |
 |---|---|---|---|
-| K101-S1 | Retail | With LootHistory and BankLedger loaded, open the bank at a banker, wait for it to fill, close it. LootHistory books no bogus deposit, withdrawal or UNTRACKED loss; BankLedger records the character bank tabs correctly and no empty or partial tab snapshot. | owed |
-| K101-S2 | Retail | Visit a Warband (account) banker. BankLedger records the warband tabs; LootHistory arms the account part; nothing bogus is booked. | owed |
-| K101-S3 | Forever | Same as K101-S1 at a Forever banker: tabs 6..14 read, the Keyring counted with the bags (R5), no warband rows (R1), nothing bogus booked by either addon. | owed |
-| K101-S4 | Both | Second visit after moving items between bags and bank: only the real moves are recorded (the readiness memory waits for partly loaded tabs, R8). | owed |
-| K101-S5 | Retail | OutfitterReborn: with an outfit item stored in the bank, open the bank and equip that outfit; it finds the item in the bank bags and equips it. | owed |
-| K101-S6 | Forever | Same as K101-S5 on Forever. | owed |
+| K101-S1 | Retail | With LootHistory and BankLedger loaded, open the bank at a banker, wait for it to fill, close it. LootHistory books no bogus deposit, withdrawal or UNTRACKED loss; BankLedger records the character bank tabs correctly and no empty or partial tab snapshot. | **passed** (owner, 2026-11-24) |
+| K101-S2 | Retail | Visit a Warband (account) banker. BankLedger records the warband tabs; LootHistory arms the account part; nothing bogus is booked. | **passed** (owner, 2026-11-24) |
+| K101-S3 | Forever | Same as K101-S1 at a Forever banker: tabs 6..14 read, the Keyring counted with the bags (R5), no warband rows (R1), nothing bogus booked by either addon. | **passed** (owner, 2026-11-24) |
+| K101-S4 | Both | Second visit after moving items between bags and bank: only the real moves are recorded (the readiness memory waits for partly loaded tabs, R8). | **passed** (owner, 2026-11-24) |
+| K101-S5 | Retail | OutfitterReborn: with an outfit item stored in the bank, open the bank and equip that outfit; it finds the item in the bank bags and equips it. | **passed** (owner, 2026-11-24) |
+| K101-S6 | Forever | Same as K101-S5 on Forever. | **passed** (owner, 2026-11-24) |
 
 ## M4: owner follow-ups F1–F3 (added after the record above)
 
@@ -161,4 +161,10 @@ Checkpoint CP-M4 is in `checkpoints.tsv`.
 | Id | Client | Check | Result |
 |---|---|---|---|
 | K101-S7 | Forever | Disenchant an item. The dust is an IN row with source Disenchant, and the item is an OUT row reading "Disenchanted". Group by Source shows two groups, and the Source filter lists two distinct entries (LH smoke FOREVER-3). | owed |
-| K101-S8 | Both | Pick a two-word or long character name that gets cut off in the History Character column or the Character dropdown. Hovering shows the full name, and a name that fits shows no tooltip (LH smoke HIST-52). | owed |
+| K101-S8 | Both | Pick a two-word or long character name that gets cut off in the History Character column or the Character dropdown. Hovering shows the full name, and a name that fits shows no tooltip (LH smoke HIST-52). | **passed** (owner, 2026-11-24) |
+
+## Smoke result (2026-11-24)
+
+The owner reported on 2026-11-24 that K101-S1 to K101-S6 and K101-S8 passed (run "K101 11-22" of a Google Sheet copy
+of `Documents/Ka0sPendingSmoke-2026-11-23.csv`), each on the client its row names. Recorded on the owner's word.
+K101-S7 was not on the sheet and stays owed.

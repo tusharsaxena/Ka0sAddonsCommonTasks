@@ -75,3 +75,35 @@ Low-severity review observations you may notice in game:
 - **Multi Meters.** Under Ka0s Default the tooltip's classless spell bar is the gold accent, while the
   cell's classless fill stays slate.
 - **Consumable Master.** SKIN-31's old Passed line predates U-16's black edge, so a re-run is owed.
+
+## Smoke result (2026-11-24)
+
+On 2026-11-24 the owner reported that every check of this run on their smoke sheet passed (run "SKIN 11-20" of a
+Google Sheet copy of `Documents/Ka0sPendingSmoke-2026-11-23.csv`). Recorded on the owner's word; each addon's
+`docs/smoke-tests.md` carries the result on the check's own `Result:` line.
+
+| Addon | Passed (owner, 2026-11-24) |
+|---|---|
+| Absorb Tracker | SKIN-47 |
+| Aura Master | DRAG-20, DRAG-21, SKIN-54 |
+| Bank Ledger (Retail) | PANEL-33, PANEL-34, SKIN-49, PANEL-7, PANEL-21, PANEL-22, PANEL-23, PANEL-28, SKIN-5 |
+| Combat Trail | SM-CT-N24, SM-CT-N25, SM-CT-H23, SM-CT-R31 (both clients); SM-CT-RM100 (Retail) |
+| Consumable Master | BAR-45, SKIN-48, SKIN-49, SKIN-31 |
+| Drop Watcher | FEED-112, SKIN-53, SKIN-54, SKIN-55, ROLLS-22 |
+| Kick CD (Retail) | SKIN-49, SKIN-50 |
+| Loot History (Retail) | SKIN-55, SKIN-56 |
+| Multi Meters (Retail) | SKIN-53 |
+| Outfitter Reborn | SD1 to SD12 |
+| Panel Master | SKIN-45, SKIN-46 |
+| Party Frame Enhanced | INSTALL-4, SKIN-44, SKIN-45 |
+| PrettyChat | RV-108, SKIN-35 |
+| Quick Comms | PREVIEW-14, PLOOK-13, THANK-13, SKIN-7 |
+| Range Master | DRAW-6, ANCHOR-12 |
+| Skill Master (Forever) | SM-SKIN-3 to SM-SKIN-8 |
+| Skin Tester | SHOW-57, SHOW-58, SHOW-59, SHOW-60 |
+
+Not on the sheet, so not marked here: Aura Master SKIN-55 and SKIN-56 (retired by the owner on 2026-11-22); Combat
+Trail SM-CT-N22, N23, N26, H20 to H22, RM84, RM92, RM98 and RM99, and Multi Meters SKIN-54 to SKIN-57 (superseded by
+the owner's 2026-11-23 override; their sheet is R2P in `docs/2026-11-23-R2_RESTORE_AND_PROBE_FIXES/`, which passed the
+same day); Combat Trail's re-pinned SM-CT-RM91; Drop Watcher's amended SKIN-52; Range Master INSTALL-5, DRAW-7 to
+DRAW-10, CONT-10 and CONT-12 to CONT-14.

@@ -30,3 +30,10 @@ MultiMeters stacked on `fix/2026-11-23-r2-restore-probe-fixes`, which merged fir
 Not run before the merge: the owner gave the go-ahead on 2026-11-23 with the smoke sheet outstanding
 (`Documents/Ka0sPendingSmoke-2026-11-23.csv`, run "MKF 11-23": KickCD SPELLS-19..24, FOREVER-1..16; MultiMeters
 INSTALL-19, COMBAT-31..33). Failures found there are fixed on master as follow-ups.
+
+## Smoke result (2026-11-24)
+
+The owner reported on 2026-11-24 that all 26 checks of run "MKF 11-23" passed, in chat: KickCD SPELLS-19 to SPELLS-24
+and FOREVER-1 to FOREVER-16, and MultiMeters INSTALL-19 and COMBAT-31 to COMBAT-33, each on the client it names.
+Recorded on the owner's word; each check's `Result:` line in its addon's `docs/smoke-tests.md` reads
+`pass (owner, 2026-11-24)`.

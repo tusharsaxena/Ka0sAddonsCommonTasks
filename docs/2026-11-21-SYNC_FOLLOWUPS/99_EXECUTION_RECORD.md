@@ -88,14 +88,15 @@ Every repo was tested on each client it ships, and every run passed:
 ## Smoke checks owed (the owner's, in game; never marked passed here)
 
 - **KC-PROFILE-1:** with `/kcd` settings open, switch profile (and Reset profile). The open page shows the new profile's
-  values at once.
+  values at once. **Passed** (owner, 2026-11-24).
 - **LH-BROWSER-1:** `/lh` opens on History. Switching Insights, Holdings and Timeline keeps each tab's filters, group and
-  sort.
+  sort. **Passed** (owner, 2026-11-24).
 - **LH-BROWSER-2:** Save, Reset and Clear act only on the active tab. Export opens that tab's modal. "Show in Timeline"
-  fills Search.
+  fills Search. **Passed** (owner, 2026-11-24).
 - **LH-BROWSER-3:** changing the minimum-quality setting re-filters the open window. A profile switch re-reads the
-  geometry and the saved view.
+  geometry and the saved view. **Passed** (owner, 2026-11-24).
 - **ALL-1:** every addon loads with no Lua error on each client it ships. The library peels change no behavior.
+  **Passed** (owner, 2026-11-24).
 
 ## Finalize (2026-11-21)
 
@@ -108,3 +109,9 @@ Every repo was tested on each client it ships, and every run passed:
 - **Deleted:** the run branch (local only, never pushed) in all 23 repos, and the landed
   `feat/2026-11-10-per-client-quirks` branches (local and remote) with their two worktrees under `#Worktrees/`.
 - No addon version was bumped. The smoke checks above are still the owner's.
+
+## Smoke result (2026-11-24)
+
+The owner reported on 2026-11-24 that all five smoke checks above passed (run "SYNC 11-21" of a Google Sheet copy of
+`Documents/Ka0sPendingSmoke-2026-11-23.csv`): KC-PROFILE-1 on Retail, LH-BROWSER-1 to LH-BROWSER-3 on both clients,
+and ALL-1 on each client every addon ships. Recorded on the owner's word.
