@@ -38,6 +38,26 @@ go-ahead). Every builder follows this file. A deviation is written into the buil
   `tools/client_globals_data.lua`. The branches also carry `Resources/LuaEnum.lua`.
 - **Versions:** standard v2.120.0, LibKa0s v1.113.0, dev-copilot 2.11.0 (installed and master).
 
+## 0.5 Who needs ForeverDB installed (owner question, 2026-11-25)
+
+The owner asked whether every user needs forever-db installed, as a dependency through `.pkgmeta`, or whether it is
+only a dev-time reference for the authors. **No player ever needs it.** ForeverDB is used in two ways:
+
+1. **Seed validation (dev time, authors only).**
+   - What reads it: `/dev-copilot:validate-seeds`, through `scripts/foreverdb.py`.
+   - Where it reads from: the pinned GitHub tag, or the owner's install.
+   - What a player gets: the corrected ids and positions, committed as the addon's own data.
+   - Shipped code never reads ForeverDB for this.
+2. **The runtime adapter (`LibKa0s-ForeverDB-1.0`, #105), optional for players.**
+   - **How it is declared:** an addon that adopts it lists ForeverDB in `## OptionalDeps`, and **MAY** list it
+     under `.pkgmeta` `optional-dependencies` so that CurseForge shows the relationship.
+   - **What it never does:** list it in `## Dependencies` or under `.pkgmeta` `required-dependencies`. ForeverDB's
+     own README tells consumers to make it required; this collection deliberately does not.
+   - **Without ForeverDB:** the addon works unchanged, and the one feature that would use it says it needs ForeverDB.
+
+In this run no addon adopts the adapter; each candidate consumer gets an issue. So after this run, no shipped addon
+reads ForeverDB at runtime.
+
 ## 1. Licensing rule (holds for every item)
 
 ForeverDB's data is GPL-3.0, while LibKa0s and every addon are MIT.
@@ -75,7 +95,9 @@ Fetch `origin/master` first and renumber if another session moved it (see the st
 - **A new clients-§11, *Optional runtime data addons*.** A Ka0s addon that uses an external data addon (ForeverDB
   is the first):
   - reads it only at runtime, through `LibKa0s-ForeverDB-1.0`, and never through its own wiring;
-  - lists it in `## OptionalDeps`, and never in `## Dependencies` or `.pkgmeta`'s required dependencies;
+  - lists it in `## OptionalDeps`, **MAY** list it under `.pkgmeta`'s `optional-dependencies`, and never lists it in
+    `## Dependencies` or `.pkgmeta`'s `required-dependencies` (§0.5); a player never needs it installed;
+  - may also use it at dev time only, as seed-validation evidence (clients-§10), which needs nothing from a player;
   - loads it only when a feature first asks, never at login;
   - works unchanged without it, and says in the feature's tooltip or settings row that the feature needs it;
   - never vendors or copies its data, test fixtures included (§1);
