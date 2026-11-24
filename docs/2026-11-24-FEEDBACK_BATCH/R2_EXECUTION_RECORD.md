@@ -78,3 +78,34 @@ The owner's sheet is `Documents/Ka0sPendingSmoke-2026-11-24-ADDED-FB2.csv`, with
 - a clean-load check for the three addons that owe no new check: Consumable Master, Panel Master and WhatGroup
 
 Results: owed.
+
+## Round 2b: the selection is gold in every skin (2026-11-24)
+
+**What the owner saw.** They tested Loot History's Character dropdown on WoW Forever and reported that the
+selection "has not been fixed". On Forever, every addon defaults to the WoW Forever skin. Its `menu.textSel` is the
+tan accent `#C9A07A`, and it sits 27 CIEDE2000 from white, so round 2's rule kept it. The screenshots' selected rows
+measure exactly that tan.
+
+**The owner's answers.**
+- Decision 1 (settings-page AceGUI pullouts): **no**, they stay out of the rule.
+- Decision 2: "leave it as gold".
+
+**Ruling.** A selected row is Ka0s Default's gold in every skin. A skin's own `menu.textSel` stands in only where
+gold sits under 20 CIEDE2000 from that skin's `menu.text`. No shipped skin does: Azeroth is the nearest, at 20.7.
+
+**What ran.** Workflow `wf_ae2bbe95-a8b`, 20 agents, none failed.
+
+| Repo | What | Commit |
+|---|---|---|
+| LibKa0s | WidgetsDropdown change (FB2-LK-04) | `92cccaee` |
+| LibKa0s | Release run `docs/automated-tests/20261124-194116/` (FB2-LK-04) | `557d7da5` |
+| WowAddonStandards | The amended rule (FB2-STD-02) | `dea0f62` |
+| 19 addons | Re-vendor of the re-cut tag, test re-pins and amended smoke wording (FB2-`<AB>`-02) | one commit or more each |
+
+- The local tag v1.113.0 moved from `cded10bb` to `557d7da5`.
+- LibKa0s's suites pass on both clients: 5184 passed, 0 failed, 3 skipped.
+- Each addon's gate is green on its clients.
+- Every addon's vendored copy matches the re-cut tag.
+
+**Smoke.** The re-check sheet is `Documents/Ka0sPendingSmoke-2026-11-24-ADDED-FB2b.csv`, with 16 dropdown checks.
+Each one supersedes the same check in the FB2 sheet. Results: owed.
