@@ -77,7 +77,9 @@ The owner's sheet is `Documents/Ka0sPendingSmoke-2026-11-24-ADDED-FB2.csv`, with
 - Drop Watcher's FEED-114 and the reworded ROLLS-22, which also covers the test-mode bar
 - a clean-load check for the three addons that owe no new check: Consumable Master, Panel Master and WhatGroup
 
-Results: owed.
+Results: **all passed, the owner's report, 2026-11-24** ("these smoke tests pass, go ahead and merge"),
+with the 16 FB2b re-checks standing in for the same ids. As in round 1, the result is the owner's word in the
+session; the sheet's Result column was not filled in by the lead.
 
 ## Round 2b: the selection is gold in every skin (2026-11-24)
 
@@ -108,4 +110,10 @@ gold sits under 20 CIEDE2000 from that skin's `menu.text`. No shipped skin does:
 - Every addon's vendored copy matches the re-cut tag.
 
 **Smoke.** The re-check sheet is `Documents/Ka0sPendingSmoke-2026-11-24-ADDED-FB2b.csv`, with 16 dropdown checks.
-Each one supersedes the same check in the FB2 sheet. Results: owed.
+Each one supersedes the same check in the FB2 sheet. Results: **all 16 passed** (the owner, 2026-11-24).
+
+## Finalize (2026-11-24)
+
+On the owner's go-ahead, all 22 repos merged `--no-ff` to `master` and were pushed, the feature branch deleted
+everywhere. Tags pushed: LibKa0s v1.112.0 (`1f1904ee`) and v1.113.0 (`557d7da5`), WowAddonStandards v2.119.0
+(`97632e0`) and v2.120.0 (`dea0f62`). LibKa0s#104 closed. No addon version was bumped.
