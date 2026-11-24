@@ -21,4 +21,5 @@ SF-LH-02	M2	LootHistory	re-vendor v1.114.0 + ForeverDB drops/vendor in History b
 SF-BL-01	M2	BankLedger	re-vendor v1.114.0 + ForeverDB vendor buy price in valuation/tooltip	SF-LK-REL	M	SEEDS-BL-1..3	LibKa0s#105
 SF-SM-02	M2	SkillMaster	re-vendor v1.114.0 + ForeverDB recipe sources + trainer spots fallback	SF-LK-REL,SF-SM-01	M	SEEDS-SM-1..3	LibKa0s#105
 SF-OR-02	M2	OutfitterReborn	re-vendor v1.114.0 + ForeverDB quality/reqLevel fallback for items not in bags	SF-LK-REL,SF-OR-01	M	SEEDS-OR-1..3	LibKa0s#105
+SF-RM-02	M2	RangeMaster	per-class band set presets per client with DB2 range tiers and tier anchors (RangeMaster#20)	SF-RM-01	L	SEEDS-RM-*	RangeMaster#20,LibKa0s#102
 SF-CT-REC	M3	Ka0sAddonsCommonTasks	execution record, smoke tests, consumer issues filed	all	S	-	LibKa0s#93,#102,#105

@@ -327,3 +327,23 @@ branch.
 | SF-BL-01 | BankLedger | **The holdings valuation.** It adds a vendor buy price (from ForeverDB) beside the client's sell price, in the item tooltip or detail and as an optional value basis where the ledger already offers one. It never replaces the client's own price. Member used: `VendorPrice`. |
 | SF-SM-02 | SkillMaster | **Recipe sources and trainer spots.** A recipe or item tooltip in the skills window gains its sources (vendor or drop). The trainer popup gains ForeverDB's map spots when the shipped data has none, never overriding shipped positions, which SF-SM-01 has already reconciled. Members used: `ItemSources`, `Spots` and `NPC`. |
 | SF-OR-02 | OutfitterReborn | **Items not in the bags.** Where the outfit window shows an item the player does not carry, which the client cannot describe until it is cached, it falls back to ForeverDB's quality and required level. The client's own answer always wins when it exists. Member used: `Item`. |
+
+## 10. Addendum: RangeMaster per-class band sets (owner, 2026-11-25, RangeMaster#20)
+
+The owner: "for RangeMaster I am expecting band sets for every class (add a GH issue to track this). For example
+Hunter has its own band set, but paladin does not. And paladin has unique spells like Judgement which have a 10 yard
+range, so more than just melee and range". The screenshot shows Judgement, spell 20271, as 10 yd range, Instant, 10 sec cooldown.
+
+**Item SF-RM-02** runs in the same clone after SF-RM-01 and its review. It builds RangeMaster#20.
+
+- **Presets.** Each class gets a preset per client, `<CLASS>_BY_CLIENT`, picked via `NS.Compat.ClientKey()`, on
+  the Hunter's pattern. `CLASS_DEFAULT` names each class's own preset, and `SPEC_DEFAULT` keeps its overrides.
+- **Bands.** A preset's bands sit at the class's real range tiers, taken from SF-RM-01's DB2-derived per-class range
+  table: melee, each distinct tier of its key abilities (for example the Forever Paladin's 10 yd Judgement and
+  Hammer of Justice), its longest ranged tier, and then OOR.
+- **Tier anchors.** `SpellSeeds` gains per-class tier anchors beside melee, ranged and friendly. A band rule can name
+  one, so its edge comes from the client's range check on that spell, with the band's yards as the fallback. The
+  migration and schema follow the addon's existing band-rule versioning.
+- **Stored sets** are untouched; the class preset joins Create and the first-run seed.
+- **Tests and smoke.** Tests pin every class on both clients. Smoke checks each class's default preset on each
+  client; the owner plays Paladin and Hunter at least.
