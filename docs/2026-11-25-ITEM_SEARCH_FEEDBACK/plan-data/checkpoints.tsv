@@ -1,1 +1,2 @@
 milestone	date	evidence	heads
+ISF-MERGE	2026-11-25	merge results gated: LK 5238/0 both, DW 2803/0 + 2778/0 perf green, OR 1632/0 + 1612/0, SM 893/0 both; luacheck 0/0	LibKa0s 0be9a569 (tag v1.116.0 cbd82ed3), DropWatcher b1113a6, OutfitterReborn 87cff59, SkillMaster 002536f
