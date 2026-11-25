@@ -72,7 +72,7 @@ Each tier below is listed best first. Ties fall to the next rule, and then to th
 | **Drops from** (creatures, named objects, containers) | has a spot in your current zone | a creature in your level band, or an object or container (no level); see the band rule after this table | a creature outside the band | – | higher chance first, unknown chance last |
 | **Sold by** | in your current zone | on your continent | elsewhere | a vendor your faction can't use (`nfac` says the other side) | unlimited stock before limited, then name |
 | **Quests** (needs, rewards, starts) | in your log | can pick up now (your level ≥ its min level, not done) | too high for you now | completed | lower quest level first |
-| **Crafting** (recipes using the item) | known, can skill up | known, no skill-up (gray) | not known, learnable at your rank (`min ≤ rank`) | not known and above your rank. A recipe in a profession you don't have is filtered (§4), or last when the filter is off | Known recipes are orange, then yellow, then green. Not-known recipes go by `min` nearest your rank. |
+| **Crafting** (recipes using the item) | known, can skill up | known, no skill-up (gray) | not known, in a profession you have | a profession you don't have (filtered by §4, or last when the filter is off) | Known recipes: orange, then yellow, then green. Not-known recipes: the one whose yellow breakpoint is nearest your rank first. The shipped table's `min` is 1 for nearly every recipe, so it cannot order them. |
 | **Skinned from** | has a spot in your zone | in your level band | others | – | higher chance first |
 
 **The level band.** A creature is in your band if its level range overlaps
@@ -206,7 +206,7 @@ The default sort is "Best for you" (§3). The section header says which sort is 
 | Uses | how many of this item one craft takes, "×4" | 56 |
 | Makes | the product's icon and name, as an item link | *flex* |
 | Skill | the breakpoints in their colors, "145 155 165 175" (orange, yellow, green, gray), "–" when unknown | 150 |
-| Status | Known, Learnable now, Learn at 165, or "No Blacksmithing" for a profession you don't have | 130 |
+| Status | Known; Not known; "Learn at 165" only when the recipe's `min` is above 1 and above your rank; "No Blacksmithing" for a profession you don't have | 130 |
 
 **Skinned from**
 

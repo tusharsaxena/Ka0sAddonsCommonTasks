@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tooltip v2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#7fd3ff}a:hover{color:#b5e6ff}
+</style>
+</helmet>
+<div style="width: 560px; height: 1040px; box-sizing: border-box; padding: 36px 40px; background: #1b1714; background-image: radial-gradient(circle at 30% 15%, #3a2f26 0%, #120e0c 70%); font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+<div style="font-size: 12px; color: #b9ab9c; letter-spacing: 0.04em; text-transform: uppercase">Hovering Medium Leather in your bags</div>
+<div style="width: 400px; box-sizing: border-box; padding: 10px 12px 12px; background: rgba(6, 8, 16, 0.95); border: 1px solid #5b6470; border-radius: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.38; color: #ffffff">
+<div style="font-size: 15px; font-weight: 600">Medium Leather</div>
+<div style="color: #66bbff">Crafting Reagent</div>
+<div style="color: #8b95a1; font-style: italic; padding: 3px 0">… the game's and other addons' lines …</div>
+<div style="height: 1px; background: {{accent}}; margin: 6px 0 4px"></div>
+<div style="font-weight: 600; color: {{accent}}">Drop Watcher · Item Search</div>
+
+<div style="color: #ffd100; margin-top: 4px">Drops from</div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Young Lashtail Raptor <span style="color: #ffff00">(33–34)</span></span><span>17%</span></div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Lashtail Raptor <span style="color: #ff8040">(35–36)</span></span><span>1.6%</span></div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Small Locked Chest</span><span>38%</span></div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Watertight Trunk</span><span>38%</span></div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Tightly Sealed Trunk</span><span>30%</span></div>
+<div style="padding-left: 10px; color: #a9b2bc">and [N] more</div>
+
+<div style="color: #ffd100; margin-top: 6px">Sold by</div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Lhara</span><span style="color: #a9b2bc">Darkmoon Faire</span></div>
+
+<div style="color: #ffd100; margin-top: 6px">Quests</div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span><span style="color: #6f7780">?</span> The Alliance Needs Medium Leather!</span><span style="color: #a9b2bc">level 60</span></div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span><span style="color: #6f7780">?</span> The Alliance Needs More Medium Leather!</span><span style="color: #a9b2bc">level 60</span></div>
+
+<div style="color: #ffd100; margin-top: 6px">Crafting</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-left: 10px"><span style="display: inline-flex; align-items: center; gap: 6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffff00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V5"></path><path d="M5 12l7-7 7 7"></path></svg>Hillman's Leather Gloves</span><span style="color: #ffff00">yellow</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-left: 10px"><span style="display: inline-flex; align-items: center; gap: 6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#40c040" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V5"></path><path d="M5 12l7-7 7 7"></path></svg>Toughened Leather Gloves</span><span style="color: #40c040">green</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-left: 10px"><span style="display: inline-flex; align-items: center; gap: 6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#40c040" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V5"></path><path d="M5 12l7-7 7 7"></path></svg>Pilferer's Gloves</span><span style="color: #40c040">green</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-left: 10px"><span style="display: inline-flex; align-items: center; gap: 6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>Medium Armor Kit</span><span style="color: #b0b0b0">gray</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-left: 10px"><span style="display: inline-flex; align-items: center; gap: 6px; color: #9a9a9a"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Barbaric Gloves</span><span style="color: #9a9a9a">learn at 150</span></div>
+<div style="padding-left: 10px; color: #a9b2bc">and [N] more</div>
+<div style="padding-left: 10px; color: #8b95a1">+[N] in professions you don't know</div>
+
+<div style="color: #ffd100; margin-top: 6px">Skinned from</div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Steelsnap <span style="color: #40c040">(30)</span></span><span>86%</span></div>
+<div style="display: flex; justify-content: space-between; padding-left: 10px"><span>Elder Cloud Serpent <span style="color: #808080">(27–29)</span></span><span>90%</span></div>
+<div style="padding-left: 10px; color: #a9b2bc">and [N] more</div>
+
+<div style="color: #8b95a1; margin-top: 8px; font-size: 12px">Alt-Ctrl-D: open in Item Search</div>
+</div>
+<div style="width: 480px; display: flex; flex-direction: column; gap: 7px; font-size: 12px; color: #d6cbbf; line-height: 1.5">
+<div><span style="color: #ffd100; font-weight: 600">No magnifier</span> · the skin-coloured rule and title stay.</div>
+<div><span style="color: #ffd100; font-weight: 600">5 rows per section</span> · every section, set 1 to 20 in settings. The window is never capped.</div>
+<div><span style="color: #ffd100; font-weight: 600">Best for you first</span> · drops in your zone, then your level band (30–38), then by chance. Recipes: known with a skill-up (yellow before green), known gray, learnable, the rest.</div>
+<div><span style="color: #ffd100; font-weight: 600">Your professions only</span> · Blacksmithing and Engineering recipes are counted in one dim line, not listed. A setting turns it off.</div>
+<div><span style="color: #ffd100; font-weight: 600">Key hint</span> · shows the key really bound, or no line at all.</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#d2a679","options":["#d2a679","#4fc3c9","#ffd100","#a78bfa"]},"$preview":{"width":560,"height":1040}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#d2a679' };
+}
+}
+</script>
+</body>
+</html>
