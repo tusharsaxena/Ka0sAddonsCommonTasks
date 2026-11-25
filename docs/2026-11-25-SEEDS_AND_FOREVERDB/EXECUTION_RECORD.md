@@ -184,3 +184,32 @@ The run was built on 2026-11-25 in scratch clones under `~/ka0s-scratch/seeds/`.
 - c5ee8dc SF-BL-01: The vendor buy price from ForeverDB on WoW Forever's row tooltips (LibKa0s#105)
 - 5b81c56 SF-BL-01: Characterize the ledger rows' item tooltips before the vendor buy price
 - 1604084 SF-BL-01: Re-vendor LibKa0s v1.114.0 (the ForeverDB reader, kit revision 62)
+
+## Merged (2026-11-25, owner: "merge all branches to master so i can test it in game")
+
+Merged `--no-ff` into `master` ahead of smoke so the owner can test in game, in dependency order (standard →
+dev-copilot → LibKa0s → addons → CommonTasks), and pushed. `origin/master` had not moved in any repo, so every
+merge tree is identical to the gated branch head (checked per repo), and the lead gate re-run above stands for it.
+
+| Repo | Merge |
+|---|---|
+| WowAddonStandards | e23dcd5 |
+| dev-copilot | f475b87 |
+| LibKa0s | cb825436 |
+| CombatTrail | e6cf949 |
+| RangeMaster | cf7f35e |
+| LootHistory | 516c6ba |
+| SkillMaster | 6860e9f |
+| QuickComms | 32f0aa6 |
+| OutfitterReborn | ab08d5f |
+| AuraMaster | 74b75a8 |
+| ConsumableMaster | 31264c5 |
+| DropWatcher | 172ec17 |
+| KickCD | d8df588 |
+| PrettyChat | 3d67f68 |
+| WhatGroup | b250866 |
+| BankLedger | cf3b96f |
+
+Still owed after smoke: push the LibKa0s `v1.114.0` tag and tag the standard `v2.121.0`; close LibKa0s#93, #102,
+#105 and RangeMaster#20; record the smoke results in `06_SMOKE_TESTS.md`. No `/dev-copilot:sync-docs` pass was run at
+merge (each item updated its own docs). The eight addons outside the adapter work still vendor LibKa0s v1.113.0.
