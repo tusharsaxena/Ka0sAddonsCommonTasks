@@ -1,0 +1,16 @@
+id	ms	repo	title	deps	effort	smoke	traces
+ISF-PLAN	M0	Ka0sAddonsCommonTasks	bundle: feedback, spec, plan, mockups	-	S	-	owner feedback 2026-11-25
+ISF-LK-01	M1	LibKa0s	ForeverDB-1.0 minor 3: Object(id); version-3 docs; kit rows; CONSUMERS (DW only)	ISF-PLAN	S	-	W15
+ISF-LK-REL	M1	LibKa0s	v1.116.0: version, CHANGELOG, releasing record, local tag only	ISF-LK-01	S	-	W15
+ISF-OR-01	M1	OutfitterReborn	ForeverDB removed: OptionalDeps, setup, setting, schema step, tests, docs, smoke row	ISF-PLAN	M	OR-FDB-GONE	G1
+ISF-SM-01	M1	SkillMaster	ForeverDB removed: ForeverDBSources, setting, schema step, tests, docs, smoke row	ISF-PLAN	M	SM-FDB-GONE	G1
+ISF-DW-00	M1	DropWatcher	re-vendor LibKa0s v1.116.0; icon declaration (arrow-up, minus, lock, map-pin, funnel, sort)	ISF-LK-REL	S	-	W15 T4 W11
+ISF-DW-01	M1	DropWatcher	key: canonical ALT-CTRL-D, re-try marker v2, dead chord cleared, hint names the real key	ISF-DW-00	S	ITEM-SEARCH-19	T1
+ISF-DW-02	M1	DropWatcher	objects named via Object(id), same-name merge, unnamed dropped	ISF-DW-00	S	ITEM-SEARCH-20	W15
+ISF-DW-03	M1	DropWatcher	ranking per section (IS.Rank), profession filter, per-section cap model	ISF-DW-02	M	ITEM-SEARCH-21	T3
+ISF-DW-04	M1	DropWatcher	tooltip: no magnifier, cap rows, profession line, recipe glyphs	ISF-DW-03	M	ITEM-SEARCH-22	T2 T3 T4
+ISF-DW-05	M2	DropWatcher	window frame: title, footer, fonts, no lock, resizable, no recent searches, matches header and selection, Clear centered, shift-click link	ISF-DW-04	M	ITEM-SEARCH-23	W1-W7 W13 W14
+ISF-DW-06	M2	DropWatcher	tabs, per-tab tables with sortable headers, section headers with filter/sort/reset, tooltips, hover, alt rows	ISF-DW-05	L	ITEM-SEARCH-24	W8 W9 W10
+ISF-DW-07	M2	DropWatcher	waypoints: map-pin, TomTom or LibKa0s arrow, provider setting, arrow settings rows	ISF-DW-06	M	ITEM-SEARCH-25	W11 W12
+ISF-DW-08	M2	DropWatcher	settings page, schema steps, locales, docs, smoke rows, full gate	ISF-DW-07	M	ITEM-SEARCH-19..27	all
+ISF-REV	M3	DropWatcher	independent review of all four repos, then a fix pass	ISF-DW-08 ISF-OR-01 ISF-SM-01	M	-	-
