@@ -1,0 +1,25 @@
+id	ms	repo	title	deps	effort	smoke	traces
+SF-STD-01	M1	WowAddonStandards	v2.121.0: clients-§10 ForeverDB evidence source, clients-§11 optional runtime data addons, anti-patterns	-	M	-	LibKa0s#105
+SF-DC-01	M1	dev-copilot	2.12.0: scripts/foreverdb.py (status, fetch, Lua parser, cache) + overlay Evidence: ForeverDB + --foreverdb	-	M	-	LibKa0s#105
+SF-LK-01	M1	LibKa0s	LibKa0s-ForeverDB-1.0 adapter, kit fake mock_foreverdb, diagnostics line, docs/api, tests	-	L	SEEDS-1..6	LibKa0s#105
+SF-LK-02	M1	LibKa0s	docs/validate-seeds.md + tools/seeds/libseeds.py: Compat/kit assumptions vs Ketho live/forever; first-run bundles	SF-LK-01	L	-	LibKa0s#93
+SF-LK-REL	M1	LibKa0s	v1.114.0 CHANGELOG/README/version, local tag	SF-LK-01,SF-LK-02	S	-	LibKa0s#93,#105
+SF-CT-01	M2	CombatTrail	validate-seeds contract + tool (DpsRace port), retail+forever, first-run bundles, gate line	SF-DC-01	M	-	LibKa0s#102
+SF-RM-01	M2	RangeMaster	validate-seeds contract + tool: SpellSeeds existence/class/range vs SpellRange, both flavors, bundles, gate line	-	L	-	LibKa0s#102
+SF-LH-01	M2	LootHistory	validate-seeds contract + tool: DECONSTRUCT_IDS, both flavors, bundles, gate line	-	M	-	LibKa0s#102
+SF-SM-01	M2	SkillMaster	forever flavor gains ForeverDB evidence: trainers (npc/nfac/spm/spf), gathering nodes (obj); bundle, gate line	SF-DC-01	L	per change	LibKa0s#102,#105
+SF-QC-01	M2	QuickComms	CLASSES per client + derive-gameids Retail build pin + contract/gate update	-	S	SEEDS-QC-1	LibKa0s#102
+SF-OR-01	M2	OutfitterReborn	gen-zones.lua build pin + contract Notes + gate line	-	S	-	LibKa0s#102
+SF-GATE-01	M2	AuraMaster	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
+SF-GATE-01	M2	ConsumableMaster	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
+SF-GATE-01	M2	DropWatcher	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
+SF-GATE-01	M2	KickCD	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
+SF-GATE-01	M2	PrettyChat	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
+SF-GATE-01	M2	WhatGroup	seed tests in CLAUDE.md gate	-	S	-	LibKa0s#102
+SF-DW-01	M2	DropWatcher	re-vendor v1.114.0 + ForeverDB drop sources on drop card/detail	SF-LK-REL,SF-GATE-01	M	SEEDS-DW-1..3	LibKa0s#105
+SF-LH-02	M2	LootHistory	re-vendor v1.114.0 + ForeverDB drops/vendor in History browser item tooltip	SF-LK-REL,SF-LH-01	M	SEEDS-LH-1..3	LibKa0s#105
+SF-BL-01	M2	BankLedger	re-vendor v1.114.0 + ForeverDB vendor buy price in valuation/tooltip	SF-LK-REL	M	SEEDS-BL-1..3	LibKa0s#105
+SF-SM-02	M2	SkillMaster	re-vendor v1.114.0 + ForeverDB recipe sources + trainer spots fallback	SF-LK-REL,SF-SM-01	M	SEEDS-SM-1..3	LibKa0s#105
+SF-OR-02	M2	OutfitterReborn	re-vendor v1.114.0 + ForeverDB quality/reqLevel fallback for items not in bags	SF-LK-REL,SF-OR-01	M	SEEDS-OR-1..3	LibKa0s#105
+SF-RM-02	M2	RangeMaster	per-class band set presets per client with DB2 range tiers and tier anchors (RangeMaster#20)	SF-RM-01	L	SEEDS-RM-*	RangeMaster#20,LibKa0s#102
+SF-CT-REC	M3	Ka0sAddonsCommonTasks	execution record, smoke tests, consumer issues filed	all	S	-	LibKa0s#93,#102,#105

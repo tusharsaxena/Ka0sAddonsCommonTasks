@@ -1,0 +1,4 @@
+milestone	date	evidence	heads
+M1	2026-11-25	std check-standard 8/8; dev-copilot 205 passed; LibKa0s 5220/0 both profiles, luacheck 0/0	std ef4ca98, dc ab560b3, lk 58b26061 (tag v1.114.0 2eaa8fc local)
+M2	2026-11-25	all addon gates green (see EXECUTION_RECORD.md); 16 feature branches pushed with review notes	see EXECUTION_RECORD.md table
+M3	2026-11-25	merged to master ahead of smoke; merge trees == gated branch heads	see EXECUTION_RECORD.md "Merged"
