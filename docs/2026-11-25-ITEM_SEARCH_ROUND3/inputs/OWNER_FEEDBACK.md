@@ -42,3 +42,10 @@ WoW Forever. Screenshots 88 to 107 were attached in the conversation and are des
 | The tooltip badge design (item 14) | "Verdict + score": Keep / Hold / Sell / Toss, a 0–100 score, a confidence (High/Medium/Low, Low never says Toss), and reason lines |
 | Header sort (item 5) | "Didn't look clickable": add a hover highlight and the LootHistory-style arrow |
 | What the Source color means (item 6) | "By rank, color code the type column as well" |
+
+## Added during the run (2026-11-26)
+
+> Fro dropwatcher tooltip, for every sections (dropped by, quests, etc) by default show a max of 3 items per section, but can be configurable to show more
+
+The tooltip's Rows per section setting (`itemSearch.tooltip.rows`, range 1–20) gets a default of 3 instead of 5. This was
+added after the build workflow started, so the lead lands it as ISR3-DW-07 once the workflow finishes.
