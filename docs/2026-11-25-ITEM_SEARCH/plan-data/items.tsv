@@ -1,0 +1,14 @@
+id	ms	repo	title	deps	effort	smoke	traces
+IS-LK-01	M1	LibKa0s	ForeverDB-1.0 minor 2: SearchItems, QuestsForItem, RewardFrom, StartsQuest, SkinnedFrom; kit fake rows; docs	-	M	-	DropWatcher#17
+IS-LK-REL	M1	LibKa0s	v1.115.0: version, CHANGELOG, releasing.md, local tag only	IS-LK-01	S	-	DropWatcher#17
+IS-LH-01	M1	LootHistory	remove Item sources (SF-LH-02) and runtime ForeverDB; migration; docs; tests	-	S	IS-LH-*	DropWatcher#17
+IS-BL-01	M1	BankLedger	remove vendor buy price (SF-BL-01) and runtime ForeverDB; migration; docs; tests	-	S	IS-BL-*	owner 2026-11-25
+IS-DW-01	M2	DropWatcher	re-vendor LibKa0s v1.115.0	IS-LK-REL	S	-	DropWatcher#17
+IS-DW-02	M2	DropWatcher	recipe-reagent table: generator from wowf DB2, data file, validate-seeds seed + gate test	-	M	IS-CRAFT-*	DropWatcher#17
+IS-DW-03	M2	DropWatcher	Item Search model, delayed out-of-combat ForeverDB load, quests/crafting/also facts, profession-window fallback	IS-DW-01 IS-DW-02	L	IS-LOAD-*	DropWatcher#17
+IS-DW-04	M2	DropWatcher	tooltip block on every item tooltip (TooltipDataProcessor post call)	IS-DW-03	M	IS-TIP-*	DropWatcher#17
+IS-DW-05	M2	DropWatcher	Item Search window, header magnifier, /dw search	IS-DW-03	L	IS-WIN-*	DropWatcher#17
+IS-DW-06	M2	DropWatcher	Item Search keybind (Ctrl-Alt-D, no steal; hover prefills, else empty)	IS-DW-05	S	IS-KEY-*	DropWatcher#17
+IS-DW-07	M2	DropWatcher	Item Search settings page; deprecate Sources chip + migration; docs; locales	IS-DW-04 IS-DW-05 IS-DW-06	M	IS-SET-* IS-OLD-*	DropWatcher#17
+IS-REV	M3	DropWatcher	independent review of LibKa0s + DropWatcher + LH + BL, fix pass (review notes)	IS-DW-07 IS-LH-01 IS-BL-01	M	-	-
+IS-CT-REC	M3	Ka0sAddonsCommonTasks	execution record, smoke sheet, checkpoints	IS-REV	S	-	-
