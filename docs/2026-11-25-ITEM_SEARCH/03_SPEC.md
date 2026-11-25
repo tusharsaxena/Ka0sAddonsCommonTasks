@@ -32,10 +32,10 @@ them at smoke. Anything not covered here is the builder's call, recorded in the 
   and the settings page are **absent**, per clients-§4: no row, no default, no read. The keybind does nothing on Retail,
   and its `Bindings.xml` row may exist on both clients because the client reads one file for both. The feature is
   gated on `C.FEATURE` the way SF-DW-01 was.
-- **(lead) Each section stands on its own.** Crafting comes from the shipped table and the client, so it works
-  **without ForeverDB**. Drops, vendors, quests, rewards, quest starters, skinning and name search need ForeverDB.
-  Without ForeverDB, the tooltip shows only the sections it can (Crafting), and the window says
-  "ForeverDB not installed: drop sources, quests and name search are unavailable" and still searches by item id.
+- **(owner) Without ForeverDB, no tooltip block.** When ForeverDB is not installed or has not loaded yet, the tooltip
+  shows **nothing** of Item Search (not even Crafting). The window still opens. It searches by item id and shows Crafting
+  (from the shipped table), and says "ForeverDB not installed: drop sources, quests and name search are unavailable", or
+  "ForeverDB: loading…" before the load (lead).
 
 ## 2. When ForeverDB loads (owner)
 
@@ -43,8 +43,8 @@ ForeverDB loads "a few seconds after login, out of combat".
 - **The timer.** `PLAYER_ENTERING_WORLD` (first login or reload only) arms a timer: `C.ITEM_SEARCH.LOAD_DELAY`, 5 s.
 - **When it fires.** Out of combat, it calls the adapter's `Available()`, the one place that loads. In combat, it waits for
   `PLAYER_REGEN_ENABLED` and tries again then.
-- **Before the load.** Every Item Search read asks "loaded yet?" first and **never loads**. The tooltip block is simply
-  absent (Crafting still shows), and the window footer says "ForeverDB: loading…".
+- **Before the load.** Every Item Search read asks "loaded yet?" first and **never loads**. The tooltip block is absent and
+  the window footer says "ForeverDB: loading…".
 - **Opting out.** When the player has switched Item Search off entirely (both the tooltip block and the window), nothing
   loads.
 
@@ -129,8 +129,8 @@ The model is cached per item for the session, except the quest state and craftin
 
 - **Hook.** `TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, fn)`, registered once at login on
   Forever. This covers chat links (`ItemRefTooltip`), bags, the loot window, comparison tooltips and other addons'
-  `GameTooltip`. Shopping/comparison tooltips get the block only when the setting allows (lead: off by default for
-  comparison tooltips).
+  `GameTooltip`. Shopping/comparison tooltips get the block only when the setting allows (owner: off by default for
+  comparison tooltips, a setting turns it on).
 - **What it adds**, per the mockup board 1 and in the settings' section order:
   - a separator line, a texture line or `AddLine` of rule glyphs, in the **skin accent** read from Drop Watcher's skin at
     call time;
@@ -188,7 +188,8 @@ The model is cached per item for the session, except the quest state and craftin
   - if an item tooltip is showing (`GameTooltip`, `ItemRefTooltip` or the comparison tooltips, whichever is visible and
     has an item), open the window with that item prefilled and shown;
   - otherwise, open the window empty with the search box focused.
-  - Pressing it while the window is open on the same item closes the window (lead).
+  - (owner) While the window is open: pressed over the item already shown, or with no item tooltip showing, it closes
+    the window. Pressed over a different item, it switches to that item.
 
 ### 4.7 Settings (owner)
 
@@ -298,3 +299,11 @@ These checks go in a new sheet, `Documents/Ka0sPendingSmoke-2026-11-25-ITEM-SEAR
 In the 2026-11-25 seeds sheet, the superseded rows are marked "superseded by ITEM-SEARCH" rather than deleted:
 SEEDS-LH-1 and SEEDS-LH-2, Bank Ledger FOREVER-20, FOREVER-21 and FOREVER-22, and Drop Watcher FOREVER-18 and
 FOREVER-19.
+
+## 8. Owner answers (2026-11-25, before the build)
+
+- **Retail:** "Forever only, file a github issue to find an equivalent for retail". That issue is DropWatcher#18.
+- **Without ForeverDB, or before it loads:** the tooltip shows nothing (§1).
+- **Comparison tooltips:** off by default (§4.4).
+- **Keybind while the window is open:** it closes when pressed over the same item or with no tooltip, and switches when
+  pressed over a different item (§4.6).
