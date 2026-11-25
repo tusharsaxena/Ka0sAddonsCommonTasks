@@ -49,3 +49,17 @@ WoW Forever. Screenshots 88 to 107 were attached in the conversation and are des
 
 The tooltip's Rows per section setting (`itemSearch.tooltip.rows`, range 1–20) gets a default of 3 instead of 5. This was
 added after the build workflow started, so the lead lands it as ISR3-DW-07 once the workflow finishes.
+
+> DropWatcher - Item Search
+> - [Image #114: Raptor Flesh, Crafting tab, six Cooking recipes all "Not known"] For not knwon recipes in the window (not tooltip), show where to get the recipe from (learn from trainer, but recipe from x vendor, etc)
+> - [Image #115: hovering the Makes cell opens the item tooltip at the top right of the screen, over the window] The makes tooltip is not in the right position as per ka0s standard (should be to the right).
+>   - Audit all tooltips for this Drop Watcher Item Search and CombatTrail Combat Log feature
+
+The lead lands these after the build workflow finishes:
+- **ISR3-DW-08:** the recipe's source. The generator also writes each recipe's teaching item from the client data, joining the
+  recipe spell to the item whose effect teaches it. A recipe with no teaching item is "Trainer". The Crafting tab's not-known
+  rows say where to get it: vendors, drops and quests for the teaching item from ForeverDB at run time, in the Status cell
+  and the row tooltip, and a click opens the teaching item.
+- **ISR3-DW-09:** a tooltip anchor audit of every Item Search tooltip, so each one stands to the right of its owner per the
+  Ka0s standard.
+- **CombatTrail:** the same audit lands on the Combat Sequence branch as CSEQ-4.
