@@ -1,0 +1,2 @@
+milestone	date	evidence	heads
+ISR3-FOLLOWUPS	2026-11-26	DW 2842/0 R, 2844/0 F; CT 1813/0 R, 1803/0 F; luacheck 0/0; perf green; lead re-gate	LibKa0s 966a08cd, DropWatcher b71ee69, CombatTrail 56b0ca6
