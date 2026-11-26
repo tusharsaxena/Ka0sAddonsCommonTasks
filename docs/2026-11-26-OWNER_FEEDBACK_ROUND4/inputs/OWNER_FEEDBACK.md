@@ -90,3 +90,11 @@ brackets.
 
 The owner's run guidelines were pasted again with this batch (ask upfront, then decide; a resumable checkpointed plan; a
 branch with incremental commits; push at milestones; merge only on go-ahead; clean up at the end; ultracode workflows).
+
+## The owner's answers (asked first, 2026-11-26)
+
+| Question | Answer |
+|---|---|
+| SM-CT-LG22: "Open it when a fight starts" reopens a closed Combat Sequence at the pull | "Open when fight starts should apply to the overall DPS HUD, not the combat sequence section specifically" |
+| SM-CT-LG27: the unused Your / Hostile target / Friendly target colors | Remove them (with a schema step clearing the saved values) |
+| RangeMaster: "only changes if a user manually selects a different profile" | Meant a different **band set**: only picking a band set in the dropdown changes a character's band set; each profile remembers each character's pick |
