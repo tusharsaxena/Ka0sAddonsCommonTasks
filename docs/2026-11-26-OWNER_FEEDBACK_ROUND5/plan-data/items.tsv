@@ -1,0 +1,34 @@
+id	ms	repo	title	deps
+R5-PLAN	M0	Ka0sAddonsCommonTasks	bundle: inputs, probe notes, plan, manifest	-
+R5-DW-00	M0	DropWatcher	item tooltip post call never re-entered (Pawn scan tooltip C stack overflow)	-
+R5-DW-01	M1	DropWatcher	badge never overlaps the label	R5-DW-00
+R5-DW-02	M1	DropWatcher	badge redesign: one smooth rounded pill like ItemTree's	R5-DW-00
+R5-DW-03	M1	DropWatcher	verdict panel: quests to pick up as a count	R5-DW-00
+R5-DW-04	M1	DropWatcher	verdict panel: +xx green, -xx red	R5-DW-00
+R5-DW-05	M1	DropWatcher	verdict panel: Score row removed	R5-DW-00
+R5-DW-06	M1	DropWatcher	verdict panel: 'Keep from 50' explained or replaced	R5-DW-00
+R5-DW-07	M1	DropWatcher	(?) icon by the score with a scoring tooltip	R5-DW-00
+R5-DW-08	M1	DropWatcher	skill breakpoints start at [X]	R5-DW-00
+R5-DW-09	M1	DropWatcher	crafting rows always name the profession	R5-DW-00
+R5-DW-10	M1	DropWatcher	crafting rows tabular: fixed arrow/name/skill/profession slots	R5-DW-00
+R5-DW-11	M1	DropWatcher	money shown with coin icons	R5-DW-00
+R5-SM-01	M1	SkillMaster	LDB tooltip and window header hint tooltips removed	R5-PLAN
+R5-SM-02	M1	SkillMaster	click anywhere on a header folds it	R5-PLAN
+R5-SM-03	M1	SkillMaster	pin icon on pinned rows	R5-PLAN
+R5-SM-04	M1	SkillMaster	relevant icons for the six display brokers	R5-PLAN
+R5-SM-05	M1	SkillMaster	/sm professions; /sm toggle shows or hides all windows	R5-PLAN
+R5-SM-06	M1	SkillMaster	no profession listed twice (probe parent/child lines)	R5-PLAN
+R5-SM-07	M1	SkillMaster	all windows open while playing: no Lua errors	R5-PLAN
+R5-RM-01	M1	RangeMaster	band set dropdown headers stand out	R5-PLAN
+R5-RM-02	M1	RangeMaster	class-sourced band sets in class color	R5-PLAN
+R5-RM-03	M1	RangeMaster	shipped general presets in non-class colors	R5-PLAN
+R5-RM-04	M1	RangeMaster	only the class band set is auto-created (Healer bug)	R5-PLAN
+R5-CT-01	M1	CombatTrail	default HUD fits 5 breakdown and 5 sequence rows	R5-PLAN
+R5-CT-02	M1	CombatTrail	Rows shown resizes the window, over a dragged size	R5-PLAN
+R5-CT-03	M1	CombatTrail	Combat Sequence tracks buffs and debuffs gained and lost	R5-PLAN
+R5-CT-04	M1	CombatTrail	Combat Sequence tells player rows from pet rows	R5-PLAN
+R5-SM-08	A1	SkillMaster	joined detached windows resizable again	R5-SM-07
+R5-SM-09	A1	SkillMaster	detach any sub-category (reputation, statistics, currency headers)	R5-SM-07
+R5-SM-10	A1	SkillMaster	Journal tracks reputation and currency gains and losses	R5-SM-07
+R5-SM-11	A1	SkillMaster	filters on every Journal column header	R5-SM-07
+R5-SM-12	A1	SkillMaster	other Journal rework	R5-SM-07

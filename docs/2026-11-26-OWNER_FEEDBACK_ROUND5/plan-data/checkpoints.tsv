@@ -1,0 +1,6 @@
+milestone	date	evidence	heads
+M2-RM	2026-11-26	built+reviewed, gate 885/0 both clients, luacheck 0/0, merged	RangeMaster 0f80887
+M2-CT	2026-11-26	built+reviewed, gate 1851/0 Retail 1841/0 Forever, luacheck 0/0, merged; R5-CT-03 diagnostic only	CombatTrail 341a654
+M2-SM	2026-11-26	R5-SM-01..07 built+reviewed, gate 1028/0 Forever, luacheck 0/0, merged	SkillMaster b6ba05b
+M2-DW	2026-11-26	R5-DW-00..11 built+reviewed, gate 2856/0 Retail 2885/0 Forever, luacheck 0/0, merged	DropWatcher e45bff8
+M2-SM-A1	2026-11-26	R5-SM-08..12 built+reviewed, gate 1064/0 Forever, luacheck 0/0, merged	SkillMaster 85bbb72

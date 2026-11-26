@@ -1,0 +1,2 @@
+id	reason	proof
+R5-CT-03	bug not fixed; diagnostic shipped, fix awaits owner numbers and a ruling	git -C ../CombatTrail log --oneline -1 --grep "^R5-CT-03"
