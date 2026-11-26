@@ -1,3 +1,4 @@
 milestone	date	evidence	heads
 M3-build	2026-11-26	LK 5263/0 both; DW 2850/0 R 2862/0 F; CT 1842/0 R 1832/0 F; RM 881/0 both; luacheck 0/0; perf green; lead re-gate (R4-DW-11 pending)	LibKa0s 0272c7dd (tag v1.118.0 local), DropWatcher 974e476, CombatTrail fca5bd4, RangeMaster 95b8461
 M3-A1	2026-11-26	DW 2854/0 R 2877/0 F after R4-DW-11 + review fix; luacheck 0/0; perf green	DropWatcher acc4f1e
+M4-merge	2026-11-26	owner go-ahead ("merge everything so i can test in game"); no master drift, merge trees identical to the gated branch heads; v1.118.0 tag pushed	LibKa0s 4dbc1636, DropWatcher c9c1441, CombatTrail d26a82c, RangeMaster a7b86f3 (SkillMaster windows a53f4ef in the same push)

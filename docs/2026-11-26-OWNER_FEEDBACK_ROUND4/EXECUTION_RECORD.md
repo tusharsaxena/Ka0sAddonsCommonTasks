@@ -75,3 +75,16 @@ come from AlreadyKnown's merchant scan and from opening the character panel.
 - Drop Watcher: ITEM-SEARCH-47 to 56. The new dash icon needs a full client restart.
 - CombatTrail: R4-CT-SM1 to SM9, plus the amended SM-CT-LG22 and LG27.
 - RangeMaster: BANDS-31 to 40.
+
+## Merged (2026-11-26)
+
+The owner said: "Go ahead and merge everything so i can test in game".
+
+- No master had moved since its branch was cut, so each `--no-ff` merge tree is identical to the gated branch head.
+- **Pushed masters:**
+  - LibKa0s 4dbc1636, with the tag v1.118.0 pushed;
+  - Drop Watcher c9c1441;
+  - Combat Trail d26a82c;
+  - RangeMaster a7b86f3;
+  - Skill Master a53f4ef, its windows run merged in the same push.
+- The round's feature branches were deleted locally and on origin, and the scratch clones were removed.
