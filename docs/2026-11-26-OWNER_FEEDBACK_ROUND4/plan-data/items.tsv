@@ -24,3 +24,4 @@ R4-CT-09	M2	CombatTrail	docs and smoke rows for R4-CT-01..08	R4-CT-08	S	-	-
 R4-RM-01	M2	RangeMaster	a band set assigned per character per profile at first use; persists; 'Use for this character'	R4-PLAN	L	R4-RM-SM1	RM band sets
 R4-RM-02	M2	RangeMaster	new profiles seed only the creator's set; Your band sets grows as characters use the profile	R4-RM-01	M	R4-RM-SM2	RM band sets
 R4-RM-03	M2	RangeMaster	docs and smoke rows for R4-RM-01..02	R4-RM-02	S	-	-
+R4-DW-11	M2	DropWatcher	verdict panel under Matches when the item is held (bags or bank): badge and score breakdown (A1)	R4-DW-10	M	R4-DW-SM11	A1 verdict panel

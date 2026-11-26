@@ -107,3 +107,15 @@ branch with incremental commits; push at milestones; merge only on go-ahead; cle
 | Sold by: estimate a cost of 4× the sell price where none is known | "Skip this": no estimate, and the vendor cost item is dropped; a cost shows only when one is known, as today |
 | RangeMaster: where a character's band set is changed by hand | "One per character": one band set per character, which every container without its own pick follows; set from a "Use for this character" action on the Band sets page |
 | RangeMaster: prune untouched shipped copies from existing profiles | "New profiles only": existing profiles are left as they are |
+
+## Added during the run (2026-11-26)
+
+The owner quoted the lead's explanation of "Keep 65" (crafting +50 at the cap, quest +35, easy to buy again −20), then:
+
+> Then in the ItemSearch window, lets add a section that only shows when you hold an item on that character (either bags or
+> bank(s))
+> - It should show the score and verdict in the same badge style
+> - It should explain the score (kinda a detailed breakdown like what you did here)
+> - [Image #147: the Item Search window on Peacebloom; the left column holds the search box and a tall, mostly empty Matches
+>   list] It can potentially occupy some part of the Matches area (that becomes smaller in such cases) - probably the bottom
+>   left
