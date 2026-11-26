@@ -1,0 +1,27 @@
+id	ms	repo	title	deps	effort	smoke	traces
+R4-PLAN	M0	Ka0sAddonsCommonTasks	bundle: owner feedback, recon, answers, plan, manifest	-	S	-	owner feedback 2026-11-26
+R4-LK-01	M1	LibKa0s	'dash' icon (thick rounded bar in the fat-arrow style), minor bump, release v1.118.0 (tag local)	R4-PLAN	M	R4-DW-SM2	DW glyph
+R4-DW-00	M2	DropWatcher	re-vendor LibKa0s v1.118.0, declare the dash icon	R4-LK-01	S	-	DW glyph
+R4-DW-01	M2	DropWatcher	Type column: a unique fixed color per type, Creature white; Source plain everywhere	R4-DW-00	M	R4-DW-SM1	DW type colors
+R4-DW-02	M2	DropWatcher	no-skill-up glyph is the thick gray dash (tooltip and window)	R4-DW-00	S	R4-DW-SM2	DW glyph
+R4-DW-03	M2	DropWatcher	gathering professions: names, seeds with breakpoints (Incense Candle = Herbalism 20)	R4-DW-00	M	R4-DW-SM3	DW incense candle
+R4-DW-04	M2	DropWatcher	a unique color per profession (no skill-up hue) in tooltip, Crafting and Gathered	R4-DW-03	S	R4-DW-SM4	DW profession colors
+R4-DW-05	M2	DropWatcher	Skill cue: always the orange start, the player's band highlighted (window and tooltip)	R4-DW-03	M	R4-DW-SM5	DW skill column
+R4-DW-06	M2	DropWatcher	tooltip separator flicker: anchored rule kept through a refill of the same item	R4-DW-00	M	R4-DW-SM6	DW flicker
+R4-DW-07	M2	DropWatcher	verdict badge: a filled two-part badge next to the label, no confidence tier, reasons that add up	R4-DW-06	M	R4-DW-SM7	DW badge
+R4-DW-08	M2	DropWatcher	Sold by: hide the other faction's vendors by default (setting), '+N other-faction vendors'	R4-DW-00	S	R4-DW-SM8	DW vendors
+R4-DW-09	M2	DropWatcher	Quests row: mark, title (level) left; giver - zone right; window separator ' - '	R4-DW-00	S	R4-DW-SM9	DW quests
+R4-DW-10	M2	DropWatcher	docs and smoke rows for R4-DW-00..09	R4-DW-09	S	-	-
+R4-CT-01	M2	CombatTrail	test mode and sim: a sample Combat Sequence (HUD, detached window, Results), casts plus made-up auras	R4-PLAN	M	R4-CT-SM1	CT sim data
+R4-CT-02	M2	CombatTrail	every column left-aligned; the icon inside the Spell column with a one-character gap	R4-PLAN	S	R4-CT-SM2	CT alignment
+R4-CT-03	M2	CombatTrail	LootHistory-style column headers (band, 20 px, skinned sort triangle) in all three homes	R4-CT-02	S	R4-CT-SM3	CT headers
+R4-CT-04	M2	CombatTrail	chips hidden by default (HUD drawer, and the detached window with an eye mark)	R4-PLAN	S	R4-CT-SM4	CT chips
+R4-CT-05	M2	CombatTrail	detach mark chevron-right, dock mark chevron-left; icons pruned	R4-PLAN	S	R4-CT-SM5	CT icons
+R4-CT-06	M2	CombatTrail	new profiles start at the min width (existing profiles pinned at 390)	R4-PLAN	S	R4-CT-SM6	CT width
+R4-CT-07	M2	CombatTrail	HUD sizing: min 3+3 rows, default 5+5, the grip adds and removes rows alternately	R4-CT-04	M	R4-CT-SM7	CT sizing
+R4-CT-08	M2	CombatTrail	LG22: 'Open when a fight starts' opens the HUD, not the section; LG27: who colors removed	R4-PLAN	S	R4-CT-SM8	LG22 LG27
+R4-CT-09	M2	CombatTrail	docs and smoke rows for R4-CT-01..08	R4-CT-08	S	-	-
+R4-RM-01	M2	RangeMaster	a band set assigned per character per profile at first use; persists; 'Use for this character'	R4-PLAN	L	R4-RM-SM1	RM band sets
+R4-RM-02	M2	RangeMaster	new profiles seed only the creator's set; Your band sets grows as characters use the profile	R4-RM-01	M	R4-RM-SM2	RM band sets
+R4-RM-03	M2	RangeMaster	docs and smoke rows for R4-RM-01..02	R4-RM-02	S	-	-
+R4-DW-11	M2	DropWatcher	verdict panel under Matches when the item is held (bags or bank): badge and score breakdown (A1)	R4-DW-10	M	R4-DW-SM11	A1 verdict panel
