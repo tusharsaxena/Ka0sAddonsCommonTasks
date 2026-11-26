@@ -98,3 +98,12 @@ branch with incremental commits; push at milestones; merge only on go-ahead; cle
 | SM-CT-LG22: "Open it when a fight starts" reopens a closed Combat Sequence at the pull | "Open when fight starts should apply to the overall DPS HUD, not the combat sequence section specifically" |
 | SM-CT-LG27: the unused Your / Hostile target / Friendly target colors | Remove them (with a schema step clearing the saved values) |
 | RangeMaster: "only changes if a user manually selects a different profile" | Meant a different **band set**: only picking a band set in the dropdown changes a character's band set; each profile remembers each character's pick |
+
+## The owner's answers after the recon (2026-11-26)
+
+| Question | Answer |
+|---|---|
+| Drop Watcher Skill column: how to show your current band | "Orange start + highlight": always show the orange start (`[1] 55 75 95`) and highlight the band your rank is in; no rank number |
+| Sold by: estimate a cost of 4× the sell price where none is known | "Skip this": no estimate, and the vendor cost item is dropped; a cost shows only when one is known, as today |
+| RangeMaster: where a character's band set is changed by hand | "One per character": one band set per character, which every container without its own pick follows; set from a "Use for this character" action on the Band sets page |
+| RangeMaster: prune untouched shipped copies from existing profiles | "New profiles only": existing profiles are left as they are |
