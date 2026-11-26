@@ -37,3 +37,16 @@ version bumps.
 
 All owner smoke steps were given in chat at hand-off; the per-repo rows are in each repo's `docs/smoke-tests.md`
 (DW ITEM-SEARCH-57..63, RM BANDS-41..44, CT R5-CT-SM1..4, SM SM-R5-1..12). None are marked passed.
+
+## After hand-off (2026-11-26, late)
+
+- **SkillMaster launcher-§6 deviation: confirmed by the owner** ("Confirmed"): `/sm toggle` opens all windows, while
+  the minimap Show window entry and the keybinding open Professions.
+- **R5-CT-03 measured.** The owner's `/ct diagnostics` after a Forever (build 71139) Beast Mastery fight:
+  `aura events player=1 target=4 info=0 none=0 full=5 sealedInfo=0`, `gains seen=0`, `losses seen=0`,
+  `walks complete=5 incomplete=6 raised=280`. Every in-combat `C_UnitAuras.GetAuraDataByIndex` read raised
+  (280 = 7 filter walks x 40 slots); only out-of-combat walks completed. With `COMBAT_LOG_EVENT_UNFILTERED` forbidden
+  on Forever, an addon has no readable in-combat aura source there. Decided (owner guideline "decide yourself"): no
+  backfill with invented times; follow-up branch `feat/2026-11-26-ct-forever-auras` (R5-CT-05..08) closes the
+  tally's blind spots (sealed unit, sealed vs plain full update, one raise per walk), reads update info when only
+  `isFullUpdate` is sealed, tells the Forever player on the chips and settings, and records the quirk as measured.
