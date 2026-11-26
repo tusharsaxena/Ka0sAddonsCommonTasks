@@ -27,3 +27,8 @@ R5-CT-01	M1	CombatTrail	default HUD fits 5 breakdown and 5 sequence rows	R5-PLAN
 R5-CT-02	M1	CombatTrail	Rows shown resizes the window, over a dragged size	R5-PLAN
 R5-CT-03	M1	CombatTrail	Combat Sequence tracks buffs and debuffs gained and lost	R5-PLAN
 R5-CT-04	M1	CombatTrail	Combat Sequence tells player rows from pet rows	R5-PLAN
+R5-SM-08	A1	SkillMaster	joined detached windows resizable again	R5-SM-07
+R5-SM-09	A1	SkillMaster	detach any sub-category (reputation, statistics, currency headers)	R5-SM-07
+R5-SM-10	A1	SkillMaster	Journal tracks reputation and currency gains and losses	R5-SM-07
+R5-SM-11	A1	SkillMaster	filters on every Journal column header	R5-SM-07
+R5-SM-12	A1	SkillMaster	other Journal rework	R5-SM-07
