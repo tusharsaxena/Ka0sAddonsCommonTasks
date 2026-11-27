@@ -57,3 +57,6 @@ CAP-40, new.
 catch's loot line 20 s later with no `[Open]` line: on WoW Forever a catch fires no LOOT_OPENED at all.
 LootHistory 634c420 (LH-FISH-03): a loot line with no fresh context inside a Fishing cast's 30 s is the
 catch (any fresher stamp still wins; the catch's further lines share it for 5 s). CAP-39 awaits the owner.
+
+**CAP-39: PASS (owner, 2026-11-27)** after LH-FISH-03 ("fishing fix is working"). CAP-40 (ammunition
+ignored on WoW Forever) still awaits the owner.
