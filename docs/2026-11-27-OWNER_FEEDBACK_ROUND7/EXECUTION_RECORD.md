@@ -52,3 +52,8 @@ same merge: `settings.excludeAmmo` (General > Capture > Loot, "Ignore ammunition
 by item class (Projectile, or Weapon/Thrown) rather than an id list, so every bullet, arrow and throwing
 weapon is covered; no loot record and no ledger row; on by default on WoW Forever, off on Retail. Smoke
 CAP-40, new.
+
+**CAP-39 failed again** (owner, 2026-11-27, with `/lh debug`): `[Cast] fishing cast 7732` logged, then the
+catch's loot line 20 s later with no `[Open]` line: on WoW Forever a catch fires no LOOT_OPENED at all.
+LootHistory 634c420 (LH-FISH-03): a loot line with no fresh context inside a Fishing cast's 30 s is the
+catch (any fresher stamp still wins; the catch's further lines share it for 5 s). CAP-39 awaits the owner.
