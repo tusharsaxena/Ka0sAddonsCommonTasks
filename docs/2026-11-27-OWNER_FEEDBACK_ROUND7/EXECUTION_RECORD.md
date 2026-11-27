@@ -35,3 +35,20 @@ Forever. Nothing further to build.
 
 New rows, none marked passed: DW ITEM-SEARCH-76..78, SM SM-R7-1, CT R7-CT-SM1 and R7-CT-SM2, OR
 FLY-TAINT-1, LH CAP-39 and LEDGER-SWAP-1.
+
+## Owner smoke results (2026-11-27)
+
+"All other smoke tests from this run pass": **PASS (owner, 2026-11-27)** for DW ITEM-SEARCH-76, -77,
+-78; SM SM-R7-1; CT R7-CT-SM1, R7-CT-SM2; OR FLY-TAINT-1; LH LEDGER-SWAP-1.
+
+**FAIL: LH CAP-39** on WoW Forever: catches still read Other after a reload. Cause: the catch's loot
+window has no source GUID and `IsFishingLoot()` does not answer there, so nothing was stamped. Fixed in
+LootHistory 80ef2db (LH-FISH-02): a Fishing cast (its ids, or its localized name) arms 30 s, and the next
+loot window with no source or the bobber's GameObject is a catch; a creature's window never is.
+CAP-39 amended, awaiting the owner again.
+
+**New owner request:** on WoW Forever, ammunition and thrown weapons are "too spammy". LH-AMMO-01 in the
+same merge: `settings.excludeAmmo` (General > Capture > Loot, "Ignore ammunition and thrown weapons"),
+by item class (Projectile, or Weapon/Thrown) rather than an id list, so every bullet, arrow and throwing
+weapon is covered; no loot record and no ledger row; on by default on WoW Forever, off on Retail. Smoke
+CAP-40, new.
