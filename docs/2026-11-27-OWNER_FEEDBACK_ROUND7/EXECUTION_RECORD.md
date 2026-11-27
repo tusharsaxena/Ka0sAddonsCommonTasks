@@ -60,3 +60,5 @@ catch (any fresher stamp still wins; the catch's further lines share it for 5 s)
 
 **CAP-39: PASS (owner, 2026-11-27)** after LH-FISH-03 ("fishing fix is working"). CAP-40 (ammunition
 ignored on WoW Forever) still awaits the owner.
+
+**CAP-40: PASS (owner, 2026-11-27).** Every round 7 smoke check has now passed.
